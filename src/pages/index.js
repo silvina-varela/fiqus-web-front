@@ -8,15 +8,21 @@ import Blog from './Blog'
 import styled from 'styled-components'
 require('../styles/styles.css')
 
+const Main = styled.main`
+  position: relative;
+  width:100%;
+  height:100%;
+`
 
 
 
 const IndexPage = () => {
   return (
-    <main>
-      <Header></Header>
+    <Main>
+      <Header>BLABLABLABLABLABA</Header>
+      <Homepage> </Homepage>
       <Footer></Footer>
-    </main>
+    </Main>
   )
 }
 
