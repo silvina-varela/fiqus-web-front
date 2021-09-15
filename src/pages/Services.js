@@ -6,7 +6,7 @@ const Services = () => {
 
     const PageContent = () => {
         return (
-            <h1>ESTE ES EL CONTENIDO MALDITA ZEA</h1>
+            <h1>Services</h1>
         )
       }
     
