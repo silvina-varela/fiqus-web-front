@@ -3,11 +3,16 @@ import Wrapper from '../components/common/PageWrapper'
 
 
 const Blog = () => {
-    return (
-        <Wrapper background={"lightblue"}>
-            
-        </Wrapper>
-    );
+
+    const PageContent = () => {
+        return (
+            <h1>ESTE ES EL CONTENIDO MALDITA ZEA</h1>
+        )
+      }
+    
+      return (
+          <Wrapper children={PageContent} background="lightblue"></Wrapper>
+      );
 };
 
 export default Blog;

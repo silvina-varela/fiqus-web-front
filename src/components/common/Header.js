@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import {Link} from 'gatsby'
 
 const NavWrapper = styled.nav`
+    position: fixed;
     width: 100%;
-    height: 80px;
-    background: pink;
+    background: white;
 `
 
 const Header = () => {
