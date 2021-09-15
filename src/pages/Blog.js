@@ -1,10 +1,12 @@
 import React from 'react';
+import Wrapper from '../components/common/PageWrapper'
+
 
 const Blog = () => {
     return (
-        <div>
+        <Wrapper background={"lightblue"}>
             
-        </div>
+        </Wrapper>
     );
 };
 

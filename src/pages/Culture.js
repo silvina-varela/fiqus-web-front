@@ -1,10 +1,12 @@
 import React from 'react';
+import styled from 'styled-components'
+import Wrapper from '../components/common/PageWrapper'
 
 const Culture = () => {
     return (
-        <div>
+        <Wrapper background="blue">
             
-        </div>
+        </Wrapper>
     );
 };
 

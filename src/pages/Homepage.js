@@ -1,14 +1,10 @@
 import React from 'react';
 import styled from 'styled-components'
-
-const Wrapper = styled.div`
-    min-width:100vw;
-    min-height:100vh;
-`
+import Wrapper from '../components/common/PageWrapper'
 
 const Homepage = () => {
     return (
-        <Wrapper>
+        <Wrapper background={"pink"}>
             
         </Wrapper>
     );

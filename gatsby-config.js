@@ -2,6 +2,24 @@ module.exports = {
   siteMetadata: {
     siteUrl: "https://www.yourdomain.tld",
     title: "fiqus-web",
+    menuLinks: [
+      {
+        name:"Servicios",
+        link:"/"
+      },
+      {
+        name:"Cultura",
+        link:"/"
+      },
+      {
+        name:"Labs",
+        link:"/"
+      },
+      {
+        name:"Blog",
+        link:"/"
+      }
+    ]
   },
   plugins: [
     "gatsby-plugin-styled-components",
