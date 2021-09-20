@@ -5,12 +5,11 @@ import data from '../content/content.json'
 
 require('../styles/styles.css')
 
-export default function Index() {
+export default function Index(props) {
   const content = data.homepage
 
-
   return (
-      <Wrapper  background="pink">
+      <Wrapper background="pink">
         <h1>{content.title}</h1>
       </Wrapper>
   );

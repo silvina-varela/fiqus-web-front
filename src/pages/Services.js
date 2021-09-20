@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import Wrapper from '../components/common/PageWrapper'
 import data from '../content/content.json'
 
+const styles = data.styles
+
 const Services = () => {
     const content = data.services
     

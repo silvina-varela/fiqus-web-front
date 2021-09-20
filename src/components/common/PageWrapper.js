@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components'
 import Header from '../common/Header'
 import Footer from '../common/Footer'
+import data from '../../content/content.json'
 
+const styles = data.styles
 
 const Wrapper = styled.div`
     position: relative;
@@ -14,7 +16,8 @@ const Wrapper = styled.div`
 `
 const PageContainer = styled.section `
     width:100%;
-    max-width:1280px;
+    max-width:${styles.breakpoints.xl}px;
+    min-width:${styles.breakpoints.xs}px;
     padding: 150px 50px;
     margin: 0 auto;
     min-height:100vh;
@@ -23,7 +26,7 @@ const PageWrapper = (props) => {
     return (
             <Wrapper background={props.background}>
                 <Header></Header>
-                <PageContainer> {props.children}</PageContainer>
+                <PageContainer>{props.children}</PageContainer>
                 <Footer></Footer>
             </Wrapper>
     );

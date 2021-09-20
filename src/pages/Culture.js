@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Wrapper from '../components/common/PageWrapper'
 import data from '../content/content.json'
 
+const styles = data.styles
 
 const Culture = () => {
     const content = data.culture

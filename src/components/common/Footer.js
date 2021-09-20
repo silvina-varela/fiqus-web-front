@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
+import data from '../../content/content.json'
+
+const styles = data.styles
 
 const FooterContainer = styled.footer`
     width: 100%;
@@ -10,9 +13,7 @@ const FooterContainer = styled.footer`
 const Footer = () => {
     return (
         <FooterContainer>
-            <p>
-                Este es el footer
-            </p>
+
         </FooterContainer>
     );
 };
