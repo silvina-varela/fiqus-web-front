@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---cache-dev-404-page-js",
     "path": "/dev-404-page/",
-    "result": {"data":{"allSiteFunction":{"nodes":[]},"allSitePage":{"nodes":[{"path":"/404.html"},{"path":"/404/"},{"path":"/blog/"},{"path":"/culture/"},{"path":"/"},{"path":"/labs/"},{"path":"/services/"},{"path":"/blog/blablabla/"},{"path":"/blog/learning-about-gatsby/"}]}},"pageContext":{}},
+    "result": {"data":{"allSiteFunction":{"nodes":[]},"allSitePage":{"nodes":[{"path":"/404.html"},{"path":"/404/"},{"path":"/blog/"},{"path":"/culture/"},{"path":"/"},{"path":"/labs/"},{"path":"/services/"},{"path":"/blog/learning-about-gatsby/"},{"path":"/blog/blablabla/"}]}},"pageContext":{}},
     "staticQueryHashes": []}

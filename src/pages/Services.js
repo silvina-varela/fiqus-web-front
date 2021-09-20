@@ -1,17 +1,15 @@
-import React from 'react';
+import React, { Fragment }  from 'react'
 import styled from 'styled-components'
 import Wrapper from '../components/common/PageWrapper'
+import data from '../content/content.json'
 
 const Services = () => {
-
-    const PageContent = () => {
-        return (
-            <h1>Services</h1>
-        )
-      }
+    const content = data.services
     
       return (
-          <Wrapper children={PageContent} background="blue"></Wrapper>
+        <Wrapper background="blue">
+            <h1>{content.title}</h1>
+        </Wrapper>
       );
 };
 

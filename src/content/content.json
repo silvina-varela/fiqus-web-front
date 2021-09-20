@@ -1,68 +1,91 @@
 {
-    "sections":[
-        {
-            "title":"Homepage"
-        },
-        {
-            "title": "Servicios",
-            "services":[
-                {
-                    "service":"Ciencia de Datos",
-                    "description":"Este área se dedica a la limpieza, extracción y análisis de datos con el fin de poder servir de alimento para procesos de Inteligencia Artificial o Aprendizaje Automático. Es de esencial importancia procesar los datos para lograr que sean de fácil entendimiento, así como su uso para llegar a los objetivos planteados.",
-                    "tags" : [
-                        "Python",
-                        "Pandas",
-                        "Numpy",
-                        "Seaborn"
-                    ]
-                },
-                {
-                    "service":"Inteligencia Artificial",
-                    "description":"El Aprendizaje Automático es un subcampo de la Inteligencia Artificial en el que se tiene como objetivo que las \"computadoras aprendan\". A partir de datos recolectados y procesados, diseñamos, construimos y entrenamos modelos que nos permitan predecir eventos futuros, clasificar imágenes, reconocer entidades en textos y muchas otras cosas más.",
-                    "tags" : [
-                        "Python",
-                        "Pandas",
-                        "Numpy",
-                        "Seaborn"
-                    ]
-                },
-                {
-                    "service":"Alta Concurrencia",
-                    "description":"Utilizamos lenguajes de programación funcional en tiempo real y muy adoptados en el mercado, que soportan niveles de altísima concurrencia y distribución, teniendo como resultado sistemas que responden a gran velocidad ante altas demandas.",
-                    "tags" : [
-                        "Earlang",
-                        "Elixir",
-                        "Phoenix Framework", 
-                        "LiveView"
-                    ]
-                },
-                {
-                    "service":"Blockchain | Fintech",
-                    "description":"Estamos desarrollando fintech, que son las nuevas aplicaciones, procesos, productos o modelos de negocios en la industria de los servicios financieros compuestos de uno o más servicios financieros complementarios y puestos a disposición del público vía Internet.",
-                    "tags" : [
-                        "Python",
-                        "Ethereum"
-                    ]
-                },
-                {
-                    "service":"Fullstack",
-                    "description":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.",
-                    "tags" : [
-                        "Django",
-                        "Phoenix",
-                        "Phoenix LiveView",
-                        "ReactJS", 
-                        "VueJS", 
-                        "React Native"
-                    ]
-                }
-            ],
-            "subsection": {
-                "title":"capacitación",
-                "content":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente."
-            }
+    "styles" : {
+        "breakpoints" : {
+            "xs":"320",
+            "s":"481",
+            "m":"769",
+            "l":"1024",
+            "xl":"1200"
         }, 
-        {
+        "colors" : {
+            "purple-primary":"#510066", 
+            "purple-gradient":"#7A0185", 
+            "green-main":"#44DC00", 
+            "orange-main":"#FF602C",
+            "purple-light": "#E9E1EB", 
+            "dark-main":"#0F1319"
+        }, 
+        "font-weight" : {
+            "bold": "700",
+            "medium": "500", 
+            "light":"300", 
+            "regular":"400"
+        }
+    },
+    "homepage" : {
+        "title":"Homepage"
+    },
+
+    "services": {
+        "title": "Servicios",
+        "services":[
+            {
+                "service":"Ciencia de Datos",
+                "description":"Este área se dedica a la limpieza, extracción y análisis de datos con el fin de poder servir de alimento para procesos de Inteligencia Artificial o Aprendizaje Automático. Es de esencial importancia procesar los datos para lograr que sean de fácil entendimiento, así como su uso para llegar a los objetivos planteados.",
+                "tags" : [
+                    "Python",
+                    "Pandas",
+                    "Numpy",
+                    "Seaborn"
+                ]
+            },
+            {
+                "service":"Inteligencia Artificial",
+                "description":"El Aprendizaje Automático es un subcampo de la Inteligencia Artificial en el que se tiene como objetivo que las \"computadoras aprendan\". A partir de datos recolectados y procesados, diseñamos, construimos y entrenamos modelos que nos permitan predecir eventos futuros, clasificar imágenes, reconocer entidades en textos y muchas otras cosas más.",
+                "tags" : [
+                    "Python",
+                    "Pandas",
+                    "Numpy",
+                    "Seaborn"
+                ]
+            },
+            {
+                "service":"Alta Concurrencia",
+                "description":"Utilizamos lenguajes de programación funcional en tiempo real y muy adoptados en el mercado, que soportan niveles de altísima concurrencia y distribución, teniendo como resultado sistemas que responden a gran velocidad ante altas demandas.",
+                "tags" : [
+                    "Earlang",
+                    "Elixir",
+                    "Phoenix Framework", 
+                    "LiveView"
+                ]
+            },
+            {
+                "service":"Blockchain | Fintech",
+                "description":"Estamos desarrollando fintech, que son las nuevas aplicaciones, procesos, productos o modelos de negocios en la industria de los servicios financieros compuestos de uno o más servicios financieros complementarios y puestos a disposición del público vía Internet.",
+                "tags" : [
+                    "Python",
+                    "Ethereum"
+                ]
+            },
+            {
+                "service":"Fullstack",
+                "description":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.",
+                "tags" : [
+                    "Django",
+                    "Phoenix",
+                    "Phoenix LiveView",
+                    "ReactJS", 
+                    "VueJS", 
+                    "React Native"
+                ]
+            }
+        ],
+        "subsection": {
+            "title":"capacitación",
+            "content":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente."
+        }
+    }, 
+    "culture" : {
             "title": "Cultura",
             "subtiitle" : "Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos!",
             "description":"Fiqus no es un trabajo más, es un proyecto de vida, en el que construimos un equipo consolidado de profesionales que se encuentra en continua capacitación para poder brindar soluciones técnicas de alta calidad. ",
@@ -94,51 +117,50 @@
                 }
             ]
         }, 
-        {
-            "title":"Labs", 
-            "subtitle":"FiqusLabs es un espacio donde investigamos sobre nuevas tecnologías y nos capacitamos.", 
-            "content":"De yapa, muchas veces el aprendizaje de una nueva tecnología viene acompañado con poder plasmar un proyecto que beneficie a la comunidad o al ambiente cooperativo.",
-            "sections":{
-                "title":"Casos de Éxito",
-                "tagsTitle":"Tecnologías Investigadas",
-                "cases":[
-                    {
-                        "title":"CooBS", 
-                        "description":"Es una aplicación web donde las cooperativas pueden cargar y seguir sus acciones que se alinean a los principios cooperativos [link a wikipedia], como así también confeccionar el Balance Social.",
-                        "tags":[
-                            "Python",
-                            "Django",
-                            "Postgress"
-                        ],
-                        "image":"",
-                        "links":[
-                            {
-                                "text":"ver sitio",
-                                "link":""
-                            }
-                        ]
-                    },
-                    {
-                        "title":"CoopHub", 
-                        "description":"Es un sitio web donde se muestran los repositorios open source de diferentes cooperativas a lo largo del mundo. A su vez, se puede ver cuales son los lenguajes de programación más utilizados y buscar por tags.",
-                        "tags":[
-                            "Elixir",
-                            "Phoenix",
-                            "Utilización de ETS",
-                            "Cache de datos",
-                            "ReactJS",
-                            "API y acciones de GitHub"
-                        ],
-                        "image":"",
-                        "links":[
-                            {
-                                "text":"ver sitio",
-                                "link":""
-                            }
-                        ]
-                    }
-                ]
-            }
+    "labs" : {
+        "title":"Labs", 
+        "subtitle":"FiqusLabs es un espacio donde investigamos sobre nuevas tecnologías y nos capacitamos.", 
+        "content":"De yapa, muchas veces el aprendizaje de una nueva tecnología viene acompañado con poder plasmar un proyecto que beneficie a la comunidad o al ambiente cooperativo.",
+        "sections":{
+            "title":"Casos de Éxito",
+            "tagsTitle":"Tecnologías Investigadas",
+            "cases":[
+                {
+                    "title":"CooBS", 
+                    "description":"Es una aplicación web donde las cooperativas pueden cargar y seguir sus acciones que se alinean a los principios cooperativos [link a wikipedia], como así también confeccionar el Balance Social.",
+                    "tags":[
+                        "Python",
+                        "Django",
+                        "Postgress"
+                    ],
+                    "image":"",
+                    "links":[
+                        {
+                            "text":"ver sitio",
+                            "link":""
+                        }
+                    ]
+                },
+                {
+                    "title":"CoopHub", 
+                    "description":"Es un sitio web donde se muestran los repositorios open source de diferentes cooperativas a lo largo del mundo. A su vez, se puede ver cuales son los lenguajes de programación más utilizados y buscar por tags.",
+                    "tags":[
+                        "Elixir",
+                        "Phoenix",
+                        "Utilización de ETS",
+                        "Cache de datos",
+                        "ReactJS",
+                        "API y acciones de GitHub"
+                    ],
+                    "image":"",
+                    "links":[
+                        {
+                            "text":"ver sitio",
+                            "link":""
+                        }
+                    ]
+                }
+            ]
         }
-    ]
+    }
 }

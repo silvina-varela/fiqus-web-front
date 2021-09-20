@@ -1,14 +1,22 @@
-import { graphql } from "gatsby";
-import * as React from "react";
+import { graphql } from "gatsby"
+import * as React from "react"
+import Wrapper from '../components/common/PageWrapper'
 
 export default function BlogPostTemplate({ data: { markdownRemark } }) {
   const { frontmatter, html } = markdownRemark;
+
+  const PageContent = () => {
+    return (
+      <div>
+        <h1>{frontmatter.title}</h1>
+        <h2>{frontmatter.date}</h2>
+        <div className="post-body" dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
+    )
+  } 
+
   return (
-    <div>
-      <h1>{frontmatter.title}</h1>
-      <h2>{frontmatter.date}</h2>
-      <div className="post-body" dangerouslySetInnerHTML={{ __html: html }} />
-    </div>
+    <Wrapper children={PageContent} background={"red"}> </Wrapper>
   );
 }
 

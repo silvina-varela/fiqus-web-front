@@ -1,17 +1,14 @@
-import React from 'react';
+import React, { Fragment }  from 'react'
+import styled from 'styled-components'
 import Wrapper from '../components/common/PageWrapper'
 
 
 const Blog = () => {
 
-    const PageContent = () => {
-        return (
-            <h1>Blog</h1>
-        )
-      }
-    
       return (
-          <Wrapper children={PageContent} background="lightblue"></Wrapper>
+          <Wrapper background="lightblue">
+              
+          </Wrapper>
       );
 };
 

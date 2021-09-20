@@ -1,21 +1,17 @@
-import React, { useState } from "react"
-
+import React, { Fragment } from "react"
 import styled from 'styled-components'
 import Wrapper from '../components/common/PageWrapper'
-
-import content from '../data/sectionsContent/content.json'
+import data from '../content/content.json'
 
 require('../styles/styles.css')
 
 export default function Index() {
+  const content = data.homepage
 
-  const PageContent = () => {
-    return (
-        <h1>Index</h1>
-    )
-  }
 
   return (
-      <Wrapper children={PageContent} background="pink"></Wrapper>
+      <Wrapper  background="pink">
+        <h1>{content.title}</h1>
+      </Wrapper>
   );
 }

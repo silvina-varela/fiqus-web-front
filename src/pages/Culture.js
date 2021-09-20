@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { Fragment } from 'react'
 import styled from 'styled-components'
 import Wrapper from '../components/common/PageWrapper'
+import data from '../content/content.json'
+
 
 const Culture = () => {
-
-    const PageContent = () => {
-        return (
-            <h1>Culture</h1>
-        )
-    }
+    const content = data.culture
 
     return (
-        <Wrapper children={PageContent} background="green"></Wrapper>
+        <Wrapper background="green">
+            <h1>{content.title}</h1>
+        </Wrapper>
     );
 };
 
