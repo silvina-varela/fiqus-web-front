@@ -9,7 +9,7 @@ const Labs = () => {
     const content = data.labs
     
       return (
-        <Wrapper background="orange">
+        <Wrapper>
             <h1>{content.title}</h1>
         </Wrapper>
       );

@@ -6,8 +6,8 @@ import Wrapper from '../components/common/PageWrapper'
 const Blog = () => {
 
       return (
-          <Wrapper background="lightblue">
-              
+          <Wrapper>
+
           </Wrapper>
       );
 };

@@ -12,7 +12,6 @@ const Wrapper = styled.div`
     padding:0;
     width:100%;
     min-height:100%;
-    background: ${ props => props.background};
 `
 const PageContainer = styled.section `
     width:100%;
@@ -24,7 +23,7 @@ const PageContainer = styled.section `
 `
 const PageWrapper = (props) => {
     return (
-            <Wrapper background={props.background}>
+            <Wrapper>
                 <Header></Header>
                 <PageContainer>{props.children}</PageContainer>
                 <Footer></Footer>

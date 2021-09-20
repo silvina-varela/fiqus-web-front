@@ -9,7 +9,7 @@ const Culture = () => {
     const content = data.culture
 
     return (
-        <Wrapper background="green">
+        <Wrapper>
             <h1>{content.title}</h1>
         </Wrapper>
     );

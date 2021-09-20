@@ -9,7 +9,7 @@ const Services = () => {
     const content = data.services
     
       return (
-        <Wrapper background="blue">
+        <Wrapper>
             <h1>{content.title}</h1>
         </Wrapper>
       );
