@@ -45,7 +45,7 @@ const Tag = (props) => {
 
     return (
         <TagContainer>
-            <TagItem  type={getTagStyles(props.type)} theme={props.theme}>Esto es un tag</TagItem>
+            <TagItem  type={getTagStyles(props.type)} theme={props.theme}>{props.tagContent || "Tag"}</TagItem>
         </TagContainer>
     );
 };
