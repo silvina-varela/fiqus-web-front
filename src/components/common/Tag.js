@@ -11,20 +11,35 @@ const TagItem = styled.div`
     padding: 9px 14px;
     border-radius: 10px;
     font-size: 14px;
-    font-weight: ${props => props.type === "green" ? props.theme.fontWeight.regular : props.theme.fontWeight.medium };
-    background-color: ${props => props.type === "green" ? props.theme.colors.greenLight :  props.theme.colors.purpleLight };
-    color: ${props => props.type === "green" ? props.theme.colors.ultraDarkGrey : props.theme.colors.purplePrimary };
+    font-weight: ${props => props.type.fontWeight};
+    background-color: ${props => props.type.background};
+    color: ${props => props.type.color };
 `
 
-const tagType = (type) =>{
-
-}
-
-
 const Tag = (props) => {
+
+    const getTagStyles = (type) =>{
+        switch (type) {
+            case "green" : 
+                return {
+                    background : props.theme.colors.greenLight, 
+                    fontWeight : props.theme.fontWeight.regular, 
+                    color : props.theme.colors.ultraDarkGrey
+                 }
+            break
+            case "purple" : 
+                return {
+                    background : props.theme.colors.purpleLight, 
+                    fontWeight : props.theme.fontWeight.medium, 
+                    color : props.theme.colors.purplePrimary
+                }
+            break
+        }
+    }
+
     return (
         <TagContainer>
-            <TagItem  type={(props.type)} theme={props.theme}>Esto es un tag</TagItem>
+            <TagItem  type={getTagStyles(props.type)} theme={props.theme}>Esto es un tag</TagItem>
         </TagContainer>
     );
 };
