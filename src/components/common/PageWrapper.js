@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import Header from '../common/Header'
 import Footer from '../common/Footer'
+import Tag from '../common/Tag'
 import data from '../../content/content.json'
 
 const styles = data.styles
@@ -25,7 +26,9 @@ const PageWrapper = (props) => {
     return (
             <Wrapper>
                 <Header></Header>
-                <PageContainer>{props.children}</PageContainer>
+                <PageContainer>{props.children}
+                <Tag></Tag>
+                </PageContainer>
                 <Footer></Footer>
             </Wrapper>
     );

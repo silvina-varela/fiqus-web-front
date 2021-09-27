@@ -8,14 +8,20 @@
             "xl":"1280"
         }, 
         "colors" : {
-            "purple-primary":"#510066", 
-            "purple-gradient":"#7A0185", 
-            "green-main":"#44DC00", 
-            "orange-main":"#FF602C",
-            "purple-light": "#E9E1EB", 
-            "dark-main":"#0F1319"
+            "purplePrimary":"#510066", 
+            "purpleGradient":"#7A0185", 
+            "greenMain":"#44DC00", 
+            "orangeMain":"#FF602C",
+            "greenLight": "#E8F7E1", 
+            "purpleLight": "#E9E1EB", 
+            "black": "#000000", 
+            "darkMainBg":"#0F1319",
+            "darkGrey":"#60646B",
+            "ultraDarkGrey":"#333333",
+            "lightGrey":"#A7ACB4",
+            "ultraLightGrey":"#C4C4C4"
         }, 
-        "font-weight" : {
+        "fontWeight" : {
             "bold": "700",
             "medium": "500", 
             "light":"300", 
