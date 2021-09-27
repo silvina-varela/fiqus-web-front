@@ -27,7 +27,7 @@ const PageWrapper = (props) => {
             <Wrapper>
                 <Header></Header>
                 <PageContainer>{props.children}
-                <Tag type="purple" theme={styles}></Tag>
+                <Tag type="services" theme={styles}></Tag>
                 </PageContainer>
                 <Footer></Footer>
             </Wrapper>
