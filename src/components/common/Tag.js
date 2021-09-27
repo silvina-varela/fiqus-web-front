@@ -16,6 +16,11 @@ const TagItem = styled.div`
     color: ${props => props.type === "green" ? props.theme.colors.ultraDarkGrey : props.theme.colors.purplePrimary };
 `
 
+const tagType = (type) =>{
+
+}
+
+
 const Tag = (props) => {
     return (
         <TagContainer>
