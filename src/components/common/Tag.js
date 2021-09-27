@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 
-const TagContainer = styled.div`
+const TagsContainer = styled.div`
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -44,9 +44,13 @@ const Tag = (props) => {
     }
 
     return (
-        <TagContainer>
-            <TagItem  type={getTagStyles(props.type)} theme={props.theme}>{props.tagContent || "Tag"}</TagItem>
-        </TagContainer>
+        <TagsContainer tags={props.tags}>
+            {
+                props.tags ? props.tags.map((tag) => {
+                    <TagItem  type={getTagStyles(tag.type)} theme={props.theme}>{tag.tagContent || "Tag"}</TagItem>
+                }) : " "
+            }
+        </TagsContainer>
     );
 };
 
