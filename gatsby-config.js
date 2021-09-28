@@ -5,19 +5,19 @@ module.exports = {
     menuLinks: [
       {
         name:"Servicios",
-        link:"/"
+        link:"/servicios"
       },
       {
         name:"Cultura",
-        link:"/"
+        link:"/cultura"
       },
       {
         name:"Labs",
-        link:"/"
+        link:"/labs"
       },
       {
         name:"Blog",
-        link:"/"
+        link:"/blog"
       }
     ]
   },
