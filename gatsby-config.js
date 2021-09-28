@@ -4,6 +4,10 @@ module.exports = {
     title: "fiqus-web",
     menuLinks: [
       {
+        name:"Home",
+        link:"/"
+      },
+      {
         name:"Servicios",
         link:"/servicios"
       },

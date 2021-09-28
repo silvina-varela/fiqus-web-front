@@ -1,4 +1,5 @@
 import React from 'react';
+import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components'
 import Header from '../common/Header'
 import Footer from '../common/Footer'
@@ -28,6 +29,22 @@ const PageContainer = styled.section `
 `
 const PageWrapper = (props) => {
     return (
+        <StaticQuery 
+        query = { graphql`
+            query MyQuery {
+                site {
+                    siteMetadata {
+                        title
+                        menuLinks{
+                            name
+                            link
+                        }
+                    }
+                }
+            }
+        `
+        }
+        render = { data => (
             <Wrapper>
                 <Header></Header>
                 <PageContainer>{props.children}
@@ -39,8 +56,13 @@ const PageWrapper = (props) => {
                 <Button type="btnSecondary" theme={styles} href=""></Button>
                 <Button type="btnLabeled" theme={styles} href=""></Button>
                 </PageContainer>
+                <Header menuLinks = {data.site.siteMetadata.menuLinks}></Header>
+                <PageContainer>{props.children}</PageContainer>
                 <Footer></Footer>
             </Wrapper>
+        )}>
+            
+        </StaticQuery>
     );
 };
 
