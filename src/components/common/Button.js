@@ -8,7 +8,7 @@ const BtnContainer = styled.div`
     flex-wrap: wrap;
 `
 const BtnImg = styled.img`
-    display: ${props => props.type.imgDisplay};
+    display: ${props => props.imgDisplay};
     height: 20px;
     margin-right: 6px;
 `
@@ -116,14 +116,9 @@ const Button = (props) => {
     return (
         <BtnContainer>   
             <Btn type={getBtnStyles(props.type)} theme={props.theme} to={props.href}>
-                <BtnImg src={require('../../images/icon_website.svg').default} />
+                <BtnImg imgDisplay={getBtnStyles(props.type).imgDisplay} src={require('../../images/icon_website.svg').default} />
                 ver sitio
-            </Btn>         
-            <Btn type={getBtnStyles(props.type)} theme={props.theme} to={props.href}>
-                <BtnImg src={require ('../../images/icon_github.svg').default} />
-                ir a Github
-            </Btn>
-            
+            </Btn>                     
         </BtnContainer>
     );
 };
