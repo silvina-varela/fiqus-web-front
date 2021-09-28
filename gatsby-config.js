@@ -51,6 +51,12 @@ module.exports = {
         name: `blog`,
         path: `${__dirname}/src/data/blog`,
       },
-    }
+    },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/layout/PageWrapper`),
+      },
+    },
   ],
 };

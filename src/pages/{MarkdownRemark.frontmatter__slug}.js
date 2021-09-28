@@ -1,6 +1,6 @@
 import { graphql } from "gatsby"
 import * as React from "react"
-import Wrapper from '../components/common/PageWrapper'
+import Wrapper from '../components/layout/PageWrapper'
 
 export default function BlogPostTemplate({ data: { markdownRemark } }) {
   const { frontmatter, html } = markdownRemark;
