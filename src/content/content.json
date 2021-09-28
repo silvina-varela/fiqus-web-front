@@ -15,17 +15,23 @@
             "greenLight": "#E8F7E1", 
             "purpleLight": "#E9E1EB", 
             "black": "#000000", 
+            "white": "#FFFFFF", 
             "darkMainBg":"#0F1319",
             "darkGrey":"#60646B",
             "ultraDarkGrey":"#333333",
             "lightGrey":"#A7ACB4",
-            "ultraLightGrey":"#C4C4C4"
+            "ultraLightGrey":"#C4C4C4",
+            "transparent":"transparent"
         }, 
         "fontWeight" : {
             "bold": "700",
             "medium": "500", 
             "light":"300", 
             "regular":"400"
+        },
+        "icon" : {
+            "website": "website.svg",
+            "github": "github.svg"
         }
     },
     "homepage" : {
