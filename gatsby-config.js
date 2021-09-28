@@ -5,19 +5,19 @@ module.exports = {
     menuLinks: [
       {
         name:"Servicios",
-        link:"/"
+        link:"/servicios"
       },
       {
         name:"Cultura",
-        link:"/"
+        link:"/cultura"
       },
       {
         name:"Labs",
-        link:"/"
+        link:"/labs"
       },
       {
         name:"Blog",
-        link:"/"
+        link:"/blog"
       }
     ]
   },
@@ -51,6 +51,12 @@ module.exports = {
         name: `blog`,
         path: `${__dirname}/src/data/blog`,
       },
-    }
+    },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/layout/PageWrapper`),
+      },
+    },
   ],
 };

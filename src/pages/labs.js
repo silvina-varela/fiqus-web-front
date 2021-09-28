@@ -1,12 +1,12 @@
-import React from 'react'
+import React  from 'react'
 import styled from 'styled-components'
-import Wrapper from '../components/common/PageWrapper'
+import Wrapper from '../components/layout/PageWrapper'
 import data from '../content/content.json'
 
 const styles = data.styles
 
-const Services = () => {
-    const content = data.services
+const Labs = () => {
+    const content = data.labs
     
       return (
         <Wrapper>
@@ -15,4 +15,4 @@ const Services = () => {
       );
 };
 
-export default Services;
+export default Labs;

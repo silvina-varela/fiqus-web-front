@@ -2474,7 +2474,7 @@ var plugins = [{
     "remarkPlugins": [],
     "rehypePlugins": [],
     "mediaTypes": ["text/markdown", "text/x-markdown"],
-    "root": "C:\\dev\\fiqus-web-front"
+    "root": "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front"
   }
 }];
 /* global plugins */
@@ -9069,24 +9069,24 @@ function y(){return(y=Object.assign||function(e){for(var t=1;t<arguments.length;
 /***/ }),
 
 /***/ "react-dom/server":
-/*!*******************************************************************************!*\
-  !*** external "C:\\dev\\fiqus-web-front\\node_modules\\react-dom\\server.js" ***!
-  \*******************************************************************************/
+/*!********************************************************************************************************************!*\
+  !*** external "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\node_modules\\react-dom\\server.js" ***!
+  \********************************************************************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("C:\\dev\\fiqus-web-front\\node_modules\\react-dom\\server.js");
+module.exports = require("D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\node_modules\\react-dom\\server.js");
 
 /***/ }),
 
 /***/ "react":
-/*!**************************************************************************!*\
-  !*** external "C:\\dev\\fiqus-web-front\\node_modules\\react\\index.js" ***!
-  \**************************************************************************/
+/*!***************************************************************************************************************!*\
+  !*** external "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\node_modules\\react\\index.js" ***!
+  \***************************************************************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("C:\\dev\\fiqus-web-front\\node_modules\\react\\index.js");
+module.exports = require("D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\node_modules\\react\\index.js");
 
 /***/ }),
 

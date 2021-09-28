@@ -1,18 +1,18 @@
-import React  from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import Wrapper from '../components/common/PageWrapper'
+import Wrapper from '../components/layout/PageWrapper'
 import data from '../content/content.json'
 
 const styles = data.styles
 
-const Labs = () => {
-    const content = data.labs
-    
-      return (
+const Culture = () => {
+    const content = data.culture
+
+    return (
         <Wrapper>
             <h1>{content.title}</h1>
         </Wrapper>
-      );
+    );
 };
 
-export default Labs;
+export default Culture;

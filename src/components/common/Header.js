@@ -8,15 +8,16 @@ const NavWrapper = styled.nav`
     background: white;
 `
 
-const Header = () => {
+const Header = (props) => {
     return (
         <NavWrapper>
             <ul>
-                <li><Link to="/"> Home </Link></li>
-                <li><Link to="/services"> Services </Link></li>
-                <li><Link to="/culture"> Culture </Link></li>
-                <li><Link to="/labs"> Labs </Link></li>
-                <li><Link to="/blog"> Blog </Link></li>
+                {
+                    props.menuLinks ? props.menuLinks.map((menuLink)=> {
+                        return (
+                            <li><Link to={menuLink.link}> {menuLink.name} </Link></li>)
+                        }) : " No hay links "
+                }     
             </ul>
         </NavWrapper>
     );
