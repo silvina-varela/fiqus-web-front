@@ -34,6 +34,7 @@
             "github": "github.svg"
         }
     },
+    
     "homepage" : {
         "title":"Homepage"
     },
@@ -49,7 +50,8 @@
                     "Pandas",
                     "Numpy",
                     "Seaborn"
-                ]
+                ],
+                "image":"datos"
             },
             {
                 "service":"Inteligencia Artificial",
@@ -59,7 +61,8 @@
                     "Pandas",
                     "Numpy",
                     "Seaborn"
-                ]
+                ],
+                "image":"inteligenciaArtificial"
             },
             {
                 "service":"Alta Concurrencia",
@@ -69,7 +72,8 @@
                     "Elixir",
                     "Phoenix Framework", 
                     "LiveView"
-                ]
+                ],
+                "image":"altaConcurrencia"
             },
             {
                 "service":"Blockchain | Fintech",
@@ -77,7 +81,8 @@
                 "tags" : [
                     "Python",
                     "Ethereum"
-                ]
+                ],
+                "image":"blockchain"
             },
             {
                 "service":"Fullstack",
@@ -89,12 +94,14 @@
                     "ReactJS", 
                     "VueJS", 
                     "React Native"
-                ]
+                ],
+                "image":"fullstack"
             }
         ],
         "subsection": {
             "title":"capacitación",
-            "content":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente."
+            "content":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.",
+            "image" : "capacitacion"
         }
     }, 
     "culture" : {

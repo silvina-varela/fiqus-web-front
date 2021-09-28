@@ -15,7 +15,7 @@ const Header = (props) => {
                 {
                     props.menuLinks ? props.menuLinks.map((menuLink)=> {
                         return (
-                            <li><Link to={menuLink.link}> {menuLink.name} </Link></li>)
+                            <li key={menuLink.name}><Link to={menuLink.link}> {menuLink.name} </Link></li>)
                         }) : " No hay links "
                 }     
             </ul>
