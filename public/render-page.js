@@ -5992,72 +5992,6 @@ const Header = props => {
 
 /***/ }),
 
-/***/ "./src/components/common/Tag.js":
-/*!**************************************!*\
-  !*** ./src/components/common/Tag.js ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
-
-
-const TagsContainer = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div.withConfig({
-  displayName: "Tag__TagsContainer"
-})(["display:flex;justify-content:flex-start;flex-wrap:wrap;"]);
-const TagItem = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div.withConfig({
-  displayName: "Tag__TagItem"
-})(["margin:0 6px 8px 0px;padding:9px 14px;border-radius:10px;font-size:14px;font-weight:", ";background-color:", ";color:", ";"], props => props.type.fontWeight, props => props.type.background, props => props.type.color);
-
-const Tag = props => {
-  const getTagStyles = type => {
-    switch (type) {
-      case "blog":
-        return {
-          background: props.theme.colors.greenLight,
-          fontWeight: props.theme.fontWeight.regular,
-          color: props.theme.colors.ultraDarkGrey
-        };
-        break;
-
-      case "services":
-        return {
-          background: props.theme.colors.purpleLight,
-          fontWeight: props.theme.fontWeight.medium,
-          color: props.theme.colors.purplePrimary
-        };
-        break;
-
-      default:
-        return {
-          background: props.theme.colors.greenLight,
-          fontWeight: props.theme.fontWeight.regular,
-          color: props.theme.colors.ultraDarkGrey
-        };
-    }
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(TagsContainer, {
-    tags: props.tags
-  }, props.tags ? props.tags.map(tag => {
-    /*#__PURE__*/
-    react__WEBPACK_IMPORTED_MODULE_0___default().createElement(TagItem, {
-      type: getTagStyles(tag.type),
-      theme: props.theme
-    }, tag.tagContent || "Tag");
-  }) : " ");
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Tag);
-
-/***/ }),
-
 /***/ "./src/components/layout/PageWrapper.js":
 /*!**********************************************!*\
   !*** ./src/components/layout/PageWrapper.js ***!
@@ -6069,32 +6003,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
-/* harmony import */ var _common_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Header */ "./src/components/common/Header.js");
-/* harmony import */ var _common_Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Footer */ "./src/components/common/Footer.js");
-/* harmony import */ var _common_Tag__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/Tag */ "./src/components/common/Tag.js");
-/* harmony import */ var _content_content_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../content/content.json */ "./src/content/content.json");
+/* harmony import */ var _public_page_data_sq_d_805671509_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../public/page-data/sq/d/805671509.json */ "./public/page-data/sq/d/805671509.json");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var _common_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/Header */ "./src/components/common/Header.js");
+/* harmony import */ var _common_Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../common/Footer */ "./src/components/common/Footer.js");
+/* harmony import */ var _content_content_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../content/content.json */ "./src/content/content.json");
 
 
 
 
 
 
-const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_4__.styles;
-const Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
+
+const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_5__.styles;
+const Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div.withConfig({
   displayName: "PageWrapper__Wrapper"
 })(["position:relative;margin:0;padding:0;width:100%;min-height:100%;"]);
-const PageContainer = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].section.withConfig({
+const PageContainer = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].section.withConfig({
   displayName: "PageWrapper__PageContainer"
 })(["width:100%;max-width:", "px;min-width:", "px;padding:150px 50px;margin:0 auto;min-height:100vh;"], styles.breakpoints.xl, styles.breakpoints.xs);
 
 const PageWrapper = props => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Wrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_common_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(PageContainer, null, props.children, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_common_Tag__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    type: "services",
-    theme: styles
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_common_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(gatsby__WEBPACK_IMPORTED_MODULE_2__.StaticQuery, {
+    query: "805671509",
+    render: data => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(Wrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      menuLinks: data.site.siteMetadata.menuLinks
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(PageContainer, null, props.children), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Footer__WEBPACK_IMPORTED_MODULE_4__["default"], null)),
+    data: _public_page_data_sq_d_805671509_json__WEBPACK_IMPORTED_MODULE_0__
+  });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PageWrapper);
@@ -12954,6 +12893,17 @@ function _defineProperty(obj, key, value) {
 
 "use strict";
 module.exports = [];
+
+/***/ }),
+
+/***/ "./public/page-data/sq/d/805671509.json":
+/*!**********************************************!*\
+  !*** ./public/page-data/sq/d/805671509.json ***!
+  \**********************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"data":{"site":{"siteMetadata":{"title":"fiqus-web","menuLinks":[{"name":"Home","link":"/"},{"name":"Servicios","link":"/servicios"},{"name":"Cultura","link":"/cultura"},{"name":"Labs","link":"/labs"},{"name":"Blog","link":"/blog"}]}}}}');
 
 /***/ }),
 
