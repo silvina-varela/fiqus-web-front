@@ -1,6 +1,5 @@
-import React  from 'react'
+import React, {Fragment} from "react"
 import styled from 'styled-components'
-import Wrapper from '../components/layout/PageWrapper'
 import data from '../content/content.json'
 
 const styles = data.styles
@@ -9,9 +8,9 @@ const Labs = () => {
     const content = data.labs
     
       return (
-        <Wrapper>
-            <h1>{content.title}</h1>
-        </Wrapper>
+        <Fragment>
+          <h1>{content.title}</h1>
+        </Fragment>
       );
 };
 

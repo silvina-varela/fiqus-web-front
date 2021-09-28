@@ -1,16 +1,14 @@
-import React from 'react'
+import React, {Fragment} from "react"
 import styled from 'styled-components'
-import Wrapper from '../components/layout/PageWrapper'
 import data from '../content/content.json'
 
 
 const Services = () => {
     const content = data.services
-    console.log(content)
       return (
-        <Wrapper>
+          <Fragment>
             <h1>{content.title}</h1>
-        </Wrapper>
+          </Fragment>
       );
 };
 
