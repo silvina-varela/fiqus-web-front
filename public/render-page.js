@@ -4067,14 +4067,14 @@ var plugins = [{
     "remarkPlugins": [],
     "rehypePlugins": [],
     "mediaTypes": ["text/markdown", "text/x-markdown"],
-    "root": "C:\\dev\\fiqus-web-front"
+    "root": "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front"
   }
 }, {
   name: 'gatsby-plugin-layout',
   plugin: __webpack_require__(/*! ./node_modules/gatsby-plugin-layout/gatsby-ssr */ "./node_modules/gatsby-plugin-layout/gatsby-ssr.js"),
   options: {
     "plugins": [],
-    "component": "C:\\dev\\fiqus-web-front\\src\\components\\layout\\PageWrapper.js"
+    "component": "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\src\\components\\layout\\PageWrapper.js"
   }
 }];
 /* global plugins */
@@ -4756,6 +4756,755 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 /**
  * Available resource loading statuses
  */
+
+const PageResourceStatus = {
+  /**
+   * At least one of critical resources failed to load
+   */
+  Error: `error`,
+
+  /**
+   * Resources loaded successfully
+   */
+  Success: `success`
+};
+
+const preferDefault = m => m && m.default || m;
+
+const stripSurroundingSlashes = s => {
+  s = s[0] === `/` ? s.slice(1) : s;
+  s = s.endsWith(`/`) ? s.slice(0, -1) : s;
+  return s;
+};
+
+const createPageDataUrl = path => {
+  const fixedPath = path === `/` ? `index` : stripSurroundingSlashes(path);
+  return `${""}/page-data/${fixedPath}/page-data.json`;
+};
+
+function doFetch(url, method = `GET`) {
+  return new Promise((resolve, reject) => {
+    const req = new XMLHttpRequest();
+    req.open(method, url, true);
+
+    req.onreadystatechange = () => {
+      if (req.readyState == 4) {
+        resolve(req);
+      }
+    };
+
+    req.send(null);
+  });
+}
+
+const doesConnectionSupportPrefetch = () => {
+  if (`connection` in navigator && typeof navigator.connection !== `undefined`) {
+    if ((navigator.connection.effectiveType || ``).includes(`2g`)) {
+      return false;
+    }
+
+    if (navigator.connection.saveData) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+const toPageResources = (pageData, component = null) => {
+  const page = {
+    componentChunkName: pageData.componentChunkName,
+    path: pageData.path,
+    webpackCompilationHash: pageData.webpackCompilationHash,
+    matchPath: pageData.matchPath,
+    staticQueryHashes: pageData.staticQueryHashes
+  };
+  return {
+    component,
+    json: pageData.result,
+    page
+  };
+};
+
+class BaseLoader {
+  constructor(loadComponent, matchPaths) {
+    this.inFlightNetworkRequests = new Map();
+    // Map of pagePath -> Page. Where Page is an object with: {
+    //   status: PageResourceStatus.Success || PageResourceStatus.Error,
+    //   payload: PageResources, // undefined if PageResourceStatus.Error
+    // }
+    // PageResources is {
+    //   component,
+    //   json: pageData.result,
+    //   page: {
+    //     componentChunkName,
+    //     path,
+    //     webpackCompilationHash,
+    //     staticQueryHashes
+    //   },
+    //   staticQueryResults
+    // }
+    this.pageDb = new Map();
+    this.inFlightDb = new Map();
+    this.staticQueryDb = {};
+    this.pageDataDb = new Map();
+    this.prefetchTriggered = new Set();
+    this.prefetchCompleted = new Set();
+    this.loadComponent = loadComponent;
+    (0,_find_path__WEBPACK_IMPORTED_MODULE_3__.setMatchPaths)(matchPaths);
+  }
+
+  memoizedGet(url) {
+    let inFlightPromise = this.inFlightNetworkRequests.get(url);
+
+    if (!inFlightPromise) {
+      inFlightPromise = doFetch(url, `GET`);
+      this.inFlightNetworkRequests.set(url, inFlightPromise);
+    } // Prefer duplication with then + catch over .finally to prevent problems in ie11 + firefox
+
+
+    return inFlightPromise.then(response => {
+      this.inFlightNetworkRequests.delete(url);
+      return response;
+    }).catch(err => {
+      this.inFlightNetworkRequests.delete(url);
+      throw err;
+    });
+  }
+
+  setApiRunner(apiRunner) {
+    this.apiRunner = apiRunner;
+    this.prefetchDisabled = apiRunner(`disableCorePrefetching`).some(a => a);
+  }
+
+  fetchPageDataJson(loadObj) {
+    const {
+      pagePath,
+      retries = 0
+    } = loadObj;
+    const url = createPageDataUrl(pagePath);
+    return this.memoizedGet(url).then(req => {
+      const {
+        status,
+        responseText
+      } = req; // Handle 200
+
+      if (status === 200) {
+        try {
+          const jsonPayload = JSON.parse(responseText);
+
+          if (jsonPayload.path === undefined) {
+            throw new Error(`not a valid pageData response`);
+          }
+
+          return Object.assign(loadObj, {
+            status: PageResourceStatus.Success,
+            payload: jsonPayload
+          });
+        } catch (err) {// continue regardless of error
+        }
+      } // Handle 404
+
+
+      if (status === 404 || status === 200) {
+        // If the request was for a 404 page and it doesn't exist, we're done
+        if (pagePath === `/404.html`) {
+          return Object.assign(loadObj, {
+            status: PageResourceStatus.Error
+          });
+        } // Need some code here to cache the 404 request. In case
+        // multiple loadPageDataJsons result in 404s
+
+
+        return this.fetchPageDataJson(Object.assign(loadObj, {
+          pagePath: `/404.html`,
+          notFound: true
+        }));
+      } // handle 500 response (Unrecoverable)
+
+
+      if (status === 500) {
+        return Object.assign(loadObj, {
+          status: PageResourceStatus.Error
+        });
+      } // Handle everything else, including status === 0, and 503s. Should retry
+
+
+      if (retries < 3) {
+        return this.fetchPageDataJson(Object.assign(loadObj, {
+          retries: retries + 1
+        }));
+      } // Retried 3 times already, result is an error.
+
+
+      return Object.assign(loadObj, {
+        status: PageResourceStatus.Error
+      });
+    });
+  }
+
+  loadPageDataJson(rawPath) {
+    const pagePath = (0,_find_path__WEBPACK_IMPORTED_MODULE_3__.findPath)(rawPath);
+
+    if (this.pageDataDb.has(pagePath)) {
+      const pageData = this.pageDataDb.get(pagePath);
+
+      if (true) {
+        return Promise.resolve(pageData);
+      }
+    }
+
+    return this.fetchPageDataJson({
+      pagePath
+    }).then(pageData => {
+      this.pageDataDb.set(pagePath, pageData);
+      return pageData;
+    });
+  }
+
+  findMatchPath(rawPath) {
+    return (0,_find_path__WEBPACK_IMPORTED_MODULE_3__.findMatchPath)(rawPath);
+  } // TODO check all uses of this and whether they use undefined for page resources not exist
+
+
+  loadPage(rawPath) {
+    const pagePath = (0,_find_path__WEBPACK_IMPORTED_MODULE_3__.findPath)(rawPath);
+
+    if (this.pageDb.has(pagePath)) {
+      const page = this.pageDb.get(pagePath);
+
+      if (true) {
+        if (page.error) {
+          return {
+            error: page.error,
+            status: page.status
+          };
+        }
+
+        return Promise.resolve(page.payload);
+      }
+    }
+
+    if (this.inFlightDb.has(pagePath)) {
+      return this.inFlightDb.get(pagePath);
+    }
+
+    const inFlightPromise = Promise.all([this.loadAppData(), this.loadPageDataJson(pagePath)]).then(allData => {
+      const result = allData[1];
+
+      if (result.status === PageResourceStatus.Error) {
+        return {
+          status: PageResourceStatus.Error
+        };
+      }
+
+      let pageData = result.payload;
+      const {
+        componentChunkName,
+        staticQueryHashes = []
+      } = pageData;
+      const finalResult = {};
+      const componentChunkPromise = this.loadComponent(componentChunkName).then(component => {
+        finalResult.createdAt = new Date();
+        let pageResources;
+
+        if (!component || component instanceof Error) {
+          finalResult.status = PageResourceStatus.Error;
+          finalResult.error = component;
+        } else {
+          finalResult.status = PageResourceStatus.Success;
+
+          if (result.notFound === true) {
+            finalResult.notFound = true;
+          }
+
+          pageData = Object.assign(pageData, {
+            webpackCompilationHash: allData[0] ? allData[0].webpackCompilationHash : ``
+          });
+          pageResources = toPageResources(pageData, component);
+        } // undefined if final result is an error
+
+
+        return pageResources;
+      });
+      const staticQueryBatchPromise = Promise.all(staticQueryHashes.map(staticQueryHash => {
+        // Check for cache in case this static query result has already been loaded
+        if (this.staticQueryDb[staticQueryHash]) {
+          const jsonPayload = this.staticQueryDb[staticQueryHash];
+          return {
+            staticQueryHash,
+            jsonPayload
+          };
+        }
+
+        return this.memoizedGet(`${""}/page-data/sq/d/${staticQueryHash}.json`).then(req => {
+          const jsonPayload = JSON.parse(req.responseText);
+          return {
+            staticQueryHash,
+            jsonPayload
+          };
+        }).catch(() => {
+          throw new Error(`We couldn't load "${""}/page-data/sq/d/${staticQueryHash}.json"`);
+        });
+      })).then(staticQueryResults => {
+        const staticQueryResultsMap = {};
+        staticQueryResults.forEach(({
+          staticQueryHash,
+          jsonPayload
+        }) => {
+          staticQueryResultsMap[staticQueryHash] = jsonPayload;
+          this.staticQueryDb[staticQueryHash] = jsonPayload;
+        });
+        return staticQueryResultsMap;
+      });
+      return Promise.all([componentChunkPromise, staticQueryBatchPromise]).then(([pageResources, staticQueryResults]) => {
+        let payload;
+
+        if (pageResources) {
+          payload = _objectSpread(_objectSpread({}, pageResources), {}, {
+            staticQueryResults
+          });
+          finalResult.payload = payload;
+          _emitter__WEBPACK_IMPORTED_MODULE_2__["default"].emit(`onPostLoadPageResources`, {
+            page: payload,
+            pageResources: payload
+          });
+        }
+
+        this.pageDb.set(pagePath, finalResult);
+
+        if (finalResult.error) {
+          return {
+            error: finalResult.error,
+            status: finalResult.status
+          };
+        }
+
+        return payload;
+      }) // when static-query fail to load we throw a better error
+      .catch(err => {
+        return {
+          error: err,
+          status: PageResourceStatus.Error
+        };
+      });
+    });
+    inFlightPromise.then(() => {
+      this.inFlightDb.delete(pagePath);
+    }).catch(error => {
+      this.inFlightDb.delete(pagePath);
+      throw error;
+    });
+    this.inFlightDb.set(pagePath, inFlightPromise);
+    return inFlightPromise;
+  } // returns undefined if the page does not exists in cache
+
+
+  loadPageSync(rawPath, options = {}) {
+    const pagePath = (0,_find_path__WEBPACK_IMPORTED_MODULE_3__.findPath)(rawPath);
+
+    if (this.pageDb.has(pagePath)) {
+      const pageData = this.pageDb.get(pagePath);
+
+      if (pageData.payload) {
+        return pageData.payload;
+      }
+
+      if (options !== null && options !== void 0 && options.withErrorDetails) {
+        return {
+          error: pageData.error,
+          status: pageData.status
+        };
+      }
+    }
+
+    return undefined;
+  }
+
+  shouldPrefetch(pagePath) {
+    // Skip prefetching if we know user is on slow or constrained connection
+    if (!doesConnectionSupportPrefetch()) {
+      return false;
+    } // Check if the page exists.
+
+
+    if (this.pageDb.has(pagePath)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  prefetch(pagePath) {
+    if (!this.shouldPrefetch(pagePath)) {
+      return false;
+    } // Tell plugins with custom prefetching logic that they should start
+    // prefetching this path.
+
+
+    if (!this.prefetchTriggered.has(pagePath)) {
+      this.apiRunner(`onPrefetchPathname`, {
+        pathname: pagePath
+      });
+      this.prefetchTriggered.add(pagePath);
+    } // If a plugin has disabled core prefetching, stop now.
+
+
+    if (this.prefetchDisabled) {
+      return false;
+    }
+
+    const realPath = (0,_find_path__WEBPACK_IMPORTED_MODULE_3__.findPath)(pagePath); // Todo make doPrefetch logic cacheable
+    // eslint-disable-next-line consistent-return
+
+    this.doPrefetch(realPath).then(() => {
+      if (!this.prefetchCompleted.has(pagePath)) {
+        this.apiRunner(`onPostPrefetchPathname`, {
+          pathname: pagePath
+        });
+        this.prefetchCompleted.add(pagePath);
+      }
+    });
+    return true;
+  }
+
+  doPrefetch(pagePath) {
+    const pageDataUrl = createPageDataUrl(pagePath);
+    return (0,_prefetch__WEBPACK_IMPORTED_MODULE_1__["default"])(pageDataUrl, {
+      crossOrigin: `anonymous`,
+      as: `fetch`
+    }).then(() => // This was just prefetched, so will return a response from
+    // the cache instead of making another request to the server
+    this.loadPageDataJson(pagePath));
+  }
+
+  hovering(rawPath) {
+    this.loadPage(rawPath);
+  }
+
+  getResourceURLsForPathname(rawPath) {
+    const pagePath = (0,_find_path__WEBPACK_IMPORTED_MODULE_3__.findPath)(rawPath);
+    const page = this.pageDataDb.get(pagePath);
+
+    if (page) {
+      const pageResources = toPageResources(page.payload);
+      return [...createComponentUrls(pageResources.page.componentChunkName), createPageDataUrl(pagePath)];
+    } else {
+      return null;
+    }
+  }
+
+  isPageNotFound(rawPath) {
+    const pagePath = (0,_find_path__WEBPACK_IMPORTED_MODULE_3__.findPath)(rawPath);
+    const page = this.pageDb.get(pagePath);
+    return !page || page.notFound;
+  }
+
+  loadAppData(retries = 0) {
+    return this.memoizedGet(`${""}/page-data/app-data.json`).then(req => {
+      const {
+        status,
+        responseText
+      } = req;
+      let appData;
+
+      if (status !== 200 && retries < 3) {
+        // Retry 3 times incase of non-200 responses
+        return this.loadAppData(retries + 1);
+      } // Handle 200
+
+
+      if (status === 200) {
+        try {
+          const jsonPayload = JSON.parse(responseText);
+
+          if (jsonPayload.webpackCompilationHash === undefined) {
+            throw new Error(`not a valid app-data response`);
+          }
+
+          appData = jsonPayload;
+        } catch (err) {// continue regardless of error
+        }
+      }
+
+      return appData;
+    });
+  }
+
+}
+
+const createComponentUrls = componentChunkName => (window.___chunkMapping[componentChunkName] || []).map(chunk => "" + chunk);
+
+class ProdLoader extends BaseLoader {
+  constructor(asyncRequires, matchPaths) {
+    const loadComponent = chunkName => {
+      if (!asyncRequires.components[chunkName]) {
+        throw new Error(`We couldn't find the correct component chunk with the name ${chunkName}`);
+      }
+
+      return asyncRequires.components[chunkName]().then(preferDefault) // loader will handle the case when component is error
+      .catch(err => err);
+    };
+
+    super(loadComponent, matchPaths);
+  }
+
+  doPrefetch(pagePath) {
+    return super.doPrefetch(pagePath).then(result => {
+      if (result.status !== PageResourceStatus.Success) {
+        return Promise.resolve();
+      }
+
+      const pageData = result.payload;
+      const chunkName = pageData.componentChunkName;
+      const componentUrls = createComponentUrls(chunkName);
+      return Promise.all(componentUrls.map(_prefetch__WEBPACK_IMPORTED_MODULE_1__["default"])).then(() => pageData);
+    });
+  }
+
+  loadPageDataJson(rawPath) {
+    return super.loadPageDataJson(rawPath).then(data => {
+      if (data.notFound) {
+        // check if html file exist using HEAD request:
+        // if it does we should navigate to it instead of showing 404
+        return doFetch(rawPath, `HEAD`).then(req => {
+          if (req.status === 200) {
+            // page (.html file) actually exist (or we asked for 404 )
+            // returning page resources status as errored to trigger
+            // regular browser navigation to given page
+            return {
+              status: PageResourceStatus.Error
+            };
+          } // if HEAD request wasn't 200, return notFound result
+          // and show 404 page
+
+
+          return data;
+        });
+      }
+
+      return data;
+    });
+  }
+
+}
+let instance;
+const setLoader = _loader => {
+  instance = _loader;
+};
+const publicLoader = {
+  enqueue: rawPath => instance.prefetch(rawPath),
+  // Real methods
+  getResourceURLsForPathname: rawPath => instance.getResourceURLsForPathname(rawPath),
+  loadPage: rawPath => instance.loadPage(rawPath),
+  // TODO add deprecation to v4 so people use withErrorDetails and then we can remove in v5 and change default behaviour
+  loadPageSync: (rawPath, options = {}) => instance.loadPageSync(rawPath, options),
+  prefetch: rawPath => instance.prefetch(rawPath),
+  isPageNotFound: rawPath => instance.isPageNotFound(rawPath),
+  hovering: rawPath => instance.hovering(rawPath),
+  loadAppData: () => instance.loadAppData()
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (publicLoader);
+function getStaticQueryResults() {
+  if (instance) {
+    return instance.staticQueryDb;
+  } else {
+    return {};
+  }
+}
+
+/***/ }),
+
+/***/ "./.cache/normalize-page-path.js":
+/*!***************************************!*\
+  !*** ./.cache/normalize-page-path.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (path => {
+  if (path === undefined) {
+    return path;
+  }
+
+  if (path === `/`) {
+    return `/`;
+  }
+
+  if (path.charAt(path.length - 1) === `/`) {
+    return path.slice(0, -1);
+  }
+
+  return path;
+});
+
+/***/ }),
+
+/***/ "./.cache/prefetch.js":
+/*!****************************!*\
+  !*** ./.cache/prefetch.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const support = function (feature) {
+  if (typeof document === `undefined`) {
+    return false;
+  }
+
+  const fakeLink = document.createElement(`link`);
+
+  try {
+    if (fakeLink.relList && typeof fakeLink.relList.supports === `function`) {
+      return fakeLink.relList.supports(feature);
+    }
+  } catch (err) {
+    return false;
+  }
+
+  return false;
+};
+
+const linkPrefetchStrategy = function (url, options) {
+  return new Promise((resolve, reject) => {
+    if (typeof document === `undefined`) {
+      reject();
+      return;
+    }
+
+    const link = document.createElement(`link`);
+    link.setAttribute(`rel`, `prefetch`);
+    link.setAttribute(`href`, url);
+    Object.keys(options).forEach(key => {
+      link.setAttribute(key, options[key]);
+    });
+    link.onload = resolve;
+    link.onerror = reject;
+    const parentElement = document.getElementsByTagName(`head`)[0] || document.getElementsByName(`script`)[0].parentNode;
+    parentElement.appendChild(link);
+  });
+};
+
+const xhrPrefetchStrategy = function (url) {
+  return new Promise((resolve, reject) => {
+    const req = new XMLHttpRequest();
+    req.open(`GET`, url, true);
+
+    req.onload = () => {
+      if (req.status === 200) {
+        resolve();
+      } else {
+        reject();
+      }
+    };
+
+    req.send(null);
+  });
+};
+
+const supportedPrefetchStrategy = support(`prefetch`) ? linkPrefetchStrategy : xhrPrefetchStrategy;
+const preFetched = {};
+
+const prefetch = function (url, options) {
+  return new Promise(resolve => {
+    if (preFetched[url]) {
+      resolve();
+      return;
+    }
+
+    supportedPrefetchStrategy(url, options).then(() => {
+      resolve();
+      preFetched[url] = true;
+    }).catch(() => {}); // 404s are logged to the console anyway
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (prefetch);
+
+/***/ }),
+
+/***/ "./.cache/public-page-renderer.js":
+/*!****************************************!*\
+  !*** ./.cache/public-page-renderer.js ***!
+  \****************************************/
+/***/ ((module) => {
+
+const preferDefault = m => m && m.default || m;
+
+if (false) {} else if (false) {} else {
+  module.exports = () => null;
+}
+
+/***/ }),
+
+/***/ "./.cache/react-lifecycles-compat.js":
+/*!*******************************************!*\
+  !*** ./.cache/react-lifecycles-compat.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+exports.polyfill = Component => Component;
+
+/***/ }),
+
+/***/ "./.cache/redirect-utils.js":
+/*!**********************************!*\
+  !*** ./.cache/redirect-utils.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "maybeGetBrowserRedirect": () => (/* binding */ maybeGetBrowserRedirect)
+/* harmony export */ });
+/* harmony import */ var _redirects_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./redirects.json */ "./.cache/redirects.json");
+ // Convert to a map for faster lookup in maybeRedirect()
+
+const redirectMap = new Map();
+const redirectIgnoreCaseMap = new Map();
+_redirects_json__WEBPACK_IMPORTED_MODULE_0__.forEach(redirect => {
+  if (redirect.ignoreCase) {
+    redirectIgnoreCaseMap.set(redirect.fromPath, redirect);
+  } else {
+    redirectMap.set(redirect.fromPath, redirect);
+  }
+});
+function maybeGetBrowserRedirect(pathname) {
+  let redirect = redirectMap.get(pathname);
+
+  if (!redirect) {
+    redirect = redirectIgnoreCaseMap.get(pathname.toLowerCase());
+  }
+
+  return redirect;
+}
+
+/***/ }),
+
+/***/ "./.cache/strip-prefix.js":
+/*!********************************!*\
+  !*** ./.cache/strip-prefix.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ stripPrefix)
+/* harmony export */ });
+/**
+ * Remove a prefix from a string. Return the input string if the given prefix
+ * isn't found.
+ */
 function stripPrefix(str, prefix = ``) {
   if (!prefix) {
     return str;
@@ -5199,10 +5948,25 @@ __webpack_require__.r(__webpack_exports__);
 const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_1__.styles;
 const FooterContainer = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].footer.withConfig({
   displayName: "Footer__FooterContainer"
-})(["width:100%;min-height:100vh;background:black;"]);
+})(["background:", ";color:", ";font-size:.75em;display:flex;justify-content:center;flex-wrap:wrap;padding:12px 0px 20px 0px;@media (min-width:", "px){justify-content:space-between;margin:auto;align-items:center;}"], styles.colors.purplePrimary, styles.colors.white, styles.breakpoints.l);
+const FooterLicense = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withConfig({
+  displayName: "Footer__FooterLicense"
+})(["display:flex;justify-content:center;width:100%;span{font-weight:", ";}@media (min-width:", "px){width:auto;}"], styles.fontWeight.bold, styles.breakpoints.l);
+const FooterCopyright = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withConfig({
+  displayName: "Footer__FooterCopyright"
+})(["margin-top:18px;span{font-weight:", ";text-transform:uppercase;}@media (min-width:", "px){margin-top:0;}"], styles.fontWeight.bold, styles.breakpoints.l);
+const FooterLicenseContent = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].p.withConfig({
+  displayName: "Footer__FooterLicenseContent"
+})(["max-width:342px;@media (min-width:", "px){max-width:322px;}"], styles.breakpoints.l);
+const FooterLicenseIcon = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].img.withConfig({
+  displayName: "Footer__FooterLicenseIcon"
+})(["width:38px;height:33px;margin-right:6px;"]);
 
 const Footer = () => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterContainer, null);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterLicense, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterLicenseIcon, {
+    src: __webpack_require__(/*! ../../images/icon_cc_heart.png */ "./src/images/icon_cc_heart.png")["default"],
+    alt: "Creative Commons Attribution logo"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterLicenseContent, null, "Salvo que se indique lo contrario, el contenido de este sitio tiene una licencia de ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Creative Commons Attribution"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterCopyright, null, "Dise\xF1ado por ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "El Maizal")));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
@@ -5233,79 +5997,15 @@ const NavWrapper = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].nav
 
 const Header = props => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavWrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, props.menuLinks ? props.menuLinks.map(menuLink => {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+      key: menuLink.name
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby__WEBPACK_IMPORTED_MODULE_1__.Link, {
       to: menuLink.link
     }, " ", menuLink.name, " "));
   }) : " No hay links "));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
-
-/***/ }),
-
-/***/ "./src/components/common/Tag.js":
-/*!**************************************!*\
-  !*** ./src/components/common/Tag.js ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
-
-
-const TagsContainer = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div.withConfig({
-  displayName: "Tag__TagsContainer"
-})(["display:flex;justify-content:flex-start;flex-wrap:wrap;"]);
-const TagItem = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div.withConfig({
-  displayName: "Tag__TagItem"
-})(["margin:0 6px 8px 0px;padding:9px 14px;border-radius:10px;font-size:14px;font-weight:", ";background-color:", ";color:", ";"], props => props.type.fontWeight, props => props.type.background, props => props.type.color);
-
-const Tag = props => {
-  const getTagStyles = type => {
-    switch (type) {
-      case "blog":
-        return {
-          background: props.theme.colors.greenLight,
-          fontWeight: props.theme.fontWeight.regular,
-          color: props.theme.colors.ultraDarkGrey
-        };
-        break;
-
-      case "services":
-        return {
-          background: props.theme.colors.purpleLight,
-          fontWeight: props.theme.fontWeight.medium,
-          color: props.theme.colors.purplePrimary
-        };
-        break;
-
-      default:
-        return {
-          background: props.theme.colors.greenLight,
-          fontWeight: props.theme.fontWeight.regular,
-          color: props.theme.colors.ultraDarkGrey
-        };
-    }
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(TagsContainer, {
-    tags: props.tags
-  }, props.tags ? props.tags.map(tag => {
-    /*#__PURE__*/
-    react__WEBPACK_IMPORTED_MODULE_0___default().createElement(TagItem, {
-      type: getTagStyles(tag.type),
-      theme: props.theme
-    }, tag.tagContent || "Tag");
-  }) : " ");
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Tag);
 
 /***/ }),
 
@@ -5320,33 +6020,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
-/* harmony import */ var _common_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Header */ "./src/components/common/Header.js");
-/* harmony import */ var _common_Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Footer */ "./src/components/common/Footer.js");
-/* harmony import */ var _common_Tag__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/Tag */ "./src/components/common/Tag.js");
-/* harmony import */ var _content_content_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../content/content.json */ "./src/content/content.json");
+/* harmony import */ var _public_page_data_sq_d_805671509_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../public/page-data/sq/d/805671509.json */ "./public/page-data/sq/d/805671509.json");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var _common_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/Header */ "./src/components/common/Header.js");
+/* harmony import */ var _common_Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../common/Footer */ "./src/components/common/Footer.js");
+/* harmony import */ var _content_content_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../content/content.json */ "./src/content/content.json");
 
 
 
 
- //import Button from '../common/Button'
 
 
-const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_4__.styles;
-const Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
+
+const Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div.withConfig({
   displayName: "PageWrapper__Wrapper"
 })(["position:relative;margin:0;padding:0;width:100%;min-height:100%;"]);
-const PageContainer = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].section.withConfig({
+const PageContainer = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].section.withConfig({
   displayName: "PageWrapper__PageContainer"
-})(["width:100%;max-width:", "px;min-width:", "px;padding:150px 50px;margin:0 auto;min-height:100vh;"], styles.breakpoints.xl, styles.breakpoints.xs);
+})(["width:100%;max-width:", "px;padding:20px;margin:0 auto;min-height:100vh;@media (min-width:", "px){padding:150px 50px;}"], _content_content_json__WEBPACK_IMPORTED_MODULE_5__.styles.breakpoints.xl, _content_content_json__WEBPACK_IMPORTED_MODULE_5__.styles.breakpoints.l);
 
 const PageWrapper = props => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Wrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_common_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(PageContainer, null, props.children, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_common_Tag__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    type: "services",
-    theme: styles
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_common_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(gatsby__WEBPACK_IMPORTED_MODULE_2__.StaticQuery, {
+    query: "805671509",
+    render: data => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(Wrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      menuLinks: data.site.siteMetadata.menuLinks
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(PageContainer, null, props.children), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Footer__WEBPACK_IMPORTED_MODULE_4__["default"], null)),
+    data: _public_page_data_sq_d_805671509_json__WEBPACK_IMPORTED_MODULE_0__
+  });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PageWrapper);
@@ -12137,25 +12840,40 @@ function y(){return(y=Object.assign||function(e){for(var t=1;t<arguments.length;
 
 /***/ }),
 
+/***/ "./src/images/icon_cc_heart.png":
+/*!**************************************!*\
+  !*** ./src/images/icon_cc_heart.png ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "static/icon_cc_heart-6e846a5598c8434a8ca5a7122c28484e.png");
+
+/***/ }),
+
 /***/ "react-dom/server":
-/*!*******************************************************************************!*\
-  !*** external "C:\\dev\\fiqus-web-front\\node_modules\\react-dom\\server.js" ***!
-  \*******************************************************************************/
+/*!********************************************************************************************************************!*\
+  !*** external "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\node_modules\\react-dom\\server.js" ***!
+  \********************************************************************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("C:\\dev\\fiqus-web-front\\node_modules\\react-dom\\server.js");
+module.exports = require("D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\node_modules\\react-dom\\server.js");
 
 /***/ }),
 
 /***/ "react":
-/*!**************************************************************************!*\
-  !*** external "C:\\dev\\fiqus-web-front\\node_modules\\react\\index.js" ***!
-  \**************************************************************************/
+/*!***************************************************************************************************************!*\
+  !*** external "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\node_modules\\react\\index.js" ***!
+  \***************************************************************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("C:\\dev\\fiqus-web-front\\node_modules\\react\\index.js");
+module.exports = require("D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\node_modules\\react\\index.js");
 
 /***/ }),
 
@@ -12209,6 +12927,17 @@ module.exports = [];
 
 /***/ }),
 
+/***/ "./public/page-data/sq/d/805671509.json":
+/*!**********************************************!*\
+  !*** ./public/page-data/sq/d/805671509.json ***!
+  \**********************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"data":{"site":{"siteMetadata":{"title":"fiqus-web","menuLinks":[{"name":"Home","link":"/"},{"name":"Servicios","link":"/servicios"},{"name":"Cultura","link":"/cultura"},{"name":"Labs","link":"/labs"},{"name":"Blog","link":"/blog"}]}}}}');
+
+/***/ }),
+
 /***/ "./src/content/content.json":
 /*!**********************************!*\
   !*** ./src/content/content.json ***!
@@ -12216,7 +12945,7 @@ module.exports = [];
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"styles":{"breakpoints":{"xs":"320","s":"481","m":"769","l":"1024","xl":"1280"},"colors":{"purplePrimary":"#510066","purpleGradient":"#7A0185","greenMain":"#44DC00","orangeMain":"#FF602C","greenLight":"#E8F7E1","purpleLight":"#E9E1EB","black":"#000000","white":"#FFFFFF","darkMainBg":"#0F1319","darkGrey":"#60646B","ultraDarkGrey":"#333333","lightGrey":"#A7ACB4","ultraLightGrey":"#C4C4C4","transparent":"transparent"},"fontWeight":{"bold":"700","medium":"500","light":"300","regular":"400"},"icon":{"website":"website.svg","github":"github.svg"}},"homepage":{"title":"Homepage"},"services":{"title":"Servicios","services":[{"service":"Ciencia de Datos","description":"Este área se dedica a la limpieza, extracción y análisis de datos con el fin de poder servir de alimento para procesos de Inteligencia Artificial o Aprendizaje Automático. Es de esencial importancia procesar los datos para lograr que sean de fácil entendimiento, así como su uso para llegar a los objetivos planteados.","tags":["Python","Pandas","Numpy","Seaborn"]},{"service":"Inteligencia Artificial","description":"El Aprendizaje Automático es un subcampo de la Inteligencia Artificial en el que se tiene como objetivo que las \\"computadoras aprendan\\". A partir de datos recolectados y procesados, diseñamos, construimos y entrenamos modelos que nos permitan predecir eventos futuros, clasificar imágenes, reconocer entidades en textos y muchas otras cosas más.","tags":["Python","Pandas","Numpy","Seaborn"]},{"service":"Alta Concurrencia","description":"Utilizamos lenguajes de programación funcional en tiempo real y muy adoptados en el mercado, que soportan niveles de altísima concurrencia y distribución, teniendo como resultado sistemas que responden a gran velocidad ante altas demandas.","tags":["Earlang","Elixir","Phoenix Framework","LiveView"]},{"service":"Blockchain | Fintech","description":"Estamos desarrollando fintech, que son las nuevas aplicaciones, procesos, productos o modelos de negocios en la industria de los servicios financieros compuestos de uno o más servicios financieros complementarios y puestos a disposición del público vía Internet.","tags":["Python","Ethereum"]},{"service":"Fullstack","description":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.","tags":["Django","Phoenix","Phoenix LiveView","ReactJS","VueJS","React Native"]}],"subsection":{"title":"capacitación","content":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente."}},"culture":{"title":"Cultura","subtiitle":"Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos!","description":"Fiqus no es un trabajo más, es un proyecto de vida, en el que construimos un equipo consolidado de profesionales que se encuentra en continua capacitación para poder brindar soluciones técnicas de alta calidad. ","sections":[{"title":"Historia","content":"Fiqus es como una gran familia, que comenzó cuando varios estudiantes de ingeniería en sistemas de la Universidad Tecnológica Nacional se cansaron de los trabajos tradicionales y comenzaron a pensar en una construcción propia, con lógicas de producción diferentes a las de las empresas en las que habían trabajado previamente. /n Luego de varios meses de gestación, la idea de construir algo autogestivo, horizontal, democrático y de propiedad colectiva se hizo cada vez más fuerte. Así es como nació la idea de construir una empresa social, así es como nació Fiqus./n Con el transcurso de los años fuimos construyendo una estructura organizacional que se adapta a las personas y no al revés. Así es como, sobre el andar y basándonos en la experiencia adquirida, construimos una serie de acuerdos que hoy en día forman parte de nuestro reglamento interno. Nuestro reglamento no es algo estático, es algo vivo que evoluciona acorde evolucionan las personas que forman parte de nuestra organización. Ahí es donde reflejamos nuestras propuestas concretas para lograr que las personas que participan dentro del colectivo se ubiquen en el centro de los procesos productivos. /n Nos gusta pensar que Fiqus es una propuesta que invita a quienes no conocen al cooperativismo tecnológico a ver que un cambio de paradigma es posible.","subtitle":"¡Nos organizamos horizontal y democráticamente!","subtitleContent":"Las decisiones de la cooperativa se plasman en la Asamblea General Ordinaria una vez al año. Además como forma de organización colectiva realizamos dos veces al año un encuentro donde pensamos, a partir de los deseos personales, nuestros objetivos como cooperativa y semanalmente nos encontramos (de manera virtual) a planificar las tareas diarias. "},{"title":"¡Somos federales!","content":"Nuestra distribución actual es el resultado de haber creado una estructura lo suficientemente maleable como para que logre adaptarse a las necesidades de las personas. De esta manera, a medida que fuimos creciendo como personas y transitando los diferentes escenarios que la vida nos fue planteando, priorizamos acompañar desde el colectivo brindando el apoyo necesario para que todxs puedan decidir por ejemplo en dónde y cómo vivir./n En la actualidad tenemos sedes en CABA y Villa La Angostura. Pero además, contamos con personas asociadas trabajando desde Mar del Plata, San Fernando (BsAs), Puerto Madryn y San Luis.","subtitle":"Territorial","subtitleContent":"Como cooperativa de trabajo, nos entendemos como actores sociales territoriales. Apoyándonos en el séptimo principio cooperativo de “Compromiso con la Comunidad”, asumimos la responsabilidad de extender la construcción colectiva que realizamos día a día dentro de la cooperativa en el territorio perteneciente a una de nuestras sedes. Es por esto que trabajamos activamente en la Mesa de Asociativismo de Villa La Angostura, Neuquén. Allí nos reunimos en forma periódica junto con otros actores y actrices de la economía social así como con personas individuales comprometidas con la comunidad local para desarrollar proyectos que potencien iniciativas locales, siempre con una mirada colaborativa y horizontal. "},{"parts":[{"title":"¡Estamos federados en FACTTIC! ","subtitle":"La federación es una organización nacional que está conformada por cooperativas tecnológicas de toda Argentina.","content":"Todo comenzó cuando las primeras cooperativas del sector comenzamos a ponernos en contacto entre nosotras porque entendimos que en la unión está la fuerza para poder construir un modelo que escale con el objetivo de convertirse poco a poco en una alternativa real al modelo de producción tradicional. Producto de esas primeras interacciones nació la idea de firmar una carta de compromiso para fundar la Federación Argentina de Cooperativas de Tecnología Innovación y Conocimiento (FACTTIC), un espacio de construcción colectiva que fomenta la solidaridad y la colaboración como motores que impulsan la creación de tecnología con valores cooperativos./nEl contacto continuo con otras cooperativas de nuestro sector y el trabajar en conjunto para desarrollar estrategias comunes y compartir conocimiento genera un círculo virtuoso en constante evolución que nos impulsa a crecer y seguir potenciando nuestro trabajo./n La federación nos permite estar en contacto con otras realidades, nos permite romper con la endogamia de nuestra organización y nos invita a pensarnos como algo más grande, que abarca una escala mayor. Es un espacio de creación colectiva donde la imaginación aplicada a la construcción colaborativa no encuentra límites."},{"title":"Internacional","content":"Varios años después de haber participado de la creación de la federación, comenzamos a contactarnos con cooperativas tecnológicas de otras partes del mundo con el objetivo de compartir el modelo de colaboración e intercooperación construido con cooperativas locales a una escala más global./n Luego de varias interacciones, realizamos el primer viaje intercooperativo internacional de nuestra red. Viajamos a Reino Unido para conocer a cooperativas tecnológicas de una red local. Compartimos experiencias y comenzamos a construir las bases de lo que hoy constituye la Red Global de Cooperativas de Tecnología./n La red nuclea a más de 45 cooperativas tecnológicas de todo el mundo, con presencia en 3 continentes. Compartimos reuniones semanales en las que aprendemos de nuestras culturas, debatimos acerca de nuestros objetivos comunes y delineamos una hoja de ruta para hacer crecer a la comunidad que la compone. De a poco, comenzamos a intercooperar con el objetivo de fortalecer nuestras construcciones locales con una mirada de escala global. De esta manera, organizadas, las cooperativas de tecnología podremos ayudarnos mediante la cooperación a vender y desarrollar proyectos en conjunto."}]}]},"labs":{"title":"Labs","subtitle":"FiqusLabs es un espacio donde investigamos sobre nuevas tecnologías y nos capacitamos.","content":"De yapa, muchas veces el aprendizaje de una nueva tecnología viene acompañado con poder plasmar un proyecto que beneficie a la comunidad o al ambiente cooperativo.","sections":{"title":"Casos de Éxito","tagsTitle":"Tecnologías Investigadas","cases":[{"title":"CooBS","description":"Es una aplicación web donde las cooperativas pueden cargar y seguir sus acciones que se alinean a los principios cooperativos [link a wikipedia], como así también confeccionar el Balance Social.","tags":["Python","Django","Postgress"],"image":"","links":[{"text":"ver sitio","link":""}]},{"title":"CoopHub","description":"Es un sitio web donde se muestran los repositorios open source de diferentes cooperativas a lo largo del mundo. A su vez, se puede ver cuales son los lenguajes de programación más utilizados y buscar por tags.","tags":["Elixir","Phoenix","Utilización de ETS","Cache de datos","ReactJS","API y acciones de GitHub"],"image":"","links":[{"text":"ver sitio","link":""}]}]}}}');
+module.exports = JSON.parse('{"styles":{"breakpoints":{"xs":"320","s":"481","m":"769","l":"1024","xl":"1280"},"colors":{"purplePrimary":"#510066","purpleGradient":"#7A0185","greenMain":"#44DC00","orangeMain":"#FF602C","greenLight":"#E8F7E1","purpleLight":"#E9E1EB","black":"#000000","white":"#FFFFFF","darkMainBg":"#0F1319","darkGrey":"#60646B","ultraDarkGrey":"#333333","lightGrey":"#A7ACB4","ultraLightGrey":"#C4C4C4","transparent":"transparent"},"fontWeight":{"bold":"700","medium":"500","light":"300","regular":"400"},"icon":{"website":"website.svg","github":"github.svg"}},"homepage":{"title":"Homepage"},"services":{"title":"Servicios","services":[{"service":"Ciencia de Datos","description":"Este área se dedica a la limpieza, extracción y análisis de datos con el fin de poder servir de alimento para procesos de Inteligencia Artificial o Aprendizaje Automático. Es de esencial importancia procesar los datos para lograr que sean de fácil entendimiento, así como su uso para llegar a los objetivos planteados.","tags":["Python","Pandas","Numpy","Seaborn"],"image":"datos"},{"service":"Inteligencia Artificial","description":"El Aprendizaje Automático es un subcampo de la Inteligencia Artificial en el que se tiene como objetivo que las \\"computadoras aprendan\\". A partir de datos recolectados y procesados, diseñamos, construimos y entrenamos modelos que nos permitan predecir eventos futuros, clasificar imágenes, reconocer entidades en textos y muchas otras cosas más.","tags":["Python","Pandas","Numpy","Seaborn"],"image":"inteligenciaArtificial"},{"service":"Alta Concurrencia","description":"Utilizamos lenguajes de programación funcional en tiempo real y muy adoptados en el mercado, que soportan niveles de altísima concurrencia y distribución, teniendo como resultado sistemas que responden a gran velocidad ante altas demandas.","tags":["Earlang","Elixir","Phoenix Framework","LiveView"],"image":"altaConcurrencia"},{"service":"Blockchain | Fintech","description":"Estamos desarrollando fintech, que son las nuevas aplicaciones, procesos, productos o modelos de negocios en la industria de los servicios financieros compuestos de uno o más servicios financieros complementarios y puestos a disposición del público vía Internet.","tags":["Python","Ethereum"],"image":"blockchain"},{"service":"Fullstack","description":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.","tags":["Django","Phoenix","Phoenix LiveView","ReactJS","VueJS","React Native"],"image":"fullstack"}],"subsection":{"title":"capacitación","content":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.","image":"capacitacion"}},"culture":{"title":"Cultura","subtiitle":"Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos!","description":"Fiqus no es un trabajo más, es un proyecto de vida, en el que construimos un equipo consolidado de profesionales que se encuentra en continua capacitación para poder brindar soluciones técnicas de alta calidad. ","sections":[{"title":"Historia","content":"Fiqus es como una gran familia, que comenzó cuando varios estudiantes de ingeniería en sistemas de la Universidad Tecnológica Nacional se cansaron de los trabajos tradicionales y comenzaron a pensar en una construcción propia, con lógicas de producción diferentes a las de las empresas en las que habían trabajado previamente. /n Luego de varios meses de gestación, la idea de construir algo autogestivo, horizontal, democrático y de propiedad colectiva se hizo cada vez más fuerte. Así es como nació la idea de construir una empresa social, así es como nació Fiqus./n Con el transcurso de los años fuimos construyendo una estructura organizacional que se adapta a las personas y no al revés. Así es como, sobre el andar y basándonos en la experiencia adquirida, construimos una serie de acuerdos que hoy en día forman parte de nuestro reglamento interno. Nuestro reglamento no es algo estático, es algo vivo que evoluciona acorde evolucionan las personas que forman parte de nuestra organización. Ahí es donde reflejamos nuestras propuestas concretas para lograr que las personas que participan dentro del colectivo se ubiquen en el centro de los procesos productivos. /n Nos gusta pensar que Fiqus es una propuesta que invita a quienes no conocen al cooperativismo tecnológico a ver que un cambio de paradigma es posible.","subtitle":"¡Nos organizamos horizontal y democráticamente!","subtitleContent":"Las decisiones de la cooperativa se plasman en la Asamblea General Ordinaria una vez al año. Además como forma de organización colectiva realizamos dos veces al año un encuentro donde pensamos, a partir de los deseos personales, nuestros objetivos como cooperativa y semanalmente nos encontramos (de manera virtual) a planificar las tareas diarias. "},{"title":"¡Somos federales!","content":"Nuestra distribución actual es el resultado de haber creado una estructura lo suficientemente maleable como para que logre adaptarse a las necesidades de las personas. De esta manera, a medida que fuimos creciendo como personas y transitando los diferentes escenarios que la vida nos fue planteando, priorizamos acompañar desde el colectivo brindando el apoyo necesario para que todxs puedan decidir por ejemplo en dónde y cómo vivir./n En la actualidad tenemos sedes en CABA y Villa La Angostura. Pero además, contamos con personas asociadas trabajando desde Mar del Plata, San Fernando (BsAs), Puerto Madryn y San Luis.","subtitle":"Territorial","subtitleContent":"Como cooperativa de trabajo, nos entendemos como actores sociales territoriales. Apoyándonos en el séptimo principio cooperativo de “Compromiso con la Comunidad”, asumimos la responsabilidad de extender la construcción colectiva que realizamos día a día dentro de la cooperativa en el territorio perteneciente a una de nuestras sedes. Es por esto que trabajamos activamente en la Mesa de Asociativismo de Villa La Angostura, Neuquén. Allí nos reunimos en forma periódica junto con otros actores y actrices de la economía social así como con personas individuales comprometidas con la comunidad local para desarrollar proyectos que potencien iniciativas locales, siempre con una mirada colaborativa y horizontal. "},{"parts":[{"title":"¡Estamos federados en FACTTIC! ","subtitle":"La federación es una organización nacional que está conformada por cooperativas tecnológicas de toda Argentina.","content":"Todo comenzó cuando las primeras cooperativas del sector comenzamos a ponernos en contacto entre nosotras porque entendimos que en la unión está la fuerza para poder construir un modelo que escale con el objetivo de convertirse poco a poco en una alternativa real al modelo de producción tradicional. Producto de esas primeras interacciones nació la idea de firmar una carta de compromiso para fundar la Federación Argentina de Cooperativas de Tecnología Innovación y Conocimiento (FACTTIC), un espacio de construcción colectiva que fomenta la solidaridad y la colaboración como motores que impulsan la creación de tecnología con valores cooperativos./nEl contacto continuo con otras cooperativas de nuestro sector y el trabajar en conjunto para desarrollar estrategias comunes y compartir conocimiento genera un círculo virtuoso en constante evolución que nos impulsa a crecer y seguir potenciando nuestro trabajo./n La federación nos permite estar en contacto con otras realidades, nos permite romper con la endogamia de nuestra organización y nos invita a pensarnos como algo más grande, que abarca una escala mayor. Es un espacio de creación colectiva donde la imaginación aplicada a la construcción colaborativa no encuentra límites."},{"title":"Internacional","content":"Varios años después de haber participado de la creación de la federación, comenzamos a contactarnos con cooperativas tecnológicas de otras partes del mundo con el objetivo de compartir el modelo de colaboración e intercooperación construido con cooperativas locales a una escala más global./n Luego de varias interacciones, realizamos el primer viaje intercooperativo internacional de nuestra red. Viajamos a Reino Unido para conocer a cooperativas tecnológicas de una red local. Compartimos experiencias y comenzamos a construir las bases de lo que hoy constituye la Red Global de Cooperativas de Tecnología./n La red nuclea a más de 45 cooperativas tecnológicas de todo el mundo, con presencia en 3 continentes. Compartimos reuniones semanales en las que aprendemos de nuestras culturas, debatimos acerca de nuestros objetivos comunes y delineamos una hoja de ruta para hacer crecer a la comunidad que la compone. De a poco, comenzamos a intercooperar con el objetivo de fortalecer nuestras construcciones locales con una mirada de escala global. De esta manera, organizadas, las cooperativas de tecnología podremos ayudarnos mediante la cooperación a vender y desarrollar proyectos en conjunto."}]}]},"labs":{"title":"Labs","subtitle":"FiqusLabs es un espacio donde investigamos sobre nuevas tecnologías y nos capacitamos.","content":"De yapa, muchas veces el aprendizaje de una nueva tecnología viene acompañado con poder plasmar un proyecto que beneficie a la comunidad o al ambiente cooperativo.","sections":{"title":"Casos de Éxito","tagsTitle":"Tecnologías Investigadas","cases":[{"title":"CooBS","description":"Es una aplicación web donde las cooperativas pueden cargar y seguir sus acciones que se alinean a los principios cooperativos [link a wikipedia], como así también confeccionar el Balance Social.","tags":["Python","Django","Postgress"],"image":"","links":[{"text":"ver sitio","link":""}]},{"title":"CoopHub","description":"Es un sitio web donde se muestran los repositorios open source de diferentes cooperativas a lo largo del mundo. A su vez, se puede ver cuales son los lenguajes de programación más utilizados y buscar por tags.","tags":["Elixir","Phoenix","Utilización de ETS","Cache de datos","ReactJS","API y acciones de GitHub"],"image":"","links":[{"text":"ver sitio","link":""}]}]}}}');
 
 /***/ })
 
@@ -12297,6 +13026,11 @@ module.exports = JSON.parse('{"styles":{"breakpoints":{"xs":"320","s":"481","m":
 /******/ 			if (!module.children) module.children = [];
 /******/ 			return module;
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		__webpack_require__.p = "/";
 /******/ 	})();
 /******/ 	
 /************************************************************************/
