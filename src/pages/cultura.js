@@ -1,14 +1,12 @@
 import React, {Fragment} from "react"
 import styled from 'styled-components'
-import data from '../content/content.json'
+import { styles, culture } from '../content/content.json'
 
 
 const Culture = () => {
-    const content = data.culture
-
     return (
         <Fragment>
-            <h1>{content.title}</h1>
+            <h1>{culture.title}</h1>
         </Fragment>
     );
 };

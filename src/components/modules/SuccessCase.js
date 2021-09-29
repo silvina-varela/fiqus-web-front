@@ -1,10 +1,15 @@
 import React from 'react';
+import styled from 'styled-components'
 
-const SuccessCase = () => {
+const CaseWrapper = styled.div`
+
+` 
+
+const SuccessCase = (props) => {
     return (
-        <div>
-            
-        </div>
+        <CaseWrapper>
+           
+        </CaseWrapper>
     );
 };
 

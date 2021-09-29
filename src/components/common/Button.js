@@ -117,7 +117,7 @@ const Button = (props) => {
         <BtnContainer>   
             <Btn type={getBtnStyles(props.type)} theme={props.theme} to={props.href}>
                 <BtnImg imgDisplay={getBtnStyles(props.type).imgDisplay} src={require('../../images/icon_website.svg').default} />
-                ver sitio
+                {props.btnText}
             </Btn>                     
         </BtnContainer>
     );

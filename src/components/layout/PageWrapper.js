@@ -3,9 +3,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components'
 import Header from '../common/Header'
 import Footer from '../common/Footer'
-import data from '../../content/content.json'
-
-const styles = data.styles
+import { styles } from '../../content/content.json'
 
 const Wrapper = styled.div`
     position: relative;

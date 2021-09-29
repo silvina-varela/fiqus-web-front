@@ -1,15 +1,16 @@
 import React, {Fragment} from "react"
 import styled from 'styled-components'
-import data from '../content/content.json'
+import SuccessCase from "../components/modules/SuccessCase"
 
-const styles = data.styles
+import {styles, labs} from '../content/content.json'
+
 
 const Labs = () => {
-    const content = data.labs
-    
+
       return (
         <Fragment>
-          <h1>{content.title}</h1>
+          <h1>{labs.title}</h1>
+          <SuccessCase></SuccessCase>
         </Fragment>
       );
 };
