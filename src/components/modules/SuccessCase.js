@@ -13,7 +13,7 @@ const LabTitle = styled.h3`
 const LabImage = styled.img`
 
 `
-const LabExcerpt =styled.p`
+const LabDescription =styled.p`
 
 `
 
@@ -24,6 +24,7 @@ const SuccessCase = (props) => {
         <CaseWrapper>
             <LabTitle>{lab.frontmatter.title}</LabTitle>
             <Tags styles={props.styles} type="labs" tags={lab.frontmatter.tags}></Tags>
+            <LabDescription>{lab.excerpt}</LabDescription>
         </CaseWrapper>
     );
 };
