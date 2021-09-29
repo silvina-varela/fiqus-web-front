@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-pages-labs-js",
     "path": "/labs/",
-    "result": {"pageContext":{}},
+    "result": {"data":{"allMarkdownRemark":{"edges":[{"node":{"id":"11e6e904-0e83-5e46-93e4-50d9d0550016","excerpt":"Es una aplicación web donde las cooperativas pueden cargar y seguir sus acciones que se alinean a los principios cooperativos [link a wikipedia], como así también confeccionar el Balance Social.","frontmatter":{"type":"lab","date":null,"title":"CooBS","tags":["Python","Django","Postgres"]}}},{"node":{"id":"6134faa0-07a3-5a39-8739-8ee217dcb3c2","excerpt":"Este es un lab Lorem ipsum un lab","frontmatter":{"type":"lab","date":null,"title":"CoopHub","tags":["Elixir","Phoenix","Utilización de ETS","Cache de datos","ReactJS"]}}}]}},"pageContext":{}},
     "staticQueryHashes": ["805671509"]}

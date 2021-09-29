@@ -20,7 +20,6 @@ const PostExcerpt =styled.p`
 
 const BlogPost = (props) => {
     const post = props.postData
-    console.log(post)
     return (
         <PostContainer>
             <PostImage src={require('../../images/illustrations/labs.svg').default}></PostImage>

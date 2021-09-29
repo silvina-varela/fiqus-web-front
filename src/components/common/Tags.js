@@ -20,7 +20,7 @@ const Tags = (props) => {
 
     const getTagStyles = (type) =>{
         switch (type) {
-            case "blog" : 
+            case "labs" : 
                 return {
                     background : props.styles.colors.greenLight, 
                     fontWeight : props.styles.fontWeight.regular, 
