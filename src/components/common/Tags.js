@@ -16,42 +16,42 @@ const TagItem = styled.div`
     color: ${props => props.type.color };
 `
 
-const Tag = (props) => {
+const Tags = (props) => {
 
     const getTagStyles = (type) =>{
         switch (type) {
             case "blog" : 
                 return {
-                    background : props.theme.colors.greenLight, 
-                    fontWeight : props.theme.fontWeight.regular, 
-                    color : props.theme.colors.ultraDarkGrey
+                    background : props.styles.colors.greenLight, 
+                    fontWeight : props.styles.fontWeight.regular, 
+                    color : props.styles.colors.ultraDarkGrey
                  }
             break
             case "services" : 
                 return {
-                    background : props.theme.colors.purpleLight, 
-                    fontWeight : props.theme.fontWeight.medium, 
-                    color : props.theme.colors.purplePrimary
+                    background : props.styles.colors.purpleLight, 
+                    fontWeight : props.styles.fontWeight.medium, 
+                    color : props.styles.colors.purplePrimary
                 }
             break
             default : 
                 return {
-                    background : props.theme.colors.greenLight, 
-                    fontWeight : props.theme.fontWeight.regular, 
-                    color : props.theme.colors.ultraDarkGrey
+                    background : props.styles.colors.greenLight, 
+                    fontWeight : props.styles.fontWeight.regular, 
+                    color : props.styles.colors.ultraDarkGrey
                 }
         }
     }
 
     return (
-        <TagsContainer tags={props.tags}>
-            {
-                props.tags ? props.tags.map((tag) => {
-                    <TagItem  type={getTagStyles(tag.type)} theme={props.theme}>{tag.tagContent || "Tag"}</TagItem>
-                }) : " "
+        <TagsContainer tags={props.tags} type={props.tagsType}>
+            {props.tags.map((tag) => {
+                return (
+                    <TagItem  key = {tag}  type = {getTagStyles(props.tagsType)} styles={props.styles}><p>{ tag }</p></TagItem>
+                )}) 
             }
         </TagsContainer>
     );
 };
 
-export default Tag;
+export default Tags;

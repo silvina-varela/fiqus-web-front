@@ -14,15 +14,17 @@ const ImageContainer = styled.div`
 
 
 const Service = (props) => {
+    const service = props.service
     return (
         <ServiceWrapper> 
             <TextContainer>
-                <h3>{props.service}</h3>
-                <p>{props.description}</p>
+                <h3>{service.service}</h3>
+                <p>{service.description}</p>
+                <Tags tagsType="services" tags={service.tags} styles={props.styles} ></Tags>
             </TextContainer>
             <ImageContainer>
                 <object 
-                    data={require(`../../images/illustrations/${props.image}.svg`).default} 
+                    data={require(`../../images/illustrations/${service.image}.svg`).default} 
                     type="image/svg+xml">
                 </object>
             </ImageContainer>
