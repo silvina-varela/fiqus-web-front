@@ -6,6 +6,7 @@ import Footer from '../common/Footer'
 import Tag from '../common/Tag'
 import Button from '../common/Button'
 import data from '../../content/content.json'
+import ContactForm from '../common/ContactForm';
 
 const styles = data.styles
 
@@ -56,7 +57,7 @@ const PageWrapper = (props) => {
                     <Button type="btnSecondary" theme={styles} href=""></Button>
                     <Button type="btnLabeled" theme={styles} href=""></Button>
                 </PageContainer>
-
+                <ContactForm></ContactForm>
                 <Footer></Footer>
             </Wrapper>
         )}>

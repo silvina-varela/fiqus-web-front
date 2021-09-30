@@ -4756,6 +4756,755 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 /**
  * Available resource loading statuses
  */
+
+const PageResourceStatus = {
+  /**
+   * At least one of critical resources failed to load
+   */
+  Error: `error`,
+
+  /**
+   * Resources loaded successfully
+   */
+  Success: `success`
+};
+
+const preferDefault = m => m && m.default || m;
+
+const stripSurroundingSlashes = s => {
+  s = s[0] === `/` ? s.slice(1) : s;
+  s = s.endsWith(`/`) ? s.slice(0, -1) : s;
+  return s;
+};
+
+const createPageDataUrl = path => {
+  const fixedPath = path === `/` ? `index` : stripSurroundingSlashes(path);
+  return `${""}/page-data/${fixedPath}/page-data.json`;
+};
+
+function doFetch(url, method = `GET`) {
+  return new Promise((resolve, reject) => {
+    const req = new XMLHttpRequest();
+    req.open(method, url, true);
+
+    req.onreadystatechange = () => {
+      if (req.readyState == 4) {
+        resolve(req);
+      }
+    };
+
+    req.send(null);
+  });
+}
+
+const doesConnectionSupportPrefetch = () => {
+  if (`connection` in navigator && typeof navigator.connection !== `undefined`) {
+    if ((navigator.connection.effectiveType || ``).includes(`2g`)) {
+      return false;
+    }
+
+    if (navigator.connection.saveData) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+const toPageResources = (pageData, component = null) => {
+  const page = {
+    componentChunkName: pageData.componentChunkName,
+    path: pageData.path,
+    webpackCompilationHash: pageData.webpackCompilationHash,
+    matchPath: pageData.matchPath,
+    staticQueryHashes: pageData.staticQueryHashes
+  };
+  return {
+    component,
+    json: pageData.result,
+    page
+  };
+};
+
+class BaseLoader {
+  constructor(loadComponent, matchPaths) {
+    this.inFlightNetworkRequests = new Map();
+    // Map of pagePath -> Page. Where Page is an object with: {
+    //   status: PageResourceStatus.Success || PageResourceStatus.Error,
+    //   payload: PageResources, // undefined if PageResourceStatus.Error
+    // }
+    // PageResources is {
+    //   component,
+    //   json: pageData.result,
+    //   page: {
+    //     componentChunkName,
+    //     path,
+    //     webpackCompilationHash,
+    //     staticQueryHashes
+    //   },
+    //   staticQueryResults
+    // }
+    this.pageDb = new Map();
+    this.inFlightDb = new Map();
+    this.staticQueryDb = {};
+    this.pageDataDb = new Map();
+    this.prefetchTriggered = new Set();
+    this.prefetchCompleted = new Set();
+    this.loadComponent = loadComponent;
+    (0,_find_path__WEBPACK_IMPORTED_MODULE_3__.setMatchPaths)(matchPaths);
+  }
+
+  memoizedGet(url) {
+    let inFlightPromise = this.inFlightNetworkRequests.get(url);
+
+    if (!inFlightPromise) {
+      inFlightPromise = doFetch(url, `GET`);
+      this.inFlightNetworkRequests.set(url, inFlightPromise);
+    } // Prefer duplication with then + catch over .finally to prevent problems in ie11 + firefox
+
+
+    return inFlightPromise.then(response => {
+      this.inFlightNetworkRequests.delete(url);
+      return response;
+    }).catch(err => {
+      this.inFlightNetworkRequests.delete(url);
+      throw err;
+    });
+  }
+
+  setApiRunner(apiRunner) {
+    this.apiRunner = apiRunner;
+    this.prefetchDisabled = apiRunner(`disableCorePrefetching`).some(a => a);
+  }
+
+  fetchPageDataJson(loadObj) {
+    const {
+      pagePath,
+      retries = 0
+    } = loadObj;
+    const url = createPageDataUrl(pagePath);
+    return this.memoizedGet(url).then(req => {
+      const {
+        status,
+        responseText
+      } = req; // Handle 200
+
+      if (status === 200) {
+        try {
+          const jsonPayload = JSON.parse(responseText);
+
+          if (jsonPayload.path === undefined) {
+            throw new Error(`not a valid pageData response`);
+          }
+
+          return Object.assign(loadObj, {
+            status: PageResourceStatus.Success,
+            payload: jsonPayload
+          });
+        } catch (err) {// continue regardless of error
+        }
+      } // Handle 404
+
+
+      if (status === 404 || status === 200) {
+        // If the request was for a 404 page and it doesn't exist, we're done
+        if (pagePath === `/404.html`) {
+          return Object.assign(loadObj, {
+            status: PageResourceStatus.Error
+          });
+        } // Need some code here to cache the 404 request. In case
+        // multiple loadPageDataJsons result in 404s
+
+
+        return this.fetchPageDataJson(Object.assign(loadObj, {
+          pagePath: `/404.html`,
+          notFound: true
+        }));
+      } // handle 500 response (Unrecoverable)
+
+
+      if (status === 500) {
+        return Object.assign(loadObj, {
+          status: PageResourceStatus.Error
+        });
+      } // Handle everything else, including status === 0, and 503s. Should retry
+
+
+      if (retries < 3) {
+        return this.fetchPageDataJson(Object.assign(loadObj, {
+          retries: retries + 1
+        }));
+      } // Retried 3 times already, result is an error.
+
+
+      return Object.assign(loadObj, {
+        status: PageResourceStatus.Error
+      });
+    });
+  }
+
+  loadPageDataJson(rawPath) {
+    const pagePath = (0,_find_path__WEBPACK_IMPORTED_MODULE_3__.findPath)(rawPath);
+
+    if (this.pageDataDb.has(pagePath)) {
+      const pageData = this.pageDataDb.get(pagePath);
+
+      if (true) {
+        return Promise.resolve(pageData);
+      }
+    }
+
+    return this.fetchPageDataJson({
+      pagePath
+    }).then(pageData => {
+      this.pageDataDb.set(pagePath, pageData);
+      return pageData;
+    });
+  }
+
+  findMatchPath(rawPath) {
+    return (0,_find_path__WEBPACK_IMPORTED_MODULE_3__.findMatchPath)(rawPath);
+  } // TODO check all uses of this and whether they use undefined for page resources not exist
+
+
+  loadPage(rawPath) {
+    const pagePath = (0,_find_path__WEBPACK_IMPORTED_MODULE_3__.findPath)(rawPath);
+
+    if (this.pageDb.has(pagePath)) {
+      const page = this.pageDb.get(pagePath);
+
+      if (true) {
+        if (page.error) {
+          return {
+            error: page.error,
+            status: page.status
+          };
+        }
+
+        return Promise.resolve(page.payload);
+      }
+    }
+
+    if (this.inFlightDb.has(pagePath)) {
+      return this.inFlightDb.get(pagePath);
+    }
+
+    const inFlightPromise = Promise.all([this.loadAppData(), this.loadPageDataJson(pagePath)]).then(allData => {
+      const result = allData[1];
+
+      if (result.status === PageResourceStatus.Error) {
+        return {
+          status: PageResourceStatus.Error
+        };
+      }
+
+      let pageData = result.payload;
+      const {
+        componentChunkName,
+        staticQueryHashes = []
+      } = pageData;
+      const finalResult = {};
+      const componentChunkPromise = this.loadComponent(componentChunkName).then(component => {
+        finalResult.createdAt = new Date();
+        let pageResources;
+
+        if (!component || component instanceof Error) {
+          finalResult.status = PageResourceStatus.Error;
+          finalResult.error = component;
+        } else {
+          finalResult.status = PageResourceStatus.Success;
+
+          if (result.notFound === true) {
+            finalResult.notFound = true;
+          }
+
+          pageData = Object.assign(pageData, {
+            webpackCompilationHash: allData[0] ? allData[0].webpackCompilationHash : ``
+          });
+          pageResources = toPageResources(pageData, component);
+        } // undefined if final result is an error
+
+
+        return pageResources;
+      });
+      const staticQueryBatchPromise = Promise.all(staticQueryHashes.map(staticQueryHash => {
+        // Check for cache in case this static query result has already been loaded
+        if (this.staticQueryDb[staticQueryHash]) {
+          const jsonPayload = this.staticQueryDb[staticQueryHash];
+          return {
+            staticQueryHash,
+            jsonPayload
+          };
+        }
+
+        return this.memoizedGet(`${""}/page-data/sq/d/${staticQueryHash}.json`).then(req => {
+          const jsonPayload = JSON.parse(req.responseText);
+          return {
+            staticQueryHash,
+            jsonPayload
+          };
+        }).catch(() => {
+          throw new Error(`We couldn't load "${""}/page-data/sq/d/${staticQueryHash}.json"`);
+        });
+      })).then(staticQueryResults => {
+        const staticQueryResultsMap = {};
+        staticQueryResults.forEach(({
+          staticQueryHash,
+          jsonPayload
+        }) => {
+          staticQueryResultsMap[staticQueryHash] = jsonPayload;
+          this.staticQueryDb[staticQueryHash] = jsonPayload;
+        });
+        return staticQueryResultsMap;
+      });
+      return Promise.all([componentChunkPromise, staticQueryBatchPromise]).then(([pageResources, staticQueryResults]) => {
+        let payload;
+
+        if (pageResources) {
+          payload = _objectSpread(_objectSpread({}, pageResources), {}, {
+            staticQueryResults
+          });
+          finalResult.payload = payload;
+          _emitter__WEBPACK_IMPORTED_MODULE_2__["default"].emit(`onPostLoadPageResources`, {
+            page: payload,
+            pageResources: payload
+          });
+        }
+
+        this.pageDb.set(pagePath, finalResult);
+
+        if (finalResult.error) {
+          return {
+            error: finalResult.error,
+            status: finalResult.status
+          };
+        }
+
+        return payload;
+      }) // when static-query fail to load we throw a better error
+      .catch(err => {
+        return {
+          error: err,
+          status: PageResourceStatus.Error
+        };
+      });
+    });
+    inFlightPromise.then(() => {
+      this.inFlightDb.delete(pagePath);
+    }).catch(error => {
+      this.inFlightDb.delete(pagePath);
+      throw error;
+    });
+    this.inFlightDb.set(pagePath, inFlightPromise);
+    return inFlightPromise;
+  } // returns undefined if the page does not exists in cache
+
+
+  loadPageSync(rawPath, options = {}) {
+    const pagePath = (0,_find_path__WEBPACK_IMPORTED_MODULE_3__.findPath)(rawPath);
+
+    if (this.pageDb.has(pagePath)) {
+      const pageData = this.pageDb.get(pagePath);
+
+      if (pageData.payload) {
+        return pageData.payload;
+      }
+
+      if (options !== null && options !== void 0 && options.withErrorDetails) {
+        return {
+          error: pageData.error,
+          status: pageData.status
+        };
+      }
+    }
+
+    return undefined;
+  }
+
+  shouldPrefetch(pagePath) {
+    // Skip prefetching if we know user is on slow or constrained connection
+    if (!doesConnectionSupportPrefetch()) {
+      return false;
+    } // Check if the page exists.
+
+
+    if (this.pageDb.has(pagePath)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  prefetch(pagePath) {
+    if (!this.shouldPrefetch(pagePath)) {
+      return false;
+    } // Tell plugins with custom prefetching logic that they should start
+    // prefetching this path.
+
+
+    if (!this.prefetchTriggered.has(pagePath)) {
+      this.apiRunner(`onPrefetchPathname`, {
+        pathname: pagePath
+      });
+      this.prefetchTriggered.add(pagePath);
+    } // If a plugin has disabled core prefetching, stop now.
+
+
+    if (this.prefetchDisabled) {
+      return false;
+    }
+
+    const realPath = (0,_find_path__WEBPACK_IMPORTED_MODULE_3__.findPath)(pagePath); // Todo make doPrefetch logic cacheable
+    // eslint-disable-next-line consistent-return
+
+    this.doPrefetch(realPath).then(() => {
+      if (!this.prefetchCompleted.has(pagePath)) {
+        this.apiRunner(`onPostPrefetchPathname`, {
+          pathname: pagePath
+        });
+        this.prefetchCompleted.add(pagePath);
+      }
+    });
+    return true;
+  }
+
+  doPrefetch(pagePath) {
+    const pageDataUrl = createPageDataUrl(pagePath);
+    return (0,_prefetch__WEBPACK_IMPORTED_MODULE_1__["default"])(pageDataUrl, {
+      crossOrigin: `anonymous`,
+      as: `fetch`
+    }).then(() => // This was just prefetched, so will return a response from
+    // the cache instead of making another request to the server
+    this.loadPageDataJson(pagePath));
+  }
+
+  hovering(rawPath) {
+    this.loadPage(rawPath);
+  }
+
+  getResourceURLsForPathname(rawPath) {
+    const pagePath = (0,_find_path__WEBPACK_IMPORTED_MODULE_3__.findPath)(rawPath);
+    const page = this.pageDataDb.get(pagePath);
+
+    if (page) {
+      const pageResources = toPageResources(page.payload);
+      return [...createComponentUrls(pageResources.page.componentChunkName), createPageDataUrl(pagePath)];
+    } else {
+      return null;
+    }
+  }
+
+  isPageNotFound(rawPath) {
+    const pagePath = (0,_find_path__WEBPACK_IMPORTED_MODULE_3__.findPath)(rawPath);
+    const page = this.pageDb.get(pagePath);
+    return !page || page.notFound;
+  }
+
+  loadAppData(retries = 0) {
+    return this.memoizedGet(`${""}/page-data/app-data.json`).then(req => {
+      const {
+        status,
+        responseText
+      } = req;
+      let appData;
+
+      if (status !== 200 && retries < 3) {
+        // Retry 3 times incase of non-200 responses
+        return this.loadAppData(retries + 1);
+      } // Handle 200
+
+
+      if (status === 200) {
+        try {
+          const jsonPayload = JSON.parse(responseText);
+
+          if (jsonPayload.webpackCompilationHash === undefined) {
+            throw new Error(`not a valid app-data response`);
+          }
+
+          appData = jsonPayload;
+        } catch (err) {// continue regardless of error
+        }
+      }
+
+      return appData;
+    });
+  }
+
+}
+
+const createComponentUrls = componentChunkName => (window.___chunkMapping[componentChunkName] || []).map(chunk => "" + chunk);
+
+class ProdLoader extends BaseLoader {
+  constructor(asyncRequires, matchPaths) {
+    const loadComponent = chunkName => {
+      if (!asyncRequires.components[chunkName]) {
+        throw new Error(`We couldn't find the correct component chunk with the name ${chunkName}`);
+      }
+
+      return asyncRequires.components[chunkName]().then(preferDefault) // loader will handle the case when component is error
+      .catch(err => err);
+    };
+
+    super(loadComponent, matchPaths);
+  }
+
+  doPrefetch(pagePath) {
+    return super.doPrefetch(pagePath).then(result => {
+      if (result.status !== PageResourceStatus.Success) {
+        return Promise.resolve();
+      }
+
+      const pageData = result.payload;
+      const chunkName = pageData.componentChunkName;
+      const componentUrls = createComponentUrls(chunkName);
+      return Promise.all(componentUrls.map(_prefetch__WEBPACK_IMPORTED_MODULE_1__["default"])).then(() => pageData);
+    });
+  }
+
+  loadPageDataJson(rawPath) {
+    return super.loadPageDataJson(rawPath).then(data => {
+      if (data.notFound) {
+        // check if html file exist using HEAD request:
+        // if it does we should navigate to it instead of showing 404
+        return doFetch(rawPath, `HEAD`).then(req => {
+          if (req.status === 200) {
+            // page (.html file) actually exist (or we asked for 404 )
+            // returning page resources status as errored to trigger
+            // regular browser navigation to given page
+            return {
+              status: PageResourceStatus.Error
+            };
+          } // if HEAD request wasn't 200, return notFound result
+          // and show 404 page
+
+
+          return data;
+        });
+      }
+
+      return data;
+    });
+  }
+
+}
+let instance;
+const setLoader = _loader => {
+  instance = _loader;
+};
+const publicLoader = {
+  enqueue: rawPath => instance.prefetch(rawPath),
+  // Real methods
+  getResourceURLsForPathname: rawPath => instance.getResourceURLsForPathname(rawPath),
+  loadPage: rawPath => instance.loadPage(rawPath),
+  // TODO add deprecation to v4 so people use withErrorDetails and then we can remove in v5 and change default behaviour
+  loadPageSync: (rawPath, options = {}) => instance.loadPageSync(rawPath, options),
+  prefetch: rawPath => instance.prefetch(rawPath),
+  isPageNotFound: rawPath => instance.isPageNotFound(rawPath),
+  hovering: rawPath => instance.hovering(rawPath),
+  loadAppData: () => instance.loadAppData()
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (publicLoader);
+function getStaticQueryResults() {
+  if (instance) {
+    return instance.staticQueryDb;
+  } else {
+    return {};
+  }
+}
+
+/***/ }),
+
+/***/ "./.cache/normalize-page-path.js":
+/*!***************************************!*\
+  !*** ./.cache/normalize-page-path.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (path => {
+  if (path === undefined) {
+    return path;
+  }
+
+  if (path === `/`) {
+    return `/`;
+  }
+
+  if (path.charAt(path.length - 1) === `/`) {
+    return path.slice(0, -1);
+  }
+
+  return path;
+});
+
+/***/ }),
+
+/***/ "./.cache/prefetch.js":
+/*!****************************!*\
+  !*** ./.cache/prefetch.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const support = function (feature) {
+  if (typeof document === `undefined`) {
+    return false;
+  }
+
+  const fakeLink = document.createElement(`link`);
+
+  try {
+    if (fakeLink.relList && typeof fakeLink.relList.supports === `function`) {
+      return fakeLink.relList.supports(feature);
+    }
+  } catch (err) {
+    return false;
+  }
+
+  return false;
+};
+
+const linkPrefetchStrategy = function (url, options) {
+  return new Promise((resolve, reject) => {
+    if (typeof document === `undefined`) {
+      reject();
+      return;
+    }
+
+    const link = document.createElement(`link`);
+    link.setAttribute(`rel`, `prefetch`);
+    link.setAttribute(`href`, url);
+    Object.keys(options).forEach(key => {
+      link.setAttribute(key, options[key]);
+    });
+    link.onload = resolve;
+    link.onerror = reject;
+    const parentElement = document.getElementsByTagName(`head`)[0] || document.getElementsByName(`script`)[0].parentNode;
+    parentElement.appendChild(link);
+  });
+};
+
+const xhrPrefetchStrategy = function (url) {
+  return new Promise((resolve, reject) => {
+    const req = new XMLHttpRequest();
+    req.open(`GET`, url, true);
+
+    req.onload = () => {
+      if (req.status === 200) {
+        resolve();
+      } else {
+        reject();
+      }
+    };
+
+    req.send(null);
+  });
+};
+
+const supportedPrefetchStrategy = support(`prefetch`) ? linkPrefetchStrategy : xhrPrefetchStrategy;
+const preFetched = {};
+
+const prefetch = function (url, options) {
+  return new Promise(resolve => {
+    if (preFetched[url]) {
+      resolve();
+      return;
+    }
+
+    supportedPrefetchStrategy(url, options).then(() => {
+      resolve();
+      preFetched[url] = true;
+    }).catch(() => {}); // 404s are logged to the console anyway
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (prefetch);
+
+/***/ }),
+
+/***/ "./.cache/public-page-renderer.js":
+/*!****************************************!*\
+  !*** ./.cache/public-page-renderer.js ***!
+  \****************************************/
+/***/ ((module) => {
+
+const preferDefault = m => m && m.default || m;
+
+if (false) {} else if (false) {} else {
+  module.exports = () => null;
+}
+
+/***/ }),
+
+/***/ "./.cache/react-lifecycles-compat.js":
+/*!*******************************************!*\
+  !*** ./.cache/react-lifecycles-compat.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+exports.polyfill = Component => Component;
+
+/***/ }),
+
+/***/ "./.cache/redirect-utils.js":
+/*!**********************************!*\
+  !*** ./.cache/redirect-utils.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "maybeGetBrowserRedirect": () => (/* binding */ maybeGetBrowserRedirect)
+/* harmony export */ });
+/* harmony import */ var _redirects_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./redirects.json */ "./.cache/redirects.json");
+ // Convert to a map for faster lookup in maybeRedirect()
+
+const redirectMap = new Map();
+const redirectIgnoreCaseMap = new Map();
+_redirects_json__WEBPACK_IMPORTED_MODULE_0__.forEach(redirect => {
+  if (redirect.ignoreCase) {
+    redirectIgnoreCaseMap.set(redirect.fromPath, redirect);
+  } else {
+    redirectMap.set(redirect.fromPath, redirect);
+  }
+});
+function maybeGetBrowserRedirect(pathname) {
+  let redirect = redirectMap.get(pathname);
+
+  if (!redirect) {
+    redirect = redirectIgnoreCaseMap.get(pathname.toLowerCase());
+  }
+
+  return redirect;
+}
+
+/***/ }),
+
+/***/ "./.cache/strip-prefix.js":
+/*!********************************!*\
+  !*** ./.cache/strip-prefix.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ stripPrefix)
+/* harmony export */ });
+/**
+ * Remove a prefix from a string. Return the input string if the given prefix
+ * isn't found.
+ */
 function stripPrefix(str, prefix = ``) {
   if (!prefix) {
     return str;
@@ -4867,7 +5616,7 @@ try {
   Layout = preferDefault(__webpack_require__(/*! ./src/components/layout/PageWrapper.js */ "./src/components/layout/PageWrapper.js"));
 } catch (e) {
   if (e.toString().indexOf("Error: Cannot find module") !== -1) {
-    throw new Error("Couldn't find layout component at \"" + "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\src\\components\\layout\\PageWrapper.js" + ".\n\n" + "Please create layout component in that location or specify path to layout component in gatsby-config.js");
+    throw new Error("Couldn't find layout component at \"" + "C:\\dev\\fiqus-web-front\\src\\components\\layout\\PageWrapper.js" + ".\n\n" + "Please create layout component in that location or specify path to layout component in gatsby-config.js");
   } else {
     // Logging the error for debugging older browsers as there is no way
     // to wrap the thrown error in a try/catch.
@@ -5178,6 +5927,228 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/components/common/Button.js":
+/*!*****************************************!*\
+  !*** ./src/components/common/Button.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+
+
+
+const BtnContainer = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withConfig({
+  displayName: "Button__BtnContainer"
+})(["display:flex;justify-content:flex-start;flex-wrap:wrap;"]);
+const BtnImg = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].img.withConfig({
+  displayName: "Button__BtnImg"
+})(["display:", ";height:20px;margin-right:6px;"], props => props.imgDisplay);
+const Btn = (0,styled_components__WEBPACK_IMPORTED_MODULE_2__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_1__.Link).withConfig({
+  displayName: "Button__Btn"
+})(["margin:0 6px 8px 0px;padding:9px 20px;font-size:18px;font-size:", ";font-weight:", ";color:", ";background-color:", ";border-radius:12px;border-color:", ";border-width:2px!important;border-style:solid;box-shadow:0px 4px 0px ", ";transition:100ms ease-in-out all;margin-bottom:10px;text-decoration:none;display:flex;align-items:center;justify-content:center;&:hover{box-shadow:none;}"], props => props.type.fontSize, props => props.type.fontWeight, props => props.type.color, props => props.type.background, props => props.type.borderColor, props => props.type.boxShadow);
+
+const Button = props => {
+  const getBtnStyles = type => {
+    switch (type) {
+      case "btnPrimaryOrange":
+        return {
+          background: props.theme.colors.orangeMain,
+          borderColor: props.theme.colors.darkMainBg,
+          boxShadow: props.theme.colors.darkMainBg,
+          fontWeight: props.theme.fontWeight.bold,
+          color: props.theme.colors.white,
+          imgDisplay: 'none'
+        };
+        break;
+
+      case "btnPrimaryWhite":
+        return {
+          background: props.theme.colors.white,
+          borderColor: props.theme.colors.darkMainBg,
+          boxShadow: props.theme.colors.darkMainBg,
+          fontWeight: props.theme.fontWeight.bold,
+          color: props.theme.colors.darkMainBg,
+          imgDisplay: 'none'
+        };
+        break;
+
+      case "btnPrimaryOrangePurple":
+        return {
+          background: props.theme.colors.orangeMain,
+          borderColor: props.theme.colors.purplePrimary,
+          boxShadow: props.theme.colors.purplePrimary,
+          fontWeight: props.theme.fontWeight.bold,
+          color: props.theme.colors.white,
+          imgDisplay: 'none'
+        };
+        break;
+
+      case "btnPrimaryPurple":
+        return {
+          background: props.theme.colors.white,
+          borderColor: props.theme.colors.purplePrimary,
+          boxShadow: props.theme.colors.purplePrimary,
+          fontWeight: props.theme.fontWeight.bold,
+          color: props.theme.colors.purplePrimary,
+          imgDisplay: 'none'
+        };
+        break;
+
+      case "btnSecondary":
+        return {
+          background: props.theme.colors.white,
+          borderColor: props.theme.colors.lightGrey,
+          boxShadow: props.theme.colors.transparent,
+          fontSize: '14px',
+          fontWeight: props.theme.fontWeight.medium,
+          color: props.theme.colors.darkGrey,
+          imgDisplay: 'none'
+        };
+        break;
+
+      case "btnLabeled":
+        return {
+          background: props.theme.colors.white,
+          borderColor: props.theme.colors.darkMainBg,
+          boxShadow: props.theme.colors.darkMainBg,
+          fontWeight: props.theme.fontWeight.bold,
+          color: props.theme.colors.darkMainBg,
+          imgDisplay: 'static'
+        };
+        break;
+
+      default:
+        return {
+          background: props.theme.colors.white,
+          borderColor: props.theme.colors.darkMainBg,
+          boxShadow: props.theme.colors.darkMainBg,
+          fontWeight: props.theme.fontWeight.bold,
+          color: props.theme.colors.darkMainBg,
+          imgDisplay: 'none'
+        };
+    }
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(BtnContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Btn, {
+    type: getBtnStyles(props.type),
+    theme: props.theme,
+    to: props.href
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(BtnImg, {
+    imgDisplay: getBtnStyles(props.type).imgDisplay,
+    src: __webpack_require__(/*! ../../images/icon_website.svg */ "./src/images/icon_website.svg")["default"]
+  }), "ver sitio"));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Button);
+
+/***/ }),
+
+/***/ "./src/components/common/ContactForm.js":
+/*!**********************************************!*\
+  !*** ./src/components/common/ContactForm.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
+/* harmony import */ var _common_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Button */ "./src/components/common/Button.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var _content_content_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../content/content.json */ "./src/content/content.json");
+
+
+
+
+
+const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_3__.styles;
+const ContactContainer = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div.withConfig({
+  displayName: "ContactForm__ContactContainer"
+})(["display:flex;flex-direction:column;padding:40px 20px;border:3px solid ", ";border-radius:13px;max-width:946px;"], styles.colors.darkMainBg);
+const ContactHeading = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].h3.withConfig({
+  displayName: "ContactForm__ContactHeading"
+})(["font-size:2.6875em;font-weight:", ";text-align:center;margin-bottom:40px;"], styles.fontWeight.bold);
+const ContactFormBlock = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div.withConfig({
+  displayName: "ContactForm__ContactFormBlock"
+})([""]);
+const Form = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].form.withConfig({
+  displayName: "ContactForm__Form"
+})(["display:flex;flex-direction:column;"]);
+const Label = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].label.withConfig({
+  displayName: "ContactForm__Label"
+})(["font-size:1.125em;font-weight:", ""], styles.fontWeight.bold);
+const Field = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].input.withConfig({
+  displayName: "ContactForm__Field"
+})(["border:2px solid ", ";border-radius:12px;padding:10px 16px;background:", ";font-size:1.125em;&::placeholder{color:", ";font-family:'Rubik',sans-serif;}"], styles.colors.black, styles.colors.white, styles.colors.ultraLightGrey);
+const TextArea = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].textarea.withConfig({
+  displayName: "ContactForm__TextArea"
+})(["border:2px solid ", ";border-radius:12px;padding:10px 16px;background:", ";font-size:1.125em;font-family:'Rubik',sans-serif;&::placeholder{color:", ";}"], styles.colors.black, styles.colors.white, styles.colors.ultraLightGrey);
+const ErrorMessage = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].p.withConfig({
+  displayName: "ContactForm__ErrorMessage"
+})(["color:", ";font-weight:", ";margin-left:auto;"], styles.colors.orangeMain, styles.fontWeight.medium);
+const BtnSubmit = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__["default"])(_common_Button__WEBPACK_IMPORTED_MODULE_2__["default"]).withConfig({
+  displayName: "ContactForm__BtnSubmit"
+})(["color:red;"]);
+const FeedbackMessage = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].p.withConfig({
+  displayName: "ContactForm__FeedbackMessage"
+})(["color:", ";font-weight:", ";margin-left:auto;font-weight:", ";span{font-weight:", ";}"], styles.colors.orangeMain, styles.fontWeight.medium, styles.fontWeight.regular, styles.fontWeight.bold);
+const ContactInfoBlock = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div.withConfig({
+  displayName: "ContactForm__ContactInfoBlock"
+})(["margin-top:60px;"]);
+const Email = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_1__.Link).withConfig({
+  displayName: "ContactForm__Email"
+})(["font-weight:", ";margin-bottom:30px;display:block;"], styles.fontWeight.bold);
+const OfficeListTitle = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].h5.withConfig({
+  displayName: "ContactForm__OfficeListTitle"
+})(["font-size:1em;font-weight:", ";"], styles.fontWeight.bold);
+const OfficeList = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].ul.withConfig({
+  displayName: "ContactForm__OfficeList"
+})(["margin-left:0;"]);
+const OfficeListItem = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].li.withConfig({
+  displayName: "ContactForm__OfficeListItem"
+})(["list-style-type:none;margin-bottom:30px;&:last-of-type{margin-bottom:0;}"]);
+
+const ContactForm = () => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContactContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContactHeading, null, "Contacto"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContactFormBlock, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Form, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Label, {
+    htmlFor: "nameField"
+  }, "Nombre* "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Field, {
+    name: "nameField",
+    type: "text",
+    placeholder: "Nombre"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ErrorMessage, null, "Por favor, complete el campo requerido."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Label, {
+    htmlFor: "emailField"
+  }, "Email* "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Field, {
+    name: "emailField",
+    type: "email",
+    placeholder: "E-mail"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ErrorMessage, null, "Por favor, complete el campo requerido."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Label, {
+    htmlFor: "textAreaField"
+  }, "Mensaje* "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(TextArea, {
+    name: "textAreaField",
+    type: "textarea",
+    placeholder: "Mensaje"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ErrorMessage, null, "Por favor, complete el campo requerido."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(BtnSubmit, {
+    type: "submit",
+    value: "enviar"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FeedbackMessage, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Tu mensaje ha sido enviado."), " Gracias por comunicarte con nostr@s"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContactInfoBlock, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Email, null, "info@fiqus.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(OfficeListTitle, null, "Sedes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(OfficeList, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(OfficeListItem, null, "14 de Julio 1268 Ciudad de Buenos Aires, Argentina"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(OfficeListItem, null, "Av. Arrayanes 66, Local 7 Villa La Angostura, Neuqu\xE9n, Argentina"))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContactForm);
+
+/***/ }),
+
 /***/ "./src/components/common/Footer.js":
 /*!*****************************************!*\
   !*** ./src/components/common/Footer.js ***!
@@ -5199,10 +6170,25 @@ __webpack_require__.r(__webpack_exports__);
 const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_1__.styles;
 const FooterContainer = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].footer.withConfig({
   displayName: "Footer__FooterContainer"
-})(["width:100%;min-height:100vh;background:black;"]);
+})(["background:", ";color:", ";font-size:.75em;display:flex;justify-content:center;flex-wrap:wrap;padding:12px 0px 20px 0px;@media (min-width:", "px){justify-content:space-between;margin:auto;align-items:center;}"], styles.colors.purplePrimary, styles.colors.white, styles.breakpoints.l);
+const FooterLicense = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withConfig({
+  displayName: "Footer__FooterLicense"
+})(["display:flex;justify-content:center;width:100%;span{font-weight:", ";}@media (min-width:", "px){width:auto;}"], styles.fontWeight.bold, styles.breakpoints.l);
+const FooterCopyright = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withConfig({
+  displayName: "Footer__FooterCopyright"
+})(["margin-top:18px;span{font-weight:", ";text-transform:uppercase;}@media (min-width:", "px){margin-top:0;}"], styles.fontWeight.bold, styles.breakpoints.l);
+const FooterLicenseContent = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].p.withConfig({
+  displayName: "Footer__FooterLicenseContent"
+})(["max-width:342px;@media (min-width:", "px){max-width:322px;}"], styles.breakpoints.l);
+const FooterLicenseIcon = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].img.withConfig({
+  displayName: "Footer__FooterLicenseIcon"
+})(["width:38px;height:33px;margin-right:6px;"]);
 
 const Footer = () => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterContainer, null);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterLicense, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterLicenseIcon, {
+    src: __webpack_require__(/*! ../../images/icon_cc_heart.png */ "./src/images/icon_cc_heart.png")["default"],
+    alt: "Creative Commons Attribution logo"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterLicenseContent, null, "Salvo que se indique lo contrario, el contenido de este sitio tiene una licencia de ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Creative Commons Attribution"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterCopyright, null, "Dise\xF1ado por ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "El Maizal")));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
@@ -5320,33 +6306,70 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
-/* harmony import */ var _common_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Header */ "./src/components/common/Header.js");
-/* harmony import */ var _common_Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Footer */ "./src/components/common/Footer.js");
-/* harmony import */ var _common_Tag__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/Tag */ "./src/components/common/Tag.js");
-/* harmony import */ var _content_content_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../content/content.json */ "./src/content/content.json");
+/* harmony import */ var _public_page_data_sq_d_805671509_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../public/page-data/sq/d/805671509.json */ "./public/page-data/sq/d/805671509.json");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var _common_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/Header */ "./src/components/common/Header.js");
+/* harmony import */ var _common_Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../common/Footer */ "./src/components/common/Footer.js");
+/* harmony import */ var _common_Tag__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../common/Tag */ "./src/components/common/Tag.js");
+/* harmony import */ var _common_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../common/Button */ "./src/components/common/Button.js");
+/* harmony import */ var _content_content_json__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../content/content.json */ "./src/content/content.json");
+/* harmony import */ var _common_ContactForm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../common/ContactForm */ "./src/components/common/ContactForm.js");
 
 
 
 
- //import Button from '../common/Button'
 
 
-const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_4__.styles;
-const Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
+
+
+
+
+const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_7__.styles;
+const Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_9__["default"].div.withConfig({
   displayName: "PageWrapper__Wrapper"
 })(["position:relative;margin:0;padding:0;width:100%;min-height:100%;"]);
-const PageContainer = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].section.withConfig({
+const PageContainer = styled_components__WEBPACK_IMPORTED_MODULE_9__["default"].section.withConfig({
   displayName: "PageWrapper__PageContainer"
-})(["width:100%;max-width:", "px;min-width:", "px;padding:150px 50px;margin:0 auto;min-height:100vh;"], styles.breakpoints.xl, styles.breakpoints.xs);
+})(["width:100%;max-width:", "px;padding:20px;margin:0 auto;min-height:100vh;@media (min-width:", "px){padding:150px 50px;}"], styles.breakpoints.xl, styles.breakpoints.l);
 
 const PageWrapper = props => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Wrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_common_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(PageContainer, null, props.children, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_common_Tag__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    type: "services",
-    theme: styles
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_common_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(gatsby__WEBPACK_IMPORTED_MODULE_2__.StaticQuery, {
+    query: "805671509",
+    render: data => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(Wrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      menuLinks: data.site.siteMetadata.menuLinks
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(PageContainer, null, props.children, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Tag__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      type: "services",
+      theme: styles
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      type: "btnPrimaryOrange",
+      theme: styles,
+      href: ""
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      type: "btnPrimaryOrangePurple",
+      theme: styles,
+      href: ""
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      type: "btnPrimaryWhite",
+      theme: styles,
+      href: ""
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      type: "btnPrimaryPurple",
+      theme: styles,
+      href: ""
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      type: "btnSecondary",
+      theme: styles,
+      href: ""
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      type: "btnLabeled",
+      theme: styles,
+      href: ""
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_ContactForm__WEBPACK_IMPORTED_MODULE_8__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Footer__WEBPACK_IMPORTED_MODULE_4__["default"], null)),
+    data: _public_page_data_sq_d_805671509_json__WEBPACK_IMPORTED_MODULE_0__
+  });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PageWrapper);
@@ -12137,6 +13160,36 @@ function y(){return(y=Object.assign||function(e){for(var t=1;t<arguments.length;
 
 /***/ }),
 
+/***/ "./src/images/icon_cc_heart.png":
+/*!**************************************!*\
+  !*** ./src/images/icon_cc_heart.png ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "static/icon_cc_heart-6e846a5598c8434a8ca5a7122c28484e.png");
+
+/***/ }),
+
+/***/ "./src/images/icon_website.svg":
+/*!*************************************!*\
+  !*** ./src/images/icon_website.svg ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0xMCAwQzguMDIyMTkgMCA2LjA4ODc5IDAuNTg2NDkgNC40NDQzIDEuNjg1M0MyLjc5OTgxIDIuNzg0MTIgMS41MTgwOSA0LjM0NTkgMC43NjEyMDkgNi4xNzMxNkMwLjAwNDMzMjk2IDguMDAwNDMgLTAuMTkzNzAxIDEwLjAxMTEgMC4xOTIxNTIgMTEuOTUwOUMwLjU3ODAwNCAxMy44OTA3IDEuNTMwNDEgMTUuNjcyNSAyLjkyODk0IDE3LjA3MTFDNC4zMjc0NiAxOC40Njk2IDYuMTA5MjkgMTkuNDIyIDguMDQ5MSAxOS44MDc4QzkuOTg4OTEgMjAuMTkzNyAxMS45OTk2IDE5Ljk5NTcgMTMuODI2OCAxOS4yMzg4QzE1LjY1NDEgMTguNDgxOSAxNy4yMTU5IDE3LjIwMDIgMTguMzE0NyAxNS41NTU3QzE5LjQxMzUgMTMuOTExMiAyMCAxMS45Nzc4IDIwIDEwQzIwIDcuMzQ3ODMgMTguOTQ2NCA0LjgwNDMgMTcuMDcxMSAyLjkyODkzQzE1LjE5NTcgMS4wNTM1NyAxMi42NTIyIDAgMTAgMFYwWk0xMCAxOC42NjY3QzkuMzMzMzQgMTguNjY2NyA4LjUyIDE3LjQ0NjcgNy45NiAxNS4zMzMzSDEyLjA0QzExLjQ4IDE3LjQ0NjcgMTAuNjY2NyAxOC42NjY3IDEwIDE4LjY2NjdaTTcuNjczMzQgMTRDNy40NzU0MyAxMi44OTkxIDcuMzYxNzcgMTEuNzg0OCA3LjMzMzM0IDEwLjY2NjdIMTIuNjY2N0MxMi42NDI2IDExLjc4NDUgMTIuNTMzNCAxMi44OTg4IDEyLjM0IDE0SDcuNjczMzRaTTEuMzY2NjcgMTAuNjY2N0g2LjAzMzM0QzYuMDU4NTMgMTEuNzgzOCA2LjE2MzI0IDEyLjg5NzcgNi4zNDY2NyAxNEgyLjM0NjY3QzEuNzk4MzUgMTIuOTY2NCAxLjQ2NDk5IDExLjgzMjUgMS4zNjY2NyAxMC42NjY3Wk0xMCAxLjMzMzMzQzEwLjY2NjcgMS4zMzMzMyAxMS40OCAyLjU1MzMzIDEyLjA0IDQuNjY2NjdINy45NkM4LjUyIDIuNTUzMzMgOS4zMzMzNCAxLjMzMzMzIDEwIDEuMzMzMzNaTTEyLjMyNjcgNkMxMi41MjQ2IDcuMTAwODUgMTIuNjM4MiA4LjIxNTE5IDEyLjY2NjcgOS4zMzMzM0g3LjMzMzM0QzcuMzU3MzcgOC4yMTU1MyA3LjQ2NjU3IDcuMTAxMiA3LjY2IDZIMTIuMzI2N1pNNiA5LjMzMzMzSDEuMzMzMzRDMS40MjMzNiA4LjE2OTM1IDEuNzQ3NjMgNy4wMzU1NiAyLjI4NjY3IDZINi4yODY2N0M2LjExMjE4IDcuMTAyOSA2LjAxNjM4IDguMjE2ODMgNiA5LjMzMzMzVjkuMzMzMzNaTTE0IDEwLjY2NjdIMTguNjY2N0MxOC41NzY2IDExLjgzMDYgMTguMjUyNCAxMi45NjQ0IDE3LjcxMzMgMTRIMTMuNzEzM0MxMy44ODc4IDEyLjg5NzEgMTMuOTgzNiAxMS43ODMyIDE0IDEwLjY2NjdaTTE0IDkuMzMzMzNDMTMuOTc0OCA4LjIxNjE5IDEzLjg3MDEgNy4xMDIyNiAxMy42ODY3IDZIMTcuNjg2N0MxOC4yMzUgNy4wMzM1NyAxOC41Njg0IDguMTY3NDYgMTguNjY2NyA5LjMzMzMzSDE0Wk0xNi44MzMzIDQuNjY2NjdIMTMuNDA2N0MxMy4xNzY0IDMuNjA2NTYgMTIuNzkgMi41ODY1NCAxMi4yNiAxLjY0QzE0LjA2NTIgMi4xMzM4MSAxNS42NjM5IDMuMTk0OSAxNi44MiA0LjY2NjY3SDE2LjgzMzNaTTcuNzQgMS42NEM3LjIxMDAxIDIuNTg2NTQgNi44MjM1NyAzLjYwNjU2IDYuNTkzMzQgNC42NjY2N0gzLjE4QzQuMzM2MTIgMy4xOTQ5IDUuOTM0NzcgMi4xMzM4MSA3Ljc0IDEuNjRWMS42NFpNMy4xOCAxNS4zMzMzSDYuNTkzMzRDNi44MjM1NyAxNi4zOTM0IDcuMjEwMDEgMTcuNDEzNSA3Ljc0IDE4LjM2QzUuOTM0NzcgMTcuODY2MiA0LjMzNjEyIDE2LjgwNTEgMy4xOCAxNS4zMzMzVjE1LjMzMzNaTTEyLjI2IDE4LjM2QzEyLjc5IDE3LjQxMzUgMTMuMTc2NCAxNi4zOTM0IDEzLjQwNjcgMTUuMzMzM0gxNi44MkMxNS42NjM5IDE2LjgwNTEgMTQuMDY1MiAxNy44NjYyIDEyLjI2IDE4LjM2VjE4LjM2WiIgZmlsbD0iYmxhY2siLz4NCjwvc3ZnPg0K");
+
+/***/ }),
+
 /***/ "react-dom/server":
 /*!*******************************************************************************!*\
   !*** external "C:\\dev\\fiqus-web-front\\node_modules\\react-dom\\server.js" ***!
@@ -12206,6 +13259,17 @@ function _defineProperty(obj, key, value) {
 
 "use strict";
 module.exports = [];
+
+/***/ }),
+
+/***/ "./public/page-data/sq/d/805671509.json":
+/*!**********************************************!*\
+  !*** ./public/page-data/sq/d/805671509.json ***!
+  \**********************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"data":{"site":{"siteMetadata":{"title":"fiqus-web","menuLinks":[{"name":"Home","link":"/"},{"name":"Servicios","link":"/servicios"},{"name":"Cultura","link":"/cultura"},{"name":"Labs","link":"/labs"},{"name":"Blog","link":"/blog"}]}}}}');
 
 /***/ }),
 
@@ -12297,6 +13361,11 @@ module.exports = JSON.parse('{"styles":{"breakpoints":{"xs":"320","s":"481","m":
 /******/ 			if (!module.children) module.children = [];
 /******/ 			return module;
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		__webpack_require__.p = "/";
 /******/ 	})();
 /******/ 	
 /************************************************************************/
