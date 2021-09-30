@@ -2,6 +2,7 @@
 type: "lab"
 title: "CooBS"
 tags: ["Python", "Django", "Postgres"]
+image: coobs.png
 
 ---
 

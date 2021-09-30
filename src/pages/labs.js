@@ -1,7 +1,7 @@
 import React, {Fragment} from "react"
 import { graphql } from 'gatsby';
 import styled from 'styled-components'
-import SuccessCase from "../components/modules/SuccessCase"
+import Lab from "../components/modules/Lab"
 
 import {styles, labs} from '../content/content.json'
 
@@ -12,9 +12,15 @@ const PostsContainer = styled.div`
 const Labs = ({data: {allMarkdownRemark: { edges }}}) => {
 
   const Labs = edges.map( 
-    edge => <SuccessCase styles={styles} labData={edge.node}></SuccessCase>)
- 
-    return <PostsContainer>{Labs}</PostsContainer>
+    edge => {
+      const fluidImg = edge.node.frontmatter.image.childImageSharp.fluid 
+      console.log(fluidImg)
+      return(
+        <Lab fluidImg={fluidImg} styles={styles} labData={edge.node}></Lab>
+  )})
+  
+  return <PostsContainer>{Labs}</PostsContainer>
+
 };
 
 export default Labs;
@@ -31,6 +37,13 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             tags
+            image{
+              childImageSharp {
+                fluid(maxWidth: 800) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }
