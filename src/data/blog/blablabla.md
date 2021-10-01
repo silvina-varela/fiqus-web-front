@@ -3,7 +3,7 @@ type: "post"
 title: "Learning about Gatsby"
 slug: "/blog/testPost"
 date: "2021-08-01"
-image:  articleImage.png
+image:  articleImg.png
 ---
 
 ## This is a test post
