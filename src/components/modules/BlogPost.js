@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import Img from "gatsby-image"
 import Button from '../common/Button'
 
 const PostContainer = styled.div`
@@ -22,7 +23,7 @@ const BlogPost = (props) => {
     const post = props.postData
     return (
         <PostContainer>
-            <PostImage src={require('../../images/illustrations/labs.svg').default}></PostImage>
+            <Img fluid={props.imgFluid}></Img>
             <PostTitle>{post.frontmatter.title}</PostTitle>
             <PostExcerpt>{post.excerpt}</PostExcerpt>
         </PostContainer>
