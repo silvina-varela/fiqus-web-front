@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---cache-dev-404-page-js",
     "path": "/dev-404-page/",
-    "result": {"data":{"allSiteFunction":{"nodes":[]},"allSitePage":{"nodes":[{"path":"/404.html"},{"path":"/404/"},{"path":"/blog/"},{"path":"/cultura/"},{"path":"/"},{"path":"/labs/"},{"path":"/servicios/"},{"path":"/blog/learning-about-gatsby/"},{"path":"/null/"},{"path":"/blog/test-post/"}]}},"pageContext":{}},
+    "result": {"data":{"allSiteFunction":{"nodes":[]},"allSitePage":{"nodes":[{"path":"/404.html"},{"path":"/404/"},{"path":"/blog/"},{"path":"/cultura/"},{"path":"/"},{"path":"/labs/"},{"path":"/servicios/"},{"path":"/blog/test-post/"},{"path":"/blog/learning-about-gatsby/"},{"path":"/null/"}]}},"pageContext":{}},
     "staticQueryHashes": ["805671509"]}
