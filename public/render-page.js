@@ -4067,14 +4067,14 @@ var plugins = [{
     "remarkPlugins": [],
     "rehypePlugins": [],
     "mediaTypes": ["text/markdown", "text/x-markdown"],
-    "root": "C:\\dev\\fiqus-web-front"
+    "root": "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front"
   }
 }, {
   name: 'gatsby-plugin-layout',
   plugin: __webpack_require__(/*! ./node_modules/gatsby-plugin-layout/gatsby-ssr */ "./node_modules/gatsby-plugin-layout/gatsby-ssr.js"),
   options: {
     "plugins": [],
-    "component": "C:\\dev\\fiqus-web-front\\src\\components\\layout\\PageWrapper.js"
+    "component": "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\src\\components\\layout\\PageWrapper.js"
   }
 }];
 /* global plugins */
@@ -6219,79 +6219,15 @@ const NavWrapper = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].nav
 
 const Header = props => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavWrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, props.menuLinks ? props.menuLinks.map(menuLink => {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+      key: menuLink.name
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby__WEBPACK_IMPORTED_MODULE_1__.Link, {
       to: menuLink.link
     }, " ", menuLink.name, " "));
   }) : " No hay links "));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
-
-/***/ }),
-
-/***/ "./src/components/common/Tag.js":
-/*!**************************************!*\
-  !*** ./src/components/common/Tag.js ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
-
-
-const TagsContainer = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div.withConfig({
-  displayName: "Tag__TagsContainer"
-})(["display:flex;justify-content:flex-start;flex-wrap:wrap;"]);
-const TagItem = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div.withConfig({
-  displayName: "Tag__TagItem"
-})(["margin:0 6px 8px 0px;padding:9px 14px;border-radius:10px;font-size:14px;font-weight:", ";background-color:", ";color:", ";"], props => props.type.fontWeight, props => props.type.background, props => props.type.color);
-
-const Tag = props => {
-  const getTagStyles = type => {
-    switch (type) {
-      case "blog":
-        return {
-          background: props.theme.colors.greenLight,
-          fontWeight: props.theme.fontWeight.regular,
-          color: props.theme.colors.ultraDarkGrey
-        };
-        break;
-
-      case "services":
-        return {
-          background: props.theme.colors.purpleLight,
-          fontWeight: props.theme.fontWeight.medium,
-          color: props.theme.colors.purplePrimary
-        };
-        break;
-
-      default:
-        return {
-          background: props.theme.colors.greenLight,
-          fontWeight: props.theme.fontWeight.regular,
-          color: props.theme.colors.ultraDarkGrey
-        };
-    }
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(TagsContainer, {
-    tags: props.tags
-  }, props.tags ? props.tags.map(tag => {
-    /*#__PURE__*/
-    react__WEBPACK_IMPORTED_MODULE_0___default().createElement(TagItem, {
-      type: getTagStyles(tag.type),
-      theme: props.theme
-    }, tag.tagContent || "Tag");
-  }) : " ");
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Tag);
 
 /***/ }),
 
@@ -13191,24 +13127,24 @@ __webpack_require__.r(__webpack_exports__);
 /***/ }),
 
 /***/ "react-dom/server":
-/*!*******************************************************************************!*\
-  !*** external "C:\\dev\\fiqus-web-front\\node_modules\\react-dom\\server.js" ***!
-  \*******************************************************************************/
+/*!********************************************************************************************************************!*\
+  !*** external "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\node_modules\\react-dom\\server.js" ***!
+  \********************************************************************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("C:\\dev\\fiqus-web-front\\node_modules\\react-dom\\server.js");
+module.exports = require("D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\node_modules\\react-dom\\server.js");
 
 /***/ }),
 
 /***/ "react":
-/*!**************************************************************************!*\
-  !*** external "C:\\dev\\fiqus-web-front\\node_modules\\react\\index.js" ***!
-  \**************************************************************************/
+/*!***************************************************************************************************************!*\
+  !*** external "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\node_modules\\react\\index.js" ***!
+  \***************************************************************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("C:\\dev\\fiqus-web-front\\node_modules\\react\\index.js");
+module.exports = require("D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\node_modules\\react\\index.js");
 
 /***/ }),
 
@@ -13280,7 +13216,7 @@ module.exports = JSON.parse('{"data":{"site":{"siteMetadata":{"title":"fiqus-web
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"styles":{"breakpoints":{"xs":"320","s":"481","m":"769","l":"1024","xl":"1280"},"colors":{"purplePrimary":"#510066","purpleGradient":"#7A0185","greenMain":"#44DC00","orangeMain":"#FF602C","greenLight":"#E8F7E1","purpleLight":"#E9E1EB","black":"#000000","white":"#FFFFFF","darkMainBg":"#0F1319","darkGrey":"#60646B","ultraDarkGrey":"#333333","lightGrey":"#A7ACB4","ultraLightGrey":"#C4C4C4","transparent":"transparent"},"fontWeight":{"bold":"700","medium":"500","light":"300","regular":"400"},"icon":{"website":"website.svg","github":"github.svg"}},"homepage":{"title":"Homepage"},"services":{"title":"Servicios","services":[{"service":"Ciencia de Datos","description":"Este área se dedica a la limpieza, extracción y análisis de datos con el fin de poder servir de alimento para procesos de Inteligencia Artificial o Aprendizaje Automático. Es de esencial importancia procesar los datos para lograr que sean de fácil entendimiento, así como su uso para llegar a los objetivos planteados.","tags":["Python","Pandas","Numpy","Seaborn"]},{"service":"Inteligencia Artificial","description":"El Aprendizaje Automático es un subcampo de la Inteligencia Artificial en el que se tiene como objetivo que las \\"computadoras aprendan\\". A partir de datos recolectados y procesados, diseñamos, construimos y entrenamos modelos que nos permitan predecir eventos futuros, clasificar imágenes, reconocer entidades en textos y muchas otras cosas más.","tags":["Python","Pandas","Numpy","Seaborn"]},{"service":"Alta Concurrencia","description":"Utilizamos lenguajes de programación funcional en tiempo real y muy adoptados en el mercado, que soportan niveles de altísima concurrencia y distribución, teniendo como resultado sistemas que responden a gran velocidad ante altas demandas.","tags":["Earlang","Elixir","Phoenix Framework","LiveView"]},{"service":"Blockchain | Fintech","description":"Estamos desarrollando fintech, que son las nuevas aplicaciones, procesos, productos o modelos de negocios en la industria de los servicios financieros compuestos de uno o más servicios financieros complementarios y puestos a disposición del público vía Internet.","tags":["Python","Ethereum"]},{"service":"Fullstack","description":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.","tags":["Django","Phoenix","Phoenix LiveView","ReactJS","VueJS","React Native"]}],"subsection":{"title":"capacitación","content":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente."}},"culture":{"title":"Cultura","subtiitle":"Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos!","description":"Fiqus no es un trabajo más, es un proyecto de vida, en el que construimos un equipo consolidado de profesionales que se encuentra en continua capacitación para poder brindar soluciones técnicas de alta calidad. ","sections":[{"title":"Historia","content":"Fiqus es como una gran familia, que comenzó cuando varios estudiantes de ingeniería en sistemas de la Universidad Tecnológica Nacional se cansaron de los trabajos tradicionales y comenzaron a pensar en una construcción propia, con lógicas de producción diferentes a las de las empresas en las que habían trabajado previamente. /n Luego de varios meses de gestación, la idea de construir algo autogestivo, horizontal, democrático y de propiedad colectiva se hizo cada vez más fuerte. Así es como nació la idea de construir una empresa social, así es como nació Fiqus./n Con el transcurso de los años fuimos construyendo una estructura organizacional que se adapta a las personas y no al revés. Así es como, sobre el andar y basándonos en la experiencia adquirida, construimos una serie de acuerdos que hoy en día forman parte de nuestro reglamento interno. Nuestro reglamento no es algo estático, es algo vivo que evoluciona acorde evolucionan las personas que forman parte de nuestra organización. Ahí es donde reflejamos nuestras propuestas concretas para lograr que las personas que participan dentro del colectivo se ubiquen en el centro de los procesos productivos. /n Nos gusta pensar que Fiqus es una propuesta que invita a quienes no conocen al cooperativismo tecnológico a ver que un cambio de paradigma es posible.","subtitle":"¡Nos organizamos horizontal y democráticamente!","subtitleContent":"Las decisiones de la cooperativa se plasman en la Asamblea General Ordinaria una vez al año. Además como forma de organización colectiva realizamos dos veces al año un encuentro donde pensamos, a partir de los deseos personales, nuestros objetivos como cooperativa y semanalmente nos encontramos (de manera virtual) a planificar las tareas diarias. "},{"title":"¡Somos federales!","content":"Nuestra distribución actual es el resultado de haber creado una estructura lo suficientemente maleable como para que logre adaptarse a las necesidades de las personas. De esta manera, a medida que fuimos creciendo como personas y transitando los diferentes escenarios que la vida nos fue planteando, priorizamos acompañar desde el colectivo brindando el apoyo necesario para que todxs puedan decidir por ejemplo en dónde y cómo vivir./n En la actualidad tenemos sedes en CABA y Villa La Angostura. Pero además, contamos con personas asociadas trabajando desde Mar del Plata, San Fernando (BsAs), Puerto Madryn y San Luis.","subtitle":"Territorial","subtitleContent":"Como cooperativa de trabajo, nos entendemos como actores sociales territoriales. Apoyándonos en el séptimo principio cooperativo de “Compromiso con la Comunidad”, asumimos la responsabilidad de extender la construcción colectiva que realizamos día a día dentro de la cooperativa en el territorio perteneciente a una de nuestras sedes. Es por esto que trabajamos activamente en la Mesa de Asociativismo de Villa La Angostura, Neuquén. Allí nos reunimos en forma periódica junto con otros actores y actrices de la economía social así como con personas individuales comprometidas con la comunidad local para desarrollar proyectos que potencien iniciativas locales, siempre con una mirada colaborativa y horizontal. "},{"parts":[{"title":"¡Estamos federados en FACTTIC! ","subtitle":"La federación es una organización nacional que está conformada por cooperativas tecnológicas de toda Argentina.","content":"Todo comenzó cuando las primeras cooperativas del sector comenzamos a ponernos en contacto entre nosotras porque entendimos que en la unión está la fuerza para poder construir un modelo que escale con el objetivo de convertirse poco a poco en una alternativa real al modelo de producción tradicional. Producto de esas primeras interacciones nació la idea de firmar una carta de compromiso para fundar la Federación Argentina de Cooperativas de Tecnología Innovación y Conocimiento (FACTTIC), un espacio de construcción colectiva que fomenta la solidaridad y la colaboración como motores que impulsan la creación de tecnología con valores cooperativos./nEl contacto continuo con otras cooperativas de nuestro sector y el trabajar en conjunto para desarrollar estrategias comunes y compartir conocimiento genera un círculo virtuoso en constante evolución que nos impulsa a crecer y seguir potenciando nuestro trabajo./n La federación nos permite estar en contacto con otras realidades, nos permite romper con la endogamia de nuestra organización y nos invita a pensarnos como algo más grande, que abarca una escala mayor. Es un espacio de creación colectiva donde la imaginación aplicada a la construcción colaborativa no encuentra límites."},{"title":"Internacional","content":"Varios años después de haber participado de la creación de la federación, comenzamos a contactarnos con cooperativas tecnológicas de otras partes del mundo con el objetivo de compartir el modelo de colaboración e intercooperación construido con cooperativas locales a una escala más global./n Luego de varias interacciones, realizamos el primer viaje intercooperativo internacional de nuestra red. Viajamos a Reino Unido para conocer a cooperativas tecnológicas de una red local. Compartimos experiencias y comenzamos a construir las bases de lo que hoy constituye la Red Global de Cooperativas de Tecnología./n La red nuclea a más de 45 cooperativas tecnológicas de todo el mundo, con presencia en 3 continentes. Compartimos reuniones semanales en las que aprendemos de nuestras culturas, debatimos acerca de nuestros objetivos comunes y delineamos una hoja de ruta para hacer crecer a la comunidad que la compone. De a poco, comenzamos a intercooperar con el objetivo de fortalecer nuestras construcciones locales con una mirada de escala global. De esta manera, organizadas, las cooperativas de tecnología podremos ayudarnos mediante la cooperación a vender y desarrollar proyectos en conjunto."}]}]},"labs":{"title":"Labs","subtitle":"FiqusLabs es un espacio donde investigamos sobre nuevas tecnologías y nos capacitamos.","content":"De yapa, muchas veces el aprendizaje de una nueva tecnología viene acompañado con poder plasmar un proyecto que beneficie a la comunidad o al ambiente cooperativo.","sections":{"title":"Casos de Éxito","tagsTitle":"Tecnologías Investigadas","cases":[{"title":"CooBS","description":"Es una aplicación web donde las cooperativas pueden cargar y seguir sus acciones que se alinean a los principios cooperativos [link a wikipedia], como así también confeccionar el Balance Social.","tags":["Python","Django","Postgress"],"image":"","links":[{"text":"ver sitio","link":""}]},{"title":"CoopHub","description":"Es un sitio web donde se muestran los repositorios open source de diferentes cooperativas a lo largo del mundo. A su vez, se puede ver cuales son los lenguajes de programación más utilizados y buscar por tags.","tags":["Elixir","Phoenix","Utilización de ETS","Cache de datos","ReactJS","API y acciones de GitHub"],"image":"","links":[{"text":"ver sitio","link":""}]}]}}}');
+module.exports = JSON.parse('{"styles":{"breakpoints":{"xs":"320","s":"481","m":"769","l":"1024","xl":"1280"},"colors":{"purplePrimary":"#510066","purpleGradient":"#7A0185","greenMain":"#44DC00","orangeMain":"#FF602C","greenLight":"#E8F7E1","purpleLight":"#E9E1EB","black":"#000000","white":"#FFFFFF","darkMainBg":"#0F1319","darkGrey":"#60646B","ultraDarkGrey":"#333333","lightGrey":"#A7ACB4","ultraLightGrey":"#C4C4C4","transparent":"transparent"},"fontWeight":{"bold":"700","medium":"500","light":"300","regular":"400"},"icon":{"website":"website.svg","github":"github.svg"}},"homepage":{"title":"Homepage"},"services":{"title":"Servicios","services":[{"service":"Ciencia de Datos","description":"Este área se dedica a la limpieza, extracción y análisis de datos con el fin de poder servir de alimento para procesos de Inteligencia Artificial o Aprendizaje Automático. Es de esencial importancia procesar los datos para lograr que sean de fácil entendimiento, así como su uso para llegar a los objetivos planteados.","tags":["Python","Pandas","Numpy","Seaborn"],"image":"datos"},{"service":"Inteligencia Artificial","description":"El Aprendizaje Automático es un subcampo de la Inteligencia Artificial en el que se tiene como objetivo que las \\"computadoras aprendan\\". A partir de datos recolectados y procesados, diseñamos, construimos y entrenamos modelos que nos permitan predecir eventos futuros, clasificar imágenes, reconocer entidades en textos y muchas otras cosas más.","tags":["Python","Pandas","Numpy","Seaborn"],"image":"inteligenciaArtificial"},{"service":"Alta Concurrencia","description":"Utilizamos lenguajes de programación funcional en tiempo real y muy adoptados en el mercado, que soportan niveles de altísima concurrencia y distribución, teniendo como resultado sistemas que responden a gran velocidad ante altas demandas.","tags":["Earlang","Elixir","Phoenix Framework","LiveView"],"image":"altaConcurrencia"},{"service":"Blockchain | Fintech","description":"Estamos desarrollando fintech, que son las nuevas aplicaciones, procesos, productos o modelos de negocios en la industria de los servicios financieros compuestos de uno o más servicios financieros complementarios y puestos a disposición del público vía Internet.","tags":["Python","Ethereum"],"image":"blockchain"},{"service":"Fullstack","description":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.","tags":["Django","Phoenix","Phoenix LiveView","ReactJS","VueJS","React Native"],"image":"fullstack"}],"subsection":{"title":"capacitación","content":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.","image":"capacitacion"}},"culture":{"title":"Cultura","subtiitle":"Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos!","description":"Fiqus no es un trabajo más, es un proyecto de vida, en el que construimos un equipo consolidado de profesionales que se encuentra en continua capacitación para poder brindar soluciones técnicas de alta calidad. ","sections":[{"title":"Historia","content":"Fiqus es como una gran familia, que comenzó cuando varios estudiantes de ingeniería en sistemas de la Universidad Tecnológica Nacional se cansaron de los trabajos tradicionales y comenzaron a pensar en una construcción propia, con lógicas de producción diferentes a las de las empresas en las que habían trabajado previamente. /n Luego de varios meses de gestación, la idea de construir algo autogestivo, horizontal, democrático y de propiedad colectiva se hizo cada vez más fuerte. Así es como nació la idea de construir una empresa social, así es como nació Fiqus./n Con el transcurso de los años fuimos construyendo una estructura organizacional que se adapta a las personas y no al revés. Así es como, sobre el andar y basándonos en la experiencia adquirida, construimos una serie de acuerdos que hoy en día forman parte de nuestro reglamento interno. Nuestro reglamento no es algo estático, es algo vivo que evoluciona acorde evolucionan las personas que forman parte de nuestra organización. Ahí es donde reflejamos nuestras propuestas concretas para lograr que las personas que participan dentro del colectivo se ubiquen en el centro de los procesos productivos. /n Nos gusta pensar que Fiqus es una propuesta que invita a quienes no conocen al cooperativismo tecnológico a ver que un cambio de paradigma es posible.","subtitle":"¡Nos organizamos horizontal y democráticamente!","subtitleContent":"Las decisiones de la cooperativa se plasman en la Asamblea General Ordinaria una vez al año. Además como forma de organización colectiva realizamos dos veces al año un encuentro donde pensamos, a partir de los deseos personales, nuestros objetivos como cooperativa y semanalmente nos encontramos (de manera virtual) a planificar las tareas diarias. "},{"title":"¡Somos federales!","content":"Nuestra distribución actual es el resultado de haber creado una estructura lo suficientemente maleable como para que logre adaptarse a las necesidades de las personas. De esta manera, a medida que fuimos creciendo como personas y transitando los diferentes escenarios que la vida nos fue planteando, priorizamos acompañar desde el colectivo brindando el apoyo necesario para que todxs puedan decidir por ejemplo en dónde y cómo vivir./n En la actualidad tenemos sedes en CABA y Villa La Angostura. Pero además, contamos con personas asociadas trabajando desde Mar del Plata, San Fernando (BsAs), Puerto Madryn y San Luis.","subtitle":"Territorial","subtitleContent":"Como cooperativa de trabajo, nos entendemos como actores sociales territoriales. Apoyándonos en el séptimo principio cooperativo de “Compromiso con la Comunidad”, asumimos la responsabilidad de extender la construcción colectiva que realizamos día a día dentro de la cooperativa en el territorio perteneciente a una de nuestras sedes. Es por esto que trabajamos activamente en la Mesa de Asociativismo de Villa La Angostura, Neuquén. Allí nos reunimos en forma periódica junto con otros actores y actrices de la economía social así como con personas individuales comprometidas con la comunidad local para desarrollar proyectos que potencien iniciativas locales, siempre con una mirada colaborativa y horizontal. "},{"parts":[{"title":"¡Estamos federados en FACTTIC! ","subtitle":"La federación es una organización nacional que está conformada por cooperativas tecnológicas de toda Argentina.","content":"Todo comenzó cuando las primeras cooperativas del sector comenzamos a ponernos en contacto entre nosotras porque entendimos que en la unión está la fuerza para poder construir un modelo que escale con el objetivo de convertirse poco a poco en una alternativa real al modelo de producción tradicional. Producto de esas primeras interacciones nació la idea de firmar una carta de compromiso para fundar la Federación Argentina de Cooperativas de Tecnología Innovación y Conocimiento (FACTTIC), un espacio de construcción colectiva que fomenta la solidaridad y la colaboración como motores que impulsan la creación de tecnología con valores cooperativos./nEl contacto continuo con otras cooperativas de nuestro sector y el trabajar en conjunto para desarrollar estrategias comunes y compartir conocimiento genera un círculo virtuoso en constante evolución que nos impulsa a crecer y seguir potenciando nuestro trabajo./n La federación nos permite estar en contacto con otras realidades, nos permite romper con la endogamia de nuestra organización y nos invita a pensarnos como algo más grande, que abarca una escala mayor. Es un espacio de creación colectiva donde la imaginación aplicada a la construcción colaborativa no encuentra límites."},{"title":"Internacional","content":"Varios años después de haber participado de la creación de la federación, comenzamos a contactarnos con cooperativas tecnológicas de otras partes del mundo con el objetivo de compartir el modelo de colaboración e intercooperación construido con cooperativas locales a una escala más global./n Luego de varias interacciones, realizamos el primer viaje intercooperativo internacional de nuestra red. Viajamos a Reino Unido para conocer a cooperativas tecnológicas de una red local. Compartimos experiencias y comenzamos a construir las bases de lo que hoy constituye la Red Global de Cooperativas de Tecnología./n La red nuclea a más de 45 cooperativas tecnológicas de todo el mundo, con presencia en 3 continentes. Compartimos reuniones semanales en las que aprendemos de nuestras culturas, debatimos acerca de nuestros objetivos comunes y delineamos una hoja de ruta para hacer crecer a la comunidad que la compone. De a poco, comenzamos a intercooperar con el objetivo de fortalecer nuestras construcciones locales con una mirada de escala global. De esta manera, organizadas, las cooperativas de tecnología podremos ayudarnos mediante la cooperación a vender y desarrollar proyectos en conjunto."}]}]},"labs":{"title":"Labs","subtitle":"FiqusLabs es un espacio donde investigamos sobre nuevas tecnologías y nos capacitamos.","content":"De yapa, muchas veces el aprendizaje de una nueva tecnología viene acompañado con poder plasmar un proyecto que beneficie a la comunidad o al ambiente cooperativo.","sections":{"title":"Casos de Éxito","tagsTitle":"Tecnologías Investigadas","cases":[{"title":"CooBS","description":"Es una aplicación web donde las cooperativas pueden cargar y seguir sus acciones que se alinean a los principios cooperativos [link a wikipedia], como así también confeccionar el Balance Social.","tags":["Python","Django","Postgress"],"image":"","links":[{"text":"ver sitio","link":""}]},{"title":"CoopHub","description":"Es un sitio web donde se muestran los repositorios open source de diferentes cooperativas a lo largo del mundo. A su vez, se puede ver cuales son los lenguajes de programación más utilizados y buscar por tags.","tags":["Elixir","Phoenix","Utilización de ETS","Cache de datos","ReactJS","API y acciones de GitHub"],"image":"","links":[{"text":"ver sitio","link":""}]}]}}}');
 
 /***/ })
 

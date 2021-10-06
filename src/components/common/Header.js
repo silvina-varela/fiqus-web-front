@@ -220,7 +220,7 @@ const Header = (props) => {
                         {
                             props.menuLinks ? props.menuLinks.map((menuLink)=> {
                                 return (
-                                    <NavItem>
+                                    <NavItem key={menuLink.name}>
                                         <NavLink to={menuLink.link}>
                                             {menuLink.name}
                                         </NavLink>

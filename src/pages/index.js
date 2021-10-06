@@ -1,14 +1,13 @@
 import React, {Fragment} from "react"
 import styled from 'styled-components'
-import data from '../content/content.json'
+import { styles, homepage } from '../content/content.json'
 require('../styles/styles.css')
 
 const Index = (props) => {
-  const content = data.homepage
 
   return (
     <Fragment>
-        <h1>{content.title}</h1>
+        <h1>{homepage.title}</h1>
     </Fragment>
   );
 }
