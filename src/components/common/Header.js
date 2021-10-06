@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components'
 import {Link} from 'gatsby'
 import data from '../../content/content.json'
@@ -179,48 +179,48 @@ const NavLink = styled(Link)`
     }
 `
 
-const isNavOpen = true; 
-const homeEnable = true; 
 const isEnglish = true; 
 const Header = (props) => {
+    const [isNavOpen, setIsNavOpen] = useState(false);
+
     return (
-        <NavWrapper isHome={homeEnable}>
+        <NavWrapper isHome={props.isHome}>
             {
-                homeEnable ? 
+                props.isHome ? 
                 <Logo src={require('../../images/logo_dark.svg').default} alt="logo Fiqus" />
                 : <Logo src={require('../../images/logo_light.svg').default} alt="logo Fiqus" />
             }
-            <LangSelector isHome={homeEnable}>
+            <LangSelector isHome={props.isHome}>
                 <LangList>
                     <LangItem isSelected={isEnglish}>
                         <Lang href="#">
-                            <LangContent isSelected={isEnglish} isHome={homeEnable} lang="en" title="English">En</LangContent>
+                            <LangContent isSelected={isEnglish} isHome={props.isHome} lang="en" title="English">En</LangContent>
                         </Lang>
                     </LangItem>
                     <LangItem isSelected={!isEnglish} >
                         <Lang href="#">
-                            <LangContent isSelected={!isEnglish} isHome={homeEnable} lang="es" title="Español">Es</LangContent>
+                            <LangContent isSelected={!isEnglish} isHome={props.isHome} lang="es" title="Español">Es</LangContent>
                         </Lang>
                     </LangItem>
                 </LangList>
             </LangSelector>
-            <NavToggler>
+            <NavToggler onClick={() => {setIsNavOpen(true)}}>
                 {
-                    homeEnable ? 
+                    props.isHome ? 
                     <NavTogglerIcon src={require('../../images/icon_toggler.svg').default} alt="icono para abrir menú" />
                     : <NavTogglerIcon src={require('../../images/icon_toggler_dark.svg').default} alt="icono para abrir menú" />
                 }
             </NavToggler>
             <MainNavContainer isNavOpen={isNavOpen} >
-                <NavTogglerClose>
+                <NavTogglerClose onClick={() => {setIsNavOpen(false)}}>
                     <NavTogglerCloseIcon src={require('../../images/icon_toggler_close.svg').default} alt="icono para cerrrar menú" />
                 </NavTogglerClose>
-                <MainNav isHome={homeEnable}>
+                <MainNav isHome={props.isHome}>
                     <NavLinks>
                         {
                             props.menuLinks ? props.menuLinks.map((menuLink)=> {
                                 return (
-                                    <NavItem key={menuLink.name}>
+                                    <NavItem key={menuLink.name} onClick={() => {setIsNavOpen(false)}}>
                                         <NavLink to={menuLink.link}>
                                             {menuLink.name}
                                         </NavLink>
