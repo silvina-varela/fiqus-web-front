@@ -117,11 +117,10 @@ const MainNavContainer = styled.div`
     position: absolute;
     top: 0;
     left: 0; 
-    display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     padding: 16px 18px;
-    display: ${props => props.isNavOpen ? 'block' : 'none'};
+    display: ${props => props.isNavOpen ? 'flex' : 'none'};
     @media (min-width: ${styles.breakpoints.xl}px) {
         width: unset;
         height: unset;
