@@ -11,6 +11,8 @@ const Wrapper = styled.div`
     padding:0;
     width:100%;
     min-height:100%;
+    background: ${styles.colors.purpleLight};  
+    
 `
 const PageContainer = styled.section `
     width:100%;
@@ -42,7 +44,7 @@ const PageWrapper = (props) => {
         }
         render = { data => (
             <Wrapper>
-                <Header menuLinks = {data.site.siteMetadata.menuLinks}></Header>
+                <Header menuLinks = {data.site.siteMetadata.menuLinks} isHome={props.location.pathname === '/'}></Header>
                 <PageContainer>{props.children}</PageContainer>
                 <Footer></Footer>
             </Wrapper>

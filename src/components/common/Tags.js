@@ -31,7 +31,7 @@ const Tags = (props) => {
                 return {
                     background : props.styles.colors.purpleLight, 
                     fontWeight : props.styles.fontWeight.medium, 
-                    color : props.styles.colors.purplePrimary
+                    color : props.styles.colors.purpleSecondary
                 }
             break
             default : 

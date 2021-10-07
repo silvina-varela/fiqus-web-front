@@ -13,7 +13,8 @@
             "greenMain":"#44DC00", 
             "orangeMain":"#FF602C",
             "greenLight": "#E8F7E1", 
-            "purpleLight": "#E9E1EB", 
+            "purpleLight": "#E9E1EB",
+            "purpleSecondary": "#854D94", 
             "black": "#000000", 
             "white": "#FFFFFF", 
             "darkMainBg":"#0F1319",
@@ -41,6 +42,7 @@
 
     "services": {
         "title": "Servicios",
+        "tagsTitle": "Tecnologías",
         "services":[
             {
                 "service":"Ciencia de Datos",
@@ -57,10 +59,9 @@
                 "service":"Inteligencia Artificial",
                 "description":"El Aprendizaje Automático es un subcampo de la Inteligencia Artificial en el que se tiene como objetivo que las \"computadoras aprendan\". A partir de datos recolectados y procesados, diseñamos, construimos y entrenamos modelos que nos permitan predecir eventos futuros, clasificar imágenes, reconocer entidades en textos y muchas otras cosas más.",
                 "tags" : [
-                    "Python",
-                    "Pandas",
-                    "Numpy",
-                    "Seaborn"
+                    "TensorFlow",
+                    "Spacy",
+                    "Scikit-Learn"
                 ],
                 "image":"inteligenciaArtificial"
             },
@@ -68,7 +69,7 @@
                 "service":"Alta Concurrencia",
                 "description":"Utilizamos lenguajes de programación funcional en tiempo real y muy adoptados en el mercado, que soportan niveles de altísima concurrencia y distribución, teniendo como resultado sistemas que responden a gran velocidad ante altas demandas.",
                 "tags" : [
-                    "Earlang",
+                    "Erlang",
                     "Elixir",
                     "Phoenix Framework", 
                     "LiveView"
@@ -106,7 +107,7 @@
     }, 
     "culture" : {
             "title": "Cultura",
-            "subtiitle" : "Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos!",
+            "subtitle" : "Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos!",
             "description":"Fiqus no es un trabajo más, es un proyecto de vida, en el que construimos un equipo consolidado de profesionales que se encuentra en continua capacitación para poder brindar soluciones técnicas de alta calidad. ",
             "sections":[
                 {
