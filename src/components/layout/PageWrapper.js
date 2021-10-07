@@ -11,6 +11,8 @@ const Wrapper = styled.div`
     padding:0;
     width:100%;
     min-height:100%;
+    background: ${styles.colors.purpleLight};  
+    
 `
 const PageContainer = styled.section `
     width:100%;
