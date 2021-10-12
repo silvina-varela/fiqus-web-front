@@ -1,5 +1,9 @@
 {
-    
+    "Home": "Home",
+    "Servicios": "Servicios",
+    "Cultura": "Cultura",
+    "Labs": "Labs",
+    "Blog": "Blog",
     "homepage" : {
         "title":"Homepage"
     },
