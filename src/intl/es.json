@@ -1,116 +1,82 @@
 {
-    "styles" : {
-        "breakpoints" : {
-            "xs":"320",
-            "s":"481",
-            "m":"769",
-            "l":"1024",
-            "xl":"1280"
-        }, 
-        "colors" : {
-            "purplePrimary":"#510066", 
-            "purpleGradient":"#7A0185", 
-            "greenMain":"#44DC00", 
-            "orangeMain":"#FF602C",
-            "greenLight": "#E8F7E1", 
-            "purpleLight": "#E9E1EB",
-            "purpleSecondary": "#854D94", 
-            "black": "#000000", 
-            "white": "#FFFFFF", 
-            "darkMainBg":"#0F1319",
-            "darkGrey":"#60646B",
-            "ultraDarkGrey":"#333333",
-            "lightGrey":"#A7ACB4",
-            "ultraLightGrey":"#C4C4C4",
-            "transparent":"transparent"
-        }, 
-        "fontWeight" : {
-            "bold": "700",
-            "medium": "500", 
-            "light":"300", 
-            "regular":"400"
-        },
-        "icon" : {
-            "website": "website.svg",
-            "github": "github.svg"
-        }
-    },
     
     "homepage" : {
         "title":"Homepage"
     },
+    "test" : {
+        "test": "yes"
+    },
 
     "services": {
-        "title": "Servicios",
-        "tagsTitle": "Tecnologías",
-        "services":[
-            {
-                "service":"Ciencia de Datos",
-                "id":"service_datos",
-                "tags" : [
-                    "Python",
-                    "Pandas",
-                    "Numpy",
-                    "Seaborn"
-                ],
-                "image":"datos"
-            },
-            {
-                "service":"Inteligencia Artificial",
-                "id":"service_inteligenciaArtificial",
-                "description":"El Aprendizaje Automático es un subcampo de la Inteligencia Artificial en el que se tiene como objetivo que las \"computadoras aprendan\". A partir de datos recolectados y procesados, diseñamos, construimos y entrenamos modelos que nos permitan predecir eventos futuros, clasificar imágenes, reconocer entidades en textos y muchas otras cosas más.",
-                "tags" : [
-                    "TensorFlow",
-                    "Spacy",
-                    "Scikit-Learn"
-                ],
-                "image":"inteligenciaArtificial"
-            },
-            {
-                "service":"Alta Concurrencia",
-                "id":"service_altaConcurrencia",
-                "description":"Utilizamos lenguajes de programación funcional en tiempo real y muy adoptados en el mercado, que soportan niveles de altísima concurrencia y distribución, teniendo como resultado sistemas que responden a gran velocidad ante altas demandas.",
-                "tags" : [
-                    "Erlang",
-                    "Elixir",
-                    "Phoenix Framework", 
-                    "LiveView"
-                ],
-                "image":"altaConcurrencia"
-            },
-            {
-                "service":"Blockchain | Fintech",
-                "id":"service_blockchain",
-                "description":"Estamos desarrollando fintech, que son las nuevas aplicaciones, procesos, productos o modelos de negocios en la industria de los servicios financieros compuestos de uno o más servicios financieros complementarios y puestos a disposición del público vía Internet.",
-                "tags" : [
-                    "Python",
-                    "Ethereum"
-                ],
-                "image":"blockchain"
-            },
-            {
-                "service":"Fullstack",
-                "id":"service_fullstack",
-                "tags" : [
-                    "Django",
-                    "Phoenix",
-                    "Phoenix LiveView",
-                    "ReactJS", 
-                    "VueJS", 
-                    "React Native"
-                ],
-                "image":"fullstack"
-            }
-        ],
-        "subsection": {
-            "title":"capacitación",
-            "content":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.",
-            "image" : "capacitacion"
-        }
+        "title": "Servicios"
     }, 
+    "testi": {
+        "title": "Ami"
+    }, 
+    "service_datos":  {
+        "service":"Ciencia de Datos",
+        "description":"Este área se dedica a la limpieza, extracción y análisis de datos con el fin de poder servir de alimento para procesos de Inteligencia Artificial o Aprendizaje Automático. Es de esencial importancia procesar los datos para lograr que sean de fácil entendimiento, así como su uso para llegar a los objetivos planteados.",
+        "tags" : [
+            "Python",
+            "Pandas",
+            "Numpy",
+            "Seaborn"
+        ],
+        "image":"datos"
+    },
+    "service_inteligenciaArtificial" :
+    {
+        "service":"Inteligencia Artificial",
+        "description":"El Aprendizaje Automático es un subcampo de la Inteligencia Artificial en el que se tiene como objetivo que las \"computadoras aprendan\". A partir de datos recolectados y procesados, diseñamos, construimos y entrenamos modelos que nos permitan predecir eventos futuros, clasificar imágenes, reconocer entidades en textos y muchas otras cosas más.",
+        "tags" : [
+            "Python",
+            "Pandas",
+            "Numpy",
+            "Seaborn"
+        ],
+        "image":"inteligenciaArtificial"
+    },
+    "service_altaConcurrencia": {
+        "service":"Alta Concurrencia",
+        "description":"Utilizamos lenguajes de programación funcional en tiempo real y muy adoptados en el mercado, que soportan niveles de altísima concurrencia y distribución, teniendo como resultado sistemas que responden a gran velocidad ante altas demandas.",
+        "tags" : [
+            "Earlang",
+            "Elixir",
+            "Phoenix Framework", 
+            "LiveView"
+        ],
+        "image":"altaConcurrencia"
+    },
+    "service_blockchain" : {
+        "service":"Blockchain | Fintech",
+        "description":"Estamos desarrollando fintech, que son las nuevas aplicaciones, procesos, productos o modelos de negocios en la industria de los servicios financieros compuestos de uno o más servicios financieros complementarios y puestos a disposición del público vía Internet.",
+        "tags" : [
+            "Python",
+            "Ethereum"
+        ],
+        "image":"blockchain"
+    },
+    "service_fullstack": {
+        "service":"Fullstack",
+        "description":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.",
+        "tags" : [
+            "Django",
+            "Phoenix",
+            "Phoenix LiveView",
+            "ReactJS", 
+            "VueJS", 
+            "React Native"
+        ],
+        "image":"fullstack"
+    },
+    "service_subsection": {
+        "title":"capacitación",
+        "content":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.",
+        "image" : "capacitacion"
+    },
     "culture" : {
             "title": "Cultura",
-            "subtitle" : "Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos!",
+            "subtiitle" : "Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos!",
             "description":"Fiqus no es un trabajo más, es un proyecto de vida, en el que construimos un equipo consolidado de profesionales que se encuentra en continua capacitación para poder brindar soluciones técnicas de alta calidad. ",
             "sections":[
                 {

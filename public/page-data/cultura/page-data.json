@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-pages-cultura-js",
     "path": "/cultura/",
-    "result": {"pageContext":{}},
+    "result": {"pageContext":{"language":"es","i18n":{"language":"es","languages":["es","en"],"defaultLanguage":"es","generateDefaultLanguagePage":false,"routed":false,"originalPath":"/cultura/","path":"/cultura/"}}},
     "staticQueryHashes": ["805671509"]}
