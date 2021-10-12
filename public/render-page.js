@@ -19337,33 +19337,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
 /* harmony import */ var _content_content_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../content/content.json */ "./src/content/content.json");
+/* harmony import */ var gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gatsby-plugin-react-intl */ "./node_modules/gatsby-plugin-react-intl/index.js");
+/* harmony import */ var gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 
 const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_1__.styles;
-const FooterContainer = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].footer.withConfig({
+const FooterContainer = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].footer.withConfig({
   displayName: "Footer__FooterContainer"
 })(["background:", ";color:", ";font-size:.75em;display:flex;justify-content:center;flex-wrap:wrap;padding:12px 0px 20px 0px;@media (min-width:", "px){justify-content:space-between;margin:auto;align-items:center;}"], styles.colors.purplePrimary, styles.colors.white, styles.breakpoints.l);
-const FooterLicense = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withConfig({
+const FooterLicense = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
   displayName: "Footer__FooterLicense"
 })(["display:flex;justify-content:center;width:100%;span{font-weight:", ";}@media (min-width:", "px){width:auto;}"], styles.fontWeight.bold, styles.breakpoints.l);
-const FooterCopyright = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withConfig({
+const FooterCopyright = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
   displayName: "Footer__FooterCopyright"
 })(["margin-top:18px;span{font-weight:", ";text-transform:uppercase;}@media (min-width:", "px){margin-top:0;}"], styles.fontWeight.bold, styles.breakpoints.l);
-const FooterLicenseContent = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].p.withConfig({
+const FooterLicenseContent = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].p.withConfig({
   displayName: "Footer__FooterLicenseContent"
 })(["max-width:342px;@media (min-width:", "px){max-width:322px;}"], styles.breakpoints.l);
-const FooterLicenseIcon = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].img.withConfig({
+const FooterLicenseIcon = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].img.withConfig({
   displayName: "Footer__FooterLicenseIcon"
 })(["width:38px;height:33px;margin-right:6px;"]);
 
 const Footer = () => {
+  const intl = (0,gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__.useIntl)();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterLicense, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterLicenseIcon, {
     src: __webpack_require__(/*! ../../images/icon_cc_heart.png */ "./src/images/icon_cc_heart.png")["default"],
     alt: "Creative Commons Attribution logo"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterLicenseContent, null, "Salvo que se indique lo contrario, el contenido de este sitio tiene una licencia de ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Creative Commons Attribution"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterCopyright, null, "Dise\xF1ado por ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "El Maizal")));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterLicenseContent, null, intl.formatMessage({
+    id: "footer.disclaimer"
+  }), "  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Creative Commons Attribution"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterCopyright, null, intl.formatMessage({
+    id: "footer.designby"
+  }), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "El Maizal")));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
@@ -19383,36 +19391,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
-/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
-/* harmony import */ var _content_content_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../content/content.json */ "./src/content/content.json");
-/* harmony import */ var gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! gatsby-plugin-react-intl */ "./node_modules/gatsby-plugin-react-intl/index.js");
-/* harmony import */ var gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var _content_content_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../content/content.json */ "./src/content/content.json");
+/* harmony import */ var gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gatsby-plugin-react-intl */ "./node_modules/gatsby-plugin-react-intl/index.js");
+/* harmony import */ var gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
 
-
-const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_2__.styles;
-const NavWrapper = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].nav.withConfig({
+const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_1__.styles;
+const NavWrapper = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].nav.withConfig({
   displayName: "Header__NavWrapper"
 })(["width:100%;position:fixed;background-color:", ";display:flex;padding:8px 20px;justify-content:space-between;align-items:center;z-index:10;@media (min-width:", "px){padding:15px 150px;}"], props => props.isHome ? styles.colors.white : styles.colors.purplePrimary, styles.breakpoints.xl);
-const Logo = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].img.withConfig({
+const Logo = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].img.withConfig({
   displayName: "Header__Logo"
 })(["width:83px;height:32px;@media (min-width:", "px){width:117.1px;height:44.22px;order:1;}"], styles.breakpoints.xl);
-const LangSelector = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].nav.withConfig({
+const LangSelector = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].nav.withConfig({
   displayName: "Header__LangSelector"
 })(["border:2px solid ", ";margin-right:auto;margin-left:10px;padding:7px 10px;border-radius:47px;max-width:88px;max-height:46px;display:flex;justify-content:center;align-items:center;@media (min-width:", "px){order:3;margin-right:unset;margin-left:0;}"], props => props.isHome ? styles.colors.purplePrimary : styles.colors.white, styles.breakpoints.xl);
-const LangList = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].ul.withConfig({
+const LangList = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].ul.withConfig({
   displayName: "Header__LangList"
 })(["display:flex;"]);
-const LangItem = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].li.withConfig({
+const LangItem = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].li.withConfig({
   displayName: "Header__LangItem"
 })(["list-style-type:none;border-radius:100%;background-color:", ";&:first-of-type{margin-right:5px;}"], props => props.isSelected ? styles.colors.greenMain : styles.colors.transparent);
-const Lang = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_1__.Link).withConfig({
+const Lang = (0,styled_components__WEBPACK_IMPORTED_MODULE_3__["default"])(gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__.Link).withConfig({
   displayName: "Header__Lang"
 })(["text-decoration:none;padding:5px 6px;display:block;"]);
-const LangContent = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].abbr.withConfig({
+const LangContent = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].abbr.withConfig({
   displayName: "Header__LangContent"
 })(["text-decoration:none;text-transform:uppercase;font-size:1em;font-weight:", ";color:", ""], styles.fontWeight.bold, props => {
   if (props.isHome && !props.isSelected || !props.isHome && props.isSelected || props.isSelected) {
@@ -19425,41 +19431,44 @@ const LangContent = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].ab
     }
   }
 });
-const NavToggler = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].button.withConfig({
+const NavToggler = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].button.withConfig({
   displayName: "Header__NavToggler"
 })(["width:32px;height:30px;margin-left:auto;background:none;border:0;box-shadow:0;cursor:pointer;@media (min-width:", "px){display:none;}"], styles.breakpoints.xl);
-const NavTogglerIcon = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].img.withConfig({
+const NavTogglerIcon = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].img.withConfig({
   displayName: "Header__NavTogglerIcon"
 })(["width:32px;height:30px;"]);
-const NavTogglerClose = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].button.withConfig({
+const NavTogglerClose = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].button.withConfig({
   displayName: "Header__NavTogglerClose"
 })(["width:32px;height:30px;margin-left:auto;background:none;border:0;box-shadow:0;cursor:pointer;@media (min-width:", "px){display:none;}"], styles.breakpoints.xl);
-const NavTogglerCloseIcon = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].img.withConfig({
+const NavTogglerCloseIcon = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].img.withConfig({
   displayName: "Header__NavTogglerCloseIcon"
 })(["width:auto;height:30px;margin-left:auto;"]);
-const MainNavContainer = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div.withConfig({
+const MainNavContainer = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
   displayName: "Header__MainNavContainer"
 })(["width:100%;height:100vh;background:", ";position:absolute;top:0;left:0;flex-wrap:wrap;flex-direction:column;padding:16px 18px;display:", ";@media (min-width:", "px){width:unset;height:unset;background:", ";position:static;display:block;padding:0;order:2;margin-left:auto;}"], styles.colors.white, props => props.isNavOpen ? 'flex' : 'none', styles.breakpoints.xl, styles.colors.transparent);
-const MainNav = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].nav.withConfig({
+const MainNav = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].nav.withConfig({
   displayName: "Header__MainNav"
 })(["margin:45px auto;width:100%;@media (min-width:", "px){margin:0;ul li a{color:", ";}}"], styles.breakpoints.xl, props => props.isHome ? styles.colors.darkMainBg : styles.colors.white);
-const NavLinks = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].ul.withConfig({
+const NavLinks = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].ul.withConfig({
   displayName: "Header__NavLinks"
 })(["text-align:center;@media (min-width:", "px){display:flex;flex-direction:row;}"], styles.breakpoints.xl);
-const NavItem = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].li.withConfig({
+const NavItem = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].li.withConfig({
   displayName: "Header__NavItem"
 })(["list-style-type:none;margin:0 0 13px 0;@media (min-width:", "px){margin:0 30px 0 0;&:last-of-type{margin-right:20px;}}"], styles.breakpoints.xl);
-const NavLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_1__.Link).withConfig({
+const NavLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_3__["default"])(gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__.Link).withConfig({
   displayName: "Header__NavLink"
 })(["text-decoration:none;font-size:1.44em;font-weight:", ";display:block;color:", ";&:visited{", ";}&:hover,&:active{color:", "!important;}@media (min-width:", "px){color:", ";text-transform:uppercase;}"], styles.fontWeight.bold, styles.colors.purplePrimary, styles.colors.purplePrimary, styles.colors.greenMain, styles.breakpoints.xl, styles.colors.darkMainBg);
-const isEnglish = true;
 
 const Header = props => {
   const {
     0: isNavOpen,
     1: setIsNavOpen
   } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-  const intl = (0,gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_3__.useIntl)();
+  const intl = (0,gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__.useIntl)();
+  const languageNames = {
+    "en": "English",
+    "es": "Español"
+  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavWrapper, {
     isHome: props.isHome
   }, props.isHome ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Logo, {
@@ -19470,25 +19479,21 @@ const Header = props => {
     alt: "logo Fiqus"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LangSelector, {
     isHome: props.isHome
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LangList, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LangItem, {
-    isSelected: isEnglish
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__.IntlContextConsumer, null, ({
+    languages,
+    language: currentLocale
+  }) => languages.map(language => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LangItem, {
+    key: language,
+    isSelected: currentLocale === language,
+    onClick: () => (0,gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__.changeLocale)(language)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Lang, {
     href: "#"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LangContent, {
-    isSelected: isEnglish,
+    isSelected: currentLocale === language,
     isHome: props.isHome,
-    lang: "en",
-    title: "English"
-  }, "En"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LangItem, {
-    isSelected: !isEnglish
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Lang, {
-    href: "#"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LangContent, {
-    isSelected: !isEnglish,
-    isHome: props.isHome,
-    lang: "es",
-    title: "Espa\xF1ol"
-  }, "Es"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavToggler, {
+    lang: language,
+    title: languageNames[language]
+  }, language)))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavToggler, {
     onClick: () => {
       setIsNavOpen(true);
     }
@@ -30469,7 +30474,7 @@ module.exports = JSON.parse('{"data":{"site":{"siteMetadata":{"title":"fiqus-web
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"styles":{"breakpoints":{"xs":"320","s":"481","m":"769","l":"1024","xl":"1280"},"colors":{"purplePrimary":"#510066","purpleGradient":"#7A0185","greenMain":"#44DC00","orangeMain":"#FF602C","greenLight":"#E8F7E1","purpleLight":"#E9E1EB","purpleSecondary":"#854D94","black":"#000000","white":"#FFFFFF","darkMainBg":"#0F1319","darkGrey":"#60646B","ultraDarkGrey":"#333333","lightGrey":"#A7ACB4","ultraLightGrey":"#C4C4C4","transparent":"transparent"},"fontWeight":{"bold":"700","medium":"500","light":"300","regular":"400"},"icon":{"website":"website.svg","github":"github.svg"}},"homepage":{"title":"Homepage"},"services":{"title":"Servicios","tagsTitle":"Tecnologías","services":[{"service":"Ciencia de Datos","id":"service_datos","tags":["Python","Pandas","Numpy","Seaborn"],"image":"datos"},{"service":"Inteligencia Artificial","id":"service_inteligenciaArtificial","description":"El Aprendizaje Automático es un subcampo de la Inteligencia Artificial en el que se tiene como objetivo que las \\"computadoras aprendan\\". A partir de datos recolectados y procesados, diseñamos, construimos y entrenamos modelos que nos permitan predecir eventos futuros, clasificar imágenes, reconocer entidades en textos y muchas otras cosas más.","tags":["TensorFlow","Spacy","Scikit-Learn"],"image":"inteligenciaArtificial"},{"service":"Alta Concurrencia","id":"service_altaConcurrencia","description":"Utilizamos lenguajes de programación funcional en tiempo real y muy adoptados en el mercado, que soportan niveles de altísima concurrencia y distribución, teniendo como resultado sistemas que responden a gran velocidad ante altas demandas.","tags":["Erlang","Elixir","Phoenix Framework","LiveView"],"image":"altaConcurrencia"},{"service":"Blockchain | Fintech","id":"service_blockchain","description":"Estamos desarrollando fintech, que son las nuevas aplicaciones, procesos, productos o modelos de negocios en la industria de los servicios financieros compuestos de uno o más servicios financieros complementarios y puestos a disposición del público vía Internet.","tags":["Python","Ethereum"],"image":"blockchain"},{"service":"Fullstack","id":"service_fullstack","tags":["Django","Phoenix","Phoenix LiveView","ReactJS","VueJS","React Native"],"image":"fullstack"}],"subsection":{"title":"capacitación","content":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.","image":"capacitacion"}},"culture":{"title":"Cultura","subtitle":"Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos!","description":"Fiqus no es un trabajo más, es un proyecto de vida, en el que construimos un equipo consolidado de profesionales que se encuentra en continua capacitación para poder brindar soluciones técnicas de alta calidad. ","sections":[{"title":"Historia","content":"Fiqus es como una gran familia, que comenzó cuando varios estudiantes de ingeniería en sistemas de la Universidad Tecnológica Nacional se cansaron de los trabajos tradicionales y comenzaron a pensar en una construcción propia, con lógicas de producción diferentes a las de las empresas en las que habían trabajado previamente. /n Luego de varios meses de gestación, la idea de construir algo autogestivo, horizontal, democrático y de propiedad colectiva se hizo cada vez más fuerte. Así es como nació la idea de construir una empresa social, así es como nació Fiqus./n Con el transcurso de los años fuimos construyendo una estructura organizacional que se adapta a las personas y no al revés. Así es como, sobre el andar y basándonos en la experiencia adquirida, construimos una serie de acuerdos que hoy en día forman parte de nuestro reglamento interno. Nuestro reglamento no es algo estático, es algo vivo que evoluciona acorde evolucionan las personas que forman parte de nuestra organización. Ahí es donde reflejamos nuestras propuestas concretas para lograr que las personas que participan dentro del colectivo se ubiquen en el centro de los procesos productivos. /n Nos gusta pensar que Fiqus es una propuesta que invita a quienes no conocen al cooperativismo tecnológico a ver que un cambio de paradigma es posible.","subtitle":"¡Nos organizamos horizontal y democráticamente!","subtitleContent":"Las decisiones de la cooperativa se plasman en la Asamblea General Ordinaria una vez al año. Además como forma de organización colectiva realizamos dos veces al año un encuentro donde pensamos, a partir de los deseos personales, nuestros objetivos como cooperativa y semanalmente nos encontramos (de manera virtual) a planificar las tareas diarias. "},{"title":"¡Somos federales!","content":"Nuestra distribución actual es el resultado de haber creado una estructura lo suficientemente maleable como para que logre adaptarse a las necesidades de las personas. De esta manera, a medida que fuimos creciendo como personas y transitando los diferentes escenarios que la vida nos fue planteando, priorizamos acompañar desde el colectivo brindando el apoyo necesario para que todxs puedan decidir por ejemplo en dónde y cómo vivir./n En la actualidad tenemos sedes en CABA y Villa La Angostura. Pero además, contamos con personas asociadas trabajando desde Mar del Plata, San Fernando (BsAs), Puerto Madryn y San Luis.","subtitle":"Territorial","subtitleContent":"Como cooperativa de trabajo, nos entendemos como actores sociales territoriales. Apoyándonos en el séptimo principio cooperativo de “Compromiso con la Comunidad”, asumimos la responsabilidad de extender la construcción colectiva que realizamos día a día dentro de la cooperativa en el territorio perteneciente a una de nuestras sedes. Es por esto que trabajamos activamente en la Mesa de Asociativismo de Villa La Angostura, Neuquén. Allí nos reunimos en forma periódica junto con otros actores y actrices de la economía social así como con personas individuales comprometidas con la comunidad local para desarrollar proyectos que potencien iniciativas locales, siempre con una mirada colaborativa y horizontal. "},{"parts":[{"title":"¡Estamos federados en FACTTIC! ","subtitle":"La federación es una organización nacional que está conformada por cooperativas tecnológicas de toda Argentina.","content":"Todo comenzó cuando las primeras cooperativas del sector comenzamos a ponernos en contacto entre nosotras porque entendimos que en la unión está la fuerza para poder construir un modelo que escale con el objetivo de convertirse poco a poco en una alternativa real al modelo de producción tradicional. Producto de esas primeras interacciones nació la idea de firmar una carta de compromiso para fundar la Federación Argentina de Cooperativas de Tecnología Innovación y Conocimiento (FACTTIC), un espacio de construcción colectiva que fomenta la solidaridad y la colaboración como motores que impulsan la creación de tecnología con valores cooperativos./nEl contacto continuo con otras cooperativas de nuestro sector y el trabajar en conjunto para desarrollar estrategias comunes y compartir conocimiento genera un círculo virtuoso en constante evolución que nos impulsa a crecer y seguir potenciando nuestro trabajo./n La federación nos permite estar en contacto con otras realidades, nos permite romper con la endogamia de nuestra organización y nos invita a pensarnos como algo más grande, que abarca una escala mayor. Es un espacio de creación colectiva donde la imaginación aplicada a la construcción colaborativa no encuentra límites."},{"title":"Internacional","content":"Varios años después de haber participado de la creación de la federación, comenzamos a contactarnos con cooperativas tecnológicas de otras partes del mundo con el objetivo de compartir el modelo de colaboración e intercooperación construido con cooperativas locales a una escala más global./n Luego de varias interacciones, realizamos el primer viaje intercooperativo internacional de nuestra red. Viajamos a Reino Unido para conocer a cooperativas tecnológicas de una red local. Compartimos experiencias y comenzamos a construir las bases de lo que hoy constituye la Red Global de Cooperativas de Tecnología./n La red nuclea a más de 45 cooperativas tecnológicas de todo el mundo, con presencia en 3 continentes. Compartimos reuniones semanales en las que aprendemos de nuestras culturas, debatimos acerca de nuestros objetivos comunes y delineamos una hoja de ruta para hacer crecer a la comunidad que la compone. De a poco, comenzamos a intercooperar con el objetivo de fortalecer nuestras construcciones locales con una mirada de escala global. De esta manera, organizadas, las cooperativas de tecnología podremos ayudarnos mediante la cooperación a vender y desarrollar proyectos en conjunto."}]}]},"labs":{"title":"Labs","subtitle":"FiqusLabs es un espacio donde investigamos sobre nuevas tecnologías y nos capacitamos.","content":"De yapa, muchas veces el aprendizaje de una nueva tecnología viene acompañado con poder plasmar un proyecto que beneficie a la comunidad o al ambiente cooperativo.","sections":{"title":"Casos de Éxito","tagsTitle":"Tecnologías Investigadas","cases":[{"title":"CooBS","description":"Es una aplicación web donde las cooperativas pueden cargar y seguir sus acciones que se alinean a los principios cooperativos [link a wikipedia], como así también confeccionar el Balance Social.","tags":["Python","Django","Postgress"],"image":"","links":[{"text":"ver sitio","link":""}]},{"title":"CoopHub","description":"Es un sitio web donde se muestran los repositorios open source de diferentes cooperativas a lo largo del mundo. A su vez, se puede ver cuales son los lenguajes de programación más utilizados y buscar por tags.","tags":["Elixir","Phoenix","Utilización de ETS","Cache de datos","ReactJS","API y acciones de GitHub"],"image":"","links":[{"text":"ver sitio","link":""}]}]}}}');
+module.exports = JSON.parse('{"styles":{"breakpoints":{"xs":"320","s":"481","m":"769","l":"1024","xl":"1280"},"colors":{"purplePrimary":"#510066","purpleGradient":"#7A0185","greenMain":"#44DC00","orangeMain":"#FF602C","greenLight":"#E8F7E1","purpleLight":"#E9E1EB","purpleSecondary":"#854D94","black":"#000000","white":"#FFFFFF","darkMainBg":"#0F1319","darkGrey":"#60646B","ultraDarkGrey":"#333333","lightGrey":"#A7ACB4","ultraLightGrey":"#C4C4C4","transparent":"transparent"},"fontWeight":{"bold":"700","medium":"500","light":"300","regular":"400"},"icon":{"website":"website.svg","github":"github.svg"}},"homepage":{"title":"Homepage"},"services":{"title":"Servicios","tagsTitle":"Tecnologías","services":[{"service":"Ciencia de Datos","id":"service_datos","tags":["Python","Pandas","Numpy","Seaborn"],"image":"datos"},{"service":"Inteligencia Artificial","id":"service_inteligenciaArtificial","description":"El Aprendizaje Automático es un subcampo de la Inteligencia Artificial en el que se tiene como objetivo que las \\"computadoras aprendan\\". A partir de datos recolectados y procesados, diseñamos, construimos y entrenamos modelos que nos permitan predecir eventos futuros, clasificar imágenes, reconocer entidades en textos y muchas otras cosas más.","tags":["TensorFlow","Spacy","Scikit-Learn"],"image":"inteligenciaArtificial"},{"service":"Alta Concurrencia","id":"service_altaConcurrencia","description":"Utilizamos lenguajes de programación funcional en tiempo real y muy adoptados en el mercado, que soportan niveles de altísima concurrencia y distribución, teniendo como resultado sistemas que responden a gran velocidad ante altas demandas.","tags":["Erlang","Elixir","Phoenix Framework","LiveView"],"image":"altaConcurrencia"},{"service":"Blockchain | Fintech","id":"service_blockchain","description":"Estamos desarrollando fintech, que son las nuevas aplicaciones, procesos, productos o modelos de negocios en la industria de los servicios financieros compuestos de uno o más servicios financieros complementarios y puestos a disposición del público vía Internet.","tags":["Python","Ethereum"],"image":"blockchain"},{"service":"Fullstack","id":"service_fullstack","tags":["Django","Phoenix","Phoenix LiveView","ReactJS","VueJS","React Native"],"image":"fullstack"}],"subsection":{"title":"capacitación","content":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.","image":"capacitacion"}},"culture":{"title":"Cultura","subtitle":"Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos!","description":"Fiqus no es un trabajo más, es un proyecto de vida, en el que construimos un equipo consolidado de profesionales que se encuentra en continua capacitación para poder brindar soluciones técnicas de alta calidad. ","sections":[{"key":"culture_historia","title":"Historia","content":"Fiqus es como una gran familia, que comenzó cuando varios estudiantes de ingeniería en sistemas de la Universidad Tecnológica Nacional se cansaron de los trabajos tradicionales y comenzaron a pensar en una construcción propia, con lógicas de producción diferentes a las de las empresas en las que habían trabajado previamente. /n Luego de varios meses de gestación, la idea de construir algo autogestivo, horizontal, democrático y de propiedad colectiva se hizo cada vez más fuerte. Así es como nació la idea de construir una empresa social, así es como nació Fiqus./n Con el transcurso de los años fuimos construyendo una estructura organizacional que se adapta a las personas y no al revés. Así es como, sobre el andar y basándonos en la experiencia adquirida, construimos una serie de acuerdos que hoy en día forman parte de nuestro reglamento interno. Nuestro reglamento no es algo estático, es algo vivo que evoluciona acorde evolucionan las personas que forman parte de nuestra organización. Ahí es donde reflejamos nuestras propuestas concretas para lograr que las personas que participan dentro del colectivo se ubiquen en el centro de los procesos productivos. /n Nos gusta pensar que Fiqus es una propuesta que invita a quienes no conocen al cooperativismo tecnológico a ver que un cambio de paradigma es posible.","subtitle":"¡Nos organizamos horizontal y democráticamente!","subtitleContent":"Las decisiones de la cooperativa se plasman en la Asamblea General Ordinaria una vez al año. Además como forma de organización colectiva realizamos dos veces al año un encuentro donde pensamos, a partir de los deseos personales, nuestros objetivos como cooperativa y semanalmente nos encontramos (de manera virtual) a planificar las tareas diarias. "},{"key":"culture_federales","title":"¡Somos federales!","content":"Nuestra distribución actual es el resultado de haber creado una estructura lo suficientemente maleable como para que logre adaptarse a las necesidades de las personas. De esta manera, a medida que fuimos creciendo como personas y transitando los diferentes escenarios que la vida nos fue planteando, priorizamos acompañar desde el colectivo brindando el apoyo necesario para que todxs puedan decidir por ejemplo en dónde y cómo vivir./n En la actualidad tenemos sedes en CABA y Villa La Angostura. Pero además, contamos con personas asociadas trabajando desde Mar del Plata, San Fernando (BsAs), Puerto Madryn y San Luis.","subtitle":"Territorial","subtitleContent":"Como cooperativa de trabajo, nos entendemos como actores sociales territoriales. Apoyándonos en el séptimo principio cooperativo de “Compromiso con la Comunidad”, asumimos la responsabilidad de extender la construcción colectiva que realizamos día a día dentro de la cooperativa en el territorio perteneciente a una de nuestras sedes. Es por esto que trabajamos activamente en la Mesa de Asociativismo de Villa La Angostura, Neuquén. Allí nos reunimos en forma periódica junto con otros actores y actrices de la economía social así como con personas individuales comprometidas con la comunidad local para desarrollar proyectos que potencien iniciativas locales, siempre con una mirada colaborativa y horizontal. "},{"parts":[{"key":"culture_facttic","title":"¡Estamos federados en FACTTIC! ","subtitle":"La federación es una organización nacional que está conformada por cooperativas tecnológicas de toda Argentina.","content":"Todo comenzó cuando las primeras cooperativas del sector comenzamos a ponernos en contacto entre nosotras porque entendimos que en la unión está la fuerza para poder construir un modelo que escale con el objetivo de convertirse poco a poco en una alternativa real al modelo de producción tradicional. Producto de esas primeras interacciones nació la idea de firmar una carta de compromiso para fundar la Federación Argentina de Cooperativas de Tecnología Innovación y Conocimiento (FACTTIC), un espacio de construcción colectiva que fomenta la solidaridad y la colaboración como motores que impulsan la creación de tecnología con valores cooperativos./nEl contacto continuo con otras cooperativas de nuestro sector y el trabajar en conjunto para desarrollar estrategias comunes y compartir conocimiento genera un círculo virtuoso en constante evolución que nos impulsa a crecer y seguir potenciando nuestro trabajo./n La federación nos permite estar en contacto con otras realidades, nos permite romper con la endogamia de nuestra organización y nos invita a pensarnos como algo más grande, que abarca una escala mayor. Es un espacio de creación colectiva donde la imaginación aplicada a la construcción colaborativa no encuentra límites."},{"key":"culture_internacional","title":"Internacional","content":"Varios años después de haber participado de la creación de la federación, comenzamos a contactarnos con cooperativas tecnológicas de otras partes del mundo con el objetivo de compartir el modelo de colaboración e intercooperación construido con cooperativas locales a una escala más global./n Luego de varias interacciones, realizamos el primer viaje intercooperativo internacional de nuestra red. Viajamos a Reino Unido para conocer a cooperativas tecnológicas de una red local. Compartimos experiencias y comenzamos a construir las bases de lo que hoy constituye la Red Global de Cooperativas de Tecnología./n La red nuclea a más de 45 cooperativas tecnológicas de todo el mundo, con presencia en 3 continentes. Compartimos reuniones semanales en las que aprendemos de nuestras culturas, debatimos acerca de nuestros objetivos comunes y delineamos una hoja de ruta para hacer crecer a la comunidad que la compone. De a poco, comenzamos a intercooperar con el objetivo de fortalecer nuestras construcciones locales con una mirada de escala global. De esta manera, organizadas, las cooperativas de tecnología podremos ayudarnos mediante la cooperación a vender y desarrollar proyectos en conjunto."}]}]},"labs":{"title":"Labs","subtitle":"FiqusLabs es un espacio donde investigamos sobre nuevas tecnologías y nos capacitamos.","content":"De yapa, muchas veces el aprendizaje de una nueva tecnología viene acompañado con poder plasmar un proyecto que beneficie a la comunidad o al ambiente cooperativo.","sections":{"key":"casos_de_exito","title":"Casos de Éxito","tagsTitle":"Tecnologías Investigadas","cases":[{"key":"cases_coobs","title":"CooBS","description":"Es una aplicación web donde las cooperativas pueden cargar y seguir sus acciones que se alinean a los principios cooperativos [link a wikipedia], como así también confeccionar el Balance Social.","tags":["Python","Django","Postgress"],"image":"","links":[{"text":"ver sitio","link":""}]},{"key":"cases_coophub","title":"CoopHub","description":"Es un sitio web donde se muestran los repositorios open source de diferentes cooperativas a lo largo del mundo. A su vez, se puede ver cuales son los lenguajes de programación más utilizados y buscar por tags.","tags":["Elixir","Phoenix","Utilización de ETS","Cache de datos","ReactJS","API y acciones de GitHub"],"image":"","links":[{"text":"ver sitio","link":""}]}]}}}');
 
 /***/ })
 

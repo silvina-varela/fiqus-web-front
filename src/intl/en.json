@@ -4,6 +4,10 @@
     "Cultura": "Cultura",
     "Labs": "Labs",
     "Blog": "Blog",
+    "footer": {
+        "designby": "Designed by",
+        "disclaimer": "Unless otherwise stated, the content of this site is licensed under"
+    },
     "homepage" : {
         "title":"Homepage"
     },
@@ -107,11 +111,11 @@
     "labs" : {
         "title":"Labs", 
         "subtitle":"FiqusLabs es un espacio donde investigamos sobre nuevas tecnologías y nos capacitamos.", 
-        "content":"De yapa, muchas veces el aprendizaje de una nueva tecnología viene acompañado con poder plasmar un proyecto que beneficie a la comunidad o al ambiente cooperativo.",
+        "content":"De yapa, muchas veces el aprendizaje de una nueva tecnología viene acompañado con poder plasmar un proyecto que beneficie a la comunidad o al ambiente cooperativo."
     },
     "casos_de_exito": {
         "title":"Casos de Éxito",
-        "tagsTitle":"Tecnologías Investigadas",
+        "tagsTitle":"Tecnologías Investigadas"
     },
     "cases_coobs" : {
         "title":"CooBS", 
@@ -124,6 +128,16 @@
         "image":"",
         "links":[
             {
+                "description":"Es un sitio web donde se muestran los repositorios open source de diferentes cooperativas a lo largo del mundo. A su vez, se puede ver cuales son los lenguajes de programación más utilizados y buscar por tags.",
+                "tags":[
+                    "Elixir",
+                    "Phoenix",
+                    "Utilización de ETS",
+                    "Cache de datos",
+                    "ReactJS",
+                    "API y acciones de GitHub"
+                ],
+                "image":"",
                 "text":"ver sitio",
                 "link":""
             }

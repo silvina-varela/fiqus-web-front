@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import data from '../../content/content.json'
+import { useIntl } from "gatsby-plugin-react-intl"
 
 const styles = data.styles
 
@@ -53,16 +54,18 @@ const FooterLicenseIcon = styled.img`
 `
 
 const Footer = () => {
+    const intl = useIntl();
+
     return (
         <FooterContainer>
             <FooterLicense>
                 <FooterLicenseIcon src={require('../../images/icon_cc_heart.png').default} alt="Creative Commons Attribution logo"/>
                 <FooterLicenseContent>
-                Salvo que se indique lo contrario, el contenido de este sitio tiene una licencia de <span>Creative Commons Attribution</span>
+                    {intl.formatMessage({id: "footer.disclaimer" })}  <span>Creative Commons Attribution</span>
                 </FooterLicenseContent>
             </FooterLicense>
             <FooterCopyright>
-                Diseñado por <span>El Maizal</span>
+                {intl.formatMessage({id: "footer.designby" })} <span>El Maizal</span>
             </FooterCopyright>
         </FooterContainer>
     );
