@@ -2,6 +2,8 @@ import React, {Fragment} from "react"
 import styled from 'styled-components'
 import { styles, services } from '../content/content.json'
 
+import FeaturedService from '../components/modules/FeaturedService'
+import Button from '../components/common/Button'
 import Service from '../components/modules/Service'
 
 const MainWrapper = styled.div`
@@ -10,8 +12,9 @@ const ServicesWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    max-width: 1100px;
+    max-width: 946px;
     margin: auto;
+    }
 `
 const ServicesTitle = styled.h1`
   flex-basis: 100%;
@@ -30,7 +33,7 @@ const ServicesTitle = styled.h1`
   // service desktop style   
   text-align: center;
 `
-const Boton = styled.button`
+const Btn = styled(Button)`
     margin: 0 6px 8px 0px;
     padding: 9px 20px;
     font-size: 18px;
@@ -62,12 +65,18 @@ const Boton = styled.button`
         margin-top: 46px;
         margin: 0 auto;
     }
-    // service desktop style
-    display: flex!important;
+    display: none;
+    
+    ${props => {
+        if (props.isHome) {
+            return ` 
+            display: flex;
+            `
+        }
+    }}
 `
-
-const Services = () => {
-
+const isHome = true;
+const Services = (props) => {
       return (
         <MainWrapper>
           <ServicesWrapper>
@@ -83,8 +92,9 @@ const Services = () => {
                 )
               }) }
             </Fragment>
+            <Btn isHome={props.isHome} type='btnPrimaryOrange' theme={styles} to={props.href} btnText='ir a servicios'></Btn>
           </ServicesWrapper>
-          <Boton>ir a servicios</Boton>
+          <FeaturedService />
         </MainWrapper>
       );
 };

@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
-import Tags from '../common/Tags'
 import data from '../../content/content.json'
+import Tags from '../common/Tags'
+import Button from '../common/Button'
 
 const styles = data.styles
 
@@ -13,7 +14,7 @@ const ServiceWrapper = styled.div`
     max-width: 946px;
     padding: 40px 20px;
     padding: 30px 25px;
-    padding: 30px 25px 27px 25px!important;
+    padding: 30px 25px 27px 25px;
     margin-top: 0px;
     margin-bottom: 30px;
     margin-left: auto;
@@ -24,31 +25,52 @@ const ServiceWrapper = styled.div`
     @media (min-width: ${styles.breakpoints.m}px) {
         flex-direction: row;
         padding: 30px 45px 30px 67px;
+        &:last-of-type {
+            margin-bottom: 87px;
+        }
     }
     min-width: unset;
     max-width: unset;   
     flex-basis: 100%;
-
-    // service desktop style   
-    flex-direction: column!important;
-    max-width: 330px;
-    @media (min-width: ${styles.breakpoints.m}px) {
-        min-width: 330px;
-        margin-bottom: 30px;   
-        
-        // service desktop style   
-        margin-bottom: 50px;
-        &:last-of-type {
-            margin-bottom: 50px;
+    
+    ${props => {
+        if (props.isHome) {
+            return `
+            // service desktop style   
+            flex-direction: column!important;
+            max-width: 330px;
+            @media (min-width: ${styles.breakpoints.m}px) {
+                min-width: 330px;
+                margin-bottom: 30px;   
+                
+                // service desktop style   
+                margin-bottom: 50px;
+                &:last-of-type {
+                    margin-bottom: 50px;
+                }
+                //flex-basis: 33.33%;
+                min-width: unset;
+                max-width: 330px;
+            }
+            `
         }
-        //flex-basis: 33.33%;
-        min-width: unset;
-        max-width: 330px;
-    }
+    }}
+    ${props => {
+        if (props.isHome) {
+            return ` 
+            display: flex!important;
+            `
+        }
+    }}
 
 `
 const LeftBlock = styled.div`
     order: 3;
+    a {
+        
+        margin-top: 26px!important;
+        margin: 0 auto;
+    }
     @media (min-width: ${styles.breakpoints.m}px) {
         display: flex;
         order: unset;
@@ -56,53 +78,34 @@ const LeftBlock = styled.div`
         flex-basis: 45%;
         align-items: flex-start;        
         margin-right: 3px;
+        a {
+            display: none;
+        }
     }
 `
 const RightBlock = styled.div`
     order: 2;
+    a {
+        display: none;
+    }
     @media (min-width: ${styles.breakpoints.m}px) {
         display: flex;
         order: unset;
         flex-direction: column;
         flex-basis: 60%;
         margin-left: 40px;    
+        a {
+            display: flex;
+            margin-top: 34px!important;
+        }
     }
-    // service desktop style    
-    margin-left: 0!important;
-`
-const Boton = styled.button`
-    margin: 0 6px 8px 0px;
-    padding: 9px 20px;
-    font-size: 18px;
-    border-radius: 12px;
-    border-color: ${styles.colors.purplePrimary};
-    border-width: 2px!important;
-    border-style: solid;
-    box-shadow:  0px 4px 0px ${styles.colors.transparent};
-    transition: 100ms ease-in-out all;
-    margin-bottom: 10px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1em;
-    font-weight: ${styles.fontWeight.bold};
-    color: ${styles.colors.purplePrimary};
-    background-color: ${styles.colors.white};
-    border-color: ${styles.colors.purplePrimary};
-    box-shadow:  0px 4px 0px ${styles.colors.purplePrimary};
-    max-width: max-content;
-    &:hover {
-        box-shadow: none;
-    }
-    margin-top: auto;
-    display: none;
-    @media (min-width: ${styles.breakpoints.m}px) {
-        display: flex;
-        margin-top: 46px;
-    }
-    // service desktop style
-    display: none!important;
+    ${props => {
+        if (props.isHome) {
+            return ` 
+            margin-left: 0!important;
+            `
+        }
+    }}
 `
 
 const TextContainer = styled.div`
@@ -118,13 +121,17 @@ const ServiceTitle = styled.h3`
         padding-top: 8px;
         margin-top: 0;
     }
-    // service desktop style
-    margin-bottom: 0;
-    //margin-top: 36px!important;
-    margin-top: 30px!important;
-    padding-top: 0!important;
-    font-size: 1.44em!important;
-    text-align: center!important;
+    ${props => {
+        if (props.isHome) {
+            return ` 
+            margin-bottom: 0;
+            margin-top: 30px!important;
+            padding-top: 0!important;
+            font-size: 1.44em!important;
+            text-align: center!important;
+            `
+        }
+    }}
 `
 const ServiceDescription = styled.p`
     font-size: 0.88em;
@@ -136,17 +143,28 @@ const ServiceDescription = styled.p`
         line-height: 26px;
         margin-bottom: auto;
     }
-    // service desktop style
-    display: none;
+    ${props => {
+        if (props.isHome) {
+            return ` 
+            display: none;
+            `
+        }
+    }}
 `
+
 const TagsContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: auto;
     margin-bottom: 15px;
     margin-bottom: 0;
-    // service desktop style
-    display: none;
+    ${props => {
+        if (props.isHome) {
+            return ` 
+            display: none!important;
+            `
+        }
+    }}
 `
 const TagsTitle = styled.h4`
     font-size: 0.88em;
@@ -173,9 +191,18 @@ const ImageContainer = styled.div`
         max-width: 330px;
         display: flex;
     }
-    // service desktop style  
-    margin-left: auto!important;
+    ${props => {
+        if (props.isHome) {
+            return ` 
+            margin-left: auto!important;
+            `
+        }
+    }}
 ` 
+const Tag = styled(Tags)`
+    background: red!important;
+    color: red;
+`
 
 const ImageContainerMobile = styled.div`
     max-width: 200px;
@@ -191,17 +218,68 @@ const ImageContainerMobile = styled.div`
         margin-top: 0;
         max-width: 350px;
     }
-` 
-const Tag = styled(Tags)`
-    background: red!important;
-    color: red;
 `
-
 const ServiceImage = styled.object`
     width: 100%;
-    // service desktop style    
-    max-height: 134px;
+    ${props => {
+        if (props.isHome) {
+            return `
+            max-height: 134px;
+            `
+        }
+    }}
 `
+
+const BtnMobile = styled(Button)`
+    @media (min-width: ${styles.breakpoints.m}px) {
+        display: none;
+    }
+`
+const Btn = styled(Button)`
+    
+    /*
+    padding: 9px 20px;
+    background-color: ${styles.colors.orangeMain};
+    border-radius: 12px;
+    border-color: ${styles.colors.purplePrimary};
+    border-width: 2px!important;
+    border-style: solid;
+    box-shadow:  0px 4px 0px ${styles.colors.darkMainBg};
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    font-weight: ${styles.fontWeight.bold};
+    color: ${styles.colors.white};
+    max-width: max-content;
+    &:hover {
+        box-shadow: none;
+    }
+    */
+
+    /*
+    margin: 0 6px 10px 0px;
+    margin-top: auto;
+    
+    display: none;
+    margin: 34px auto 71px auto;
+
+    @media (min-width: ${styles.breakpoints.m}px) {
+        margin-top: 46px;
+        margin: 0 auto;
+    }
+    */
+    
+    ${props => {
+        if (props.isHome) {
+            return ` 
+            display: flex!important;
+            `
+        }
+    }}
+`
+const isHome = true;
 
 const Service = (props) => {
     const service = props.service
@@ -224,13 +302,15 @@ const Service = (props) => {
                     <TagsTitle>{service.service}</TagsTitle>
                     <Tag tagsType="services" tags={service.tags} styles={props.styles}></Tag>
                 </TagsContainer>
+                
+                <BtnMobile type='btnPrimaryPurple' theme={styles} to={props.href} btnText='ver más'></BtnMobile>
             </LeftBlock>
             <RightBlock>
                 <TextContainer>
                     <ServiceTitle>{service.service}</ServiceTitle>
                     <ServiceDescription>{service.description}</ServiceDescription>
                 </TextContainer>
-                <Boton>ver más</Boton>
+                <Btn type='btnPrimaryPurple' theme={styles} to={props.href} btnText='ver más'></Btn>
             </RightBlock>
         </ServiceWrapper>
     );

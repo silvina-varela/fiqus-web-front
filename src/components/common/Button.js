@@ -12,7 +12,30 @@ const BtnImg = styled.img`
     height: 20px;
     margin-right: 6px;
 `
-const Btn = styled(Link)`
+const BtnLink = styled(Link)`
+    margin: 0 6px 8px 0px;
+    padding: 9px 20px;
+    font-size: 18px;
+    font-size: ${props => props.type.fontSize};
+    font-weight: ${props => props.type.fontWeight};
+    color: ${props => props.type.color };
+    background-color: ${props => props.type.background};
+    border-radius: 12px;
+    border-color: ${props => props.type.borderColor};
+    border-width: 2px!important;
+    border-style: solid;
+    box-shadow:  0px 4px 0px ${props => props.type.boxShadow};
+    transition: 100ms ease-in-out all;
+    margin-bottom: 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+        box-shadow: none;
+    }
+`
+const BtnCta = styled.button`
     margin: 0 6px 8px 0px;
     padding: 9px 20px;
     font-size: 18px;
@@ -113,12 +136,21 @@ const Button = (props) => {
         }   
     }
     
+    const isLink = true; 
     return (
         <BtnContainer>   
-            <Btn type={getBtnStyles(props.type)} theme={props.theme} to={props.href}>
-                <BtnImg imgDisplay={getBtnStyles(props.type).imgDisplay} src={require('../../images/icon_website.svg').default} />
+            {
+                isLink ? 
+                <BtnLink type={getBtnStyles(props.type)} theme={props.theme} to={props.href}>
+                    <BtnImg imgDisplay={getBtnStyles(props.type).imgDisplay} src={require('../../images/icon_website.svg').default} />
+                    {props.btnText}
+                </BtnLink>                     
+                : <BtnCta type={getBtnStyles(props.type)} theme={props.theme}>
+                    <BtnImg imgDisplay={getBtnStyles(props.type).imgDisplay} src={require('../../images/icon_website.svg').default} />
                 {props.btnText}
-            </Btn>                     
+                </BtnCta>
+            }
+            
         </BtnContainer>
     );
 };
