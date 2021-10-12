@@ -19524,7 +19524,7 @@ const Header = props => {
       to: menuLink.link
     }, intl.formatMessage({
       id: `${menuLink.name}`
-    })));
+    }), menuLink.name));
   })))));
 };
 
