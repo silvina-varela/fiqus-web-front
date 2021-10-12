@@ -97,6 +97,19 @@
                     "React Native"
                 ],
                 "image":"fullstack"
+            },
+            {
+                "service":"Fullstack",
+                "description":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.",
+                "tags" : [
+                    "Django",
+                    "Phoenix",
+                    "Phoenix LiveView",
+                    "ReactJS", 
+                    "VueJS", 
+                    "React Native"
+                ],
+                "image":"fullstack"
             }
         ],
         "subsection": {

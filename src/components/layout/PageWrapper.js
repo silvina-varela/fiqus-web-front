@@ -18,11 +18,11 @@ const PageContainer = styled.section `
     width:100%;
     max-width:${styles.breakpoints.xl}px;
     //min-width:${styles.breakpoints.xs}px;
-    padding: 20px;
+    padding: 102px 20px;
     margin: 0 auto;
     min-height:100vh;
-    @media (min-width: ${styles.breakpoints.l}px) {
-    padding: 150px 50px;
+    @media (min-width: ${styles.breakpoints.m}px) {
+    padding: 123px 50px;
     }
 `
 const PageWrapper = (props) => {
