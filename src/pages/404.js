@@ -1,5 +1,6 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { Link } from "gatsby-plugin-react-intl"
+
 
 // styles
 const pageStyles = {
