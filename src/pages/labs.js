@@ -7,7 +7,13 @@ import { useIntl, Link } from "gatsby-plugin-react-intl"
 import {styles, labs} from '../content/content.json'
 
 const PostsContainer = styled.div`
-
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 36px;
+  justify-content: center;
+  @media (min-width: ${styles.breakpoints.m}px) {
+    justify-content: flex-start
+  };
 `
 
 const Labs = ({data: {allMarkdownRemark: { edges }}}) => {

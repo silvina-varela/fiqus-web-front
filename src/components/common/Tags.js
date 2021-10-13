@@ -8,7 +8,7 @@ const TagsContainer = styled.div`
 `
 const TagItem = styled.div`
     margin: 0 6px 8px 0px;
-    padding: 9px 14px;
+    padding: ${props => props.type.padding };
     border-radius: 10px;
     font-size: 14px;
     font-weight: ${props => props.type.fontWeight };
@@ -24,21 +24,24 @@ const Tags = (props) => {
                 return {
                     background : props.styles.colors.greenLight, 
                     fontWeight : props.styles.fontWeight.regular, 
-                    color : props.styles.colors.ultraDarkGrey
+                    color : props.styles.colors.ultraDarkGrey,
+                    padding : '9px 14px'
                  }
             break
             case "services" : 
                 return {
                     background : props.styles.colors.purpleLight, 
                     fontWeight : props.styles.fontWeight.medium, 
-                    color : props.styles.colors.purpleSecondary
+                    color : props.styles.colors.purpleSecondary,
+                    padding : '8px 14px'
                 }
             break
             default : 
                 return {
                     background : props.styles.colors.greenLight, 
                     fontWeight : props.styles.fontWeight.regular, 
-                    color : props.styles.colors.ultraDarkGrey
+                    color : props.styles.colors.ultraDarkGrey,
+                    padding : '8px 14px'
                 }
         }
     }
