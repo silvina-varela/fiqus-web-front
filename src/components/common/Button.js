@@ -128,7 +128,7 @@ const Button = (props) => {
     }
     
     return (
-        <BtnContainer>   
+        <BtnContainer className={props.className}>   
             {
                 props.isLink ? 
                     <BtnLink $btnStyles={getBtnStyles(props.type)} theme={props.theme} to={props.href}>
