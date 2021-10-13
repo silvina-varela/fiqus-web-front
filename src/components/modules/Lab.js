@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components'
 import Img from "gatsby-image"
 import Tags from '../common/Tags'
+import { useIntl, Link } from "gatsby-plugin-react-intl"
+
 
 const CaseWrapper = styled.div`
 
@@ -21,6 +23,8 @@ const LabDescription =styled.p`
 
 const SuccessCase = (props) => {
     const lab = props.labData
+    const intl = useIntl();
+
     return (
         <CaseWrapper>
             <Img fluid={props.fluidImg}></Img>

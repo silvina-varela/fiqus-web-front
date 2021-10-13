@@ -2,6 +2,7 @@ import React, {Fragment} from "react"
 import { graphql } from 'gatsby';
 import styled from 'styled-components'
 import Lab from "../components/modules/Lab"
+import { useIntl, Link } from "gatsby-plugin-react-intl"
 
 import {styles, labs} from '../content/content.json'
 
@@ -10,11 +11,12 @@ const PostsContainer = styled.div`
 `
 
 const Labs = ({data: {allMarkdownRemark: { edges }}}) => {
+  const intl = useIntl();
 
   const Labs = edges.map( 
     edge => {
       const fluidImg = edge.node.frontmatter.image.childImageSharp.fluid 
-      console.log(fluidImg)
+      //console.log(fluidImg)
       return(
         <Lab fluidImg={fluidImg} styles={styles} labData={edge.node}></Lab>
   )})

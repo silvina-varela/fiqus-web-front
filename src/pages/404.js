@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link } from "gatsby-plugin-react-intl"
+import { useIntl, Link } from "gatsby-plugin-react-intl"
 
 
 // styles
@@ -27,6 +27,8 @@ const codeStyles = {
 
 // markup
 const NotFoundPage = () => {
+  const intl = useIntl();
+
   return (
     <main style={pageStyles}>
       <title>Not found</title>
