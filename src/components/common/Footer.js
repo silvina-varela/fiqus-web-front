@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components'
 import data from '../../content/content.json'
-import { useIntl } from "gatsby-plugin-react-intl"
+import { useIntl } from 'gatsby-plugin-react-intl'
+import ContactForm from './ContactForm'
 
 const styles = data.styles
 
@@ -57,17 +58,20 @@ const Footer = () => {
     const intl = useIntl();
 
     return (
-        <FooterContainer>
-            <FooterLicense>
-                <FooterLicenseIcon src={require('../../images/icon_cc_heart.png').default} alt="Creative Commons Attribution logo"/>
-                <FooterLicenseContent>
-                    {intl.formatMessage({id: "footer.disclaimer" })}  <span>Creative Commons Attribution</span>
-                </FooterLicenseContent>
-            </FooterLicense>
-            <FooterCopyright>
-                {intl.formatMessage({id: "footer.designby" })} <span>El Maizal</span>
-            </FooterCopyright>
-        </FooterContainer>
+        <Fragment>
+            <ContactForm/>
+            <FooterContainer>
+                <FooterLicense>
+                    <FooterLicenseIcon src={require('../../images/icon_cc_heart.png').default} alt="Creative Commons Attribution logo"/>
+                    <FooterLicenseContent>
+                        {intl.formatMessage({id: "footer.disclaimer" })}  <span>Creative Commons Attribution</span>
+                    </FooterLicenseContent>
+                </FooterLicense>
+                <FooterCopyright>
+                    {intl.formatMessage({id: "footer.designby" })} <span>El Maizal</span>
+                </FooterCopyright>
+            </FooterContainer>
+        </Fragment>
     );
 };
 

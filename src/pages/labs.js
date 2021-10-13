@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components'
 import Lab from "../components/modules/Lab"
 import { useIntl, Link } from "gatsby-plugin-react-intl"
-
+import SectionHeader from "../components/common/SectionHeader"
 import {styles, labs} from '../content/content.json'
 
 const PostsContainer = styled.div`
@@ -27,7 +27,18 @@ const Labs = ({data: {allMarkdownRemark: { edges }}}) => {
         <Lab fluidImg={fluidImg} styles={styles} labData={edge.node}></Lab>
   )})
   
-  return <PostsContainer>{Labs}</PostsContainer>
+  return ( 
+    <Fragment>
+      <SectionHeader 
+        section="labs"
+        title={intl.formatMessage({id: 'labs.title'})}
+        subttitle={intl.formatMessage({id: 'labs.subttitle'})}
+        description={intl.formatMessage({id: 'labs.content'})}
+      />
+      <PostsContainer>{Labs}</PostsContainer>
+    
+    </Fragment>
+  )
 
 };
 

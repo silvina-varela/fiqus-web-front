@@ -248,7 +248,7 @@ const Header = (props) => {
                             props.menuLinks && props.menuLinks.map((menuLink)=> {
                                 return (
                                     <NavItem key={menuLink.name} onClick={() => {setIsNavOpen(false)}}>
-                                        <NavLink to={menuLink.link} active={activeLink === menuLink.link }>
+                                        <NavLink to={menuLink.link} active={activeLink === menuLink.link ? 1 : 0}>
                                             {intl.formatMessage({id:`${menuLink.name}`})}
                                         </NavLink>
                                     </NavItem>)
