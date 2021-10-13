@@ -27,13 +27,11 @@ const ServicesTitle = styled.h1`
     text-align: left;
     font-size: 3.55em;    
     margin-bottom: 39px;
-    
-    // service desktop style   
-    text-align: center;
+
   }
-  // service desktop style   
-  text-align: center;
 `
+// estos estilos deberían estar adentro de button como una opcion posible de estilos
+// acá, si hay estilos, deberian ser solo cosas excepcionales
 const Btn = styled(Button)`
     margin: 0 6px 8px 0px;
     padding: 9px 20px;
@@ -66,16 +64,8 @@ const Btn = styled(Button)`
         margin-top: 46px;
         margin: 0 auto;
     }
-    display: none;
-    
-    ${props => {
-        if (props.isHome) {
-            return ` 
-            display: flex;
-            `
-        }
-    }}
 `
+
 const Services = (props) => {
     const intl = useIntl();
 
@@ -87,6 +77,7 @@ const Services = (props) => {
               {services.services.map( (service) =>{
                 return(
                   <Service 
+                    isHome={props.isHome}
                     key = {service.id}
                     image = { service.image } 
                     id = {service.id}
@@ -96,7 +87,9 @@ const Services = (props) => {
                 )
               }) }
             </Fragment>
-            <Btn isHome={props.isHome} type='btnPrimaryOrange' theme={styles} to={props.href} btnText='ir a servicios'></Btn>
+            {props.isHome && 
+              <Btn type='btnPrimaryOrange' theme={styles} to={props.href} btnText='ir a servicios'></Btn>
+            }
           </ServicesWrapper>
           <FeaturedService />
         </MainWrapper>

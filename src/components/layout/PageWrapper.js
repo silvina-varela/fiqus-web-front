@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components'
 import Header from '../common/Header'
@@ -26,6 +26,16 @@ const PageContainer = styled.section `
     }
 `
 const PageWrapper = (props) => {
+    const [isHome, setIsHome] = useState(true);
+
+    useEffect(() => {
+        const homePaths = ['/', '/en', '/en/', '/es', '/es/']
+
+        setIsHome(homePaths.includes(props.location.pathname));
+            
+    }, [props.location])
+
+
     return (
         <StaticQuery 
         query = { graphql`
@@ -44,8 +54,8 @@ const PageWrapper = (props) => {
         }
         render = { data => (
             <Wrapper>
-                <Header menuLinks = {data.site.siteMetadata.menuLinks} isHome={props.location.pathname === '/'} location={props.location}></Header>
-                <PageContainer >{props.children}</PageContainer>
+                <Header menuLinks = {data.site.siteMetadata.menuLinks} isHome={isHome} location={props.location}></Header>
+                <PageContainer isHome={isHome}>{props.children}</PageContainer>
                 <Footer></Footer>
             </Wrapper>
         )}>

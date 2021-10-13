@@ -272,45 +272,44 @@ const Btn = styled(Button)`
         }
     }}
 `
-const isHome = true;
 
 const Service = (props) => {
     const service = props.service;
     const intl = useIntl();
 
     return (
-        <ServiceWrapper isHome={isHome}> 
+        <ServiceWrapper isHome={props.isHome}> 
             <ImageContainerMobile>
                 <ServiceImage 
-                    isHome={isHome}
+                    isHome={props.isHome}
                     data={require(`../../images/illustrations/${service.image}.svg`).default} 
                     type="image/svg+xml">
                 </ServiceImage>
             </ImageContainerMobile>
             <LeftBlock>
-                <ImageContainer isHome={isHome}>
+                <ImageContainer isHome={props.isHome}>
                     <ServiceImage 
                         data={require(`../../images/illustrations/${service.image}.svg`).default} 
                         type="image/svg+xml">
                     </ServiceImage>
                 </ImageContainer>
-                <TagsContainer isHome={isHome}>
+                <TagsContainer isHome={props.isHome}>
                     <TagsTitle>{service.service}</TagsTitle>
                     <Tag tagsType="services" tags={service.tags} styles={props.styles}></Tag>
                 </TagsContainer>
                 
                 <BtnMobile type='btnPrimaryPurple' theme={styles} to={props.href} btnText={intl.formatMessage({id: 'verMas'})}></BtnMobile>
             </LeftBlock>
-            <RightBlock isHome={isHome}>
+            <RightBlock isHome={props.isHome}>
                 <TextContainer>
-                    <ServiceTitle isHome={isHome}>{intl.formatMessage({id:`${props.id}.service`})}</ServiceTitle>
-                    <ServiceDescription isHome={isHome}>{intl.formatMessage({id: `${props.id}.description`})}</ServiceDescription>
+                    <ServiceTitle isHome={props.isHome}>{intl.formatMessage({id:`${props.id}.service`})}</ServiceTitle>
+                    <ServiceDescription isHome={props.isHome}>{intl.formatMessage({id: `${props.id}.description`})}</ServiceDescription>
                 </TextContainer>
                 <Btn type='btnPrimaryPurple' 
                     theme={styles} 
                     to={props.href} 
                     btnText={intl.formatMessage({id: 'verMas'})}
-                    isHome={isHome}>    
+                    isHome={props.isHome}>    
                 </Btn>
             </RightBlock>
         </ServiceWrapper>
