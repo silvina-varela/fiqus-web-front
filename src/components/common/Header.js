@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
 import data from '../../content/content.json'
 import { useIntl, Link, IntlContextConsumer, changeLocale } from "gatsby-plugin-react-intl"
@@ -172,6 +172,7 @@ const NavLink = styled(Link)`
     &:active{
         color: ${styles.colors.greenMain}!important;
     }
+    ${props => props.active ? `color: ${styles.colors.greenMain}!important;` : '' }
     @media (min-width: ${styles.breakpoints.xl}px) {
         color: ${styles.colors.darkMainBg};
         text-transform: uppercase;
@@ -180,11 +181,26 @@ const NavLink = styled(Link)`
 
 const Header = (props) => {
     const [isNavOpen, setIsNavOpen] = useState(false);
+    const [activeLink, setActiveLink] = useState('/');
     const intl = useIntl();
     const languageNames = {
         "en": "English",
         "es": "Español"
     }
+
+    useEffect(() => {
+        let active;
+
+        props.menuLinks.forEach(menuLink => {
+            if (menuLink.link !== '/' && props.location.pathname.includes(menuLink.link.toLowerCase())) {
+                active = menuLink.link;
+            }
+        });
+        if (!active) active = '/';
+
+        setActiveLink(active)
+
+    }, [props.location])
 
     return (
         <NavWrapper isHome={props.isHome}>
@@ -232,7 +248,7 @@ const Header = (props) => {
                             props.menuLinks && props.menuLinks.map((menuLink)=> {
                                 return (
                                     <NavItem key={menuLink.name} onClick={() => {setIsNavOpen(false)}}>
-                                        <NavLink to={menuLink.link}>
+                                        <NavLink to={menuLink.link} active={activeLink === menuLink.link }>
                                             {intl.formatMessage({id:`${menuLink.name}`})}
                                         </NavLink>
                                     </NavItem>)

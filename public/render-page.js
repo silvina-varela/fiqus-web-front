@@ -19457,7 +19457,7 @@ const NavItem = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].li.wit
 })(["list-style-type:none;margin:0 0 13px 0;@media (min-width:", "px){margin:0 30px 0 0;&:last-of-type{margin-right:20px;}}"], styles.breakpoints.xl);
 const NavLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_3__["default"])(gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__.Link).withConfig({
   displayName: "Header__NavLink"
-})(["text-decoration:none;font-size:1.44em;font-weight:", ";display:block;color:", ";&:visited{", ";}&:hover,&:active{color:", "!important;}@media (min-width:", "px){color:", ";text-transform:uppercase;}"], styles.fontWeight.bold, styles.colors.purplePrimary, styles.colors.purplePrimary, styles.colors.greenMain, styles.breakpoints.xl, styles.colors.darkMainBg);
+})(["text-decoration:none;font-size:1.44em;font-weight:", ";display:block;color:", ";&:visited{", ";}&:hover,&:active{color:", "!important;}", " @media (min-width:", "px){color:", ";text-transform:uppercase;}"], styles.fontWeight.bold, styles.colors.purplePrimary, styles.colors.purplePrimary, styles.colors.greenMain, props => props.active ? `color: ${styles.colors.greenMain}!important;` : '', styles.breakpoints.xl, styles.colors.darkMainBg);
 
 const Header = props => {
   const {
@@ -19469,6 +19469,10 @@ const Header = props => {
     "en": "English",
     "es": "Español"
   };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    console.log(props.location);
+    console.log(props.menuLinks);
+  }, [props.location]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavWrapper, {
     isHome: props.isHome
   }, props.isHome ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Logo, {
@@ -19521,10 +19525,11 @@ const Header = props => {
         setIsNavOpen(false);
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavLink, {
-      to: menuLink.link
+      to: menuLink.link,
+      active: props.location.pathname === menuLink.link
     }, intl.formatMessage({
       id: `${menuLink.name}`
-    }), menuLink.name));
+    })));
   })))));
 };
 
@@ -19570,7 +19575,8 @@ const PageWrapper = props => {
     query: "805671509",
     render: data => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(Wrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {
       menuLinks: data.site.siteMetadata.menuLinks,
-      isHome: props.location.pathname === '/'
+      isHome: props.location.pathname === '/',
+      location: props.location
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(PageContainer, null, props.children), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Footer__WEBPACK_IMPORTED_MODULE_4__["default"], null)),
     data: _public_page_data_sq_d_805671509_json__WEBPACK_IMPORTED_MODULE_0__
   });
