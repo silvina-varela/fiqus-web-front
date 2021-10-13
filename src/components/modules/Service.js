@@ -37,14 +37,13 @@ const ServiceWrapper = styled.div`
     ${props => {
         if (props.isHome) {
             return `
-            // service desktop style   
+            display: flex!important;   
             flex-direction: column!important;
             max-width: 330px;
             @media (min-width: ${styles.breakpoints.m}px) {
                 min-width: 330px;
                 margin-bottom: 30px;   
                 
-                // service desktop style   
                 margin-bottom: 50px;
                 &:last-of-type {
                     margin-bottom: 50px;
@@ -53,13 +52,6 @@ const ServiceWrapper = styled.div`
                 min-width: unset;
                 max-width: 330px;
             }
-            `
-        }
-    }}
-    ${props => {
-        if (props.isHome) {
-            return ` 
-            display: flex!important;
             `
         }
     }}
@@ -287,33 +279,39 @@ const Service = (props) => {
     const intl = useIntl();
 
     return (
-        <ServiceWrapper> 
+        <ServiceWrapper isHome={isHome}> 
             <ImageContainerMobile>
                 <ServiceImage 
+                    isHome={isHome}
                     data={require(`../../images/illustrations/${service.image}.svg`).default} 
                     type="image/svg+xml">
                 </ServiceImage>
             </ImageContainerMobile>
             <LeftBlock>
-                <ImageContainer>
+                <ImageContainer isHome={isHome}>
                     <ServiceImage 
                         data={require(`../../images/illustrations/${service.image}.svg`).default} 
                         type="image/svg+xml">
                     </ServiceImage>
                 </ImageContainer>
-                <TagsContainer>
+                <TagsContainer isHome={isHome}>
                     <TagsTitle>{service.service}</TagsTitle>
                     <Tag tagsType="services" tags={service.tags} styles={props.styles}></Tag>
                 </TagsContainer>
                 
                 <BtnMobile type='btnPrimaryPurple' theme={styles} to={props.href} btnText={intl.formatMessage({id: 'verMas'})}></BtnMobile>
             </LeftBlock>
-            <RightBlock>
+            <RightBlock isHome={isHome}>
                 <TextContainer>
-                    <ServiceTitle>{intl.formatMessage({id:`${props.id}.service`})}</ServiceTitle>
-                    <ServiceDescription>{intl.formatMessage({id: `${props.id}.description`})}</ServiceDescription>
+                    <ServiceTitle isHome={isHome}>{intl.formatMessage({id:`${props.id}.service`})}</ServiceTitle>
+                    <ServiceDescription isHome={isHome}>{intl.formatMessage({id: `${props.id}.description`})}</ServiceDescription>
                 </TextContainer>
-                <Btn type='btnPrimaryPurple' theme={styles} to={props.href} btnText={intl.formatMessage({id: 'verMas'})}></Btn>
+                <Btn type='btnPrimaryPurple' 
+                    theme={styles} 
+                    to={props.href} 
+                    btnText={intl.formatMessage({id: 'verMas'})}
+                    isHome={isHome}>    
+                </Btn>
             </RightBlock>
         </ServiceWrapper>
     );

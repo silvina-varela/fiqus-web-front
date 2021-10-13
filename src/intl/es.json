@@ -11,15 +11,9 @@
     "homepage" : {
         "title":"Homepage"
     },
-    "test" : {
-        "test": "yes"
-    },
-
+    "verMas": "ver más",
     "services": {
         "title": "Servicios"
-    }, 
-    "testi": {
-        "title": "Ami"
     }, 
     "service_datos":  {
         "service":"Ciencia de Datos",

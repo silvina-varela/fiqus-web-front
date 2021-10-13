@@ -45,7 +45,6 @@
         "tagsTitle": "Tecnologías",
         "services":[
             {
-                "service":"Ciencia de Datos",
                 "id":"service_datos",
                 "tags" : [
                     "Python",
@@ -56,9 +55,7 @@
                 "image":"datos"
             },
             {
-                "service":"Inteligencia Artificial",
                 "id":"service_inteligenciaArtificial",
-                "description":"El Aprendizaje Automático es un subcampo de la Inteligencia Artificial en el que se tiene como objetivo que las \"computadoras aprendan\". A partir de datos recolectados y procesados, diseñamos, construimos y entrenamos modelos que nos permitan predecir eventos futuros, clasificar imágenes, reconocer entidades en textos y muchas otras cosas más.",
                 "tags" : [
                     "TensorFlow",
                     "Spacy",
@@ -67,9 +64,7 @@
                 "image":"inteligenciaArtificial"
             },
             {
-                "service":"Alta Concurrencia",
                 "id":"service_altaConcurrencia",
-                "description":"Utilizamos lenguajes de programación funcional en tiempo real y muy adoptados en el mercado, que soportan niveles de altísima concurrencia y distribución, teniendo como resultado sistemas que responden a gran velocidad ante altas demandas.",
                 "tags" : [
                     "Erlang",
                     "Elixir",
@@ -79,9 +74,7 @@
                 "image":"altaConcurrencia"
             },
             {
-                "service":"Blockchain | Fintech",
                 "id":"service_blockchain",
-                "description":"Estamos desarrollando fintech, que son las nuevas aplicaciones, procesos, productos o modelos de negocios en la industria de los servicios financieros compuestos de uno o más servicios financieros complementarios y puestos a disposición del público vía Internet.",
                 "tags" : [
                     "Python",
                     "Ethereum"
@@ -89,21 +82,7 @@
                 "image":"blockchain"
             },
             {
-                "service":"Fullstack",
                 "id":"service_fullstack",
-                "tags" : [
-                    "Django",
-                    "Phoenix",
-                    "Phoenix LiveView",
-                    "ReactJS", 
-                    "VueJS", 
-                    "React Native"
-                ],
-                "image":"fullstack"
-            },
-            {
-                "service":"Fullstack",
-                "description":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.",
                 "tags" : [
                     "Django",
                     "Phoenix",
