@@ -1,5 +1,5 @@
-import React from 'react';
-import {Link} from 'gatsby'
+import React, {useState, useEffect} from 'react';
+import {Link, useStaticQuery} from 'gatsby'
 import styled from 'styled-components'
 
 const BtnContainer = styled.div`
@@ -12,55 +12,40 @@ const BtnImg = styled.img`
     height: 20px;
     margin-right: 6px;
 `
+const setSharedStyles = (type) => {
+    return `
+        margin: 0 6px 8px 0px;
+        padding: 9px 20px;
+        font-size: 18px;
+        font-size: ${type.fontSize};
+        font-weight: ${type.fontWeight};
+        color: ${type.color };
+        background-color: ${type.background};
+        border-radius: 12px;
+        border-color: ${type.borderColor};
+        border-width: 2px!important;
+        border-style: solid;
+        box-shadow:  0px 4px 0px ${type.boxShadow}
+        transition: 100ms ease-in-out all;
+        margin-bottom: 10px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+            box-shadow: none;
+        };
+    `
+} ;
+
 const BtnLink = styled(Link)`
-    margin: 0 6px 8px 0px;
-    padding: 9px 20px;
-    font-size: 18px;
-    font-size: ${props => props.type.fontSize};
-    font-weight: ${props => props.type.fontWeight};
-    color: ${props => props.type.color };
-    background-color: ${props => props.type.background};
-    border-radius: 12px;
-    border-color: ${props => props.type.borderColor};
-    border-width: 2px!important;
-    border-style: solid;
-    box-shadow:  0px 4px 0px ${props => props.type.boxShadow};
-    transition: 100ms ease-in-out all;
-    margin-bottom: 10px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &:hover {
-        box-shadow: none;
-    }
+    ${props => setSharedStyles(props.btnStyles)} 
 `
 const BtnCta = styled.button`
-    margin: 0 6px 8px 0px;
-    padding: 9px 20px;
-    font-size: 18px;
-    font-size: ${props => props.type.fontSize};
-    font-weight: ${props => props.type.fontWeight};
-    color: ${props => props.type.color };
-    background-color: ${props => props.type.background};
-    border-radius: 12px;
-    border-color: ${props => props.type.borderColor};
-    border-width: 2px!important;
-    border-style: solid;
-    box-shadow:  0px 4px 0px ${props => props.type.boxShadow};
-    transition: 100ms ease-in-out all;
-    margin-bottom: 10px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &:hover {
-        box-shadow: none;
-    }
+    ${props => setSharedStyles(props.btnStyles)} 
 `
 
-const Button = (props) => {
-    
+const Button = (props) => {    
     const getBtnStyles = (type) =>{
         switch (type) {
             case "btnPrimaryOrange" : 
@@ -136,21 +121,20 @@ const Button = (props) => {
         }   
     }
     
-    const isLink = true; 
     return (
         <BtnContainer>   
             {
-                isLink ? 
-                <BtnLink type={getBtnStyles(props.type)} theme={props.theme} to={props.href}>
-                    <BtnImg imgDisplay={getBtnStyles(props.type).imgDisplay} src={require('../../images/icon_website.svg').default} />
-                    {props.btnText}
-                </BtnLink>                     
-                : <BtnCta type={getBtnStyles(props.type)} theme={props.theme}>
-                    <BtnImg imgDisplay={getBtnStyles(props.type).imgDisplay} src={require('../../images/icon_website.svg').default} />
-                {props.btnText}
-                </BtnCta>
+                props.isLink ? 
+                    <BtnLink btnStyles={getBtnStyles(props.type)} theme={props.theme} to={props.href}>
+                        <BtnImg imgDisplay={getBtnStyles(props.type).imgDisplay} src={require('../../images/icon_website.svg').default} />
+                        {props.btnText}
+                    </BtnLink>                     
+                : 
+                    <BtnCta btnStyles={getBtnStyles(props.type)} theme={props.theme}>
+                        <BtnImg imgDisplay={getBtnStyles(props.type).imgDisplay} src={require('../../images/icon_website.svg').default} />
+                        {props.btnText}
+                    </BtnCta>
             }
-            
         </BtnContainer>
     );
 };
