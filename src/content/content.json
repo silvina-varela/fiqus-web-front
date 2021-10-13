@@ -181,6 +181,23 @@
                             "link":""
                         }
                     ]
+                },
+                {
+                    "title":"Pirra", 
+                    "description":"Sistema de facturación electrónica donde se pueden autorizar todo tipo de facturas con AFIP, también visualizarlas en un dashboard, descargarlas y compartirlas.",
+                    "tags":[
+                        "Python",
+                        "Django",
+                        "Docker",
+                        "Postgress"
+                    ],
+                    "image":"",
+                    "links":[
+                        {
+                            "text":"ver sitio",
+                            "link":""
+                        }
+                    ]
                 }
             ]
         }

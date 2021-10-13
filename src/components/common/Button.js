@@ -25,13 +25,14 @@ const setSharedStyles = (type) => {
         border-color: ${type.borderColor};
         border-width: 2px!important;
         border-style: solid;
-        box-shadow:  0px 4px 0px ${type.boxShadow}
+        box-shadow:  0px 4px 0px ${type.boxShadow};
         transition: 100ms ease-in-out all;
         margin-bottom: 10px;
         text-decoration: none;
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
         &:hover {
             box-shadow: none;
         };
