@@ -39,10 +39,10 @@ const setSharedStyles = (type) => {
 } ;
 
 const BtnLink = styled(Link)`
-    ${props => setSharedStyles(props.btnStyles)} 
+    ${props => setSharedStyles(props.$btnStyles)} 
 `
 const BtnCta = styled.button`
-    ${props => setSharedStyles(props.btnStyles)} 
+    ${props => setSharedStyles(props.$btnStyles)} 
 `
 
 const Button = (props) => {    
@@ -120,17 +120,22 @@ const Button = (props) => {
                 }
         }   
     }
+
+    const handleClick = (event) => {
+        event.preventDefault();
+        if (props.onButtonClick) props.onButtonClick(event);
+    }
     
     return (
         <BtnContainer>   
             {
                 props.isLink ? 
-                    <BtnLink btnStyles={getBtnStyles(props.type)} theme={props.theme} to={props.href}>
+                    <BtnLink $btnStyles={getBtnStyles(props.type)} theme={props.theme} to={props.href}>
                         <BtnImg imgDisplay={getBtnStyles(props.type).imgDisplay} src={require('../../images/icon_website.svg').default} />
                         {props.btnText}
                     </BtnLink>                     
                 : 
-                    <BtnCta btnStyles={getBtnStyles(props.type)} theme={props.theme}>
+                    <BtnCta $btnStyles={getBtnStyles(props.type)} theme={props.theme} onClick={handleClick}>
                         <BtnImg imgDisplay={getBtnStyles(props.type).imgDisplay} src={require('../../images/icon_website.svg').default} />
                         {props.btnText}
                     </BtnCta>
