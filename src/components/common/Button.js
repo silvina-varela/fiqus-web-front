@@ -131,12 +131,16 @@ const Button = (props) => {
             {
                 props.isLink ? 
                     <BtnLink $btnStyles={getBtnStyles(props.type)} theme={props.theme} to={props.href}>
-                        <BtnImg imgDisplay={getBtnStyles(props.type).imgDisplay} src={require('../../images/icon_website.svg').default} />
+                        <BtnImg 
+                            imgDisplay={getBtnStyles(props.type).imgDisplay} 
+                            src={props.github ? require('../../images/icon_github.svg').default : require('../../images/icon_website.svg').default} />
                         {props.btnText}
                     </BtnLink>                     
                 : 
                     <BtnCta $btnStyles={getBtnStyles(props.type)} theme={props.theme} onClick={handleClick}>
-                        <BtnImg imgDisplay={getBtnStyles(props.type).imgDisplay} src={require('../../images/icon_website.svg').default} />
+                        <BtnImg 
+                            imgDisplay={getBtnStyles(props.type).imgDisplay} 
+                            src={props.github ? require('../../images/icon_github.svg').default : require('../../images/icon_website.svg').default} />
                         {props.btnText}
                     </BtnCta>
             }
