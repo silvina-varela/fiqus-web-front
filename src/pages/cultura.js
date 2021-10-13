@@ -1,15 +1,20 @@
 import React, {Fragment} from "react"
 import styled from 'styled-components'
-import { styles, culture } from '../content/content.json'
+import { styles } from '../content/content.json'
 import { useIntl, Link } from "gatsby-plugin-react-intl"
-
+import SectionHeader from "../components/common/SectionHeader"
 
 const Culture = () => {
     const intl = useIntl();
 
     return (
         <Fragment>
-            <h1>{culture.title}</h1>
+            <SectionHeader 
+                section="cultura"
+                title={intl.formatMessage({id: 'culture.title'})}
+                subttitle={intl.formatMessage({id: 'culture.subttitle'})}
+                description={intl.formatMessage({id: 'culture.description'})}
+            />
         </Fragment>
     );
 };
