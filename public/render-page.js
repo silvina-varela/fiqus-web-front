@@ -19324,6 +19324,313 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/components/common/Button.js":
+/*!*****************************************!*\
+  !*** ./src/components/common/Button.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+
+
+
+const BtnContainer = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withConfig({
+  displayName: "Button__BtnContainer"
+})(["display:flex;justify-content:flex-start;flex-wrap:wrap;"]);
+const BtnImg = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].img.withConfig({
+  displayName: "Button__BtnImg"
+})(["display:", ";height:20px;margin-right:6px;"], props => props.imgDisplay);
+
+const setSharedStyles = type => {
+  return `
+        margin: 0 6px 8px 0px;
+        padding: 9px 20px;
+        font-size: 18px;
+        font-size: ${type.fontSize};
+        font-weight: ${type.fontWeight};
+        color: ${type.color};
+        background-color: ${type.background};
+        border-radius: 12px;
+        border-color: ${type.borderColor};
+        border-width: 2px!important;
+        border-style: solid;
+        box-shadow:  0px 4px 0px ${type.boxShadow};
+        transition: 100ms ease-in-out all;
+        margin-bottom: 10px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        &:hover {
+            box-shadow: none;
+        };
+    `;
+};
+
+const BtnLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_2__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_1__.Link).withConfig({
+  displayName: "Button__BtnLink"
+})(["", " "], props => setSharedStyles(props.$btnStyles));
+const BtnCta = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].button.withConfig({
+  displayName: "Button__BtnCta"
+})(["", " "], props => setSharedStyles(props.$btnStyles));
+
+const Button = props => {
+  const getBtnStyles = type => {
+    switch (type) {
+      case "btnPrimaryOrange":
+        return {
+          background: props.theme.colors.orangeMain,
+          borderColor: props.theme.colors.darkMainBg,
+          boxShadow: props.theme.colors.darkMainBg,
+          fontWeight: props.theme.fontWeight.bold,
+          color: props.theme.colors.white,
+          imgDisplay: 'none'
+        };
+        break;
+
+      case "btnPrimaryWhite":
+        return {
+          background: props.theme.colors.white,
+          borderColor: props.theme.colors.darkMainBg,
+          boxShadow: props.theme.colors.darkMainBg,
+          fontWeight: props.theme.fontWeight.bold,
+          color: props.theme.colors.darkMainBg,
+          imgDisplay: 'none'
+        };
+        break;
+
+      case "btnPrimaryOrangePurple":
+        return {
+          background: props.theme.colors.orangeMain,
+          borderColor: props.theme.colors.purplePrimary,
+          boxShadow: props.theme.colors.purplePrimary,
+          fontWeight: props.theme.fontWeight.bold,
+          color: props.theme.colors.white,
+          imgDisplay: 'none'
+        };
+        break;
+
+      case "btnPrimaryPurple":
+        return {
+          background: props.theme.colors.white,
+          borderColor: props.theme.colors.purplePrimary,
+          boxShadow: props.theme.colors.purplePrimary,
+          fontWeight: props.theme.fontWeight.bold,
+          color: props.theme.colors.purplePrimary,
+          imgDisplay: 'none'
+        };
+        break;
+
+      case "btnSecondary":
+        return {
+          background: props.theme.colors.white,
+          borderColor: props.theme.colors.lightGrey,
+          boxShadow: props.theme.colors.transparent,
+          fontSize: '14px',
+          fontWeight: props.theme.fontWeight.medium,
+          color: props.theme.colors.darkGrey,
+          imgDisplay: 'none'
+        };
+        break;
+
+      case "btnLabeled":
+        return {
+          background: props.theme.colors.white,
+          borderColor: props.theme.colors.darkMainBg,
+          boxShadow: props.theme.colors.darkMainBg,
+          fontWeight: props.theme.fontWeight.bold,
+          color: props.theme.colors.darkMainBg,
+          imgDisplay: 'static'
+        };
+        break;
+
+      default:
+        return {
+          background: props.theme.colors.white,
+          borderColor: props.theme.colors.darkMainBg,
+          boxShadow: props.theme.colors.darkMainBg,
+          fontWeight: props.theme.fontWeight.bold,
+          color: props.theme.colors.darkMainBg,
+          imgDisplay: 'none'
+        };
+    }
+  };
+
+  const handleClick = event => {
+    event.preventDefault();
+    if (props.onButtonClick) props.onButtonClick(event);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(BtnContainer, {
+    className: props.className
+  }, props.isLink ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(BtnLink, {
+    $btnStyles: getBtnStyles(props.type),
+    theme: props.theme,
+    to: props.href
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(BtnImg, {
+    imgDisplay: getBtnStyles(props.type).imgDisplay,
+    src: props.github ? __webpack_require__(/*! ../../images/icon_github.svg */ "./src/images/icon_github.svg")["default"] : __webpack_require__(/*! ../../images/icon_website.svg */ "./src/images/icon_website.svg")["default"]
+  }), props.btnText) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(BtnCta, {
+    $btnStyles: getBtnStyles(props.type),
+    theme: props.theme,
+    onClick: handleClick
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(BtnImg, {
+    imgDisplay: getBtnStyles(props.type).imgDisplay,
+    src: props.github ? __webpack_require__(/*! ../../images/icon_github.svg */ "./src/images/icon_github.svg")["default"] : __webpack_require__(/*! ../../images/icon_website.svg */ "./src/images/icon_website.svg")["default"]
+  }), props.btnText));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Button);
+
+/***/ }),
+
+/***/ "./src/components/common/ContactForm.js":
+/*!**********************************************!*\
+  !*** ./src/components/common/ContactForm.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Button */ "./src/components/common/Button.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var _content_content_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../content/content.json */ "./src/content/content.json");
+/* harmony import */ var gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! gatsby-plugin-react-intl */ "./node_modules/gatsby-plugin-react-intl/index.js");
+/* harmony import */ var gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_2__.styles;
+const ContactContainer = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div.withConfig({
+  displayName: "ContactForm__ContactContainer"
+})(["display:flex;flex-direction:column;padding:40px 20px;margin-bottom:12px;border:3px solid ", ";box-shadow:0px 4px 0px ", ";border-radius:13px;max-width:52.55em;background:", ";@media (min-width:", "px){flex-direction:row;flex-wrap:wrap;justify-content:space-between;padding:30px 96px;max-width:52.55em;margin:auto;}"], styles.colors.darkMainBg, styles.colors.darkMainBg, styles.colors.white, styles.breakpoints.l);
+const ContactHeading = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].h3.withConfig({
+  displayName: "ContactForm__ContactHeading"
+})(["font-size:3.33em;font-weight:", ";text-align:center;margin-bottom:40px;@media (min-width:", "px){margin-bottom:26px;flex-basis:100%;}"], styles.fontWeight.bold, styles.breakpoints.l);
+const ContactFormBlock = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div.withConfig({
+  displayName: "ContactForm__ContactFormBlock"
+})(["@media (min-width:", "px){max-width:23em;flex-basis:50%;}"], styles.breakpoints.l);
+const Form = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].form.withConfig({
+  displayName: "ContactForm__Form"
+})(["display:flex;flex-direction:column;"]);
+const FormGroup = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div.withConfig({
+  displayName: "ContactForm__FormGroup"
+})(["display:flex;flex-direction:column;margin-bottom:29px;position:relative;&:nth-last-of-type(2){margin-bottom:30px;}&:last-child{margin-bottom:0;@media (min-width:", "px){display:flex;justify-content:space-between;flex-direction:row;&:nth-last-of-type(2){margin-bottom:22px;}a{width:max-content;margin-right:14px;}}}"], styles.breakpoints.l);
+const Label = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].label.withConfig({
+  displayName: "ContactForm__Label"
+})(["font-size:1em;font-weight:", ";margin-bottom:8px;"], styles.fontWeight.bold);
+const FieldContainer = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div.withConfig({
+  displayName: "ContactForm__FieldContainer"
+})(["position:relative;&::after{content:url(", ");position:absolute;height:20px;width:20px;right:15px;top:10px;@media (min-width:", "px){right:20px;}}"], __webpack_require__(/*! ../../images/icon_form_error.svg */ "./src/images/icon_form_error.svg")["default"], styles.breakpoints.l);
+const Field = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].input.withConfig({
+  displayName: "ContactForm__Field"
+})(["border:2px solid ", ";border-radius:12px;padding:10px 45px 10px 16px;width:100%;background:", ";font-size:1em;font-family:'Rubik',sans-serif;&::placeholder{color:", ";}@media (min-width:", "px){max-width:20.38em;}"], styles.colors.black, styles.colors.white, styles.colors.ultraLightGrey, styles.breakpoints.l);
+const TextArea = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].textarea.withConfig({
+  displayName: "ContactForm__TextArea"
+})(["border:2px solid ", ";border-radius:12px;padding:10px 45px 10px 16px;width:100%;background:", ";font-size:1.125em;font-family:'Rubik',sans-serif;height:130px;resize:none;&::placeholder{color:", ";}@media (min-width:", "px){max-width:20.38em;}"], styles.colors.black, styles.colors.white, styles.colors.ultraLightGrey, styles.breakpoints.l);
+const ErrorMessage = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].p.withConfig({
+  displayName: "ContactForm__ErrorMessage"
+})(["color:", ";font-weight:", ";font-size:.88em;font-size:.66em;margin-left:auto;margin-top:5px;position:absolute;right:6px;bottom:-22px;"], styles.colors.orangeMain, styles.fontWeight.medium);
+const FeedbackMessage = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].p.withConfig({
+  displayName: "ContactForm__FeedbackMessage"
+})(["color:", ";font-weight:", ";font-size:.88em;margin-left:0;margin-top:15px;@media (min-width:", "px){margin-left:auto;}span{font-weight:", ";display:block;}"], styles.colors.orangeMain, styles.fontWeight.regular, styles.breakpoints.l, styles.fontWeight.bold);
+const ContactInfoBlock = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div.withConfig({
+  displayName: "ContactForm__ContactInfoBlock"
+})(["margin-top:65px;@media (min-width:", "px){max-width:15em;margin-top:30px;}"], styles.breakpoints.l);
+const Email = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__["default"])(gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_3__.Link).withConfig({
+  displayName: "ContactForm__Email"
+})(["font-weight:", ";margin-bottom:30px;display:block;"], styles.fontWeight.bold);
+const OfficeListTitle = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].h5.withConfig({
+  displayName: "ContactForm__OfficeListTitle"
+})(["font-size:1em;font-weight:", ";"], styles.fontWeight.bold);
+const OfficeList = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].ul.withConfig({
+  displayName: "ContactForm__OfficeList"
+})(["margin-left:0;"]);
+const OfficeListItem = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].li.withConfig({
+  displayName: "ContactForm__OfficeListItem"
+})(["list-style-type:none;margin-bottom:30px;&:last-of-type{margin-bottom:0;}"]);
+
+const ContactForm = () => {
+  const intl = (0,gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_3__.useIntl)();
+
+  const sendForm = event => {// add funcionality
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContactContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContactHeading, null, intl.formatMessage({
+    id: 'contactForm.title'
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContactFormBlock, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Form, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FormGroup, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Label, {
+    htmlFor: "nameField"
+  }, intl.formatMessage({
+    id: 'contactForm.nameField'
+  }), "* "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FieldContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Field, {
+    name: "nameField",
+    type: "text",
+    placeholder: intl.formatMessage({
+      id: 'contactForm.nameField'
+    })
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ErrorMessage, null, intl.formatMessage({
+    id: 'contactForm.requiredFieldError'
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FormGroup, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Label, {
+    htmlFor: "emailField"
+  }, intl.formatMessage({
+    id: 'contactForm.emailField'
+  }), "* "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FieldContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Field, {
+    name: "emailField",
+    type: "email",
+    placeholder: intl.formatMessage({
+      id: 'contactForm.emailField'
+    })
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ErrorMessage, null, intl.formatMessage({
+    id: 'contactForm.requiredFieldError'
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FormGroup, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Label, {
+    htmlFor: "textAreaField"
+  }, intl.formatMessage({
+    id: 'contactForm.textAreaField'
+  }), "* "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FieldContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(TextArea, {
+    name: "textAreaField",
+    type: "textarea",
+    placeholder: intl.formatMessage({
+      id: 'contactForm.textAreaField'
+    })
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ErrorMessage, null, intl.formatMessage({
+    id: 'contactForm.requiredFieldError'
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FormGroup, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_common_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    theme: styles,
+    btnText: intl.formatMessage({
+      id: 'button.send'
+    }),
+    onButtonClick: e => {
+      sendForm(e);
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FeedbackMessage, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, intl.formatMessage({
+    id: 'contactForm.messageSent'
+  })), " ", intl.formatMessage({
+    id: 'contactForm.thankYou'
+  }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContactInfoBlock, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Email, null, "info@fiqus.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(OfficeListTitle, null, intl.formatMessage({
+    id: 'contactForm.sedes'
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(OfficeList, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(OfficeListItem, null, "14 de Julio 1268 Ciudad de Buenos Aires, Argentina"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(OfficeListItem, null, "Av. Arrayanes 66, Local 7 Villa La Angostura, Neuqu\xE9n, Argentina"))));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContactForm);
+
+/***/ }),
+
 /***/ "./src/components/common/Footer.js":
 /*!*****************************************!*\
   !*** ./src/components/common/Footer.js ***!
@@ -19337,28 +19644,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
 /* harmony import */ var _content_content_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../content/content.json */ "./src/content/content.json");
 /* harmony import */ var gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gatsby-plugin-react-intl */ "./node_modules/gatsby-plugin-react-intl/index.js");
 /* harmony import */ var gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _ContactForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ContactForm */ "./src/components/common/ContactForm.js");
+
 
 
 
 
 const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_1__.styles;
-const FooterContainer = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].footer.withConfig({
+const FooterContainer = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].footer.withConfig({
   displayName: "Footer__FooterContainer"
 })(["background:", ";color:", ";font-size:.75em;display:flex;justify-content:center;flex-wrap:wrap;padding:12px 0px 20px 0px;@media (min-width:", "px){justify-content:space-between;margin:auto;align-items:center;}"], styles.colors.purplePrimary, styles.colors.white, styles.breakpoints.l);
-const FooterLicense = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
+const FooterLicense = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div.withConfig({
   displayName: "Footer__FooterLicense"
 })(["display:flex;justify-content:center;width:100%;span{font-weight:", ";}@media (min-width:", "px){width:auto;}"], styles.fontWeight.bold, styles.breakpoints.l);
-const FooterCopyright = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
+const FooterCopyright = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div.withConfig({
   displayName: "Footer__FooterCopyright"
 })(["margin-top:18px;span{font-weight:", ";text-transform:uppercase;}@media (min-width:", "px){margin-top:0;}"], styles.fontWeight.bold, styles.breakpoints.l);
-const FooterLicenseContent = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].p.withConfig({
+const FooterLicenseContent = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].p.withConfig({
   displayName: "Footer__FooterLicenseContent"
 })(["max-width:342px;@media (min-width:", "px){max-width:322px;}"], styles.breakpoints.l);
-const FooterLicenseIcon = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].img.withConfig({
+const FooterLicenseIcon = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].img.withConfig({
   displayName: "Footer__FooterLicenseIcon"
 })(["width:38px;height:33px;margin-right:6px;"]);
 
@@ -19369,7 +19678,7 @@ const Footer = () => {
     alt: "Creative Commons Attribution logo"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterLicenseContent, null, intl.formatMessage({
     id: "footer.disclaimer"
-  }), "  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Creative Commons Attribution"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterCopyright, null, intl.formatMessage({
+  }), "  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Creative Commons Attribution"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ContactForm__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterCopyright, null, intl.formatMessage({
     id: "footer.designby"
   }), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "El Maizal")));
 };
@@ -30313,6 +30622,36 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/images/icon_form_error.svg":
+/*!****************************************!*\
+  !*** ./src/images/icon_form_error.svg ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIHZpZXdCb3g9IjAgMCAyMiAyMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIxLjU0MzggMTkuMzkxMUMyMS4xNjU2IDE4Ljk0MjMgMjAuODg4NCAxOC41ODIyIDIwLjY2NTUgMTcuOTM4MkMyMC4yMDQ2IDE2LjIwMDIgMjAuNzQzNiAxNC4yMDgxIDIwLjc0MzYgMTQuMjA4MUwyMC43NDA2IDE0LjIxMDFDMjEuMDk0MSAxMy4xMzYzIDIxLjI4ODQgMTEuOTg4NSAyMS4yODg0IDEwLjc5NDNDMjEuMjg4NiA0LjgzMjU0IDE2LjUyMjUgMCAxMC42NDQzIDBDNC43NjYzMSAwIDAgNC44MzI1NCAwIDEwLjc5NDFDMCAxNS40MDgyIDIuODU1ODMgMTkuMzQzMSA2Ljg3MTA2IDIwLjg4OEw2Ljg2OTA4IDIwLjg4ODZDNi44NjkwOCAyMC44ODg2IDYuODk0MzggMjAuODk4OCA2Ljk0MDE0IDIwLjkxNTVDNy40NjYzOCAyMS4xMTM5IDguMDEyMiAyMS4yNzAxIDguNTc0MzEgMjEuMzgyOEMxMC43NDk3IDIxLjg4MDQgMTQuOTQyIDIyLjQ0NDcgMjAuNzc4OCAyMS40NTI3QzIyLjIyODYgMjEuMjAwOCAyMi4yNTY0IDIwLjIzNzIgMjEuNTQzOCAxOS4zOTExWk0xMC43NDQ4IDE1Ljc3MzhDMTAuMDM4IDE1Ljc3MzggOS40NjQ4NyAxNS4xOTI0IDkuNDY0ODcgMTQuNDc1OEM5LjQ2NDg3IDEzLjc1ODkgMTAuMDM4IDEzLjE3ODEgMTAuNzQ0OCAxMy4xNzgxQzExLjQ1MTUgMTMuMTc4MSAxMi4wMjQ4IDEzLjc1OTEgMTIuMDI0OCAxNC40NzU4QzEyLjAyNDggMTUuMTkyNiAxMS40NTE3IDE1Ljc3MzggMTAuNzQ0OCAxNS43NzM4Wk0xMi4wMjQ4IDEwLjcxMDVDMTIuMDI0OCAxMS40Mjc1IDExLjQ1MTcgMTIuMDA4MyAxMC43NDQ4IDEyLjAwODNDMTAuMDM4IDEyLjAwODMgOS40NjQ4NyAxMS40MjczIDkuNDY0ODcgMTAuNzEwNVY3LjUyNDI1QzkuNDY0ODcgNi44MDc0OSAxMC4wMzggNi4yMjYyNSAxMC43NDQ4IDYuMjI2MjVDMTEuNDUxNSA2LjIyNjI1IDEyLjAyNDggNi44MDc0OSAxMi4wMjQ4IDcuNTI0MjVWMTAuNzEwNVoiIGZpbGw9IiNGRjYwMkMiLz4KPC9zdmc+Cg==");
+
+/***/ }),
+
+/***/ "./src/images/icon_github.svg":
+/*!************************************!*\
+  !*** ./src/images/icon_github.svg ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "static/icon_github-b1d6abd7a181316723ea5d9c4cd96c35.svg");
+
+/***/ }),
+
 /***/ "./src/images/icon_toggler.svg":
 /*!*************************************!*\
   !*** ./src/images/icon_toggler.svg ***!
@@ -30355,6 +30694,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjkiIGhlaWdodD0iMjMiIHZpZXdCb3g9IjAgMCAyOSAyMyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI5IiBoZWlnaHQ9IjMiIGZpbGw9IndoaXRlIi8+CjxyZWN0IHk9IjEwIiB3aWR0aD0iMjkiIGhlaWdodD0iMyIgZmlsbD0id2hpdGUiLz4KPHJlY3QgeT0iMjAiIHdpZHRoPSIyOSIgaGVpZ2h0PSIzIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K");
+
+/***/ }),
+
+/***/ "./src/images/icon_website.svg":
+/*!*************************************!*\
+  !*** ./src/images/icon_website.svg ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEwIDBDOC4wMjIxOSAwIDYuMDg4NzkgMC41ODY0OSA0LjQ0NDMgMS42ODUzQzIuNzk5ODEgMi43ODQxMiAxLjUxODA5IDQuMzQ1OSAwLjc2MTIwOSA2LjE3MzE2QzAuMDA0MzMyOTYgOC4wMDA0MyAtMC4xOTM3MDEgMTAuMDExMSAwLjE5MjE1MiAxMS45NTA5QzAuNTc4MDA0IDEzLjg5MDcgMS41MzA0MSAxNS42NzI1IDIuOTI4OTQgMTcuMDcxMUM0LjMyNzQ2IDE4LjQ2OTYgNi4xMDkyOSAxOS40MjIgOC4wNDkxIDE5LjgwNzhDOS45ODg5MSAyMC4xOTM3IDExLjk5OTYgMTkuOTk1NyAxMy44MjY4IDE5LjIzODhDMTUuNjU0MSAxOC40ODE5IDE3LjIxNTkgMTcuMjAwMiAxOC4zMTQ3IDE1LjU1NTdDMTkuNDEzNSAxMy45MTEyIDIwIDExLjk3NzggMjAgMTBDMjAgNy4zNDc4MyAxOC45NDY0IDQuODA0MyAxNy4wNzExIDIuOTI4OTNDMTUuMTk1NyAxLjA1MzU3IDEyLjY1MjIgMCAxMCAwVjBaTTEwIDE4LjY2NjdDOS4zMzMzNCAxOC42NjY3IDguNTIgMTcuNDQ2NyA3Ljk2IDE1LjMzMzNIMTIuMDRDMTEuNDggMTcuNDQ2NyAxMC42NjY3IDE4LjY2NjcgMTAgMTguNjY2N1pNNy42NzMzNCAxNEM3LjQ3NTQzIDEyLjg5OTEgNy4zNjE3NyAxMS43ODQ4IDcuMzMzMzQgMTAuNjY2N0gxMi42NjY3QzEyLjY0MjYgMTEuNzg0NSAxMi41MzM0IDEyLjg5ODggMTIuMzQgMTRINy42NzMzNFpNMS4zNjY2NyAxMC42NjY3SDYuMDMzMzRDNi4wNTg1MyAxMS43ODM4IDYuMTYzMjQgMTIuODk3NyA2LjM0NjY3IDE0SDIuMzQ2NjdDMS43OTgzNSAxMi45NjY0IDEuNDY0OTkgMTEuODMyNSAxLjM2NjY3IDEwLjY2NjdaTTEwIDEuMzMzMzNDMTAuNjY2NyAxLjMzMzMzIDExLjQ4IDIuNTUzMzMgMTIuMDQgNC42NjY2N0g3Ljk2QzguNTIgMi41NTMzMyA5LjMzMzM0IDEuMzMzMzMgMTAgMS4zMzMzM1pNMTIuMzI2NyA2QzEyLjUyNDYgNy4xMDA4NSAxMi42MzgyIDguMjE1MTkgMTIuNjY2NyA5LjMzMzMzSDcuMzMzMzRDNy4zNTczNyA4LjIxNTUzIDcuNDY2NTcgNy4xMDEyIDcuNjYgNkgxMi4zMjY3Wk02IDkuMzMzMzNIMS4zMzMzNEMxLjQyMzM2IDguMTY5MzUgMS43NDc2MyA3LjAzNTU2IDIuMjg2NjcgNkg2LjI4NjY3QzYuMTEyMTggNy4xMDI5IDYuMDE2MzggOC4yMTY4MyA2IDkuMzMzMzNWOS4zMzMzM1pNMTQgMTAuNjY2N0gxOC42NjY3QzE4LjU3NjYgMTEuODMwNiAxOC4yNTI0IDEyLjk2NDQgMTcuNzEzMyAxNEgxMy43MTMzQzEzLjg4NzggMTIuODk3MSAxMy45ODM2IDExLjc4MzIgMTQgMTAuNjY2N1pNMTQgOS4zMzMzM0MxMy45NzQ4IDguMjE2MTkgMTMuODcwMSA3LjEwMjI2IDEzLjY4NjcgNkgxNy42ODY3QzE4LjIzNSA3LjAzMzU3IDE4LjU2ODQgOC4xNjc0NiAxOC42NjY3IDkuMzMzMzNIMTRaTTE2LjgzMzMgNC42NjY2N0gxMy40MDY3QzEzLjE3NjQgMy42MDY1NiAxMi43OSAyLjU4NjU0IDEyLjI2IDEuNjRDMTQuMDY1MiAyLjEzMzgxIDE1LjY2MzkgMy4xOTQ5IDE2LjgyIDQuNjY2NjdIMTYuODMzM1pNNy43NCAxLjY0QzcuMjEwMDEgMi41ODY1NCA2LjgyMzU3IDMuNjA2NTYgNi41OTMzNCA0LjY2NjY3SDMuMThDNC4zMzYxMiAzLjE5NDkgNS45MzQ3NyAyLjEzMzgxIDcuNzQgMS42NFYxLjY0Wk0zLjE4IDE1LjMzMzNINi41OTMzNEM2LjgyMzU3IDE2LjM5MzQgNy4yMTAwMSAxNy40MTM1IDcuNzQgMTguMzZDNS45MzQ3NyAxNy44NjYyIDQuMzM2MTIgMTYuODA1MSAzLjE4IDE1LjMzMzNWMTUuMzMzM1pNMTIuMjYgMTguMzZDMTIuNzkgMTcuNDEzNSAxMy4xNzY0IDE2LjM5MzQgMTMuNDA2NyAxNS4zMzMzSDE2LjgyQzE1LjY2MzkgMTYuODA1MSAxNC4wNjUyIDE3Ljg2NjIgMTIuMjYgMTguMzZWMTguMzZaIiBmaWxsPSJibGFjayIvPgo8L3N2Zz4K");
 
 /***/ }),
 
