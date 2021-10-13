@@ -54,7 +54,7 @@ const TagsContainer =  styled.div`
     margin-bottom: 20px;
     border-bottom: 2px solid ${styles.colors.greenLight};
     @media (min-width: ${styles.breakpoints.l}px) {
-        padding-bottom: 14px;
+        padding-bottom: 13px;
     }
 `
 const BtnContainer =  styled.div`
