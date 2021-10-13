@@ -134,8 +134,7 @@ const ErrorMessage= styled.p`
     right: 6px;
     bottom: -22px;
 `
-const BtnSubmit = styled(Button)`
-`
+
 const FeedbackMessage= styled.p`
     color: ${styles.colors.orangeMain};
     font-weight:${styles.fontWeight.regular};
@@ -180,41 +179,45 @@ const OfficeListItem = styled.li`
 const ContactForm = () => {
     const intl = useIntl();
 
+    const sendForm = (event) => {
+        // add funcionality
+    }
+
     return (
         <ContactContainer>
-            <ContactHeading>Contacto</ContactHeading>
+            <ContactHeading>{intl.formatMessage({id: 'contactForm.title'})}</ContactHeading>
             <ContactFormBlock>
                 <Form>
                     <FormGroup>
-                        <Label htmlFor="nameField">Nombre* </Label>
+                        <Label htmlFor="nameField">{intl.formatMessage({id: 'contactForm.nameField'})}* </Label>
                         <FieldContainer>
-                            <Field name="nameField" type="text" placeholder="Nombre" />
+                            <Field name="nameField" type="text" placeholder={intl.formatMessage({id: 'contactForm.nameField'})} />
                         </FieldContainer>
-                        <ErrorMessage>Por favor, complete el campo requerido.</ErrorMessage>
+                        <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
                     </FormGroup>
                     <FormGroup>
-                        <Label htmlFor="emailField">Email* </Label>
+                        <Label htmlFor="emailField">{intl.formatMessage({id: 'contactForm.emailField'})}* </Label>
                         <FieldContainer>
-                            <Field name="emailField" type="email" placeholder="E-mail" />
+                            <Field name="emailField" type="email" placeholder={intl.formatMessage({id: 'contactForm.emailField'})} />
                         </FieldContainer>
-                        <ErrorMessage>Por favor, complete el campo requerido.</ErrorMessage>
+                        <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
                     </FormGroup>
                     <FormGroup>
-                        <Label htmlFor="textAreaField">Mensaje* </Label>
+                        <Label htmlFor="textAreaField">{intl.formatMessage({id: 'contactForm.textAreaField'})}* </Label>
                         <FieldContainer>
-                            <TextArea name="textAreaField" type="textarea" placeholder="Mensaje"  />
+                            <TextArea name="textAreaField" type="textarea" placeholder={intl.formatMessage({id: 'contactForm.textAreaField'})}  />
                         </FieldContainer>
-                        <ErrorMessage>Por favor, complete el campo requerido.</ErrorMessage>
+                        <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
                     </FormGroup>
                     <FormGroup>
-                        <BtnSubmit theme={styles} type="submit" value="enviar"></BtnSubmit>
-                        <FeedbackMessage><span>Tu mensaje ha sido enviado.</span> Gracias por comunicarte con nostr@s</FeedbackMessage>
+                        <Button theme={styles} btnText={intl.formatMessage({id: 'button.send'})} onButtonClick={(e) => {sendForm(e)}}></Button>
+                        <FeedbackMessage><span>{intl.formatMessage({id: 'contactForm.messageSent'})}</span> {intl.formatMessage({id: 'contactForm.thankYou'})}</FeedbackMessage>
                     </FormGroup>
                 </Form>
             </ContactFormBlock>
             <ContactInfoBlock>
                 <Email>info@fiqus.com</Email>
-                <OfficeListTitle>Sedes</OfficeListTitle>
+                <OfficeListTitle>{intl.formatMessage({id: 'contactForm.sedes'})}</OfficeListTitle>
                 <OfficeList>
                     <OfficeListItem>14 de Julio 1268 Ciudad de Buenos Aires, Argentina</OfficeListItem>
                     <OfficeListItem>Av. Arrayanes 66, Local 7 Villa La Angostura, Neuquén, Argentina</OfficeListItem>

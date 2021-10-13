@@ -11,7 +11,21 @@
     "homepage" : {
         "title":"Homepage"
     },
+    "button": {
+        "verMas": "view more",
+        "send": "send"
+    },
     "verMas": "view more",
+    "contactForm": {
+        "title": "Contacto",
+        "nameField": "Nombre",
+        "emailField": "Email",
+        "requiredFieldError": "Por favor, complete el campo requerido.",
+        "textAreaField": "Mensaje",
+        "messageSent": "Tu mensaje ha sido enviado.",
+        "thankYou": "Gracias por comunicarte con nostr@s",
+        "sedes": "Sedes"
+    },
     "services": {
         "title": "Services"
     }, 

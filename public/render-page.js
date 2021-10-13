@@ -19536,7 +19536,7 @@ const Header = props => {
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavLink, {
       to: menuLink.link,
-      active: activeLink === menuLink.link
+      active: activeLink === menuLink.link ? 1 : 0
     }, intl.formatMessage({
       id: `${menuLink.name}`
     })));
@@ -19581,25 +19581,22 @@ const PageContainer = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].
 })(["width:100%;max-width:", "px;padding:102px 20px;margin:0 auto;min-height:100vh;@media (min-width:", "px){padding:123px 50px;}"], _content_content_json__WEBPACK_IMPORTED_MODULE_5__.styles.breakpoints.xl, _content_content_json__WEBPACK_IMPORTED_MODULE_5__.styles.breakpoints.m);
 
 const PageWrapper = props => {
-  const [activeLink, setActiveLink] = useState('/');
-  useEffect(() => {
-    let active;
-    data.site.siteMetadata.menuLinks.forEach(menuLink => {
-      if (menuLink.link !== '/' && props.location.pathname.includes(menuLink.link.toLowerCase())) {
-        active = menuLink.link;
-      }
-    });
-    if (!active) active = '/';
-    setActiveLink(active);
+  const {
+    0: isHome,
+    1: setIsHome
+  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(true);
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    const homePaths = ['/', '/en', '/en/', '/es', '/es/'];
+    setIsHome(homePaths.includes(props.location.pathname));
   }, [props.location]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(gatsby__WEBPACK_IMPORTED_MODULE_2__.StaticQuery, {
     query: "805671509",
     render: data => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(Wrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {
       menuLinks: data.site.siteMetadata.menuLinks,
-      isHome: activeLink === '/',
+      isHome: isHome,
       location: props.location
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(PageContainer, {
-      isHome: activeLink === '/'
+      isHome: isHome
     }, props.children), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Footer__WEBPACK_IMPORTED_MODULE_4__["default"], null)),
     data: _public_page_data_sq_d_805671509_json__WEBPACK_IMPORTED_MODULE_0__
   });
