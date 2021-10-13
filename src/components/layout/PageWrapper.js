@@ -44,7 +44,7 @@ const PageWrapper = (props) => {
         }
         render = { data => (
             <Wrapper>
-                <Header menuLinks = {data.site.siteMetadata.menuLinks} isHome={props.location.pathname === '/'}></Header>
+                <Header menuLinks = {data.site.siteMetadata.menuLinks} isHome={props.location.pathname === '/'} location={props.location}></Header>
                 <PageContainer>{props.children}</PageContainer>
                 <Footer></Footer>
             </Wrapper>

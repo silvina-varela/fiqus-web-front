@@ -86,6 +86,69 @@ module.exports["default"] = module.exports, module.exports.__esModule = true;
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/interopRequireWildcard.js ***!
+  \***********************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js")["default"];
+
+function _getRequireWildcardCache(nodeInterop) {
+  if (typeof WeakMap !== "function") return null;
+  var cacheBabelInterop = new WeakMap();
+  var cacheNodeInterop = new WeakMap();
+  return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) {
+    return nodeInterop ? cacheNodeInterop : cacheBabelInterop;
+  })(nodeInterop);
+}
+
+function _interopRequireWildcard(obj, nodeInterop) {
+  if (!nodeInterop && obj && obj.__esModule) {
+    return obj;
+  }
+
+  if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") {
+    return {
+      "default": obj
+    };
+  }
+
+  var cache = _getRequireWildcardCache(nodeInterop);
+
+  if (cache && cache.has(obj)) {
+    return cache.get(obj);
+  }
+
+  var newObj = {};
+  var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;
+
+  for (var key in obj) {
+    if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) {
+      var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;
+
+      if (desc && (desc.get || desc.set)) {
+        Object.defineProperty(newObj, key, desc);
+      } else {
+        newObj[key] = obj[key];
+      }
+    }
+  }
+
+  newObj["default"] = obj;
+
+  if (cache) {
+    cache.set(obj, newObj);
+  }
+
+  return newObj;
+}
+
+module.exports = _interopRequireWildcard;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js":
 /*!*****************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js ***!
@@ -129,6 +192,37 @@ function _setPrototypeOf(o, p) {
 }
 
 module.exports = _setPrototypeOf;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/typeof.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
+  \*******************************************************/
+/***/ ((module) => {
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+
+    module.exports["default"] = module.exports, module.exports.__esModule = true;
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+
+    module.exports["default"] = module.exports, module.exports.__esModule = true;
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
 module.exports["default"] = module.exports, module.exports.__esModule = true;
 
 /***/ }),
@@ -879,6 +973,12814 @@ var unitlessKeys = {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (unitlessKeys);
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/262.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/262.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ToString": () => (/* binding */ ToString),
+/* harmony export */   "ToNumber": () => (/* binding */ ToNumber),
+/* harmony export */   "TimeClip": () => (/* binding */ TimeClip),
+/* harmony export */   "ToObject": () => (/* binding */ ToObject),
+/* harmony export */   "SameValue": () => (/* binding */ SameValue),
+/* harmony export */   "ArrayCreate": () => (/* binding */ ArrayCreate),
+/* harmony export */   "HasOwnProperty": () => (/* binding */ HasOwnProperty),
+/* harmony export */   "Type": () => (/* binding */ Type),
+/* harmony export */   "Day": () => (/* binding */ Day),
+/* harmony export */   "WeekDay": () => (/* binding */ WeekDay),
+/* harmony export */   "DayFromYear": () => (/* binding */ DayFromYear),
+/* harmony export */   "TimeFromYear": () => (/* binding */ TimeFromYear),
+/* harmony export */   "YearFromTime": () => (/* binding */ YearFromTime),
+/* harmony export */   "DaysInYear": () => (/* binding */ DaysInYear),
+/* harmony export */   "DayWithinYear": () => (/* binding */ DayWithinYear),
+/* harmony export */   "InLeapYear": () => (/* binding */ InLeapYear),
+/* harmony export */   "MonthFromTime": () => (/* binding */ MonthFromTime),
+/* harmony export */   "DateFromTime": () => (/* binding */ DateFromTime),
+/* harmony export */   "HourFromTime": () => (/* binding */ HourFromTime),
+/* harmony export */   "MinFromTime": () => (/* binding */ MinFromTime),
+/* harmony export */   "SecFromTime": () => (/* binding */ SecFromTime),
+/* harmony export */   "OrdinaryHasInstance": () => (/* binding */ OrdinaryHasInstance),
+/* harmony export */   "msFromTime": () => (/* binding */ msFromTime)
+/* harmony export */ });
+/**
+ * https://tc39.es/ecma262/#sec-tostring
+ */
+function ToString(o) {
+    // Only symbol is irregular...
+    if (typeof o === 'symbol') {
+        throw TypeError('Cannot convert a Symbol value to a string');
+    }
+    return String(o);
+}
+/**
+ * https://tc39.es/ecma262/#sec-tonumber
+ * @param val
+ */
+function ToNumber(val) {
+    if (val === undefined) {
+        return NaN;
+    }
+    if (val === null) {
+        return +0;
+    }
+    if (typeof val === 'boolean') {
+        return val ? 1 : +0;
+    }
+    if (typeof val === 'number') {
+        return val;
+    }
+    if (typeof val === 'symbol' || typeof val === 'bigint') {
+        throw new TypeError('Cannot convert symbol/bigint to number');
+    }
+    return Number(val);
+}
+/**
+ * https://tc39.es/ecma262/#sec-tointeger
+ * @param n
+ */
+function ToInteger(n) {
+    var number = ToNumber(n);
+    if (isNaN(number) || SameValue(number, -0)) {
+        return 0;
+    }
+    if (isFinite(number)) {
+        return number;
+    }
+    var integer = Math.floor(Math.abs(number));
+    if (number < 0) {
+        integer = -integer;
+    }
+    if (SameValue(integer, -0)) {
+        return 0;
+    }
+    return integer;
+}
+/**
+ * https://tc39.es/ecma262/#sec-timeclip
+ * @param time
+ */
+function TimeClip(time) {
+    if (!isFinite(time)) {
+        return NaN;
+    }
+    if (Math.abs(time) > 8.64 * 1e15) {
+        return NaN;
+    }
+    return ToInteger(time);
+}
+/**
+ * https://tc39.es/ecma262/#sec-toobject
+ * @param arg
+ */
+function ToObject(arg) {
+    if (arg == null) {
+        throw new TypeError('undefined/null cannot be converted to object');
+    }
+    return Object(arg);
+}
+/**
+ * https://www.ecma-international.org/ecma-262/11.0/index.html#sec-samevalue
+ * @param x
+ * @param y
+ */
+function SameValue(x, y) {
+    if (Object.is) {
+        return Object.is(x, y);
+    }
+    // SameValue algorithm
+    if (x === y) {
+        // Steps 1-5, 7-10
+        // Steps 6.b-6.e: +0 != -0
+        return x !== 0 || 1 / x === 1 / y;
+    }
+    // Step 6.a: NaN == NaN
+    return x !== x && y !== y;
+}
+/**
+ * https://www.ecma-international.org/ecma-262/11.0/index.html#sec-arraycreate
+ * @param len
+ */
+function ArrayCreate(len) {
+    return new Array(len);
+}
+/**
+ * https://www.ecma-international.org/ecma-262/11.0/index.html#sec-hasownproperty
+ * @param o
+ * @param prop
+ */
+function HasOwnProperty(o, prop) {
+    return Object.prototype.hasOwnProperty.call(o, prop);
+}
+/**
+ * https://www.ecma-international.org/ecma-262/11.0/index.html#sec-type
+ * @param x
+ */
+function Type(x) {
+    if (x === null) {
+        return 'Null';
+    }
+    if (typeof x === 'undefined') {
+        return 'Undefined';
+    }
+    if (typeof x === 'function' || typeof x === 'object') {
+        return 'Object';
+    }
+    if (typeof x === 'number') {
+        return 'Number';
+    }
+    if (typeof x === 'boolean') {
+        return 'Boolean';
+    }
+    if (typeof x === 'string') {
+        return 'String';
+    }
+    if (typeof x === 'symbol') {
+        return 'Symbol';
+    }
+    if (typeof x === 'bigint') {
+        return 'BigInt';
+    }
+}
+var MS_PER_DAY = 86400000;
+/**
+ * https://www.ecma-international.org/ecma-262/11.0/index.html#eqn-modulo
+ * @param x
+ * @param y
+ * @return k of the same sign as y
+ */
+function mod(x, y) {
+    return x - Math.floor(x / y) * y;
+}
+/**
+ * https://tc39.es/ecma262/#eqn-Day
+ * @param t
+ */
+function Day(t) {
+    return Math.floor(t / MS_PER_DAY);
+}
+/**
+ * https://tc39.es/ecma262/#sec-week-day
+ * @param t
+ */
+function WeekDay(t) {
+    return mod(Day(t) + 4, 7);
+}
+/**
+ * https://tc39.es/ecma262/#sec-year-number
+ * @param y
+ */
+function DayFromYear(y) {
+    return Date.UTC(y, 0) / MS_PER_DAY;
+}
+/**
+ * https://tc39.es/ecma262/#sec-year-number
+ * @param y
+ */
+function TimeFromYear(y) {
+    return Date.UTC(y, 0);
+}
+/**
+ * https://tc39.es/ecma262/#sec-year-number
+ * @param t
+ */
+function YearFromTime(t) {
+    return new Date(t).getUTCFullYear();
+}
+function DaysInYear(y) {
+    if (y % 4 !== 0) {
+        return 365;
+    }
+    if (y % 100 !== 0) {
+        return 366;
+    }
+    if (y % 400 !== 0) {
+        return 365;
+    }
+    return 366;
+}
+function DayWithinYear(t) {
+    return Day(t) - DayFromYear(YearFromTime(t));
+}
+function InLeapYear(t) {
+    return DaysInYear(YearFromTime(t)) === 365 ? 0 : 1;
+}
+/**
+ * https://tc39.es/ecma262/#sec-month-number
+ * @param t
+ */
+function MonthFromTime(t) {
+    var dwy = DayWithinYear(t);
+    var leap = InLeapYear(t);
+    if (dwy >= 0 && dwy < 31) {
+        return 0;
+    }
+    if (dwy < 59 + leap) {
+        return 1;
+    }
+    if (dwy < 90 + leap) {
+        return 2;
+    }
+    if (dwy < 120 + leap) {
+        return 3;
+    }
+    if (dwy < 151 + leap) {
+        return 4;
+    }
+    if (dwy < 181 + leap) {
+        return 5;
+    }
+    if (dwy < 212 + leap) {
+        return 6;
+    }
+    if (dwy < 243 + leap) {
+        return 7;
+    }
+    if (dwy < 273 + leap) {
+        return 8;
+    }
+    if (dwy < 304 + leap) {
+        return 9;
+    }
+    if (dwy < 334 + leap) {
+        return 10;
+    }
+    if (dwy < 365 + leap) {
+        return 11;
+    }
+    throw new Error('Invalid time');
+}
+function DateFromTime(t) {
+    var dwy = DayWithinYear(t);
+    var mft = MonthFromTime(t);
+    var leap = InLeapYear(t);
+    if (mft === 0) {
+        return dwy + 1;
+    }
+    if (mft === 1) {
+        return dwy - 30;
+    }
+    if (mft === 2) {
+        return dwy - 58 - leap;
+    }
+    if (mft === 3) {
+        return dwy - 89 - leap;
+    }
+    if (mft === 4) {
+        return dwy - 119 - leap;
+    }
+    if (mft === 5) {
+        return dwy - 150 - leap;
+    }
+    if (mft === 6) {
+        return dwy - 180 - leap;
+    }
+    if (mft === 7) {
+        return dwy - 211 - leap;
+    }
+    if (mft === 8) {
+        return dwy - 242 - leap;
+    }
+    if (mft === 9) {
+        return dwy - 272 - leap;
+    }
+    if (mft === 10) {
+        return dwy - 303 - leap;
+    }
+    if (mft === 11) {
+        return dwy - 333 - leap;
+    }
+    throw new Error('Invalid time');
+}
+var HOURS_PER_DAY = 24;
+var MINUTES_PER_HOUR = 60;
+var SECONDS_PER_MINUTE = 60;
+var MS_PER_SECOND = 1e3;
+var MS_PER_MINUTE = MS_PER_SECOND * SECONDS_PER_MINUTE;
+var MS_PER_HOUR = MS_PER_MINUTE * MINUTES_PER_HOUR;
+function HourFromTime(t) {
+    return mod(Math.floor(t / MS_PER_HOUR), HOURS_PER_DAY);
+}
+function MinFromTime(t) {
+    return mod(Math.floor(t / MS_PER_MINUTE), MINUTES_PER_HOUR);
+}
+function SecFromTime(t) {
+    return mod(Math.floor(t / MS_PER_SECOND), SECONDS_PER_MINUTE);
+}
+function IsCallable(fn) {
+    return typeof fn === 'function';
+}
+/**
+ * The abstract operation OrdinaryHasInstance implements
+ * the default algorithm for determining if an object O
+ * inherits from the instance object inheritance path
+ * provided by constructor C.
+ * @param C class
+ * @param O object
+ * @param internalSlots internalSlots
+ */
+function OrdinaryHasInstance(C, O, internalSlots) {
+    if (!IsCallable(C)) {
+        return false;
+    }
+    if (internalSlots === null || internalSlots === void 0 ? void 0 : internalSlots.boundTargetFunction) {
+        var BC = internalSlots === null || internalSlots === void 0 ? void 0 : internalSlots.boundTargetFunction;
+        return O instanceof BC;
+    }
+    if (typeof O !== 'object') {
+        return false;
+    }
+    var P = C.prototype;
+    if (typeof P !== 'object') {
+        throw new TypeError('OrdinaryHasInstance called on an object with an invalid prototype property.');
+    }
+    return Object.prototype.isPrototypeOf.call(P, O);
+}
+function msFromTime(t) {
+    return mod(t, MS_PER_SECOND);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeLocaleList.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeLocaleList.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CanonicalizeLocaleList": () => (/* binding */ CanonicalizeLocaleList)
+/* harmony export */ });
+/**
+ * http://ecma-international.org/ecma-402/7.0/index.html#sec-canonicalizelocalelist
+ * @param locales
+ */
+function CanonicalizeLocaleList(locales) {
+    // TODO
+    return Intl.getCanonicalLocales(locales);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeTimeZoneName.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeTimeZoneName.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CanonicalizeTimeZoneName": () => (/* binding */ CanonicalizeTimeZoneName)
+/* harmony export */ });
+/**
+ * https://tc39.es/ecma402/#sec-canonicalizetimezonename
+ * @param tz
+ */
+function CanonicalizeTimeZoneName(tz, _a) {
+    var tzData = _a.tzData, uppercaseLinks = _a.uppercaseLinks;
+    var uppercasedTz = tz.toUpperCase();
+    var uppercasedZones = Object.keys(tzData).reduce(function (all, z) {
+        all[z.toUpperCase()] = z;
+        return all;
+    }, {});
+    var ianaTimeZone = uppercaseLinks[uppercasedTz] || uppercasedZones[uppercasedTz];
+    if (ianaTimeZone === 'Etc/UTC' || ianaTimeZone === 'Etc/GMT') {
+        return 'UTC';
+    }
+    return ianaTimeZone;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/CoerceOptionsToObject.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/CoerceOptionsToObject.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CoerceOptionsToObject": () => (/* binding */ CoerceOptionsToObject)
+/* harmony export */ });
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./262 */ "./node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+/**
+ * https://tc39.es/ecma402/#sec-coerceoptionstoobject
+ * @param options
+ * @returns
+ */
+function CoerceOptionsToObject(options) {
+    if (typeof options === 'undefined') {
+        return Object.create(null);
+    }
+    return (0,_262__WEBPACK_IMPORTED_MODULE_0__.ToObject)(options);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/DefaultNumberOption.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/DefaultNumberOption.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DefaultNumberOption": () => (/* binding */ DefaultNumberOption)
+/* harmony export */ });
+function DefaultNumberOption(val, min, max, fallback) {
+    if (val !== undefined) {
+        val = Number(val);
+        if (isNaN(val) || val < min || val > max) {
+            throw new RangeError(val + " is outside of range [" + min + ", " + max + "]");
+        }
+        return Math.floor(val);
+    }
+    return fallback;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/GetNumberOption.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/GetNumberOption.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GetNumberOption": () => (/* binding */ GetNumberOption)
+/* harmony export */ });
+/* harmony import */ var _DefaultNumberOption__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DefaultNumberOption */ "./node_modules/@formatjs/ecma402-abstract/lib/DefaultNumberOption.js");
+/**
+ * https://tc39.es/ecma402/#sec-getnumberoption
+ * @param options
+ * @param property
+ * @param min
+ * @param max
+ * @param fallback
+ */
+
+function GetNumberOption(options, property, minimum, maximum, fallback) {
+    var val = options[property];
+    // @ts-expect-error
+    return (0,_DefaultNumberOption__WEBPACK_IMPORTED_MODULE_0__.DefaultNumberOption)(val, minimum, maximum, fallback);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/GetOption.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/GetOption.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GetOption": () => (/* binding */ GetOption)
+/* harmony export */ });
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./262 */ "./node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+/**
+ * https://tc39.es/ecma402/#sec-getoption
+ * @param opts
+ * @param prop
+ * @param type
+ * @param values
+ * @param fallback
+ */
+function GetOption(opts, prop, type, values, fallback) {
+    if (typeof opts !== 'object') {
+        throw new TypeError('Options must be an object');
+    }
+    var value = opts[prop];
+    if (value !== undefined) {
+        if (type !== 'boolean' && type !== 'string') {
+            throw new TypeError('invalid type');
+        }
+        if (type === 'boolean') {
+            value = Boolean(value);
+        }
+        if (type === 'string') {
+            value = (0,_262__WEBPACK_IMPORTED_MODULE_0__.ToString)(value);
+        }
+        if (values !== undefined && !values.filter(function (val) { return val == value; }).length) {
+            throw new RangeError(value + " is not within " + values.join(', '));
+        }
+        return value;
+    }
+    return fallback;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/GetOptionsObject.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/GetOptionsObject.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GetOptionsObject": () => (/* binding */ GetOptionsObject)
+/* harmony export */ });
+/**
+ * https://tc39.es/ecma402/#sec-getoptionsobject
+ * @param options
+ * @returns
+ */
+function GetOptionsObject(options) {
+    if (typeof options === 'undefined') {
+        return Object.create(null);
+    }
+    if (typeof options === 'object') {
+        return options;
+    }
+    throw new TypeError('Options must be an object');
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/IsSanctionedSimpleUnitIdentifier.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/IsSanctionedSimpleUnitIdentifier.js ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SANCTIONED_UNITS": () => (/* binding */ SANCTIONED_UNITS),
+/* harmony export */   "removeUnitNamespace": () => (/* binding */ removeUnitNamespace),
+/* harmony export */   "SIMPLE_UNITS": () => (/* binding */ SIMPLE_UNITS),
+/* harmony export */   "IsSanctionedSimpleUnitIdentifier": () => (/* binding */ IsSanctionedSimpleUnitIdentifier)
+/* harmony export */ });
+/**
+ * https://tc39.es/ecma402/#table-sanctioned-simple-unit-identifiers
+ */
+var SANCTIONED_UNITS = [
+    'angle-degree',
+    'area-acre',
+    'area-hectare',
+    'concentr-percent',
+    'digital-bit',
+    'digital-byte',
+    'digital-gigabit',
+    'digital-gigabyte',
+    'digital-kilobit',
+    'digital-kilobyte',
+    'digital-megabit',
+    'digital-megabyte',
+    'digital-petabyte',
+    'digital-terabit',
+    'digital-terabyte',
+    'duration-day',
+    'duration-hour',
+    'duration-millisecond',
+    'duration-minute',
+    'duration-month',
+    'duration-second',
+    'duration-week',
+    'duration-year',
+    'length-centimeter',
+    'length-foot',
+    'length-inch',
+    'length-kilometer',
+    'length-meter',
+    'length-mile-scandinavian',
+    'length-mile',
+    'length-millimeter',
+    'length-yard',
+    'mass-gram',
+    'mass-kilogram',
+    'mass-ounce',
+    'mass-pound',
+    'mass-stone',
+    'temperature-celsius',
+    'temperature-fahrenheit',
+    'volume-fluid-ounce',
+    'volume-gallon',
+    'volume-liter',
+    'volume-milliliter',
+];
+// In CLDR, the unit name always follows the form `namespace-unit` pattern.
+// For example: `digital-bit` instead of `bit`. This function removes the namespace prefix.
+function removeUnitNamespace(unit) {
+    return unit.slice(unit.indexOf('-') + 1);
+}
+/**
+ * https://tc39.es/ecma402/#table-sanctioned-simple-unit-identifiers
+ */
+var SIMPLE_UNITS = SANCTIONED_UNITS.map(removeUnitNamespace);
+/**
+ * https://tc39.es/ecma402/#sec-issanctionedsimpleunitidentifier
+ */
+function IsSanctionedSimpleUnitIdentifier(unitIdentifier) {
+    return SIMPLE_UNITS.indexOf(unitIdentifier) > -1;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/IsValidTimeZoneName.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/IsValidTimeZoneName.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IsValidTimeZoneName": () => (/* binding */ IsValidTimeZoneName)
+/* harmony export */ });
+/**
+ * https://tc39.es/ecma402/#sec-isvalidtimezonename
+ * @param tz
+ * @param implDetails implementation details
+ */
+function IsValidTimeZoneName(tz, _a) {
+    var tzData = _a.tzData, uppercaseLinks = _a.uppercaseLinks;
+    var uppercasedTz = tz.toUpperCase();
+    var zoneNames = new Set();
+    var linkNames = new Set();
+    Object.keys(tzData)
+        .map(function (z) { return z.toUpperCase(); })
+        .forEach(function (z) { return zoneNames.add(z); });
+    Object.keys(uppercaseLinks).forEach(function (linkName) {
+        linkNames.add(linkName.toUpperCase());
+        zoneNames.add(uppercaseLinks[linkName].toUpperCase());
+    });
+    return zoneNames.has(uppercasedTz) || linkNames.has(uppercasedTz);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/IsWellFormedCurrencyCode.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/IsWellFormedCurrencyCode.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IsWellFormedCurrencyCode": () => (/* binding */ IsWellFormedCurrencyCode)
+/* harmony export */ });
+/**
+ * This follows https://tc39.es/ecma402/#sec-case-sensitivity-and-case-mapping
+ * @param str string to convert
+ */
+function toUpperCase(str) {
+    return str.replace(/([a-z])/g, function (_, c) { return c.toUpperCase(); });
+}
+var NOT_A_Z_REGEX = /[^A-Z]/;
+/**
+ * https://tc39.es/ecma402/#sec-iswellformedcurrencycode
+ */
+function IsWellFormedCurrencyCode(currency) {
+    currency = toUpperCase(currency);
+    if (currency.length !== 3) {
+        return false;
+    }
+    if (NOT_A_Z_REGEX.test(currency)) {
+        return false;
+    }
+    return true;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/IsWellFormedUnitIdentifier.js":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/IsWellFormedUnitIdentifier.js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IsWellFormedUnitIdentifier": () => (/* binding */ IsWellFormedUnitIdentifier)
+/* harmony export */ });
+/* harmony import */ var _IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./IsSanctionedSimpleUnitIdentifier */ "./node_modules/@formatjs/ecma402-abstract/lib/IsSanctionedSimpleUnitIdentifier.js");
+
+/**
+ * This follows https://tc39.es/ecma402/#sec-case-sensitivity-and-case-mapping
+ * @param str string to convert
+ */
+function toLowerCase(str) {
+    return str.replace(/([A-Z])/g, function (_, c) { return c.toLowerCase(); });
+}
+/**
+ * https://tc39.es/ecma402/#sec-iswellformedunitidentifier
+ * @param unit
+ */
+function IsWellFormedUnitIdentifier(unit) {
+    unit = toLowerCase(unit);
+    if ((0,_IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_0__.IsSanctionedSimpleUnitIdentifier)(unit)) {
+        return true;
+    }
+    var units = unit.split('-per-');
+    if (units.length !== 2) {
+        return false;
+    }
+    var numerator = units[0], denominator = units[1];
+    if (!(0,_IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_0__.IsSanctionedSimpleUnitIdentifier)(numerator) ||
+        !(0,_IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_0__.IsSanctionedSimpleUnitIdentifier)(denominator)) {
+        return false;
+    }
+    return true;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ComputeExponent.js":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ComputeExponent.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ComputeExponent": () => (/* binding */ ComputeExponent)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _ComputeExponentForMagnitude__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ComputeExponentForMagnitude */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ComputeExponentForMagnitude.js");
+/* harmony import */ var _FormatNumericToString__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FormatNumericToString */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/FormatNumericToString.js");
+
+
+
+/**
+ * The abstract operation ComputeExponent computes an exponent (power of ten) by which to scale x
+ * according to the number formatting settings. It handles cases such as 999 rounding up to 1000,
+ * requiring a different exponent.
+ *
+ * NOT IN SPEC: it returns [exponent, magnitude].
+ */
+function ComputeExponent(numberFormat, x, _a) {
+    var getInternalSlots = _a.getInternalSlots;
+    if (x === 0) {
+        return [0, 0];
+    }
+    if (x < 0) {
+        x = -x;
+    }
+    var magnitude = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.getMagnitude)(x);
+    var exponent = (0,_ComputeExponentForMagnitude__WEBPACK_IMPORTED_MODULE_1__.ComputeExponentForMagnitude)(numberFormat, magnitude, {
+        getInternalSlots: getInternalSlots,
+    });
+    // Preserve more precision by doing multiplication when exponent is negative.
+    x = exponent < 0 ? x * Math.pow(10, -exponent) : x / Math.pow(10, exponent);
+    var formatNumberResult = (0,_FormatNumericToString__WEBPACK_IMPORTED_MODULE_2__.FormatNumericToString)(getInternalSlots(numberFormat), x);
+    if (formatNumberResult.roundedNumber === 0) {
+        return [exponent, magnitude];
+    }
+    var newMagnitude = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.getMagnitude)(formatNumberResult.roundedNumber);
+    if (newMagnitude === magnitude - exponent) {
+        return [exponent, magnitude];
+    }
+    return [
+        (0,_ComputeExponentForMagnitude__WEBPACK_IMPORTED_MODULE_1__.ComputeExponentForMagnitude)(numberFormat, magnitude + 1, {
+            getInternalSlots: getInternalSlots,
+        }),
+        magnitude + 1,
+    ];
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ComputeExponentForMagnitude.js":
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ComputeExponentForMagnitude.js ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ComputeExponentForMagnitude": () => (/* binding */ ComputeExponentForMagnitude)
+/* harmony export */ });
+/**
+ * The abstract operation ComputeExponentForMagnitude computes an exponent by which to scale a
+ * number of the given magnitude (power of ten of the most significant digit) according to the
+ * locale and the desired notation (scientific, engineering, or compact).
+ */
+function ComputeExponentForMagnitude(numberFormat, magnitude, _a) {
+    var getInternalSlots = _a.getInternalSlots;
+    var internalSlots = getInternalSlots(numberFormat);
+    var notation = internalSlots.notation, dataLocaleData = internalSlots.dataLocaleData, numberingSystem = internalSlots.numberingSystem;
+    switch (notation) {
+        case 'standard':
+            return 0;
+        case 'scientific':
+            return magnitude;
+        case 'engineering':
+            return Math.floor(magnitude / 3) * 3;
+        default: {
+            // Let exponent be an implementation- and locale-dependent (ILD) integer by which to scale a
+            // number of the given magnitude in compact notation for the current locale.
+            var compactDisplay = internalSlots.compactDisplay, style = internalSlots.style, currencyDisplay = internalSlots.currencyDisplay;
+            var thresholdMap = void 0;
+            if (style === 'currency' && currencyDisplay !== 'name') {
+                var currency = dataLocaleData.numbers.currency[numberingSystem] ||
+                    dataLocaleData.numbers.currency[dataLocaleData.numbers.nu[0]];
+                thresholdMap = currency.short;
+            }
+            else {
+                var decimal = dataLocaleData.numbers.decimal[numberingSystem] ||
+                    dataLocaleData.numbers.decimal[dataLocaleData.numbers.nu[0]];
+                thresholdMap = compactDisplay === 'long' ? decimal.long : decimal.short;
+            }
+            if (!thresholdMap) {
+                return 0;
+            }
+            var num = String(Math.pow(10, magnitude));
+            var thresholds = Object.keys(thresholdMap); // TODO: this can be pre-processed
+            if (num < thresholds[0]) {
+                return 0;
+            }
+            if (num > thresholds[thresholds.length - 1]) {
+                return thresholds[thresholds.length - 1].length - 1;
+            }
+            var i = thresholds.indexOf(num);
+            if (i === -1) {
+                return 0;
+            }
+            // See https://unicode.org/reports/tr35/tr35-numbers.html#Compact_Number_Formats
+            // Special handling if the pattern is precisely `0`.
+            var magnitudeKey = thresholds[i];
+            // TODO: do we need to handle plural here?
+            var compactPattern = thresholdMap[magnitudeKey].other;
+            if (compactPattern === '0') {
+                return 0;
+            }
+            // Example: in zh-TW, `10000000` maps to `0000萬`. So we need to return 8 - 4 = 4 here.
+            return (magnitudeKey.length -
+                thresholdMap[magnitudeKey].other.match(/0+/)[0].length);
+        }
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/CurrencyDigits.js":
+/*!************************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/CurrencyDigits.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CurrencyDigits": () => (/* binding */ CurrencyDigits)
+/* harmony export */ });
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+/**
+ * https://tc39.es/ecma402/#sec-currencydigits
+ */
+function CurrencyDigits(c, _a) {
+    var currencyDigitsData = _a.currencyDigitsData;
+    return (0,_262__WEBPACK_IMPORTED_MODULE_0__.HasOwnProperty)(currencyDigitsData, c)
+        ? currencyDigitsData[c]
+        : 2;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/FormatNumericToParts.js":
+/*!******************************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/FormatNumericToParts.js ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FormatNumericToParts": () => (/* binding */ FormatNumericToParts)
+/* harmony export */ });
+/* harmony import */ var _PartitionNumberPattern__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PartitionNumberPattern */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/PartitionNumberPattern.js");
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+
+function FormatNumericToParts(nf, x, implDetails) {
+    var parts = (0,_PartitionNumberPattern__WEBPACK_IMPORTED_MODULE_0__.PartitionNumberPattern)(nf, x, implDetails);
+    var result = (0,_262__WEBPACK_IMPORTED_MODULE_1__.ArrayCreate)(0);
+    for (var _i = 0, parts_1 = parts; _i < parts_1.length; _i++) {
+        var part = parts_1[_i];
+        result.push({
+            type: part.type,
+            value: part.value,
+        });
+    }
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/FormatNumericToString.js":
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/FormatNumericToString.js ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FormatNumericToString": () => (/* binding */ FormatNumericToString)
+/* harmony export */ });
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/ecma402-abstract/lib/262.js");
+/* harmony import */ var _ToRawPrecision__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ToRawPrecision */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawPrecision.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _ToRawFixed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ToRawFixed */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawFixed.js");
+
+
+
+
+/**
+ * https://tc39.es/ecma402/#sec-formatnumberstring
+ */
+function FormatNumericToString(intlObject, x) {
+    var isNegative = x < 0 || (0,_262__WEBPACK_IMPORTED_MODULE_0__.SameValue)(x, -0);
+    if (isNegative) {
+        x = -x;
+    }
+    var result;
+    var rourndingType = intlObject.roundingType;
+    switch (rourndingType) {
+        case 'significantDigits':
+            result = (0,_ToRawPrecision__WEBPACK_IMPORTED_MODULE_1__.ToRawPrecision)(x, intlObject.minimumSignificantDigits, intlObject.maximumSignificantDigits);
+            break;
+        case 'fractionDigits':
+            result = (0,_ToRawFixed__WEBPACK_IMPORTED_MODULE_2__.ToRawFixed)(x, intlObject.minimumFractionDigits, intlObject.maximumFractionDigits);
+            break;
+        default:
+            result = (0,_ToRawPrecision__WEBPACK_IMPORTED_MODULE_1__.ToRawPrecision)(x, 1, 2);
+            if (result.integerDigitsCount > 1) {
+                result = (0,_ToRawFixed__WEBPACK_IMPORTED_MODULE_2__.ToRawFixed)(x, 0, 0);
+            }
+            break;
+    }
+    x = result.roundedNumber;
+    var string = result.formattedString;
+    var int = result.integerDigitsCount;
+    var minInteger = intlObject.minimumIntegerDigits;
+    if (int < minInteger) {
+        var forwardZeros = (0,_utils__WEBPACK_IMPORTED_MODULE_3__.repeat)('0', minInteger - int);
+        string = forwardZeros + string;
+    }
+    if (isNegative) {
+        x = -x;
+    }
+    return { roundedNumber: x, formattedString: string };
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/InitializeNumberFormat.js":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/InitializeNumberFormat.js ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "InitializeNumberFormat": () => (/* binding */ InitializeNumberFormat)
+/* harmony export */ });
+/* harmony import */ var _CanonicalizeLocaleList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../CanonicalizeLocaleList */ "./node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeLocaleList.js");
+/* harmony import */ var _GetOption__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../GetOption */ "./node_modules/@formatjs/ecma402-abstract/lib/GetOption.js");
+/* harmony import */ var _formatjs_intl_localematcher__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @formatjs/intl-localematcher */ "./node_modules/@formatjs/intl-localematcher/index.js");
+/* harmony import */ var _SetNumberFormatUnitOptions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SetNumberFormatUnitOptions */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/SetNumberFormatUnitOptions.js");
+/* harmony import */ var _CurrencyDigits__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CurrencyDigits */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/CurrencyDigits.js");
+/* harmony import */ var _SetNumberFormatDigitOptions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./SetNumberFormatDigitOptions */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/SetNumberFormatDigitOptions.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _CoerceOptionsToObject__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../CoerceOptionsToObject */ "./node_modules/@formatjs/ecma402-abstract/lib/CoerceOptionsToObject.js");
+
+
+
+
+
+
+
+
+/**
+ * https://tc39.es/ecma402/#sec-initializenumberformat
+ */
+function InitializeNumberFormat(nf, locales, opts, _a) {
+    var getInternalSlots = _a.getInternalSlots, localeData = _a.localeData, availableLocales = _a.availableLocales, numberingSystemNames = _a.numberingSystemNames, getDefaultLocale = _a.getDefaultLocale, currencyDigitsData = _a.currencyDigitsData;
+    // @ts-ignore
+    var requestedLocales = (0,_CanonicalizeLocaleList__WEBPACK_IMPORTED_MODULE_1__.CanonicalizeLocaleList)(locales);
+    var options = (0,_CoerceOptionsToObject__WEBPACK_IMPORTED_MODULE_2__.CoerceOptionsToObject)(opts);
+    var opt = Object.create(null);
+    var matcher = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'localeMatcher', 'string', ['lookup', 'best fit'], 'best fit');
+    opt.localeMatcher = matcher;
+    var numberingSystem = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'numberingSystem', 'string', undefined, undefined);
+    if (numberingSystem !== undefined &&
+        numberingSystemNames.indexOf(numberingSystem) < 0) {
+        // 8.a. If numberingSystem does not match the Unicode Locale Identifier type nonterminal,
+        // throw a RangeError exception.
+        throw RangeError("Invalid numberingSystems: " + numberingSystem);
+    }
+    opt.nu = numberingSystem;
+    var r = (0,_formatjs_intl_localematcher__WEBPACK_IMPORTED_MODULE_0__.ResolveLocale)(availableLocales, requestedLocales, opt, 
+    // [[RelevantExtensionKeys]] slot, which is a constant
+    ['nu'], localeData, getDefaultLocale);
+    var dataLocaleData = localeData[r.dataLocale];
+    (0,_utils__WEBPACK_IMPORTED_MODULE_4__.invariant)(!!dataLocaleData, "Missing locale data for " + r.dataLocale);
+    var internalSlots = getInternalSlots(nf);
+    internalSlots.locale = r.locale;
+    internalSlots.dataLocale = r.dataLocale;
+    internalSlots.numberingSystem = r.nu;
+    internalSlots.dataLocaleData = dataLocaleData;
+    (0,_SetNumberFormatUnitOptions__WEBPACK_IMPORTED_MODULE_5__.SetNumberFormatUnitOptions)(nf, options, { getInternalSlots: getInternalSlots });
+    var style = internalSlots.style;
+    var mnfdDefault;
+    var mxfdDefault;
+    if (style === 'currency') {
+        var currency = internalSlots.currency;
+        var cDigits = (0,_CurrencyDigits__WEBPACK_IMPORTED_MODULE_6__.CurrencyDigits)(currency, { currencyDigitsData: currencyDigitsData });
+        mnfdDefault = cDigits;
+        mxfdDefault = cDigits;
+    }
+    else {
+        mnfdDefault = 0;
+        mxfdDefault = style === 'percent' ? 0 : 3;
+    }
+    var notation = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'notation', 'string', ['standard', 'scientific', 'engineering', 'compact'], 'standard');
+    internalSlots.notation = notation;
+    (0,_SetNumberFormatDigitOptions__WEBPACK_IMPORTED_MODULE_7__.SetNumberFormatDigitOptions)(internalSlots, options, mnfdDefault, mxfdDefault, notation);
+    var compactDisplay = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'compactDisplay', 'string', ['short', 'long'], 'short');
+    if (notation === 'compact') {
+        internalSlots.compactDisplay = compactDisplay;
+    }
+    var useGrouping = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'useGrouping', 'boolean', undefined, true);
+    internalSlots.useGrouping = useGrouping;
+    var signDisplay = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'signDisplay', 'string', ['auto', 'never', 'always', 'exceptZero'], 'auto');
+    internalSlots.signDisplay = signDisplay;
+    return nf;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/PartitionNumberPattern.js":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/PartitionNumberPattern.js ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PartitionNumberPattern": () => (/* binding */ PartitionNumberPattern)
+/* harmony export */ });
+/* harmony import */ var _FormatNumericToString__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormatNumericToString */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/FormatNumericToString.js");
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/ecma402-abstract/lib/262.js");
+/* harmony import */ var _ComputeExponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ComputeExponent */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ComputeExponent.js");
+/* harmony import */ var _format_to_parts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./format_to_parts */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/format_to_parts.js");
+
+
+
+
+/**
+ * https://tc39.es/ecma402/#sec-formatnumberstring
+ */
+function PartitionNumberPattern(numberFormat, x, _a) {
+    var _b;
+    var getInternalSlots = _a.getInternalSlots;
+    var internalSlots = getInternalSlots(numberFormat);
+    var pl = internalSlots.pl, dataLocaleData = internalSlots.dataLocaleData, numberingSystem = internalSlots.numberingSystem;
+    var symbols = dataLocaleData.numbers.symbols[numberingSystem] ||
+        dataLocaleData.numbers.symbols[dataLocaleData.numbers.nu[0]];
+    var magnitude = 0;
+    var exponent = 0;
+    var n;
+    if (isNaN(x)) {
+        n = symbols.nan;
+    }
+    else if (!isFinite(x)) {
+        n = symbols.infinity;
+    }
+    else {
+        if (internalSlots.style === 'percent') {
+            x *= 100;
+        }
+        ;
+        _b = (0,_ComputeExponent__WEBPACK_IMPORTED_MODULE_0__.ComputeExponent)(numberFormat, x, {
+            getInternalSlots: getInternalSlots,
+        }), exponent = _b[0], magnitude = _b[1];
+        // Preserve more precision by doing multiplication when exponent is negative.
+        x = exponent < 0 ? x * Math.pow(10, -exponent) : x / Math.pow(10, exponent);
+        var formatNumberResult = (0,_FormatNumericToString__WEBPACK_IMPORTED_MODULE_1__.FormatNumericToString)(internalSlots, x);
+        n = formatNumberResult.formattedString;
+        x = formatNumberResult.roundedNumber;
+    }
+    // Based on https://tc39.es/ecma402/#sec-getnumberformatpattern
+    // We need to do this before `x` is rounded.
+    var sign;
+    var signDisplay = internalSlots.signDisplay;
+    switch (signDisplay) {
+        case 'never':
+            sign = 0;
+            break;
+        case 'auto':
+            if ((0,_262__WEBPACK_IMPORTED_MODULE_2__.SameValue)(x, 0) || x > 0 || isNaN(x)) {
+                sign = 0;
+            }
+            else {
+                sign = -1;
+            }
+            break;
+        case 'always':
+            if ((0,_262__WEBPACK_IMPORTED_MODULE_2__.SameValue)(x, 0) || x > 0 || isNaN(x)) {
+                sign = 1;
+            }
+            else {
+                sign = -1;
+            }
+            break;
+        default:
+            // x === 0 -> x is 0 or x is -0
+            if (x === 0 || isNaN(x)) {
+                sign = 0;
+            }
+            else if (x > 0) {
+                sign = 1;
+            }
+            else {
+                sign = -1;
+            }
+    }
+    return (0,_format_to_parts__WEBPACK_IMPORTED_MODULE_3__["default"])({ roundedNumber: x, formattedString: n, exponent: exponent, magnitude: magnitude, sign: sign }, internalSlots.dataLocaleData, pl, internalSlots);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/SetNumberFormatDigitOptions.js":
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/SetNumberFormatDigitOptions.js ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SetNumberFormatDigitOptions": () => (/* binding */ SetNumberFormatDigitOptions)
+/* harmony export */ });
+/* harmony import */ var _GetNumberOption__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../GetNumberOption */ "./node_modules/@formatjs/ecma402-abstract/lib/GetNumberOption.js");
+/* harmony import */ var _DefaultNumberOption__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../DefaultNumberOption */ "./node_modules/@formatjs/ecma402-abstract/lib/DefaultNumberOption.js");
+
+
+/**
+ * https://tc39.es/ecma402/#sec-setnfdigitoptions
+ */
+function SetNumberFormatDigitOptions(internalSlots, opts, mnfdDefault, mxfdDefault, notation) {
+    var mnid = (0,_GetNumberOption__WEBPACK_IMPORTED_MODULE_0__.GetNumberOption)(opts, 'minimumIntegerDigits', 1, 21, 1);
+    var mnfd = opts.minimumFractionDigits;
+    var mxfd = opts.maximumFractionDigits;
+    var mnsd = opts.minimumSignificantDigits;
+    var mxsd = opts.maximumSignificantDigits;
+    internalSlots.minimumIntegerDigits = mnid;
+    if (mnsd !== undefined || mxsd !== undefined) {
+        internalSlots.roundingType = 'significantDigits';
+        mnsd = (0,_DefaultNumberOption__WEBPACK_IMPORTED_MODULE_1__.DefaultNumberOption)(mnsd, 1, 21, 1);
+        mxsd = (0,_DefaultNumberOption__WEBPACK_IMPORTED_MODULE_1__.DefaultNumberOption)(mxsd, mnsd, 21, 21);
+        internalSlots.minimumSignificantDigits = mnsd;
+        internalSlots.maximumSignificantDigits = mxsd;
+    }
+    else if (mnfd !== undefined || mxfd !== undefined) {
+        internalSlots.roundingType = 'fractionDigits';
+        mnfd = (0,_DefaultNumberOption__WEBPACK_IMPORTED_MODULE_1__.DefaultNumberOption)(mnfd, 0, 20, mnfdDefault);
+        var mxfdActualDefault = Math.max(mnfd, mxfdDefault);
+        mxfd = (0,_DefaultNumberOption__WEBPACK_IMPORTED_MODULE_1__.DefaultNumberOption)(mxfd, mnfd, 20, mxfdActualDefault);
+        internalSlots.minimumFractionDigits = mnfd;
+        internalSlots.maximumFractionDigits = mxfd;
+    }
+    else if (notation === 'compact') {
+        internalSlots.roundingType = 'compactRounding';
+    }
+    else {
+        internalSlots.roundingType = 'fractionDigits';
+        internalSlots.minimumFractionDigits = mnfdDefault;
+        internalSlots.maximumFractionDigits = mxfdDefault;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/SetNumberFormatUnitOptions.js":
+/*!************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/SetNumberFormatUnitOptions.js ***!
+  \************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SetNumberFormatUnitOptions": () => (/* binding */ SetNumberFormatUnitOptions)
+/* harmony export */ });
+/* harmony import */ var _GetOption__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../GetOption */ "./node_modules/@formatjs/ecma402-abstract/lib/GetOption.js");
+/* harmony import */ var _IsWellFormedCurrencyCode__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../IsWellFormedCurrencyCode */ "./node_modules/@formatjs/ecma402-abstract/lib/IsWellFormedCurrencyCode.js");
+/* harmony import */ var _IsWellFormedUnitIdentifier__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../IsWellFormedUnitIdentifier */ "./node_modules/@formatjs/ecma402-abstract/lib/IsWellFormedUnitIdentifier.js");
+
+
+
+/**
+ * https://tc39.es/ecma402/#sec-setnumberformatunitoptions
+ */
+function SetNumberFormatUnitOptions(nf, options, _a) {
+    if (options === void 0) { options = Object.create(null); }
+    var getInternalSlots = _a.getInternalSlots;
+    var internalSlots = getInternalSlots(nf);
+    var style = (0,_GetOption__WEBPACK_IMPORTED_MODULE_0__.GetOption)(options, 'style', 'string', ['decimal', 'percent', 'currency', 'unit'], 'decimal');
+    internalSlots.style = style;
+    var currency = (0,_GetOption__WEBPACK_IMPORTED_MODULE_0__.GetOption)(options, 'currency', 'string', undefined, undefined);
+    if (currency !== undefined && !(0,_IsWellFormedCurrencyCode__WEBPACK_IMPORTED_MODULE_1__.IsWellFormedCurrencyCode)(currency)) {
+        throw RangeError('Malformed currency code');
+    }
+    if (style === 'currency' && currency === undefined) {
+        throw TypeError('currency cannot be undefined');
+    }
+    var currencyDisplay = (0,_GetOption__WEBPACK_IMPORTED_MODULE_0__.GetOption)(options, 'currencyDisplay', 'string', ['code', 'symbol', 'narrowSymbol', 'name'], 'symbol');
+    var currencySign = (0,_GetOption__WEBPACK_IMPORTED_MODULE_0__.GetOption)(options, 'currencySign', 'string', ['standard', 'accounting'], 'standard');
+    var unit = (0,_GetOption__WEBPACK_IMPORTED_MODULE_0__.GetOption)(options, 'unit', 'string', undefined, undefined);
+    if (unit !== undefined && !(0,_IsWellFormedUnitIdentifier__WEBPACK_IMPORTED_MODULE_2__.IsWellFormedUnitIdentifier)(unit)) {
+        throw RangeError('Invalid unit argument for Intl.NumberFormat()');
+    }
+    if (style === 'unit' && unit === undefined) {
+        throw TypeError('unit cannot be undefined');
+    }
+    var unitDisplay = (0,_GetOption__WEBPACK_IMPORTED_MODULE_0__.GetOption)(options, 'unitDisplay', 'string', ['short', 'narrow', 'long'], 'short');
+    if (style === 'currency') {
+        internalSlots.currency = currency.toUpperCase();
+        internalSlots.currencyDisplay = currencyDisplay;
+        internalSlots.currencySign = currencySign;
+    }
+    if (style === 'unit') {
+        internalSlots.unit = unit;
+        internalSlots.unitDisplay = unitDisplay;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawFixed.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawFixed.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ToRawFixed": () => (/* binding */ ToRawFixed)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+
+/**
+ * TODO: dedup with intl-pluralrules and support BigInt
+ * https://tc39.es/ecma402/#sec-torawfixed
+ * @param x a finite non-negative Number or BigInt
+ * @param minFraction and integer between 0 and 20
+ * @param maxFraction and integer between 0 and 20
+ */
+function ToRawFixed(x, minFraction, maxFraction) {
+    var f = maxFraction;
+    var n = Math.round(x * Math.pow(10, f));
+    var xFinal = n / Math.pow(10, f);
+    // n is a positive integer, but it is possible to be greater than 1e21.
+    // In such case we will go the slow path.
+    // See also: https://tc39.es/ecma262/#sec-numeric-types-number-tostring
+    var m;
+    if (n < 1e21) {
+        m = n.toString();
+    }
+    else {
+        m = n.toString();
+        var _a = m.split('e'), mantissa = _a[0], exponent = _a[1];
+        m = mantissa.replace('.', '');
+        m = m + (0,_utils__WEBPACK_IMPORTED_MODULE_0__.repeat)('0', Math.max(+exponent - m.length + 1, 0));
+    }
+    var int;
+    if (f !== 0) {
+        var k = m.length;
+        if (k <= f) {
+            var z = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.repeat)('0', f + 1 - k);
+            m = z + m;
+            k = f + 1;
+        }
+        var a = m.slice(0, k - f);
+        var b = m.slice(k - f);
+        m = a + "." + b;
+        int = a.length;
+    }
+    else {
+        int = m.length;
+    }
+    var cut = maxFraction - minFraction;
+    while (cut > 0 && m[m.length - 1] === '0') {
+        m = m.slice(0, -1);
+        cut--;
+    }
+    if (m[m.length - 1] === '.') {
+        m = m.slice(0, -1);
+    }
+    return { formattedString: m, roundedNumber: xFinal, integerDigitsCount: int };
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawPrecision.js":
+/*!************************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawPrecision.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ToRawPrecision": () => (/* binding */ ToRawPrecision)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+
+function ToRawPrecision(x, minPrecision, maxPrecision) {
+    var p = maxPrecision;
+    var m;
+    var e;
+    var xFinal;
+    if (x === 0) {
+        m = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.repeat)('0', p);
+        e = 0;
+        xFinal = 0;
+    }
+    else {
+        var xToString = x.toString();
+        // If xToString is formatted as scientific notation, the number is either very small or very
+        // large. If the precision of the formatted string is lower that requested max precision, we
+        // should still infer them from the formatted string, otherwise the formatted result might have
+        // precision loss (e.g. 1e41 will not have 0 in every trailing digits).
+        var xToStringExponentIndex = xToString.indexOf('e');
+        var _a = xToString.split('e'), xToStringMantissa = _a[0], xToStringExponent = _a[1];
+        var xToStringMantissaWithoutDecimalPoint = xToStringMantissa.replace('.', '');
+        if (xToStringExponentIndex >= 0 &&
+            xToStringMantissaWithoutDecimalPoint.length <= p) {
+            e = +xToStringExponent;
+            m =
+                xToStringMantissaWithoutDecimalPoint +
+                    (0,_utils__WEBPACK_IMPORTED_MODULE_0__.repeat)('0', p - xToStringMantissaWithoutDecimalPoint.length);
+            xFinal = x;
+        }
+        else {
+            e = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.getMagnitude)(x);
+            var decimalPlaceOffset = e - p + 1;
+            // n is the integer containing the required precision digits. To derive the formatted string,
+            // we will adjust its decimal place in the logic below.
+            var n = Math.round(adjustDecimalPlace(x, decimalPlaceOffset));
+            // The rounding caused the change of magnitude, so we should increment `e` by 1.
+            if (adjustDecimalPlace(n, p - 1) >= 10) {
+                e = e + 1;
+                // Divide n by 10 to swallow one precision.
+                n = Math.floor(n / 10);
+            }
+            m = n.toString();
+            // Equivalent of n * 10 ** (e - p + 1)
+            xFinal = adjustDecimalPlace(n, p - 1 - e);
+        }
+    }
+    var int;
+    if (e >= p - 1) {
+        m = m + (0,_utils__WEBPACK_IMPORTED_MODULE_0__.repeat)('0', e - p + 1);
+        int = e + 1;
+    }
+    else if (e >= 0) {
+        m = m.slice(0, e + 1) + "." + m.slice(e + 1);
+        int = e + 1;
+    }
+    else {
+        m = "0." + (0,_utils__WEBPACK_IMPORTED_MODULE_0__.repeat)('0', -e - 1) + m;
+        int = 1;
+    }
+    if (m.indexOf('.') >= 0 && maxPrecision > minPrecision) {
+        var cut = maxPrecision - minPrecision;
+        while (cut > 0 && m[m.length - 1] === '0') {
+            m = m.slice(0, -1);
+            cut--;
+        }
+        if (m[m.length - 1] === '.') {
+            m = m.slice(0, -1);
+        }
+    }
+    return { formattedString: m, roundedNumber: xFinal, integerDigitsCount: int };
+    // x / (10 ** magnitude), but try to preserve as much floating point precision as possible.
+    function adjustDecimalPlace(x, magnitude) {
+        return magnitude < 0 ? x * Math.pow(10, -magnitude) : x / Math.pow(10, magnitude);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/digit-mapping.generated.js":
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/digit-mapping.generated.js ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "digitMapping": () => (/* binding */ digitMapping)
+/* harmony export */ });
+var digitMapping = { "adlm": ["𞥐", "𞥑", "𞥒", "𞥓", "𞥔", "𞥕", "𞥖", "𞥗", "𞥘", "𞥙"], "ahom": ["𑜰", "𑜱", "𑜲", "𑜳", "𑜴", "𑜵", "𑜶", "𑜷", "𑜸", "𑜹"], "arab": ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"], "arabext": ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"], "bali": ["᭐", "᭑", "᭒", "᭓", "᭔", "᭕", "᭖", "᭗", "᭘", "᭙"], "beng": ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"], "bhks": ["𑱐", "𑱑", "𑱒", "𑱓", "𑱔", "𑱕", "𑱖", "𑱗", "𑱘", "𑱙"], "brah": ["𑁦", "𑁧", "𑁨", "𑁩", "𑁪", "𑁫", "𑁬", "𑁭", "𑁮", "𑁯"], "cakm": ["𑄶", "𑄷", "𑄸", "𑄹", "𑄺", "𑄻", "𑄼", "𑄽", "𑄾", "𑄿"], "cham": ["꩐", "꩑", "꩒", "꩓", "꩔", "꩕", "꩖", "꩗", "꩘", "꩙"], "deva": ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"], "diak": ["𑥐", "𑥑", "𑥒", "𑥓", "𑥔", "𑥕", "𑥖", "𑥗", "𑥘", "𑥙"], "fullwide": ["０", "１", "２", "３", "４", "５", "６", "７", "８", "９"], "gong": ["𑶠", "𑶡", "𑶢", "𑶣", "𑶤", "𑶥", "𑶦", "𑶧", "𑶨", "𑶩"], "gonm": ["𑵐", "𑵑", "𑵒", "𑵓", "𑵔", "𑵕", "𑵖", "𑵗", "𑵘", "𑵙"], "gujr": ["૦", "૧", "૨", "૩", "૪", "૫", "૬", "૭", "૮", "૯"], "guru": ["੦", "੧", "੨", "੩", "੪", "੫", "੬", "੭", "੮", "੯"], "hanidec": ["〇", "一", "二", "三", "四", "五", "六", "七", "八", "九"], "hmng": ["𖭐", "𖭑", "𖭒", "𖭓", "𖭔", "𖭕", "𖭖", "𖭗", "𖭘", "𖭙"], "hmnp": ["𞅀", "𞅁", "𞅂", "𞅃", "𞅄", "𞅅", "𞅆", "𞅇", "𞅈", "𞅉"], "java": ["꧐", "꧑", "꧒", "꧓", "꧔", "꧕", "꧖", "꧗", "꧘", "꧙"], "kali": ["꤀", "꤁", "꤂", "꤃", "꤄", "꤅", "꤆", "꤇", "꤈", "꤉"], "khmr": ["០", "១", "២", "៣", "៤", "៥", "៦", "៧", "៨", "៩"], "knda": ["೦", "೧", "೨", "೩", "೪", "೫", "೬", "೭", "೮", "೯"], "lana": ["᪀", "᪁", "᪂", "᪃", "᪄", "᪅", "᪆", "᪇", "᪈", "᪉"], "lanatham": ["᪐", "᪑", "᪒", "᪓", "᪔", "᪕", "᪖", "᪗", "᪘", "᪙"], "laoo": ["໐", "໑", "໒", "໓", "໔", "໕", "໖", "໗", "໘", "໙"], "lepc": ["᪐", "᪑", "᪒", "᪓", "᪔", "᪕", "᪖", "᪗", "᪘", "᪙"], "limb": ["᥆", "᥇", "᥈", "᥉", "᥊", "᥋", "᥌", "᥍", "᥎", "᥏"], "mathbold": ["𝟎", "𝟏", "𝟐", "𝟑", "𝟒", "𝟓", "𝟔", "𝟕", "𝟖", "𝟗"], "mathdbl": ["𝟘", "𝟙", "𝟚", "𝟛", "𝟜", "𝟝", "𝟞", "𝟟", "𝟠", "𝟡"], "mathmono": ["𝟶", "𝟷", "𝟸", "𝟹", "𝟺", "𝟻", "𝟼", "𝟽", "𝟾", "𝟿"], "mathsanb": ["𝟬", "𝟭", "𝟮", "𝟯", "𝟰", "𝟱", "𝟲", "𝟳", "𝟴", "𝟵"], "mathsans": ["𝟢", "𝟣", "𝟤", "𝟥", "𝟦", "𝟧", "𝟨", "𝟩", "𝟪", "𝟫"], "mlym": ["൦", "൧", "൨", "൩", "൪", "൫", "൬", "൭", "൮", "൯"], "modi": ["𑙐", "𑙑", "𑙒", "𑙓", "𑙔", "𑙕", "𑙖", "𑙗", "𑙘", "𑙙"], "mong": ["᠐", "᠑", "᠒", "᠓", "᠔", "᠕", "᠖", "᠗", "᠘", "᠙"], "mroo": ["𖩠", "𖩡", "𖩢", "𖩣", "𖩤", "𖩥", "𖩦", "𖩧", "𖩨", "𖩩"], "mtei": ["꯰", "꯱", "꯲", "꯳", "꯴", "꯵", "꯶", "꯷", "꯸", "꯹"], "mymr": ["၀", "၁", "၂", "၃", "၄", "၅", "၆", "၇", "၈", "၉"], "mymrshan": ["႐", "႑", "႒", "႓", "႔", "႕", "႖", "႗", "႘", "႙"], "mymrtlng": ["꧰", "꧱", "꧲", "꧳", "꧴", "꧵", "꧶", "꧷", "꧸", "꧹"], "newa": ["𑑐", "𑑑", "𑑒", "𑑓", "𑑔", "𑑕", "𑑖", "𑑗", "𑑘", "𑑙"], "nkoo": ["߀", "߁", "߂", "߃", "߄", "߅", "߆", "߇", "߈", "߉"], "olck": ["᱐", "᱑", "᱒", "᱓", "᱔", "᱕", "᱖", "᱗", "᱘", "᱙"], "orya": ["୦", "୧", "୨", "୩", "୪", "୫", "୬", "୭", "୮", "୯"], "osma": ["𐒠", "𐒡", "𐒢", "𐒣", "𐒤", "𐒥", "𐒦", "𐒧", "𐒨", "𐒩"], "rohg": ["𐴰", "𐴱", "𐴲", "𐴳", "𐴴", "𐴵", "𐴶", "𐴷", "𐴸", "𐴹"], "saur": ["꣐", "꣑", "꣒", "꣓", "꣔", "꣕", "꣖", "꣗", "꣘", "꣙"], "segment": ["🯰", "🯱", "🯲", "🯳", "🯴", "🯵", "🯶", "🯷", "🯸", "🯹"], "shrd": ["𑇐", "𑇑", "𑇒", "𑇓", "𑇔", "𑇕", "𑇖", "𑇗", "𑇘", "𑇙"], "sind": ["𑋰", "𑋱", "𑋲", "𑋳", "𑋴", "𑋵", "𑋶", "𑋷", "𑋸", "𑋹"], "sinh": ["෦", "෧", "෨", "෩", "෪", "෫", "෬", "෭", "෮", "෯"], "sora": ["𑃰", "𑃱", "𑃲", "𑃳", "𑃴", "𑃵", "𑃶", "𑃷", "𑃸", "𑃹"], "sund": ["᮰", "᮱", "᮲", "᮳", "᮴", "᮵", "᮶", "᮷", "᮸", "᮹"], "takr": ["𑛀", "𑛁", "𑛂", "𑛃", "𑛄", "𑛅", "𑛆", "𑛇", "𑛈", "𑛉"], "talu": ["᧐", "᧑", "᧒", "᧓", "᧔", "᧕", "᧖", "᧗", "᧘", "᧙"], "tamldec": ["௦", "௧", "௨", "௩", "௪", "௫", "௬", "௭", "௮", "௯"], "telu": ["౦", "౧", "౨", "౩", "౪", "౫", "౬", "౭", "౮", "౯"], "thai": ["๐", "๑", "๒", "๓", "๔", "๕", "๖", "๗", "๘", "๙"], "tibt": ["༠", "༡", "༢", "༣", "༤", "༥", "༦", "༧", "༨", "༩"], "tirh": ["𑓐", "𑓑", "𑓒", "𑓓", "𑓔", "𑓕", "𑓖", "𑓗", "𑓘", "𑓙"], "vaii": ["ᘠ", "ᘡ", "ᘢ", "ᘣ", "ᘤ", "ᘥ", "ᘦ", "ᘧ", "ᘨ", "ᘩ"], "wara": ["𑣠", "𑣡", "𑣢", "𑣣", "𑣤", "𑣥", "𑣦", "𑣧", "𑣨", "𑣩"], "wcho": ["𞋰", "𞋱", "𞋲", "𞋳", "𞋴", "𞋵", "𞋶", "𞋷", "𞋸", "𞋹"] };
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/format_to_parts.js":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/format_to_parts.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ formatToParts)
+/* harmony export */ });
+/* harmony import */ var _ToRawFixed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ToRawFixed */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawFixed.js");
+/* harmony import */ var _digit_mapping_generated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./digit-mapping.generated */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/digit-mapping.generated.js");
+/* harmony import */ var _regex_generated__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../regex.generated */ "./node_modules/@formatjs/ecma402-abstract/lib/regex.generated.js");
+
+
+
+// This is from: unicode-12.1.0/General_Category/Symbol/regex.js
+// IE11 does not support unicode flag, otherwise this is just /\p{S}/u.
+// /^\p{S}/u
+var CARET_S_UNICODE_REGEX = new RegExp("^" + _regex_generated__WEBPACK_IMPORTED_MODULE_0__.S_UNICODE_REGEX.source);
+// /\p{S}$/u
+var S_DOLLAR_UNICODE_REGEX = new RegExp(_regex_generated__WEBPACK_IMPORTED_MODULE_0__.S_UNICODE_REGEX.source + "$");
+var CLDR_NUMBER_PATTERN = /[#0](?:[\.,][#0]+)*/g;
+function formatToParts(numberResult, data, pl, options) {
+    var sign = numberResult.sign, exponent = numberResult.exponent, magnitude = numberResult.magnitude;
+    var notation = options.notation, style = options.style, numberingSystem = options.numberingSystem;
+    var defaultNumberingSystem = data.numbers.nu[0];
+    // #region Part 1: partition and interpolate the CLDR number pattern.
+    // ----------------------------------------------------------
+    var compactNumberPattern = null;
+    if (notation === 'compact' && magnitude) {
+        compactNumberPattern = getCompactDisplayPattern(numberResult, pl, data, style, options.compactDisplay, options.currencyDisplay, numberingSystem);
+    }
+    // This is used multiple times
+    var nonNameCurrencyPart;
+    if (style === 'currency' && options.currencyDisplay !== 'name') {
+        var byCurrencyDisplay = data.currencies[options.currency];
+        if (byCurrencyDisplay) {
+            switch (options.currencyDisplay) {
+                case 'code':
+                    nonNameCurrencyPart = options.currency;
+                    break;
+                case 'symbol':
+                    nonNameCurrencyPart = byCurrencyDisplay.symbol;
+                    break;
+                default:
+                    nonNameCurrencyPart = byCurrencyDisplay.narrow;
+                    break;
+            }
+        }
+        else {
+            // Fallback for unknown currency
+            nonNameCurrencyPart = options.currency;
+        }
+    }
+    var numberPattern;
+    if (!compactNumberPattern) {
+        // Note: if the style is unit, or is currency and the currency display is name,
+        // its unit parts will be interpolated in part 2. So here we can fallback to decimal.
+        if (style === 'decimal' ||
+            style === 'unit' ||
+            (style === 'currency' && options.currencyDisplay === 'name')) {
+            // Shortcut for decimal
+            var decimalData = data.numbers.decimal[numberingSystem] ||
+                data.numbers.decimal[defaultNumberingSystem];
+            numberPattern = getPatternForSign(decimalData.standard, sign);
+        }
+        else if (style === 'currency') {
+            var currencyData = data.numbers.currency[numberingSystem] ||
+                data.numbers.currency[defaultNumberingSystem];
+            // We replace number pattern part with `0` for easier postprocessing.
+            numberPattern = getPatternForSign(currencyData[options.currencySign], sign);
+        }
+        else {
+            // percent
+            var percentPattern = data.numbers.percent[numberingSystem] ||
+                data.numbers.percent[defaultNumberingSystem];
+            numberPattern = getPatternForSign(percentPattern, sign);
+        }
+    }
+    else {
+        numberPattern = compactNumberPattern;
+    }
+    // Extract the decimal number pattern string. It looks like "#,##0,00", which will later be
+    // used to infer decimal group sizes.
+    var decimalNumberPattern = CLDR_NUMBER_PATTERN.exec(numberPattern)[0];
+    // Now we start to substitute patterns
+    // 1. replace strings like `0` and `#,##0.00` with `{0}`
+    // 2. unquote characters (invariant: the quoted characters does not contain the special tokens)
+    numberPattern = numberPattern
+        .replace(CLDR_NUMBER_PATTERN, '{0}')
+        .replace(/'(.)'/g, '$1');
+    // Handle currency spacing (both compact and non-compact).
+    if (style === 'currency' && options.currencyDisplay !== 'name') {
+        var currencyData = data.numbers.currency[numberingSystem] ||
+            data.numbers.currency[defaultNumberingSystem];
+        // See `currencySpacing` substitution rule in TR-35.
+        // Here we always assume the currencyMatch is "[:^S:]" and surroundingMatch is "[:digit:]".
+        //
+        // Example 1: for pattern "#,##0.00¤" with symbol "US$", we replace "¤" with the symbol,
+        // but insert an extra non-break space before the symbol, because "[:^S:]" matches "U" in
+        // "US$" and "[:digit:]" matches the latn numbering system digits.
+        //
+        // Example 2: for pattern "¤#,##0.00" with symbol "US$", there is no spacing between symbol
+        // and number, because `$` does not match "[:^S:]".
+        //
+        // Implementation note: here we do the best effort to infer the insertion.
+        // We also assume that `beforeInsertBetween` and `afterInsertBetween` will never be `;`.
+        var afterCurrency = currencyData.currencySpacing.afterInsertBetween;
+        if (afterCurrency && !S_DOLLAR_UNICODE_REGEX.test(nonNameCurrencyPart)) {
+            numberPattern = numberPattern.replace('¤{0}', "\u00A4" + afterCurrency + "{0}");
+        }
+        var beforeCurrency = currencyData.currencySpacing.beforeInsertBetween;
+        if (beforeCurrency && !CARET_S_UNICODE_REGEX.test(nonNameCurrencyPart)) {
+            numberPattern = numberPattern.replace('{0}¤', "{0}" + beforeCurrency + "\u00A4");
+        }
+    }
+    // The following tokens are special: `{0}`, `¤`, `%`, `-`, `+`, `{c:...}.
+    var numberPatternParts = numberPattern.split(/({c:[^}]+}|\{0\}|[¤%\-\+])/g);
+    var numberParts = [];
+    var symbols = data.numbers.symbols[numberingSystem] ||
+        data.numbers.symbols[defaultNumberingSystem];
+    for (var _i = 0, numberPatternParts_1 = numberPatternParts; _i < numberPatternParts_1.length; _i++) {
+        var part = numberPatternParts_1[_i];
+        if (!part) {
+            continue;
+        }
+        switch (part) {
+            case '{0}': {
+                // We only need to handle scientific and engineering notation here.
+                numberParts.push.apply(numberParts, paritionNumberIntoParts(symbols, numberResult, notation, exponent, numberingSystem, 
+                // If compact number pattern exists, do not insert group separators.
+                !compactNumberPattern && options.useGrouping, decimalNumberPattern));
+                break;
+            }
+            case '-':
+                numberParts.push({ type: 'minusSign', value: symbols.minusSign });
+                break;
+            case '+':
+                numberParts.push({ type: 'plusSign', value: symbols.plusSign });
+                break;
+            case '%':
+                numberParts.push({ type: 'percentSign', value: symbols.percentSign });
+                break;
+            case '¤':
+                // Computed above when handling currency spacing.
+                numberParts.push({ type: 'currency', value: nonNameCurrencyPart });
+                break;
+            default:
+                if (/^\{c:/.test(part)) {
+                    numberParts.push({
+                        type: 'compact',
+                        value: part.substring(3, part.length - 1),
+                    });
+                }
+                else {
+                    // literal
+                    numberParts.push({ type: 'literal', value: part });
+                }
+                break;
+        }
+    }
+    // #endregion
+    // #region Part 2: interpolate unit pattern if necessary.
+    // ----------------------------------------------
+    switch (style) {
+        case 'currency': {
+            // `currencyDisplay: 'name'` has similar pattern handling as units.
+            if (options.currencyDisplay === 'name') {
+                var unitPattern = (data.numbers.currency[numberingSystem] ||
+                    data.numbers.currency[defaultNumberingSystem]).unitPattern;
+                // Select plural
+                var unitName = void 0;
+                var currencyNameData = data.currencies[options.currency];
+                if (currencyNameData) {
+                    unitName = selectPlural(pl, numberResult.roundedNumber * Math.pow(10, exponent), currencyNameData.displayName);
+                }
+                else {
+                    // Fallback for unknown currency
+                    unitName = options.currency;
+                }
+                // Do {0} and {1} substitution
+                var unitPatternParts = unitPattern.split(/(\{[01]\})/g);
+                var result = [];
+                for (var _a = 0, unitPatternParts_1 = unitPatternParts; _a < unitPatternParts_1.length; _a++) {
+                    var part = unitPatternParts_1[_a];
+                    switch (part) {
+                        case '{0}':
+                            result.push.apply(result, numberParts);
+                            break;
+                        case '{1}':
+                            result.push({ type: 'currency', value: unitName });
+                            break;
+                        default:
+                            if (part) {
+                                result.push({ type: 'literal', value: part });
+                            }
+                            break;
+                    }
+                }
+                return result;
+            }
+            else {
+                return numberParts;
+            }
+        }
+        case 'unit': {
+            var unit = options.unit, unitDisplay = options.unitDisplay;
+            var unitData = data.units.simple[unit];
+            var unitPattern = void 0;
+            if (unitData) {
+                // Simple unit pattern
+                unitPattern = selectPlural(pl, numberResult.roundedNumber * Math.pow(10, exponent), data.units.simple[unit][unitDisplay]);
+            }
+            else {
+                // See: http://unicode.org/reports/tr35/tr35-general.html#perUnitPatterns
+                // If cannot find unit in the simple pattern, it must be "per" compound pattern.
+                // Implementation note: we are not following TR-35 here because we need to format to parts!
+                var _b = unit.split('-per-'), numeratorUnit = _b[0], denominatorUnit = _b[1];
+                unitData = data.units.simple[numeratorUnit];
+                var numeratorUnitPattern = selectPlural(pl, numberResult.roundedNumber * Math.pow(10, exponent), data.units.simple[numeratorUnit][unitDisplay]);
+                var perUnitPattern = data.units.simple[denominatorUnit].perUnit[unitDisplay];
+                if (perUnitPattern) {
+                    // perUnitPattern exists, combine it with numeratorUnitPattern
+                    unitPattern = perUnitPattern.replace('{0}', numeratorUnitPattern);
+                }
+                else {
+                    // get compoundUnit pattern (e.g. "{0} per {1}"), repalce {0} with numerator pattern and {1} with
+                    // the denominator pattern in singular form.
+                    var perPattern = data.units.compound.per[unitDisplay];
+                    var denominatorPattern = selectPlural(pl, 1, data.units.simple[denominatorUnit][unitDisplay]);
+                    unitPattern = unitPattern = perPattern
+                        .replace('{0}', numeratorUnitPattern)
+                        .replace('{1}', denominatorPattern.replace('{0}', ''));
+                }
+            }
+            var result = [];
+            // We need spacing around "{0}" because they are not treated as "unit" parts, but "literal".
+            for (var _c = 0, _d = unitPattern.split(/(\s*\{0\}\s*)/); _c < _d.length; _c++) {
+                var part = _d[_c];
+                var interpolateMatch = /^(\s*)\{0\}(\s*)$/.exec(part);
+                if (interpolateMatch) {
+                    // Space before "{0}"
+                    if (interpolateMatch[1]) {
+                        result.push({ type: 'literal', value: interpolateMatch[1] });
+                    }
+                    // "{0}" itself
+                    result.push.apply(result, numberParts);
+                    // Space after "{0}"
+                    if (interpolateMatch[2]) {
+                        result.push({ type: 'literal', value: interpolateMatch[2] });
+                    }
+                }
+                else if (part) {
+                    result.push({ type: 'unit', value: part });
+                }
+            }
+            return result;
+        }
+        default:
+            return numberParts;
+    }
+    // #endregion
+}
+// A subset of https://tc39.es/ecma402/#sec-partitionnotationsubpattern
+// Plus the exponent parts handling.
+function paritionNumberIntoParts(symbols, numberResult, notation, exponent, numberingSystem, useGrouping, 
+/**
+ * This is the decimal number pattern without signs or symbols.
+ * It is used to infer the group size when `useGrouping` is true.
+ *
+ * A typical value looks like "#,##0.00" (primary group size is 3).
+ * Some locales like Hindi has secondary group size of 2 (e.g. "#,##,##0.00").
+ */
+decimalNumberPattern) {
+    var result = [];
+    // eslint-disable-next-line prefer-const
+    var n = numberResult.formattedString, x = numberResult.roundedNumber;
+    if (isNaN(x)) {
+        return [{ type: 'nan', value: n }];
+    }
+    else if (!isFinite(x)) {
+        return [{ type: 'infinity', value: n }];
+    }
+    var digitReplacementTable = _digit_mapping_generated__WEBPACK_IMPORTED_MODULE_1__.digitMapping[numberingSystem];
+    if (digitReplacementTable) {
+        n = n.replace(/\d/g, function (digit) { return digitReplacementTable[+digit] || digit; });
+    }
+    // TODO: Else use an implementation dependent algorithm to map n to the appropriate
+    // representation of n in the given numbering system.
+    var decimalSepIndex = n.indexOf('.');
+    var integer;
+    var fraction;
+    if (decimalSepIndex > 0) {
+        integer = n.slice(0, decimalSepIndex);
+        fraction = n.slice(decimalSepIndex + 1);
+    }
+    else {
+        integer = n;
+    }
+    // #region Grouping integer digits
+    // The weird compact and x >= 10000 check is to ensure consistency with Node.js and Chrome.
+    // Note that `de` does not have compact form for thousands, but Node.js does not insert grouping separator
+    // unless the rounded number is greater than 10000:
+    //   NumberFormat('de', {notation: 'compact', compactDisplay: 'short'}).format(1234) //=> "1234"
+    //   NumberFormat('de').format(1234) //=> "1.234"
+    if (useGrouping && (notation !== 'compact' || x >= 10000)) {
+        var groupSepSymbol = symbols.group;
+        var groups = [];
+        // > There may be two different grouping sizes: The primary grouping size used for the least
+        // > significant integer group, and the secondary grouping size used for more significant groups.
+        // > If a pattern contains multiple grouping separators, the interval between the last one and the
+        // > end of the integer defines the primary grouping size, and the interval between the last two
+        // > defines the secondary grouping size. All others are ignored.
+        var integerNumberPattern = decimalNumberPattern.split('.')[0];
+        var patternGroups = integerNumberPattern.split(',');
+        var primaryGroupingSize = 3;
+        var secondaryGroupingSize = 3;
+        if (patternGroups.length > 1) {
+            primaryGroupingSize = patternGroups[patternGroups.length - 1].length;
+        }
+        if (patternGroups.length > 2) {
+            secondaryGroupingSize = patternGroups[patternGroups.length - 2].length;
+        }
+        var i = integer.length - primaryGroupingSize;
+        if (i > 0) {
+            // Slice the least significant integer group
+            groups.push(integer.slice(i, i + primaryGroupingSize));
+            // Then iteratively push the more signicant groups
+            // TODO: handle surrogate pairs in some numbering system digits
+            for (i -= secondaryGroupingSize; i > 0; i -= secondaryGroupingSize) {
+                groups.push(integer.slice(i, i + secondaryGroupingSize));
+            }
+            groups.push(integer.slice(0, i + secondaryGroupingSize));
+        }
+        else {
+            groups.push(integer);
+        }
+        while (groups.length > 0) {
+            var integerGroup = groups.pop();
+            result.push({ type: 'integer', value: integerGroup });
+            if (groups.length > 0) {
+                result.push({ type: 'group', value: groupSepSymbol });
+            }
+        }
+    }
+    else {
+        result.push({ type: 'integer', value: integer });
+    }
+    // #endregion
+    if (fraction !== undefined) {
+        result.push({ type: 'decimal', value: symbols.decimal }, { type: 'fraction', value: fraction });
+    }
+    if ((notation === 'scientific' || notation === 'engineering') &&
+        isFinite(x)) {
+        result.push({ type: 'exponentSeparator', value: symbols.exponential });
+        if (exponent < 0) {
+            result.push({ type: 'exponentMinusSign', value: symbols.minusSign });
+            exponent = -exponent;
+        }
+        var exponentResult = (0,_ToRawFixed__WEBPACK_IMPORTED_MODULE_2__.ToRawFixed)(exponent, 0, 0);
+        result.push({
+            type: 'exponentInteger',
+            value: exponentResult.formattedString,
+        });
+    }
+    return result;
+}
+function getPatternForSign(pattern, sign) {
+    if (pattern.indexOf(';') < 0) {
+        pattern = pattern + ";-" + pattern;
+    }
+    var _a = pattern.split(';'), zeroPattern = _a[0], negativePattern = _a[1];
+    switch (sign) {
+        case 0:
+            return zeroPattern;
+        case -1:
+            return negativePattern;
+        default:
+            return negativePattern.indexOf('-') >= 0
+                ? negativePattern.replace(/-/g, '+')
+                : "+" + zeroPattern;
+    }
+}
+// Find the CLDR pattern for compact notation based on the magnitude of data and style.
+//
+// Example return value: "¤ {c:laki}000;¤{c:laki} -0" (`sw` locale):
+// - Notice the `{c:...}` token that wraps the compact literal.
+// - The consecutive zeros are normalized to single zero to match CLDR_NUMBER_PATTERN.
+//
+// Returning null means the compact display pattern cannot be found.
+function getCompactDisplayPattern(numberResult, pl, data, style, compactDisplay, currencyDisplay, numberingSystem) {
+    var _a;
+    var roundedNumber = numberResult.roundedNumber, sign = numberResult.sign, magnitude = numberResult.magnitude;
+    var magnitudeKey = String(Math.pow(10, magnitude));
+    var defaultNumberingSystem = data.numbers.nu[0];
+    var pattern;
+    if (style === 'currency' && currencyDisplay !== 'name') {
+        var byNumberingSystem = data.numbers.currency;
+        var currencyData = byNumberingSystem[numberingSystem] ||
+            byNumberingSystem[defaultNumberingSystem];
+        // NOTE: compact notation ignores currencySign!
+        var compactPluralRules = (_a = currencyData.short) === null || _a === void 0 ? void 0 : _a[magnitudeKey];
+        if (!compactPluralRules) {
+            return null;
+        }
+        pattern = selectPlural(pl, roundedNumber, compactPluralRules);
+    }
+    else {
+        var byNumberingSystem = data.numbers.decimal;
+        var byCompactDisplay = byNumberingSystem[numberingSystem] ||
+            byNumberingSystem[defaultNumberingSystem];
+        var compactPlaralRule = byCompactDisplay[compactDisplay][magnitudeKey];
+        if (!compactPlaralRule) {
+            return null;
+        }
+        pattern = selectPlural(pl, roundedNumber, compactPlaralRule);
+    }
+    // See https://unicode.org/reports/tr35/tr35-numbers.html#Compact_Number_Formats
+    // > If the value is precisely “0”, either explicit or defaulted, then the normal number format
+    // > pattern for that sort of object is supplied.
+    if (pattern === '0') {
+        return null;
+    }
+    pattern = getPatternForSign(pattern, sign)
+        // Extract compact literal from the pattern
+        .replace(/([^\s;\-\+\d¤]+)/g, '{c:$1}')
+        // We replace one or more zeros with a single zero so it matches `CLDR_NUMBER_PATTERN`.
+        .replace(/0+/, '0');
+    return pattern;
+}
+function selectPlural(pl, x, rules) {
+    return rules[pl.select(x)] || rules.other;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/PartitionPattern.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/PartitionPattern.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PartitionPattern": () => (/* binding */ PartitionPattern)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+
+/**
+ * https://tc39.es/ecma402/#sec-partitionpattern
+ * @param pattern
+ */
+function PartitionPattern(pattern) {
+    var result = [];
+    var beginIndex = pattern.indexOf('{');
+    var endIndex = 0;
+    var nextIndex = 0;
+    var length = pattern.length;
+    while (beginIndex < pattern.length && beginIndex > -1) {
+        endIndex = pattern.indexOf('}', beginIndex);
+        (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)(endIndex > beginIndex, "Invalid pattern " + pattern);
+        if (beginIndex > nextIndex) {
+            result.push({
+                type: 'literal',
+                value: pattern.substring(nextIndex, beginIndex),
+            });
+        }
+        result.push({
+            type: pattern.substring(beginIndex + 1, endIndex),
+            value: undefined,
+        });
+        nextIndex = endIndex + 1;
+        beginIndex = pattern.indexOf('{', nextIndex);
+    }
+    if (nextIndex < length) {
+        result.push({
+            type: 'literal',
+            value: pattern.substring(nextIndex, length),
+        });
+    }
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/SupportedLocales.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/SupportedLocales.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SupportedLocales": () => (/* binding */ SupportedLocales)
+/* harmony export */ });
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./262 */ "./node_modules/@formatjs/ecma402-abstract/lib/262.js");
+/* harmony import */ var _GetOption__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GetOption */ "./node_modules/@formatjs/ecma402-abstract/lib/GetOption.js");
+/* harmony import */ var _formatjs_intl_localematcher__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @formatjs/intl-localematcher */ "./node_modules/@formatjs/intl-localematcher/index.js");
+
+
+
+/**
+ * https://tc39.es/ecma402/#sec-supportedlocales
+ * @param availableLocales
+ * @param requestedLocales
+ * @param options
+ */
+function SupportedLocales(availableLocales, requestedLocales, options) {
+    var matcher = 'best fit';
+    if (options !== undefined) {
+        options = (0,_262__WEBPACK_IMPORTED_MODULE_1__.ToObject)(options);
+        matcher = (0,_GetOption__WEBPACK_IMPORTED_MODULE_2__.GetOption)(options, 'localeMatcher', 'string', ['lookup', 'best fit'], 'best fit');
+    }
+    if (matcher === 'best fit') {
+        return (0,_formatjs_intl_localematcher__WEBPACK_IMPORTED_MODULE_0__.LookupSupportedLocales)(availableLocales, requestedLocales);
+    }
+    return (0,_formatjs_intl_localematcher__WEBPACK_IMPORTED_MODULE_0__.LookupSupportedLocales)(availableLocales, requestedLocales);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/data.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/data.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isMissingLocaleDataError": () => (/* binding */ isMissingLocaleDataError)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/@formatjs/ecma402-abstract/node_modules/tslib/tslib.es6.js");
+
+var MissingLocaleDataError = /** @class */ (function (_super) {
+    (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(MissingLocaleDataError, _super);
+    function MissingLocaleDataError() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.type = 'MISSING_LOCALE_DATA';
+        return _this;
+    }
+    return MissingLocaleDataError;
+}(Error));
+function isMissingLocaleDataError(e) {
+    return e.type === 'MISSING_LOCALE_DATA';
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/index.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/index.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CanonicalizeLocaleList": () => (/* reexport safe */ _CanonicalizeLocaleList__WEBPACK_IMPORTED_MODULE_0__.CanonicalizeLocaleList),
+/* harmony export */   "CanonicalizeTimeZoneName": () => (/* reexport safe */ _CanonicalizeTimeZoneName__WEBPACK_IMPORTED_MODULE_1__.CanonicalizeTimeZoneName),
+/* harmony export */   "CoerceOptionsToObject": () => (/* reexport safe */ _CoerceOptionsToObject__WEBPACK_IMPORTED_MODULE_2__.CoerceOptionsToObject),
+/* harmony export */   "GetNumberOption": () => (/* reexport safe */ _GetNumberOption__WEBPACK_IMPORTED_MODULE_3__.GetNumberOption),
+/* harmony export */   "GetOption": () => (/* reexport safe */ _GetOption__WEBPACK_IMPORTED_MODULE_4__.GetOption),
+/* harmony export */   "GetOptionsObject": () => (/* reexport safe */ _GetOptionsObject__WEBPACK_IMPORTED_MODULE_5__.GetOptionsObject),
+/* harmony export */   "IsSanctionedSimpleUnitIdentifier": () => (/* reexport safe */ _IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_6__.IsSanctionedSimpleUnitIdentifier),
+/* harmony export */   "SANCTIONED_UNITS": () => (/* reexport safe */ _IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_6__.SANCTIONED_UNITS),
+/* harmony export */   "SIMPLE_UNITS": () => (/* reexport safe */ _IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_6__.SIMPLE_UNITS),
+/* harmony export */   "removeUnitNamespace": () => (/* reexport safe */ _IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_6__.removeUnitNamespace),
+/* harmony export */   "IsValidTimeZoneName": () => (/* reexport safe */ _IsValidTimeZoneName__WEBPACK_IMPORTED_MODULE_7__.IsValidTimeZoneName),
+/* harmony export */   "IsWellFormedCurrencyCode": () => (/* reexport safe */ _IsWellFormedCurrencyCode__WEBPACK_IMPORTED_MODULE_8__.IsWellFormedCurrencyCode),
+/* harmony export */   "IsWellFormedUnitIdentifier": () => (/* reexport safe */ _IsWellFormedUnitIdentifier__WEBPACK_IMPORTED_MODULE_9__.IsWellFormedUnitIdentifier),
+/* harmony export */   "ComputeExponent": () => (/* reexport safe */ _NumberFormat_ComputeExponent__WEBPACK_IMPORTED_MODULE_10__.ComputeExponent),
+/* harmony export */   "ComputeExponentForMagnitude": () => (/* reexport safe */ _NumberFormat_ComputeExponentForMagnitude__WEBPACK_IMPORTED_MODULE_11__.ComputeExponentForMagnitude),
+/* harmony export */   "CurrencyDigits": () => (/* reexport safe */ _NumberFormat_CurrencyDigits__WEBPACK_IMPORTED_MODULE_12__.CurrencyDigits),
+/* harmony export */   "FormatNumericToParts": () => (/* reexport safe */ _NumberFormat_FormatNumericToParts__WEBPACK_IMPORTED_MODULE_13__.FormatNumericToParts),
+/* harmony export */   "FormatNumericToString": () => (/* reexport safe */ _NumberFormat_FormatNumericToString__WEBPACK_IMPORTED_MODULE_14__.FormatNumericToString),
+/* harmony export */   "InitializeNumberFormat": () => (/* reexport safe */ _NumberFormat_InitializeNumberFormat__WEBPACK_IMPORTED_MODULE_15__.InitializeNumberFormat),
+/* harmony export */   "PartitionNumberPattern": () => (/* reexport safe */ _NumberFormat_PartitionNumberPattern__WEBPACK_IMPORTED_MODULE_16__.PartitionNumberPattern),
+/* harmony export */   "SetNumberFormatDigitOptions": () => (/* reexport safe */ _NumberFormat_SetNumberFormatDigitOptions__WEBPACK_IMPORTED_MODULE_17__.SetNumberFormatDigitOptions),
+/* harmony export */   "SetNumberFormatUnitOptions": () => (/* reexport safe */ _NumberFormat_SetNumberFormatUnitOptions__WEBPACK_IMPORTED_MODULE_18__.SetNumberFormatUnitOptions),
+/* harmony export */   "ToRawFixed": () => (/* reexport safe */ _NumberFormat_ToRawFixed__WEBPACK_IMPORTED_MODULE_19__.ToRawFixed),
+/* harmony export */   "ToRawPrecision": () => (/* reexport safe */ _NumberFormat_ToRawPrecision__WEBPACK_IMPORTED_MODULE_20__.ToRawPrecision),
+/* harmony export */   "_formatToParts": () => (/* reexport safe */ _NumberFormat_format_to_parts__WEBPACK_IMPORTED_MODULE_21__["default"]),
+/* harmony export */   "PartitionPattern": () => (/* reexport safe */ _PartitionPattern__WEBPACK_IMPORTED_MODULE_22__.PartitionPattern),
+/* harmony export */   "SupportedLocales": () => (/* reexport safe */ _SupportedLocales__WEBPACK_IMPORTED_MODULE_23__.SupportedLocales),
+/* harmony export */   "getInternalSlot": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_24__.getInternalSlot),
+/* harmony export */   "getMultiInternalSlots": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_24__.getMultiInternalSlots),
+/* harmony export */   "isLiteralPart": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_24__.isLiteralPart),
+/* harmony export */   "setInternalSlot": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_24__.setInternalSlot),
+/* harmony export */   "setMultiInternalSlots": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_24__.setMultiInternalSlots),
+/* harmony export */   "getMagnitude": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_24__.getMagnitude),
+/* harmony export */   "defineProperty": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_24__.defineProperty),
+/* harmony export */   "isMissingLocaleDataError": () => (/* reexport safe */ _data__WEBPACK_IMPORTED_MODULE_25__.isMissingLocaleDataError),
+/* harmony export */   "RangePatternType": () => (/* reexport safe */ _types_date_time__WEBPACK_IMPORTED_MODULE_26__.RangePatternType),
+/* harmony export */   "invariant": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_24__.invariant),
+/* harmony export */   "ArrayCreate": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.ArrayCreate),
+/* harmony export */   "DateFromTime": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.DateFromTime),
+/* harmony export */   "Day": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.Day),
+/* harmony export */   "DayFromYear": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.DayFromYear),
+/* harmony export */   "DayWithinYear": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.DayWithinYear),
+/* harmony export */   "DaysInYear": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.DaysInYear),
+/* harmony export */   "HasOwnProperty": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.HasOwnProperty),
+/* harmony export */   "HourFromTime": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.HourFromTime),
+/* harmony export */   "InLeapYear": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.InLeapYear),
+/* harmony export */   "MinFromTime": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.MinFromTime),
+/* harmony export */   "MonthFromTime": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.MonthFromTime),
+/* harmony export */   "OrdinaryHasInstance": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.OrdinaryHasInstance),
+/* harmony export */   "SameValue": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.SameValue),
+/* harmony export */   "SecFromTime": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.SecFromTime),
+/* harmony export */   "TimeClip": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.TimeClip),
+/* harmony export */   "TimeFromYear": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.TimeFromYear),
+/* harmony export */   "ToNumber": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.ToNumber),
+/* harmony export */   "ToObject": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.ToObject),
+/* harmony export */   "ToString": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.ToString),
+/* harmony export */   "Type": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.Type),
+/* harmony export */   "WeekDay": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.WeekDay),
+/* harmony export */   "YearFromTime": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.YearFromTime),
+/* harmony export */   "msFromTime": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_27__.msFromTime)
+/* harmony export */ });
+/* harmony import */ var _CanonicalizeLocaleList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CanonicalizeLocaleList */ "./node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeLocaleList.js");
+/* harmony import */ var _CanonicalizeTimeZoneName__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CanonicalizeTimeZoneName */ "./node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeTimeZoneName.js");
+/* harmony import */ var _CoerceOptionsToObject__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CoerceOptionsToObject */ "./node_modules/@formatjs/ecma402-abstract/lib/CoerceOptionsToObject.js");
+/* harmony import */ var _GetNumberOption__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./GetNumberOption */ "./node_modules/@formatjs/ecma402-abstract/lib/GetNumberOption.js");
+/* harmony import */ var _GetOption__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./GetOption */ "./node_modules/@formatjs/ecma402-abstract/lib/GetOption.js");
+/* harmony import */ var _GetOptionsObject__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./GetOptionsObject */ "./node_modules/@formatjs/ecma402-abstract/lib/GetOptionsObject.js");
+/* harmony import */ var _IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./IsSanctionedSimpleUnitIdentifier */ "./node_modules/@formatjs/ecma402-abstract/lib/IsSanctionedSimpleUnitIdentifier.js");
+/* harmony import */ var _IsValidTimeZoneName__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./IsValidTimeZoneName */ "./node_modules/@formatjs/ecma402-abstract/lib/IsValidTimeZoneName.js");
+/* harmony import */ var _IsWellFormedCurrencyCode__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./IsWellFormedCurrencyCode */ "./node_modules/@formatjs/ecma402-abstract/lib/IsWellFormedCurrencyCode.js");
+/* harmony import */ var _IsWellFormedUnitIdentifier__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./IsWellFormedUnitIdentifier */ "./node_modules/@formatjs/ecma402-abstract/lib/IsWellFormedUnitIdentifier.js");
+/* harmony import */ var _NumberFormat_ComputeExponent__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./NumberFormat/ComputeExponent */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ComputeExponent.js");
+/* harmony import */ var _NumberFormat_ComputeExponentForMagnitude__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./NumberFormat/ComputeExponentForMagnitude */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ComputeExponentForMagnitude.js");
+/* harmony import */ var _NumberFormat_CurrencyDigits__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./NumberFormat/CurrencyDigits */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/CurrencyDigits.js");
+/* harmony import */ var _NumberFormat_FormatNumericToParts__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./NumberFormat/FormatNumericToParts */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/FormatNumericToParts.js");
+/* harmony import */ var _NumberFormat_FormatNumericToString__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./NumberFormat/FormatNumericToString */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/FormatNumericToString.js");
+/* harmony import */ var _NumberFormat_InitializeNumberFormat__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./NumberFormat/InitializeNumberFormat */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/InitializeNumberFormat.js");
+/* harmony import */ var _NumberFormat_PartitionNumberPattern__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./NumberFormat/PartitionNumberPattern */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/PartitionNumberPattern.js");
+/* harmony import */ var _NumberFormat_SetNumberFormatDigitOptions__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./NumberFormat/SetNumberFormatDigitOptions */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/SetNumberFormatDigitOptions.js");
+/* harmony import */ var _NumberFormat_SetNumberFormatUnitOptions__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./NumberFormat/SetNumberFormatUnitOptions */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/SetNumberFormatUnitOptions.js");
+/* harmony import */ var _NumberFormat_ToRawFixed__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./NumberFormat/ToRawFixed */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawFixed.js");
+/* harmony import */ var _NumberFormat_ToRawPrecision__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./NumberFormat/ToRawPrecision */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawPrecision.js");
+/* harmony import */ var _NumberFormat_format_to_parts__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./NumberFormat/format_to_parts */ "./node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/format_to_parts.js");
+/* harmony import */ var _PartitionPattern__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./PartitionPattern */ "./node_modules/@formatjs/ecma402-abstract/lib/PartitionPattern.js");
+/* harmony import */ var _SupportedLocales__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./SupportedLocales */ "./node_modules/@formatjs/ecma402-abstract/lib/SupportedLocales.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./data */ "./node_modules/@formatjs/ecma402-abstract/lib/data.js");
+/* harmony import */ var _types_date_time__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./types/date-time */ "./node_modules/@formatjs/ecma402-abstract/lib/types/date-time.js");
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./262 */ "./node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/regex.generated.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/regex.generated.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "S_UNICODE_REGEX": () => (/* binding */ S_UNICODE_REGEX)
+/* harmony export */ });
+// @generated from regex-gen.ts
+var S_UNICODE_REGEX = /[\$\+<->\^`\|~\xA2-\xA6\xA8\xA9\xAC\xAE-\xB1\xB4\xB8\xD7\xF7\u02C2-\u02C5\u02D2-\u02DF\u02E5-\u02EB\u02ED\u02EF-\u02FF\u0375\u0384\u0385\u03F6\u0482\u058D-\u058F\u0606-\u0608\u060B\u060E\u060F\u06DE\u06E9\u06FD\u06FE\u07F6\u07FE\u07FF\u09F2\u09F3\u09FA\u09FB\u0AF1\u0B70\u0BF3-\u0BFA\u0C7F\u0D4F\u0D79\u0E3F\u0F01-\u0F03\u0F13\u0F15-\u0F17\u0F1A-\u0F1F\u0F34\u0F36\u0F38\u0FBE-\u0FC5\u0FC7-\u0FCC\u0FCE\u0FCF\u0FD5-\u0FD8\u109E\u109F\u1390-\u1399\u166D\u17DB\u1940\u19DE-\u19FF\u1B61-\u1B6A\u1B74-\u1B7C\u1FBD\u1FBF-\u1FC1\u1FCD-\u1FCF\u1FDD-\u1FDF\u1FED-\u1FEF\u1FFD\u1FFE\u2044\u2052\u207A-\u207C\u208A-\u208C\u20A0-\u20BF\u2100\u2101\u2103-\u2106\u2108\u2109\u2114\u2116-\u2118\u211E-\u2123\u2125\u2127\u2129\u212E\u213A\u213B\u2140-\u2144\u214A-\u214D\u214F\u218A\u218B\u2190-\u2307\u230C-\u2328\u232B-\u2426\u2440-\u244A\u249C-\u24E9\u2500-\u2767\u2794-\u27C4\u27C7-\u27E5\u27F0-\u2982\u2999-\u29D7\u29DC-\u29FB\u29FE-\u2B73\u2B76-\u2B95\u2B97-\u2BFF\u2CE5-\u2CEA\u2E50\u2E51\u2E80-\u2E99\u2E9B-\u2EF3\u2F00-\u2FD5\u2FF0-\u2FFB\u3004\u3012\u3013\u3020\u3036\u3037\u303E\u303F\u309B\u309C\u3190\u3191\u3196-\u319F\u31C0-\u31E3\u3200-\u321E\u322A-\u3247\u3250\u3260-\u327F\u328A-\u32B0\u32C0-\u33FF\u4DC0-\u4DFF\uA490-\uA4C6\uA700-\uA716\uA720\uA721\uA789\uA78A\uA828-\uA82B\uA836-\uA839\uAA77-\uAA79\uAB5B\uAB6A\uAB6B\uFB29\uFBB2-\uFBC1\uFDFC\uFDFD\uFE62\uFE64-\uFE66\uFE69\uFF04\uFF0B\uFF1C-\uFF1E\uFF3E\uFF40\uFF5C\uFF5E\uFFE0-\uFFE6\uFFE8-\uFFEE\uFFFC\uFFFD]|\uD800[\uDD37-\uDD3F\uDD79-\uDD89\uDD8C-\uDD8E\uDD90-\uDD9C\uDDA0\uDDD0-\uDDFC]|\uD802[\uDC77\uDC78\uDEC8]|\uD805\uDF3F|\uD807[\uDFD5-\uDFF1]|\uD81A[\uDF3C-\uDF3F\uDF45]|\uD82F\uDC9C|\uD834[\uDC00-\uDCF5\uDD00-\uDD26\uDD29-\uDD64\uDD6A-\uDD6C\uDD83\uDD84\uDD8C-\uDDA9\uDDAE-\uDDE8\uDE00-\uDE41\uDE45\uDF00-\uDF56]|\uD835[\uDEC1\uDEDB\uDEFB\uDF15\uDF35\uDF4F\uDF6F\uDF89\uDFA9\uDFC3]|\uD836[\uDC00-\uDDFF\uDE37-\uDE3A\uDE6D-\uDE74\uDE76-\uDE83\uDE85\uDE86]|\uD838[\uDD4F\uDEFF]|\uD83B[\uDCAC\uDCB0\uDD2E\uDEF0\uDEF1]|\uD83C[\uDC00-\uDC2B\uDC30-\uDC93\uDCA0-\uDCAE\uDCB1-\uDCBF\uDCC1-\uDCCF\uDCD1-\uDCF5\uDD0D-\uDDAD\uDDE6-\uDE02\uDE10-\uDE3B\uDE40-\uDE48\uDE50\uDE51\uDE60-\uDE65\uDF00-\uDFFF]|\uD83D[\uDC00-\uDED7\uDEE0-\uDEEC\uDEF0-\uDEFC\uDF00-\uDF73\uDF80-\uDFD8\uDFE0-\uDFEB]|\uD83E[\uDC00-\uDC0B\uDC10-\uDC47\uDC50-\uDC59\uDC60-\uDC87\uDC90-\uDCAD\uDCB0\uDCB1\uDD00-\uDD78\uDD7A-\uDDCB\uDDCD-\uDE53\uDE60-\uDE6D\uDE70-\uDE74\uDE78-\uDE7A\uDE80-\uDE86\uDE90-\uDEA8\uDEB0-\uDEB6\uDEC0-\uDEC2\uDED0-\uDED6\uDF00-\uDF92\uDF94-\uDFCA]/;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/types/date-time.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/types/date-time.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RangePatternType": () => (/* binding */ RangePatternType)
+/* harmony export */ });
+var RangePatternType;
+(function (RangePatternType) {
+    RangePatternType["startRange"] = "startRange";
+    RangePatternType["shared"] = "shared";
+    RangePatternType["endRange"] = "endRange";
+})(RangePatternType || (RangePatternType = {}));
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/lib/utils.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/lib/utils.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getMagnitude": () => (/* binding */ getMagnitude),
+/* harmony export */   "repeat": () => (/* binding */ repeat),
+/* harmony export */   "setInternalSlot": () => (/* binding */ setInternalSlot),
+/* harmony export */   "setMultiInternalSlots": () => (/* binding */ setMultiInternalSlots),
+/* harmony export */   "getInternalSlot": () => (/* binding */ getInternalSlot),
+/* harmony export */   "getMultiInternalSlots": () => (/* binding */ getMultiInternalSlots),
+/* harmony export */   "isLiteralPart": () => (/* binding */ isLiteralPart),
+/* harmony export */   "defineProperty": () => (/* binding */ defineProperty),
+/* harmony export */   "UNICODE_EXTENSION_SEQUENCE_REGEX": () => (/* binding */ UNICODE_EXTENSION_SEQUENCE_REGEX),
+/* harmony export */   "invariant": () => (/* binding */ invariant)
+/* harmony export */ });
+/**
+ * Cannot do Math.log(x) / Math.log(10) bc if IEEE floating point issue
+ * @param x number
+ */
+function getMagnitude(x) {
+    // Cannot count string length via Number.toString because it may use scientific notation
+    // for very small or very large numbers.
+    return Math.floor(Math.log(x) * Math.LOG10E);
+}
+function repeat(s, times) {
+    if (typeof s.repeat === 'function') {
+        return s.repeat(times);
+    }
+    var arr = new Array(times);
+    for (var i = 0; i < arr.length; i++) {
+        arr[i] = s;
+    }
+    return arr.join('');
+}
+function setInternalSlot(map, pl, field, value) {
+    if (!map.get(pl)) {
+        map.set(pl, Object.create(null));
+    }
+    var slots = map.get(pl);
+    slots[field] = value;
+}
+function setMultiInternalSlots(map, pl, props) {
+    for (var _i = 0, _a = Object.keys(props); _i < _a.length; _i++) {
+        var k = _a[_i];
+        setInternalSlot(map, pl, k, props[k]);
+    }
+}
+function getInternalSlot(map, pl, field) {
+    return getMultiInternalSlots(map, pl, field)[field];
+}
+function getMultiInternalSlots(map, pl) {
+    var fields = [];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        fields[_i - 2] = arguments[_i];
+    }
+    var slots = map.get(pl);
+    if (!slots) {
+        throw new TypeError(pl + " InternalSlot has not been initialized");
+    }
+    return fields.reduce(function (all, f) {
+        all[f] = slots[f];
+        return all;
+    }, Object.create(null));
+}
+function isLiteralPart(patternPart) {
+    return patternPart.type === 'literal';
+}
+/*
+  17 ECMAScript Standard Built-in Objects:
+    Every built-in Function object, including constructors, that is not
+    identified as an anonymous function has a name property whose value
+    is a String.
+
+    Unless otherwise specified, the name property of a built-in Function
+    object, if it exists, has the attributes { [[Writable]]: false,
+    [[Enumerable]]: false, [[Configurable]]: true }.
+*/
+function defineProperty(target, name, _a) {
+    var value = _a.value;
+    Object.defineProperty(target, name, {
+        configurable: true,
+        enumerable: false,
+        writable: true,
+        value: value,
+    });
+}
+var UNICODE_EXTENSION_SEQUENCE_REGEX = /-u(?:-[0-9a-z]{2,8})+/gi;
+function invariant(condition, message, Err) {
+    if (Err === void 0) { Err = Error; }
+    if (!condition) {
+        throw new Err(message);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/ecma402-abstract/node_modules/tslib/tslib.es6.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@formatjs/ecma402-abstract/node_modules/tslib/tslib.es6.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "__extends": () => (/* binding */ __extends),
+/* harmony export */   "__assign": () => (/* binding */ __assign),
+/* harmony export */   "__rest": () => (/* binding */ __rest),
+/* harmony export */   "__decorate": () => (/* binding */ __decorate),
+/* harmony export */   "__param": () => (/* binding */ __param),
+/* harmony export */   "__metadata": () => (/* binding */ __metadata),
+/* harmony export */   "__awaiter": () => (/* binding */ __awaiter),
+/* harmony export */   "__generator": () => (/* binding */ __generator),
+/* harmony export */   "__createBinding": () => (/* binding */ __createBinding),
+/* harmony export */   "__exportStar": () => (/* binding */ __exportStar),
+/* harmony export */   "__values": () => (/* binding */ __values),
+/* harmony export */   "__read": () => (/* binding */ __read),
+/* harmony export */   "__spread": () => (/* binding */ __spread),
+/* harmony export */   "__spreadArrays": () => (/* binding */ __spreadArrays),
+/* harmony export */   "__spreadArray": () => (/* binding */ __spreadArray),
+/* harmony export */   "__await": () => (/* binding */ __await),
+/* harmony export */   "__asyncGenerator": () => (/* binding */ __asyncGenerator),
+/* harmony export */   "__asyncDelegator": () => (/* binding */ __asyncDelegator),
+/* harmony export */   "__asyncValues": () => (/* binding */ __asyncValues),
+/* harmony export */   "__makeTemplateObject": () => (/* binding */ __makeTemplateObject),
+/* harmony export */   "__importStar": () => (/* binding */ __importStar),
+/* harmony export */   "__importDefault": () => (/* binding */ __importDefault),
+/* harmony export */   "__classPrivateFieldGet": () => (/* binding */ __classPrivateFieldGet),
+/* harmony export */   "__classPrivateFieldSet": () => (/* binding */ __classPrivateFieldSet)
+/* harmony export */ });
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+    return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+    if (typeof b !== "function" && b !== null)
+        throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    }
+    return __assign.apply(this, arguments);
+}
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+function __decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+function __param(paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+}
+
+function __metadata(metadataKey, metadataValue) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+var __createBinding = Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+});
+
+function __exportStar(m, o) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p)) __createBinding(o, m, p);
+}
+
+function __values(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+/** @deprecated */
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
+/** @deprecated */
+function __spreadArrays() {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+}
+
+function __spreadArray(to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+}
+
+function __await(v) {
+    return this instanceof __await ? (this.v = v, this) : new __await(v);
+}
+
+function __asyncGenerator(thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+}
+
+function __asyncDelegator(o) {
+    var i, p;
+    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+}
+
+function __asyncValues(o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+}
+
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+
+var __setModuleDefault = Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+};
+
+function __importStar(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+}
+
+function __importDefault(mod) {
+    return (mod && mod.__esModule) ? mod : { default: mod };
+}
+
+function __classPrivateFieldGet(receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+}
+
+function __classPrivateFieldSet(receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/fast-memoize/lib/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@formatjs/fast-memoize/lib/index.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ memoize),
+/* harmony export */   "strategies": () => (/* binding */ strategies)
+/* harmony export */ });
+//
+// Main
+//
+function memoize(fn, options) {
+    var cache = options && options.cache ? options.cache : cacheDefault;
+    var serializer = options && options.serializer ? options.serializer : serializerDefault;
+    var strategy = options && options.strategy ? options.strategy : strategyDefault;
+    return strategy(fn, {
+        cache: cache,
+        serializer: serializer,
+    });
+}
+//
+// Strategy
+//
+function isPrimitive(value) {
+    return (value == null || typeof value === 'number' || typeof value === 'boolean'); // || typeof value === "string" 'unsafe' primitive for our needs
+}
+function monadic(fn, cache, serializer, arg) {
+    var cacheKey = isPrimitive(arg) ? arg : serializer(arg);
+    var computedValue = cache.get(cacheKey);
+    if (typeof computedValue === 'undefined') {
+        computedValue = fn.call(this, arg);
+        cache.set(cacheKey, computedValue);
+    }
+    return computedValue;
+}
+function variadic(fn, cache, serializer) {
+    var args = Array.prototype.slice.call(arguments, 3);
+    var cacheKey = serializer(args);
+    var computedValue = cache.get(cacheKey);
+    if (typeof computedValue === 'undefined') {
+        computedValue = fn.apply(this, args);
+        cache.set(cacheKey, computedValue);
+    }
+    return computedValue;
+}
+function assemble(fn, context, strategy, cache, serialize) {
+    return strategy.bind(context, fn, cache, serialize);
+}
+function strategyDefault(fn, options) {
+    var strategy = fn.length === 1 ? monadic : variadic;
+    return assemble(fn, this, strategy, options.cache.create(), options.serializer);
+}
+function strategyVariadic(fn, options) {
+    return assemble(fn, this, variadic, options.cache.create(), options.serializer);
+}
+function strategyMonadic(fn, options) {
+    return assemble(fn, this, monadic, options.cache.create(), options.serializer);
+}
+//
+// Serializer
+//
+var serializerDefault = function () {
+    return JSON.stringify(arguments);
+};
+//
+// Cache
+//
+function ObjectWithoutPrototypeCache() {
+    this.cache = Object.create(null);
+}
+ObjectWithoutPrototypeCache.prototype.get = function (key) {
+    return this.cache[key];
+};
+ObjectWithoutPrototypeCache.prototype.set = function (key, value) {
+    this.cache[key] = value;
+};
+var cacheDefault = {
+    create: function create() {
+        // @ts-ignore
+        return new ObjectWithoutPrototypeCache();
+    },
+};
+var strategies = {
+    variadic: strategyVariadic,
+    monadic: strategyMonadic,
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/icu-messageformat-parser/lib/error.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@formatjs/icu-messageformat-parser/lib/error.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ErrorKind": () => (/* binding */ ErrorKind)
+/* harmony export */ });
+var ErrorKind;
+(function (ErrorKind) {
+    /** Argument is unclosed (e.g. `{0`) */
+    ErrorKind[ErrorKind["EXPECT_ARGUMENT_CLOSING_BRACE"] = 1] = "EXPECT_ARGUMENT_CLOSING_BRACE";
+    /** Argument is empty (e.g. `{}`). */
+    ErrorKind[ErrorKind["EMPTY_ARGUMENT"] = 2] = "EMPTY_ARGUMENT";
+    /** Argument is malformed (e.g. `{foo!}``) */
+    ErrorKind[ErrorKind["MALFORMED_ARGUMENT"] = 3] = "MALFORMED_ARGUMENT";
+    /** Expect an argument type (e.g. `{foo,}`) */
+    ErrorKind[ErrorKind["EXPECT_ARGUMENT_TYPE"] = 4] = "EXPECT_ARGUMENT_TYPE";
+    /** Unsupported argument type (e.g. `{foo,foo}`) */
+    ErrorKind[ErrorKind["INVALID_ARGUMENT_TYPE"] = 5] = "INVALID_ARGUMENT_TYPE";
+    /** Expect an argument style (e.g. `{foo, number, }`) */
+    ErrorKind[ErrorKind["EXPECT_ARGUMENT_STYLE"] = 6] = "EXPECT_ARGUMENT_STYLE";
+    /** The number skeleton is invalid. */
+    ErrorKind[ErrorKind["INVALID_NUMBER_SKELETON"] = 7] = "INVALID_NUMBER_SKELETON";
+    /** The date time skeleton is invalid. */
+    ErrorKind[ErrorKind["INVALID_DATE_TIME_SKELETON"] = 8] = "INVALID_DATE_TIME_SKELETON";
+    /** Exepct a number skeleton following the `::` (e.g. `{foo, number, ::}`) */
+    ErrorKind[ErrorKind["EXPECT_NUMBER_SKELETON"] = 9] = "EXPECT_NUMBER_SKELETON";
+    /** Exepct a date time skeleton following the `::` (e.g. `{foo, date, ::}`) */
+    ErrorKind[ErrorKind["EXPECT_DATE_TIME_SKELETON"] = 10] = "EXPECT_DATE_TIME_SKELETON";
+    /** Unmatched apostrophes in the argument style (e.g. `{foo, number, 'test`) */
+    ErrorKind[ErrorKind["UNCLOSED_QUOTE_IN_ARGUMENT_STYLE"] = 11] = "UNCLOSED_QUOTE_IN_ARGUMENT_STYLE";
+    /** Missing select argument options (e.g. `{foo, select}`) */
+    ErrorKind[ErrorKind["EXPECT_SELECT_ARGUMENT_OPTIONS"] = 12] = "EXPECT_SELECT_ARGUMENT_OPTIONS";
+    /** Expecting an offset value in `plural` or `selectordinal` argument (e.g `{foo, plural, offset}`) */
+    ErrorKind[ErrorKind["EXPECT_PLURAL_ARGUMENT_OFFSET_VALUE"] = 13] = "EXPECT_PLURAL_ARGUMENT_OFFSET_VALUE";
+    /** Offset value in `plural` or `selectordinal` is invalid (e.g. `{foo, plural, offset: x}`) */
+    ErrorKind[ErrorKind["INVALID_PLURAL_ARGUMENT_OFFSET_VALUE"] = 14] = "INVALID_PLURAL_ARGUMENT_OFFSET_VALUE";
+    /** Expecting a selector in `select` argument (e.g `{foo, select}`) */
+    ErrorKind[ErrorKind["EXPECT_SELECT_ARGUMENT_SELECTOR"] = 15] = "EXPECT_SELECT_ARGUMENT_SELECTOR";
+    /** Expecting a selector in `plural` or `selectordinal` argument (e.g `{foo, plural}`) */
+    ErrorKind[ErrorKind["EXPECT_PLURAL_ARGUMENT_SELECTOR"] = 16] = "EXPECT_PLURAL_ARGUMENT_SELECTOR";
+    /** Expecting a message fragment after the `select` selector (e.g. `{foo, select, apple}`) */
+    ErrorKind[ErrorKind["EXPECT_SELECT_ARGUMENT_SELECTOR_FRAGMENT"] = 17] = "EXPECT_SELECT_ARGUMENT_SELECTOR_FRAGMENT";
+    /**
+     * Expecting a message fragment after the `plural` or `selectordinal` selector
+     * (e.g. `{foo, plural, one}`)
+     */
+    ErrorKind[ErrorKind["EXPECT_PLURAL_ARGUMENT_SELECTOR_FRAGMENT"] = 18] = "EXPECT_PLURAL_ARGUMENT_SELECTOR_FRAGMENT";
+    /** Selector in `plural` or `selectordinal` is malformed (e.g. `{foo, plural, =x {#}}`) */
+    ErrorKind[ErrorKind["INVALID_PLURAL_ARGUMENT_SELECTOR"] = 19] = "INVALID_PLURAL_ARGUMENT_SELECTOR";
+    /**
+     * Duplicate selectors in `plural` or `selectordinal` argument.
+     * (e.g. {foo, plural, one {#} one {#}})
+     */
+    ErrorKind[ErrorKind["DUPLICATE_PLURAL_ARGUMENT_SELECTOR"] = 20] = "DUPLICATE_PLURAL_ARGUMENT_SELECTOR";
+    /** Duplicate selectors in `select` argument.
+     * (e.g. {foo, select, apple {apple} apple {apple}})
+     */
+    ErrorKind[ErrorKind["DUPLICATE_SELECT_ARGUMENT_SELECTOR"] = 21] = "DUPLICATE_SELECT_ARGUMENT_SELECTOR";
+    /** Plural or select argument option must have `other` clause. */
+    ErrorKind[ErrorKind["MISSING_OTHER_CLAUSE"] = 22] = "MISSING_OTHER_CLAUSE";
+    /** The tag is malformed. (e.g. `<bold!>foo</bold!>) */
+    ErrorKind[ErrorKind["INVALID_TAG"] = 23] = "INVALID_TAG";
+    /** The tag name is invalid. (e.g. `<123>foo</123>`) */
+    ErrorKind[ErrorKind["INVALID_TAG_NAME"] = 25] = "INVALID_TAG_NAME";
+    /** The closing tag does not match the opening tag. (e.g. `<bold>foo</italic>`) */
+    ErrorKind[ErrorKind["UNMATCHED_CLOSING_TAG"] = 26] = "UNMATCHED_CLOSING_TAG";
+    /** The opening tag has unmatched closing tag. (e.g. `<bold>foo`) */
+    ErrorKind[ErrorKind["UNCLOSED_TAG"] = 27] = "UNCLOSED_TAG";
+})(ErrorKind || (ErrorKind = {}));
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/icu-messageformat-parser/lib/index.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@formatjs/icu-messageformat-parser/lib/index.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "parse": () => (/* binding */ parse),
+/* harmony export */   "SKELETON_TYPE": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_2__.SKELETON_TYPE),
+/* harmony export */   "TYPE": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_2__.TYPE),
+/* harmony export */   "createLiteralElement": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_2__.createLiteralElement),
+/* harmony export */   "createNumberElement": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_2__.createNumberElement),
+/* harmony export */   "isArgumentElement": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_2__.isArgumentElement),
+/* harmony export */   "isDateElement": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_2__.isDateElement),
+/* harmony export */   "isDateTimeSkeleton": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_2__.isDateTimeSkeleton),
+/* harmony export */   "isLiteralElement": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_2__.isLiteralElement),
+/* harmony export */   "isNumberElement": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_2__.isNumberElement),
+/* harmony export */   "isNumberSkeleton": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_2__.isNumberSkeleton),
+/* harmony export */   "isPluralElement": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_2__.isPluralElement),
+/* harmony export */   "isPoundElement": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_2__.isPoundElement),
+/* harmony export */   "isSelectElement": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_2__.isSelectElement),
+/* harmony export */   "isTagElement": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_2__.isTagElement),
+/* harmony export */   "isTimeElement": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_2__.isTimeElement)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ "./node_modules/@formatjs/icu-messageformat-parser/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./error */ "./node_modules/@formatjs/icu-messageformat-parser/lib/error.js");
+/* harmony import */ var _parser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parser */ "./node_modules/@formatjs/icu-messageformat-parser/lib/parser.js");
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./types */ "./node_modules/@formatjs/icu-messageformat-parser/lib/types.js");
+
+
+
+
+function pruneLocation(els) {
+    els.forEach(function (el) {
+        delete el.location;
+        if ((0,_types__WEBPACK_IMPORTED_MODULE_2__.isSelectElement)(el) || (0,_types__WEBPACK_IMPORTED_MODULE_2__.isPluralElement)(el)) {
+            for (var k in el.options) {
+                delete el.options[k].location;
+                pruneLocation(el.options[k].value);
+            }
+        }
+        else if ((0,_types__WEBPACK_IMPORTED_MODULE_2__.isNumberElement)(el) && (0,_types__WEBPACK_IMPORTED_MODULE_2__.isNumberSkeleton)(el.style)) {
+            delete el.style.location;
+        }
+        else if (((0,_types__WEBPACK_IMPORTED_MODULE_2__.isDateElement)(el) || (0,_types__WEBPACK_IMPORTED_MODULE_2__.isTimeElement)(el)) &&
+            (0,_types__WEBPACK_IMPORTED_MODULE_2__.isDateTimeSkeleton)(el.style)) {
+            delete el.style.location;
+        }
+        else if ((0,_types__WEBPACK_IMPORTED_MODULE_2__.isTagElement)(el)) {
+            pruneLocation(el.children);
+        }
+    });
+}
+function parse(message, opts) {
+    if (opts === void 0) { opts = {}; }
+    opts = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)({ shouldParseSkeletons: true, requiresOtherClause: true }, opts);
+    var result = new _parser__WEBPACK_IMPORTED_MODULE_1__.Parser(message, opts).parse();
+    if (result.err) {
+        var error = SyntaxError(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind[result.err.kind]);
+        // @ts-expect-error Assign to error object
+        error.location = result.err.location;
+        // @ts-expect-error Assign to error object
+        error.originalMessage = result.err.message;
+        throw error;
+    }
+    if (!(opts === null || opts === void 0 ? void 0 : opts.captureLocation)) {
+        pruneLocation(result.val);
+    }
+    return result.val;
+}
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/icu-messageformat-parser/lib/parser.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@formatjs/icu-messageformat-parser/lib/parser.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Parser": () => (/* binding */ Parser)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ "./node_modules/@formatjs/icu-messageformat-parser/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./error */ "./node_modules/@formatjs/icu-messageformat-parser/lib/error.js");
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types */ "./node_modules/@formatjs/icu-messageformat-parser/lib/types.js");
+/* harmony import */ var _regex_generated__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./regex.generated */ "./node_modules/@formatjs/icu-messageformat-parser/lib/regex.generated.js");
+/* harmony import */ var _formatjs_icu_skeleton_parser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @formatjs/icu-skeleton-parser */ "./node_modules/@formatjs/icu-skeleton-parser/lib/index.js");
+var _a;
+
+
+
+
+
+var SPACE_SEPARATOR_START_REGEX = new RegExp("^" + _regex_generated__WEBPACK_IMPORTED_MODULE_2__.SPACE_SEPARATOR_REGEX.source + "*");
+var SPACE_SEPARATOR_END_REGEX = new RegExp(_regex_generated__WEBPACK_IMPORTED_MODULE_2__.SPACE_SEPARATOR_REGEX.source + "*$");
+function createLocation(start, end) {
+    return { start: start, end: end };
+}
+// #region Ponyfills
+// Consolidate these variables up top for easier toggling during debugging
+var hasNativeStartsWith = !!String.prototype.startsWith;
+var hasNativeFromCodePoint = !!String.fromCodePoint;
+var hasNativeFromEntries = !!Object.fromEntries;
+var hasNativeCodePointAt = !!String.prototype.codePointAt;
+var hasTrimStart = !!String.prototype.trimStart;
+var hasTrimEnd = !!String.prototype.trimEnd;
+var hasNativeIsSafeInteger = !!Number.isSafeInteger;
+var isSafeInteger = hasNativeIsSafeInteger
+    ? Number.isSafeInteger
+    : function (n) {
+        return (typeof n === 'number' &&
+            isFinite(n) &&
+            Math.floor(n) === n &&
+            Math.abs(n) <= 0x1fffffffffffff);
+    };
+// IE11 does not support y and u.
+var REGEX_SUPPORTS_U_AND_Y = true;
+try {
+    var re = RE('([^\\p{White_Space}\\p{Pattern_Syntax}]*)', 'yu');
+    /**
+     * legacy Edge or Xbox One browser
+     * Unicode flag support: supported
+     * Pattern_Syntax support: not supported
+     * See https://github.com/formatjs/formatjs/issues/2822
+     */
+    REGEX_SUPPORTS_U_AND_Y = ((_a = re.exec('a')) === null || _a === void 0 ? void 0 : _a[0]) === 'a';
+}
+catch (_) {
+    REGEX_SUPPORTS_U_AND_Y = false;
+}
+var startsWith = hasNativeStartsWith
+    ? // Native
+        function startsWith(s, search, position) {
+            return s.startsWith(search, position);
+        }
+    : // For IE11
+        function startsWith(s, search, position) {
+            return s.slice(position, position + search.length) === search;
+        };
+var fromCodePoint = hasNativeFromCodePoint
+    ? String.fromCodePoint
+    : // IE11
+        function fromCodePoint() {
+            var codePoints = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                codePoints[_i] = arguments[_i];
+            }
+            var elements = '';
+            var length = codePoints.length;
+            var i = 0;
+            var code;
+            while (length > i) {
+                code = codePoints[i++];
+                if (code > 0x10ffff)
+                    throw RangeError(code + ' is not a valid code point');
+                elements +=
+                    code < 0x10000
+                        ? String.fromCharCode(code)
+                        : String.fromCharCode(((code -= 0x10000) >> 10) + 0xd800, (code % 0x400) + 0xdc00);
+            }
+            return elements;
+        };
+var fromEntries = 
+// native
+hasNativeFromEntries
+    ? Object.fromEntries
+    : // Ponyfill
+        function fromEntries(entries) {
+            var obj = {};
+            for (var _i = 0, entries_1 = entries; _i < entries_1.length; _i++) {
+                var _a = entries_1[_i], k = _a[0], v = _a[1];
+                obj[k] = v;
+            }
+            return obj;
+        };
+var codePointAt = hasNativeCodePointAt
+    ? // Native
+        function codePointAt(s, index) {
+            return s.codePointAt(index);
+        }
+    : // IE 11
+        function codePointAt(s, index) {
+            var size = s.length;
+            if (index < 0 || index >= size) {
+                return undefined;
+            }
+            var first = s.charCodeAt(index);
+            var second;
+            return first < 0xd800 ||
+                first > 0xdbff ||
+                index + 1 === size ||
+                (second = s.charCodeAt(index + 1)) < 0xdc00 ||
+                second > 0xdfff
+                ? first
+                : ((first - 0xd800) << 10) + (second - 0xdc00) + 0x10000;
+        };
+var trimStart = hasTrimStart
+    ? // Native
+        function trimStart(s) {
+            return s.trimStart();
+        }
+    : // Ponyfill
+        function trimStart(s) {
+            return s.replace(SPACE_SEPARATOR_START_REGEX, '');
+        };
+var trimEnd = hasTrimEnd
+    ? // Native
+        function trimEnd(s) {
+            return s.trimEnd();
+        }
+    : // Ponyfill
+        function trimEnd(s) {
+            return s.replace(SPACE_SEPARATOR_END_REGEX, '');
+        };
+// Prevent minifier to translate new RegExp to literal form that might cause syntax error on IE11.
+function RE(s, flag) {
+    return new RegExp(s, flag);
+}
+// #endregion
+var matchIdentifierAtIndex;
+if (REGEX_SUPPORTS_U_AND_Y) {
+    // Native
+    var IDENTIFIER_PREFIX_RE_1 = RE('([^\\p{White_Space}\\p{Pattern_Syntax}]*)', 'yu');
+    matchIdentifierAtIndex = function matchIdentifierAtIndex(s, index) {
+        var _a;
+        IDENTIFIER_PREFIX_RE_1.lastIndex = index;
+        var match = IDENTIFIER_PREFIX_RE_1.exec(s);
+        return (_a = match[1]) !== null && _a !== void 0 ? _a : '';
+    };
+}
+else {
+    // IE11
+    matchIdentifierAtIndex = function matchIdentifierAtIndex(s, index) {
+        var match = [];
+        while (true) {
+            var c = codePointAt(s, index);
+            if (c === undefined || _isWhiteSpace(c) || _isPatternSyntax(c)) {
+                break;
+            }
+            match.push(c);
+            index += c >= 0x10000 ? 2 : 1;
+        }
+        return fromCodePoint.apply(void 0, match);
+    };
+}
+var Parser = /** @class */ (function () {
+    function Parser(message, options) {
+        if (options === void 0) { options = {}; }
+        this.message = message;
+        this.position = { offset: 0, line: 1, column: 1 };
+        this.ignoreTag = !!options.ignoreTag;
+        this.requiresOtherClause = !!options.requiresOtherClause;
+        this.shouldParseSkeletons = !!options.shouldParseSkeletons;
+    }
+    Parser.prototype.parse = function () {
+        if (this.offset() !== 0) {
+            throw Error('parser can only be used once');
+        }
+        return this.parseMessage(0, '', false);
+    };
+    Parser.prototype.parseMessage = function (nestingLevel, parentArgType, expectingCloseTag) {
+        var elements = [];
+        while (!this.isEOF()) {
+            var char = this.char();
+            if (char === 123 /* `{` */) {
+                var result = this.parseArgument(nestingLevel, expectingCloseTag);
+                if (result.err) {
+                    return result;
+                }
+                elements.push(result.val);
+            }
+            else if (char === 125 /* `}` */ && nestingLevel > 0) {
+                break;
+            }
+            else if (char === 35 /* `#` */ &&
+                (parentArgType === 'plural' || parentArgType === 'selectordinal')) {
+                var position = this.clonePosition();
+                this.bump();
+                elements.push({
+                    type: _types__WEBPACK_IMPORTED_MODULE_1__.TYPE.pound,
+                    location: createLocation(position, this.clonePosition()),
+                });
+            }
+            else if (char === 60 /* `<` */ &&
+                !this.ignoreTag &&
+                this.peek() === 47 // char code for '/'
+            ) {
+                if (expectingCloseTag) {
+                    break;
+                }
+                else {
+                    return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.UNMATCHED_CLOSING_TAG, createLocation(this.clonePosition(), this.clonePosition()));
+                }
+            }
+            else if (char === 60 /* `<` */ &&
+                !this.ignoreTag &&
+                _isAlpha(this.peek() || 0)) {
+                var result = this.parseTag(nestingLevel, parentArgType);
+                if (result.err) {
+                    return result;
+                }
+                elements.push(result.val);
+            }
+            else {
+                var result = this.parseLiteral(nestingLevel, parentArgType);
+                if (result.err) {
+                    return result;
+                }
+                elements.push(result.val);
+            }
+        }
+        return { val: elements, err: null };
+    };
+    /**
+     * A tag name must start with an ASCII lower/upper case letter. The grammar is based on the
+     * [custom element name][] except that a dash is NOT always mandatory and uppercase letters
+     * are accepted:
+     *
+     * ```
+     * tag ::= "<" tagName (whitespace)* "/>" | "<" tagName (whitespace)* ">" message "</" tagName (whitespace)* ">"
+     * tagName ::= [a-z] (PENChar)*
+     * PENChar ::=
+     *     "-" | "." | [0-9] | "_" | [a-z] | [A-Z] | #xB7 | [#xC0-#xD6] | [#xD8-#xF6] | [#xF8-#x37D] |
+     *     [#x37F-#x1FFF] | [#x200C-#x200D] | [#x203F-#x2040] | [#x2070-#x218F] | [#x2C00-#x2FEF] |
+     *     [#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD] | [#x10000-#xEFFFF]
+     * ```
+     *
+     * [custom element name]: https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name
+     * NOTE: We're a bit more lax here since HTML technically does not allow uppercase HTML element but we do
+     * since other tag-based engines like React allow it
+     */
+    Parser.prototype.parseTag = function (nestingLevel, parentArgType) {
+        var startPosition = this.clonePosition();
+        this.bump(); // `<`
+        var tagName = this.parseTagName();
+        this.bumpSpace();
+        if (this.bumpIf('/>')) {
+            // Self closing tag
+            return {
+                val: {
+                    type: _types__WEBPACK_IMPORTED_MODULE_1__.TYPE.literal,
+                    value: "<" + tagName + "/>",
+                    location: createLocation(startPosition, this.clonePosition()),
+                },
+                err: null,
+            };
+        }
+        else if (this.bumpIf('>')) {
+            var childrenResult = this.parseMessage(nestingLevel + 1, parentArgType, true);
+            if (childrenResult.err) {
+                return childrenResult;
+            }
+            var children = childrenResult.val;
+            // Expecting a close tag
+            var endTagStartPosition = this.clonePosition();
+            if (this.bumpIf('</')) {
+                if (this.isEOF() || !_isAlpha(this.char())) {
+                    return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.INVALID_TAG, createLocation(endTagStartPosition, this.clonePosition()));
+                }
+                var closingTagNameStartPosition = this.clonePosition();
+                var closingTagName = this.parseTagName();
+                if (tagName !== closingTagName) {
+                    return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.UNMATCHED_CLOSING_TAG, createLocation(closingTagNameStartPosition, this.clonePosition()));
+                }
+                this.bumpSpace();
+                if (!this.bumpIf('>')) {
+                    return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.INVALID_TAG, createLocation(endTagStartPosition, this.clonePosition()));
+                }
+                return {
+                    val: {
+                        type: _types__WEBPACK_IMPORTED_MODULE_1__.TYPE.tag,
+                        value: tagName,
+                        children: children,
+                        location: createLocation(startPosition, this.clonePosition()),
+                    },
+                    err: null,
+                };
+            }
+            else {
+                return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.UNCLOSED_TAG, createLocation(startPosition, this.clonePosition()));
+            }
+        }
+        else {
+            return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.INVALID_TAG, createLocation(startPosition, this.clonePosition()));
+        }
+    };
+    /**
+     * This method assumes that the caller has peeked ahead for the first tag character.
+     */
+    Parser.prototype.parseTagName = function () {
+        var startOffset = this.offset();
+        this.bump(); // the first tag name character
+        while (!this.isEOF() && _isPotentialElementNameChar(this.char())) {
+            this.bump();
+        }
+        return this.message.slice(startOffset, this.offset());
+    };
+    Parser.prototype.parseLiteral = function (nestingLevel, parentArgType) {
+        var start = this.clonePosition();
+        var value = '';
+        while (true) {
+            var parseQuoteResult = this.tryParseQuote(parentArgType);
+            if (parseQuoteResult) {
+                value += parseQuoteResult;
+                continue;
+            }
+            var parseUnquotedResult = this.tryParseUnquoted(nestingLevel, parentArgType);
+            if (parseUnquotedResult) {
+                value += parseUnquotedResult;
+                continue;
+            }
+            var parseLeftAngleResult = this.tryParseLeftAngleBracket();
+            if (parseLeftAngleResult) {
+                value += parseLeftAngleResult;
+                continue;
+            }
+            break;
+        }
+        var location = createLocation(start, this.clonePosition());
+        return {
+            val: { type: _types__WEBPACK_IMPORTED_MODULE_1__.TYPE.literal, value: value, location: location },
+            err: null,
+        };
+    };
+    Parser.prototype.tryParseLeftAngleBracket = function () {
+        if (!this.isEOF() &&
+            this.char() === 60 /* `<` */ &&
+            (this.ignoreTag ||
+                // If at the opening tag or closing tag position, bail.
+                !_isAlphaOrSlash(this.peek() || 0))) {
+            this.bump(); // `<`
+            return '<';
+        }
+        return null;
+    };
+    /**
+     * Starting with ICU 4.8, an ASCII apostrophe only starts quoted text if it immediately precedes
+     * a character that requires quoting (that is, "only where needed"), and works the same in
+     * nested messages as on the top level of the pattern. The new behavior is otherwise compatible.
+     */
+    Parser.prototype.tryParseQuote = function (parentArgType) {
+        if (this.isEOF() || this.char() !== 39 /* `'` */) {
+            return null;
+        }
+        // Parse escaped char following the apostrophe, or early return if there is no escaped char.
+        // Check if is valid escaped character
+        switch (this.peek()) {
+            case 39 /* `'` */:
+                // double quote, should return as a single quote.
+                this.bump();
+                this.bump();
+                return "'";
+            // '{', '<', '>', '}'
+            case 123:
+            case 60:
+            case 62:
+            case 125:
+                break;
+            case 35: // '#'
+                if (parentArgType === 'plural' || parentArgType === 'selectordinal') {
+                    break;
+                }
+                return null;
+            default:
+                return null;
+        }
+        this.bump(); // apostrophe
+        var codePoints = [this.char()]; // escaped char
+        this.bump();
+        // read chars until the optional closing apostrophe is found
+        while (!this.isEOF()) {
+            var ch = this.char();
+            if (ch === 39 /* `'` */) {
+                if (this.peek() === 39 /* `'` */) {
+                    codePoints.push(39);
+                    // Bump one more time because we need to skip 2 characters.
+                    this.bump();
+                }
+                else {
+                    // Optional closing apostrophe.
+                    this.bump();
+                    break;
+                }
+            }
+            else {
+                codePoints.push(ch);
+            }
+            this.bump();
+        }
+        return fromCodePoint.apply(void 0, codePoints);
+    };
+    Parser.prototype.tryParseUnquoted = function (nestingLevel, parentArgType) {
+        if (this.isEOF()) {
+            return null;
+        }
+        var ch = this.char();
+        if (ch === 60 /* `<` */ ||
+            ch === 123 /* `{` */ ||
+            (ch === 35 /* `#` */ &&
+                (parentArgType === 'plural' || parentArgType === 'selectordinal')) ||
+            (ch === 125 /* `}` */ && nestingLevel > 0)) {
+            return null;
+        }
+        else {
+            this.bump();
+            return fromCodePoint(ch);
+        }
+    };
+    Parser.prototype.parseArgument = function (nestingLevel, expectingCloseTag) {
+        var openingBracePosition = this.clonePosition();
+        this.bump(); // `{`
+        this.bumpSpace();
+        if (this.isEOF()) {
+            return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.EXPECT_ARGUMENT_CLOSING_BRACE, createLocation(openingBracePosition, this.clonePosition()));
+        }
+        if (this.char() === 125 /* `}` */) {
+            this.bump();
+            return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.EMPTY_ARGUMENT, createLocation(openingBracePosition, this.clonePosition()));
+        }
+        // argument name
+        var value = this.parseIdentifierIfPossible().value;
+        if (!value) {
+            return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.MALFORMED_ARGUMENT, createLocation(openingBracePosition, this.clonePosition()));
+        }
+        this.bumpSpace();
+        if (this.isEOF()) {
+            return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.EXPECT_ARGUMENT_CLOSING_BRACE, createLocation(openingBracePosition, this.clonePosition()));
+        }
+        switch (this.char()) {
+            // Simple argument: `{name}`
+            case 125 /* `}` */: {
+                this.bump(); // `}`
+                return {
+                    val: {
+                        type: _types__WEBPACK_IMPORTED_MODULE_1__.TYPE.argument,
+                        // value does not include the opening and closing braces.
+                        value: value,
+                        location: createLocation(openingBracePosition, this.clonePosition()),
+                    },
+                    err: null,
+                };
+            }
+            // Argument with options: `{name, format, ...}`
+            case 44 /* `,` */: {
+                this.bump(); // `,`
+                this.bumpSpace();
+                if (this.isEOF()) {
+                    return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.EXPECT_ARGUMENT_CLOSING_BRACE, createLocation(openingBracePosition, this.clonePosition()));
+                }
+                return this.parseArgumentOptions(nestingLevel, expectingCloseTag, value, openingBracePosition);
+            }
+            default:
+                return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.MALFORMED_ARGUMENT, createLocation(openingBracePosition, this.clonePosition()));
+        }
+    };
+    /**
+     * Advance the parser until the end of the identifier, if it is currently on
+     * an identifier character. Return an empty string otherwise.
+     */
+    Parser.prototype.parseIdentifierIfPossible = function () {
+        var startingPosition = this.clonePosition();
+        var startOffset = this.offset();
+        var value = matchIdentifierAtIndex(this.message, startOffset);
+        var endOffset = startOffset + value.length;
+        this.bumpTo(endOffset);
+        var endPosition = this.clonePosition();
+        var location = createLocation(startingPosition, endPosition);
+        return { value: value, location: location };
+    };
+    Parser.prototype.parseArgumentOptions = function (nestingLevel, expectingCloseTag, value, openingBracePosition) {
+        var _a;
+        // Parse this range:
+        // {name, type, style}
+        //        ^---^
+        var typeStartPosition = this.clonePosition();
+        var argType = this.parseIdentifierIfPossible().value;
+        var typeEndPosition = this.clonePosition();
+        switch (argType) {
+            case '':
+                // Expecting a style string number, date, time, plural, selectordinal, or select.
+                return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.EXPECT_ARGUMENT_TYPE, createLocation(typeStartPosition, typeEndPosition));
+            case 'number':
+            case 'date':
+            case 'time': {
+                // Parse this range:
+                // {name, number, style}
+                //              ^-------^
+                this.bumpSpace();
+                var styleAndLocation = null;
+                if (this.bumpIf(',')) {
+                    this.bumpSpace();
+                    var styleStartPosition = this.clonePosition();
+                    var result = this.parseSimpleArgStyleIfPossible();
+                    if (result.err) {
+                        return result;
+                    }
+                    var style = trimEnd(result.val);
+                    if (style.length === 0) {
+                        return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.EXPECT_ARGUMENT_STYLE, createLocation(this.clonePosition(), this.clonePosition()));
+                    }
+                    var styleLocation = createLocation(styleStartPosition, this.clonePosition());
+                    styleAndLocation = { style: style, styleLocation: styleLocation };
+                }
+                var argCloseResult = this.tryParseArgumentClose(openingBracePosition);
+                if (argCloseResult.err) {
+                    return argCloseResult;
+                }
+                var location_1 = createLocation(openingBracePosition, this.clonePosition());
+                // Extract style or skeleton
+                if (styleAndLocation && startsWith(styleAndLocation === null || styleAndLocation === void 0 ? void 0 : styleAndLocation.style, '::', 0)) {
+                    // Skeleton starts with `::`.
+                    var skeleton = trimStart(styleAndLocation.style.slice(2));
+                    if (argType === 'number') {
+                        var result = this.parseNumberSkeletonFromString(skeleton, styleAndLocation.styleLocation);
+                        if (result.err) {
+                            return result;
+                        }
+                        return {
+                            val: { type: _types__WEBPACK_IMPORTED_MODULE_1__.TYPE.number, value: value, location: location_1, style: result.val },
+                            err: null,
+                        };
+                    }
+                    else {
+                        if (skeleton.length === 0) {
+                            return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.EXPECT_DATE_TIME_SKELETON, location_1);
+                        }
+                        var style = {
+                            type: _types__WEBPACK_IMPORTED_MODULE_1__.SKELETON_TYPE.dateTime,
+                            pattern: skeleton,
+                            location: styleAndLocation.styleLocation,
+                            parsedOptions: this.shouldParseSkeletons
+                                ? (0,_formatjs_icu_skeleton_parser__WEBPACK_IMPORTED_MODULE_3__.parseDateTimeSkeleton)(skeleton)
+                                : {},
+                        };
+                        var type = argType === 'date' ? _types__WEBPACK_IMPORTED_MODULE_1__.TYPE.date : _types__WEBPACK_IMPORTED_MODULE_1__.TYPE.time;
+                        return {
+                            val: { type: type, value: value, location: location_1, style: style },
+                            err: null,
+                        };
+                    }
+                }
+                // Regular style or no style.
+                return {
+                    val: {
+                        type: argType === 'number'
+                            ? _types__WEBPACK_IMPORTED_MODULE_1__.TYPE.number
+                            : argType === 'date'
+                                ? _types__WEBPACK_IMPORTED_MODULE_1__.TYPE.date
+                                : _types__WEBPACK_IMPORTED_MODULE_1__.TYPE.time,
+                        value: value,
+                        location: location_1,
+                        style: (_a = styleAndLocation === null || styleAndLocation === void 0 ? void 0 : styleAndLocation.style) !== null && _a !== void 0 ? _a : null,
+                    },
+                    err: null,
+                };
+            }
+            case 'plural':
+            case 'selectordinal':
+            case 'select': {
+                // Parse this range:
+                // {name, plural, options}
+                //              ^---------^
+                var typeEndPosition_1 = this.clonePosition();
+                this.bumpSpace();
+                if (!this.bumpIf(',')) {
+                    return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.EXPECT_SELECT_ARGUMENT_OPTIONS, createLocation(typeEndPosition_1, (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__assign)({}, typeEndPosition_1)));
+                }
+                this.bumpSpace();
+                // Parse offset:
+                // {name, plural, offset:1, options}
+                //                ^-----^
+                //
+                // or the first option:
+                //
+                // {name, plural, one {...} other {...}}
+                //                ^--^
+                var identifierAndLocation = this.parseIdentifierIfPossible();
+                var pluralOffset = 0;
+                if (argType !== 'select' && identifierAndLocation.value === 'offset') {
+                    if (!this.bumpIf(':')) {
+                        return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.EXPECT_PLURAL_ARGUMENT_OFFSET_VALUE, createLocation(this.clonePosition(), this.clonePosition()));
+                    }
+                    this.bumpSpace();
+                    var result = this.tryParseDecimalInteger(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.EXPECT_PLURAL_ARGUMENT_OFFSET_VALUE, _error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.INVALID_PLURAL_ARGUMENT_OFFSET_VALUE);
+                    if (result.err) {
+                        return result;
+                    }
+                    // Parse another identifier for option parsing
+                    this.bumpSpace();
+                    identifierAndLocation = this.parseIdentifierIfPossible();
+                    pluralOffset = result.val;
+                }
+                var optionsResult = this.tryParsePluralOrSelectOptions(nestingLevel, argType, expectingCloseTag, identifierAndLocation);
+                if (optionsResult.err) {
+                    return optionsResult;
+                }
+                var argCloseResult = this.tryParseArgumentClose(openingBracePosition);
+                if (argCloseResult.err) {
+                    return argCloseResult;
+                }
+                var location_2 = createLocation(openingBracePosition, this.clonePosition());
+                if (argType === 'select') {
+                    return {
+                        val: {
+                            type: _types__WEBPACK_IMPORTED_MODULE_1__.TYPE.select,
+                            value: value,
+                            options: fromEntries(optionsResult.val),
+                            location: location_2,
+                        },
+                        err: null,
+                    };
+                }
+                else {
+                    return {
+                        val: {
+                            type: _types__WEBPACK_IMPORTED_MODULE_1__.TYPE.plural,
+                            value: value,
+                            options: fromEntries(optionsResult.val),
+                            offset: pluralOffset,
+                            pluralType: argType === 'plural' ? 'cardinal' : 'ordinal',
+                            location: location_2,
+                        },
+                        err: null,
+                    };
+                }
+            }
+            default:
+                return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.INVALID_ARGUMENT_TYPE, createLocation(typeStartPosition, typeEndPosition));
+        }
+    };
+    Parser.prototype.tryParseArgumentClose = function (openingBracePosition) {
+        // Parse: {value, number, ::currency/GBP }
+        //
+        if (this.isEOF() || this.char() !== 125 /* `}` */) {
+            return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.EXPECT_ARGUMENT_CLOSING_BRACE, createLocation(openingBracePosition, this.clonePosition()));
+        }
+        this.bump(); // `}`
+        return { val: true, err: null };
+    };
+    /**
+     * See: https://github.com/unicode-org/icu/blob/af7ed1f6d2298013dc303628438ec4abe1f16479/icu4c/source/common/messagepattern.cpp#L659
+     */
+    Parser.prototype.parseSimpleArgStyleIfPossible = function () {
+        var nestedBraces = 0;
+        var startPosition = this.clonePosition();
+        while (!this.isEOF()) {
+            var ch = this.char();
+            switch (ch) {
+                case 39 /* `'` */: {
+                    // Treat apostrophe as quoting but include it in the style part.
+                    // Find the end of the quoted literal text.
+                    this.bump();
+                    var apostrophePosition = this.clonePosition();
+                    if (!this.bumpUntil("'")) {
+                        return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.UNCLOSED_QUOTE_IN_ARGUMENT_STYLE, createLocation(apostrophePosition, this.clonePosition()));
+                    }
+                    this.bump();
+                    break;
+                }
+                case 123 /* `{` */: {
+                    nestedBraces += 1;
+                    this.bump();
+                    break;
+                }
+                case 125 /* `}` */: {
+                    if (nestedBraces > 0) {
+                        nestedBraces -= 1;
+                    }
+                    else {
+                        return {
+                            val: this.message.slice(startPosition.offset, this.offset()),
+                            err: null,
+                        };
+                    }
+                    break;
+                }
+                default:
+                    this.bump();
+                    break;
+            }
+        }
+        return {
+            val: this.message.slice(startPosition.offset, this.offset()),
+            err: null,
+        };
+    };
+    Parser.prototype.parseNumberSkeletonFromString = function (skeleton, location) {
+        var tokens = [];
+        try {
+            tokens = (0,_formatjs_icu_skeleton_parser__WEBPACK_IMPORTED_MODULE_3__.parseNumberSkeletonFromString)(skeleton);
+        }
+        catch (e) {
+            return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.INVALID_NUMBER_SKELETON, location);
+        }
+        return {
+            val: {
+                type: _types__WEBPACK_IMPORTED_MODULE_1__.SKELETON_TYPE.number,
+                tokens: tokens,
+                location: location,
+                parsedOptions: this.shouldParseSkeletons
+                    ? (0,_formatjs_icu_skeleton_parser__WEBPACK_IMPORTED_MODULE_3__.parseNumberSkeleton)(tokens)
+                    : {},
+            },
+            err: null,
+        };
+    };
+    /**
+     * @param nesting_level The current nesting level of messages.
+     *     This can be positive when parsing message fragment in select or plural argument options.
+     * @param parent_arg_type The parent argument's type.
+     * @param parsed_first_identifier If provided, this is the first identifier-like selector of
+     *     the argument. It is a by-product of a previous parsing attempt.
+     * @param expecting_close_tag If true, this message is directly or indirectly nested inside
+     *     between a pair of opening and closing tags. The nested message will not parse beyond
+     *     the closing tag boundary.
+     */
+    Parser.prototype.tryParsePluralOrSelectOptions = function (nestingLevel, parentArgType, expectCloseTag, parsedFirstIdentifier) {
+        var _a;
+        var hasOtherClause = false;
+        var options = [];
+        var parsedSelectors = new Set();
+        var selector = parsedFirstIdentifier.value, selectorLocation = parsedFirstIdentifier.location;
+        // Parse:
+        // one {one apple}
+        // ^--^
+        while (true) {
+            if (selector.length === 0) {
+                var startPosition = this.clonePosition();
+                if (parentArgType !== 'select' && this.bumpIf('=')) {
+                    // Try parse `={number}` selector
+                    var result = this.tryParseDecimalInteger(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.EXPECT_PLURAL_ARGUMENT_SELECTOR, _error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.INVALID_PLURAL_ARGUMENT_SELECTOR);
+                    if (result.err) {
+                        return result;
+                    }
+                    selectorLocation = createLocation(startPosition, this.clonePosition());
+                    selector = this.message.slice(startPosition.offset, this.offset());
+                }
+                else {
+                    break;
+                }
+            }
+            // Duplicate selector clauses
+            if (parsedSelectors.has(selector)) {
+                return this.error(parentArgType === 'select'
+                    ? _error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.DUPLICATE_SELECT_ARGUMENT_SELECTOR
+                    : _error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.DUPLICATE_PLURAL_ARGUMENT_SELECTOR, selectorLocation);
+            }
+            if (selector === 'other') {
+                hasOtherClause = true;
+            }
+            // Parse:
+            // one {one apple}
+            //     ^----------^
+            this.bumpSpace();
+            var openingBracePosition = this.clonePosition();
+            if (!this.bumpIf('{')) {
+                return this.error(parentArgType === 'select'
+                    ? _error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.EXPECT_SELECT_ARGUMENT_SELECTOR_FRAGMENT
+                    : _error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.EXPECT_PLURAL_ARGUMENT_SELECTOR_FRAGMENT, createLocation(this.clonePosition(), this.clonePosition()));
+            }
+            var fragmentResult = this.parseMessage(nestingLevel + 1, parentArgType, expectCloseTag);
+            if (fragmentResult.err) {
+                return fragmentResult;
+            }
+            var argCloseResult = this.tryParseArgumentClose(openingBracePosition);
+            if (argCloseResult.err) {
+                return argCloseResult;
+            }
+            options.push([
+                selector,
+                {
+                    value: fragmentResult.val,
+                    location: createLocation(openingBracePosition, this.clonePosition()),
+                },
+            ]);
+            // Keep track of the existing selectors
+            parsedSelectors.add(selector);
+            // Prep next selector clause.
+            this.bumpSpace();
+            (_a = this.parseIdentifierIfPossible(), selector = _a.value, selectorLocation = _a.location);
+        }
+        if (options.length === 0) {
+            return this.error(parentArgType === 'select'
+                ? _error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.EXPECT_SELECT_ARGUMENT_SELECTOR
+                : _error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.EXPECT_PLURAL_ARGUMENT_SELECTOR, createLocation(this.clonePosition(), this.clonePosition()));
+        }
+        if (this.requiresOtherClause && !hasOtherClause) {
+            return this.error(_error__WEBPACK_IMPORTED_MODULE_0__.ErrorKind.MISSING_OTHER_CLAUSE, createLocation(this.clonePosition(), this.clonePosition()));
+        }
+        return { val: options, err: null };
+    };
+    Parser.prototype.tryParseDecimalInteger = function (expectNumberError, invalidNumberError) {
+        var sign = 1;
+        var startingPosition = this.clonePosition();
+        if (this.bumpIf('+')) {
+        }
+        else if (this.bumpIf('-')) {
+            sign = -1;
+        }
+        var hasDigits = false;
+        var decimal = 0;
+        while (!this.isEOF()) {
+            var ch = this.char();
+            if (ch >= 48 /* `0` */ && ch <= 57 /* `9` */) {
+                hasDigits = true;
+                decimal = decimal * 10 + (ch - 48);
+                this.bump();
+            }
+            else {
+                break;
+            }
+        }
+        var location = createLocation(startingPosition, this.clonePosition());
+        if (!hasDigits) {
+            return this.error(expectNumberError, location);
+        }
+        decimal *= sign;
+        if (!isSafeInteger(decimal)) {
+            return this.error(invalidNumberError, location);
+        }
+        return { val: decimal, err: null };
+    };
+    Parser.prototype.offset = function () {
+        return this.position.offset;
+    };
+    Parser.prototype.isEOF = function () {
+        return this.offset() === this.message.length;
+    };
+    Parser.prototype.clonePosition = function () {
+        // This is much faster than `Object.assign` or spread.
+        return {
+            offset: this.position.offset,
+            line: this.position.line,
+            column: this.position.column,
+        };
+    };
+    /**
+     * Return the code point at the current position of the parser.
+     * Throws if the index is out of bound.
+     */
+    Parser.prototype.char = function () {
+        var offset = this.position.offset;
+        if (offset >= this.message.length) {
+            throw Error('out of bound');
+        }
+        var code = codePointAt(this.message, offset);
+        if (code === undefined) {
+            throw Error("Offset " + offset + " is at invalid UTF-16 code unit boundary");
+        }
+        return code;
+    };
+    Parser.prototype.error = function (kind, location) {
+        return {
+            val: null,
+            err: {
+                kind: kind,
+                message: this.message,
+                location: location,
+            },
+        };
+    };
+    /** Bump the parser to the next UTF-16 code unit. */
+    Parser.prototype.bump = function () {
+        if (this.isEOF()) {
+            return;
+        }
+        var code = this.char();
+        if (code === 10 /* '\n' */) {
+            this.position.line += 1;
+            this.position.column = 1;
+            this.position.offset += 1;
+        }
+        else {
+            this.position.column += 1;
+            // 0 ~ 0x10000 -> unicode BMP, otherwise skip the surrogate pair.
+            this.position.offset += code < 0x10000 ? 1 : 2;
+        }
+    };
+    /**
+     * If the substring starting at the current position of the parser has
+     * the given prefix, then bump the parser to the character immediately
+     * following the prefix and return true. Otherwise, don't bump the parser
+     * and return false.
+     */
+    Parser.prototype.bumpIf = function (prefix) {
+        if (startsWith(this.message, prefix, this.offset())) {
+            for (var i = 0; i < prefix.length; i++) {
+                this.bump();
+            }
+            return true;
+        }
+        return false;
+    };
+    /**
+     * Bump the parser until the pattern character is found and return `true`.
+     * Otherwise bump to the end of the file and return `false`.
+     */
+    Parser.prototype.bumpUntil = function (pattern) {
+        var currentOffset = this.offset();
+        var index = this.message.indexOf(pattern, currentOffset);
+        if (index >= 0) {
+            this.bumpTo(index);
+            return true;
+        }
+        else {
+            this.bumpTo(this.message.length);
+            return false;
+        }
+    };
+    /**
+     * Bump the parser to the target offset.
+     * If target offset is beyond the end of the input, bump the parser to the end of the input.
+     */
+    Parser.prototype.bumpTo = function (targetOffset) {
+        if (this.offset() > targetOffset) {
+            throw Error("targetOffset " + targetOffset + " must be greater than or equal to the current offset " + this.offset());
+        }
+        targetOffset = Math.min(targetOffset, this.message.length);
+        while (true) {
+            var offset = this.offset();
+            if (offset === targetOffset) {
+                break;
+            }
+            if (offset > targetOffset) {
+                throw Error("targetOffset " + targetOffset + " is at invalid UTF-16 code unit boundary");
+            }
+            this.bump();
+            if (this.isEOF()) {
+                break;
+            }
+        }
+    };
+    /** advance the parser through all whitespace to the next non-whitespace code unit. */
+    Parser.prototype.bumpSpace = function () {
+        while (!this.isEOF() && _isWhiteSpace(this.char())) {
+            this.bump();
+        }
+    };
+    /**
+     * Peek at the *next* Unicode codepoint in the input without advancing the parser.
+     * If the input has been exhausted, then this returns null.
+     */
+    Parser.prototype.peek = function () {
+        if (this.isEOF()) {
+            return null;
+        }
+        var code = this.char();
+        var offset = this.offset();
+        var nextCode = this.message.charCodeAt(offset + (code >= 0x10000 ? 2 : 1));
+        return nextCode !== null && nextCode !== void 0 ? nextCode : null;
+    };
+    return Parser;
+}());
+
+/**
+ * This check if codepoint is alphabet (lower & uppercase)
+ * @param codepoint
+ * @returns
+ */
+function _isAlpha(codepoint) {
+    return ((codepoint >= 97 && codepoint <= 122) ||
+        (codepoint >= 65 && codepoint <= 90));
+}
+function _isAlphaOrSlash(codepoint) {
+    return _isAlpha(codepoint) || codepoint === 47; /* '/' */
+}
+/** See `parseTag` function docs. */
+function _isPotentialElementNameChar(c) {
+    return (c === 45 /* '-' */ ||
+        c === 46 /* '.' */ ||
+        (c >= 48 && c <= 57) /* 0..9 */ ||
+        c === 95 /* '_' */ ||
+        (c >= 97 && c <= 122) /** a..z */ ||
+        (c >= 65 && c <= 90) /* A..Z */ ||
+        c == 0xb7 ||
+        (c >= 0xc0 && c <= 0xd6) ||
+        (c >= 0xd8 && c <= 0xf6) ||
+        (c >= 0xf8 && c <= 0x37d) ||
+        (c >= 0x37f && c <= 0x1fff) ||
+        (c >= 0x200c && c <= 0x200d) ||
+        (c >= 0x203f && c <= 0x2040) ||
+        (c >= 0x2070 && c <= 0x218f) ||
+        (c >= 0x2c00 && c <= 0x2fef) ||
+        (c >= 0x3001 && c <= 0xd7ff) ||
+        (c >= 0xf900 && c <= 0xfdcf) ||
+        (c >= 0xfdf0 && c <= 0xfffd) ||
+        (c >= 0x10000 && c <= 0xeffff));
+}
+/**
+ * Code point equivalent of regex `\p{White_Space}`.
+ * From: https://www.unicode.org/Public/UCD/latest/ucd/PropList.txt
+ */
+function _isWhiteSpace(c) {
+    return ((c >= 0x0009 && c <= 0x000d) ||
+        c === 0x0020 ||
+        c === 0x0085 ||
+        (c >= 0x200e && c <= 0x200f) ||
+        c === 0x2028 ||
+        c === 0x2029);
+}
+/**
+ * Code point equivalent of regex `\p{Pattern_Syntax}`.
+ * See https://www.unicode.org/Public/UCD/latest/ucd/PropList.txt
+ */
+function _isPatternSyntax(c) {
+    return ((c >= 0x0021 && c <= 0x0023) ||
+        c === 0x0024 ||
+        (c >= 0x0025 && c <= 0x0027) ||
+        c === 0x0028 ||
+        c === 0x0029 ||
+        c === 0x002a ||
+        c === 0x002b ||
+        c === 0x002c ||
+        c === 0x002d ||
+        (c >= 0x002e && c <= 0x002f) ||
+        (c >= 0x003a && c <= 0x003b) ||
+        (c >= 0x003c && c <= 0x003e) ||
+        (c >= 0x003f && c <= 0x0040) ||
+        c === 0x005b ||
+        c === 0x005c ||
+        c === 0x005d ||
+        c === 0x005e ||
+        c === 0x0060 ||
+        c === 0x007b ||
+        c === 0x007c ||
+        c === 0x007d ||
+        c === 0x007e ||
+        c === 0x00a1 ||
+        (c >= 0x00a2 && c <= 0x00a5) ||
+        c === 0x00a6 ||
+        c === 0x00a7 ||
+        c === 0x00a9 ||
+        c === 0x00ab ||
+        c === 0x00ac ||
+        c === 0x00ae ||
+        c === 0x00b0 ||
+        c === 0x00b1 ||
+        c === 0x00b6 ||
+        c === 0x00bb ||
+        c === 0x00bf ||
+        c === 0x00d7 ||
+        c === 0x00f7 ||
+        (c >= 0x2010 && c <= 0x2015) ||
+        (c >= 0x2016 && c <= 0x2017) ||
+        c === 0x2018 ||
+        c === 0x2019 ||
+        c === 0x201a ||
+        (c >= 0x201b && c <= 0x201c) ||
+        c === 0x201d ||
+        c === 0x201e ||
+        c === 0x201f ||
+        (c >= 0x2020 && c <= 0x2027) ||
+        (c >= 0x2030 && c <= 0x2038) ||
+        c === 0x2039 ||
+        c === 0x203a ||
+        (c >= 0x203b && c <= 0x203e) ||
+        (c >= 0x2041 && c <= 0x2043) ||
+        c === 0x2044 ||
+        c === 0x2045 ||
+        c === 0x2046 ||
+        (c >= 0x2047 && c <= 0x2051) ||
+        c === 0x2052 ||
+        c === 0x2053 ||
+        (c >= 0x2055 && c <= 0x205e) ||
+        (c >= 0x2190 && c <= 0x2194) ||
+        (c >= 0x2195 && c <= 0x2199) ||
+        (c >= 0x219a && c <= 0x219b) ||
+        (c >= 0x219c && c <= 0x219f) ||
+        c === 0x21a0 ||
+        (c >= 0x21a1 && c <= 0x21a2) ||
+        c === 0x21a3 ||
+        (c >= 0x21a4 && c <= 0x21a5) ||
+        c === 0x21a6 ||
+        (c >= 0x21a7 && c <= 0x21ad) ||
+        c === 0x21ae ||
+        (c >= 0x21af && c <= 0x21cd) ||
+        (c >= 0x21ce && c <= 0x21cf) ||
+        (c >= 0x21d0 && c <= 0x21d1) ||
+        c === 0x21d2 ||
+        c === 0x21d3 ||
+        c === 0x21d4 ||
+        (c >= 0x21d5 && c <= 0x21f3) ||
+        (c >= 0x21f4 && c <= 0x22ff) ||
+        (c >= 0x2300 && c <= 0x2307) ||
+        c === 0x2308 ||
+        c === 0x2309 ||
+        c === 0x230a ||
+        c === 0x230b ||
+        (c >= 0x230c && c <= 0x231f) ||
+        (c >= 0x2320 && c <= 0x2321) ||
+        (c >= 0x2322 && c <= 0x2328) ||
+        c === 0x2329 ||
+        c === 0x232a ||
+        (c >= 0x232b && c <= 0x237b) ||
+        c === 0x237c ||
+        (c >= 0x237d && c <= 0x239a) ||
+        (c >= 0x239b && c <= 0x23b3) ||
+        (c >= 0x23b4 && c <= 0x23db) ||
+        (c >= 0x23dc && c <= 0x23e1) ||
+        (c >= 0x23e2 && c <= 0x2426) ||
+        (c >= 0x2427 && c <= 0x243f) ||
+        (c >= 0x2440 && c <= 0x244a) ||
+        (c >= 0x244b && c <= 0x245f) ||
+        (c >= 0x2500 && c <= 0x25b6) ||
+        c === 0x25b7 ||
+        (c >= 0x25b8 && c <= 0x25c0) ||
+        c === 0x25c1 ||
+        (c >= 0x25c2 && c <= 0x25f7) ||
+        (c >= 0x25f8 && c <= 0x25ff) ||
+        (c >= 0x2600 && c <= 0x266e) ||
+        c === 0x266f ||
+        (c >= 0x2670 && c <= 0x2767) ||
+        c === 0x2768 ||
+        c === 0x2769 ||
+        c === 0x276a ||
+        c === 0x276b ||
+        c === 0x276c ||
+        c === 0x276d ||
+        c === 0x276e ||
+        c === 0x276f ||
+        c === 0x2770 ||
+        c === 0x2771 ||
+        c === 0x2772 ||
+        c === 0x2773 ||
+        c === 0x2774 ||
+        c === 0x2775 ||
+        (c >= 0x2794 && c <= 0x27bf) ||
+        (c >= 0x27c0 && c <= 0x27c4) ||
+        c === 0x27c5 ||
+        c === 0x27c6 ||
+        (c >= 0x27c7 && c <= 0x27e5) ||
+        c === 0x27e6 ||
+        c === 0x27e7 ||
+        c === 0x27e8 ||
+        c === 0x27e9 ||
+        c === 0x27ea ||
+        c === 0x27eb ||
+        c === 0x27ec ||
+        c === 0x27ed ||
+        c === 0x27ee ||
+        c === 0x27ef ||
+        (c >= 0x27f0 && c <= 0x27ff) ||
+        (c >= 0x2800 && c <= 0x28ff) ||
+        (c >= 0x2900 && c <= 0x2982) ||
+        c === 0x2983 ||
+        c === 0x2984 ||
+        c === 0x2985 ||
+        c === 0x2986 ||
+        c === 0x2987 ||
+        c === 0x2988 ||
+        c === 0x2989 ||
+        c === 0x298a ||
+        c === 0x298b ||
+        c === 0x298c ||
+        c === 0x298d ||
+        c === 0x298e ||
+        c === 0x298f ||
+        c === 0x2990 ||
+        c === 0x2991 ||
+        c === 0x2992 ||
+        c === 0x2993 ||
+        c === 0x2994 ||
+        c === 0x2995 ||
+        c === 0x2996 ||
+        c === 0x2997 ||
+        c === 0x2998 ||
+        (c >= 0x2999 && c <= 0x29d7) ||
+        c === 0x29d8 ||
+        c === 0x29d9 ||
+        c === 0x29da ||
+        c === 0x29db ||
+        (c >= 0x29dc && c <= 0x29fb) ||
+        c === 0x29fc ||
+        c === 0x29fd ||
+        (c >= 0x29fe && c <= 0x2aff) ||
+        (c >= 0x2b00 && c <= 0x2b2f) ||
+        (c >= 0x2b30 && c <= 0x2b44) ||
+        (c >= 0x2b45 && c <= 0x2b46) ||
+        (c >= 0x2b47 && c <= 0x2b4c) ||
+        (c >= 0x2b4d && c <= 0x2b73) ||
+        (c >= 0x2b74 && c <= 0x2b75) ||
+        (c >= 0x2b76 && c <= 0x2b95) ||
+        c === 0x2b96 ||
+        (c >= 0x2b97 && c <= 0x2bff) ||
+        (c >= 0x2e00 && c <= 0x2e01) ||
+        c === 0x2e02 ||
+        c === 0x2e03 ||
+        c === 0x2e04 ||
+        c === 0x2e05 ||
+        (c >= 0x2e06 && c <= 0x2e08) ||
+        c === 0x2e09 ||
+        c === 0x2e0a ||
+        c === 0x2e0b ||
+        c === 0x2e0c ||
+        c === 0x2e0d ||
+        (c >= 0x2e0e && c <= 0x2e16) ||
+        c === 0x2e17 ||
+        (c >= 0x2e18 && c <= 0x2e19) ||
+        c === 0x2e1a ||
+        c === 0x2e1b ||
+        c === 0x2e1c ||
+        c === 0x2e1d ||
+        (c >= 0x2e1e && c <= 0x2e1f) ||
+        c === 0x2e20 ||
+        c === 0x2e21 ||
+        c === 0x2e22 ||
+        c === 0x2e23 ||
+        c === 0x2e24 ||
+        c === 0x2e25 ||
+        c === 0x2e26 ||
+        c === 0x2e27 ||
+        c === 0x2e28 ||
+        c === 0x2e29 ||
+        (c >= 0x2e2a && c <= 0x2e2e) ||
+        c === 0x2e2f ||
+        (c >= 0x2e30 && c <= 0x2e39) ||
+        (c >= 0x2e3a && c <= 0x2e3b) ||
+        (c >= 0x2e3c && c <= 0x2e3f) ||
+        c === 0x2e40 ||
+        c === 0x2e41 ||
+        c === 0x2e42 ||
+        (c >= 0x2e43 && c <= 0x2e4f) ||
+        (c >= 0x2e50 && c <= 0x2e51) ||
+        c === 0x2e52 ||
+        (c >= 0x2e53 && c <= 0x2e7f) ||
+        (c >= 0x3001 && c <= 0x3003) ||
+        c === 0x3008 ||
+        c === 0x3009 ||
+        c === 0x300a ||
+        c === 0x300b ||
+        c === 0x300c ||
+        c === 0x300d ||
+        c === 0x300e ||
+        c === 0x300f ||
+        c === 0x3010 ||
+        c === 0x3011 ||
+        (c >= 0x3012 && c <= 0x3013) ||
+        c === 0x3014 ||
+        c === 0x3015 ||
+        c === 0x3016 ||
+        c === 0x3017 ||
+        c === 0x3018 ||
+        c === 0x3019 ||
+        c === 0x301a ||
+        c === 0x301b ||
+        c === 0x301c ||
+        c === 0x301d ||
+        (c >= 0x301e && c <= 0x301f) ||
+        c === 0x3020 ||
+        c === 0x3030 ||
+        c === 0xfd3e ||
+        c === 0xfd3f ||
+        (c >= 0xfe45 && c <= 0xfe46));
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/icu-messageformat-parser/lib/regex.generated.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/@formatjs/icu-messageformat-parser/lib/regex.generated.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SPACE_SEPARATOR_REGEX": () => (/* binding */ SPACE_SEPARATOR_REGEX),
+/* harmony export */   "WHITE_SPACE_REGEX": () => (/* binding */ WHITE_SPACE_REGEX)
+/* harmony export */ });
+// @generated from regex-gen.ts
+var SPACE_SEPARATOR_REGEX = /[ \xA0\u1680\u2000-\u200A\u202F\u205F\u3000]/;
+var WHITE_SPACE_REGEX = /[\t-\r \x85\u200E\u200F\u2028\u2029]/;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/icu-messageformat-parser/lib/types.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@formatjs/icu-messageformat-parser/lib/types.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "TYPE": () => (/* binding */ TYPE),
+/* harmony export */   "SKELETON_TYPE": () => (/* binding */ SKELETON_TYPE),
+/* harmony export */   "isLiteralElement": () => (/* binding */ isLiteralElement),
+/* harmony export */   "isArgumentElement": () => (/* binding */ isArgumentElement),
+/* harmony export */   "isNumberElement": () => (/* binding */ isNumberElement),
+/* harmony export */   "isDateElement": () => (/* binding */ isDateElement),
+/* harmony export */   "isTimeElement": () => (/* binding */ isTimeElement),
+/* harmony export */   "isSelectElement": () => (/* binding */ isSelectElement),
+/* harmony export */   "isPluralElement": () => (/* binding */ isPluralElement),
+/* harmony export */   "isPoundElement": () => (/* binding */ isPoundElement),
+/* harmony export */   "isTagElement": () => (/* binding */ isTagElement),
+/* harmony export */   "isNumberSkeleton": () => (/* binding */ isNumberSkeleton),
+/* harmony export */   "isDateTimeSkeleton": () => (/* binding */ isDateTimeSkeleton),
+/* harmony export */   "createLiteralElement": () => (/* binding */ createLiteralElement),
+/* harmony export */   "createNumberElement": () => (/* binding */ createNumberElement)
+/* harmony export */ });
+var TYPE;
+(function (TYPE) {
+    /**
+     * Raw text
+     */
+    TYPE[TYPE["literal"] = 0] = "literal";
+    /**
+     * Variable w/o any format, e.g `var` in `this is a {var}`
+     */
+    TYPE[TYPE["argument"] = 1] = "argument";
+    /**
+     * Variable w/ number format
+     */
+    TYPE[TYPE["number"] = 2] = "number";
+    /**
+     * Variable w/ date format
+     */
+    TYPE[TYPE["date"] = 3] = "date";
+    /**
+     * Variable w/ time format
+     */
+    TYPE[TYPE["time"] = 4] = "time";
+    /**
+     * Variable w/ select format
+     */
+    TYPE[TYPE["select"] = 5] = "select";
+    /**
+     * Variable w/ plural format
+     */
+    TYPE[TYPE["plural"] = 6] = "plural";
+    /**
+     * Only possible within plural argument.
+     * This is the `#` symbol that will be substituted with the count.
+     */
+    TYPE[TYPE["pound"] = 7] = "pound";
+    /**
+     * XML-like tag
+     */
+    TYPE[TYPE["tag"] = 8] = "tag";
+})(TYPE || (TYPE = {}));
+var SKELETON_TYPE;
+(function (SKELETON_TYPE) {
+    SKELETON_TYPE[SKELETON_TYPE["number"] = 0] = "number";
+    SKELETON_TYPE[SKELETON_TYPE["dateTime"] = 1] = "dateTime";
+})(SKELETON_TYPE || (SKELETON_TYPE = {}));
+/**
+ * Type Guards
+ */
+function isLiteralElement(el) {
+    return el.type === TYPE.literal;
+}
+function isArgumentElement(el) {
+    return el.type === TYPE.argument;
+}
+function isNumberElement(el) {
+    return el.type === TYPE.number;
+}
+function isDateElement(el) {
+    return el.type === TYPE.date;
+}
+function isTimeElement(el) {
+    return el.type === TYPE.time;
+}
+function isSelectElement(el) {
+    return el.type === TYPE.select;
+}
+function isPluralElement(el) {
+    return el.type === TYPE.plural;
+}
+function isPoundElement(el) {
+    return el.type === TYPE.pound;
+}
+function isTagElement(el) {
+    return el.type === TYPE.tag;
+}
+function isNumberSkeleton(el) {
+    return !!(el && typeof el === 'object' && el.type === SKELETON_TYPE.number);
+}
+function isDateTimeSkeleton(el) {
+    return !!(el && typeof el === 'object' && el.type === SKELETON_TYPE.dateTime);
+}
+function createLiteralElement(value) {
+    return {
+        type: TYPE.literal,
+        value: value,
+    };
+}
+function createNumberElement(value, style) {
+    return {
+        type: TYPE.number,
+        value: value,
+        style: style,
+    };
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/icu-messageformat-parser/node_modules/tslib/tslib.es6.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@formatjs/icu-messageformat-parser/node_modules/tslib/tslib.es6.js ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "__extends": () => (/* binding */ __extends),
+/* harmony export */   "__assign": () => (/* binding */ __assign),
+/* harmony export */   "__rest": () => (/* binding */ __rest),
+/* harmony export */   "__decorate": () => (/* binding */ __decorate),
+/* harmony export */   "__param": () => (/* binding */ __param),
+/* harmony export */   "__metadata": () => (/* binding */ __metadata),
+/* harmony export */   "__awaiter": () => (/* binding */ __awaiter),
+/* harmony export */   "__generator": () => (/* binding */ __generator),
+/* harmony export */   "__createBinding": () => (/* binding */ __createBinding),
+/* harmony export */   "__exportStar": () => (/* binding */ __exportStar),
+/* harmony export */   "__values": () => (/* binding */ __values),
+/* harmony export */   "__read": () => (/* binding */ __read),
+/* harmony export */   "__spread": () => (/* binding */ __spread),
+/* harmony export */   "__spreadArrays": () => (/* binding */ __spreadArrays),
+/* harmony export */   "__spreadArray": () => (/* binding */ __spreadArray),
+/* harmony export */   "__await": () => (/* binding */ __await),
+/* harmony export */   "__asyncGenerator": () => (/* binding */ __asyncGenerator),
+/* harmony export */   "__asyncDelegator": () => (/* binding */ __asyncDelegator),
+/* harmony export */   "__asyncValues": () => (/* binding */ __asyncValues),
+/* harmony export */   "__makeTemplateObject": () => (/* binding */ __makeTemplateObject),
+/* harmony export */   "__importStar": () => (/* binding */ __importStar),
+/* harmony export */   "__importDefault": () => (/* binding */ __importDefault),
+/* harmony export */   "__classPrivateFieldGet": () => (/* binding */ __classPrivateFieldGet),
+/* harmony export */   "__classPrivateFieldSet": () => (/* binding */ __classPrivateFieldSet)
+/* harmony export */ });
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+    return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+    if (typeof b !== "function" && b !== null)
+        throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    }
+    return __assign.apply(this, arguments);
+}
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+function __decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+function __param(paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+}
+
+function __metadata(metadataKey, metadataValue) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+var __createBinding = Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+});
+
+function __exportStar(m, o) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p)) __createBinding(o, m, p);
+}
+
+function __values(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+/** @deprecated */
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
+/** @deprecated */
+function __spreadArrays() {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+}
+
+function __spreadArray(to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+}
+
+function __await(v) {
+    return this instanceof __await ? (this.v = v, this) : new __await(v);
+}
+
+function __asyncGenerator(thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+}
+
+function __asyncDelegator(o) {
+    var i, p;
+    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+}
+
+function __asyncValues(o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+}
+
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+
+var __setModuleDefault = Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+};
+
+function __importStar(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+}
+
+function __importDefault(mod) {
+    return (mod && mod.__esModule) ? mod : { default: mod };
+}
+
+function __classPrivateFieldGet(receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+}
+
+function __classPrivateFieldSet(receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/icu-skeleton-parser/lib/date-time.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@formatjs/icu-skeleton-parser/lib/date-time.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "parseDateTimeSkeleton": () => (/* binding */ parseDateTimeSkeleton)
+/* harmony export */ });
+/**
+ * https://unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table
+ * Credit: https://github.com/caridy/intl-datetimeformat-pattern/blob/master/index.js
+ * with some tweaks
+ */
+var DATE_TIME_REGEX = /(?:[Eec]{1,6}|G{1,5}|[Qq]{1,5}|(?:[yYur]+|U{1,5})|[ML]{1,5}|d{1,2}|D{1,3}|F{1}|[abB]{1,5}|[hkHK]{1,2}|w{1,2}|W{1}|m{1,2}|s{1,2}|[zZOvVxX]{1,4})(?=([^']*'[^']*')*[^']*$)/g;
+/**
+ * Parse Date time skeleton into Intl.DateTimeFormatOptions
+ * Ref: https://unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table
+ * @public
+ * @param skeleton skeleton string
+ */
+function parseDateTimeSkeleton(skeleton) {
+    var result = {};
+    skeleton.replace(DATE_TIME_REGEX, function (match) {
+        var len = match.length;
+        switch (match[0]) {
+            // Era
+            case 'G':
+                result.era = len === 4 ? 'long' : len === 5 ? 'narrow' : 'short';
+                break;
+            // Year
+            case 'y':
+                result.year = len === 2 ? '2-digit' : 'numeric';
+                break;
+            case 'Y':
+            case 'u':
+            case 'U':
+            case 'r':
+                throw new RangeError('`Y/u/U/r` (year) patterns are not supported, use `y` instead');
+            // Quarter
+            case 'q':
+            case 'Q':
+                throw new RangeError('`q/Q` (quarter) patterns are not supported');
+            // Month
+            case 'M':
+            case 'L':
+                result.month = ['numeric', '2-digit', 'short', 'long', 'narrow'][len - 1];
+                break;
+            // Week
+            case 'w':
+            case 'W':
+                throw new RangeError('`w/W` (week) patterns are not supported');
+            case 'd':
+                result.day = ['numeric', '2-digit'][len - 1];
+                break;
+            case 'D':
+            case 'F':
+            case 'g':
+                throw new RangeError('`D/F/g` (day) patterns are not supported, use `d` instead');
+            // Weekday
+            case 'E':
+                result.weekday = len === 4 ? 'short' : len === 5 ? 'narrow' : 'short';
+                break;
+            case 'e':
+                if (len < 4) {
+                    throw new RangeError('`e..eee` (weekday) patterns are not supported');
+                }
+                result.weekday = ['short', 'long', 'narrow', 'short'][len - 4];
+                break;
+            case 'c':
+                if (len < 4) {
+                    throw new RangeError('`c..ccc` (weekday) patterns are not supported');
+                }
+                result.weekday = ['short', 'long', 'narrow', 'short'][len - 4];
+                break;
+            // Period
+            case 'a': // AM, PM
+                result.hour12 = true;
+                break;
+            case 'b': // am, pm, noon, midnight
+            case 'B': // flexible day periods
+                throw new RangeError('`b/B` (period) patterns are not supported, use `a` instead');
+            // Hour
+            case 'h':
+                result.hourCycle = 'h12';
+                result.hour = ['numeric', '2-digit'][len - 1];
+                break;
+            case 'H':
+                result.hourCycle = 'h23';
+                result.hour = ['numeric', '2-digit'][len - 1];
+                break;
+            case 'K':
+                result.hourCycle = 'h11';
+                result.hour = ['numeric', '2-digit'][len - 1];
+                break;
+            case 'k':
+                result.hourCycle = 'h24';
+                result.hour = ['numeric', '2-digit'][len - 1];
+                break;
+            case 'j':
+            case 'J':
+            case 'C':
+                throw new RangeError('`j/J/C` (hour) patterns are not supported, use `h/H/K/k` instead');
+            // Minute
+            case 'm':
+                result.minute = ['numeric', '2-digit'][len - 1];
+                break;
+            // Second
+            case 's':
+                result.second = ['numeric', '2-digit'][len - 1];
+                break;
+            case 'S':
+            case 'A':
+                throw new RangeError('`S/A` (second) patterns are not supported, use `s` instead');
+            // Zone
+            case 'z': // 1..3, 4: specific non-location format
+                result.timeZoneName = len < 4 ? 'short' : 'long';
+                break;
+            case 'Z': // 1..3, 4, 5: The ISO8601 varios formats
+            case 'O': // 1, 4: miliseconds in day short, long
+            case 'v': // 1, 4: generic non-location format
+            case 'V': // 1, 2, 3, 4: time zone ID or city
+            case 'X': // 1, 2, 3, 4: The ISO8601 varios formats
+            case 'x': // 1, 2, 3, 4: The ISO8601 varios formats
+                throw new RangeError('`Z/O/v/V/X/x` (timeZone) patterns are not supported, use `z` instead');
+        }
+        return '';
+    });
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/icu-skeleton-parser/lib/index.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@formatjs/icu-skeleton-parser/lib/index.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "parseDateTimeSkeleton": () => (/* reexport safe */ _date_time__WEBPACK_IMPORTED_MODULE_0__.parseDateTimeSkeleton),
+/* harmony export */   "parseNumberSkeleton": () => (/* reexport safe */ _number__WEBPACK_IMPORTED_MODULE_1__.parseNumberSkeleton),
+/* harmony export */   "parseNumberSkeletonFromString": () => (/* reexport safe */ _number__WEBPACK_IMPORTED_MODULE_1__.parseNumberSkeletonFromString)
+/* harmony export */ });
+/* harmony import */ var _date_time__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./date-time */ "./node_modules/@formatjs/icu-skeleton-parser/lib/date-time.js");
+/* harmony import */ var _number__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./number */ "./node_modules/@formatjs/icu-skeleton-parser/lib/number.js");
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/icu-skeleton-parser/lib/number.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@formatjs/icu-skeleton-parser/lib/number.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "parseNumberSkeletonFromString": () => (/* binding */ parseNumberSkeletonFromString),
+/* harmony export */   "parseNumberSkeleton": () => (/* binding */ parseNumberSkeleton)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ "./node_modules/@formatjs/icu-skeleton-parser/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _regex_generated__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./regex.generated */ "./node_modules/@formatjs/icu-skeleton-parser/lib/regex.generated.js");
+
+
+function parseNumberSkeletonFromString(skeleton) {
+    if (skeleton.length === 0) {
+        throw new Error('Number skeleton cannot be empty');
+    }
+    // Parse the skeleton
+    var stringTokens = skeleton
+        .split(_regex_generated__WEBPACK_IMPORTED_MODULE_0__.WHITE_SPACE_REGEX)
+        .filter(function (x) { return x.length > 0; });
+    var tokens = [];
+    for (var _i = 0, stringTokens_1 = stringTokens; _i < stringTokens_1.length; _i++) {
+        var stringToken = stringTokens_1[_i];
+        var stemAndOptions = stringToken.split('/');
+        if (stemAndOptions.length === 0) {
+            throw new Error('Invalid number skeleton');
+        }
+        var stem = stemAndOptions[0], options = stemAndOptions.slice(1);
+        for (var _a = 0, options_1 = options; _a < options_1.length; _a++) {
+            var option = options_1[_a];
+            if (option.length === 0) {
+                throw new Error('Invalid number skeleton');
+            }
+        }
+        tokens.push({ stem: stem, options: options });
+    }
+    return tokens;
+}
+function icuUnitToEcma(unit) {
+    return unit.replace(/^(.*?)-/, '');
+}
+var FRACTION_PRECISION_REGEX = /^\.(?:(0+)(\*)?|(#+)|(0+)(#+))$/g;
+var SIGNIFICANT_PRECISION_REGEX = /^(@+)?(\+|#+)?$/g;
+var INTEGER_WIDTH_REGEX = /(\*)(0+)|(#+)(0+)|(0+)/g;
+var CONCISE_INTEGER_WIDTH_REGEX = /^(0+)$/;
+function parseSignificantPrecision(str) {
+    var result = {};
+    str.replace(SIGNIFICANT_PRECISION_REGEX, function (_, g1, g2) {
+        // @@@ case
+        if (typeof g2 !== 'string') {
+            result.minimumSignificantDigits = g1.length;
+            result.maximumSignificantDigits = g1.length;
+        }
+        // @@@+ case
+        else if (g2 === '+') {
+            result.minimumSignificantDigits = g1.length;
+        }
+        // .### case
+        else if (g1[0] === '#') {
+            result.maximumSignificantDigits = g1.length;
+        }
+        // .@@## or .@@@ case
+        else {
+            result.minimumSignificantDigits = g1.length;
+            result.maximumSignificantDigits =
+                g1.length + (typeof g2 === 'string' ? g2.length : 0);
+        }
+        return '';
+    });
+    return result;
+}
+function parseSign(str) {
+    switch (str) {
+        case 'sign-auto':
+            return {
+                signDisplay: 'auto',
+            };
+        case 'sign-accounting':
+        case '()':
+            return {
+                currencySign: 'accounting',
+            };
+        case 'sign-always':
+        case '+!':
+            return {
+                signDisplay: 'always',
+            };
+        case 'sign-accounting-always':
+        case '()!':
+            return {
+                signDisplay: 'always',
+                currencySign: 'accounting',
+            };
+        case 'sign-except-zero':
+        case '+?':
+            return {
+                signDisplay: 'exceptZero',
+            };
+        case 'sign-accounting-except-zero':
+        case '()?':
+            return {
+                signDisplay: 'exceptZero',
+                currencySign: 'accounting',
+            };
+        case 'sign-never':
+        case '+_':
+            return {
+                signDisplay: 'never',
+            };
+    }
+}
+function parseConciseScientificAndEngineeringStem(stem) {
+    // Engineering
+    var result;
+    if (stem[0] === 'E' && stem[1] === 'E') {
+        result = {
+            notation: 'engineering',
+        };
+        stem = stem.slice(2);
+    }
+    else if (stem[0] === 'E') {
+        result = {
+            notation: 'scientific',
+        };
+        stem = stem.slice(1);
+    }
+    if (result) {
+        var signDisplay = stem.slice(0, 2);
+        if (signDisplay === '+!') {
+            result.signDisplay = 'always';
+            stem = stem.slice(2);
+        }
+        else if (signDisplay === '+?') {
+            result.signDisplay = 'exceptZero';
+            stem = stem.slice(2);
+        }
+        if (!CONCISE_INTEGER_WIDTH_REGEX.test(stem)) {
+            throw new Error('Malformed concise eng/scientific notation');
+        }
+        result.minimumIntegerDigits = stem.length;
+    }
+    return result;
+}
+function parseNotationOptions(opt) {
+    var result = {};
+    var signOpts = parseSign(opt);
+    if (signOpts) {
+        return signOpts;
+    }
+    return result;
+}
+/**
+ * https://github.com/unicode-org/icu/blob/master/docs/userguide/format_parse/numbers/skeletons.md#skeleton-stems-and-options
+ */
+function parseNumberSkeleton(tokens) {
+    var result = {};
+    for (var _i = 0, tokens_1 = tokens; _i < tokens_1.length; _i++) {
+        var token = tokens_1[_i];
+        switch (token.stem) {
+            case 'percent':
+            case '%':
+                result.style = 'percent';
+                continue;
+            case '%x100':
+                result.style = 'percent';
+                result.scale = 100;
+                continue;
+            case 'currency':
+                result.style = 'currency';
+                result.currency = token.options[0];
+                continue;
+            case 'group-off':
+            case ',_':
+                result.useGrouping = false;
+                continue;
+            case 'precision-integer':
+            case '.':
+                result.maximumFractionDigits = 0;
+                continue;
+            case 'measure-unit':
+            case 'unit':
+                result.style = 'unit';
+                result.unit = icuUnitToEcma(token.options[0]);
+                continue;
+            case 'compact-short':
+            case 'K':
+                result.notation = 'compact';
+                result.compactDisplay = 'short';
+                continue;
+            case 'compact-long':
+            case 'KK':
+                result.notation = 'compact';
+                result.compactDisplay = 'long';
+                continue;
+            case 'scientific':
+                result = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, result), { notation: 'scientific' }), token.options.reduce(function (all, opt) { return ((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, all), parseNotationOptions(opt))); }, {}));
+                continue;
+            case 'engineering':
+                result = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, result), { notation: 'engineering' }), token.options.reduce(function (all, opt) { return ((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, all), parseNotationOptions(opt))); }, {}));
+                continue;
+            case 'notation-simple':
+                result.notation = 'standard';
+                continue;
+            // https://github.com/unicode-org/icu/blob/master/icu4c/source/i18n/unicode/unumberformatter.h
+            case 'unit-width-narrow':
+                result.currencyDisplay = 'narrowSymbol';
+                result.unitDisplay = 'narrow';
+                continue;
+            case 'unit-width-short':
+                result.currencyDisplay = 'code';
+                result.unitDisplay = 'short';
+                continue;
+            case 'unit-width-full-name':
+                result.currencyDisplay = 'name';
+                result.unitDisplay = 'long';
+                continue;
+            case 'unit-width-iso-code':
+                result.currencyDisplay = 'symbol';
+                continue;
+            case 'scale':
+                result.scale = parseFloat(token.options[0]);
+                continue;
+            // https://unicode-org.github.io/icu/userguide/format_parse/numbers/skeletons.html#integer-width
+            case 'integer-width':
+                if (token.options.length > 1) {
+                    throw new RangeError('integer-width stems only accept a single optional option');
+                }
+                token.options[0].replace(INTEGER_WIDTH_REGEX, function (_, g1, g2, g3, g4, g5) {
+                    if (g1) {
+                        result.minimumIntegerDigits = g2.length;
+                    }
+                    else if (g3 && g4) {
+                        throw new Error('We currently do not support maximum integer digits');
+                    }
+                    else if (g5) {
+                        throw new Error('We currently do not support exact integer digits');
+                    }
+                    return '';
+                });
+                continue;
+        }
+        // https://unicode-org.github.io/icu/userguide/format_parse/numbers/skeletons.html#integer-width
+        if (CONCISE_INTEGER_WIDTH_REGEX.test(token.stem)) {
+            result.minimumIntegerDigits = token.stem.length;
+            continue;
+        }
+        if (FRACTION_PRECISION_REGEX.test(token.stem)) {
+            // Precision
+            // https://unicode-org.github.io/icu/userguide/format_parse/numbers/skeletons.html#fraction-precision
+            // precision-integer case
+            if (token.options.length > 1) {
+                throw new RangeError('Fraction-precision stems only accept a single optional option');
+            }
+            token.stem.replace(FRACTION_PRECISION_REGEX, function (_, g1, g2, g3, g4, g5) {
+                // .000* case (before ICU67 it was .000+)
+                if (g2 === '*') {
+                    result.minimumFractionDigits = g1.length;
+                }
+                // .### case
+                else if (g3 && g3[0] === '#') {
+                    result.maximumFractionDigits = g3.length;
+                }
+                // .00## case
+                else if (g4 && g5) {
+                    result.minimumFractionDigits = g4.length;
+                    result.maximumFractionDigits = g4.length + g5.length;
+                }
+                else {
+                    result.minimumFractionDigits = g1.length;
+                    result.maximumFractionDigits = g1.length;
+                }
+                return '';
+            });
+            if (token.options.length) {
+                result = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, result), parseSignificantPrecision(token.options[0]));
+            }
+            continue;
+        }
+        // https://unicode-org.github.io/icu/userguide/format_parse/numbers/skeletons.html#significant-digits-precision
+        if (SIGNIFICANT_PRECISION_REGEX.test(token.stem)) {
+            result = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, result), parseSignificantPrecision(token.stem));
+            continue;
+        }
+        var signOpts = parseSign(token.stem);
+        if (signOpts) {
+            result = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, result), signOpts);
+        }
+        var conciseScientificAndEngineeringOpts = parseConciseScientificAndEngineeringStem(token.stem);
+        if (conciseScientificAndEngineeringOpts) {
+            result = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, result), conciseScientificAndEngineeringOpts);
+        }
+    }
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/icu-skeleton-parser/lib/regex.generated.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@formatjs/icu-skeleton-parser/lib/regex.generated.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "WHITE_SPACE_REGEX": () => (/* binding */ WHITE_SPACE_REGEX)
+/* harmony export */ });
+// @generated from regex-gen.ts
+var WHITE_SPACE_REGEX = /[\t-\r \x85\u200E\u200F\u2028\u2029]/i;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/icu-skeleton-parser/node_modules/tslib/tslib.es6.js":
+/*!************************************************************************************!*\
+  !*** ./node_modules/@formatjs/icu-skeleton-parser/node_modules/tslib/tslib.es6.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "__extends": () => (/* binding */ __extends),
+/* harmony export */   "__assign": () => (/* binding */ __assign),
+/* harmony export */   "__rest": () => (/* binding */ __rest),
+/* harmony export */   "__decorate": () => (/* binding */ __decorate),
+/* harmony export */   "__param": () => (/* binding */ __param),
+/* harmony export */   "__metadata": () => (/* binding */ __metadata),
+/* harmony export */   "__awaiter": () => (/* binding */ __awaiter),
+/* harmony export */   "__generator": () => (/* binding */ __generator),
+/* harmony export */   "__createBinding": () => (/* binding */ __createBinding),
+/* harmony export */   "__exportStar": () => (/* binding */ __exportStar),
+/* harmony export */   "__values": () => (/* binding */ __values),
+/* harmony export */   "__read": () => (/* binding */ __read),
+/* harmony export */   "__spread": () => (/* binding */ __spread),
+/* harmony export */   "__spreadArrays": () => (/* binding */ __spreadArrays),
+/* harmony export */   "__spreadArray": () => (/* binding */ __spreadArray),
+/* harmony export */   "__await": () => (/* binding */ __await),
+/* harmony export */   "__asyncGenerator": () => (/* binding */ __asyncGenerator),
+/* harmony export */   "__asyncDelegator": () => (/* binding */ __asyncDelegator),
+/* harmony export */   "__asyncValues": () => (/* binding */ __asyncValues),
+/* harmony export */   "__makeTemplateObject": () => (/* binding */ __makeTemplateObject),
+/* harmony export */   "__importStar": () => (/* binding */ __importStar),
+/* harmony export */   "__importDefault": () => (/* binding */ __importDefault),
+/* harmony export */   "__classPrivateFieldGet": () => (/* binding */ __classPrivateFieldGet),
+/* harmony export */   "__classPrivateFieldSet": () => (/* binding */ __classPrivateFieldSet)
+/* harmony export */ });
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+    return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+    if (typeof b !== "function" && b !== null)
+        throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    }
+    return __assign.apply(this, arguments);
+}
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+function __decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+function __param(paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+}
+
+function __metadata(metadataKey, metadataValue) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+var __createBinding = Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+});
+
+function __exportStar(m, o) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p)) __createBinding(o, m, p);
+}
+
+function __values(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+/** @deprecated */
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
+/** @deprecated */
+function __spreadArrays() {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+}
+
+function __spreadArray(to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+}
+
+function __await(v) {
+    return this instanceof __await ? (this.v = v, this) : new __await(v);
+}
+
+function __asyncGenerator(thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+}
+
+function __asyncDelegator(o) {
+    var i, p;
+    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+}
+
+function __asyncValues(o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+}
+
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+
+var __setModuleDefault = Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+};
+
+function __importStar(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+}
+
+function __importDefault(mod) {
+    return (mod && mod.__esModule) ? mod : { default: mod };
+}
+
+function __classPrivateFieldGet(receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+}
+
+function __classPrivateFieldSet(receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-localematcher/abstract/BestAvailableLocale.js":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-localematcher/abstract/BestAvailableLocale.js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.BestAvailableLocale = void 0;
+/**
+ * https://tc39.es/ecma402/#sec-bestavailablelocale
+ * @param availableLocales
+ * @param locale
+ */
+function BestAvailableLocale(availableLocales, locale) {
+    var candidate = locale;
+    while (true) {
+        if (availableLocales.has(candidate)) {
+            return candidate;
+        }
+        var pos = candidate.lastIndexOf('-');
+        if (!~pos) {
+            return undefined;
+        }
+        if (pos >= 2 && candidate[pos - 2] === '-') {
+            pos -= 2;
+        }
+        candidate = candidate.slice(0, pos);
+    }
+}
+exports.BestAvailableLocale = BestAvailableLocale;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-localematcher/abstract/BestFitMatcher.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-localematcher/abstract/BestFitMatcher.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.BestFitMatcher = void 0;
+var BestAvailableLocale_1 = __webpack_require__(/*! ./BestAvailableLocale */ "./node_modules/@formatjs/intl-localematcher/abstract/BestAvailableLocale.js");
+var utils_1 = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl-localematcher/abstract/utils.js");
+/**
+ * https://tc39.es/ecma402/#sec-bestfitmatcher
+ * @param availableLocales
+ * @param requestedLocales
+ * @param getDefaultLocale
+ */
+function BestFitMatcher(availableLocales, requestedLocales, getDefaultLocale) {
+    var minimizedAvailableLocaleMap = Array.from(availableLocales).reduce(function (all, l) {
+        all[l] = l;
+        return all;
+    }, {});
+    var minimizedAvailableLocales = new Set();
+    availableLocales.forEach(function (locale) {
+        var minimizedLocale = new Intl.Locale(locale)
+            .minimize()
+            .toString();
+        minimizedAvailableLocaleMap[minimizedLocale] = locale;
+        minimizedAvailableLocales.add(minimizedLocale);
+    });
+    var foundLocale;
+    for (var _i = 0, requestedLocales_1 = requestedLocales; _i < requestedLocales_1.length; _i++) {
+        var l = requestedLocales_1[_i];
+        if (foundLocale) {
+            break;
+        }
+        var noExtensionLocale = l.replace(utils_1.UNICODE_EXTENSION_SEQUENCE_REGEX, '');
+        if (availableLocales.has(noExtensionLocale)) {
+            foundLocale = noExtensionLocale;
+            break;
+        }
+        if (minimizedAvailableLocales.has(noExtensionLocale)) {
+            foundLocale = noExtensionLocale;
+            break;
+        }
+        var locale = new Intl.Locale(noExtensionLocale);
+        var maximizedRequestedLocale = locale.maximize().toString();
+        var minimizedRequestedLocale = locale.minimize().toString();
+        // Check minimized locale
+        if (minimizedAvailableLocales.has(minimizedRequestedLocale)) {
+            foundLocale = minimizedRequestedLocale;
+            break;
+        }
+        // Lookup algo on maximized locale
+        foundLocale = BestAvailableLocale_1.BestAvailableLocale(minimizedAvailableLocales, maximizedRequestedLocale);
+    }
+    return {
+        locale: (foundLocale && minimizedAvailableLocaleMap[foundLocale]) ||
+            getDefaultLocale(),
+    };
+}
+exports.BestFitMatcher = BestFitMatcher;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-localematcher/abstract/LookupMatcher.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-localematcher/abstract/LookupMatcher.js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.LookupMatcher = void 0;
+var utils_1 = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl-localematcher/abstract/utils.js");
+var BestAvailableLocale_1 = __webpack_require__(/*! ./BestAvailableLocale */ "./node_modules/@formatjs/intl-localematcher/abstract/BestAvailableLocale.js");
+/**
+ * https://tc39.es/ecma402/#sec-lookupmatcher
+ * @param availableLocales
+ * @param requestedLocales
+ * @param getDefaultLocale
+ */
+function LookupMatcher(availableLocales, requestedLocales, getDefaultLocale) {
+    var result = { locale: '' };
+    for (var _i = 0, requestedLocales_1 = requestedLocales; _i < requestedLocales_1.length; _i++) {
+        var locale = requestedLocales_1[_i];
+        var noExtensionLocale = locale.replace(utils_1.UNICODE_EXTENSION_SEQUENCE_REGEX, '');
+        var availableLocale = BestAvailableLocale_1.BestAvailableLocale(availableLocales, noExtensionLocale);
+        if (availableLocale) {
+            result.locale = availableLocale;
+            if (locale !== noExtensionLocale) {
+                result.extension = locale.slice(noExtensionLocale.length + 1, locale.length);
+            }
+            return result;
+        }
+    }
+    result.locale = getDefaultLocale();
+    return result;
+}
+exports.LookupMatcher = LookupMatcher;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-localematcher/abstract/LookupSupportedLocales.js":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-localematcher/abstract/LookupSupportedLocales.js ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.LookupSupportedLocales = void 0;
+var utils_1 = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl-localematcher/abstract/utils.js");
+var BestAvailableLocale_1 = __webpack_require__(/*! ./BestAvailableLocale */ "./node_modules/@formatjs/intl-localematcher/abstract/BestAvailableLocale.js");
+/**
+ * https://tc39.es/ecma402/#sec-lookupsupportedlocales
+ * @param availableLocales
+ * @param requestedLocales
+ */
+function LookupSupportedLocales(availableLocales, requestedLocales) {
+    var subset = [];
+    for (var _i = 0, requestedLocales_1 = requestedLocales; _i < requestedLocales_1.length; _i++) {
+        var locale = requestedLocales_1[_i];
+        var noExtensionLocale = locale.replace(utils_1.UNICODE_EXTENSION_SEQUENCE_REGEX, '');
+        var availableLocale = BestAvailableLocale_1.BestAvailableLocale(availableLocales, noExtensionLocale);
+        if (availableLocale) {
+            subset.push(availableLocale);
+        }
+    }
+    return subset;
+}
+exports.LookupSupportedLocales = LookupSupportedLocales;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-localematcher/abstract/ResolveLocale.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-localematcher/abstract/ResolveLocale.js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ResolveLocale = void 0;
+var LookupMatcher_1 = __webpack_require__(/*! ./LookupMatcher */ "./node_modules/@formatjs/intl-localematcher/abstract/LookupMatcher.js");
+var BestFitMatcher_1 = __webpack_require__(/*! ./BestFitMatcher */ "./node_modules/@formatjs/intl-localematcher/abstract/BestFitMatcher.js");
+var utils_1 = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl-localematcher/abstract/utils.js");
+var UnicodeExtensionValue_1 = __webpack_require__(/*! ./UnicodeExtensionValue */ "./node_modules/@formatjs/intl-localematcher/abstract/UnicodeExtensionValue.js");
+/**
+ * https://tc39.es/ecma402/#sec-resolvelocale
+ */
+function ResolveLocale(availableLocales, requestedLocales, options, relevantExtensionKeys, localeData, getDefaultLocale) {
+    var matcher = options.localeMatcher;
+    var r;
+    if (matcher === 'lookup') {
+        r = LookupMatcher_1.LookupMatcher(availableLocales, requestedLocales, getDefaultLocale);
+    }
+    else {
+        r = BestFitMatcher_1.BestFitMatcher(availableLocales, requestedLocales, getDefaultLocale);
+    }
+    var foundLocale = r.locale;
+    var result = { locale: '', dataLocale: foundLocale };
+    var supportedExtension = '-u';
+    for (var _i = 0, relevantExtensionKeys_1 = relevantExtensionKeys; _i < relevantExtensionKeys_1.length; _i++) {
+        var key = relevantExtensionKeys_1[_i];
+        utils_1.invariant(foundLocale in localeData, "Missing locale data for " + foundLocale);
+        var foundLocaleData = localeData[foundLocale];
+        utils_1.invariant(typeof foundLocaleData === 'object' && foundLocaleData !== null, "locale data " + key + " must be an object");
+        var keyLocaleData = foundLocaleData[key];
+        utils_1.invariant(Array.isArray(keyLocaleData), "keyLocaleData for " + key + " must be an array");
+        var value = keyLocaleData[0];
+        utils_1.invariant(typeof value === 'string' || value === null, "value must be string or null but got " + typeof value + " in key " + key);
+        var supportedExtensionAddition = '';
+        if (r.extension) {
+            var requestedValue = UnicodeExtensionValue_1.UnicodeExtensionValue(r.extension, key);
+            if (requestedValue !== undefined) {
+                if (requestedValue !== '') {
+                    if (~keyLocaleData.indexOf(requestedValue)) {
+                        value = requestedValue;
+                        supportedExtensionAddition = "-" + key + "-" + value;
+                    }
+                }
+                else if (~requestedValue.indexOf('true')) {
+                    value = 'true';
+                    supportedExtensionAddition = "-" + key;
+                }
+            }
+        }
+        if (key in options) {
+            var optionsValue = options[key];
+            utils_1.invariant(typeof optionsValue === 'string' ||
+                typeof optionsValue === 'undefined' ||
+                optionsValue === null, 'optionsValue must be String, Undefined or Null');
+            if (~keyLocaleData.indexOf(optionsValue)) {
+                if (optionsValue !== value) {
+                    value = optionsValue;
+                    supportedExtensionAddition = '';
+                }
+            }
+        }
+        result[key] = value;
+        supportedExtension += supportedExtensionAddition;
+    }
+    if (supportedExtension.length > 2) {
+        var privateIndex = foundLocale.indexOf('-x-');
+        if (privateIndex === -1) {
+            foundLocale = foundLocale + supportedExtension;
+        }
+        else {
+            var preExtension = foundLocale.slice(0, privateIndex);
+            var postExtension = foundLocale.slice(privateIndex, foundLocale.length);
+            foundLocale = preExtension + supportedExtension + postExtension;
+        }
+        foundLocale = Intl.getCanonicalLocales(foundLocale)[0];
+    }
+    result.locale = foundLocale;
+    return result;
+}
+exports.ResolveLocale = ResolveLocale;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-localematcher/abstract/UnicodeExtensionValue.js":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-localematcher/abstract/UnicodeExtensionValue.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.UnicodeExtensionValue = void 0;
+var utils_1 = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl-localematcher/abstract/utils.js");
+/**
+ * https://tc39.es/ecma402/#sec-unicodeextensionvalue
+ * @param extension
+ * @param key
+ */
+function UnicodeExtensionValue(extension, key) {
+    utils_1.invariant(key.length === 2, 'key must have 2 elements');
+    var size = extension.length;
+    var searchValue = "-" + key + "-";
+    var pos = extension.indexOf(searchValue);
+    if (pos !== -1) {
+        var start = pos + 4;
+        var end = start;
+        var k = start;
+        var done = false;
+        while (!done) {
+            var e = extension.indexOf('-', k);
+            var len = void 0;
+            if (e === -1) {
+                len = size - k;
+            }
+            else {
+                len = e - k;
+            }
+            if (len === 2) {
+                done = true;
+            }
+            else if (e === -1) {
+                end = size;
+                done = true;
+            }
+            else {
+                end = e;
+                k = e + 1;
+            }
+        }
+        return extension.slice(start, end);
+    }
+    searchValue = "-" + key;
+    pos = extension.indexOf(searchValue);
+    if (pos !== -1 && pos + 3 === size) {
+        return '';
+    }
+    return undefined;
+}
+exports.UnicodeExtensionValue = UnicodeExtensionValue;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-localematcher/abstract/utils.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-localematcher/abstract/utils.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.invariant = exports.UNICODE_EXTENSION_SEQUENCE_REGEX = void 0;
+exports.UNICODE_EXTENSION_SEQUENCE_REGEX = /-u(?:-[0-9a-z]{2,8})+/gi;
+function invariant(condition, message, Err) {
+    if (Err === void 0) { Err = Error; }
+    if (!condition) {
+        throw new Err(message);
+    }
+}
+exports.invariant = invariant;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-localematcher/index.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-localematcher/index.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ResolveLocale = exports.LookupSupportedLocales = exports.match = void 0;
+var ResolveLocale_1 = __webpack_require__(/*! ./abstract/ResolveLocale */ "./node_modules/@formatjs/intl-localematcher/abstract/ResolveLocale.js");
+function match(requestedLocales, availableLocales, defaultLocale, opts) {
+    var locales = availableLocales.reduce(function (all, l) {
+        all.add(l);
+        return all;
+    }, new Set());
+    return ResolveLocale_1.ResolveLocale(locales, requestedLocales, {
+        localeMatcher: (opts === null || opts === void 0 ? void 0 : opts.algorithm) || 'best fit',
+    }, [], {}, function () { return defaultLocale; }).locale;
+}
+exports.match = match;
+var LookupSupportedLocales_1 = __webpack_require__(/*! ./abstract/LookupSupportedLocales */ "./node_modules/@formatjs/intl-localematcher/abstract/LookupSupportedLocales.js");
+Object.defineProperty(exports, "LookupSupportedLocales", ({ enumerable: true, get: function () { return LookupSupportedLocales_1.LookupSupportedLocales; } }));
+var ResolveLocale_2 = __webpack_require__(/*! ./abstract/ResolveLocale */ "./node_modules/@formatjs/intl-localematcher/abstract/ResolveLocale.js");
+Object.defineProperty(exports, "ResolveLocale", ({ enumerable: true, get: function () { return ResolveLocale_2.ResolveLocale; } }));
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-pluralrules/abstract/GetOperands.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-pluralrules/abstract/GetOperands.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.GetOperands = void 0;
+var ecma402_abstract_1 = __webpack_require__(/*! @formatjs/ecma402-abstract */ "./node_modules/@formatjs/ecma402-abstract/lib/index.js");
+/**
+ * http://ecma-international.org/ecma-402/7.0/index.html#sec-getoperands
+ * @param s
+ */
+function GetOperands(s) {
+    ecma402_abstract_1.invariant(typeof s === 'string', "GetOperands should have been called with a string");
+    var n = ecma402_abstract_1.ToNumber(s);
+    ecma402_abstract_1.invariant(isFinite(n), 'n should be finite');
+    var dp = s.indexOf('.');
+    var iv;
+    var f;
+    var v;
+    var fv = '';
+    if (dp === -1) {
+        iv = n;
+        f = 0;
+        v = 0;
+    }
+    else {
+        iv = s.slice(0, dp);
+        fv = s.slice(dp, s.length);
+        f = ecma402_abstract_1.ToNumber(fv);
+        v = fv.length;
+    }
+    var i = Math.abs(ecma402_abstract_1.ToNumber(iv));
+    var w;
+    var t;
+    if (f !== 0) {
+        var ft = fv.replace(/0+$/, '');
+        w = ft.length;
+        t = ecma402_abstract_1.ToNumber(ft);
+    }
+    else {
+        w = 0;
+        t = 0;
+    }
+    return {
+        Number: n,
+        IntegerDigits: i,
+        NumberOfFractionDigits: v,
+        NumberOfFractionDigitsWithoutTrailing: w,
+        FractionDigits: f,
+        FractionDigitsWithoutTrailing: t,
+    };
+}
+exports.GetOperands = GetOperands;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-pluralrules/abstract/InitializePluralRules.js":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-pluralrules/abstract/InitializePluralRules.js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.InitializePluralRules = void 0;
+var ecma402_abstract_1 = __webpack_require__(/*! @formatjs/ecma402-abstract */ "./node_modules/@formatjs/ecma402-abstract/lib/index.js");
+var intl_localematcher_1 = __webpack_require__(/*! @formatjs/intl-localematcher */ "./node_modules/@formatjs/intl-localematcher/index.js");
+function InitializePluralRules(pl, locales, options, _a) {
+    var availableLocales = _a.availableLocales, relevantExtensionKeys = _a.relevantExtensionKeys, localeData = _a.localeData, getDefaultLocale = _a.getDefaultLocale, getInternalSlots = _a.getInternalSlots;
+    var requestedLocales = ecma402_abstract_1.CanonicalizeLocaleList(locales);
+    var opt = Object.create(null);
+    var opts = ecma402_abstract_1.CoerceOptionsToObject(options);
+    var internalSlots = getInternalSlots(pl);
+    internalSlots.initializedPluralRules = true;
+    var matcher = ecma402_abstract_1.GetOption(opts, 'localeMatcher', 'string', ['best fit', 'lookup'], 'best fit');
+    opt.localeMatcher = matcher;
+    internalSlots.type = ecma402_abstract_1.GetOption(opts, 'type', 'string', ['cardinal', 'ordinal'], 'cardinal');
+    ecma402_abstract_1.SetNumberFormatDigitOptions(internalSlots, opts, 0, 3, 'standard');
+    var r = intl_localematcher_1.ResolveLocale(availableLocales, requestedLocales, opt, relevantExtensionKeys, localeData, getDefaultLocale);
+    internalSlots.locale = r.locale;
+    return pl;
+}
+exports.InitializePluralRules = InitializePluralRules;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-pluralrules/abstract/ResolvePlural.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-pluralrules/abstract/ResolvePlural.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ResolvePlural = void 0;
+var ecma402_abstract_1 = __webpack_require__(/*! @formatjs/ecma402-abstract */ "./node_modules/@formatjs/ecma402-abstract/lib/index.js");
+var GetOperands_1 = __webpack_require__(/*! ./GetOperands */ "./node_modules/@formatjs/intl-pluralrules/abstract/GetOperands.js");
+/**
+ * http://ecma-international.org/ecma-402/7.0/index.html#sec-resolveplural
+ * @param pl
+ * @param n
+ * @param PluralRuleSelect Has to pass in bc it's implementation-specific
+ */
+function ResolvePlural(pl, n, _a) {
+    var getInternalSlots = _a.getInternalSlots, PluralRuleSelect = _a.PluralRuleSelect;
+    var internalSlots = getInternalSlots(pl);
+    ecma402_abstract_1.invariant(ecma402_abstract_1.Type(internalSlots) === 'Object', 'pl has to be an object');
+    ecma402_abstract_1.invariant('initializedPluralRules' in internalSlots, 'pluralrules must be initialized');
+    ecma402_abstract_1.invariant(ecma402_abstract_1.Type(n) === 'Number', 'n must be a number');
+    if (!isFinite(n)) {
+        return 'other';
+    }
+    var locale = internalSlots.locale, type = internalSlots.type;
+    var res = ecma402_abstract_1.FormatNumericToString(internalSlots, n);
+    var s = res.formattedString;
+    var operands = GetOperands_1.GetOperands(s);
+    return PluralRuleSelect(locale, type, n, operands);
+}
+exports.ResolvePlural = ResolvePlural;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-pluralrules/get_internal_slots.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-pluralrules/get_internal_slots.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var internalSlotMap = new WeakMap();
+function getInternalSlots(x) {
+    var internalSlots = internalSlotMap.get(x);
+    if (!internalSlots) {
+        internalSlots = Object.create(null);
+        internalSlotMap.set(x, internalSlots);
+    }
+    return internalSlots;
+}
+exports["default"] = getInternalSlots;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-pluralrules/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@formatjs/intl-pluralrules/index.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.PluralRules = void 0;
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/@formatjs/intl-pluralrules/node_modules/tslib/tslib.es6.js");
+var ecma402_abstract_1 = __webpack_require__(/*! @formatjs/ecma402-abstract */ "./node_modules/@formatjs/ecma402-abstract/lib/index.js");
+var InitializePluralRules_1 = __webpack_require__(/*! ./abstract/InitializePluralRules */ "./node_modules/@formatjs/intl-pluralrules/abstract/InitializePluralRules.js");
+var ResolvePlural_1 = __webpack_require__(/*! ./abstract/ResolvePlural */ "./node_modules/@formatjs/intl-pluralrules/abstract/ResolvePlural.js");
+var get_internal_slots_1 = tslib_1.__importDefault(__webpack_require__(/*! ./get_internal_slots */ "./node_modules/@formatjs/intl-pluralrules/get_internal_slots.js"));
+function validateInstance(instance, method) {
+    if (!(instance instanceof PluralRules)) {
+        throw new TypeError("Method Intl.PluralRules.prototype." + method + " called on incompatible receiver " + String(instance));
+    }
+}
+/**
+ * http://ecma-international.org/ecma-402/7.0/index.html#sec-pluralruleselect
+ * @param locale
+ * @param type
+ * @param _n
+ * @param param3
+ */
+function PluralRuleSelect(locale, type, _n, _a) {
+    var IntegerDigits = _a.IntegerDigits, NumberOfFractionDigits = _a.NumberOfFractionDigits, FractionDigits = _a.FractionDigits;
+    return PluralRules.localeData[locale].fn(NumberOfFractionDigits
+        ? IntegerDigits + "." + FractionDigits
+        : IntegerDigits, type === 'ordinal');
+}
+var PluralRules = /** @class */ (function () {
+    function PluralRules(locales, options) {
+        // test262/test/intl402/RelativeTimeFormat/constructor/constructor/newtarget-undefined.js
+        // Cannot use `new.target` bc of IE11 & TS transpiles it to something else
+        var newTarget = this && this instanceof PluralRules ? this.constructor : void 0;
+        if (!newTarget) {
+            throw new TypeError("Intl.PluralRules must be called with 'new'");
+        }
+        return InitializePluralRules_1.InitializePluralRules(this, locales, options, {
+            availableLocales: PluralRules.availableLocales,
+            relevantExtensionKeys: PluralRules.relevantExtensionKeys,
+            localeData: PluralRules.localeData,
+            getDefaultLocale: PluralRules.getDefaultLocale,
+            getInternalSlots: get_internal_slots_1.default,
+        });
+    }
+    PluralRules.prototype.resolvedOptions = function () {
+        validateInstance(this, 'resolvedOptions');
+        var opts = Object.create(null);
+        var internalSlots = get_internal_slots_1.default(this);
+        opts.locale = internalSlots.locale;
+        opts.type = internalSlots.type;
+        [
+            'minimumIntegerDigits',
+            'minimumFractionDigits',
+            'maximumFractionDigits',
+            'minimumSignificantDigits',
+            'maximumSignificantDigits',
+        ].forEach(function (field) {
+            var val = internalSlots[field];
+            if (val !== undefined) {
+                opts[field] = val;
+            }
+        });
+        opts.pluralCategories = tslib_1.__spreadArray([], PluralRules.localeData[opts.locale].categories[opts.type]);
+        return opts;
+    };
+    PluralRules.prototype.select = function (val) {
+        var pr = this;
+        validateInstance(pr, 'select');
+        var n = ecma402_abstract_1.ToNumber(val);
+        return ResolvePlural_1.ResolvePlural(pr, n, { getInternalSlots: get_internal_slots_1.default, PluralRuleSelect: PluralRuleSelect });
+    };
+    PluralRules.prototype.toString = function () {
+        return '[object Intl.PluralRules]';
+    };
+    PluralRules.supportedLocalesOf = function (locales, options) {
+        return ecma402_abstract_1.SupportedLocales(PluralRules.availableLocales, ecma402_abstract_1.CanonicalizeLocaleList(locales), options);
+    };
+    PluralRules.__addLocaleData = function () {
+        var data = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            data[_i] = arguments[_i];
+        }
+        for (var _a = 0, data_1 = data; _a < data_1.length; _a++) {
+            var _b = data_1[_a], d = _b.data, locale = _b.locale;
+            PluralRules.localeData[locale] = d;
+            PluralRules.availableLocales.add(locale);
+            if (!PluralRules.__defaultLocale) {
+                PluralRules.__defaultLocale = locale;
+            }
+        }
+    };
+    PluralRules.getDefaultLocale = function () {
+        return PluralRules.__defaultLocale;
+    };
+    PluralRules.localeData = {};
+    PluralRules.availableLocales = new Set();
+    PluralRules.__defaultLocale = '';
+    PluralRules.relevantExtensionKeys = [];
+    PluralRules.polyfilled = true;
+    return PluralRules;
+}());
+exports.PluralRules = PluralRules;
+try {
+    // IE11 does not have Symbol
+    if (typeof Symbol !== 'undefined') {
+        Object.defineProperty(PluralRules.prototype, Symbol.toStringTag, {
+            value: 'Intl.PluralRules',
+            writable: false,
+            enumerable: false,
+            configurable: true,
+        });
+    }
+    try {
+        // https://github.com/tc39/test262/blob/master/test/intl402/PluralRules/length.js
+        Object.defineProperty(PluralRules, 'length', {
+            value: 0,
+            writable: false,
+            enumerable: false,
+            configurable: true,
+        });
+    }
+    catch (error) {
+        // IE 11 sets Function.prototype.length to be non-configurable which will cause the
+        // above Object.defineProperty to throw an error.
+    }
+    // https://github.com/tc39/test262/blob/master/test/intl402/RelativeTimeFormat/constructor/length.js
+    Object.defineProperty(PluralRules.prototype.constructor, 'length', {
+        value: 0,
+        writable: false,
+        enumerable: false,
+        configurable: true,
+    });
+    // https://github.com/tc39/test262/blob/master/test/intl402/RelativeTimeFormat/constructor/supportedLocalesOf/length.js
+    Object.defineProperty(PluralRules.supportedLocalesOf, 'length', {
+        value: 1,
+        writable: false,
+        enumerable: false,
+        configurable: true,
+    });
+}
+catch (ex) {
+    // Meta fixes for test262
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-pluralrules/locale-data/en.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-pluralrules/locale-data/en.js ***!
+  \*******************************************************************/
+/***/ (() => {
+
+/* @generated */
+// prettier-ignore
+if (Intl.PluralRules && typeof Intl.PluralRules.__addLocaleData === 'function') {
+  Intl.PluralRules.__addLocaleData({"data":{"categories":{"cardinal":["one","other"],"ordinal":["one","two","few","other"]},"fn":function(n, ord) {
+  var s = String(n).split('.'), v0 = !s[1], t0 = Number(s[0]) == n, n10 = t0 && s[0].slice(-1), n100 = t0 && s[0].slice(-2);
+  if (ord) return n10 == 1 && n100 != 11 ? 'one'
+    : n10 == 2 && n100 != 12 ? 'two'
+    : n10 == 3 && n100 != 13 ? 'few'
+    : 'other';
+  return n == 1 && v0 ? 'one' : 'other';
+}},"locale":"en"})
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-pluralrules/locale-data/es.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-pluralrules/locale-data/es.js ***!
+  \*******************************************************************/
+/***/ (() => {
+
+/* @generated */
+// prettier-ignore
+if (Intl.PluralRules && typeof Intl.PluralRules.__addLocaleData === 'function') {
+  Intl.PluralRules.__addLocaleData({"data":{"categories":{"cardinal":["one","other"],"ordinal":["other"]},"fn":function(n, ord) {
+  if (ord) return 'other';
+  return n == 1 ? 'one' : 'other';
+}},"locale":"es"})
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-pluralrules/locale-data/ses.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-pluralrules/locale-data/ses.js ***!
+  \********************************************************************/
+/***/ (() => {
+
+/* @generated */
+// prettier-ignore
+if (Intl.PluralRules && typeof Intl.PluralRules.__addLocaleData === 'function') {
+  Intl.PluralRules.__addLocaleData({"data":{"categories":{"cardinal":["other"],"ordinal":["other"]},"fn":function(n, ord) {
+  return 'other';
+}},"locale":"ses"})
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-pluralrules/locale-data sync recursive (es|en)$":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-pluralrules/locale-data/ sync (es|en)$ ***!
+  \****************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var map = {
+	"./en": "./node_modules/@formatjs/intl-pluralrules/locale-data/en.js",
+	"./es": "./node_modules/@formatjs/intl-pluralrules/locale-data/es.js",
+	"./ses": "./node_modules/@formatjs/intl-pluralrules/locale-data/ses.js"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./node_modules/@formatjs/intl-pluralrules/locale-data sync recursive (es|en)$";
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-pluralrules/node_modules/tslib/tslib.es6.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-pluralrules/node_modules/tslib/tslib.es6.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "__extends": () => (/* binding */ __extends),
+/* harmony export */   "__assign": () => (/* binding */ __assign),
+/* harmony export */   "__rest": () => (/* binding */ __rest),
+/* harmony export */   "__decorate": () => (/* binding */ __decorate),
+/* harmony export */   "__param": () => (/* binding */ __param),
+/* harmony export */   "__metadata": () => (/* binding */ __metadata),
+/* harmony export */   "__awaiter": () => (/* binding */ __awaiter),
+/* harmony export */   "__generator": () => (/* binding */ __generator),
+/* harmony export */   "__createBinding": () => (/* binding */ __createBinding),
+/* harmony export */   "__exportStar": () => (/* binding */ __exportStar),
+/* harmony export */   "__values": () => (/* binding */ __values),
+/* harmony export */   "__read": () => (/* binding */ __read),
+/* harmony export */   "__spread": () => (/* binding */ __spread),
+/* harmony export */   "__spreadArrays": () => (/* binding */ __spreadArrays),
+/* harmony export */   "__spreadArray": () => (/* binding */ __spreadArray),
+/* harmony export */   "__await": () => (/* binding */ __await),
+/* harmony export */   "__asyncGenerator": () => (/* binding */ __asyncGenerator),
+/* harmony export */   "__asyncDelegator": () => (/* binding */ __asyncDelegator),
+/* harmony export */   "__asyncValues": () => (/* binding */ __asyncValues),
+/* harmony export */   "__makeTemplateObject": () => (/* binding */ __makeTemplateObject),
+/* harmony export */   "__importStar": () => (/* binding */ __importStar),
+/* harmony export */   "__importDefault": () => (/* binding */ __importDefault),
+/* harmony export */   "__classPrivateFieldGet": () => (/* binding */ __classPrivateFieldGet),
+/* harmony export */   "__classPrivateFieldSet": () => (/* binding */ __classPrivateFieldSet)
+/* harmony export */ });
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+    return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+    if (typeof b !== "function" && b !== null)
+        throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    }
+    return __assign.apply(this, arguments);
+}
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+function __decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+function __param(paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+}
+
+function __metadata(metadataKey, metadataValue) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+var __createBinding = Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+});
+
+function __exportStar(m, o) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p)) __createBinding(o, m, p);
+}
+
+function __values(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+/** @deprecated */
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
+/** @deprecated */
+function __spreadArrays() {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+}
+
+function __spreadArray(to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+}
+
+function __await(v) {
+    return this instanceof __await ? (this.v = v, this) : new __await(v);
+}
+
+function __asyncGenerator(thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+}
+
+function __asyncDelegator(o) {
+    var i, p;
+    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+}
+
+function __asyncValues(o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+}
+
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+
+var __setModuleDefault = Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+};
+
+function __importStar(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+}
+
+function __importDefault(mod) {
+    return (mod && mod.__esModule) ? mod : { default: mod };
+}
+
+function __classPrivateFieldGet(receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+}
+
+function __classPrivateFieldSet(receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-pluralrules/polyfill.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-pluralrules/polyfill.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var _1 = __webpack_require__(/*! ./ */ "./node_modules/@formatjs/intl-pluralrules/index.js");
+var should_polyfill_1 = __webpack_require__(/*! ./should-polyfill */ "./node_modules/@formatjs/intl-pluralrules/should-polyfill.js");
+if (should_polyfill_1.shouldPolyfill()) {
+    Object.defineProperty(Intl, 'PluralRules', {
+        value: _1.PluralRules,
+        writable: true,
+        enumerable: false,
+        configurable: true,
+    });
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-pluralrules/should-polyfill.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-pluralrules/should-polyfill.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.shouldPolyfill = void 0;
+function supportedLocalesOf(locale) {
+    if (!locale) {
+        return true;
+    }
+    var locales = Array.isArray(locale) ? locale : [locale];
+    return Intl.PluralRules.supportedLocalesOf(locales).length === locales.length;
+}
+function shouldPolyfill(locale) {
+    return (!('PluralRules' in Intl) ||
+        new Intl.PluralRules('en', { minimumFractionDigits: 2 }).select(1) ===
+            'one' ||
+        !supportedLocalesOf(locale));
+}
+exports.shouldPolyfill = shouldPolyfill;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/get_internal_slots.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/get_internal_slots.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+// Type-only circular import
+// eslint-disable-next-line import/no-cycle
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var internalSlotMap = new WeakMap();
+function getInternalSlots(x) {
+    var internalSlots = internalSlotMap.get(x);
+    if (!internalSlots) {
+        internalSlots = Object.create(null);
+        internalSlotMap.set(x, internalSlots);
+    }
+    return internalSlots;
+}
+exports["default"] = getInternalSlots;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/index.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/index.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/tslib/tslib.es6.js");
+var ecma402_abstract_1 = __webpack_require__(/*! @formatjs/ecma402-abstract */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/index.js");
+var get_internal_slots_1 = tslib_1.__importDefault(__webpack_require__(/*! ./get_internal_slots */ "./node_modules/@formatjs/intl-relativetimeformat/get_internal_slots.js"));
+var RelativeTimeFormat = /** @class */ (function () {
+    function RelativeTimeFormat(locales, options) {
+        // test262/test/intl402/RelativeTimeFormat/constructor/constructor/newtarget-undefined.js
+        // Cannot use `new.target` bc of IE11 & TS transpiles it to something else
+        var newTarget = this && this instanceof RelativeTimeFormat ? this.constructor : void 0;
+        if (!newTarget) {
+            throw new TypeError("Intl.RelativeTimeFormat must be called with 'new'");
+        }
+        return ecma402_abstract_1.InitializeRelativeTimeFormat(this, locales, options, {
+            getInternalSlots: get_internal_slots_1.default,
+            availableLocales: RelativeTimeFormat.availableLocales,
+            relevantExtensionKeys: RelativeTimeFormat.relevantExtensionKeys,
+            localeData: RelativeTimeFormat.localeData,
+            getDefaultLocale: RelativeTimeFormat.getDefaultLocale,
+        });
+    }
+    RelativeTimeFormat.prototype.format = function (value, unit) {
+        if (typeof this !== 'object') {
+            throw new TypeError('format was called on a non-object');
+        }
+        var internalSlots = get_internal_slots_1.default(this);
+        if (!internalSlots.initializedRelativeTimeFormat) {
+            throw new TypeError('format was called on a invalid context');
+        }
+        return ecma402_abstract_1.PartitionRelativeTimePattern(this, Number(value), ecma402_abstract_1.ToString(unit), {
+            getInternalSlots: get_internal_slots_1.default,
+        })
+            .map(function (el) { return el.value; })
+            .join('');
+    };
+    RelativeTimeFormat.prototype.formatToParts = function (value, unit) {
+        if (typeof this !== 'object') {
+            throw new TypeError('formatToParts was called on a non-object');
+        }
+        var internalSlots = get_internal_slots_1.default(this);
+        if (!internalSlots.initializedRelativeTimeFormat) {
+            throw new TypeError('formatToParts was called on a invalid context');
+        }
+        return ecma402_abstract_1.PartitionRelativeTimePattern(this, Number(value), ecma402_abstract_1.ToString(unit), { getInternalSlots: get_internal_slots_1.default });
+    };
+    RelativeTimeFormat.prototype.resolvedOptions = function () {
+        if (typeof this !== 'object') {
+            throw new TypeError('resolvedOptions was called on a non-object');
+        }
+        var internalSlots = get_internal_slots_1.default(this);
+        if (!internalSlots.initializedRelativeTimeFormat) {
+            throw new TypeError('resolvedOptions was called on a invalid context');
+        }
+        // test262/test/intl402/RelativeTimeFormat/prototype/resolvedOptions/type.js
+        return {
+            locale: internalSlots.locale,
+            style: internalSlots.style,
+            numeric: internalSlots.numeric,
+            numberingSystem: internalSlots.numberingSystem,
+        };
+    };
+    RelativeTimeFormat.supportedLocalesOf = function (locales, options) {
+        return ecma402_abstract_1.SupportedLocales(RelativeTimeFormat.availableLocales, ecma402_abstract_1.CanonicalizeLocaleList(locales), options);
+    };
+    RelativeTimeFormat.__addLocaleData = function () {
+        var data = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            data[_i] = arguments[_i];
+        }
+        for (var _a = 0, data_1 = data; _a < data_1.length; _a++) {
+            var _b = data_1[_a], d = _b.data, locale = _b.locale;
+            var minimizedLocale = new Intl.Locale(locale)
+                .minimize()
+                .toString();
+            RelativeTimeFormat.localeData[locale] = RelativeTimeFormat.localeData[minimizedLocale] = d;
+            RelativeTimeFormat.availableLocales.add(minimizedLocale);
+            RelativeTimeFormat.availableLocales.add(locale);
+            if (!RelativeTimeFormat.__defaultLocale) {
+                RelativeTimeFormat.__defaultLocale = minimizedLocale;
+            }
+        }
+    };
+    RelativeTimeFormat.getDefaultLocale = function () {
+        return RelativeTimeFormat.__defaultLocale;
+    };
+    RelativeTimeFormat.localeData = {};
+    RelativeTimeFormat.availableLocales = new Set();
+    RelativeTimeFormat.__defaultLocale = '';
+    RelativeTimeFormat.relevantExtensionKeys = ['nu'];
+    RelativeTimeFormat.polyfilled = true;
+    return RelativeTimeFormat;
+}());
+exports["default"] = RelativeTimeFormat;
+try {
+    // IE11 does not have Symbol
+    if (typeof Symbol !== 'undefined') {
+        Object.defineProperty(RelativeTimeFormat.prototype, Symbol.toStringTag, {
+            value: 'Intl.RelativeTimeFormat',
+            writable: false,
+            enumerable: false,
+            configurable: true,
+        });
+    }
+    // https://github.com/tc39/test262/blob/master/test/intl402/RelativeTimeFormat/constructor/length.js
+    Object.defineProperty(RelativeTimeFormat.prototype.constructor, 'length', {
+        value: 0,
+        writable: false,
+        enumerable: false,
+        configurable: true,
+    });
+    // https://github.com/tc39/test262/blob/master/test/intl402/RelativeTimeFormat/constructor/supportedLocalesOf/length.js
+    Object.defineProperty(RelativeTimeFormat.supportedLocalesOf, 'length', {
+        value: 1,
+        writable: false,
+        enumerable: false,
+        configurable: true,
+    });
+}
+catch (e) {
+    // Meta fix so we're test262-compliant, not important
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/locale-data/en.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/locale-data/en.js ***!
+  \**************************************************************************/
+/***/ (() => {
+
+/* @generated */	
+// prettier-ignore
+if (Intl.RelativeTimeFormat && typeof Intl.RelativeTimeFormat.__addLocaleData === 'function') {
+  Intl.RelativeTimeFormat.__addLocaleData({"data":{"nu":["latn"],"year":{"0":"this year","1":"next year","future":{"one":"in {0} year","other":"in {0} years"},"past":{"one":"{0} year ago","other":"{0} years ago"},"-1":"last year"},"year-short":{"0":"this yr.","1":"next yr.","future":{"one":"in {0} yr.","other":"in {0} yr."},"past":{"one":"{0} yr. ago","other":"{0} yr. ago"},"-1":"last yr."},"year-narrow":{"0":"this yr.","1":"next yr.","future":{"one":"in {0} yr.","other":"in {0} yr."},"past":{"one":"{0} yr. ago","other":"{0} yr. ago"},"-1":"last yr."},"quarter":{"0":"this quarter","1":"next quarter","future":{"one":"in {0} quarter","other":"in {0} quarters"},"past":{"one":"{0} quarter ago","other":"{0} quarters ago"},"-1":"last quarter"},"quarter-short":{"0":"this qtr.","1":"next qtr.","future":{"one":"in {0} qtr.","other":"in {0} qtrs."},"past":{"one":"{0} qtr. ago","other":"{0} qtrs. ago"},"-1":"last qtr."},"quarter-narrow":{"0":"this qtr.","1":"next qtr.","future":{"one":"in {0} qtr.","other":"in {0} qtrs."},"past":{"one":"{0} qtr. ago","other":"{0} qtrs. ago"},"-1":"last qtr."},"month":{"0":"this month","1":"next month","future":{"one":"in {0} month","other":"in {0} months"},"past":{"one":"{0} month ago","other":"{0} months ago"},"-1":"last month"},"month-short":{"0":"this mo.","1":"next mo.","future":{"one":"in {0} mo.","other":"in {0} mo."},"past":{"one":"{0} mo. ago","other":"{0} mo. ago"},"-1":"last mo."},"month-narrow":{"0":"this mo.","1":"next mo.","future":{"one":"in {0} mo.","other":"in {0} mo."},"past":{"one":"{0} mo. ago","other":"{0} mo. ago"},"-1":"last mo."},"week":{"0":"this week","1":"next week","future":{"one":"in {0} week","other":"in {0} weeks"},"past":{"one":"{0} week ago","other":"{0} weeks ago"},"-1":"last week"},"week-short":{"0":"this wk.","1":"next wk.","future":{"one":"in {0} wk.","other":"in {0} wk."},"past":{"one":"{0} wk. ago","other":"{0} wk. ago"},"-1":"last wk."},"week-narrow":{"0":"this wk.","1":"next wk.","future":{"one":"in {0} wk.","other":"in {0} wk."},"past":{"one":"{0} wk. ago","other":"{0} wk. ago"},"-1":"last wk."},"day":{"0":"today","1":"tomorrow","future":{"one":"in {0} day","other":"in {0} days"},"past":{"one":"{0} day ago","other":"{0} days ago"},"-1":"yesterday"},"day-short":{"0":"today","1":"tomorrow","future":{"one":"in {0} day","other":"in {0} days"},"past":{"one":"{0} day ago","other":"{0} days ago"},"-1":"yesterday"},"day-narrow":{"0":"today","1":"tomorrow","future":{"one":"in {0} day","other":"in {0} days"},"past":{"one":"{0} day ago","other":"{0} days ago"},"-1":"yesterday"},"hour":{"0":"this hour","future":{"one":"in {0} hour","other":"in {0} hours"},"past":{"one":"{0} hour ago","other":"{0} hours ago"}},"hour-short":{"0":"this hour","future":{"one":"in {0} hr.","other":"in {0} hr."},"past":{"one":"{0} hr. ago","other":"{0} hr. ago"}},"hour-narrow":{"0":"this hour","future":{"one":"in {0} hr.","other":"in {0} hr."},"past":{"one":"{0} hr. ago","other":"{0} hr. ago"}},"minute":{"0":"this minute","future":{"one":"in {0} minute","other":"in {0} minutes"},"past":{"one":"{0} minute ago","other":"{0} minutes ago"}},"minute-short":{"0":"this minute","future":{"one":"in {0} min.","other":"in {0} min."},"past":{"one":"{0} min. ago","other":"{0} min. ago"}},"minute-narrow":{"0":"this minute","future":{"one":"in {0} min.","other":"in {0} min."},"past":{"one":"{0} min. ago","other":"{0} min. ago"}},"second":{"0":"now","future":{"one":"in {0} second","other":"in {0} seconds"},"past":{"one":"{0} second ago","other":"{0} seconds ago"}},"second-short":{"0":"now","future":{"one":"in {0} sec.","other":"in {0} sec."},"past":{"one":"{0} sec. ago","other":"{0} sec. ago"}},"second-narrow":{"0":"now","future":{"one":"in {0} sec.","other":"in {0} sec."},"past":{"one":"{0} sec. ago","other":"{0} sec. ago"}}},"locale":"en"}
+)
+}
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/locale-data/es.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/locale-data/es.js ***!
+  \**************************************************************************/
+/***/ (() => {
+
+/* @generated */	
+// prettier-ignore
+if (Intl.RelativeTimeFormat && typeof Intl.RelativeTimeFormat.__addLocaleData === 'function') {
+  Intl.RelativeTimeFormat.__addLocaleData({"data":{"nu":["latn"],"year":{"0":"este año","1":"el próximo año","future":{"one":"dentro de {0} año","other":"dentro de {0} años"},"past":{"one":"hace {0} año","other":"hace {0} años"},"-1":"el año pasado"},"year-short":{"0":"este año","1":"el próximo año","future":{"one":"dentro de {0} a","other":"dentro de {0} a"},"past":{"one":"hace {0} a","other":"hace {0} a"},"-1":"el año pasado"},"year-narrow":{"0":"este año","1":"el próximo año","future":{"one":"dentro de {0} a","other":"dentro de {0} a"},"past":{"one":"hace {0} a","other":"hace {0} a"},"-1":"el año pasado"},"quarter":{"0":"este trimestre","1":"el próximo trimestre","future":{"one":"dentro de {0} trimestre","other":"dentro de {0} trimestres"},"past":{"one":"hace {0} trimestre","other":"hace {0} trimestres"},"-1":"el trimestre pasado"},"quarter-short":{"0":"este trimestre","1":"el próximo trimestre","future":{"one":"dentro de {0} trim.","other":"dentro de {0} trim."},"past":{"one":"hace {0} trim.","other":"hace {0} trim."},"-1":"el trimestre pasado"},"quarter-narrow":{"0":"este trimestre","1":"el próximo trimestre","future":{"one":"dentro de {0} trim.","other":"dentro de {0} trim."},"past":{"one":"hace {0} trim.","other":"hace {0} trim."},"-1":"el trimestre pasado"},"month":{"0":"este mes","1":"el próximo mes","future":{"one":"dentro de {0} mes","other":"dentro de {0} meses"},"past":{"one":"hace {0} mes","other":"hace {0} meses"},"-1":"el mes pasado"},"month-short":{"0":"este mes","1":"el próximo mes","future":{"one":"dentro de {0} m","other":"dentro de {0} m"},"past":{"one":"hace {0} m","other":"hace {0} m"},"-1":"el mes pasado"},"month-narrow":{"0":"este mes","1":"el próximo mes","future":{"one":"dentro de {0} m","other":"dentro de {0} m"},"past":{"one":"hace {0} m","other":"hace {0} m"},"-1":"el mes pasado"},"week":{"0":"esta semana","1":"la próxima semana","future":{"one":"dentro de {0} semana","other":"dentro de {0} semanas"},"past":{"one":"hace {0} semana","other":"hace {0} semanas"},"-1":"la semana pasada"},"week-short":{"0":"esta sem.","1":"próx. sem.","future":{"one":"dentro de {0} sem.","other":"dentro de {0} sem."},"past":{"one":"hace {0} sem.","other":"hace {0} sem."},"-1":"sem. ant."},"week-narrow":{"0":"esta sem.","1":"próx. sem.","future":{"one":"dentro de {0} sem.","other":"dentro de {0} sem."},"past":{"one":"hace {0} sem.","other":"hace {0} sem."},"-1":"sem. ant."},"day":{"0":"hoy","1":"mañana","2":"pasado mañana","future":{"one":"dentro de {0} día","other":"dentro de {0} días"},"past":{"one":"hace {0} día","other":"hace {0} días"},"-2":"anteayer","-1":"ayer"},"day-short":{"0":"hoy","1":"mañana","2":"pasado mañana","future":{"one":"dentro de {0} día","other":"dentro de {0} días"},"past":{"one":"hace {0} día","other":"hace {0} días"},"-2":"anteayer","-1":"ayer"},"day-narrow":{"0":"hoy","1":"mañana","2":"pasado mañana","future":{"one":"dentro de {0} día","other":"dentro de {0} días"},"past":{"one":"hace {0} día","other":"hace {0} días"},"-2":"anteayer","-1":"ayer"},"hour":{"0":"esta hora","future":{"one":"dentro de {0} hora","other":"dentro de {0} horas"},"past":{"one":"hace {0} hora","other":"hace {0} horas"}},"hour-short":{"0":"esta hora","future":{"one":"dentro de {0} h","other":"dentro de {0} h"},"past":{"one":"hace {0} h","other":"hace {0} h"}},"hour-narrow":{"0":"esta hora","future":{"one":"dentro de {0} h","other":"dentro de {0} h"},"past":{"one":"hace {0} h","other":"hace {0} h"}},"minute":{"0":"este minuto","future":{"one":"dentro de {0} minuto","other":"dentro de {0} minutos"},"past":{"one":"hace {0} minuto","other":"hace {0} minutos"}},"minute-short":{"0":"este minuto","future":{"one":"dentro de {0} min","other":"dentro de {0} min"},"past":{"one":"hace {0} min","other":"hace {0} min"}},"minute-narrow":{"0":"este minuto","future":{"one":"dentro de {0} min","other":"dentro de {0} min"},"past":{"one":"hace {0} min","other":"hace {0} min"}},"second":{"0":"ahora","future":{"one":"dentro de {0} segundo","other":"dentro de {0} segundos"},"past":{"one":"hace {0} segundo","other":"hace {0} segundos"}},"second-short":{"0":"ahora","future":{"one":"dentro de {0} s","other":"dentro de {0} s"},"past":{"one":"hace {0} s","other":"hace {0} s"}},"second-narrow":{"0":"ahora","future":{"one":"dentro de {0} s","other":"dentro de {0} s"},"past":{"one":"hace {0} s","other":"hace {0} s"}}},"locale":"es"}
+)
+}
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/locale-data/ses.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/locale-data/ses.js ***!
+  \***************************************************************************/
+/***/ (() => {
+
+/* @generated */	
+// prettier-ignore
+if (Intl.RelativeTimeFormat && typeof Intl.RelativeTimeFormat.__addLocaleData === 'function') {
+  Intl.RelativeTimeFormat.__addLocaleData({"data":{"nu":["latn"],"year":{"0":"this year","1":"next year","future":{"other":"+{0} y"},"past":{"other":"-{0} y"},"-1":"last year"},"year-short":{"0":"this year","1":"next year","future":{"other":"+{0} y"},"past":{"other":"-{0} y"},"-1":"last year"},"year-narrow":{"0":"this year","1":"next year","future":{"other":"+{0} y"},"past":{"other":"-{0} y"},"-1":"last year"},"quarter":{"0":"this quarter","1":"next quarter","future":{"other":"+{0} Q"},"past":{"other":"-{0} Q"},"-1":"last quarter"},"quarter-short":{"0":"this quarter","1":"next quarter","future":{"other":"+{0} Q"},"past":{"other":"-{0} Q"},"-1":"last quarter"},"quarter-narrow":{"0":"this quarter","1":"next quarter","future":{"other":"+{0} Q"},"past":{"other":"-{0} Q"},"-1":"last quarter"},"month":{"0":"this month","1":"next month","future":{"other":"+{0} m"},"past":{"other":"-{0} m"},"-1":"last month"},"month-short":{"0":"this month","1":"next month","future":{"other":"+{0} m"},"past":{"other":"-{0} m"},"-1":"last month"},"month-narrow":{"0":"this month","1":"next month","future":{"other":"+{0} m"},"past":{"other":"-{0} m"},"-1":"last month"},"week":{"0":"this week","1":"next week","future":{"other":"+{0} w"},"past":{"other":"-{0} w"},"-1":"last week"},"week-short":{"0":"this week","1":"next week","future":{"other":"+{0} w"},"past":{"other":"-{0} w"},"-1":"last week"},"week-narrow":{"0":"this week","1":"next week","future":{"other":"+{0} w"},"past":{"other":"-{0} w"},"-1":"last week"},"day":{"0":"Hõo","1":"Suba","future":{"other":"+{0} d"},"past":{"other":"-{0} d"},"-1":"Bi"},"day-short":{"0":"Hõo","1":"Suba","future":{"other":"+{0} d"},"past":{"other":"-{0} d"},"-1":"Bi"},"day-narrow":{"0":"Hõo","1":"Suba","future":{"other":"+{0} d"},"past":{"other":"-{0} d"},"-1":"Bi"},"hour":{"0":"this hour","future":{"other":"+{0} h"},"past":{"other":"-{0} h"}},"hour-short":{"0":"this hour","future":{"other":"+{0} h"},"past":{"other":"-{0} h"}},"hour-narrow":{"0":"this hour","future":{"other":"+{0} h"},"past":{"other":"-{0} h"}},"minute":{"0":"this minute","future":{"other":"+{0} min"},"past":{"other":"-{0} min"}},"minute-short":{"0":"this minute","future":{"other":"+{0} min"},"past":{"other":"-{0} min"}},"minute-narrow":{"0":"this minute","future":{"other":"+{0} min"},"past":{"other":"-{0} min"}},"second":{"0":"now","future":{"other":"+{0} s"},"past":{"other":"-{0} s"}},"second-short":{"0":"now","future":{"other":"+{0} s"},"past":{"other":"-{0} s"}},"second-narrow":{"0":"now","future":{"other":"+{0} s"},"past":{"other":"-{0} s"}}},"locale":"ses"}
+)
+}
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/locale-data sync recursive (es|en)$":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/locale-data/ sync (es|en)$ ***!
+  \***********************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var map = {
+	"./en": "./node_modules/@formatjs/intl-relativetimeformat/locale-data/en.js",
+	"./es": "./node_modules/@formatjs/intl-relativetimeformat/locale-data/es.js",
+	"./ses": "./node_modules/@formatjs/intl-relativetimeformat/locale-data/ses.js"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./node_modules/@formatjs/intl-relativetimeformat/locale-data sync recursive (es|en)$";
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js":
+/*!***********************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js ***!
+  \***********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ToString": () => (/* binding */ ToString),
+/* harmony export */   "ToNumber": () => (/* binding */ ToNumber),
+/* harmony export */   "TimeClip": () => (/* binding */ TimeClip),
+/* harmony export */   "ToObject": () => (/* binding */ ToObject),
+/* harmony export */   "SameValue": () => (/* binding */ SameValue),
+/* harmony export */   "ArrayCreate": () => (/* binding */ ArrayCreate),
+/* harmony export */   "HasOwnProperty": () => (/* binding */ HasOwnProperty),
+/* harmony export */   "Type": () => (/* binding */ Type),
+/* harmony export */   "Day": () => (/* binding */ Day),
+/* harmony export */   "WeekDay": () => (/* binding */ WeekDay),
+/* harmony export */   "DayFromYear": () => (/* binding */ DayFromYear),
+/* harmony export */   "TimeFromYear": () => (/* binding */ TimeFromYear),
+/* harmony export */   "YearFromTime": () => (/* binding */ YearFromTime),
+/* harmony export */   "DaysInYear": () => (/* binding */ DaysInYear),
+/* harmony export */   "DayWithinYear": () => (/* binding */ DayWithinYear),
+/* harmony export */   "InLeapYear": () => (/* binding */ InLeapYear),
+/* harmony export */   "MonthFromTime": () => (/* binding */ MonthFromTime),
+/* harmony export */   "DateFromTime": () => (/* binding */ DateFromTime),
+/* harmony export */   "HourFromTime": () => (/* binding */ HourFromTime),
+/* harmony export */   "MinFromTime": () => (/* binding */ MinFromTime),
+/* harmony export */   "SecFromTime": () => (/* binding */ SecFromTime),
+/* harmony export */   "OrdinaryHasInstance": () => (/* binding */ OrdinaryHasInstance),
+/* harmony export */   "msFromTime": () => (/* binding */ msFromTime)
+/* harmony export */ });
+/**
+ * https://tc39.es/ecma262/#sec-tostring
+ */
+function ToString(o) {
+    // Only symbol is irregular...
+    if (typeof o === 'symbol') {
+        throw TypeError('Cannot convert a Symbol value to a string');
+    }
+    return String(o);
+}
+/**
+ * https://tc39.es/ecma262/#sec-tonumber
+ * @param val
+ */
+function ToNumber(val) {
+    if (val === undefined) {
+        return NaN;
+    }
+    if (val === null) {
+        return +0;
+    }
+    if (typeof val === 'boolean') {
+        return val ? 1 : +0;
+    }
+    if (typeof val === 'number') {
+        return val;
+    }
+    if (typeof val === 'symbol' || typeof val === 'bigint') {
+        throw new TypeError('Cannot convert symbol/bigint to number');
+    }
+    return Number(val);
+}
+/**
+ * https://tc39.es/ecma262/#sec-tointeger
+ * @param n
+ */
+function ToInteger(n) {
+    var number = ToNumber(n);
+    if (isNaN(number) || SameValue(number, -0)) {
+        return 0;
+    }
+    if (isFinite(number)) {
+        return number;
+    }
+    var integer = Math.floor(Math.abs(number));
+    if (number < 0) {
+        integer = -integer;
+    }
+    if (SameValue(integer, -0)) {
+        return 0;
+    }
+    return integer;
+}
+/**
+ * https://tc39.es/ecma262/#sec-timeclip
+ * @param time
+ */
+function TimeClip(time) {
+    if (!isFinite(time)) {
+        return NaN;
+    }
+    if (Math.abs(time) > 8.64 * 1e15) {
+        return NaN;
+    }
+    return ToInteger(time);
+}
+/**
+ * https://tc39.es/ecma262/#sec-toobject
+ * @param arg
+ */
+function ToObject(arg) {
+    if (arg == null) {
+        throw new TypeError('undefined/null cannot be converted to object');
+    }
+    return Object(arg);
+}
+/**
+ * https://www.ecma-international.org/ecma-262/11.0/index.html#sec-samevalue
+ * @param x
+ * @param y
+ */
+function SameValue(x, y) {
+    if (Object.is) {
+        return Object.is(x, y);
+    }
+    // SameValue algorithm
+    if (x === y) {
+        // Steps 1-5, 7-10
+        // Steps 6.b-6.e: +0 != -0
+        return x !== 0 || 1 / x === 1 / y;
+    }
+    // Step 6.a: NaN == NaN
+    return x !== x && y !== y;
+}
+/**
+ * https://www.ecma-international.org/ecma-262/11.0/index.html#sec-arraycreate
+ * @param len
+ */
+function ArrayCreate(len) {
+    return new Array(len);
+}
+/**
+ * https://www.ecma-international.org/ecma-262/11.0/index.html#sec-hasownproperty
+ * @param o
+ * @param prop
+ */
+function HasOwnProperty(o, prop) {
+    return Object.prototype.hasOwnProperty.call(o, prop);
+}
+/**
+ * https://www.ecma-international.org/ecma-262/11.0/index.html#sec-type
+ * @param x
+ */
+function Type(x) {
+    if (x === null) {
+        return 'Null';
+    }
+    if (typeof x === 'undefined') {
+        return 'Undefined';
+    }
+    if (typeof x === 'function' || typeof x === 'object') {
+        return 'Object';
+    }
+    if (typeof x === 'number') {
+        return 'Number';
+    }
+    if (typeof x === 'boolean') {
+        return 'Boolean';
+    }
+    if (typeof x === 'string') {
+        return 'String';
+    }
+    if (typeof x === 'symbol') {
+        return 'Symbol';
+    }
+    if (typeof x === 'bigint') {
+        return 'BigInt';
+    }
+}
+var MS_PER_DAY = 86400000;
+/**
+ * https://www.ecma-international.org/ecma-262/11.0/index.html#eqn-modulo
+ * @param x
+ * @param y
+ * @return k of the same sign as y
+ */
+function mod(x, y) {
+    return x - Math.floor(x / y) * y;
+}
+/**
+ * https://tc39.es/ecma262/#eqn-Day
+ * @param t
+ */
+function Day(t) {
+    return Math.floor(t / MS_PER_DAY);
+}
+/**
+ * https://tc39.es/ecma262/#sec-week-day
+ * @param t
+ */
+function WeekDay(t) {
+    return mod(Day(t) + 4, 7);
+}
+/**
+ * https://tc39.es/ecma262/#sec-year-number
+ * @param y
+ */
+function DayFromYear(y) {
+    return Date.UTC(y, 0) / MS_PER_DAY;
+}
+/**
+ * https://tc39.es/ecma262/#sec-year-number
+ * @param y
+ */
+function TimeFromYear(y) {
+    return Date.UTC(y, 0);
+}
+/**
+ * https://tc39.es/ecma262/#sec-year-number
+ * @param t
+ */
+function YearFromTime(t) {
+    return new Date(t).getUTCFullYear();
+}
+function DaysInYear(y) {
+    if (y % 4 !== 0) {
+        return 365;
+    }
+    if (y % 100 !== 0) {
+        return 366;
+    }
+    if (y % 400 !== 0) {
+        return 365;
+    }
+    return 366;
+}
+function DayWithinYear(t) {
+    return Day(t) - DayFromYear(YearFromTime(t));
+}
+function InLeapYear(t) {
+    return DaysInYear(YearFromTime(t)) === 365 ? 0 : 1;
+}
+/**
+ * https://tc39.es/ecma262/#sec-month-number
+ * @param t
+ */
+function MonthFromTime(t) {
+    var dwy = DayWithinYear(t);
+    var leap = InLeapYear(t);
+    if (dwy >= 0 && dwy < 31) {
+        return 0;
+    }
+    if (dwy < 59 + leap) {
+        return 1;
+    }
+    if (dwy < 90 + leap) {
+        return 2;
+    }
+    if (dwy < 120 + leap) {
+        return 3;
+    }
+    if (dwy < 151 + leap) {
+        return 4;
+    }
+    if (dwy < 181 + leap) {
+        return 5;
+    }
+    if (dwy < 212 + leap) {
+        return 6;
+    }
+    if (dwy < 243 + leap) {
+        return 7;
+    }
+    if (dwy < 273 + leap) {
+        return 8;
+    }
+    if (dwy < 304 + leap) {
+        return 9;
+    }
+    if (dwy < 334 + leap) {
+        return 10;
+    }
+    if (dwy < 365 + leap) {
+        return 11;
+    }
+    throw new Error('Invalid time');
+}
+function DateFromTime(t) {
+    var dwy = DayWithinYear(t);
+    var mft = MonthFromTime(t);
+    var leap = InLeapYear(t);
+    if (mft === 0) {
+        return dwy + 1;
+    }
+    if (mft === 1) {
+        return dwy - 30;
+    }
+    if (mft === 2) {
+        return dwy - 58 - leap;
+    }
+    if (mft === 3) {
+        return dwy - 89 - leap;
+    }
+    if (mft === 4) {
+        return dwy - 119 - leap;
+    }
+    if (mft === 5) {
+        return dwy - 150 - leap;
+    }
+    if (mft === 6) {
+        return dwy - 180 - leap;
+    }
+    if (mft === 7) {
+        return dwy - 211 - leap;
+    }
+    if (mft === 8) {
+        return dwy - 242 - leap;
+    }
+    if (mft === 9) {
+        return dwy - 272 - leap;
+    }
+    if (mft === 10) {
+        return dwy - 303 - leap;
+    }
+    if (mft === 11) {
+        return dwy - 333 - leap;
+    }
+    throw new Error('Invalid time');
+}
+var HOURS_PER_DAY = 24;
+var MINUTES_PER_HOUR = 60;
+var SECONDS_PER_MINUTE = 60;
+var MS_PER_SECOND = 1e3;
+var MS_PER_MINUTE = MS_PER_SECOND * SECONDS_PER_MINUTE;
+var MS_PER_HOUR = MS_PER_MINUTE * MINUTES_PER_HOUR;
+function HourFromTime(t) {
+    return mod(Math.floor(t / MS_PER_HOUR), HOURS_PER_DAY);
+}
+function MinFromTime(t) {
+    return mod(Math.floor(t / MS_PER_MINUTE), MINUTES_PER_HOUR);
+}
+function SecFromTime(t) {
+    return mod(Math.floor(t / MS_PER_SECOND), SECONDS_PER_MINUTE);
+}
+function IsCallable(fn) {
+    return typeof fn === 'function';
+}
+/**
+ * The abstract operation OrdinaryHasInstance implements
+ * the default algorithm for determining if an object O
+ * inherits from the instance object inheritance path
+ * provided by constructor C.
+ * @param C class
+ * @param O object
+ * @param internalSlots internalSlots
+ */
+function OrdinaryHasInstance(C, O, internalSlots) {
+    if (!IsCallable(C)) {
+        return false;
+    }
+    if (internalSlots === null || internalSlots === void 0 ? void 0 : internalSlots.boundTargetFunction) {
+        var BC = internalSlots === null || internalSlots === void 0 ? void 0 : internalSlots.boundTargetFunction;
+        return O instanceof BC;
+    }
+    if (typeof O !== 'object') {
+        return false;
+    }
+    var P = C.prototype;
+    if (typeof P !== 'object') {
+        throw new TypeError('OrdinaryHasInstance called on an object with an invalid prototype property.');
+    }
+    return Object.prototype.isPrototypeOf.call(P, O);
+}
+function msFromTime(t) {
+    return mod(t, MS_PER_SECOND);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/BestAvailableLocale.js":
+/*!***************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/BestAvailableLocale.js ***!
+  \***************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "BestAvailableLocale": () => (/* binding */ BestAvailableLocale)
+/* harmony export */ });
+/**
+ * https://tc39.es/ecma402/#sec-bestavailablelocale
+ * @param availableLocales
+ * @param locale
+ */
+function BestAvailableLocale(availableLocales, locale) {
+    var candidate = locale;
+    while (true) {
+        if (availableLocales.has(candidate)) {
+            return candidate;
+        }
+        var pos = candidate.lastIndexOf('-');
+        if (!~pos) {
+            return undefined;
+        }
+        if (pos >= 2 && candidate[pos - 2] === '-') {
+            pos -= 2;
+        }
+        candidate = candidate.slice(0, pos);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/BestFitMatcher.js":
+/*!**********************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/BestFitMatcher.js ***!
+  \**********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "BestFitMatcher": () => (/* binding */ BestFitMatcher)
+/* harmony export */ });
+/* harmony import */ var _BestAvailableLocale__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BestAvailableLocale */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/BestAvailableLocale.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+
+
+/**
+ * https://tc39.es/ecma402/#sec-bestfitmatcher
+ * @param availableLocales
+ * @param requestedLocales
+ * @param getDefaultLocale
+ */
+function BestFitMatcher(availableLocales, requestedLocales, getDefaultLocale) {
+    var minimizedAvailableLocaleMap = {};
+    var minimizedAvailableLocales = new Set();
+    availableLocales.forEach(function (locale) {
+        var minimizedLocale = new Intl.Locale(locale)
+            .minimize()
+            .toString();
+        minimizedAvailableLocaleMap[minimizedLocale] = locale;
+        minimizedAvailableLocales.add(minimizedLocale);
+    });
+    var foundLocale;
+    for (var _i = 0, requestedLocales_1 = requestedLocales; _i < requestedLocales_1.length; _i++) {
+        var l = requestedLocales_1[_i];
+        if (foundLocale) {
+            break;
+        }
+        var noExtensionLocale = l.replace(_utils__WEBPACK_IMPORTED_MODULE_0__.UNICODE_EXTENSION_SEQUENCE_REGEX, '');
+        if (availableLocales.has(noExtensionLocale)) {
+            foundLocale = noExtensionLocale;
+            break;
+        }
+        if (minimizedAvailableLocales.has(noExtensionLocale)) {
+            foundLocale = minimizedAvailableLocaleMap[noExtensionLocale];
+            break;
+        }
+        var locale = new Intl.Locale(noExtensionLocale);
+        var maximizedRequestedLocale = locale.maximize().toString();
+        var minimizedRequestedLocale = locale.minimize().toString();
+        // Check minimized locale
+        if (minimizedAvailableLocales.has(minimizedRequestedLocale)) {
+            foundLocale = minimizedAvailableLocaleMap[minimizedRequestedLocale];
+            break;
+        }
+        // Lookup algo on maximized locale
+        foundLocale = (0,_BestAvailableLocale__WEBPACK_IMPORTED_MODULE_1__.BestAvailableLocale)(minimizedAvailableLocales, maximizedRequestedLocale);
+    }
+    return {
+        locale: foundLocale || getDefaultLocale(),
+    };
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeLocaleList.js":
+/*!******************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeLocaleList.js ***!
+  \******************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CanonicalizeLocaleList": () => (/* binding */ CanonicalizeLocaleList)
+/* harmony export */ });
+/**
+ * http://ecma-international.org/ecma-402/7.0/index.html#sec-canonicalizelocalelist
+ * @param locales
+ */
+function CanonicalizeLocaleList(locales) {
+    // TODO
+    return Intl.getCanonicalLocales(locales);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeTimeZoneName.js":
+/*!********************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeTimeZoneName.js ***!
+  \********************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CanonicalizeTimeZoneName": () => (/* binding */ CanonicalizeTimeZoneName)
+/* harmony export */ });
+/**
+ * https://tc39.es/ecma402/#sec-canonicalizetimezonename
+ * @param tz
+ */
+function CanonicalizeTimeZoneName(tz, _a) {
+    var tzData = _a.tzData, uppercaseLinks = _a.uppercaseLinks;
+    var uppercasedTz = tz.toUpperCase();
+    var uppercasedZones = Object.keys(tzData).reduce(function (all, z) {
+        all[z.toUpperCase()] = z;
+        return all;
+    }, {});
+    var ianaTimeZone = uppercaseLinks[uppercasedTz] || uppercasedZones[uppercasedTz];
+    if (ianaTimeZone === 'Etc/UTC' || ianaTimeZone === 'Etc/GMT') {
+        return 'UTC';
+    }
+    return ianaTimeZone;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CoerceOptionsToObject.js":
+/*!*****************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CoerceOptionsToObject.js ***!
+  \*****************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CoerceOptionsToObject": () => (/* binding */ CoerceOptionsToObject)
+/* harmony export */ });
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+/**
+ * https://tc39.es/ecma402/#sec-coerceoptionstoobject
+ * @param options
+ * @returns
+ */
+function CoerceOptionsToObject(options) {
+    if (typeof options === 'undefined') {
+        return Object.create(null);
+    }
+    return (0,_262__WEBPACK_IMPORTED_MODULE_0__.ToObject)(options);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/BasicFormatMatcher.js":
+/*!*****************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/BasicFormatMatcher.js ***!
+  \*****************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "BasicFormatMatcher": () => (/* binding */ BasicFormatMatcher)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/utils.js");
+
+
+
+/**
+ * https://tc39.es/ecma402/#sec-basicformatmatcher
+ * @param options
+ * @param formats
+ */
+function BasicFormatMatcher(options, formats) {
+    var bestScore = -Infinity;
+    var bestFormat = formats[0];
+    (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)(Array.isArray(formats), 'formats should be a list of things');
+    for (var _i = 0, formats_1 = formats; _i < formats_1.length; _i++) {
+        var format = formats_1[_i];
+        var score = 0;
+        for (var _a = 0, DATE_TIME_PROPS_1 = _utils__WEBPACK_IMPORTED_MODULE_1__.DATE_TIME_PROPS; _a < DATE_TIME_PROPS_1.length; _a++) {
+            var prop = DATE_TIME_PROPS_1[_a];
+            var optionsProp = options[prop];
+            var formatProp = format[prop];
+            if (optionsProp === undefined && formatProp !== undefined) {
+                score -= _utils__WEBPACK_IMPORTED_MODULE_1__.additionPenalty;
+            }
+            else if (optionsProp !== undefined && formatProp === undefined) {
+                score -= _utils__WEBPACK_IMPORTED_MODULE_1__.removalPenalty;
+            }
+            else if (optionsProp !== formatProp) {
+                var values = void 0;
+                if (prop === 'fractionalSecondDigits') {
+                    values = [1, 2, 3];
+                }
+                else {
+                    values = ['2-digit', 'numeric', 'narrow', 'short', 'long'];
+                }
+                var optionsPropIndex = values.indexOf(optionsProp);
+                var formatPropIndex = values.indexOf(formatProp);
+                var delta = Math.max(-2, Math.min(formatPropIndex - optionsPropIndex, 2));
+                if (delta === 2) {
+                    score -= _utils__WEBPACK_IMPORTED_MODULE_1__.longMorePenalty;
+                }
+                else if (delta === 1) {
+                    score -= _utils__WEBPACK_IMPORTED_MODULE_1__.shortMorePenalty;
+                }
+                else if (delta === -1) {
+                    score -= _utils__WEBPACK_IMPORTED_MODULE_1__.shortLessPenalty;
+                }
+                else if (delta === -2) {
+                    score -= _utils__WEBPACK_IMPORTED_MODULE_1__.longLessPenalty;
+                }
+            }
+        }
+        if (score > bestScore) {
+            bestScore = score;
+            bestFormat = format;
+        }
+    }
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({}, bestFormat);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/BestFitFormatMatcher.js":
+/*!*******************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/BestFitFormatMatcher.js ***!
+  \*******************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "bestFitFormatMatcherScore": () => (/* binding */ bestFitFormatMatcherScore),
+/* harmony export */   "BestFitFormatMatcher": () => (/* binding */ BestFitFormatMatcher)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/utils.js");
+/* harmony import */ var _skeleton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./skeleton */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/skeleton.js");
+
+
+
+
+function isNumericType(t) {
+    return t === 'numeric' || t === '2-digit';
+}
+/**
+ * Credit: https://github.com/andyearnshaw/Intl.js/blob/0958dc1ad8153f1056653ea22b8208f0df289a4e/src/12.datetimeformat.js#L611
+ * with some modifications
+ * @param options
+ * @param format
+ */
+function bestFitFormatMatcherScore(options, format) {
+    var score = 0;
+    if (options.hour12 && !format.hour12) {
+        score -= _utils__WEBPACK_IMPORTED_MODULE_0__.removalPenalty;
+    }
+    else if (!options.hour12 && format.hour12) {
+        score -= _utils__WEBPACK_IMPORTED_MODULE_0__.additionPenalty;
+    }
+    for (var _i = 0, DATE_TIME_PROPS_1 = _utils__WEBPACK_IMPORTED_MODULE_0__.DATE_TIME_PROPS; _i < DATE_TIME_PROPS_1.length; _i++) {
+        var prop = DATE_TIME_PROPS_1[_i];
+        var optionsProp = options[prop];
+        var formatProp = format[prop];
+        if (optionsProp === undefined && formatProp !== undefined) {
+            score -= _utils__WEBPACK_IMPORTED_MODULE_0__.additionPenalty;
+        }
+        else if (optionsProp !== undefined && formatProp === undefined) {
+            score -= _utils__WEBPACK_IMPORTED_MODULE_0__.removalPenalty;
+        }
+        else if (optionsProp !== formatProp) {
+            // extra penalty for numeric vs non-numeric
+            if (isNumericType(optionsProp) !==
+                isNumericType(formatProp)) {
+                score -= _utils__WEBPACK_IMPORTED_MODULE_0__.differentNumericTypePenalty;
+            }
+            else {
+                var values = ['2-digit', 'numeric', 'narrow', 'short', 'long'];
+                var optionsPropIndex = values.indexOf(optionsProp);
+                var formatPropIndex = values.indexOf(formatProp);
+                var delta = Math.max(-2, Math.min(formatPropIndex - optionsPropIndex, 2));
+                if (delta === 2) {
+                    score -= _utils__WEBPACK_IMPORTED_MODULE_0__.longMorePenalty;
+                }
+                else if (delta === 1) {
+                    score -= _utils__WEBPACK_IMPORTED_MODULE_0__.shortMorePenalty;
+                }
+                else if (delta === -1) {
+                    score -= _utils__WEBPACK_IMPORTED_MODULE_0__.shortLessPenalty;
+                }
+                else if (delta === -2) {
+                    score -= _utils__WEBPACK_IMPORTED_MODULE_0__.longLessPenalty;
+                }
+            }
+        }
+    }
+    return score;
+}
+/**
+ * https://tc39.es/ecma402/#sec-bestfitformatmatcher
+ * Just alias to basic for now
+ * @param options
+ * @param formats
+ * @param implDetails Implementation details
+ */
+function BestFitFormatMatcher(options, formats) {
+    var bestScore = -Infinity;
+    var bestFormat = formats[0];
+    (0,_utils__WEBPACK_IMPORTED_MODULE_1__.invariant)(Array.isArray(formats), 'formats should be a list of things');
+    for (var _i = 0, formats_1 = formats; _i < formats_1.length; _i++) {
+        var format = formats_1[_i];
+        var score = bestFitFormatMatcherScore(options, format);
+        if (score > bestScore) {
+            bestScore = score;
+            bestFormat = format;
+        }
+    }
+    var skeletonFormat = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({}, bestFormat);
+    var patternFormat = { rawPattern: bestFormat.rawPattern };
+    (0,_skeleton__WEBPACK_IMPORTED_MODULE_3__.processDateTimePattern)(bestFormat.rawPattern, patternFormat);
+    // Kinda following https://github.com/unicode-org/icu/blob/dd50e38f459d84e9bf1b0c618be8483d318458ad/icu4j/main/classes/core/src/com/ibm/icu/text/DateTimePatternGenerator.java
+    // Method adjustFieldTypes
+    for (var prop in skeletonFormat) {
+        var skeletonValue = skeletonFormat[prop];
+        var patternValue = patternFormat[prop];
+        var requestedValue = options[prop];
+        // Don't mess with minute/second or we can get in the situation of
+        // 7:0:0 which is weird
+        if (prop === 'minute' || prop === 'second') {
+            continue;
+        }
+        // Nothing to do here
+        if (!requestedValue) {
+            continue;
+        }
+        // https://unicode.org/reports/tr35/tr35-dates.html#Matching_Skeletons
+        // Looks like we should not convert numeric to alphabetic but the other way
+        // around is ok
+        if (isNumericType(patternValue) &&
+            !isNumericType(requestedValue)) {
+            continue;
+        }
+        if (skeletonValue === requestedValue) {
+            continue;
+        }
+        patternFormat[prop] = requestedValue;
+    }
+    // Copy those over
+    patternFormat.pattern = skeletonFormat.pattern;
+    patternFormat.pattern12 = skeletonFormat.pattern12;
+    patternFormat.skeleton = skeletonFormat.skeleton;
+    patternFormat.rangePatterns = skeletonFormat.rangePatterns;
+    patternFormat.rangePatterns12 = skeletonFormat.rangePatterns12;
+    return patternFormat;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/DateTimeStyleFormat.js":
+/*!******************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/DateTimeStyleFormat.js ***!
+  \******************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DateTimeStyleFormat": () => (/* binding */ DateTimeStyleFormat)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+
+function DateTimeStyleFormat(dateStyle, timeStyle, dataLocaleData) {
+    var dateFormat, timeFormat;
+    if (timeStyle !== undefined) {
+        (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)(timeStyle === 'full' ||
+            timeStyle === 'long' ||
+            timeStyle === 'medium' ||
+            timeStyle === 'short', 'invalid timeStyle');
+        timeFormat = dataLocaleData.timeFormat[timeStyle];
+    }
+    if (dateStyle !== undefined) {
+        (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)(dateStyle === 'full' ||
+            dateStyle === 'long' ||
+            dateStyle === 'medium' ||
+            dateStyle === 'short', 'invalid dateStyle');
+        dateFormat = dataLocaleData.dateFormat[dateStyle];
+    }
+    if (dateStyle !== undefined && timeStyle !== undefined) {
+        var format = {};
+        for (var field in dateFormat) {
+            if (field !== 'pattern') {
+                // @ts-ignore
+                format[field] = dateFormat[field];
+            }
+        }
+        for (var field in timeFormat) {
+            if (field !== 'pattern' && field !== 'pattern12') {
+                // @ts-ignore
+                format[field] = timeFormat[field];
+            }
+        }
+        var connector = dataLocaleData.dateTimeFormat[dateStyle];
+        var pattern = connector
+            .replace('{0}', timeFormat.pattern)
+            .replace('{1}', dateFormat.pattern);
+        format.pattern = pattern;
+        if ('pattern12' in timeFormat) {
+            var pattern12 = connector
+                .replace('{0}', timeFormat.pattern12)
+                .replace('{1}', dateFormat.pattern);
+            format.pattern12 = pattern12;
+        }
+        return format;
+    }
+    if (timeStyle !== undefined) {
+        return timeFormat;
+    }
+    (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)(dateStyle !== undefined, 'dateStyle should not be undefined');
+    return dateFormat;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/FormatDateTime.js":
+/*!*************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/FormatDateTime.js ***!
+  \*************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FormatDateTime": () => (/* binding */ FormatDateTime)
+/* harmony export */ });
+/* harmony import */ var _PartitionDateTimePattern__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PartitionDateTimePattern */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/PartitionDateTimePattern.js");
+
+/**
+ * https://tc39.es/ecma402/#sec-formatdatetime
+ * @param dtf DateTimeFormat
+ * @param x
+ */
+function FormatDateTime(dtf, x, implDetails) {
+    var parts = (0,_PartitionDateTimePattern__WEBPACK_IMPORTED_MODULE_0__.PartitionDateTimePattern)(dtf, x, implDetails);
+    var result = '';
+    for (var _i = 0, parts_1 = parts; _i < parts_1.length; _i++) {
+        var part = parts_1[_i];
+        result += part.value;
+    }
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/FormatDateTimePattern.js":
+/*!********************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/FormatDateTimePattern.js ***!
+  \********************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FormatDateTimePattern": () => (/* binding */ FormatDateTimePattern)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/utils.js");
+/* harmony import */ var _ToLocalTime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ToLocalTime */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/ToLocalTime.js");
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+
+
+function pad(n) {
+    if (n < 10) {
+        return "0" + n;
+    }
+    return String(n);
+}
+function offsetToGmtString(gmtFormat, hourFormat, offsetInMs, style) {
+    var offsetInMinutes = Math.floor(offsetInMs / 60000);
+    var mins = Math.abs(offsetInMinutes) % 60;
+    var hours = Math.floor(Math.abs(offsetInMinutes) / 60);
+    var _a = hourFormat.split(';'), positivePattern = _a[0], negativePattern = _a[1];
+    var offsetStr = '';
+    var pattern = offsetInMs < 0 ? negativePattern : positivePattern;
+    if (style === 'long') {
+        offsetStr = pattern
+            .replace('HH', pad(hours))
+            .replace('H', String(hours))
+            .replace('mm', pad(mins))
+            .replace('m', String(mins));
+    }
+    else if (mins || hours) {
+        if (!mins) {
+            pattern = pattern.replace(/:?m+/, '');
+        }
+        offsetStr = pattern.replace(/H+/, String(hours)).replace(/m+/, String(mins));
+    }
+    return gmtFormat.replace('{0}', offsetStr);
+}
+/**
+ * https://tc39.es/ecma402/#sec-partitiondatetimepattern
+ * @param dtf
+ * @param x
+ */
+function FormatDateTimePattern(dtf, patternParts, x, _a) {
+    var getInternalSlots = _a.getInternalSlots, localeData = _a.localeData, getDefaultTimeZone = _a.getDefaultTimeZone, tzData = _a.tzData;
+    x = (0,_262__WEBPACK_IMPORTED_MODULE_0__.TimeClip)(x);
+    /** IMPL START */
+    var internalSlots = getInternalSlots(dtf);
+    var dataLocale = internalSlots.dataLocale;
+    var dataLocaleData = localeData[dataLocale];
+    /** IMPL END */
+    var locale = internalSlots.locale;
+    var nfOptions = Object.create(null);
+    nfOptions.useGrouping = false;
+    var nf = new Intl.NumberFormat(locale, nfOptions);
+    var nf2Options = Object.create(null);
+    nf2Options.minimumIntegerDigits = 2;
+    nf2Options.useGrouping = false;
+    var nf2 = new Intl.NumberFormat(locale, nf2Options);
+    var fractionalSecondDigits = internalSlots.fractionalSecondDigits;
+    var nf3;
+    if (fractionalSecondDigits !== undefined) {
+        var nf3Options = Object.create(null);
+        nf3Options.minimumIntegerDigits = fractionalSecondDigits;
+        nf3Options.useGrouping = false;
+        nf3 = new Intl.NumberFormat(locale, nf3Options);
+    }
+    var tm = (0,_ToLocalTime__WEBPACK_IMPORTED_MODULE_1__.ToLocalTime)(x, 
+    // @ts-ignore
+    internalSlots.calendar, internalSlots.timeZone, { tzData: tzData });
+    var result = [];
+    for (var _i = 0, patternParts_1 = patternParts; _i < patternParts_1.length; _i++) {
+        var patternPart = patternParts_1[_i];
+        var p = patternPart.type;
+        if (p === 'literal') {
+            result.push({
+                type: 'literal',
+                value: patternPart.value,
+            });
+        }
+        else if (p === 'fractionalSecondDigits') {
+            var v = Math.floor(tm.millisecond * Math.pow(10, ((fractionalSecondDigits || 0) - 3)));
+            result.push({
+                // @ts-expect-error Spec is not there yet
+                type: 'fractionalSecond',
+                value: nf3.format(v),
+            });
+        }
+        else if (_utils__WEBPACK_IMPORTED_MODULE_2__.DATE_TIME_PROPS.indexOf(p) > -1) {
+            var fv = '';
+            var f = internalSlots[p];
+            // @ts-ignore
+            var v = tm[p];
+            if (p === 'year' && v <= 0) {
+                v = 1 - v;
+            }
+            if (p === 'month') {
+                v++;
+            }
+            var hourCycle = internalSlots.hourCycle;
+            if (p === 'hour' && (hourCycle === 'h11' || hourCycle === 'h12')) {
+                v = v % 12;
+                if (v === 0 && hourCycle === 'h12') {
+                    v = 12;
+                }
+            }
+            if (p === 'hour' && hourCycle === 'h24') {
+                if (v === 0) {
+                    v = 24;
+                }
+            }
+            if (f === 'numeric') {
+                fv = nf.format(v);
+            }
+            else if (f === '2-digit') {
+                fv = nf2.format(v);
+                if (fv.length > 2) {
+                    fv = fv.slice(fv.length - 2, fv.length);
+                }
+            }
+            else if (f === 'narrow' || f === 'short' || f === 'long') {
+                if (p === 'era') {
+                    fv = dataLocaleData[p][f][v];
+                }
+                else if (p === 'timeZoneName') {
+                    var timeZoneName = dataLocaleData.timeZoneName, gmtFormat = dataLocaleData.gmtFormat, hourFormat = dataLocaleData.hourFormat;
+                    var timeZone = internalSlots.timeZone || getDefaultTimeZone();
+                    var timeZoneData = timeZoneName[timeZone];
+                    if (timeZoneData && timeZoneData[f]) {
+                        fv = timeZoneData[f][+tm.inDST];
+                    }
+                    else {
+                        // Fallback to gmtFormat
+                        fv = offsetToGmtString(gmtFormat, hourFormat, tm.timeZoneOffset, f);
+                    }
+                }
+                else if (p === 'month') {
+                    fv = dataLocaleData.month[f][v - 1];
+                }
+                else {
+                    fv = dataLocaleData[p][f][v];
+                }
+            }
+            result.push({
+                type: p,
+                value: fv,
+            });
+        }
+        else if (p === 'ampm') {
+            var v = tm.hour;
+            var fv = void 0;
+            if (v > 11) {
+                fv = dataLocaleData.pm;
+            }
+            else {
+                fv = dataLocaleData.am;
+            }
+            result.push({
+                type: 'dayPeriod',
+                value: fv,
+            });
+        }
+        else if (p === 'relatedYear') {
+            var v = tm.relatedYear;
+            // @ts-ignore
+            var fv = nf.format(v);
+            result.push({
+                // @ts-ignore TODO: Fix TS type
+                type: 'relatedYear',
+                value: fv,
+            });
+        }
+        else if (p === 'yearName') {
+            var v = tm.yearName;
+            // @ts-ignore
+            var fv = nf.format(v);
+            result.push({
+                // @ts-ignore TODO: Fix TS type
+                type: 'yearName',
+                value: fv,
+            });
+        }
+    }
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/FormatDateTimeRange.js":
+/*!******************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/FormatDateTimeRange.js ***!
+  \******************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FormatDateTimeRange": () => (/* binding */ FormatDateTimeRange)
+/* harmony export */ });
+/* harmony import */ var _PartitionDateTimeRangePattern__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PartitionDateTimeRangePattern */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/PartitionDateTimeRangePattern.js");
+
+function FormatDateTimeRange(dtf, x, y, implDetails) {
+    var parts = (0,_PartitionDateTimeRangePattern__WEBPACK_IMPORTED_MODULE_0__.PartitionDateTimeRangePattern)(dtf, x, y, implDetails);
+    var result = '';
+    for (var _i = 0, parts_1 = parts; _i < parts_1.length; _i++) {
+        var part = parts_1[_i];
+        result += part.value;
+    }
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/FormatDateTimeRangeToParts.js":
+/*!*************************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/FormatDateTimeRangeToParts.js ***!
+  \*************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FormatDateTimeRangeToParts": () => (/* binding */ FormatDateTimeRangeToParts)
+/* harmony export */ });
+/* harmony import */ var _PartitionDateTimeRangePattern__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PartitionDateTimeRangePattern */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/PartitionDateTimeRangePattern.js");
+
+function FormatDateTimeRangeToParts(dtf, x, y, implDetails) {
+    var parts = (0,_PartitionDateTimeRangePattern__WEBPACK_IMPORTED_MODULE_0__.PartitionDateTimeRangePattern)(dtf, x, y, implDetails);
+    var result = new Array(0);
+    for (var _i = 0, parts_1 = parts; _i < parts_1.length; _i++) {
+        var part = parts_1[_i];
+        result.push({
+            type: part.type,
+            value: part.value,
+            source: part.source,
+        });
+    }
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/FormatDateTimeToParts.js":
+/*!********************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/FormatDateTimeToParts.js ***!
+  \********************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FormatDateTimeToParts": () => (/* binding */ FormatDateTimeToParts)
+/* harmony export */ });
+/* harmony import */ var _PartitionDateTimePattern__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PartitionDateTimePattern */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/PartitionDateTimePattern.js");
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+
+/**
+ * https://tc39.es/ecma402/#sec-formatdatetimetoparts
+ *
+ * @param dtf
+ * @param x
+ * @param implDetails
+ */
+function FormatDateTimeToParts(dtf, x, implDetails) {
+    var parts = (0,_PartitionDateTimePattern__WEBPACK_IMPORTED_MODULE_0__.PartitionDateTimePattern)(dtf, x, implDetails);
+    var result = (0,_262__WEBPACK_IMPORTED_MODULE_1__.ArrayCreate)(0);
+    for (var _i = 0, parts_1 = parts; _i < parts_1.length; _i++) {
+        var part = parts_1[_i];
+        result.push({
+            type: part.type,
+            value: part.value,
+        });
+    }
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/InitializeDateTimeFormat.js":
+/*!***********************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/InitializeDateTimeFormat.js ***!
+  \***********************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "InitializeDateTimeFormat": () => (/* binding */ InitializeDateTimeFormat)
+/* harmony export */ });
+/* harmony import */ var _CanonicalizeLocaleList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../CanonicalizeLocaleList */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeLocaleList.js");
+/* harmony import */ var _ToDateTimeOptions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ToDateTimeOptions */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/ToDateTimeOptions.js");
+/* harmony import */ var _GetOption__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../GetOption */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/GetOption.js");
+/* harmony import */ var _ResolveLocale__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ResolveLocale */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/ResolveLocale.js");
+/* harmony import */ var _IsValidTimeZoneName__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../IsValidTimeZoneName */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/IsValidTimeZoneName.js");
+/* harmony import */ var _CanonicalizeTimeZoneName__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../CanonicalizeTimeZoneName */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeTimeZoneName.js");
+/* harmony import */ var _BasicFormatMatcher__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./BasicFormatMatcher */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/BasicFormatMatcher.js");
+/* harmony import */ var _BestFitFormatMatcher__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./BestFitFormatMatcher */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/BestFitFormatMatcher.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/utils.js");
+/* harmony import */ var _DateTimeStyleFormat__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./DateTimeStyleFormat */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/DateTimeStyleFormat.js");
+/* harmony import */ var _GetNumberOption__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../GetNumberOption */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/GetNumberOption.js");
+
+
+
+
+
+
+
+
+
+
+
+
+function isTimeRelated(opt) {
+    for (var _i = 0, _a = ['hour', 'minute', 'second']; _i < _a.length; _i++) {
+        var prop = _a[_i];
+        var value = opt[prop];
+        if (value !== undefined) {
+            return true;
+        }
+    }
+    return false;
+}
+function resolveHourCycle(hc, hcDefault, hour12) {
+    if (hc == null) {
+        hc = hcDefault;
+    }
+    if (hour12 !== undefined) {
+        if (hour12) {
+            if (hcDefault === 'h11' || hcDefault === 'h23') {
+                hc = 'h11';
+            }
+            else {
+                hc = 'h12';
+            }
+        }
+        else {
+            (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)(!hour12, 'hour12 must not be set');
+            if (hcDefault === 'h11' || hcDefault === 'h23') {
+                hc = 'h23';
+            }
+            else {
+                hc = 'h24';
+            }
+        }
+    }
+    return hc;
+}
+var TYPE_REGEX = /^[a-z0-9]{3,8}$/i;
+/**
+ * https://tc39.es/ecma402/#sec-initializedatetimeformat
+ * @param dtf DateTimeFormat
+ * @param locales locales
+ * @param opts options
+ */
+function InitializeDateTimeFormat(dtf, locales, opts, _a) {
+    var getInternalSlots = _a.getInternalSlots, availableLocales = _a.availableLocales, localeData = _a.localeData, getDefaultLocale = _a.getDefaultLocale, getDefaultTimeZone = _a.getDefaultTimeZone, relevantExtensionKeys = _a.relevantExtensionKeys, tzData = _a.tzData, uppercaseLinks = _a.uppercaseLinks;
+    // @ts-ignore
+    var requestedLocales = (0,_CanonicalizeLocaleList__WEBPACK_IMPORTED_MODULE_1__.CanonicalizeLocaleList)(locales);
+    var options = (0,_ToDateTimeOptions__WEBPACK_IMPORTED_MODULE_2__.ToDateTimeOptions)(opts, 'any', 'date');
+    var opt = Object.create(null);
+    var matcher = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'localeMatcher', 'string', ['lookup', 'best fit'], 'best fit');
+    opt.localeMatcher = matcher;
+    var calendar = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'calendar', 'string', undefined, undefined);
+    if (calendar !== undefined && !TYPE_REGEX.test(calendar)) {
+        throw new RangeError('Malformed calendar');
+    }
+    var internalSlots = getInternalSlots(dtf);
+    opt.ca = calendar;
+    var numberingSystem = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'numberingSystem', 'string', undefined, undefined);
+    if (numberingSystem !== undefined && !TYPE_REGEX.test(numberingSystem)) {
+        throw new RangeError('Malformed numbering system');
+    }
+    opt.nu = numberingSystem;
+    var hour12 = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'hour12', 'boolean', undefined, undefined);
+    var hourCycle = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'hourCycle', 'string', ['h11', 'h12', 'h23', 'h24'], undefined);
+    if (hour12 !== undefined) {
+        // @ts-ignore
+        hourCycle = null;
+    }
+    opt.hc = hourCycle;
+    var r = (0,_ResolveLocale__WEBPACK_IMPORTED_MODULE_4__.ResolveLocale)(availableLocales, requestedLocales, opt, relevantExtensionKeys, localeData, getDefaultLocale);
+    internalSlots.locale = r.locale;
+    calendar = r.ca;
+    internalSlots.calendar = calendar;
+    internalSlots.hourCycle = r.hc;
+    internalSlots.numberingSystem = r.nu;
+    var dataLocale = r.dataLocale;
+    internalSlots.dataLocale = dataLocale;
+    var timeZone = options.timeZone;
+    if (timeZone !== undefined) {
+        timeZone = String(timeZone);
+        if (!(0,_IsValidTimeZoneName__WEBPACK_IMPORTED_MODULE_5__.IsValidTimeZoneName)(timeZone, { tzData: tzData, uppercaseLinks: uppercaseLinks })) {
+            throw new RangeError('Invalid timeZoneName');
+        }
+        timeZone = (0,_CanonicalizeTimeZoneName__WEBPACK_IMPORTED_MODULE_6__.CanonicalizeTimeZoneName)(timeZone, { tzData: tzData, uppercaseLinks: uppercaseLinks });
+    }
+    else {
+        timeZone = getDefaultTimeZone();
+    }
+    internalSlots.timeZone = timeZone;
+    opt = Object.create(null);
+    opt.weekday = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'weekday', 'string', ['narrow', 'short', 'long'], undefined);
+    opt.era = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'era', 'string', ['narrow', 'short', 'long'], undefined);
+    opt.year = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'year', 'string', ['2-digit', 'numeric'], undefined);
+    opt.month = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'month', 'string', ['2-digit', 'numeric', 'narrow', 'short', 'long'], undefined);
+    opt.day = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'day', 'string', ['2-digit', 'numeric'], undefined);
+    opt.hour = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'hour', 'string', ['2-digit', 'numeric'], undefined);
+    opt.minute = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'minute', 'string', ['2-digit', 'numeric'], undefined);
+    opt.second = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'second', 'string', ['2-digit', 'numeric'], undefined);
+    opt.timeZoneName = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'timeZoneName', 'string', ['short', 'long'], undefined);
+    opt.fractionalSecondDigits = (0,_GetNumberOption__WEBPACK_IMPORTED_MODULE_7__.GetNumberOption)(options, 'fractionalSecondDigits', 1, 3, 
+    // @ts-expect-error
+    undefined);
+    var dataLocaleData = localeData[dataLocale];
+    (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)(!!dataLocaleData, "Missing locale data for " + dataLocale);
+    var formats = dataLocaleData.formats[calendar];
+    // UNSPECCED: IMPLEMENTATION DETAILS
+    if (!formats) {
+        throw new RangeError("Calendar \"" + calendar + "\" is not supported. Try setting \"calendar\" to 1 of the following: " + Object.keys(dataLocaleData.formats).join(', '));
+    }
+    var formatMatcher = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'formatMatcher', 'string', ['basic', 'best fit'], 'best fit');
+    var dateStyle = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'dateStyle', 'string', ['full', 'long', 'medium', 'short'], undefined);
+    internalSlots.dateStyle = dateStyle;
+    var timeStyle = (0,_GetOption__WEBPACK_IMPORTED_MODULE_3__.GetOption)(options, 'timeStyle', 'string', ['full', 'long', 'medium', 'short'], undefined);
+    internalSlots.timeStyle = timeStyle;
+    var bestFormat;
+    if (dateStyle === undefined && timeStyle === undefined) {
+        if (formatMatcher === 'basic') {
+            bestFormat = (0,_BasicFormatMatcher__WEBPACK_IMPORTED_MODULE_8__.BasicFormatMatcher)(opt, formats);
+        }
+        else {
+            // IMPL DETAILS START
+            if (isTimeRelated(opt)) {
+                var hc = resolveHourCycle(internalSlots.hourCycle, dataLocaleData.hourCycle, hour12);
+                opt.hour12 = hc === 'h11' || hc === 'h12';
+            }
+            // IMPL DETAILS END
+            bestFormat = (0,_BestFitFormatMatcher__WEBPACK_IMPORTED_MODULE_9__.BestFitFormatMatcher)(opt, formats);
+        }
+    }
+    else {
+        for (var _i = 0, DATE_TIME_PROPS_1 = _utils__WEBPACK_IMPORTED_MODULE_10__.DATE_TIME_PROPS; _i < DATE_TIME_PROPS_1.length; _i++) {
+            var prop = DATE_TIME_PROPS_1[_i];
+            var p = opt[prop];
+            if (p !== undefined) {
+                throw new TypeError("Intl.DateTimeFormat can't set option " + prop + " when " + (dateStyle ? 'dateStyle' : 'timeStyle') + " is used");
+            }
+        }
+        bestFormat = (0,_DateTimeStyleFormat__WEBPACK_IMPORTED_MODULE_11__.DateTimeStyleFormat)(dateStyle, timeStyle, dataLocaleData);
+    }
+    // IMPL DETAIL START
+    // For debugging
+    internalSlots.format = bestFormat;
+    // IMPL DETAIL END
+    for (var prop in opt) {
+        var p = bestFormat[prop];
+        if (p !== undefined) {
+            internalSlots[prop] = p;
+        }
+    }
+    var pattern;
+    var rangePatterns;
+    if (internalSlots.hour !== undefined) {
+        var hc = resolveHourCycle(internalSlots.hourCycle, dataLocaleData.hourCycle, hour12);
+        internalSlots.hourCycle = hc;
+        if (hc === 'h11' || hc === 'h12') {
+            pattern = bestFormat.pattern12;
+            rangePatterns = bestFormat.rangePatterns12;
+        }
+        else {
+            pattern = bestFormat.pattern;
+            rangePatterns = bestFormat.rangePatterns;
+        }
+    }
+    else {
+        // @ts-ignore
+        internalSlots.hourCycle = undefined;
+        pattern = bestFormat.pattern;
+        rangePatterns = bestFormat.rangePatterns;
+    }
+    internalSlots.pattern = pattern;
+    internalSlots.rangePatterns = rangePatterns;
+    return dtf;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/PartitionDateTimePattern.js":
+/*!***********************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/PartitionDateTimePattern.js ***!
+  \***********************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PartitionDateTimePattern": () => (/* binding */ PartitionDateTimePattern)
+/* harmony export */ });
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+/* harmony import */ var _FormatDateTimePattern__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormatDateTimePattern */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/FormatDateTimePattern.js");
+/* harmony import */ var _PartitionPattern__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../PartitionPattern */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/PartitionPattern.js");
+
+
+
+/**
+ * https://tc39.es/ecma402/#sec-partitiondatetimepattern
+ * @param dtf
+ * @param x
+ */
+function PartitionDateTimePattern(dtf, x, implDetails) {
+    x = (0,_262__WEBPACK_IMPORTED_MODULE_0__.TimeClip)(x);
+    if (isNaN(x)) {
+        throw new RangeError('invalid time');
+    }
+    /** IMPL START */
+    var getInternalSlots = implDetails.getInternalSlots;
+    var internalSlots = getInternalSlots(dtf);
+    /** IMPL END */
+    var pattern = internalSlots.pattern;
+    return (0,_FormatDateTimePattern__WEBPACK_IMPORTED_MODULE_1__.FormatDateTimePattern)(dtf, (0,_PartitionPattern__WEBPACK_IMPORTED_MODULE_2__.PartitionPattern)(pattern), x, implDetails);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/PartitionDateTimeRangePattern.js":
+/*!****************************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/PartitionDateTimeRangePattern.js ***!
+  \****************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PartitionDateTimeRangePattern": () => (/* binding */ PartitionDateTimeRangePattern)
+/* harmony export */ });
+/* harmony import */ var _types_date_time__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../types/date-time */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/types/date-time.js");
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+/* harmony import */ var _ToLocalTime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ToLocalTime */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/ToLocalTime.js");
+/* harmony import */ var _FormatDateTimePattern__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FormatDateTimePattern */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/FormatDateTimePattern.js");
+/* harmony import */ var _PartitionPattern__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../PartitionPattern */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/PartitionPattern.js");
+
+
+
+
+
+var TABLE_2_FIELDS = [
+    'era',
+    'year',
+    'month',
+    'day',
+    'ampm',
+    'hour',
+    'minute',
+    'second',
+    'fractionalSecondDigits',
+];
+function PartitionDateTimeRangePattern(dtf, x, y, implDetails) {
+    x = (0,_262__WEBPACK_IMPORTED_MODULE_0__.TimeClip)(x);
+    if (isNaN(x)) {
+        throw new RangeError('Invalid start time');
+    }
+    y = (0,_262__WEBPACK_IMPORTED_MODULE_0__.TimeClip)(y);
+    if (isNaN(y)) {
+        throw new RangeError('Invalid end time');
+    }
+    /** IMPL START */
+    var getInternalSlots = implDetails.getInternalSlots, tzData = implDetails.tzData;
+    var internalSlots = getInternalSlots(dtf);
+    /** IMPL END */
+    var tm1 = (0,_ToLocalTime__WEBPACK_IMPORTED_MODULE_1__.ToLocalTime)(x, 
+    // @ts-ignore
+    internalSlots.calendar, internalSlots.timeZone, { tzData: tzData });
+    var tm2 = (0,_ToLocalTime__WEBPACK_IMPORTED_MODULE_1__.ToLocalTime)(y, 
+    // @ts-ignore
+    internalSlots.calendar, internalSlots.timeZone, { tzData: tzData });
+    var pattern = internalSlots.pattern, rangePatterns = internalSlots.rangePatterns;
+    var rangePattern;
+    var dateFieldsPracticallyEqual = true;
+    var patternContainsLargerDateField = false;
+    for (var _i = 0, TABLE_2_FIELDS_1 = TABLE_2_FIELDS; _i < TABLE_2_FIELDS_1.length; _i++) {
+        var fieldName = TABLE_2_FIELDS_1[_i];
+        if (dateFieldsPracticallyEqual && !patternContainsLargerDateField) {
+            if (fieldName === 'ampm') {
+                var rp = rangePatterns.ampm;
+                if (rangePattern !== undefined && rp === undefined) {
+                    patternContainsLargerDateField = true;
+                }
+                else {
+                    var v1 = tm1.hour;
+                    var v2 = tm2.hour;
+                    if ((v1 > 11 && v2 < 11) || (v1 < 11 && v2 > 11)) {
+                        dateFieldsPracticallyEqual = false;
+                    }
+                    rangePattern = rp;
+                }
+            }
+            else if (fieldName === 'fractionalSecondDigits') {
+                var fractionalSecondDigits = internalSlots.fractionalSecondDigits;
+                if (fractionalSecondDigits === undefined) {
+                    fractionalSecondDigits = 3;
+                }
+                var v1 = Math.floor(tm1.millisecond * Math.pow(10, (fractionalSecondDigits - 3)));
+                var v2 = Math.floor(tm2.millisecond * Math.pow(10, (fractionalSecondDigits - 3)));
+                if (v1 !== v2) {
+                    dateFieldsPracticallyEqual = false;
+                }
+            }
+            else {
+                var rp = rangePatterns[fieldName];
+                if (rangePattern !== undefined && rp === undefined) {
+                    patternContainsLargerDateField = true;
+                }
+                else {
+                    var v1 = tm1[fieldName];
+                    var v2 = tm2[fieldName];
+                    if (!(0,_262__WEBPACK_IMPORTED_MODULE_0__.SameValue)(v1, v2)) {
+                        dateFieldsPracticallyEqual = false;
+                    }
+                    rangePattern = rp;
+                }
+            }
+        }
+    }
+    if (dateFieldsPracticallyEqual) {
+        var result_2 = (0,_FormatDateTimePattern__WEBPACK_IMPORTED_MODULE_2__.FormatDateTimePattern)(dtf, (0,_PartitionPattern__WEBPACK_IMPORTED_MODULE_3__.PartitionPattern)(pattern), x, implDetails);
+        for (var _a = 0, result_1 = result_2; _a < result_1.length; _a++) {
+            var r = result_1[_a];
+            r.source = _types_date_time__WEBPACK_IMPORTED_MODULE_4__.RangePatternType.shared;
+        }
+        return result_2;
+    }
+    var result = [];
+    if (rangePattern === undefined) {
+        rangePattern = rangePatterns.default;
+        /** IMPL DETAILS */
+        // Now we have to replace {0} & {1} with actual pattern
+        for (var _b = 0, _c = rangePattern.patternParts; _b < _c.length; _b++) {
+            var patternPart = _c[_b];
+            if (patternPart.pattern === '{0}' || patternPart.pattern === '{1}') {
+                patternPart.pattern = pattern;
+            }
+        }
+    }
+    for (var _d = 0, _e = rangePattern.patternParts; _d < _e.length; _d++) {
+        var rangePatternPart = _e[_d];
+        var source = rangePatternPart.source, pattern_1 = rangePatternPart.pattern;
+        var z = void 0;
+        if (source === _types_date_time__WEBPACK_IMPORTED_MODULE_4__.RangePatternType.startRange ||
+            source === _types_date_time__WEBPACK_IMPORTED_MODULE_4__.RangePatternType.shared) {
+            z = x;
+        }
+        else {
+            z = y;
+        }
+        var patternParts = (0,_PartitionPattern__WEBPACK_IMPORTED_MODULE_3__.PartitionPattern)(pattern_1);
+        var partResult = (0,_FormatDateTimePattern__WEBPACK_IMPORTED_MODULE_2__.FormatDateTimePattern)(dtf, patternParts, z, implDetails);
+        for (var _f = 0, partResult_1 = partResult; _f < partResult_1.length; _f++) {
+            var r = partResult_1[_f];
+            r.source = source;
+        }
+        result = result.concat(partResult);
+    }
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/ToDateTimeOptions.js":
+/*!****************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/ToDateTimeOptions.js ***!
+  \****************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ToDateTimeOptions": () => (/* binding */ ToDateTimeOptions)
+/* harmony export */ });
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+/**
+ * https://tc39.es/ecma402/#sec-todatetimeoptions
+ * @param options
+ * @param required
+ * @param defaults
+ */
+function ToDateTimeOptions(options, required, defaults) {
+    if (options === undefined) {
+        options = null;
+    }
+    else {
+        options = (0,_262__WEBPACK_IMPORTED_MODULE_0__.ToObject)(options);
+    }
+    options = Object.create(options);
+    var needDefaults = true;
+    if (required === 'date' || required === 'any') {
+        for (var _i = 0, _a = ['weekday', 'year', 'month', 'day']; _i < _a.length; _i++) {
+            var prop = _a[_i];
+            var value = options[prop];
+            if (value !== undefined) {
+                needDefaults = false;
+            }
+        }
+    }
+    if (required === 'time' || required === 'any') {
+        for (var _b = 0, _c = [
+            'dayPeriod',
+            'hour',
+            'minute',
+            'second',
+            'fractionalSecondDigits',
+        ]; _b < _c.length; _b++) {
+            var prop = _c[_b];
+            var value = options[prop];
+            if (value !== undefined) {
+                needDefaults = false;
+            }
+        }
+    }
+    if (options.dateStyle !== undefined || options.timeStyle !== undefined) {
+        needDefaults = false;
+    }
+    if (required === 'date' && options.timeStyle) {
+        throw new TypeError('Intl.DateTimeFormat date was required but timeStyle was included');
+    }
+    if (required === 'time' && options.dateStyle) {
+        throw new TypeError('Intl.DateTimeFormat time was required but dateStyle was included');
+    }
+    if (needDefaults && (defaults === 'date' || defaults === 'all')) {
+        for (var _d = 0, _e = ['year', 'month', 'day']; _d < _e.length; _d++) {
+            var prop = _e[_d];
+            options[prop] = 'numeric';
+        }
+    }
+    if (needDefaults && (defaults === 'time' || defaults === 'all')) {
+        for (var _f = 0, _g = ['hour', 'minute', 'second']; _f < _g.length; _f++) {
+            var prop = _g[_f];
+            options[prop] = 'numeric';
+        }
+    }
+    return options;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/ToLocalTime.js":
+/*!**********************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/ToLocalTime.js ***!
+  \**********************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ToLocalTime": () => (/* binding */ ToLocalTime)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+
+function getApplicableZoneData(t, timeZone, tzData) {
+    var _a;
+    var zoneData = tzData[timeZone];
+    // We don't have data for this so just say it's UTC
+    if (!zoneData) {
+        return [0, false];
+    }
+    var i = 0;
+    var offset = 0;
+    var dst = false;
+    for (; i <= zoneData.length; i++) {
+        if (i === zoneData.length || zoneData[i][0] * 1e3 > t) {
+            ;
+            _a = zoneData[i - 1], offset = _a[2], dst = _a[3];
+            break;
+        }
+    }
+    return [offset * 1e3, dst];
+}
+/**
+ * https://tc39.es/ecma402/#sec-tolocaltime
+ * @param t
+ * @param calendar
+ * @param timeZone
+ */
+function ToLocalTime(t, calendar, timeZone, _a) {
+    var tzData = _a.tzData;
+    (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)((0,_262__WEBPACK_IMPORTED_MODULE_1__.Type)(t) === 'Number', 'invalid time');
+    (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)(calendar === 'gregory', 'We only support Gregory calendar right now');
+    var _b = getApplicableZoneData(t, timeZone, tzData), timeZoneOffset = _b[0], inDST = _b[1];
+    var tz = t + timeZoneOffset;
+    var year = (0,_262__WEBPACK_IMPORTED_MODULE_1__.YearFromTime)(tz);
+    return {
+        weekday: (0,_262__WEBPACK_IMPORTED_MODULE_1__.WeekDay)(tz),
+        era: year < 0 ? 'BC' : 'AD',
+        year: year,
+        relatedYear: undefined,
+        yearName: undefined,
+        month: (0,_262__WEBPACK_IMPORTED_MODULE_1__.MonthFromTime)(tz),
+        day: (0,_262__WEBPACK_IMPORTED_MODULE_1__.DateFromTime)(tz),
+        hour: (0,_262__WEBPACK_IMPORTED_MODULE_1__.HourFromTime)(tz),
+        minute: (0,_262__WEBPACK_IMPORTED_MODULE_1__.MinFromTime)(tz),
+        second: (0,_262__WEBPACK_IMPORTED_MODULE_1__.SecFromTime)(tz),
+        millisecond: (0,_262__WEBPACK_IMPORTED_MODULE_1__.msFromTime)(tz),
+        inDST: inDST,
+        // IMPORTANT: Not in spec
+        timeZoneOffset: timeZoneOffset,
+    };
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/skeleton.js":
+/*!*******************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/skeleton.js ***!
+  \*******************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "processDateTimePattern": () => (/* binding */ processDateTimePattern),
+/* harmony export */   "parseDateTimeSkeleton": () => (/* binding */ parseDateTimeSkeleton),
+/* harmony export */   "splitFallbackRangePattern": () => (/* binding */ splitFallbackRangePattern),
+/* harmony export */   "splitRangePattern": () => (/* binding */ splitRangePattern)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _types_date_time__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../types/date-time */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/types/date-time.js");
+
+
+/**
+ * https://unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table
+ * Credit: https://github.com/caridy/intl-datetimeformat-pattern/blob/master/index.js
+ * with some tweaks
+ */
+var DATE_TIME_REGEX = /(?:[Eec]{1,6}|G{1,5}|[Qq]{1,5}|(?:[yYur]+|U{1,5})|[ML]{1,5}|d{1,2}|D{1,3}|F{1}|[abB]{1,5}|[hkHK]{1,2}|w{1,2}|W{1}|m{1,2}|s{1,2}|[zZOvVxX]{1,4})(?=([^']*'[^']*')*[^']*$)/g;
+// trim patterns after transformations
+var expPatternTrimmer = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+function matchSkeletonPattern(match, result) {
+    var len = match.length;
+    switch (match[0]) {
+        // Era
+        case 'G':
+            result.era = len === 4 ? 'long' : len === 5 ? 'narrow' : 'short';
+            return '{era}';
+        // Year
+        case 'y':
+        case 'Y':
+        case 'u':
+        case 'U':
+        case 'r':
+            result.year = len === 2 ? '2-digit' : 'numeric';
+            return '{year}';
+        // Quarter
+        case 'q':
+        case 'Q':
+            throw new RangeError('`w/Q` (quarter) patterns are not supported');
+        // Month
+        case 'M':
+        case 'L':
+            result.month = ['numeric', '2-digit', 'short', 'long', 'narrow'][len - 1];
+            return '{month}';
+        // Week
+        case 'w':
+        case 'W':
+            throw new RangeError('`w/W` (week of year) patterns are not supported');
+        case 'd':
+            result.day = ['numeric', '2-digit'][len - 1];
+            return '{day}';
+        case 'D':
+        case 'F':
+        case 'g':
+            result.day = 'numeric';
+            return '{day}';
+        // Weekday
+        case 'E':
+            result.weekday = len === 4 ? 'long' : len === 5 ? 'narrow' : 'short';
+            return '{weekday}';
+        case 'e':
+            result.weekday = [
+                undefined,
+                undefined,
+                'short',
+                'long',
+                'narrow',
+                'short',
+            ][len - 1];
+            return '{weekday}';
+        case 'c':
+            result.weekday = [
+                undefined,
+                undefined,
+                'short',
+                'long',
+                'narrow',
+                'short',
+            ][len - 1];
+            return '{weekday}';
+        // Period
+        case 'a': // AM, PM
+        case 'b': // am, pm, noon, midnight
+        case 'B': // flexible day periods
+            result.hour12 = true;
+            return '{ampm}';
+        // Hour
+        case 'h':
+            result.hour = ['numeric', '2-digit'][len - 1];
+            result.hour12 = true;
+            return '{hour}';
+        case 'H':
+            result.hour = ['numeric', '2-digit'][len - 1];
+            return '{hour}';
+        case 'K':
+            result.hour = ['numeric', '2-digit'][len - 1];
+            result.hour12 = true;
+            return '{hour}';
+        case 'k':
+            result.hour = ['numeric', '2-digit'][len - 1];
+            return '{hour}';
+        case 'j':
+        case 'J':
+        case 'C':
+            throw new RangeError('`j/J/C` (hour) patterns are not supported, use `h/H/K/k` instead');
+        // Minute
+        case 'm':
+            result.minute = ['numeric', '2-digit'][len - 1];
+            return '{minute}';
+        // Second
+        case 's':
+            result.second = ['numeric', '2-digit'][len - 1];
+            return '{second}';
+        case 'S':
+        case 'A':
+            result.second = 'numeric';
+            return '{second}';
+        // Zone
+        case 'z': // 1..3, 4: specific non-location format
+        case 'Z': // 1..3, 4, 5: The ISO8601 varios formats
+        case 'O': // 1, 4: miliseconds in day short, long
+        case 'v': // 1, 4: generic non-location format
+        case 'V': // 1, 2, 3, 4: time zone ID or city
+        case 'X': // 1, 2, 3, 4: The ISO8601 varios formats
+        case 'x': // 1, 2, 3, 4: The ISO8601 varios formats
+            result.timeZoneName = len < 4 ? 'short' : 'long';
+            return '{timeZoneName}';
+    }
+    return '';
+}
+function skeletonTokenToTable2(c) {
+    switch (c) {
+        // Era
+        case 'G':
+            return 'era';
+        // Year
+        case 'y':
+        case 'Y':
+        case 'u':
+        case 'U':
+        case 'r':
+            return 'year';
+        // Month
+        case 'M':
+        case 'L':
+            return 'month';
+        // Day
+        case 'd':
+        case 'D':
+        case 'F':
+        case 'g':
+            return 'day';
+        // Period
+        case 'a': // AM, PM
+        case 'b': // am, pm, noon, midnight
+        case 'B': // flexible day periods
+            return 'ampm';
+        // Hour
+        case 'h':
+        case 'H':
+        case 'K':
+        case 'k':
+            return 'hour';
+        // Minute
+        case 'm':
+            return 'minute';
+        // Second
+        case 's':
+        case 'S':
+        case 'A':
+            return 'second';
+        default:
+            throw new RangeError('Invalid range pattern token');
+    }
+}
+function processDateTimePattern(pattern, result) {
+    var literals = [];
+    // Use skeleton to populate result, but use mapped pattern to populate pattern
+    var pattern12 = pattern
+        // Double apostrophe
+        .replace(/'{2}/g, '{apostrophe}')
+        // Apostrophe-escaped
+        .replace(/'(.*?)'/g, function (_, literal) {
+        literals.push(literal);
+        return "$$" + (literals.length - 1) + "$$";
+    })
+        .replace(DATE_TIME_REGEX, function (m) { return matchSkeletonPattern(m, result || {}); });
+    //Restore literals
+    if (literals.length) {
+        pattern12 = pattern12
+            .replace(/\$\$(\d+)\$\$/g, function (_, i) {
+            return literals[+i];
+        })
+            .replace(/\{apostrophe\}/g, "'");
+    }
+    // Handle apostrophe-escaped things
+    return [
+        pattern12
+            .replace(/([\s\uFEFF\xA0])\{ampm\}([\s\uFEFF\xA0])/, '$1')
+            .replace('{ampm}', '')
+            .replace(expPatternTrimmer, ''),
+        pattern12,
+    ];
+}
+/**
+ * Parse Date time skeleton into Intl.DateTimeFormatOptions
+ * Ref: https://unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table
+ * @public
+ * @param skeleton skeleton string
+ */
+function parseDateTimeSkeleton(skeleton, rawPattern, rangePatterns, intervalFormatFallback) {
+    if (rawPattern === void 0) { rawPattern = skeleton; }
+    var result = {
+        pattern: '',
+        pattern12: '',
+        skeleton: skeleton,
+        rawPattern: rawPattern,
+        rangePatterns: {},
+        rangePatterns12: {},
+    };
+    if (rangePatterns) {
+        for (var k in rangePatterns) {
+            var key = skeletonTokenToTable2(k);
+            var rawPattern_1 = rangePatterns[k];
+            var intervalResult = {
+                patternParts: [],
+            };
+            var _a = processDateTimePattern(rawPattern_1, intervalResult), pattern_1 = _a[0], pattern12_1 = _a[1];
+            result.rangePatterns[key] = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, intervalResult), { patternParts: splitRangePattern(pattern_1) });
+            result.rangePatterns12[key] = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, intervalResult), { patternParts: splitRangePattern(pattern12_1) });
+        }
+    }
+    else if (intervalFormatFallback) {
+        var patternParts = splitFallbackRangePattern(intervalFormatFallback);
+        result.rangePatterns.default = {
+            patternParts: patternParts,
+        };
+        result.rangePatterns12.default = {
+            patternParts: patternParts,
+        };
+    }
+    // Process skeleton
+    skeleton.replace(DATE_TIME_REGEX, function (m) { return matchSkeletonPattern(m, result); });
+    var _b = processDateTimePattern(rawPattern), pattern = _b[0], pattern12 = _b[1];
+    result.pattern = pattern;
+    result.pattern12 = pattern12;
+    return result;
+}
+function splitFallbackRangePattern(pattern) {
+    var parts = pattern.split(/(\{[0|1]\})/g).filter(Boolean);
+    return parts.map(function (pattern) {
+        switch (pattern) {
+            case '{0}':
+                return {
+                    source: _types_date_time__WEBPACK_IMPORTED_MODULE_1__.RangePatternType.startRange,
+                    pattern: pattern,
+                };
+            case '{1}':
+                return {
+                    source: _types_date_time__WEBPACK_IMPORTED_MODULE_1__.RangePatternType.endRange,
+                    pattern: pattern,
+                };
+            default:
+                return {
+                    source: _types_date_time__WEBPACK_IMPORTED_MODULE_1__.RangePatternType.shared,
+                    pattern: pattern,
+                };
+        }
+    });
+}
+function splitRangePattern(pattern) {
+    var PART_REGEX = /\{(.*?)\}/g;
+    // Map of part and index within the string
+    var parts = {};
+    var match;
+    var splitIndex = 0;
+    while ((match = PART_REGEX.exec(pattern))) {
+        if (!(match[0] in parts)) {
+            parts[match[0]] = match.index;
+        }
+        else {
+            splitIndex = match.index;
+            break;
+        }
+    }
+    if (!splitIndex) {
+        return [
+            {
+                source: _types_date_time__WEBPACK_IMPORTED_MODULE_1__.RangePatternType.startRange,
+                pattern: pattern,
+            },
+        ];
+    }
+    return [
+        {
+            source: _types_date_time__WEBPACK_IMPORTED_MODULE_1__.RangePatternType.startRange,
+            pattern: pattern.slice(0, splitIndex),
+        },
+        {
+            source: _types_date_time__WEBPACK_IMPORTED_MODULE_1__.RangePatternType.endRange,
+            pattern: pattern.slice(splitIndex),
+        },
+    ];
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/utils.js":
+/*!****************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/utils.js ***!
+  \****************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DATE_TIME_PROPS": () => (/* binding */ DATE_TIME_PROPS),
+/* harmony export */   "removalPenalty": () => (/* binding */ removalPenalty),
+/* harmony export */   "additionPenalty": () => (/* binding */ additionPenalty),
+/* harmony export */   "differentNumericTypePenalty": () => (/* binding */ differentNumericTypePenalty),
+/* harmony export */   "longLessPenalty": () => (/* binding */ longLessPenalty),
+/* harmony export */   "longMorePenalty": () => (/* binding */ longMorePenalty),
+/* harmony export */   "shortLessPenalty": () => (/* binding */ shortLessPenalty),
+/* harmony export */   "shortMorePenalty": () => (/* binding */ shortMorePenalty)
+/* harmony export */ });
+var DATE_TIME_PROPS = [
+    'weekday',
+    'era',
+    'year',
+    'month',
+    'day',
+    'hour',
+    'minute',
+    'second',
+    'timeZoneName',
+];
+var removalPenalty = 120;
+var additionPenalty = 20;
+var differentNumericTypePenalty = 15;
+var longLessPenalty = 8;
+var longMorePenalty = 6;
+var shortLessPenalty = 6;
+var shortMorePenalty = 3;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DefaultNumberOption.js":
+/*!***************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DefaultNumberOption.js ***!
+  \***************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DefaultNumberOption": () => (/* binding */ DefaultNumberOption)
+/* harmony export */ });
+function DefaultNumberOption(val, min, max, fallback) {
+    if (val !== undefined) {
+        val = Number(val);
+        if (isNaN(val) || val < min || val > max) {
+            throw new RangeError(val + " is outside of range [" + min + ", " + max + "]");
+        }
+        return Math.floor(val);
+    }
+    return fallback;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DisplayNames/CanonicalCodeForDisplayNames.js":
+/*!*************************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DisplayNames/CanonicalCodeForDisplayNames.js ***!
+  \*************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CanonicalCodeForDisplayNames": () => (/* binding */ CanonicalCodeForDisplayNames)
+/* harmony export */ });
+/* harmony import */ var _CanonicalizeLocaleList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../CanonicalizeLocaleList */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeLocaleList.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _IsWellFormedCurrencyCode__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../IsWellFormedCurrencyCode */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/IsWellFormedCurrencyCode.js");
+
+
+
+var UNICODE_REGION_SUBTAG_REGEX = /^([a-z]{2}|[0-9]{3})$/i;
+var ALPHA_4 = /^[a-z]{4}$/i;
+function isUnicodeRegionSubtag(region) {
+    return UNICODE_REGION_SUBTAG_REGEX.test(region);
+}
+function isUnicodeScriptSubtag(script) {
+    return ALPHA_4.test(script);
+}
+function CanonicalCodeForDisplayNames(type, code) {
+    if (type === 'language') {
+        return (0,_CanonicalizeLocaleList__WEBPACK_IMPORTED_MODULE_0__.CanonicalizeLocaleList)([code])[0];
+    }
+    if (type === 'region') {
+        if (!isUnicodeRegionSubtag(code)) {
+            throw RangeError('invalid region');
+        }
+        return code.toUpperCase();
+    }
+    if (type === 'script') {
+        if (!isUnicodeScriptSubtag(code)) {
+            throw RangeError('invalid script');
+        }
+        return "" + code[0].toUpperCase() + code.slice(1).toLowerCase();
+    }
+    (0,_utils__WEBPACK_IMPORTED_MODULE_1__.invariant)(type === 'currency', 'invalid type');
+    if (!(0,_IsWellFormedCurrencyCode__WEBPACK_IMPORTED_MODULE_2__.IsWellFormedCurrencyCode)(code)) {
+        throw RangeError('invalid currency');
+    }
+    return code.toUpperCase();
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/GetNumberOption.js":
+/*!***********************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/GetNumberOption.js ***!
+  \***********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GetNumberOption": () => (/* binding */ GetNumberOption)
+/* harmony export */ });
+/* harmony import */ var _DefaultNumberOption__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DefaultNumberOption */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DefaultNumberOption.js");
+/**
+ * https://tc39.es/ecma402/#sec-getnumberoption
+ * @param options
+ * @param property
+ * @param min
+ * @param max
+ * @param fallback
+ */
+
+function GetNumberOption(options, property, minimum, maximum, fallback) {
+    var val = options[property];
+    // @ts-expect-error
+    return (0,_DefaultNumberOption__WEBPACK_IMPORTED_MODULE_0__.DefaultNumberOption)(val, minimum, maximum, fallback);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/GetOption.js":
+/*!*****************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/GetOption.js ***!
+  \*****************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GetOption": () => (/* binding */ GetOption)
+/* harmony export */ });
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+/**
+ * https://tc39.es/ecma402/#sec-getoption
+ * @param opts
+ * @param prop
+ * @param type
+ * @param values
+ * @param fallback
+ */
+function GetOption(opts, prop, type, values, fallback) {
+    if (typeof opts !== 'object') {
+        throw new TypeError('Options must be an object');
+    }
+    var value = opts[prop];
+    if (value !== undefined) {
+        if (type !== 'boolean' && type !== 'string') {
+            throw new TypeError('invalid type');
+        }
+        if (type === 'boolean') {
+            value = Boolean(value);
+        }
+        if (type === 'string') {
+            value = (0,_262__WEBPACK_IMPORTED_MODULE_0__.ToString)(value);
+        }
+        if (values !== undefined && !values.filter(function (val) { return val == value; }).length) {
+            throw new RangeError(value + " is not within " + values.join(', '));
+        }
+        return value;
+    }
+    return fallback;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/GetOptionsObject.js":
+/*!************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/GetOptionsObject.js ***!
+  \************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GetOptionsObject": () => (/* binding */ GetOptionsObject)
+/* harmony export */ });
+/**
+ * https://tc39.es/ecma402/#sec-getoptionsobject
+ * @param options
+ * @returns
+ */
+function GetOptionsObject(options) {
+    if (typeof options === 'undefined') {
+        return Object.create(null);
+    }
+    if (typeof options === 'object') {
+        return options;
+    }
+    throw new TypeError('Options must be an object');
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/IsSanctionedSimpleUnitIdentifier.js":
+/*!****************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/IsSanctionedSimpleUnitIdentifier.js ***!
+  \****************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SANCTIONED_UNITS": () => (/* binding */ SANCTIONED_UNITS),
+/* harmony export */   "removeUnitNamespace": () => (/* binding */ removeUnitNamespace),
+/* harmony export */   "SIMPLE_UNITS": () => (/* binding */ SIMPLE_UNITS),
+/* harmony export */   "IsSanctionedSimpleUnitIdentifier": () => (/* binding */ IsSanctionedSimpleUnitIdentifier)
+/* harmony export */ });
+/**
+ * https://tc39.es/ecma402/#table-sanctioned-simple-unit-identifiers
+ */
+var SANCTIONED_UNITS = [
+    'angle-degree',
+    'area-acre',
+    'area-hectare',
+    'concentr-percent',
+    'digital-bit',
+    'digital-byte',
+    'digital-gigabit',
+    'digital-gigabyte',
+    'digital-kilobit',
+    'digital-kilobyte',
+    'digital-megabit',
+    'digital-megabyte',
+    'digital-petabyte',
+    'digital-terabit',
+    'digital-terabyte',
+    'duration-day',
+    'duration-hour',
+    'duration-millisecond',
+    'duration-minute',
+    'duration-month',
+    'duration-second',
+    'duration-week',
+    'duration-year',
+    'length-centimeter',
+    'length-foot',
+    'length-inch',
+    'length-kilometer',
+    'length-meter',
+    'length-mile-scandinavian',
+    'length-mile',
+    'length-millimeter',
+    'length-yard',
+    'mass-gram',
+    'mass-kilogram',
+    'mass-ounce',
+    'mass-pound',
+    'mass-stone',
+    'temperature-celsius',
+    'temperature-fahrenheit',
+    'volume-fluid-ounce',
+    'volume-gallon',
+    'volume-liter',
+    'volume-milliliter',
+];
+// In CLDR, the unit name always follows the form `namespace-unit` pattern.
+// For example: `digital-bit` instead of `bit`. This function removes the namespace prefix.
+function removeUnitNamespace(unit) {
+    return unit.slice(unit.indexOf('-') + 1);
+}
+/**
+ * https://tc39.es/ecma402/#table-sanctioned-simple-unit-identifiers
+ */
+var SIMPLE_UNITS = SANCTIONED_UNITS.map(removeUnitNamespace);
+/**
+ * https://tc39.es/ecma402/#sec-issanctionedsimpleunitidentifier
+ */
+function IsSanctionedSimpleUnitIdentifier(unitIdentifier) {
+    return SIMPLE_UNITS.indexOf(unitIdentifier) > -1;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/IsValidTimeZoneName.js":
+/*!***************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/IsValidTimeZoneName.js ***!
+  \***************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IsValidTimeZoneName": () => (/* binding */ IsValidTimeZoneName)
+/* harmony export */ });
+/**
+ * https://tc39.es/ecma402/#sec-isvalidtimezonename
+ * @param tz
+ * @param implDetails implementation details
+ */
+function IsValidTimeZoneName(tz, _a) {
+    var tzData = _a.tzData, uppercaseLinks = _a.uppercaseLinks;
+    var uppercasedTz = tz.toUpperCase();
+    var zoneNames = new Set();
+    Object.keys(tzData)
+        .map(function (z) { return z.toUpperCase(); })
+        .forEach(function (z) { return zoneNames.add(z); });
+    return zoneNames.has(uppercasedTz) || uppercasedTz in uppercaseLinks;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/IsWellFormedCurrencyCode.js":
+/*!********************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/IsWellFormedCurrencyCode.js ***!
+  \********************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IsWellFormedCurrencyCode": () => (/* binding */ IsWellFormedCurrencyCode)
+/* harmony export */ });
+/**
+ * This follows https://tc39.es/ecma402/#sec-case-sensitivity-and-case-mapping
+ * @param str string to convert
+ */
+function toUpperCase(str) {
+    return str.replace(/([a-z])/g, function (_, c) { return c.toUpperCase(); });
+}
+var NOT_A_Z_REGEX = /[^A-Z]/;
+/**
+ * https://tc39.es/ecma402/#sec-iswellformedcurrencycode
+ */
+function IsWellFormedCurrencyCode(currency) {
+    currency = toUpperCase(currency);
+    if (currency.length !== 3) {
+        return false;
+    }
+    if (NOT_A_Z_REGEX.test(currency)) {
+        return false;
+    }
+    return true;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/IsWellFormedUnitIdentifier.js":
+/*!**********************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/IsWellFormedUnitIdentifier.js ***!
+  \**********************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IsWellFormedUnitIdentifier": () => (/* binding */ IsWellFormedUnitIdentifier)
+/* harmony export */ });
+/* harmony import */ var _IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./IsSanctionedSimpleUnitIdentifier */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/IsSanctionedSimpleUnitIdentifier.js");
+
+/**
+ * This follows https://tc39.es/ecma402/#sec-case-sensitivity-and-case-mapping
+ * @param str string to convert
+ */
+function toLowerCase(str) {
+    return str.replace(/([A-Z])/g, function (_, c) { return c.toLowerCase(); });
+}
+/**
+ * https://tc39.es/ecma402/#sec-iswellformedunitidentifier
+ * @param unit
+ */
+function IsWellFormedUnitIdentifier(unit) {
+    unit = toLowerCase(unit);
+    if ((0,_IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_0__.IsSanctionedSimpleUnitIdentifier)(unit)) {
+        return true;
+    }
+    var units = unit.split('-per-');
+    if (units.length !== 2) {
+        return false;
+    }
+    var numerator = units[0], denominator = units[1];
+    if (!(0,_IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_0__.IsSanctionedSimpleUnitIdentifier)(numerator) ||
+        !(0,_IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_0__.IsSanctionedSimpleUnitIdentifier)(denominator)) {
+        return false;
+    }
+    return true;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/LookupMatcher.js":
+/*!*********************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/LookupMatcher.js ***!
+  \*********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "LookupMatcher": () => (/* binding */ LookupMatcher)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _BestAvailableLocale__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BestAvailableLocale */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/BestAvailableLocale.js");
+
+
+/**
+ * https://tc39.es/ecma402/#sec-lookupmatcher
+ * @param availableLocales
+ * @param requestedLocales
+ * @param getDefaultLocale
+ */
+function LookupMatcher(availableLocales, requestedLocales, getDefaultLocale) {
+    var result = { locale: '' };
+    for (var _i = 0, requestedLocales_1 = requestedLocales; _i < requestedLocales_1.length; _i++) {
+        var locale = requestedLocales_1[_i];
+        var noExtensionLocale = locale.replace(_utils__WEBPACK_IMPORTED_MODULE_0__.UNICODE_EXTENSION_SEQUENCE_REGEX, '');
+        var availableLocale = (0,_BestAvailableLocale__WEBPACK_IMPORTED_MODULE_1__.BestAvailableLocale)(availableLocales, noExtensionLocale);
+        if (availableLocale) {
+            result.locale = availableLocale;
+            if (locale !== noExtensionLocale) {
+                result.extension = locale.slice(noExtensionLocale.length + 1, locale.length);
+            }
+            return result;
+        }
+    }
+    result.locale = getDefaultLocale();
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/LookupSupportedLocales.js":
+/*!******************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/LookupSupportedLocales.js ***!
+  \******************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "LookupSupportedLocales": () => (/* binding */ LookupSupportedLocales)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _BestAvailableLocale__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BestAvailableLocale */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/BestAvailableLocale.js");
+
+
+/**
+ * https://tc39.es/ecma402/#sec-lookupsupportedlocales
+ * @param availableLocales
+ * @param requestedLocales
+ */
+function LookupSupportedLocales(availableLocales, requestedLocales) {
+    var subset = [];
+    for (var _i = 0, requestedLocales_1 = requestedLocales; _i < requestedLocales_1.length; _i++) {
+        var locale = requestedLocales_1[_i];
+        var noExtensionLocale = locale.replace(_utils__WEBPACK_IMPORTED_MODULE_0__.UNICODE_EXTENSION_SEQUENCE_REGEX, '');
+        var availableLocale = (0,_BestAvailableLocale__WEBPACK_IMPORTED_MODULE_1__.BestAvailableLocale)(availableLocales, noExtensionLocale);
+        if (availableLocale) {
+            subset.push(availableLocale);
+        }
+    }
+    return subset;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ComputeExponent.js":
+/*!************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ComputeExponent.js ***!
+  \************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ComputeExponent": () => (/* binding */ ComputeExponent)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _ComputeExponentForMagnitude__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ComputeExponentForMagnitude */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ComputeExponentForMagnitude.js");
+/* harmony import */ var _FormatNumericToString__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FormatNumericToString */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/FormatNumericToString.js");
+
+
+
+/**
+ * The abstract operation ComputeExponent computes an exponent (power of ten) by which to scale x
+ * according to the number formatting settings. It handles cases such as 999 rounding up to 1000,
+ * requiring a different exponent.
+ *
+ * NOT IN SPEC: it returns [exponent, magnitude].
+ */
+function ComputeExponent(numberFormat, x, _a) {
+    var getInternalSlots = _a.getInternalSlots;
+    if (x === 0) {
+        return [0, 0];
+    }
+    if (x < 0) {
+        x = -x;
+    }
+    var magnitude = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.getMagnitude)(x);
+    var exponent = (0,_ComputeExponentForMagnitude__WEBPACK_IMPORTED_MODULE_1__.ComputeExponentForMagnitude)(numberFormat, magnitude, {
+        getInternalSlots: getInternalSlots,
+    });
+    // Preserve more precision by doing multiplication when exponent is negative.
+    x = exponent < 0 ? x * Math.pow(10, -exponent) : x / Math.pow(10, exponent);
+    var formatNumberResult = (0,_FormatNumericToString__WEBPACK_IMPORTED_MODULE_2__.FormatNumericToString)(getInternalSlots(numberFormat), x);
+    if (formatNumberResult.roundedNumber === 0) {
+        return [exponent, magnitude];
+    }
+    var newMagnitude = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.getMagnitude)(formatNumberResult.roundedNumber);
+    if (newMagnitude === magnitude - exponent) {
+        return [exponent, magnitude];
+    }
+    return [
+        (0,_ComputeExponentForMagnitude__WEBPACK_IMPORTED_MODULE_1__.ComputeExponentForMagnitude)(numberFormat, magnitude + 1, {
+            getInternalSlots: getInternalSlots,
+        }),
+        magnitude + 1,
+    ];
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ComputeExponentForMagnitude.js":
+/*!************************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ComputeExponentForMagnitude.js ***!
+  \************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ComputeExponentForMagnitude": () => (/* binding */ ComputeExponentForMagnitude)
+/* harmony export */ });
+/**
+ * The abstract operation ComputeExponentForMagnitude computes an exponent by which to scale a
+ * number of the given magnitude (power of ten of the most significant digit) according to the
+ * locale and the desired notation (scientific, engineering, or compact).
+ */
+function ComputeExponentForMagnitude(numberFormat, magnitude, _a) {
+    var getInternalSlots = _a.getInternalSlots;
+    var internalSlots = getInternalSlots(numberFormat);
+    var notation = internalSlots.notation, dataLocaleData = internalSlots.dataLocaleData, numberingSystem = internalSlots.numberingSystem;
+    switch (notation) {
+        case 'standard':
+            return 0;
+        case 'scientific':
+            return magnitude;
+        case 'engineering':
+            return Math.floor(magnitude / 3) * 3;
+        default: {
+            // Let exponent be an implementation- and locale-dependent (ILD) integer by which to scale a
+            // number of the given magnitude in compact notation for the current locale.
+            var compactDisplay = internalSlots.compactDisplay, style = internalSlots.style, currencyDisplay = internalSlots.currencyDisplay;
+            var thresholdMap = void 0;
+            if (style === 'currency' && currencyDisplay !== 'name') {
+                var currency = dataLocaleData.numbers.currency[numberingSystem] ||
+                    dataLocaleData.numbers.currency[dataLocaleData.numbers.nu[0]];
+                thresholdMap = currency.short;
+            }
+            else {
+                var decimal = dataLocaleData.numbers.decimal[numberingSystem] ||
+                    dataLocaleData.numbers.decimal[dataLocaleData.numbers.nu[0]];
+                thresholdMap = compactDisplay === 'long' ? decimal.long : decimal.short;
+            }
+            if (!thresholdMap) {
+                return 0;
+            }
+            var num = String(Math.pow(10, magnitude));
+            var thresholds = Object.keys(thresholdMap); // TODO: this can be pre-processed
+            if (num < thresholds[0]) {
+                return 0;
+            }
+            if (num > thresholds[thresholds.length - 1]) {
+                return thresholds[thresholds.length - 1].length - 1;
+            }
+            var i = thresholds.indexOf(num);
+            if (i === -1) {
+                return 0;
+            }
+            // See https://unicode.org/reports/tr35/tr35-numbers.html#Compact_Number_Formats
+            // Special handling if the pattern is precisely `0`.
+            var magnitudeKey = thresholds[i];
+            // TODO: do we need to handle plural here?
+            var compactPattern = thresholdMap[magnitudeKey].other;
+            if (compactPattern === '0') {
+                return 0;
+            }
+            // Example: in zh-TW, `10000000` maps to `0000萬`. So we need to return 8 - 4 = 4 here.
+            return (magnitudeKey.length -
+                thresholdMap[magnitudeKey].other.match(/0+/)[0].length);
+        }
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/CurrencyDigits.js":
+/*!***********************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/CurrencyDigits.js ***!
+  \***********************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CurrencyDigits": () => (/* binding */ CurrencyDigits)
+/* harmony export */ });
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+/**
+ * https://tc39.es/ecma402/#sec-currencydigits
+ */
+function CurrencyDigits(c, _a) {
+    var currencyDigitsData = _a.currencyDigitsData;
+    return (0,_262__WEBPACK_IMPORTED_MODULE_0__.HasOwnProperty)(currencyDigitsData, c)
+        ? currencyDigitsData[c]
+        : 2;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/FormatNumericToParts.js":
+/*!*****************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/FormatNumericToParts.js ***!
+  \*****************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FormatNumericToParts": () => (/* binding */ FormatNumericToParts)
+/* harmony export */ });
+/* harmony import */ var _PartitionNumberPattern__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PartitionNumberPattern */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/PartitionNumberPattern.js");
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+
+function FormatNumericToParts(nf, x, implDetails) {
+    var parts = (0,_PartitionNumberPattern__WEBPACK_IMPORTED_MODULE_0__.PartitionNumberPattern)(nf, x, implDetails);
+    var result = (0,_262__WEBPACK_IMPORTED_MODULE_1__.ArrayCreate)(0);
+    for (var _i = 0, parts_1 = parts; _i < parts_1.length; _i++) {
+        var part = parts_1[_i];
+        result.push({
+            type: part.type,
+            value: part.value,
+        });
+    }
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/FormatNumericToString.js":
+/*!******************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/FormatNumericToString.js ***!
+  \******************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FormatNumericToString": () => (/* binding */ FormatNumericToString)
+/* harmony export */ });
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+/* harmony import */ var _ToRawPrecision__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ToRawPrecision */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawPrecision.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _ToRawFixed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ToRawFixed */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawFixed.js");
+
+
+
+
+/**
+ * https://tc39.es/ecma402/#sec-formatnumberstring
+ */
+function FormatNumericToString(intlObject, x) {
+    var isNegative = x < 0 || (0,_262__WEBPACK_IMPORTED_MODULE_0__.SameValue)(x, -0);
+    if (isNegative) {
+        x = -x;
+    }
+    var result;
+    var rourndingType = intlObject.roundingType;
+    switch (rourndingType) {
+        case 'significantDigits':
+            result = (0,_ToRawPrecision__WEBPACK_IMPORTED_MODULE_1__.ToRawPrecision)(x, intlObject.minimumSignificantDigits, intlObject.maximumSignificantDigits);
+            break;
+        case 'fractionDigits':
+            result = (0,_ToRawFixed__WEBPACK_IMPORTED_MODULE_2__.ToRawFixed)(x, intlObject.minimumFractionDigits, intlObject.maximumFractionDigits);
+            break;
+        default:
+            result = (0,_ToRawPrecision__WEBPACK_IMPORTED_MODULE_1__.ToRawPrecision)(x, 1, 2);
+            if (result.integerDigitsCount > 1) {
+                result = (0,_ToRawFixed__WEBPACK_IMPORTED_MODULE_2__.ToRawFixed)(x, 0, 0);
+            }
+            break;
+    }
+    x = result.roundedNumber;
+    var string = result.formattedString;
+    var int = result.integerDigitsCount;
+    var minInteger = intlObject.minimumIntegerDigits;
+    if (int < minInteger) {
+        var forwardZeros = (0,_utils__WEBPACK_IMPORTED_MODULE_3__.repeat)('0', minInteger - int);
+        string = forwardZeros + string;
+    }
+    if (isNegative) {
+        x = -x;
+    }
+    return { roundedNumber: x, formattedString: string };
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/InitializeNumberFormat.js":
+/*!*******************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/InitializeNumberFormat.js ***!
+  \*******************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "InitializeNumberFormat": () => (/* binding */ InitializeNumberFormat)
+/* harmony export */ });
+/* harmony import */ var _CanonicalizeLocaleList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../CanonicalizeLocaleList */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeLocaleList.js");
+/* harmony import */ var _GetOption__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../GetOption */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/GetOption.js");
+/* harmony import */ var _ResolveLocale__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ResolveLocale */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/ResolveLocale.js");
+/* harmony import */ var _SetNumberFormatUnitOptions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SetNumberFormatUnitOptions */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/SetNumberFormatUnitOptions.js");
+/* harmony import */ var _CurrencyDigits__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CurrencyDigits */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/CurrencyDigits.js");
+/* harmony import */ var _SetNumberFormatDigitOptions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./SetNumberFormatDigitOptions */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/SetNumberFormatDigitOptions.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _CoerceOptionsToObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../CoerceOptionsToObject */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CoerceOptionsToObject.js");
+
+
+
+
+
+
+
+
+/**
+ * https://tc39.es/ecma402/#sec-initializenumberformat
+ */
+function InitializeNumberFormat(nf, locales, opts, _a) {
+    var getInternalSlots = _a.getInternalSlots, localeData = _a.localeData, availableLocales = _a.availableLocales, numberingSystemNames = _a.numberingSystemNames, getDefaultLocale = _a.getDefaultLocale, currencyDigitsData = _a.currencyDigitsData;
+    // @ts-ignore
+    var requestedLocales = (0,_CanonicalizeLocaleList__WEBPACK_IMPORTED_MODULE_0__.CanonicalizeLocaleList)(locales);
+    var options = (0,_CoerceOptionsToObject__WEBPACK_IMPORTED_MODULE_1__.CoerceOptionsToObject)(opts);
+    var opt = Object.create(null);
+    var matcher = (0,_GetOption__WEBPACK_IMPORTED_MODULE_2__.GetOption)(options, 'localeMatcher', 'string', ['lookup', 'best fit'], 'best fit');
+    opt.localeMatcher = matcher;
+    var numberingSystem = (0,_GetOption__WEBPACK_IMPORTED_MODULE_2__.GetOption)(options, 'numberingSystem', 'string', undefined, undefined);
+    if (numberingSystem !== undefined &&
+        numberingSystemNames.indexOf(numberingSystem) < 0) {
+        // 8.a. If numberingSystem does not match the Unicode Locale Identifier type nonterminal,
+        // throw a RangeError exception.
+        throw RangeError("Invalid numberingSystems: " + numberingSystem);
+    }
+    opt.nu = numberingSystem;
+    var r = (0,_ResolveLocale__WEBPACK_IMPORTED_MODULE_3__.ResolveLocale)(availableLocales, requestedLocales, opt, 
+    // [[RelevantExtensionKeys]] slot, which is a constant
+    ['nu'], localeData, getDefaultLocale);
+    var dataLocaleData = localeData[r.dataLocale];
+    (0,_utils__WEBPACK_IMPORTED_MODULE_4__.invariant)(!!dataLocaleData, "Missing locale data for " + r.dataLocale);
+    var internalSlots = getInternalSlots(nf);
+    internalSlots.locale = r.locale;
+    internalSlots.dataLocale = r.dataLocale;
+    internalSlots.numberingSystem = r.nu;
+    internalSlots.dataLocaleData = dataLocaleData;
+    (0,_SetNumberFormatUnitOptions__WEBPACK_IMPORTED_MODULE_5__.SetNumberFormatUnitOptions)(nf, options, { getInternalSlots: getInternalSlots });
+    var style = internalSlots.style;
+    var mnfdDefault;
+    var mxfdDefault;
+    if (style === 'currency') {
+        var currency = internalSlots.currency;
+        var cDigits = (0,_CurrencyDigits__WEBPACK_IMPORTED_MODULE_6__.CurrencyDigits)(currency, { currencyDigitsData: currencyDigitsData });
+        mnfdDefault = cDigits;
+        mxfdDefault = cDigits;
+    }
+    else {
+        mnfdDefault = 0;
+        mxfdDefault = style === 'percent' ? 0 : 3;
+    }
+    var notation = (0,_GetOption__WEBPACK_IMPORTED_MODULE_2__.GetOption)(options, 'notation', 'string', ['standard', 'scientific', 'engineering', 'compact'], 'standard');
+    internalSlots.notation = notation;
+    (0,_SetNumberFormatDigitOptions__WEBPACK_IMPORTED_MODULE_7__.SetNumberFormatDigitOptions)(internalSlots, options, mnfdDefault, mxfdDefault, notation);
+    var compactDisplay = (0,_GetOption__WEBPACK_IMPORTED_MODULE_2__.GetOption)(options, 'compactDisplay', 'string', ['short', 'long'], 'short');
+    if (notation === 'compact') {
+        internalSlots.compactDisplay = compactDisplay;
+    }
+    var useGrouping = (0,_GetOption__WEBPACK_IMPORTED_MODULE_2__.GetOption)(options, 'useGrouping', 'boolean', undefined, true);
+    internalSlots.useGrouping = useGrouping;
+    var signDisplay = (0,_GetOption__WEBPACK_IMPORTED_MODULE_2__.GetOption)(options, 'signDisplay', 'string', ['auto', 'never', 'always', 'exceptZero'], 'auto');
+    internalSlots.signDisplay = signDisplay;
+    return nf;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/PartitionNumberPattern.js":
+/*!*******************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/PartitionNumberPattern.js ***!
+  \*******************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PartitionNumberPattern": () => (/* binding */ PartitionNumberPattern)
+/* harmony export */ });
+/* harmony import */ var _FormatNumericToString__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormatNumericToString */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/FormatNumericToString.js");
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+/* harmony import */ var _ComputeExponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ComputeExponent */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ComputeExponent.js");
+/* harmony import */ var _format_to_parts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./format_to_parts */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/format_to_parts.js");
+
+
+
+
+/**
+ * https://tc39.es/ecma402/#sec-formatnumberstring
+ */
+function PartitionNumberPattern(numberFormat, x, _a) {
+    var _b;
+    var getInternalSlots = _a.getInternalSlots;
+    var internalSlots = getInternalSlots(numberFormat);
+    var pl = internalSlots.pl, dataLocaleData = internalSlots.dataLocaleData, numberingSystem = internalSlots.numberingSystem;
+    var symbols = dataLocaleData.numbers.symbols[numberingSystem] ||
+        dataLocaleData.numbers.symbols[dataLocaleData.numbers.nu[0]];
+    var magnitude = 0;
+    var exponent = 0;
+    var n;
+    if (isNaN(x)) {
+        n = symbols.nan;
+    }
+    else if (!isFinite(x)) {
+        n = symbols.infinity;
+    }
+    else {
+        if (internalSlots.style === 'percent') {
+            x *= 100;
+        }
+        ;
+        _b = (0,_ComputeExponent__WEBPACK_IMPORTED_MODULE_0__.ComputeExponent)(numberFormat, x, {
+            getInternalSlots: getInternalSlots,
+        }), exponent = _b[0], magnitude = _b[1];
+        // Preserve more precision by doing multiplication when exponent is negative.
+        x = exponent < 0 ? x * Math.pow(10, -exponent) : x / Math.pow(10, exponent);
+        var formatNumberResult = (0,_FormatNumericToString__WEBPACK_IMPORTED_MODULE_1__.FormatNumericToString)(internalSlots, x);
+        n = formatNumberResult.formattedString;
+        x = formatNumberResult.roundedNumber;
+    }
+    // Based on https://tc39.es/ecma402/#sec-getnumberformatpattern
+    // We need to do this before `x` is rounded.
+    var sign;
+    var signDisplay = internalSlots.signDisplay;
+    switch (signDisplay) {
+        case 'never':
+            sign = 0;
+            break;
+        case 'auto':
+            if ((0,_262__WEBPACK_IMPORTED_MODULE_2__.SameValue)(x, 0) || x > 0 || isNaN(x)) {
+                sign = 0;
+            }
+            else {
+                sign = -1;
+            }
+            break;
+        case 'always':
+            if ((0,_262__WEBPACK_IMPORTED_MODULE_2__.SameValue)(x, 0) || x > 0 || isNaN(x)) {
+                sign = 1;
+            }
+            else {
+                sign = -1;
+            }
+            break;
+        default:
+            // x === 0 -> x is 0 or x is -0
+            if (x === 0 || isNaN(x)) {
+                sign = 0;
+            }
+            else if (x > 0) {
+                sign = 1;
+            }
+            else {
+                sign = -1;
+            }
+    }
+    return (0,_format_to_parts__WEBPACK_IMPORTED_MODULE_3__["default"])({ roundedNumber: x, formattedString: n, exponent: exponent, magnitude: magnitude, sign: sign }, internalSlots.dataLocaleData, pl, internalSlots);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/SetNumberFormatDigitOptions.js":
+/*!************************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/SetNumberFormatDigitOptions.js ***!
+  \************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SetNumberFormatDigitOptions": () => (/* binding */ SetNumberFormatDigitOptions)
+/* harmony export */ });
+/* harmony import */ var _GetNumberOption__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../GetNumberOption */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/GetNumberOption.js");
+/* harmony import */ var _DefaultNumberOption__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../DefaultNumberOption */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DefaultNumberOption.js");
+
+
+/**
+ * https://tc39.es/ecma402/#sec-setnfdigitoptions
+ */
+function SetNumberFormatDigitOptions(internalSlots, opts, mnfdDefault, mxfdDefault, notation) {
+    var mnid = (0,_GetNumberOption__WEBPACK_IMPORTED_MODULE_0__.GetNumberOption)(opts, 'minimumIntegerDigits', 1, 21, 1);
+    var mnfd = opts.minimumFractionDigits;
+    var mxfd = opts.maximumFractionDigits;
+    var mnsd = opts.minimumSignificantDigits;
+    var mxsd = opts.maximumSignificantDigits;
+    internalSlots.minimumIntegerDigits = mnid;
+    if (mnsd !== undefined || mxsd !== undefined) {
+        internalSlots.roundingType = 'significantDigits';
+        mnsd = (0,_DefaultNumberOption__WEBPACK_IMPORTED_MODULE_1__.DefaultNumberOption)(mnsd, 1, 21, 1);
+        mxsd = (0,_DefaultNumberOption__WEBPACK_IMPORTED_MODULE_1__.DefaultNumberOption)(mxsd, mnsd, 21, 21);
+        internalSlots.minimumSignificantDigits = mnsd;
+        internalSlots.maximumSignificantDigits = mxsd;
+    }
+    else if (mnfd !== undefined || mxfd !== undefined) {
+        internalSlots.roundingType = 'fractionDigits';
+        mnfd = (0,_DefaultNumberOption__WEBPACK_IMPORTED_MODULE_1__.DefaultNumberOption)(mnfd, 0, 20, mnfdDefault);
+        var mxfdActualDefault = Math.max(mnfd, mxfdDefault);
+        mxfd = (0,_DefaultNumberOption__WEBPACK_IMPORTED_MODULE_1__.DefaultNumberOption)(mxfd, mnfd, 20, mxfdActualDefault);
+        internalSlots.minimumFractionDigits = mnfd;
+        internalSlots.maximumFractionDigits = mxfd;
+    }
+    else if (notation === 'compact') {
+        internalSlots.roundingType = 'compactRounding';
+    }
+    else {
+        internalSlots.roundingType = 'fractionDigits';
+        internalSlots.minimumFractionDigits = mnfdDefault;
+        internalSlots.maximumFractionDigits = mxfdDefault;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/SetNumberFormatUnitOptions.js":
+/*!***********************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/SetNumberFormatUnitOptions.js ***!
+  \***********************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SetNumberFormatUnitOptions": () => (/* binding */ SetNumberFormatUnitOptions)
+/* harmony export */ });
+/* harmony import */ var _GetOption__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../GetOption */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/GetOption.js");
+/* harmony import */ var _IsWellFormedCurrencyCode__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../IsWellFormedCurrencyCode */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/IsWellFormedCurrencyCode.js");
+/* harmony import */ var _IsWellFormedUnitIdentifier__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../IsWellFormedUnitIdentifier */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/IsWellFormedUnitIdentifier.js");
+
+
+
+/**
+ * https://tc39.es/ecma402/#sec-setnumberformatunitoptions
+ */
+function SetNumberFormatUnitOptions(nf, options, _a) {
+    if (options === void 0) { options = Object.create(null); }
+    var getInternalSlots = _a.getInternalSlots;
+    var internalSlots = getInternalSlots(nf);
+    var style = (0,_GetOption__WEBPACK_IMPORTED_MODULE_0__.GetOption)(options, 'style', 'string', ['decimal', 'percent', 'currency', 'unit'], 'decimal');
+    internalSlots.style = style;
+    var currency = (0,_GetOption__WEBPACK_IMPORTED_MODULE_0__.GetOption)(options, 'currency', 'string', undefined, undefined);
+    if (currency !== undefined && !(0,_IsWellFormedCurrencyCode__WEBPACK_IMPORTED_MODULE_1__.IsWellFormedCurrencyCode)(currency)) {
+        throw RangeError('Malformed currency code');
+    }
+    if (style === 'currency' && currency === undefined) {
+        throw TypeError('currency cannot be undefined');
+    }
+    var currencyDisplay = (0,_GetOption__WEBPACK_IMPORTED_MODULE_0__.GetOption)(options, 'currencyDisplay', 'string', ['code', 'symbol', 'narrowSymbol', 'name'], 'symbol');
+    var currencySign = (0,_GetOption__WEBPACK_IMPORTED_MODULE_0__.GetOption)(options, 'currencySign', 'string', ['standard', 'accounting'], 'standard');
+    var unit = (0,_GetOption__WEBPACK_IMPORTED_MODULE_0__.GetOption)(options, 'unit', 'string', undefined, undefined);
+    if (unit !== undefined && !(0,_IsWellFormedUnitIdentifier__WEBPACK_IMPORTED_MODULE_2__.IsWellFormedUnitIdentifier)(unit)) {
+        throw RangeError('Invalid unit argument for Intl.NumberFormat()');
+    }
+    if (style === 'unit' && unit === undefined) {
+        throw TypeError('unit cannot be undefined');
+    }
+    var unitDisplay = (0,_GetOption__WEBPACK_IMPORTED_MODULE_0__.GetOption)(options, 'unitDisplay', 'string', ['short', 'narrow', 'long'], 'short');
+    if (style === 'currency') {
+        internalSlots.currency = currency.toUpperCase();
+        internalSlots.currencyDisplay = currencyDisplay;
+        internalSlots.currencySign = currencySign;
+    }
+    if (style === 'unit') {
+        internalSlots.unit = unit;
+        internalSlots.unitDisplay = unitDisplay;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawFixed.js":
+/*!*******************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawFixed.js ***!
+  \*******************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ToRawFixed": () => (/* binding */ ToRawFixed)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+
+/**
+ * TODO: dedup with intl-pluralrules and support BigInt
+ * https://tc39.es/ecma402/#sec-torawfixed
+ * @param x a finite non-negative Number or BigInt
+ * @param minFraction and integer between 0 and 20
+ * @param maxFraction and integer between 0 and 20
+ */
+function ToRawFixed(x, minFraction, maxFraction) {
+    var f = maxFraction;
+    var n = Math.round(x * Math.pow(10, f));
+    var xFinal = n / Math.pow(10, f);
+    // n is a positive integer, but it is possible to be greater than 1e21.
+    // In such case we will go the slow path.
+    // See also: https://tc39.es/ecma262/#sec-numeric-types-number-tostring
+    var m;
+    if (n < 1e21) {
+        m = n.toString();
+    }
+    else {
+        m = n.toString();
+        var _a = m.split('e'), mantissa = _a[0], exponent = _a[1];
+        m = mantissa.replace('.', '');
+        m = m + (0,_utils__WEBPACK_IMPORTED_MODULE_0__.repeat)('0', Math.max(+exponent - m.length + 1, 0));
+    }
+    var int;
+    if (f !== 0) {
+        var k = m.length;
+        if (k <= f) {
+            var z = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.repeat)('0', f + 1 - k);
+            m = z + m;
+            k = f + 1;
+        }
+        var a = m.slice(0, k - f);
+        var b = m.slice(k - f);
+        m = a + "." + b;
+        int = a.length;
+    }
+    else {
+        int = m.length;
+    }
+    var cut = maxFraction - minFraction;
+    while (cut > 0 && m[m.length - 1] === '0') {
+        m = m.slice(0, -1);
+        cut--;
+    }
+    if (m[m.length - 1] === '.') {
+        m = m.slice(0, -1);
+    }
+    return { formattedString: m, roundedNumber: xFinal, integerDigitsCount: int };
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawPrecision.js":
+/*!***********************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawPrecision.js ***!
+  \***********************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ToRawPrecision": () => (/* binding */ ToRawPrecision)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+
+function ToRawPrecision(x, minPrecision, maxPrecision) {
+    var p = maxPrecision;
+    var m;
+    var e;
+    var xFinal;
+    if (x === 0) {
+        m = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.repeat)('0', p);
+        e = 0;
+        xFinal = 0;
+    }
+    else {
+        var xToString = x.toString();
+        // If xToString is formatted as scientific notation, the number is either very small or very
+        // large. If the precision of the formatted string is lower that requested max precision, we
+        // should still infer them from the formatted string, otherwise the formatted result might have
+        // precision loss (e.g. 1e41 will not have 0 in every trailing digits).
+        var xToStringExponentIndex = xToString.indexOf('e');
+        var _a = xToString.split('e'), xToStringMantissa = _a[0], xToStringExponent = _a[1];
+        var xToStringMantissaWithoutDecimalPoint = xToStringMantissa.replace('.', '');
+        if (xToStringExponentIndex >= 0 &&
+            xToStringMantissaWithoutDecimalPoint.length <= p) {
+            e = +xToStringExponent;
+            m =
+                xToStringMantissaWithoutDecimalPoint +
+                    (0,_utils__WEBPACK_IMPORTED_MODULE_0__.repeat)('0', p - xToStringMantissaWithoutDecimalPoint.length);
+            xFinal = x;
+        }
+        else {
+            e = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.getMagnitude)(x);
+            var decimalPlaceOffset = e - p + 1;
+            // n is the integer containing the required precision digits. To derive the formatted string,
+            // we will adjust its decimal place in the logic below.
+            var n = Math.round(adjustDecimalPlace(x, decimalPlaceOffset));
+            // The rounding caused the change of magnitude, so we should increment `e` by 1.
+            if (adjustDecimalPlace(n, p - 1) >= 10) {
+                e = e + 1;
+                // Divide n by 10 to swallow one precision.
+                n = Math.floor(n / 10);
+            }
+            m = n.toString();
+            // Equivalent of n * 10 ** (e - p + 1)
+            xFinal = adjustDecimalPlace(n, p - 1 - e);
+        }
+    }
+    var int;
+    if (e >= p - 1) {
+        m = m + (0,_utils__WEBPACK_IMPORTED_MODULE_0__.repeat)('0', e - p + 1);
+        int = e + 1;
+    }
+    else if (e >= 0) {
+        m = m.slice(0, e + 1) + "." + m.slice(e + 1);
+        int = e + 1;
+    }
+    else {
+        m = "0." + (0,_utils__WEBPACK_IMPORTED_MODULE_0__.repeat)('0', -e - 1) + m;
+        int = 1;
+    }
+    if (m.indexOf('.') >= 0 && maxPrecision > minPrecision) {
+        var cut = maxPrecision - minPrecision;
+        while (cut > 0 && m[m.length - 1] === '0') {
+            m = m.slice(0, -1);
+            cut--;
+        }
+        if (m[m.length - 1] === '.') {
+            m = m.slice(0, -1);
+        }
+    }
+    return { formattedString: m, roundedNumber: xFinal, integerDigitsCount: int };
+    // x / (10 ** magnitude), but try to preserve as much floating point precision as possible.
+    function adjustDecimalPlace(x, magnitude) {
+        return magnitude < 0 ? x * Math.pow(10, -magnitude) : x / Math.pow(10, magnitude);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/format_to_parts.js":
+/*!************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/format_to_parts.js ***!
+  \************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+var _digit_mapping_json__WEBPACK_IMPORTED_MODULE_0___namespace_cache;
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ formatToParts)
+/* harmony export */ });
+/* harmony import */ var _ToRawFixed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ToRawFixed */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawFixed.js");
+/* harmony import */ var _digit_mapping_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./digit-mapping.json */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/digit-mapping.json");
+
+
+// This is from: unicode-12.1.0/General_Category/Symbol/regex.js
+// IE11 does not support unicode flag, otherwise this is just /\p{S}/u.
+var S_UNICODE_REGEX = /[\$\+<->\^`\|~\xA2-\xA6\xA8\xA9\xAC\xAE-\xB1\xB4\xB8\xD7\xF7\u02C2-\u02C5\u02D2-\u02DF\u02E5-\u02EB\u02ED\u02EF-\u02FF\u0375\u0384\u0385\u03F6\u0482\u058D-\u058F\u0606-\u0608\u060B\u060E\u060F\u06DE\u06E9\u06FD\u06FE\u07F6\u07FE\u07FF\u09F2\u09F3\u09FA\u09FB\u0AF1\u0B70\u0BF3-\u0BFA\u0C7F\u0D4F\u0D79\u0E3F\u0F01-\u0F03\u0F13\u0F15-\u0F17\u0F1A-\u0F1F\u0F34\u0F36\u0F38\u0FBE-\u0FC5\u0FC7-\u0FCC\u0FCE\u0FCF\u0FD5-\u0FD8\u109E\u109F\u1390-\u1399\u166D\u17DB\u1940\u19DE-\u19FF\u1B61-\u1B6A\u1B74-\u1B7C\u1FBD\u1FBF-\u1FC1\u1FCD-\u1FCF\u1FDD-\u1FDF\u1FED-\u1FEF\u1FFD\u1FFE\u2044\u2052\u207A-\u207C\u208A-\u208C\u20A0-\u20BF\u2100\u2101\u2103-\u2106\u2108\u2109\u2114\u2116-\u2118\u211E-\u2123\u2125\u2127\u2129\u212E\u213A\u213B\u2140-\u2144\u214A-\u214D\u214F\u218A\u218B\u2190-\u2307\u230C-\u2328\u232B-\u2426\u2440-\u244A\u249C-\u24E9\u2500-\u2767\u2794-\u27C4\u27C7-\u27E5\u27F0-\u2982\u2999-\u29D7\u29DC-\u29FB\u29FE-\u2B73\u2B76-\u2B95\u2B98-\u2BFF\u2CE5-\u2CEA\u2E80-\u2E99\u2E9B-\u2EF3\u2F00-\u2FD5\u2FF0-\u2FFB\u3004\u3012\u3013\u3020\u3036\u3037\u303E\u303F\u309B\u309C\u3190\u3191\u3196-\u319F\u31C0-\u31E3\u3200-\u321E\u322A-\u3247\u3250\u3260-\u327F\u328A-\u32B0\u32C0-\u33FF\u4DC0-\u4DFF\uA490-\uA4C6\uA700-\uA716\uA720\uA721\uA789\uA78A\uA828-\uA82B\uA836-\uA839\uAA77-\uAA79\uAB5B\uFB29\uFBB2-\uFBC1\uFDFC\uFDFD\uFE62\uFE64-\uFE66\uFE69\uFF04\uFF0B\uFF1C-\uFF1E\uFF3E\uFF40\uFF5C\uFF5E\uFFE0-\uFFE6\uFFE8-\uFFEE\uFFFC\uFFFD]|\uD800[\uDD37-\uDD3F\uDD79-\uDD89\uDD8C-\uDD8E\uDD90-\uDD9B\uDDA0\uDDD0-\uDDFC]|\uD802[\uDC77\uDC78\uDEC8]|\uD805\uDF3F|\uD807[\uDFD5-\uDFF1]|\uD81A[\uDF3C-\uDF3F\uDF45]|\uD82F\uDC9C|\uD834[\uDC00-\uDCF5\uDD00-\uDD26\uDD29-\uDD64\uDD6A-\uDD6C\uDD83\uDD84\uDD8C-\uDDA9\uDDAE-\uDDE8\uDE00-\uDE41\uDE45\uDF00-\uDF56]|\uD835[\uDEC1\uDEDB\uDEFB\uDF15\uDF35\uDF4F\uDF6F\uDF89\uDFA9\uDFC3]|\uD836[\uDC00-\uDDFF\uDE37-\uDE3A\uDE6D-\uDE74\uDE76-\uDE83\uDE85\uDE86]|\uD838[\uDD4F\uDEFF]|\uD83B[\uDCAC\uDCB0\uDD2E\uDEF0\uDEF1]|\uD83C[\uDC00-\uDC2B\uDC30-\uDC93\uDCA0-\uDCAE\uDCB1-\uDCBF\uDCC1-\uDCCF\uDCD1-\uDCF5\uDD10-\uDD6C\uDD70-\uDDAC\uDDE6-\uDE02\uDE10-\uDE3B\uDE40-\uDE48\uDE50\uDE51\uDE60-\uDE65\uDF00-\uDFFF]|\uD83D[\uDC00-\uDED5\uDEE0-\uDEEC\uDEF0-\uDEFA\uDF00-\uDF73\uDF80-\uDFD8\uDFE0-\uDFEB]|\uD83E[\uDC00-\uDC0B\uDC10-\uDC47\uDC50-\uDC59\uDC60-\uDC87\uDC90-\uDCAD\uDD00-\uDD0B\uDD0D-\uDD71\uDD73-\uDD76\uDD7A-\uDDA2\uDDA5-\uDDAA\uDDAE-\uDDCA\uDDCD-\uDE53\uDE60-\uDE6D\uDE70-\uDE73\uDE78-\uDE7A\uDE80-\uDE82\uDE90-\uDE95]/;
+// /^\p{S}/u
+var CARET_S_UNICODE_REGEX = new RegExp("^" + S_UNICODE_REGEX.source);
+// /\p{S}$/u
+var S_DOLLAR_UNICODE_REGEX = new RegExp(S_UNICODE_REGEX.source + "$");
+var CLDR_NUMBER_PATTERN = /[#0](?:[\.,][#0]+)*/g;
+function formatToParts(numberResult, data, pl, options) {
+    var sign = numberResult.sign, exponent = numberResult.exponent, magnitude = numberResult.magnitude;
+    var notation = options.notation, style = options.style, numberingSystem = options.numberingSystem;
+    var defaultNumberingSystem = data.numbers.nu[0];
+    // #region Part 1: partition and interpolate the CLDR number pattern.
+    // ----------------------------------------------------------
+    var compactNumberPattern = null;
+    if (notation === 'compact' && magnitude) {
+        compactNumberPattern = getCompactDisplayPattern(numberResult, pl, data, style, options.compactDisplay, options.currencyDisplay, numberingSystem);
+    }
+    // This is used multiple times
+    var nonNameCurrencyPart;
+    if (style === 'currency' && options.currencyDisplay !== 'name') {
+        var byCurrencyDisplay = data.currencies[options.currency];
+        if (byCurrencyDisplay) {
+            switch (options.currencyDisplay) {
+                case 'code':
+                    nonNameCurrencyPart = options.currency;
+                    break;
+                case 'symbol':
+                    nonNameCurrencyPart = byCurrencyDisplay.symbol;
+                    break;
+                default:
+                    nonNameCurrencyPart = byCurrencyDisplay.narrow;
+                    break;
+            }
+        }
+        else {
+            // Fallback for unknown currency
+            nonNameCurrencyPart = options.currency;
+        }
+    }
+    var numberPattern;
+    if (!compactNumberPattern) {
+        // Note: if the style is unit, or is currency and the currency display is name,
+        // its unit parts will be interpolated in part 2. So here we can fallback to decimal.
+        if (style === 'decimal' ||
+            style === 'unit' ||
+            (style === 'currency' && options.currencyDisplay === 'name')) {
+            // Shortcut for decimal
+            var decimalData = data.numbers.decimal[numberingSystem] ||
+                data.numbers.decimal[defaultNumberingSystem];
+            numberPattern = getPatternForSign(decimalData.standard, sign);
+        }
+        else if (style === 'currency') {
+            var currencyData = data.numbers.currency[numberingSystem] ||
+                data.numbers.currency[defaultNumberingSystem];
+            // We replace number pattern part with `0` for easier postprocessing.
+            numberPattern = getPatternForSign(currencyData[options.currencySign], sign);
+        }
+        else {
+            // percent
+            var percentPattern = data.numbers.percent[numberingSystem] ||
+                data.numbers.percent[defaultNumberingSystem];
+            numberPattern = getPatternForSign(percentPattern, sign);
+        }
+    }
+    else {
+        numberPattern = compactNumberPattern;
+    }
+    // Extract the decimal number pattern string. It looks like "#,##0,00", which will later be
+    // used to infer decimal group sizes.
+    var decimalNumberPattern = CLDR_NUMBER_PATTERN.exec(numberPattern)[0];
+    // Now we start to substitute patterns
+    // 1. replace strings like `0` and `#,##0.00` with `{0}`
+    // 2. unquote characters (invariant: the quoted characters does not contain the special tokens)
+    numberPattern = numberPattern
+        .replace(CLDR_NUMBER_PATTERN, '{0}')
+        .replace(/'(.)'/g, '$1');
+    // Handle currency spacing (both compact and non-compact).
+    if (style === 'currency' && options.currencyDisplay !== 'name') {
+        var currencyData = data.numbers.currency[numberingSystem] ||
+            data.numbers.currency[defaultNumberingSystem];
+        // See `currencySpacing` substitution rule in TR-35.
+        // Here we always assume the currencyMatch is "[:^S:]" and surroundingMatch is "[:digit:]".
+        //
+        // Example 1: for pattern "#,##0.00¤" with symbol "US$", we replace "¤" with the symbol,
+        // but insert an extra non-break space before the symbol, because "[:^S:]" matches "U" in
+        // "US$" and "[:digit:]" matches the latn numbering system digits.
+        //
+        // Example 2: for pattern "¤#,##0.00" with symbol "US$", there is no spacing between symbol
+        // and number, because `$` does not match "[:^S:]".
+        //
+        // Implementation note: here we do the best effort to infer the insertion.
+        // We also assume that `beforeInsertBetween` and `afterInsertBetween` will never be `;`.
+        var afterCurrency = currencyData.currencySpacing.afterInsertBetween;
+        if (afterCurrency && !S_DOLLAR_UNICODE_REGEX.test(nonNameCurrencyPart)) {
+            numberPattern = numberPattern.replace('¤{0}', "\u00A4" + afterCurrency + "{0}");
+        }
+        var beforeCurrency = currencyData.currencySpacing.beforeInsertBetween;
+        if (beforeCurrency && !CARET_S_UNICODE_REGEX.test(nonNameCurrencyPart)) {
+            numberPattern = numberPattern.replace('{0}¤', "{0}" + beforeCurrency + "\u00A4");
+        }
+    }
+    // The following tokens are special: `{0}`, `¤`, `%`, `-`, `+`, `{c:...}.
+    var numberPatternParts = numberPattern.split(/({c:[^}]+}|\{0\}|[¤%\-\+])/g);
+    var numberParts = [];
+    var symbols = data.numbers.symbols[numberingSystem] ||
+        data.numbers.symbols[defaultNumberingSystem];
+    for (var _i = 0, numberPatternParts_1 = numberPatternParts; _i < numberPatternParts_1.length; _i++) {
+        var part = numberPatternParts_1[_i];
+        if (!part) {
+            continue;
+        }
+        switch (part) {
+            case '{0}': {
+                // We only need to handle scientific and engineering notation here.
+                numberParts.push.apply(numberParts, paritionNumberIntoParts(symbols, numberResult, notation, exponent, numberingSystem, 
+                // If compact number pattern exists, do not insert group separators.
+                !compactNumberPattern && options.useGrouping, decimalNumberPattern));
+                break;
+            }
+            case '-':
+                numberParts.push({ type: 'minusSign', value: symbols.minusSign });
+                break;
+            case '+':
+                numberParts.push({ type: 'plusSign', value: symbols.plusSign });
+                break;
+            case '%':
+                numberParts.push({ type: 'percentSign', value: symbols.percentSign });
+                break;
+            case '¤':
+                // Computed above when handling currency spacing.
+                numberParts.push({ type: 'currency', value: nonNameCurrencyPart });
+                break;
+            default:
+                if (/^\{c:/.test(part)) {
+                    numberParts.push({
+                        type: 'compact',
+                        value: part.substring(3, part.length - 1),
+                    });
+                }
+                else {
+                    // literal
+                    numberParts.push({ type: 'literal', value: part });
+                }
+                break;
+        }
+    }
+    // #endregion
+    // #region Part 2: interpolate unit pattern if necessary.
+    // ----------------------------------------------
+    switch (style) {
+        case 'currency': {
+            // `currencyDisplay: 'name'` has similar pattern handling as units.
+            if (options.currencyDisplay === 'name') {
+                var unitPattern = (data.numbers.currency[numberingSystem] ||
+                    data.numbers.currency[defaultNumberingSystem]).unitPattern;
+                // Select plural
+                var unitName = void 0;
+                var currencyNameData = data.currencies[options.currency];
+                if (currencyNameData) {
+                    unitName = selectPlural(pl, numberResult.roundedNumber * Math.pow(10, exponent), currencyNameData.displayName);
+                }
+                else {
+                    // Fallback for unknown currency
+                    unitName = options.currency;
+                }
+                // Do {0} and {1} substitution
+                var unitPatternParts = unitPattern.split(/(\{[01]\})/g);
+                var result = [];
+                for (var _a = 0, unitPatternParts_1 = unitPatternParts; _a < unitPatternParts_1.length; _a++) {
+                    var part = unitPatternParts_1[_a];
+                    switch (part) {
+                        case '{0}':
+                            result.push.apply(result, numberParts);
+                            break;
+                        case '{1}':
+                            result.push({ type: 'currency', value: unitName });
+                            break;
+                        default:
+                            if (part) {
+                                result.push({ type: 'literal', value: part });
+                            }
+                            break;
+                    }
+                }
+                return result;
+            }
+            else {
+                return numberParts;
+            }
+        }
+        case 'unit': {
+            var unit = options.unit, unitDisplay = options.unitDisplay;
+            var unitData = data.units.simple[unit];
+            var unitPattern = void 0;
+            if (unitData) {
+                // Simple unit pattern
+                unitPattern = selectPlural(pl, numberResult.roundedNumber * Math.pow(10, exponent), data.units.simple[unit][unitDisplay]);
+            }
+            else {
+                // See: http://unicode.org/reports/tr35/tr35-general.html#perUnitPatterns
+                // If cannot find unit in the simple pattern, it must be "per" compound pattern.
+                // Implementation note: we are not following TR-35 here because we need to format to parts!
+                var _b = unit.split('-per-'), numeratorUnit = _b[0], denominatorUnit = _b[1];
+                unitData = data.units.simple[numeratorUnit];
+                var numeratorUnitPattern = selectPlural(pl, numberResult.roundedNumber * Math.pow(10, exponent), data.units.simple[numeratorUnit][unitDisplay]);
+                var perUnitPattern = data.units.simple[denominatorUnit].perUnit[unitDisplay];
+                if (perUnitPattern) {
+                    // perUnitPattern exists, combine it with numeratorUnitPattern
+                    unitPattern = perUnitPattern.replace('{0}', numeratorUnitPattern);
+                }
+                else {
+                    // get compoundUnit pattern (e.g. "{0} per {1}"), repalce {0} with numerator pattern and {1} with
+                    // the denominator pattern in singular form.
+                    var perPattern = data.units.compound.per[unitDisplay];
+                    var denominatorPattern = selectPlural(pl, 1, data.units.simple[denominatorUnit][unitDisplay]);
+                    unitPattern = unitPattern = perPattern
+                        .replace('{0}', numeratorUnitPattern)
+                        .replace('{1}', denominatorPattern.replace('{0}', ''));
+                }
+            }
+            var result = [];
+            // We need spacing around "{0}" because they are not treated as "unit" parts, but "literal".
+            for (var _c = 0, _d = unitPattern.split(/(\s*\{0\}\s*)/); _c < _d.length; _c++) {
+                var part = _d[_c];
+                var interpolateMatch = /^(\s*)\{0\}(\s*)$/.exec(part);
+                if (interpolateMatch) {
+                    // Space before "{0}"
+                    if (interpolateMatch[1]) {
+                        result.push({ type: 'literal', value: interpolateMatch[1] });
+                    }
+                    // "{0}" itself
+                    result.push.apply(result, numberParts);
+                    // Space after "{0}"
+                    if (interpolateMatch[2]) {
+                        result.push({ type: 'literal', value: interpolateMatch[2] });
+                    }
+                }
+                else if (part) {
+                    result.push({ type: 'unit', value: part });
+                }
+            }
+            return result;
+        }
+        default:
+            return numberParts;
+    }
+    // #endregion
+}
+// A subset of https://tc39.es/ecma402/#sec-partitionnotationsubpattern
+// Plus the exponent parts handling.
+function paritionNumberIntoParts(symbols, numberResult, notation, exponent, numberingSystem, useGrouping, 
+/**
+ * This is the decimal number pattern without signs or symbols.
+ * It is used to infer the group size when `useGrouping` is true.
+ *
+ * A typical value looks like "#,##0.00" (primary group size is 3).
+ * Some locales like Hindi has secondary group size of 2 (e.g. "#,##,##0.00").
+ */
+decimalNumberPattern) {
+    var result = [];
+    // eslint-disable-next-line prefer-const
+    var n = numberResult.formattedString, x = numberResult.roundedNumber;
+    if (isNaN(x)) {
+        return [{ type: 'nan', value: n }];
+    }
+    else if (!isFinite(x)) {
+        return [{ type: 'infinity', value: n }];
+    }
+    var digitReplacementTable = /*#__PURE__*/ (_digit_mapping_json__WEBPACK_IMPORTED_MODULE_0___namespace_cache || (_digit_mapping_json__WEBPACK_IMPORTED_MODULE_0___namespace_cache = __webpack_require__.t(_digit_mapping_json__WEBPACK_IMPORTED_MODULE_0__, 2)))[numberingSystem];
+    if (digitReplacementTable) {
+        n = n.replace(/\d/g, function (digit) { return digitReplacementTable[+digit] || digit; });
+    }
+    // TODO: Else use an implementation dependent algorithm to map n to the appropriate
+    // representation of n in the given numbering system.
+    var decimalSepIndex = n.indexOf('.');
+    var integer;
+    var fraction;
+    if (decimalSepIndex > 0) {
+        integer = n.slice(0, decimalSepIndex);
+        fraction = n.slice(decimalSepIndex + 1);
+    }
+    else {
+        integer = n;
+    }
+    // #region Grouping integer digits
+    // The weird compact and x >= 10000 check is to ensure consistency with Node.js and Chrome.
+    // Note that `de` does not have compact form for thousands, but Node.js does not insert grouping separator
+    // unless the rounded number is greater than 10000:
+    //   NumberFormat('de', {notation: 'compact', compactDisplay: 'short'}).format(1234) //=> "1234"
+    //   NumberFormat('de').format(1234) //=> "1.234"
+    if (useGrouping && (notation !== 'compact' || x >= 10000)) {
+        var groupSepSymbol = symbols.group;
+        var groups = [];
+        // > There may be two different grouping sizes: The primary grouping size used for the least
+        // > significant integer group, and the secondary grouping size used for more significant groups.
+        // > If a pattern contains multiple grouping separators, the interval between the last one and the
+        // > end of the integer defines the primary grouping size, and the interval between the last two
+        // > defines the secondary grouping size. All others are ignored.
+        var integerNumberPattern = decimalNumberPattern.split('.')[0];
+        var patternGroups = integerNumberPattern.split(',');
+        var primaryGroupingSize = 3;
+        var secondaryGroupingSize = 3;
+        if (patternGroups.length > 1) {
+            primaryGroupingSize = patternGroups[patternGroups.length - 1].length;
+        }
+        if (patternGroups.length > 2) {
+            secondaryGroupingSize = patternGroups[patternGroups.length - 2].length;
+        }
+        var i = integer.length - primaryGroupingSize;
+        if (i > 0) {
+            // Slice the least significant integer group
+            groups.push(integer.slice(i, i + primaryGroupingSize));
+            // Then iteratively push the more signicant groups
+            // TODO: handle surrogate pairs in some numbering system digits
+            for (i -= secondaryGroupingSize; i > 0; i -= secondaryGroupingSize) {
+                groups.push(integer.slice(i, i + secondaryGroupingSize));
+            }
+            groups.push(integer.slice(0, i + secondaryGroupingSize));
+        }
+        else {
+            groups.push(integer);
+        }
+        while (groups.length > 0) {
+            var integerGroup = groups.pop();
+            result.push({ type: 'integer', value: integerGroup });
+            if (groups.length > 0) {
+                result.push({ type: 'group', value: groupSepSymbol });
+            }
+        }
+    }
+    else {
+        result.push({ type: 'integer', value: integer });
+    }
+    // #endregion
+    if (fraction !== undefined) {
+        result.push({ type: 'decimal', value: symbols.decimal }, { type: 'fraction', value: fraction });
+    }
+    if ((notation === 'scientific' || notation === 'engineering') &&
+        isFinite(x)) {
+        result.push({ type: 'exponentSeparator', value: symbols.exponential });
+        if (exponent < 0) {
+            result.push({ type: 'exponentMinusSign', value: symbols.minusSign });
+            exponent = -exponent;
+        }
+        var exponentResult = (0,_ToRawFixed__WEBPACK_IMPORTED_MODULE_1__.ToRawFixed)(exponent, 0, 0);
+        result.push({
+            type: 'exponentInteger',
+            value: exponentResult.formattedString,
+        });
+    }
+    return result;
+}
+function getPatternForSign(pattern, sign) {
+    if (pattern.indexOf(';') < 0) {
+        pattern = pattern + ";-" + pattern;
+    }
+    var _a = pattern.split(';'), zeroPattern = _a[0], negativePattern = _a[1];
+    switch (sign) {
+        case 0:
+            return zeroPattern;
+        case -1:
+            return negativePattern;
+        default:
+            return negativePattern.indexOf('-') >= 0
+                ? negativePattern.replace(/-/g, '+')
+                : "+" + zeroPattern;
+    }
+}
+// Find the CLDR pattern for compact notation based on the magnitude of data and style.
+//
+// Example return value: "¤ {c:laki}000;¤{c:laki} -0" (`sw` locale):
+// - Notice the `{c:...}` token that wraps the compact literal.
+// - The consecutive zeros are normalized to single zero to match CLDR_NUMBER_PATTERN.
+//
+// Returning null means the compact display pattern cannot be found.
+function getCompactDisplayPattern(numberResult, pl, data, style, compactDisplay, currencyDisplay, numberingSystem) {
+    var _a;
+    var roundedNumber = numberResult.roundedNumber, sign = numberResult.sign, magnitude = numberResult.magnitude;
+    var magnitudeKey = String(Math.pow(10, magnitude));
+    var defaultNumberingSystem = data.numbers.nu[0];
+    var pattern;
+    if (style === 'currency' && currencyDisplay !== 'name') {
+        var byNumberingSystem = data.numbers.currency;
+        var currencyData = byNumberingSystem[numberingSystem] ||
+            byNumberingSystem[defaultNumberingSystem];
+        // NOTE: compact notation ignores currencySign!
+        var compactPluralRules = (_a = currencyData.short) === null || _a === void 0 ? void 0 : _a[magnitudeKey];
+        if (!compactPluralRules) {
+            return null;
+        }
+        pattern = selectPlural(pl, roundedNumber, compactPluralRules);
+    }
+    else {
+        var byNumberingSystem = data.numbers.decimal;
+        var byCompactDisplay = byNumberingSystem[numberingSystem] ||
+            byNumberingSystem[defaultNumberingSystem];
+        var compactPlaralRule = byCompactDisplay[compactDisplay][magnitudeKey];
+        if (!compactPlaralRule) {
+            return null;
+        }
+        pattern = selectPlural(pl, roundedNumber, compactPlaralRule);
+    }
+    // See https://unicode.org/reports/tr35/tr35-numbers.html#Compact_Number_Formats
+    // > If the value is precisely “0”, either explicit or defaulted, then the normal number format
+    // > pattern for that sort of object is supplied.
+    if (pattern === '0') {
+        return null;
+    }
+    pattern = getPatternForSign(pattern, sign)
+        // Extract compact literal from the pattern
+        .replace(/([^\s;\-\+\d¤]+)/g, '{c:$1}')
+        // We replace one or more zeros with a single zero so it matches `CLDR_NUMBER_PATTERN`.
+        .replace(/0+/, '0');
+    return pattern;
+}
+function selectPlural(pl, x, rules) {
+    return rules[pl.select(x)] || rules.other;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/PartitionPattern.js":
+/*!************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/PartitionPattern.js ***!
+  \************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PartitionPattern": () => (/* binding */ PartitionPattern)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+
+/**
+ * https://tc39.es/ecma402/#sec-partitionpattern
+ * @param pattern
+ */
+function PartitionPattern(pattern) {
+    var result = [];
+    var beginIndex = pattern.indexOf('{');
+    var endIndex = 0;
+    var nextIndex = 0;
+    var length = pattern.length;
+    while (beginIndex < pattern.length && beginIndex > -1) {
+        endIndex = pattern.indexOf('}', beginIndex);
+        (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)(endIndex > beginIndex, "Invalid pattern " + pattern);
+        if (beginIndex > nextIndex) {
+            result.push({
+                type: 'literal',
+                value: pattern.substring(nextIndex, beginIndex),
+            });
+        }
+        result.push({
+            type: pattern.substring(beginIndex + 1, endIndex),
+            value: undefined,
+        });
+        nextIndex = endIndex + 1;
+        beginIndex = pattern.indexOf('{', nextIndex);
+    }
+    if (nextIndex < length) {
+        result.push({
+            type: 'literal',
+            value: pattern.substring(nextIndex, length),
+        });
+    }
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/PluralRules/GetOperands.js":
+/*!*******************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/PluralRules/GetOperands.js ***!
+  \*******************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GetOperands": () => (/* binding */ GetOperands)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+
+/**
+ * http://ecma-international.org/ecma-402/7.0/index.html#sec-getoperands
+ * @param s
+ */
+function GetOperands(s) {
+    (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof s === 'string', "GetOperands should have been called with a string");
+    var n = (0,_262__WEBPACK_IMPORTED_MODULE_1__.ToNumber)(s);
+    (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)(isFinite(n), 'n should be finite');
+    var dp = s.indexOf('.');
+    var iv;
+    var f;
+    var v;
+    var fv = '';
+    if (dp === -1) {
+        iv = n;
+        f = 0;
+        v = 0;
+    }
+    else {
+        iv = s.slice(0, dp);
+        fv = s.slice(dp, s.length);
+        f = (0,_262__WEBPACK_IMPORTED_MODULE_1__.ToNumber)(fv);
+        v = fv.length;
+    }
+    var i = Math.abs((0,_262__WEBPACK_IMPORTED_MODULE_1__.ToNumber)(iv));
+    var w;
+    var t;
+    if (f !== 0) {
+        var ft = fv.replace(/0+$/, '');
+        w = ft.length;
+        t = (0,_262__WEBPACK_IMPORTED_MODULE_1__.ToNumber)(ft);
+    }
+    else {
+        w = 0;
+        t = 0;
+    }
+    return {
+        Number: n,
+        IntegerDigits: i,
+        NumberOfFractionDigits: v,
+        NumberOfFractionDigitsWithoutTrailing: w,
+        FractionDigits: f,
+        FractionDigitsWithoutTrailing: t,
+    };
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/PluralRules/InitializePluralRules.js":
+/*!*****************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/PluralRules/InitializePluralRules.js ***!
+  \*****************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "InitializePluralRules": () => (/* binding */ InitializePluralRules)
+/* harmony export */ });
+/* harmony import */ var _CanonicalizeLocaleList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../CanonicalizeLocaleList */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeLocaleList.js");
+/* harmony import */ var _GetOption__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../GetOption */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/GetOption.js");
+/* harmony import */ var _NumberFormat_SetNumberFormatDigitOptions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../NumberFormat/SetNumberFormatDigitOptions */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/SetNumberFormatDigitOptions.js");
+/* harmony import */ var _ResolveLocale__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ResolveLocale */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/ResolveLocale.js");
+/* harmony import */ var _CoerceOptionsToObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../CoerceOptionsToObject */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CoerceOptionsToObject.js");
+
+
+
+
+
+function InitializePluralRules(pl, locales, options, _a) {
+    var availableLocales = _a.availableLocales, relevantExtensionKeys = _a.relevantExtensionKeys, localeData = _a.localeData, getDefaultLocale = _a.getDefaultLocale, getInternalSlots = _a.getInternalSlots;
+    var requestedLocales = (0,_CanonicalizeLocaleList__WEBPACK_IMPORTED_MODULE_0__.CanonicalizeLocaleList)(locales);
+    var opt = Object.create(null);
+    var opts = (0,_CoerceOptionsToObject__WEBPACK_IMPORTED_MODULE_1__.CoerceOptionsToObject)(options);
+    var internalSlots = getInternalSlots(pl);
+    internalSlots.initializedPluralRules = true;
+    var matcher = (0,_GetOption__WEBPACK_IMPORTED_MODULE_2__.GetOption)(opts, 'localeMatcher', 'string', ['best fit', 'lookup'], 'best fit');
+    opt.localeMatcher = matcher;
+    internalSlots.type = (0,_GetOption__WEBPACK_IMPORTED_MODULE_2__.GetOption)(opts, 'type', 'string', ['cardinal', 'ordinal'], 'cardinal');
+    (0,_NumberFormat_SetNumberFormatDigitOptions__WEBPACK_IMPORTED_MODULE_3__.SetNumberFormatDigitOptions)(internalSlots, opts, 0, 3, 'standard');
+    var r = (0,_ResolveLocale__WEBPACK_IMPORTED_MODULE_4__.ResolveLocale)(availableLocales, requestedLocales, opt, relevantExtensionKeys, localeData, getDefaultLocale);
+    internalSlots.locale = r.locale;
+    return pl;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/PluralRules/ResolvePlural.js":
+/*!*********************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/PluralRules/ResolvePlural.js ***!
+  \*********************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ResolvePlural": () => (/* binding */ ResolvePlural)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+/* harmony import */ var _NumberFormat_FormatNumericToString__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../NumberFormat/FormatNumericToString */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/FormatNumericToString.js");
+/* harmony import */ var _GetOperands__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./GetOperands */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/PluralRules/GetOperands.js");
+
+
+
+
+/**
+ * http://ecma-international.org/ecma-402/7.0/index.html#sec-resolveplural
+ * @param pl
+ * @param n
+ * @param PluralRuleSelect Has to pass in bc it's implementation-specific
+ */
+function ResolvePlural(pl, n, _a) {
+    var getInternalSlots = _a.getInternalSlots, PluralRuleSelect = _a.PluralRuleSelect;
+    var internalSlots = getInternalSlots(pl);
+    (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)((0,_262__WEBPACK_IMPORTED_MODULE_1__.Type)(internalSlots) === 'Object', 'pl has to be an object');
+    (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)('initializedPluralRules' in internalSlots, 'pluralrules must be initialized');
+    (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)((0,_262__WEBPACK_IMPORTED_MODULE_1__.Type)(n) === 'Number', 'n must be a number');
+    if (!isFinite(n)) {
+        return 'other';
+    }
+    var locale = internalSlots.locale, type = internalSlots.type;
+    var res = (0,_NumberFormat_FormatNumericToString__WEBPACK_IMPORTED_MODULE_2__.FormatNumericToString)(internalSlots, n);
+    var s = res.formattedString;
+    var operands = (0,_GetOperands__WEBPACK_IMPORTED_MODULE_3__.GetOperands)(s);
+    return PluralRuleSelect(locale, type, n, operands);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/FormatRelativeTime.js":
+/*!*********************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/FormatRelativeTime.js ***!
+  \*********************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FormatRelativeTime": () => (/* binding */ FormatRelativeTime)
+/* harmony export */ });
+/* harmony import */ var _PartitionRelativeTimePattern__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PartitionRelativeTimePattern */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/PartitionRelativeTimePattern.js");
+
+function FormatRelativeTime(rtf, value, unit, implDetails) {
+    var parts = (0,_PartitionRelativeTimePattern__WEBPACK_IMPORTED_MODULE_0__.PartitionRelativeTimePattern)(rtf, value, unit, implDetails);
+    var result = '';
+    for (var _i = 0, parts_1 = parts; _i < parts_1.length; _i++) {
+        var part = parts_1[_i];
+        result += part.value;
+    }
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/FormatRelativeTimeToParts.js":
+/*!****************************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/FormatRelativeTimeToParts.js ***!
+  \****************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FormatRelativeTimeToParts": () => (/* binding */ FormatRelativeTimeToParts)
+/* harmony export */ });
+/* harmony import */ var _PartitionRelativeTimePattern__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PartitionRelativeTimePattern */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/PartitionRelativeTimePattern.js");
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+
+function FormatRelativeTimeToParts(rtf, value, unit, implDetails) {
+    var parts = (0,_PartitionRelativeTimePattern__WEBPACK_IMPORTED_MODULE_0__.PartitionRelativeTimePattern)(rtf, value, unit, implDetails);
+    var result = (0,_262__WEBPACK_IMPORTED_MODULE_1__.ArrayCreate)(0);
+    for (var _i = 0, parts_1 = parts; _i < parts_1.length; _i++) {
+        var part = parts_1[_i];
+        var o = {
+            type: part.type,
+            value: part.value,
+        };
+        if ('unit' in part) {
+            o.unit = part.unit;
+        }
+        result.push(o);
+    }
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/InitializeRelativeTimeFormat.js":
+/*!*******************************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/InitializeRelativeTimeFormat.js ***!
+  \*******************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "InitializeRelativeTimeFormat": () => (/* binding */ InitializeRelativeTimeFormat)
+/* harmony export */ });
+/* harmony import */ var _CanonicalizeLocaleList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../CanonicalizeLocaleList */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeLocaleList.js");
+/* harmony import */ var _GetOption__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../GetOption */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/GetOption.js");
+/* harmony import */ var _ResolveLocale__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ResolveLocale */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/ResolveLocale.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _CoerceOptionsToObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../CoerceOptionsToObject */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CoerceOptionsToObject.js");
+
+
+
+
+
+var NUMBERING_SYSTEM_REGEX = /^[a-z0-9]{3,8}(-[a-z0-9]{3,8})*$/i;
+function InitializeRelativeTimeFormat(rtf, locales, options, _a) {
+    var getInternalSlots = _a.getInternalSlots, availableLocales = _a.availableLocales, relevantExtensionKeys = _a.relevantExtensionKeys, localeData = _a.localeData, getDefaultLocale = _a.getDefaultLocale;
+    var internalSlots = getInternalSlots(rtf);
+    internalSlots.initializedRelativeTimeFormat = true;
+    var requestedLocales = (0,_CanonicalizeLocaleList__WEBPACK_IMPORTED_MODULE_0__.CanonicalizeLocaleList)(locales);
+    var opt = Object.create(null);
+    var opts = (0,_CoerceOptionsToObject__WEBPACK_IMPORTED_MODULE_1__.CoerceOptionsToObject)(options);
+    var matcher = (0,_GetOption__WEBPACK_IMPORTED_MODULE_2__.GetOption)(opts, 'localeMatcher', 'string', ['best fit', 'lookup'], 'best fit');
+    opt.localeMatcher = matcher;
+    var numberingSystem = (0,_GetOption__WEBPACK_IMPORTED_MODULE_2__.GetOption)(opts, 
+    // @ts-expect-error TS option is wack
+    'numberingSystem', 'string', undefined, undefined);
+    if (numberingSystem !== undefined) {
+        if (!NUMBERING_SYSTEM_REGEX.test(numberingSystem)) {
+            throw new RangeError("Invalid numbering system " + numberingSystem);
+        }
+    }
+    opt.nu = numberingSystem;
+    var r = (0,_ResolveLocale__WEBPACK_IMPORTED_MODULE_3__.ResolveLocale)(availableLocales, requestedLocales, opt, relevantExtensionKeys, localeData, getDefaultLocale);
+    var locale = r.locale, nu = r.nu;
+    internalSlots.locale = locale;
+    internalSlots.style = (0,_GetOption__WEBPACK_IMPORTED_MODULE_2__.GetOption)(opts, 'style', 'string', ['long', 'narrow', 'short'], 'long');
+    internalSlots.numeric = (0,_GetOption__WEBPACK_IMPORTED_MODULE_2__.GetOption)(opts, 'numeric', 'string', ['always', 'auto'], 'always');
+    var fields = localeData[r.dataLocale];
+    (0,_utils__WEBPACK_IMPORTED_MODULE_4__.invariant)(!!fields, "Missing locale data for " + r.dataLocale);
+    internalSlots.fields = fields;
+    internalSlots.numberFormat = new Intl.NumberFormat(locales);
+    internalSlots.pluralRules = new Intl.PluralRules(locales);
+    internalSlots.numberingSystem = nu;
+    return rtf;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/MakePartsList.js":
+/*!****************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/MakePartsList.js ***!
+  \****************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MakePartsList": () => (/* binding */ MakePartsList)
+/* harmony export */ });
+/* harmony import */ var _PartitionPattern__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../PartitionPattern */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/PartitionPattern.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+
+
+function MakePartsList(pattern, unit, parts) {
+    var patternParts = (0,_PartitionPattern__WEBPACK_IMPORTED_MODULE_0__.PartitionPattern)(pattern);
+    var result = [];
+    for (var _i = 0, patternParts_1 = patternParts; _i < patternParts_1.length; _i++) {
+        var patternPart = patternParts_1[_i];
+        if (patternPart.type === 'literal') {
+            result.push({
+                type: 'literal',
+                value: patternPart.value,
+            });
+        }
+        else {
+            (0,_utils__WEBPACK_IMPORTED_MODULE_1__.invariant)(patternPart.type === '0', "Malformed pattern " + pattern);
+            for (var _a = 0, parts_1 = parts; _a < parts_1.length; _a++) {
+                var part = parts_1[_a];
+                result.push({
+                    type: part.type,
+                    value: part.value,
+                    unit: unit,
+                });
+            }
+        }
+    }
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/PartitionRelativeTimePattern.js":
+/*!*******************************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/PartitionRelativeTimePattern.js ***!
+  \*******************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PartitionRelativeTimePattern": () => (/* binding */ PartitionRelativeTimePattern)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _SingularRelativeTimeUnit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SingularRelativeTimeUnit */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/SingularRelativeTimeUnit.js");
+/* harmony import */ var _MakePartsList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MakePartsList */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/MakePartsList.js");
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+
+
+
+function PartitionRelativeTimePattern(rtf, value, unit, _a) {
+    var getInternalSlots = _a.getInternalSlots;
+    (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)((0,_262__WEBPACK_IMPORTED_MODULE_1__.Type)(value) === 'Number', "value must be number, instead got " + typeof value, TypeError);
+    (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)((0,_262__WEBPACK_IMPORTED_MODULE_1__.Type)(unit) === 'String', "unit must be number, instead got " + typeof value, TypeError);
+    if (isNaN(value) || !isFinite(value)) {
+        throw new RangeError("Invalid value " + value);
+    }
+    var resolvedUnit = (0,_SingularRelativeTimeUnit__WEBPACK_IMPORTED_MODULE_2__.SingularRelativeTimeUnit)(unit);
+    var _b = getInternalSlots(rtf), fields = _b.fields, style = _b.style, numeric = _b.numeric, pluralRules = _b.pluralRules, numberFormat = _b.numberFormat;
+    var entry = resolvedUnit;
+    if (style === 'short') {
+        entry = resolvedUnit + "-short";
+    }
+    else if (style === 'narrow') {
+        entry = resolvedUnit + "-narrow";
+    }
+    if (!(entry in fields)) {
+        entry = resolvedUnit;
+    }
+    var patterns = fields[entry];
+    if (numeric === 'auto') {
+        if ((0,_262__WEBPACK_IMPORTED_MODULE_1__.ToString)(value) in patterns) {
+            return [
+                {
+                    type: 'literal',
+                    value: patterns[(0,_262__WEBPACK_IMPORTED_MODULE_1__.ToString)(value)],
+                },
+            ];
+        }
+    }
+    var tl = 'future';
+    if ((0,_262__WEBPACK_IMPORTED_MODULE_1__.SameValue)(value, -0) || value < 0) {
+        tl = 'past';
+    }
+    var po = patterns[tl];
+    var fv = typeof numberFormat.formatToParts === 'function'
+        ? numberFormat.formatToParts(Math.abs(value))
+        : // TODO: If formatToParts is not supported, we assume the whole formatted
+            // number is a part
+            [
+                {
+                    type: 'literal',
+                    value: numberFormat.format(Math.abs(value)),
+                    unit: unit,
+                },
+            ];
+    var pr = pluralRules.select(value);
+    var pattern = po[pr];
+    return (0,_MakePartsList__WEBPACK_IMPORTED_MODULE_3__.MakePartsList)(pattern, resolvedUnit, fv);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/SingularRelativeTimeUnit.js":
+/*!***************************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/SingularRelativeTimeUnit.js ***!
+  \***************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SingularRelativeTimeUnit": () => (/* binding */ SingularRelativeTimeUnit)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+
+/**
+ * https://tc39.es/proposal-intl-relative-time/#sec-singularrelativetimeunit
+ * @param unit
+ */
+function SingularRelativeTimeUnit(unit) {
+    (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)((0,_262__WEBPACK_IMPORTED_MODULE_1__.Type)(unit) === 'String', 'unit must be a string');
+    if (unit === 'seconds')
+        return 'second';
+    if (unit === 'minutes')
+        return 'minute';
+    if (unit === 'hours')
+        return 'hour';
+    if (unit === 'days')
+        return 'day';
+    if (unit === 'weeks')
+        return 'week';
+    if (unit === 'months')
+        return 'month';
+    if (unit === 'quarters')
+        return 'quarter';
+    if (unit === 'years')
+        return 'year';
+    if (unit !== 'second' &&
+        unit !== 'minute' &&
+        unit !== 'hour' &&
+        unit !== 'day' &&
+        unit !== 'week' &&
+        unit !== 'month' &&
+        unit !== 'quarter' &&
+        unit !== 'year') {
+        throw new RangeError('invalid unit');
+    }
+    return unit;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/ResolveLocale.js":
+/*!*********************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/ResolveLocale.js ***!
+  \*********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ResolveLocale": () => (/* binding */ ResolveLocale)
+/* harmony export */ });
+/* harmony import */ var _LookupMatcher__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LookupMatcher */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/LookupMatcher.js");
+/* harmony import */ var _BestFitMatcher__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BestFitMatcher */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/BestFitMatcher.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _UnicodeExtensionValue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./UnicodeExtensionValue */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/UnicodeExtensionValue.js");
+
+
+
+
+/**
+ * https://tc39.es/ecma402/#sec-resolvelocale
+ */
+function ResolveLocale(availableLocales, requestedLocales, options, relevantExtensionKeys, localeData, getDefaultLocale) {
+    var matcher = options.localeMatcher;
+    var r;
+    if (matcher === 'lookup') {
+        r = (0,_LookupMatcher__WEBPACK_IMPORTED_MODULE_0__.LookupMatcher)(availableLocales, requestedLocales, getDefaultLocale);
+    }
+    else {
+        r = (0,_BestFitMatcher__WEBPACK_IMPORTED_MODULE_1__.BestFitMatcher)(availableLocales, requestedLocales, getDefaultLocale);
+    }
+    var foundLocale = r.locale;
+    var result = { locale: '', dataLocale: foundLocale };
+    var supportedExtension = '-u';
+    for (var _i = 0, relevantExtensionKeys_1 = relevantExtensionKeys; _i < relevantExtensionKeys_1.length; _i++) {
+        var key = relevantExtensionKeys_1[_i];
+        (0,_utils__WEBPACK_IMPORTED_MODULE_2__.invariant)(foundLocale in localeData, "Missing locale data for " + foundLocale);
+        var foundLocaleData = localeData[foundLocale];
+        (0,_utils__WEBPACK_IMPORTED_MODULE_2__.invariant)(typeof foundLocaleData === 'object' && foundLocaleData !== null, "locale data " + key + " must be an object");
+        var keyLocaleData = foundLocaleData[key];
+        (0,_utils__WEBPACK_IMPORTED_MODULE_2__.invariant)(Array.isArray(keyLocaleData), "keyLocaleData for " + key + " must be an array");
+        var value = keyLocaleData[0];
+        (0,_utils__WEBPACK_IMPORTED_MODULE_2__.invariant)(typeof value === 'string' || value === null, "value must be string or null but got " + typeof value + " in key " + key);
+        var supportedExtensionAddition = '';
+        if (r.extension) {
+            var requestedValue = (0,_UnicodeExtensionValue__WEBPACK_IMPORTED_MODULE_3__.UnicodeExtensionValue)(r.extension, key);
+            if (requestedValue !== undefined) {
+                if (requestedValue !== '') {
+                    if (~keyLocaleData.indexOf(requestedValue)) {
+                        value = requestedValue;
+                        supportedExtensionAddition = "-" + key + "-" + value;
+                    }
+                }
+                else if (~requestedValue.indexOf('true')) {
+                    value = 'true';
+                    supportedExtensionAddition = "-" + key;
+                }
+            }
+        }
+        if (key in options) {
+            var optionsValue = options[key];
+            (0,_utils__WEBPACK_IMPORTED_MODULE_2__.invariant)(typeof optionsValue === 'string' ||
+                typeof optionsValue === 'undefined' ||
+                optionsValue === null, 'optionsValue must be String, Undefined or Null');
+            if (~keyLocaleData.indexOf(optionsValue)) {
+                if (optionsValue !== value) {
+                    value = optionsValue;
+                    supportedExtensionAddition = '';
+                }
+            }
+        }
+        result[key] = value;
+        supportedExtension += supportedExtensionAddition;
+    }
+    if (supportedExtension.length > 2) {
+        var privateIndex = foundLocale.indexOf('-x-');
+        if (privateIndex === -1) {
+            foundLocale = foundLocale + supportedExtension;
+        }
+        else {
+            var preExtension = foundLocale.slice(0, privateIndex);
+            var postExtension = foundLocale.slice(privateIndex, foundLocale.length);
+            foundLocale = preExtension + supportedExtension + postExtension;
+        }
+        foundLocale = Intl.getCanonicalLocales(foundLocale)[0];
+    }
+    result.locale = foundLocale;
+    return result;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/SupportedLocales.js":
+/*!************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/SupportedLocales.js ***!
+  \************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SupportedLocales": () => (/* binding */ SupportedLocales)
+/* harmony export */ });
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+/* harmony import */ var _GetOption__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GetOption */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/GetOption.js");
+/* harmony import */ var _LookupSupportedLocales__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LookupSupportedLocales */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/LookupSupportedLocales.js");
+
+
+
+/**
+ * https://tc39.es/ecma402/#sec-supportedlocales
+ * @param availableLocales
+ * @param requestedLocales
+ * @param options
+ */
+function SupportedLocales(availableLocales, requestedLocales, options) {
+    var matcher = 'best fit';
+    if (options !== undefined) {
+        options = (0,_262__WEBPACK_IMPORTED_MODULE_0__.ToObject)(options);
+        matcher = (0,_GetOption__WEBPACK_IMPORTED_MODULE_1__.GetOption)(options, 'localeMatcher', 'string', ['lookup', 'best fit'], 'best fit');
+    }
+    if (matcher === 'best fit') {
+        return (0,_LookupSupportedLocales__WEBPACK_IMPORTED_MODULE_2__.LookupSupportedLocales)(availableLocales, requestedLocales);
+    }
+    return (0,_LookupSupportedLocales__WEBPACK_IMPORTED_MODULE_2__.LookupSupportedLocales)(availableLocales, requestedLocales);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/UnicodeExtensionValue.js":
+/*!*****************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/UnicodeExtensionValue.js ***!
+  \*****************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "UnicodeExtensionValue": () => (/* binding */ UnicodeExtensionValue)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+
+/**
+ * https://tc39.es/ecma402/#sec-unicodeextensionvalue
+ * @param extension
+ * @param key
+ */
+function UnicodeExtensionValue(extension, key) {
+    (0,_utils__WEBPACK_IMPORTED_MODULE_0__.invariant)(key.length === 2, 'key must have 2 elements');
+    var size = extension.length;
+    var searchValue = "-" + key + "-";
+    var pos = extension.indexOf(searchValue);
+    if (pos !== -1) {
+        var start = pos + 4;
+        var end = start;
+        var k = start;
+        var done = false;
+        while (!done) {
+            var e = extension.indexOf('-', k);
+            var len = void 0;
+            if (e === -1) {
+                len = size - k;
+            }
+            else {
+                len = e - k;
+            }
+            if (len === 2) {
+                done = true;
+            }
+            else if (e === -1) {
+                end = size;
+                done = true;
+            }
+            else {
+                end = e;
+                k = e + 1;
+            }
+        }
+        return extension.slice(start, end);
+    }
+    searchValue = "-" + key;
+    pos = extension.indexOf(searchValue);
+    if (pos !== -1 && pos + 3 === size) {
+        return '';
+    }
+    return undefined;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/data.js":
+/*!************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/data.js ***!
+  \************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isMissingLocaleDataError": () => (/* binding */ isMissingLocaleDataError)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/tslib/tslib.es6.js");
+
+var MissingLocaleDataError = /** @class */ (function (_super) {
+    (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(MissingLocaleDataError, _super);
+    function MissingLocaleDataError() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.type = 'MISSING_LOCALE_DATA';
+        return _this;
+    }
+    return MissingLocaleDataError;
+}(Error));
+function isMissingLocaleDataError(e) {
+    return e.type === 'MISSING_LOCALE_DATA';
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/index.js":
+/*!*************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/index.js ***!
+  \*************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "BestFitFormatMatcher": () => (/* reexport safe */ _DateTimeFormat_BestFitFormatMatcher__WEBPACK_IMPORTED_MODULE_0__.BestFitFormatMatcher),
+/* harmony export */   "CanonicalizeLocaleList": () => (/* reexport safe */ _CanonicalizeLocaleList__WEBPACK_IMPORTED_MODULE_1__.CanonicalizeLocaleList),
+/* harmony export */   "CanonicalizeTimeZoneName": () => (/* reexport safe */ _CanonicalizeTimeZoneName__WEBPACK_IMPORTED_MODULE_2__.CanonicalizeTimeZoneName),
+/* harmony export */   "CoerceOptionsToObject": () => (/* reexport safe */ _CoerceOptionsToObject__WEBPACK_IMPORTED_MODULE_3__.CoerceOptionsToObject),
+/* harmony export */   "BasicFormatMatcher": () => (/* reexport safe */ _DateTimeFormat_BasicFormatMatcher__WEBPACK_IMPORTED_MODULE_4__.BasicFormatMatcher),
+/* harmony export */   "DateTimeStyleFormat": () => (/* reexport safe */ _DateTimeFormat_DateTimeStyleFormat__WEBPACK_IMPORTED_MODULE_5__.DateTimeStyleFormat),
+/* harmony export */   "FormatDateTime": () => (/* reexport safe */ _DateTimeFormat_FormatDateTime__WEBPACK_IMPORTED_MODULE_6__.FormatDateTime),
+/* harmony export */   "FormatDateTimeRange": () => (/* reexport safe */ _DateTimeFormat_FormatDateTimeRange__WEBPACK_IMPORTED_MODULE_7__.FormatDateTimeRange),
+/* harmony export */   "FormatDateTimeRangeToParts": () => (/* reexport safe */ _DateTimeFormat_FormatDateTimeRangeToParts__WEBPACK_IMPORTED_MODULE_8__.FormatDateTimeRangeToParts),
+/* harmony export */   "FormatDateTimeToParts": () => (/* reexport safe */ _DateTimeFormat_FormatDateTimeToParts__WEBPACK_IMPORTED_MODULE_9__.FormatDateTimeToParts),
+/* harmony export */   "InitializeDateTimeFormat": () => (/* reexport safe */ _DateTimeFormat_InitializeDateTimeFormat__WEBPACK_IMPORTED_MODULE_10__.InitializeDateTimeFormat),
+/* harmony export */   "PartitionDateTimePattern": () => (/* reexport safe */ _DateTimeFormat_PartitionDateTimePattern__WEBPACK_IMPORTED_MODULE_11__.PartitionDateTimePattern),
+/* harmony export */   "ToDateTimeOptions": () => (/* reexport safe */ _DateTimeFormat_ToDateTimeOptions__WEBPACK_IMPORTED_MODULE_12__.ToDateTimeOptions),
+/* harmony export */   "CanonicalCodeForDisplayNames": () => (/* reexport safe */ _DisplayNames_CanonicalCodeForDisplayNames__WEBPACK_IMPORTED_MODULE_13__.CanonicalCodeForDisplayNames),
+/* harmony export */   "GetNumberOption": () => (/* reexport safe */ _GetNumberOption__WEBPACK_IMPORTED_MODULE_14__.GetNumberOption),
+/* harmony export */   "GetOption": () => (/* reexport safe */ _GetOption__WEBPACK_IMPORTED_MODULE_15__.GetOption),
+/* harmony export */   "GetOptionsObject": () => (/* reexport safe */ _GetOptionsObject__WEBPACK_IMPORTED_MODULE_16__.GetOptionsObject),
+/* harmony export */   "IsSanctionedSimpleUnitIdentifier": () => (/* reexport safe */ _IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_17__.IsSanctionedSimpleUnitIdentifier),
+/* harmony export */   "SANCTIONED_UNITS": () => (/* reexport safe */ _IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_17__.SANCTIONED_UNITS),
+/* harmony export */   "SIMPLE_UNITS": () => (/* reexport safe */ _IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_17__.SIMPLE_UNITS),
+/* harmony export */   "removeUnitNamespace": () => (/* reexport safe */ _IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_17__.removeUnitNamespace),
+/* harmony export */   "IsValidTimeZoneName": () => (/* reexport safe */ _IsValidTimeZoneName__WEBPACK_IMPORTED_MODULE_18__.IsValidTimeZoneName),
+/* harmony export */   "IsWellFormedCurrencyCode": () => (/* reexport safe */ _IsWellFormedCurrencyCode__WEBPACK_IMPORTED_MODULE_19__.IsWellFormedCurrencyCode),
+/* harmony export */   "IsWellFormedUnitIdentifier": () => (/* reexport safe */ _IsWellFormedUnitIdentifier__WEBPACK_IMPORTED_MODULE_20__.IsWellFormedUnitIdentifier),
+/* harmony export */   "ComputeExponent": () => (/* reexport safe */ _NumberFormat_ComputeExponent__WEBPACK_IMPORTED_MODULE_21__.ComputeExponent),
+/* harmony export */   "ComputeExponentForMagnitude": () => (/* reexport safe */ _NumberFormat_ComputeExponentForMagnitude__WEBPACK_IMPORTED_MODULE_22__.ComputeExponentForMagnitude),
+/* harmony export */   "CurrencyDigits": () => (/* reexport safe */ _NumberFormat_CurrencyDigits__WEBPACK_IMPORTED_MODULE_23__.CurrencyDigits),
+/* harmony export */   "FormatNumericToParts": () => (/* reexport safe */ _NumberFormat_FormatNumericToParts__WEBPACK_IMPORTED_MODULE_24__.FormatNumericToParts),
+/* harmony export */   "FormatNumericToString": () => (/* reexport safe */ _NumberFormat_FormatNumericToString__WEBPACK_IMPORTED_MODULE_25__.FormatNumericToString),
+/* harmony export */   "InitializeNumberFormat": () => (/* reexport safe */ _NumberFormat_InitializeNumberFormat__WEBPACK_IMPORTED_MODULE_26__.InitializeNumberFormat),
+/* harmony export */   "PartitionNumberPattern": () => (/* reexport safe */ _NumberFormat_PartitionNumberPattern__WEBPACK_IMPORTED_MODULE_27__.PartitionNumberPattern),
+/* harmony export */   "SetNumberFormatDigitOptions": () => (/* reexport safe */ _NumberFormat_SetNumberFormatDigitOptions__WEBPACK_IMPORTED_MODULE_28__.SetNumberFormatDigitOptions),
+/* harmony export */   "SetNumberFormatUnitOptions": () => (/* reexport safe */ _NumberFormat_SetNumberFormatUnitOptions__WEBPACK_IMPORTED_MODULE_29__.SetNumberFormatUnitOptions),
+/* harmony export */   "ToRawFixed": () => (/* reexport safe */ _NumberFormat_ToRawFixed__WEBPACK_IMPORTED_MODULE_30__.ToRawFixed),
+/* harmony export */   "ToRawPrecision": () => (/* reexport safe */ _NumberFormat_ToRawPrecision__WEBPACK_IMPORTED_MODULE_31__.ToRawPrecision),
+/* harmony export */   "PartitionPattern": () => (/* reexport safe */ _PartitionPattern__WEBPACK_IMPORTED_MODULE_32__.PartitionPattern),
+/* harmony export */   "GetOperands": () => (/* reexport safe */ _PluralRules_GetOperands__WEBPACK_IMPORTED_MODULE_33__.GetOperands),
+/* harmony export */   "InitializePluralRules": () => (/* reexport safe */ _PluralRules_InitializePluralRules__WEBPACK_IMPORTED_MODULE_34__.InitializePluralRules),
+/* harmony export */   "ResolvePlural": () => (/* reexport safe */ _PluralRules_ResolvePlural__WEBPACK_IMPORTED_MODULE_35__.ResolvePlural),
+/* harmony export */   "FormatRelativeTime": () => (/* reexport safe */ _RelativeTimeFormat_FormatRelativeTime__WEBPACK_IMPORTED_MODULE_36__.FormatRelativeTime),
+/* harmony export */   "FormatRelativeTimeToParts": () => (/* reexport safe */ _RelativeTimeFormat_FormatRelativeTimeToParts__WEBPACK_IMPORTED_MODULE_37__.FormatRelativeTimeToParts),
+/* harmony export */   "InitializeRelativeTimeFormat": () => (/* reexport safe */ _RelativeTimeFormat_InitializeRelativeTimeFormat__WEBPACK_IMPORTED_MODULE_38__.InitializeRelativeTimeFormat),
+/* harmony export */   "MakePartsList": () => (/* reexport safe */ _RelativeTimeFormat_MakePartsList__WEBPACK_IMPORTED_MODULE_39__.MakePartsList),
+/* harmony export */   "PartitionRelativeTimePattern": () => (/* reexport safe */ _RelativeTimeFormat_PartitionRelativeTimePattern__WEBPACK_IMPORTED_MODULE_40__.PartitionRelativeTimePattern),
+/* harmony export */   "SingularRelativeTimeUnit": () => (/* reexport safe */ _RelativeTimeFormat_SingularRelativeTimeUnit__WEBPACK_IMPORTED_MODULE_41__.SingularRelativeTimeUnit),
+/* harmony export */   "ResolveLocale": () => (/* reexport safe */ _ResolveLocale__WEBPACK_IMPORTED_MODULE_42__.ResolveLocale),
+/* harmony export */   "SupportedLocales": () => (/* reexport safe */ _SupportedLocales__WEBPACK_IMPORTED_MODULE_43__.SupportedLocales),
+/* harmony export */   "_formatToParts": () => (/* reexport safe */ _NumberFormat_format_to_parts__WEBPACK_IMPORTED_MODULE_44__["default"]),
+/* harmony export */   "DATE_TIME_PROPS": () => (/* reexport safe */ _DateTimeFormat_utils__WEBPACK_IMPORTED_MODULE_45__.DATE_TIME_PROPS),
+/* harmony export */   "parseDateTimeSkeleton": () => (/* reexport safe */ _DateTimeFormat_skeleton__WEBPACK_IMPORTED_MODULE_46__.parseDateTimeSkeleton),
+/* harmony export */   "getInternalSlot": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_47__.getInternalSlot),
+/* harmony export */   "getMultiInternalSlots": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_47__.getMultiInternalSlots),
+/* harmony export */   "isLiteralPart": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_47__.isLiteralPart),
+/* harmony export */   "setInternalSlot": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_47__.setInternalSlot),
+/* harmony export */   "setMultiInternalSlots": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_47__.setMultiInternalSlots),
+/* harmony export */   "getMagnitude": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_47__.getMagnitude),
+/* harmony export */   "defineProperty": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_47__.defineProperty),
+/* harmony export */   "isMissingLocaleDataError": () => (/* reexport safe */ _data__WEBPACK_IMPORTED_MODULE_48__.isMissingLocaleDataError),
+/* harmony export */   "RangePatternType": () => (/* reexport safe */ _types_date_time__WEBPACK_IMPORTED_MODULE_49__.RangePatternType),
+/* harmony export */   "invariant": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_47__.invariant),
+/* harmony export */   "ArrayCreate": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.ArrayCreate),
+/* harmony export */   "DateFromTime": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.DateFromTime),
+/* harmony export */   "Day": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.Day),
+/* harmony export */   "DayFromYear": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.DayFromYear),
+/* harmony export */   "DayWithinYear": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.DayWithinYear),
+/* harmony export */   "DaysInYear": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.DaysInYear),
+/* harmony export */   "HasOwnProperty": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.HasOwnProperty),
+/* harmony export */   "HourFromTime": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.HourFromTime),
+/* harmony export */   "InLeapYear": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.InLeapYear),
+/* harmony export */   "MinFromTime": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.MinFromTime),
+/* harmony export */   "MonthFromTime": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.MonthFromTime),
+/* harmony export */   "OrdinaryHasInstance": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.OrdinaryHasInstance),
+/* harmony export */   "SameValue": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.SameValue),
+/* harmony export */   "SecFromTime": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.SecFromTime),
+/* harmony export */   "TimeClip": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.TimeClip),
+/* harmony export */   "TimeFromYear": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.TimeFromYear),
+/* harmony export */   "ToNumber": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.ToNumber),
+/* harmony export */   "ToObject": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.ToObject),
+/* harmony export */   "ToString": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.ToString),
+/* harmony export */   "Type": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.Type),
+/* harmony export */   "WeekDay": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.WeekDay),
+/* harmony export */   "YearFromTime": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.YearFromTime),
+/* harmony export */   "msFromTime": () => (/* reexport safe */ _262__WEBPACK_IMPORTED_MODULE_50__.msFromTime)
+/* harmony export */ });
+/* harmony import */ var _DateTimeFormat_BestFitFormatMatcher__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DateTimeFormat/BestFitFormatMatcher */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/BestFitFormatMatcher.js");
+/* harmony import */ var _CanonicalizeLocaleList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CanonicalizeLocaleList */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeLocaleList.js");
+/* harmony import */ var _CanonicalizeTimeZoneName__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CanonicalizeTimeZoneName */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CanonicalizeTimeZoneName.js");
+/* harmony import */ var _CoerceOptionsToObject__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CoerceOptionsToObject */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/CoerceOptionsToObject.js");
+/* harmony import */ var _DateTimeFormat_BasicFormatMatcher__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DateTimeFormat/BasicFormatMatcher */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/BasicFormatMatcher.js");
+/* harmony import */ var _DateTimeFormat_DateTimeStyleFormat__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./DateTimeFormat/DateTimeStyleFormat */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/DateTimeStyleFormat.js");
+/* harmony import */ var _DateTimeFormat_FormatDateTime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./DateTimeFormat/FormatDateTime */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/FormatDateTime.js");
+/* harmony import */ var _DateTimeFormat_FormatDateTimeRange__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./DateTimeFormat/FormatDateTimeRange */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/FormatDateTimeRange.js");
+/* harmony import */ var _DateTimeFormat_FormatDateTimeRangeToParts__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./DateTimeFormat/FormatDateTimeRangeToParts */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/FormatDateTimeRangeToParts.js");
+/* harmony import */ var _DateTimeFormat_FormatDateTimeToParts__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./DateTimeFormat/FormatDateTimeToParts */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/FormatDateTimeToParts.js");
+/* harmony import */ var _DateTimeFormat_InitializeDateTimeFormat__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./DateTimeFormat/InitializeDateTimeFormat */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/InitializeDateTimeFormat.js");
+/* harmony import */ var _DateTimeFormat_PartitionDateTimePattern__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./DateTimeFormat/PartitionDateTimePattern */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/PartitionDateTimePattern.js");
+/* harmony import */ var _DateTimeFormat_ToDateTimeOptions__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./DateTimeFormat/ToDateTimeOptions */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/ToDateTimeOptions.js");
+/* harmony import */ var _DisplayNames_CanonicalCodeForDisplayNames__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./DisplayNames/CanonicalCodeForDisplayNames */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DisplayNames/CanonicalCodeForDisplayNames.js");
+/* harmony import */ var _GetNumberOption__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./GetNumberOption */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/GetNumberOption.js");
+/* harmony import */ var _GetOption__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./GetOption */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/GetOption.js");
+/* harmony import */ var _GetOptionsObject__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./GetOptionsObject */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/GetOptionsObject.js");
+/* harmony import */ var _IsSanctionedSimpleUnitIdentifier__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./IsSanctionedSimpleUnitIdentifier */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/IsSanctionedSimpleUnitIdentifier.js");
+/* harmony import */ var _IsValidTimeZoneName__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./IsValidTimeZoneName */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/IsValidTimeZoneName.js");
+/* harmony import */ var _IsWellFormedCurrencyCode__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./IsWellFormedCurrencyCode */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/IsWellFormedCurrencyCode.js");
+/* harmony import */ var _IsWellFormedUnitIdentifier__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./IsWellFormedUnitIdentifier */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/IsWellFormedUnitIdentifier.js");
+/* harmony import */ var _NumberFormat_ComputeExponent__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./NumberFormat/ComputeExponent */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ComputeExponent.js");
+/* harmony import */ var _NumberFormat_ComputeExponentForMagnitude__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./NumberFormat/ComputeExponentForMagnitude */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ComputeExponentForMagnitude.js");
+/* harmony import */ var _NumberFormat_CurrencyDigits__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./NumberFormat/CurrencyDigits */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/CurrencyDigits.js");
+/* harmony import */ var _NumberFormat_FormatNumericToParts__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./NumberFormat/FormatNumericToParts */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/FormatNumericToParts.js");
+/* harmony import */ var _NumberFormat_FormatNumericToString__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./NumberFormat/FormatNumericToString */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/FormatNumericToString.js");
+/* harmony import */ var _NumberFormat_InitializeNumberFormat__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./NumberFormat/InitializeNumberFormat */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/InitializeNumberFormat.js");
+/* harmony import */ var _NumberFormat_PartitionNumberPattern__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./NumberFormat/PartitionNumberPattern */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/PartitionNumberPattern.js");
+/* harmony import */ var _NumberFormat_SetNumberFormatDigitOptions__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./NumberFormat/SetNumberFormatDigitOptions */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/SetNumberFormatDigitOptions.js");
+/* harmony import */ var _NumberFormat_SetNumberFormatUnitOptions__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./NumberFormat/SetNumberFormatUnitOptions */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/SetNumberFormatUnitOptions.js");
+/* harmony import */ var _NumberFormat_ToRawFixed__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./NumberFormat/ToRawFixed */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawFixed.js");
+/* harmony import */ var _NumberFormat_ToRawPrecision__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./NumberFormat/ToRawPrecision */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/ToRawPrecision.js");
+/* harmony import */ var _PartitionPattern__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./PartitionPattern */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/PartitionPattern.js");
+/* harmony import */ var _PluralRules_GetOperands__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./PluralRules/GetOperands */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/PluralRules/GetOperands.js");
+/* harmony import */ var _PluralRules_InitializePluralRules__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./PluralRules/InitializePluralRules */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/PluralRules/InitializePluralRules.js");
+/* harmony import */ var _PluralRules_ResolvePlural__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./PluralRules/ResolvePlural */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/PluralRules/ResolvePlural.js");
+/* harmony import */ var _RelativeTimeFormat_FormatRelativeTime__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./RelativeTimeFormat/FormatRelativeTime */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/FormatRelativeTime.js");
+/* harmony import */ var _RelativeTimeFormat_FormatRelativeTimeToParts__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./RelativeTimeFormat/FormatRelativeTimeToParts */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/FormatRelativeTimeToParts.js");
+/* harmony import */ var _RelativeTimeFormat_InitializeRelativeTimeFormat__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./RelativeTimeFormat/InitializeRelativeTimeFormat */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/InitializeRelativeTimeFormat.js");
+/* harmony import */ var _RelativeTimeFormat_MakePartsList__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./RelativeTimeFormat/MakePartsList */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/MakePartsList.js");
+/* harmony import */ var _RelativeTimeFormat_PartitionRelativeTimePattern__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./RelativeTimeFormat/PartitionRelativeTimePattern */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/PartitionRelativeTimePattern.js");
+/* harmony import */ var _RelativeTimeFormat_SingularRelativeTimeUnit__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./RelativeTimeFormat/SingularRelativeTimeUnit */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/RelativeTimeFormat/SingularRelativeTimeUnit.js");
+/* harmony import */ var _ResolveLocale__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./ResolveLocale */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/ResolveLocale.js");
+/* harmony import */ var _SupportedLocales__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./SupportedLocales */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/SupportedLocales.js");
+/* harmony import */ var _NumberFormat_format_to_parts__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./NumberFormat/format_to_parts */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/format_to_parts.js");
+/* harmony import */ var _DateTimeFormat_utils__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./DateTimeFormat/utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/utils.js");
+/* harmony import */ var _DateTimeFormat_skeleton__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./DateTimeFormat/skeleton */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/DateTimeFormat/skeleton.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./data */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/data.js");
+/* harmony import */ var _types_date_time__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./types/date-time */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/types/date-time.js");
+/* harmony import */ var _262__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ./262 */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/262.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/types/date-time.js":
+/*!***********************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/types/date-time.js ***!
+  \***********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RangePatternType": () => (/* binding */ RangePatternType)
+/* harmony export */ });
+var RangePatternType;
+(function (RangePatternType) {
+    RangePatternType["startRange"] = "startRange";
+    RangePatternType["shared"] = "shared";
+    RangePatternType["endRange"] = "endRange";
+})(RangePatternType || (RangePatternType = {}));
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js":
+/*!*************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/utils.js ***!
+  \*************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getMagnitude": () => (/* binding */ getMagnitude),
+/* harmony export */   "repeat": () => (/* binding */ repeat),
+/* harmony export */   "setInternalSlot": () => (/* binding */ setInternalSlot),
+/* harmony export */   "setMultiInternalSlots": () => (/* binding */ setMultiInternalSlots),
+/* harmony export */   "getInternalSlot": () => (/* binding */ getInternalSlot),
+/* harmony export */   "getMultiInternalSlots": () => (/* binding */ getMultiInternalSlots),
+/* harmony export */   "isLiteralPart": () => (/* binding */ isLiteralPart),
+/* harmony export */   "defineProperty": () => (/* binding */ defineProperty),
+/* harmony export */   "UNICODE_EXTENSION_SEQUENCE_REGEX": () => (/* binding */ UNICODE_EXTENSION_SEQUENCE_REGEX),
+/* harmony export */   "invariant": () => (/* binding */ invariant)
+/* harmony export */ });
+/**
+ * Cannot do Math.log(x) / Math.log(10) bc if IEEE floating point issue
+ * @param x number
+ */
+function getMagnitude(x) {
+    // Cannot count string length via Number.toString because it may use scientific notation
+    // for very small or very large numbers.
+    return Math.floor(Math.log(x) * Math.LOG10E);
+}
+function repeat(s, times) {
+    if (typeof s.repeat === 'function') {
+        return s.repeat(times);
+    }
+    var arr = new Array(times);
+    for (var i = 0; i < arr.length; i++) {
+        arr[i] = s;
+    }
+    return arr.join('');
+}
+function setInternalSlot(map, pl, field, value) {
+    if (!map.get(pl)) {
+        map.set(pl, Object.create(null));
+    }
+    var slots = map.get(pl);
+    slots[field] = value;
+}
+function setMultiInternalSlots(map, pl, props) {
+    for (var _i = 0, _a = Object.keys(props); _i < _a.length; _i++) {
+        var k = _a[_i];
+        setInternalSlot(map, pl, k, props[k]);
+    }
+}
+function getInternalSlot(map, pl, field) {
+    return getMultiInternalSlots(map, pl, field)[field];
+}
+function getMultiInternalSlots(map, pl) {
+    var fields = [];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        fields[_i - 2] = arguments[_i];
+    }
+    var slots = map.get(pl);
+    if (!slots) {
+        throw new TypeError(pl + " InternalSlot has not been initialized");
+    }
+    return fields.reduce(function (all, f) {
+        all[f] = slots[f];
+        return all;
+    }, Object.create(null));
+}
+function isLiteralPart(patternPart) {
+    return patternPart.type === 'literal';
+}
+/*
+  17 ECMAScript Standard Built-in Objects:
+    Every built-in Function object, including constructors, that is not
+    identified as an anonymous function has a name property whose value
+    is a String.
+
+    Unless otherwise specified, the name property of a built-in Function
+    object, if it exists, has the attributes { [[Writable]]: false,
+    [[Enumerable]]: false, [[Configurable]]: true }.
+*/
+function defineProperty(target, name, _a) {
+    var value = _a.value;
+    Object.defineProperty(target, name, {
+        configurable: true,
+        enumerable: false,
+        writable: true,
+        value: value,
+    });
+}
+var UNICODE_EXTENSION_SEQUENCE_REGEX = /-u(?:-[0-9a-z]{2,8})+/gi;
+function invariant(condition, message, Err) {
+    if (Err === void 0) { Err = Error; }
+    if (!condition) {
+        throw new Err(message);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/tslib/tslib.es6.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/tslib/tslib.es6.js ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "__extends": () => (/* binding */ __extends),
+/* harmony export */   "__assign": () => (/* binding */ __assign),
+/* harmony export */   "__rest": () => (/* binding */ __rest),
+/* harmony export */   "__decorate": () => (/* binding */ __decorate),
+/* harmony export */   "__param": () => (/* binding */ __param),
+/* harmony export */   "__metadata": () => (/* binding */ __metadata),
+/* harmony export */   "__awaiter": () => (/* binding */ __awaiter),
+/* harmony export */   "__generator": () => (/* binding */ __generator),
+/* harmony export */   "__createBinding": () => (/* binding */ __createBinding),
+/* harmony export */   "__exportStar": () => (/* binding */ __exportStar),
+/* harmony export */   "__values": () => (/* binding */ __values),
+/* harmony export */   "__read": () => (/* binding */ __read),
+/* harmony export */   "__spread": () => (/* binding */ __spread),
+/* harmony export */   "__spreadArrays": () => (/* binding */ __spreadArrays),
+/* harmony export */   "__spreadArray": () => (/* binding */ __spreadArray),
+/* harmony export */   "__await": () => (/* binding */ __await),
+/* harmony export */   "__asyncGenerator": () => (/* binding */ __asyncGenerator),
+/* harmony export */   "__asyncDelegator": () => (/* binding */ __asyncDelegator),
+/* harmony export */   "__asyncValues": () => (/* binding */ __asyncValues),
+/* harmony export */   "__makeTemplateObject": () => (/* binding */ __makeTemplateObject),
+/* harmony export */   "__importStar": () => (/* binding */ __importStar),
+/* harmony export */   "__importDefault": () => (/* binding */ __importDefault),
+/* harmony export */   "__classPrivateFieldGet": () => (/* binding */ __classPrivateFieldGet),
+/* harmony export */   "__classPrivateFieldSet": () => (/* binding */ __classPrivateFieldSet)
+/* harmony export */ });
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+    return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+    if (typeof b !== "function" && b !== null)
+        throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    }
+    return __assign.apply(this, arguments);
+}
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+function __decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+function __param(paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+}
+
+function __metadata(metadataKey, metadataValue) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+var __createBinding = Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+});
+
+function __exportStar(m, o) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p)) __createBinding(o, m, p);
+}
+
+function __values(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+/** @deprecated */
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
+/** @deprecated */
+function __spreadArrays() {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+}
+
+function __spreadArray(to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+}
+
+function __await(v) {
+    return this instanceof __await ? (this.v = v, this) : new __await(v);
+}
+
+function __asyncGenerator(thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+}
+
+function __asyncDelegator(o) {
+    var i, p;
+    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+}
+
+function __asyncValues(o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+}
+
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+
+var __setModuleDefault = Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+};
+
+function __importStar(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+}
+
+function __importDefault(mod) {
+    return (mod && mod.__esModule) ? mod : { default: mod };
+}
+
+function __classPrivateFieldGet(receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+}
+
+function __classPrivateFieldSet(receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/polyfill.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/polyfill.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/tslib/tslib.es6.js");
+var _1 = tslib_1.__importDefault(__webpack_require__(/*! ./ */ "./node_modules/@formatjs/intl-relativetimeformat/index.js"));
+var should_polyfill_1 = __webpack_require__(/*! ./should-polyfill */ "./node_modules/@formatjs/intl-relativetimeformat/should-polyfill.js");
+if (should_polyfill_1.shouldPolyfill()) {
+    Object.defineProperty(Intl, 'RelativeTimeFormat', {
+        value: _1.default,
+        writable: true,
+        enumerable: false,
+        configurable: true,
+    });
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/should-polyfill.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/should-polyfill.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.shouldPolyfill = void 0;
+function shouldPolyfill() {
+    return typeof Intl === 'undefined' || !('RelativeTimeFormat' in Intl);
+}
+exports.shouldPolyfill = shouldPolyfill;
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl/lib/src/create-intl.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@formatjs/intl/lib/src/create-intl.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createIntl": () => (/* binding */ createIntl)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ "./node_modules/@formatjs/intl/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl/lib/src/utils.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./error */ "./node_modules/@formatjs/intl/lib/src/error.js");
+/* harmony import */ var _number__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./number */ "./node_modules/@formatjs/intl/lib/src/number.js");
+/* harmony import */ var _relativeTime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./relativeTime */ "./node_modules/@formatjs/intl/lib/src/relativeTime.js");
+/* harmony import */ var _dateTime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dateTime */ "./node_modules/@formatjs/intl/lib/src/dateTime.js");
+/* harmony import */ var _plural__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./plural */ "./node_modules/@formatjs/intl/lib/src/plural.js");
+/* harmony import */ var _message__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./message */ "./node_modules/@formatjs/intl/lib/src/message.js");
+/* harmony import */ var _list__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./list */ "./node_modules/@formatjs/intl/lib/src/list.js");
+/* harmony import */ var _displayName__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./displayName */ "./node_modules/@formatjs/intl/lib/src/displayName.js");
+
+
+
+
+
+
+
+
+
+
+function messagesContainString(messages) {
+    var firstMessage = messages ? messages[Object.keys(messages)[0]] : undefined;
+    return typeof firstMessage === 'string';
+}
+function verifyConfigMessages(config) {
+    if (config.defaultRichTextElements &&
+        messagesContainString(config.messages || {})) {
+        console.warn("[@formatjs/intl] \"defaultRichTextElements\" was specified but \"message\" was not pre-compiled. \nPlease consider using \"@formatjs/cli\" to pre-compile your messages for performance.\nFor more details see https://formatjs.io/docs/getting-started/message-distribution");
+    }
+}
+/**
+ * Create intl object
+ * @param config intl config
+ * @param cache cache for formatter instances to prevent memory leak
+ */
+function createIntl(config, cache) {
+    var formatters = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.createFormatters)(cache);
+    var resolvedConfig = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, _utils__WEBPACK_IMPORTED_MODULE_0__.DEFAULT_INTL_CONFIG), config);
+    var locale = resolvedConfig.locale, defaultLocale = resolvedConfig.defaultLocale, onError = resolvedConfig.onError;
+    if (!locale) {
+        if (onError) {
+            onError(new _error__WEBPACK_IMPORTED_MODULE_2__.InvalidConfigError("\"locale\" was not configured, using \"" + defaultLocale + "\" as fallback. See https://formatjs.io/docs/react-intl/api#intlshape for more details"));
+        }
+        // Since there's no registered locale data for `locale`, this will
+        // fallback to the `defaultLocale` to make sure things can render.
+        // The `messages` are overridden to the `defaultProps` empty object
+        // to maintain referential equality across re-renders. It's assumed
+        // each <FormattedMessage> contains a `defaultMessage` prop.
+        resolvedConfig.locale = resolvedConfig.defaultLocale || 'en';
+    }
+    else if (!Intl.NumberFormat.supportedLocalesOf(locale).length && onError) {
+        onError(new _error__WEBPACK_IMPORTED_MODULE_2__.MissingDataError("Missing locale data for locale: \"" + locale + "\" in Intl.NumberFormat. Using default locale: \"" + defaultLocale + "\" as fallback. See https://formatjs.io/docs/react-intl#runtime-requirements for more details"));
+    }
+    else if (!Intl.DateTimeFormat.supportedLocalesOf(locale).length &&
+        onError) {
+        onError(new _error__WEBPACK_IMPORTED_MODULE_2__.MissingDataError("Missing locale data for locale: \"" + locale + "\" in Intl.DateTimeFormat. Using default locale: \"" + defaultLocale + "\" as fallback. See https://formatjs.io/docs/react-intl#runtime-requirements for more details"));
+    }
+    verifyConfigMessages(resolvedConfig);
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, resolvedConfig), { formatters: formatters, formatNumber: _number__WEBPACK_IMPORTED_MODULE_3__.formatNumber.bind(null, resolvedConfig, formatters.getNumberFormat), formatNumberToParts: _number__WEBPACK_IMPORTED_MODULE_3__.formatNumberToParts.bind(null, resolvedConfig, formatters.getNumberFormat), formatRelativeTime: _relativeTime__WEBPACK_IMPORTED_MODULE_4__.formatRelativeTime.bind(null, resolvedConfig, formatters.getRelativeTimeFormat), formatDate: _dateTime__WEBPACK_IMPORTED_MODULE_5__.formatDate.bind(null, resolvedConfig, formatters.getDateTimeFormat), formatDateToParts: _dateTime__WEBPACK_IMPORTED_MODULE_5__.formatDateToParts.bind(null, resolvedConfig, formatters.getDateTimeFormat), formatTime: _dateTime__WEBPACK_IMPORTED_MODULE_5__.formatTime.bind(null, resolvedConfig, formatters.getDateTimeFormat), formatDateTimeRange: _dateTime__WEBPACK_IMPORTED_MODULE_5__.formatDateTimeRange.bind(null, resolvedConfig, formatters.getDateTimeFormat), formatTimeToParts: _dateTime__WEBPACK_IMPORTED_MODULE_5__.formatTimeToParts.bind(null, resolvedConfig, formatters.getDateTimeFormat), formatPlural: _plural__WEBPACK_IMPORTED_MODULE_6__.formatPlural.bind(null, resolvedConfig, formatters.getPluralRules), formatMessage: _message__WEBPACK_IMPORTED_MODULE_7__.formatMessage.bind(null, resolvedConfig, formatters), formatList: _list__WEBPACK_IMPORTED_MODULE_8__.formatList.bind(null, resolvedConfig, formatters.getListFormat), formatListToParts: _list__WEBPACK_IMPORTED_MODULE_8__.formatListToParts.bind(null, resolvedConfig, formatters.getListFormat), formatDisplayName: _displayName__WEBPACK_IMPORTED_MODULE_9__.formatDisplayName.bind(null, resolvedConfig, formatters.getDisplayNames) });
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl/lib/src/dateTime.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@formatjs/intl/lib/src/dateTime.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getFormatter": () => (/* binding */ getFormatter),
+/* harmony export */   "formatDate": () => (/* binding */ formatDate),
+/* harmony export */   "formatTime": () => (/* binding */ formatTime),
+/* harmony export */   "formatDateTimeRange": () => (/* binding */ formatDateTimeRange),
+/* harmony export */   "formatDateToParts": () => (/* binding */ formatDateToParts),
+/* harmony export */   "formatTimeToParts": () => (/* binding */ formatTimeToParts)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/@formatjs/intl/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl/lib/src/utils.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./error */ "./node_modules/@formatjs/intl/lib/src/error.js");
+
+
+
+var DATE_TIME_FORMAT_OPTIONS = [
+    'localeMatcher',
+    'formatMatcher',
+    'timeZone',
+    'hour12',
+    'weekday',
+    'era',
+    'year',
+    'month',
+    'day',
+    'hour',
+    'minute',
+    'second',
+    'timeZoneName',
+    'hourCycle',
+    'dateStyle',
+    'timeStyle',
+    'calendar',
+    // 'dayPeriod',
+    'numberingSystem',
+];
+function getFormatter(_a, type, getDateTimeFormat, options) {
+    var locale = _a.locale, formats = _a.formats, onError = _a.onError, timeZone = _a.timeZone;
+    if (options === void 0) { options = {}; }
+    var format = options.format;
+    var defaults = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, (timeZone && { timeZone: timeZone })), (format && (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getNamedFormat)(formats, type, format, onError)));
+    var filteredOptions = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.filterProps)(options, DATE_TIME_FORMAT_OPTIONS, 
+    // @ts-expect-error es2020 has a lot stuff from es2021 bleed in
+    defaults);
+    if (type === 'time' &&
+        !filteredOptions.hour &&
+        !filteredOptions.minute &&
+        !filteredOptions.second &&
+        !filteredOptions.timeStyle &&
+        !filteredOptions.dateStyle) {
+        // Add default formatting options if hour, minute, or second isn't defined.
+        filteredOptions = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_0__.__assign)({}, filteredOptions), { hour: 'numeric', minute: 'numeric' });
+    }
+    return getDateTimeFormat(locale, filteredOptions);
+}
+function formatDate(config, getDateTimeFormat) {
+    var _a = [];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        _a[_i - 2] = arguments[_i];
+    }
+    var value = _a[0], _b = _a[1], options = _b === void 0 ? {} : _b;
+    var date = typeof value === 'string' ? new Date(value || 0) : value;
+    try {
+        return getFormatter(config, 'date', getDateTimeFormat, options).format(date);
+    }
+    catch (e) {
+        config.onError(new _error__WEBPACK_IMPORTED_MODULE_2__.IntlError(_error__WEBPACK_IMPORTED_MODULE_2__.IntlErrorCode.FORMAT_ERROR, 'Error formatting date.', e));
+    }
+    return String(date);
+}
+function formatTime(config, getDateTimeFormat) {
+    var _a = [];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        _a[_i - 2] = arguments[_i];
+    }
+    var value = _a[0], _b = _a[1], options = _b === void 0 ? {} : _b;
+    var date = typeof value === 'string' ? new Date(value || 0) : value;
+    try {
+        return getFormatter(config, 'time', getDateTimeFormat, options).format(date);
+    }
+    catch (e) {
+        config.onError(new _error__WEBPACK_IMPORTED_MODULE_2__.IntlError(_error__WEBPACK_IMPORTED_MODULE_2__.IntlErrorCode.FORMAT_ERROR, 'Error formatting time.', e));
+    }
+    return String(date);
+}
+function formatDateTimeRange(config, getDateTimeFormat) {
+    var _a = [];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        _a[_i - 2] = arguments[_i];
+    }
+    var from = _a[0], to = _a[1], _b = _a[2], options = _b === void 0 ? {} : _b;
+    var timeZone = config.timeZone, locale = config.locale, onError = config.onError;
+    var filteredOptions = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.filterProps)(options, DATE_TIME_FORMAT_OPTIONS, timeZone ? { timeZone: timeZone } : {});
+    try {
+        return getDateTimeFormat(locale, filteredOptions).formatRange(from, to);
+    }
+    catch (e) {
+        onError(new _error__WEBPACK_IMPORTED_MODULE_2__.IntlError(_error__WEBPACK_IMPORTED_MODULE_2__.IntlErrorCode.FORMAT_ERROR, 'Error formatting date time range.', e));
+    }
+    return String(from);
+}
+function formatDateToParts(config, getDateTimeFormat) {
+    var _a = [];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        _a[_i - 2] = arguments[_i];
+    }
+    var value = _a[0], _b = _a[1], options = _b === void 0 ? {} : _b;
+    var date = typeof value === 'string' ? new Date(value || 0) : value;
+    try {
+        return getFormatter(config, 'date', getDateTimeFormat, options).formatToParts(date);
+    }
+    catch (e) {
+        config.onError(new _error__WEBPACK_IMPORTED_MODULE_2__.IntlError(_error__WEBPACK_IMPORTED_MODULE_2__.IntlErrorCode.FORMAT_ERROR, 'Error formatting date.', e));
+    }
+    return [];
+}
+function formatTimeToParts(config, getDateTimeFormat) {
+    var _a = [];
+    for (var _i = 2; _i < arguments.length; _i++) {
+        _a[_i - 2] = arguments[_i];
+    }
+    var value = _a[0], _b = _a[1], options = _b === void 0 ? {} : _b;
+    var date = typeof value === 'string' ? new Date(value || 0) : value;
+    try {
+        return getFormatter(config, 'time', getDateTimeFormat, options).formatToParts(date);
+    }
+    catch (e) {
+        config.onError(new _error__WEBPACK_IMPORTED_MODULE_2__.IntlError(_error__WEBPACK_IMPORTED_MODULE_2__.IntlErrorCode.FORMAT_ERROR, 'Error formatting time.', e));
+    }
+    return [];
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl/lib/src/displayName.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@formatjs/intl/lib/src/displayName.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "formatDisplayName": () => (/* binding */ formatDisplayName)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl/lib/src/utils.js");
+/* harmony import */ var intl_messageformat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! intl-messageformat */ "./node_modules/intl-messageformat/lib/src/error.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./error */ "./node_modules/@formatjs/intl/lib/src/error.js");
+
+
+
+var DISPLAY_NAMES_OPTONS = [
+    'localeMatcher',
+    'style',
+    'type',
+    'fallback',
+];
+function formatDisplayName(_a, getDisplayNames, value, options) {
+    var locale = _a.locale, onError = _a.onError;
+    var DisplayNames = Intl.DisplayNames;
+    if (!DisplayNames) {
+        onError(new intl_messageformat__WEBPACK_IMPORTED_MODULE_0__.FormatError("Intl.DisplayNames is not available in this environment.\nTry polyfilling it using \"@formatjs/intl-displaynames\"\n", intl_messageformat__WEBPACK_IMPORTED_MODULE_0__.ErrorCode.MISSING_INTL_API));
+    }
+    var filteredOptions = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.filterProps)(options, DISPLAY_NAMES_OPTONS);
+    try {
+        return getDisplayNames(locale, filteredOptions).of(value);
+    }
+    catch (e) {
+        onError(new _error__WEBPACK_IMPORTED_MODULE_2__.IntlError(_error__WEBPACK_IMPORTED_MODULE_2__.IntlErrorCode.FORMAT_ERROR, 'Error formatting display name.', e));
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl/lib/src/error.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@formatjs/intl/lib/src/error.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IntlErrorCode": () => (/* binding */ IntlErrorCode),
+/* harmony export */   "IntlError": () => (/* binding */ IntlError),
+/* harmony export */   "UnsupportedFormatterError": () => (/* binding */ UnsupportedFormatterError),
+/* harmony export */   "InvalidConfigError": () => (/* binding */ InvalidConfigError),
+/* harmony export */   "MissingDataError": () => (/* binding */ MissingDataError),
+/* harmony export */   "MessageFormatError": () => (/* binding */ MessageFormatError),
+/* harmony export */   "MissingTranslationError": () => (/* binding */ MissingTranslationError)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/@formatjs/intl/node_modules/tslib/tslib.es6.js");
+
+var IntlErrorCode;
+(function (IntlErrorCode) {
+    IntlErrorCode["FORMAT_ERROR"] = "FORMAT_ERROR";
+    IntlErrorCode["UNSUPPORTED_FORMATTER"] = "UNSUPPORTED_FORMATTER";
+    IntlErrorCode["INVALID_CONFIG"] = "INVALID_CONFIG";
+    IntlErrorCode["MISSING_DATA"] = "MISSING_DATA";
+    IntlErrorCode["MISSING_TRANSLATION"] = "MISSING_TRANSLATION";
+})(IntlErrorCode || (IntlErrorCode = {}));
+var IntlError = /** @class */ (function (_super) {
+    (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(IntlError, _super);
+    function IntlError(code, message, exception) {
+        var _this = _super.call(this, "[@formatjs/intl Error " + code + "] " + message + " \n" + (exception ? "\n" + exception.message + "\n" + exception.stack : '')) || this;
+        _this.code = code;
+        // @ts-ignore just so we don't need to declare dep on @types/node
+        if (typeof Error.captureStackTrace === 'function') {
+            // @ts-ignore just so we don't need to declare dep on @types/node
+            Error.captureStackTrace(_this, IntlError);
+        }
+        return _this;
+    }
+    return IntlError;
+}(Error));
+
+var UnsupportedFormatterError = /** @class */ (function (_super) {
+    (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(UnsupportedFormatterError, _super);
+    function UnsupportedFormatterError(message, exception) {
+        return _super.call(this, IntlErrorCode.UNSUPPORTED_FORMATTER, message, exception) || this;
+    }
+    return UnsupportedFormatterError;
+}(IntlError));
+
+var InvalidConfigError = /** @class */ (function (_super) {
+    (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(InvalidConfigError, _super);
+    function InvalidConfigError(message, exception) {
+        return _super.call(this, IntlErrorCode.INVALID_CONFIG, message, exception) || this;
+    }
+    return InvalidConfigError;
+}(IntlError));
+
+var MissingDataError = /** @class */ (function (_super) {
+    (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(MissingDataError, _super);
+    function MissingDataError(message, exception) {
+        return _super.call(this, IntlErrorCode.MISSING_DATA, message, exception) || this;
+    }
+    return MissingDataError;
+}(IntlError));
+
+var MessageFormatError = /** @class */ (function (_super) {
+    (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(MessageFormatError, _super);
+    function MessageFormatError(message, locale, descriptor, exception) {
+        var _this = _super.call(this, IntlErrorCode.FORMAT_ERROR, message + " \nLocale: " + locale + "\nMessageID: " + (descriptor === null || descriptor === void 0 ? void 0 : descriptor.id) + "\nDefault Message: " + (descriptor === null || descriptor === void 0 ? void 0 : descriptor.defaultMessage) + "\nDescription: " + (descriptor === null || descriptor === void 0 ? void 0 : descriptor.description) + " \n", exception) || this;
+        _this.descriptor = descriptor;
+        return _this;
+    }
+    return MessageFormatError;
+}(IntlError));
+
+var MissingTranslationError = /** @class */ (function (_super) {
+    (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(MissingTranslationError, _super);
+    function MissingTranslationError(descriptor, locale) {
+        var _this = _super.call(this, IntlErrorCode.MISSING_TRANSLATION, "Missing message: \"" + descriptor.id + "\" for locale \"" + locale + "\", using " + (descriptor.defaultMessage ? 'default message' : 'id') + " as fallback.") || this;
+        _this.descriptor = descriptor;
+        return _this;
+    }
+    return MissingTranslationError;
+}(IntlError));
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl/lib/src/list.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@formatjs/intl/lib/src/list.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "formatList": () => (/* binding */ formatList),
+/* harmony export */   "formatListToParts": () => (/* binding */ formatListToParts)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ "./node_modules/@formatjs/intl/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl/lib/src/utils.js");
+/* harmony import */ var intl_messageformat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! intl-messageformat */ "./node_modules/intl-messageformat/lib/src/error.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./error */ "./node_modules/@formatjs/intl/lib/src/error.js");
+
+
+
+
+var LIST_FORMAT_OPTIONS = [
+    'localeMatcher',
+    'type',
+    'style',
+];
+var now = Date.now();
+function generateToken(i) {
+    return now + "_" + i + "_" + now;
+}
+function formatList(opts, getListFormat, values, options) {
+    if (options === void 0) { options = {}; }
+    var results = formatListToParts(opts, getListFormat, values, options).reduce(function (all, el) {
+        var val = el.value;
+        if (typeof val !== 'string') {
+            all.push(val);
+        }
+        else if (typeof all[all.length - 1] === 'string') {
+            all[all.length - 1] += val;
+        }
+        else {
+            all.push(val);
+        }
+        return all;
+    }, []);
+    return results.length === 1 ? results[0] : results;
+}
+function formatListToParts(_a, getListFormat, values, options) {
+    var locale = _a.locale, onError = _a.onError;
+    if (options === void 0) { options = {}; }
+    var ListFormat = Intl.ListFormat;
+    if (!ListFormat) {
+        onError(new intl_messageformat__WEBPACK_IMPORTED_MODULE_0__.FormatError("Intl.ListFormat is not available in this environment.\nTry polyfilling it using \"@formatjs/intl-listformat\"\n", intl_messageformat__WEBPACK_IMPORTED_MODULE_0__.ErrorCode.MISSING_INTL_API));
+    }
+    var filteredOptions = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.filterProps)(options, LIST_FORMAT_OPTIONS);
+    try {
+        var richValues_1 = {};
+        var serializedValues = values.map(function (v, i) {
+            if (typeof v === 'object') {
+                var id = generateToken(i);
+                richValues_1[id] = v;
+                return id;
+            }
+            return String(v);
+        });
+        return getListFormat(locale, filteredOptions)
+            .formatToParts(serializedValues)
+            .map(function (part) {
+            return part.type === 'literal'
+                ? part
+                : (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({}, part), { value: richValues_1[part.value] || part.value });
+        });
+    }
+    catch (e) {
+        onError(new _error__WEBPACK_IMPORTED_MODULE_3__.IntlError(_error__WEBPACK_IMPORTED_MODULE_3__.IntlErrorCode.FORMAT_ERROR, 'Error formatting list.', e));
+    }
+    // @ts-ignore
+    return values;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl/lib/src/message.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@formatjs/intl/lib/src/message.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "formatMessage": () => (/* binding */ formatMessage)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ "./node_modules/@formatjs/intl/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _formatjs_ecma402_abstract__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @formatjs/ecma402-abstract */ "./node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var intl_messageformat__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! intl-messageformat */ "./node_modules/intl-messageformat/lib/src/core.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./error */ "./node_modules/@formatjs/intl/lib/src/error.js");
+/* harmony import */ var _formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @formatjs/icu-messageformat-parser */ "./node_modules/@formatjs/icu-messageformat-parser/lib/index.js");
+
+
+
+
+
+function setTimeZoneInOptions(opts, timeZone) {
+    return Object.keys(opts).reduce(function (all, k) {
+        all[k] = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({ timeZone: timeZone }, opts[k]);
+        return all;
+    }, {});
+}
+function deepMergeOptions(opts1, opts2) {
+    var keys = Object.keys((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, opts1), opts2));
+    return keys.reduce(function (all, k) {
+        all[k] = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, (opts1[k] || {})), (opts2[k] || {}));
+        return all;
+    }, {});
+}
+function deepMergeFormatsAndSetTimeZone(f1, timeZone) {
+    if (!timeZone) {
+        return f1;
+    }
+    var mfFormats = intl_messageformat__WEBPACK_IMPORTED_MODULE_2__.IntlMessageFormat.formats;
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, mfFormats), f1), { date: deepMergeOptions(setTimeZoneInOptions(mfFormats.date, timeZone), setTimeZoneInOptions(f1.date || {}, timeZone)), time: deepMergeOptions(setTimeZoneInOptions(mfFormats.time, timeZone), setTimeZoneInOptions(f1.time || {}, timeZone)) });
+}
+function formatMessage(_a, state, messageDescriptor, values, opts) {
+    var locale = _a.locale, formats = _a.formats, messages = _a.messages, defaultLocale = _a.defaultLocale, defaultFormats = _a.defaultFormats, onError = _a.onError, timeZone = _a.timeZone, defaultRichTextElements = _a.defaultRichTextElements;
+    if (messageDescriptor === void 0) { messageDescriptor = { id: '' }; }
+    var msgId = messageDescriptor.id, defaultMessage = messageDescriptor.defaultMessage;
+    // `id` is a required field of a Message Descriptor.
+    (0,_formatjs_ecma402_abstract__WEBPACK_IMPORTED_MODULE_3__.invariant)(!!msgId, "[@formatjs/intl] An `id` must be provided to format a message. You can either:\n1. Configure your build toolchain with [babel-plugin-formatjs](https://formatjs.io/docs/tooling/babel-plugin)\nor [@formatjs/ts-transformer](https://formatjs.io/docs/tooling/ts-transformer) OR\n2. Configure your `eslint` config to include [eslint-plugin-formatjs](https://formatjs.io/docs/tooling/linter#enforce-id)\nto autofix this issue");
+    var id = String(msgId);
+    var message = 
+    // In case messages is Object.create(null)
+    // e.g import('foo.json') from webpack)
+    // See https://github.com/formatjs/formatjs/issues/1914
+    messages &&
+        Object.prototype.hasOwnProperty.call(messages, id) &&
+        messages[id];
+    // IMPORTANT: Hot path if `message` is AST with a single literal node
+    if (Array.isArray(message) &&
+        message.length === 1 &&
+        message[0].type === _formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__.TYPE.literal) {
+        return message[0].value;
+    }
+    // IMPORTANT: Hot path straight lookup for performance
+    if (!values &&
+        message &&
+        typeof message === 'string' &&
+        !defaultRichTextElements) {
+        return message.replace(/'\{(.*?)\}'/gi, "{$1}");
+    }
+    values = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({}, defaultRichTextElements), (values || {}));
+    formats = deepMergeFormatsAndSetTimeZone(formats, timeZone);
+    defaultFormats = deepMergeFormatsAndSetTimeZone(defaultFormats, timeZone);
+    if (!message) {
+        if (!defaultMessage ||
+            (locale && locale.toLowerCase() !== defaultLocale.toLowerCase())) {
+            // This prevents warnings from littering the console in development
+            // when no `messages` are passed into the <IntlProvider> for the
+            // default locale.
+            onError(new _error__WEBPACK_IMPORTED_MODULE_4__.MissingTranslationError(messageDescriptor, locale));
+        }
+        if (defaultMessage) {
+            try {
+                var formatter = state.getMessageFormat(defaultMessage, defaultLocale, defaultFormats, opts);
+                return formatter.format(values);
+            }
+            catch (e) {
+                onError(new _error__WEBPACK_IMPORTED_MODULE_4__.MessageFormatError("Error formatting default message for: \"" + id + "\", rendering default message verbatim", locale, messageDescriptor, e));
+                return typeof defaultMessage === 'string' ? defaultMessage : id;
+            }
+        }
+        return id;
+    }
+    // We have the translated message
+    try {
+        var formatter = state.getMessageFormat(message, locale, formats, (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({ formatters: state }, (opts || {})));
+        return formatter.format(values);
+    }
+    catch (e) {
+        onError(new _error__WEBPACK_IMPORTED_MODULE_4__.MessageFormatError("Error formatting message: \"" + id + "\", using " + (defaultMessage ? 'default message' : 'id') + " as fallback.", locale, messageDescriptor, e));
+    }
+    if (defaultMessage) {
+        try {
+            var formatter = state.getMessageFormat(defaultMessage, defaultLocale, defaultFormats, opts);
+            return formatter.format(values);
+        }
+        catch (e) {
+            onError(new _error__WEBPACK_IMPORTED_MODULE_4__.MessageFormatError("Error formatting the default message for: \"" + id + "\", rendering message verbatim", locale, messageDescriptor, e));
+        }
+    }
+    if (typeof message === 'string') {
+        return message;
+    }
+    if (typeof defaultMessage === 'string') {
+        return defaultMessage;
+    }
+    return id;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl/lib/src/number.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@formatjs/intl/lib/src/number.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getFormatter": () => (/* binding */ getFormatter),
+/* harmony export */   "formatNumber": () => (/* binding */ formatNumber),
+/* harmony export */   "formatNumberToParts": () => (/* binding */ formatNumberToParts)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl/lib/src/utils.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./error */ "./node_modules/@formatjs/intl/lib/src/error.js");
+
+
+var NUMBER_FORMAT_OPTIONS = [
+    'localeMatcher',
+    'style',
+    'currency',
+    'currencyDisplay',
+    'unit',
+    'unitDisplay',
+    'useGrouping',
+    'minimumIntegerDigits',
+    'minimumFractionDigits',
+    'maximumFractionDigits',
+    'minimumSignificantDigits',
+    'maximumSignificantDigits',
+    // ES2020 NumberFormat
+    'compactDisplay',
+    'currencyDisplay',
+    'currencySign',
+    'notation',
+    'signDisplay',
+    'unit',
+    'unitDisplay',
+    'numberingSystem',
+];
+function getFormatter(_a, getNumberFormat, options) {
+    var locale = _a.locale, formats = _a.formats, onError = _a.onError;
+    if (options === void 0) { options = {}; }
+    var format = options.format;
+    var defaults = ((format &&
+        (0,_utils__WEBPACK_IMPORTED_MODULE_0__.getNamedFormat)(formats, 'number', format, onError)) ||
+        {});
+    var filteredOptions = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.filterProps)(options, NUMBER_FORMAT_OPTIONS, defaults);
+    return getNumberFormat(locale, filteredOptions);
+}
+function formatNumber(config, getNumberFormat, value, options) {
+    if (options === void 0) { options = {}; }
+    try {
+        return getFormatter(config, getNumberFormat, options).format(value);
+    }
+    catch (e) {
+        config.onError(new _error__WEBPACK_IMPORTED_MODULE_1__.IntlError(_error__WEBPACK_IMPORTED_MODULE_1__.IntlErrorCode.FORMAT_ERROR, 'Error formatting number.', e));
+    }
+    return String(value);
+}
+function formatNumberToParts(config, getNumberFormat, value, options) {
+    if (options === void 0) { options = {}; }
+    try {
+        return getFormatter(config, getNumberFormat, options).formatToParts(value);
+    }
+    catch (e) {
+        config.onError(new _error__WEBPACK_IMPORTED_MODULE_1__.IntlError(_error__WEBPACK_IMPORTED_MODULE_1__.IntlErrorCode.FORMAT_ERROR, 'Error formatting number.', e));
+    }
+    return [];
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl/lib/src/plural.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@formatjs/intl/lib/src/plural.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "formatPlural": () => (/* binding */ formatPlural)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl/lib/src/utils.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./error */ "./node_modules/@formatjs/intl/lib/src/error.js");
+/* harmony import */ var intl_messageformat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! intl-messageformat */ "./node_modules/intl-messageformat/lib/src/error.js");
+
+
+
+var PLURAL_FORMAT_OPTIONS = [
+    'localeMatcher',
+    'type',
+];
+function formatPlural(_a, getPluralRules, value, options) {
+    var locale = _a.locale, onError = _a.onError;
+    if (options === void 0) { options = {}; }
+    if (!Intl.PluralRules) {
+        onError(new intl_messageformat__WEBPACK_IMPORTED_MODULE_0__.FormatError("Intl.PluralRules is not available in this environment.\nTry polyfilling it using \"@formatjs/intl-pluralrules\"\n", intl_messageformat__WEBPACK_IMPORTED_MODULE_0__.ErrorCode.MISSING_INTL_API));
+    }
+    var filteredOptions = (0,_utils__WEBPACK_IMPORTED_MODULE_1__.filterProps)(options, PLURAL_FORMAT_OPTIONS);
+    try {
+        return getPluralRules(locale, filteredOptions).select(value);
+    }
+    catch (e) {
+        onError(new _error__WEBPACK_IMPORTED_MODULE_2__.MessageFormatError('Error formatting plural.', e));
+    }
+    return 'other';
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl/lib/src/relativeTime.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@formatjs/intl/lib/src/relativeTime.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "formatRelativeTime": () => (/* binding */ formatRelativeTime)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/@formatjs/intl/lib/src/utils.js");
+/* harmony import */ var intl_messageformat__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! intl-messageformat */ "./node_modules/intl-messageformat/lib/src/error.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./error */ "./node_modules/@formatjs/intl/lib/src/error.js");
+
+
+
+var RELATIVE_TIME_FORMAT_OPTIONS = ['numeric', 'style'];
+function getFormatter(_a, getRelativeTimeFormat, options) {
+    var locale = _a.locale, formats = _a.formats, onError = _a.onError;
+    if (options === void 0) { options = {}; }
+    var format = options.format;
+    var defaults = (!!format && (0,_utils__WEBPACK_IMPORTED_MODULE_0__.getNamedFormat)(formats, 'relative', format, onError)) || {};
+    var filteredOptions = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.filterProps)(options, RELATIVE_TIME_FORMAT_OPTIONS, defaults);
+    return getRelativeTimeFormat(locale, filteredOptions);
+}
+function formatRelativeTime(config, getRelativeTimeFormat, value, unit, options) {
+    if (options === void 0) { options = {}; }
+    if (!unit) {
+        unit = 'second';
+    }
+    var RelativeTimeFormat = Intl.RelativeTimeFormat;
+    if (!RelativeTimeFormat) {
+        config.onError(new intl_messageformat__WEBPACK_IMPORTED_MODULE_1__.FormatError("Intl.RelativeTimeFormat is not available in this environment.\nTry polyfilling it using \"@formatjs/intl-relativetimeformat\"\n", intl_messageformat__WEBPACK_IMPORTED_MODULE_1__.ErrorCode.MISSING_INTL_API));
+    }
+    try {
+        return getFormatter(config, getRelativeTimeFormat, options).format(value, unit);
+    }
+    catch (e) {
+        config.onError(new _error__WEBPACK_IMPORTED_MODULE_2__.MessageFormatError('Error formatting relative time.', e));
+    }
+    return String(value);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl/lib/src/utils.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@formatjs/intl/lib/src/utils.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "filterProps": () => (/* binding */ filterProps),
+/* harmony export */   "DEFAULT_INTL_CONFIG": () => (/* binding */ DEFAULT_INTL_CONFIG),
+/* harmony export */   "createIntlCache": () => (/* binding */ createIntlCache),
+/* harmony export */   "createFormatters": () => (/* binding */ createFormatters),
+/* harmony export */   "getNamedFormat": () => (/* binding */ getNamedFormat)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ "./node_modules/@formatjs/intl/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var intl_messageformat__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! intl-messageformat */ "./node_modules/intl-messageformat/lib/src/core.js");
+/* harmony import */ var _formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @formatjs/fast-memoize */ "./node_modules/@formatjs/fast-memoize/lib/index.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./error */ "./node_modules/@formatjs/intl/lib/src/error.js");
+
+
+
+
+function filterProps(props, whitelist, defaults) {
+    if (defaults === void 0) { defaults = {}; }
+    return whitelist.reduce(function (filtered, name) {
+        if (name in props) {
+            filtered[name] = props[name];
+        }
+        else if (name in defaults) {
+            filtered[name] = defaults[name];
+        }
+        return filtered;
+    }, {});
+}
+var defaultErrorHandler = function (error) {
+    // @ts-ignore just so we don't need to declare dep on @types/node
+    if (true) {
+        console.error(error);
+    }
+};
+var DEFAULT_INTL_CONFIG = {
+    formats: {},
+    messages: {},
+    timeZone: undefined,
+    defaultLocale: 'en',
+    defaultFormats: {},
+    onError: defaultErrorHandler,
+};
+function createIntlCache() {
+    return {
+        dateTime: {},
+        number: {},
+        message: {},
+        relativeTime: {},
+        pluralRules: {},
+        list: {},
+        displayNames: {},
+    };
+}
+function createFastMemoizeCache(store) {
+    return {
+        create: function () {
+            return {
+                get: function (key) {
+                    return store[key];
+                },
+                set: function (key, value) {
+                    store[key] = value;
+                },
+            };
+        },
+    };
+}
+/**
+ * Create intl formatters and populate cache
+ * @param cache explicit cache to prevent leaking memory
+ */
+function createFormatters(cache) {
+    if (cache === void 0) { cache = createIntlCache(); }
+    var RelativeTimeFormat = Intl.RelativeTimeFormat;
+    var ListFormat = Intl.ListFormat;
+    var DisplayNames = Intl.DisplayNames;
+    var getDateTimeFormat = (0,_formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_0__["default"])(function () {
+        var _a;
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        return new ((_a = Intl.DateTimeFormat).bind.apply(_a, (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__spreadArray)([void 0], args)))();
+    }, {
+        cache: createFastMemoizeCache(cache.dateTime),
+        strategy: _formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_0__.strategies.variadic,
+    });
+    var getNumberFormat = (0,_formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_0__["default"])(function () {
+        var _a;
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        return new ((_a = Intl.NumberFormat).bind.apply(_a, (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__spreadArray)([void 0], args)))();
+    }, {
+        cache: createFastMemoizeCache(cache.number),
+        strategy: _formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_0__.strategies.variadic,
+    });
+    var getPluralRules = (0,_formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_0__["default"])(function () {
+        var _a;
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        return new ((_a = Intl.PluralRules).bind.apply(_a, (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__spreadArray)([void 0], args)))();
+    }, {
+        cache: createFastMemoizeCache(cache.pluralRules),
+        strategy: _formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_0__.strategies.variadic,
+    });
+    return {
+        getDateTimeFormat: getDateTimeFormat,
+        getNumberFormat: getNumberFormat,
+        getMessageFormat: (0,_formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_0__["default"])(function (message, locales, overrideFormats, opts) {
+            return new intl_messageformat__WEBPACK_IMPORTED_MODULE_2__.IntlMessageFormat(message, locales, overrideFormats, (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__assign)({ formatters: {
+                    getNumberFormat: getNumberFormat,
+                    getDateTimeFormat: getDateTimeFormat,
+                    getPluralRules: getPluralRules,
+                } }, (opts || {})));
+        }, {
+            cache: createFastMemoizeCache(cache.message),
+            strategy: _formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_0__.strategies.variadic,
+        }),
+        getRelativeTimeFormat: (0,_formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_0__["default"])(function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return new (RelativeTimeFormat.bind.apply(RelativeTimeFormat, (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__spreadArray)([void 0], args)))();
+        }, {
+            cache: createFastMemoizeCache(cache.relativeTime),
+            strategy: _formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_0__.strategies.variadic,
+        }),
+        getPluralRules: getPluralRules,
+        getListFormat: (0,_formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_0__["default"])(function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return new (ListFormat.bind.apply(ListFormat, (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__spreadArray)([void 0], args)))();
+        }, {
+            cache: createFastMemoizeCache(cache.list),
+            strategy: _formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_0__.strategies.variadic,
+        }),
+        getDisplayNames: (0,_formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_0__["default"])(function () {
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return new (DisplayNames.bind.apply(DisplayNames, (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__spreadArray)([void 0], args)))();
+        }, {
+            cache: createFastMemoizeCache(cache.displayNames),
+            strategy: _formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_0__.strategies.variadic,
+        }),
+    };
+}
+function getNamedFormat(formats, type, name, onError) {
+    var formatType = formats && formats[type];
+    var format;
+    if (formatType) {
+        format = formatType[name];
+    }
+    if (format) {
+        return format;
+    }
+    onError(new _error__WEBPACK_IMPORTED_MODULE_3__.UnsupportedFormatterError("No " + type + " format named: " + name));
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@formatjs/intl/node_modules/tslib/tslib.es6.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@formatjs/intl/node_modules/tslib/tslib.es6.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "__extends": () => (/* binding */ __extends),
+/* harmony export */   "__assign": () => (/* binding */ __assign),
+/* harmony export */   "__rest": () => (/* binding */ __rest),
+/* harmony export */   "__decorate": () => (/* binding */ __decorate),
+/* harmony export */   "__param": () => (/* binding */ __param),
+/* harmony export */   "__metadata": () => (/* binding */ __metadata),
+/* harmony export */   "__awaiter": () => (/* binding */ __awaiter),
+/* harmony export */   "__generator": () => (/* binding */ __generator),
+/* harmony export */   "__createBinding": () => (/* binding */ __createBinding),
+/* harmony export */   "__exportStar": () => (/* binding */ __exportStar),
+/* harmony export */   "__values": () => (/* binding */ __values),
+/* harmony export */   "__read": () => (/* binding */ __read),
+/* harmony export */   "__spread": () => (/* binding */ __spread),
+/* harmony export */   "__spreadArrays": () => (/* binding */ __spreadArrays),
+/* harmony export */   "__spreadArray": () => (/* binding */ __spreadArray),
+/* harmony export */   "__await": () => (/* binding */ __await),
+/* harmony export */   "__asyncGenerator": () => (/* binding */ __asyncGenerator),
+/* harmony export */   "__asyncDelegator": () => (/* binding */ __asyncDelegator),
+/* harmony export */   "__asyncValues": () => (/* binding */ __asyncValues),
+/* harmony export */   "__makeTemplateObject": () => (/* binding */ __makeTemplateObject),
+/* harmony export */   "__importStar": () => (/* binding */ __importStar),
+/* harmony export */   "__importDefault": () => (/* binding */ __importDefault),
+/* harmony export */   "__classPrivateFieldGet": () => (/* binding */ __classPrivateFieldGet),
+/* harmony export */   "__classPrivateFieldSet": () => (/* binding */ __classPrivateFieldSet)
+/* harmony export */ });
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+    return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+    if (typeof b !== "function" && b !== null)
+        throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    }
+    return __assign.apply(this, arguments);
+}
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+function __decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+function __param(paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+}
+
+function __metadata(metadataKey, metadataValue) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+var __createBinding = Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+});
+
+function __exportStar(m, o) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p)) __createBinding(o, m, p);
+}
+
+function __values(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+/** @deprecated */
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
+/** @deprecated */
+function __spreadArrays() {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+}
+
+function __spreadArray(to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+}
+
+function __await(v) {
+    return this instanceof __await ? (this.v = v, this) : new __await(v);
+}
+
+function __asyncGenerator(thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+}
+
+function __asyncDelegator(o) {
+    var i, p;
+    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+}
+
+function __asyncValues(o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+}
+
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+
+var __setModuleDefault = Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+};
+
+function __importStar(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+}
+
+function __importDefault(mod) {
+    return (mod && mod.__esModule) ? mod : { default: mod };
+}
+
+function __classPrivateFieldGet(receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+}
+
+function __classPrivateFieldSet(receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+}
 
 
 /***/ }),
@@ -1915,6 +14817,86 @@ function createElement (type, props) {
 
 /***/ }),
 
+/***/ "./node_modules/browser-lang/dist/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/browser-lang/dist/index.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+
+function startsWith(string, target, position) {
+  var length = string.length;
+  position = position == null ? 0 : position;
+
+  if (position < 0) {
+    position = 0;
+  } else if (position > length) {
+    position = length;
+  }
+
+  target = "".concat(target);
+  return string.slice(position, position + target.length) == target;
+}
+
+function getBrowserLang() {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  var lang = window.navigator.languages && window.navigator.languages[0] || window.navigator.language || window.navigator.browserLanguage || window.navigator.userLanguage || window.navigator.systemLanguage || null;
+  return lang;
+}
+
+function normalizeCode(code) {
+  return code.toLowerCase().replace(/-/, "_");
+}
+
+function getPreferredLanguage(options) {
+  if (!options) {
+    return getBrowserLang();
+  }
+
+  var languages = options.languages,
+      fallback = options.fallback;
+
+  if (!options.languages) {
+    return fallback;
+  } // some browsers report language as en-US instead of en_US
+
+
+  var browserLanguage = normalizeCode(getBrowserLang());
+
+  if (!browserLanguage) {
+    return fallback;
+  }
+
+  var match = languages.filter(function (lang) {
+    return normalizeCode(lang) === browserLanguage;
+  });
+
+  if (match.length > 0) {
+    return match[0] || fallback;
+  } // en == en_US
+
+
+  var matchCodeOnly = languages.filter(function (lang) {
+    return startsWith(browserLanguage, lang);
+  });
+  return matchCodeOnly[0] || fallback;
+}
+
+var _default = getPreferredLanguage;
+exports["default"] = _default;
+
+/***/ }),
+
 /***/ "./node_modules/common-tags/es/TemplateTag/TemplateTag.js":
 /*!****************************************************************!*\
   !*** ./node_modules/common-tags/es/TemplateTag/TemplateTag.js ***!
@@ -2130,6 +15112,51 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/common-tags/es/commaLists/commaLists.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/common-tags/es/commaLists/commaLists.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TemplateTag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../TemplateTag */ "./node_modules/common-tags/es/TemplateTag/index.js");
+/* harmony import */ var _stripIndentTransformer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stripIndentTransformer */ "./node_modules/common-tags/es/stripIndentTransformer/index.js");
+/* harmony import */ var _inlineArrayTransformer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../inlineArrayTransformer */ "./node_modules/common-tags/es/inlineArrayTransformer/index.js");
+/* harmony import */ var _trimResultTransformer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../trimResultTransformer */ "./node_modules/common-tags/es/trimResultTransformer/index.js");
+
+
+
+
+
+var commaLists = new _TemplateTag__WEBPACK_IMPORTED_MODULE_0__["default"]((0,_inlineArrayTransformer__WEBPACK_IMPORTED_MODULE_2__["default"])({ separator: ',' }), _stripIndentTransformer__WEBPACK_IMPORTED_MODULE_1__["default"], _trimResultTransformer__WEBPACK_IMPORTED_MODULE_3__["default"]);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (commaLists);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9jb21tYUxpc3RzL2NvbW1hTGlzdHMuanMiXSwibmFtZXMiOlsiVGVtcGxhdGVUYWciLCJzdHJpcEluZGVudFRyYW5zZm9ybWVyIiwiaW5saW5lQXJyYXlUcmFuc2Zvcm1lciIsInRyaW1SZXN1bHRUcmFuc2Zvcm1lciIsImNvbW1hTGlzdHMiLCJzZXBhcmF0b3IiXSwibWFwcGluZ3MiOiJBQUFBLE9BQU9BLFdBQVAsTUFBd0IsZ0JBQXhCO0FBQ0EsT0FBT0Msc0JBQVAsTUFBbUMsMkJBQW5DO0FBQ0EsT0FBT0Msc0JBQVAsTUFBbUMsMkJBQW5DO0FBQ0EsT0FBT0MscUJBQVAsTUFBa0MsMEJBQWxDOztBQUVBLElBQU1DLGFBQWEsSUFBSUosV0FBSixDQUNqQkUsdUJBQXVCLEVBQUVHLFdBQVcsR0FBYixFQUF2QixDQURpQixFQUVqQkosc0JBRmlCLEVBR2pCRSxxQkFIaUIsQ0FBbkI7O0FBTUEsZUFBZUMsVUFBZiIsImZpbGUiOiJjb21tYUxpc3RzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFRlbXBsYXRlVGFnIGZyb20gJy4uL1RlbXBsYXRlVGFnJztcbmltcG9ydCBzdHJpcEluZGVudFRyYW5zZm9ybWVyIGZyb20gJy4uL3N0cmlwSW5kZW50VHJhbnNmb3JtZXInO1xuaW1wb3J0IGlubGluZUFycmF5VHJhbnNmb3JtZXIgZnJvbSAnLi4vaW5saW5lQXJyYXlUcmFuc2Zvcm1lcic7XG5pbXBvcnQgdHJpbVJlc3VsdFRyYW5zZm9ybWVyIGZyb20gJy4uL3RyaW1SZXN1bHRUcmFuc2Zvcm1lcic7XG5cbmNvbnN0IGNvbW1hTGlzdHMgPSBuZXcgVGVtcGxhdGVUYWcoXG4gIGlubGluZUFycmF5VHJhbnNmb3JtZXIoeyBzZXBhcmF0b3I6ICcsJyB9KSxcbiAgc3RyaXBJbmRlbnRUcmFuc2Zvcm1lcixcbiAgdHJpbVJlc3VsdFRyYW5zZm9ybWVyLFxuKTtcblxuZXhwb3J0IGRlZmF1bHQgY29tbWFMaXN0cztcbiJdfQ==
+
+/***/ }),
+
+/***/ "./node_modules/common-tags/es/commaLists/index.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/common-tags/es/commaLists/index.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _commaLists__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _commaLists__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./commaLists */ "./node_modules/common-tags/es/commaLists/commaLists.js");
+
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9jb21tYUxpc3RzL2luZGV4LmpzIl0sIm5hbWVzIjpbImRlZmF1bHQiXSwibWFwcGluZ3MiOiJxQkFBb0IsYztxQkFBYkEsTyIsImZpbGUiOiJpbmRleC5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0IGZyb20gJy4vY29tbWFMaXN0cyc7XG4iXX0=
+
+/***/ }),
+
 /***/ "./node_modules/common-tags/es/commaListsAnd/commaListsAnd.js":
 /*!********************************************************************!*\
   !*** ./node_modules/common-tags/es/commaListsAnd/commaListsAnd.js ***!
@@ -2217,51 +15244,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9jb21tYUxpc3RzT3IvaW5kZXguanMiXSwibmFtZXMiOlsiZGVmYXVsdCJdLCJtYXBwaW5ncyI6InFCQUFvQixnQjtxQkFBYkEsTyIsImZpbGUiOiJpbmRleC5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0IGZyb20gJy4vY29tbWFMaXN0c09yJztcbiJdfQ==
-
-/***/ }),
-
-/***/ "./node_modules/common-tags/es/commaLists/commaLists.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/common-tags/es/commaLists/commaLists.js ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _TemplateTag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../TemplateTag */ "./node_modules/common-tags/es/TemplateTag/index.js");
-/* harmony import */ var _stripIndentTransformer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stripIndentTransformer */ "./node_modules/common-tags/es/stripIndentTransformer/index.js");
-/* harmony import */ var _inlineArrayTransformer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../inlineArrayTransformer */ "./node_modules/common-tags/es/inlineArrayTransformer/index.js");
-/* harmony import */ var _trimResultTransformer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../trimResultTransformer */ "./node_modules/common-tags/es/trimResultTransformer/index.js");
-
-
-
-
-
-var commaLists = new _TemplateTag__WEBPACK_IMPORTED_MODULE_0__["default"]((0,_inlineArrayTransformer__WEBPACK_IMPORTED_MODULE_2__["default"])({ separator: ',' }), _stripIndentTransformer__WEBPACK_IMPORTED_MODULE_1__["default"], _trimResultTransformer__WEBPACK_IMPORTED_MODULE_3__["default"]);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (commaLists);
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9jb21tYUxpc3RzL2NvbW1hTGlzdHMuanMiXSwibmFtZXMiOlsiVGVtcGxhdGVUYWciLCJzdHJpcEluZGVudFRyYW5zZm9ybWVyIiwiaW5saW5lQXJyYXlUcmFuc2Zvcm1lciIsInRyaW1SZXN1bHRUcmFuc2Zvcm1lciIsImNvbW1hTGlzdHMiLCJzZXBhcmF0b3IiXSwibWFwcGluZ3MiOiJBQUFBLE9BQU9BLFdBQVAsTUFBd0IsZ0JBQXhCO0FBQ0EsT0FBT0Msc0JBQVAsTUFBbUMsMkJBQW5DO0FBQ0EsT0FBT0Msc0JBQVAsTUFBbUMsMkJBQW5DO0FBQ0EsT0FBT0MscUJBQVAsTUFBa0MsMEJBQWxDOztBQUVBLElBQU1DLGFBQWEsSUFBSUosV0FBSixDQUNqQkUsdUJBQXVCLEVBQUVHLFdBQVcsR0FBYixFQUF2QixDQURpQixFQUVqQkosc0JBRmlCLEVBR2pCRSxxQkFIaUIsQ0FBbkI7O0FBTUEsZUFBZUMsVUFBZiIsImZpbGUiOiJjb21tYUxpc3RzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFRlbXBsYXRlVGFnIGZyb20gJy4uL1RlbXBsYXRlVGFnJztcbmltcG9ydCBzdHJpcEluZGVudFRyYW5zZm9ybWVyIGZyb20gJy4uL3N0cmlwSW5kZW50VHJhbnNmb3JtZXInO1xuaW1wb3J0IGlubGluZUFycmF5VHJhbnNmb3JtZXIgZnJvbSAnLi4vaW5saW5lQXJyYXlUcmFuc2Zvcm1lcic7XG5pbXBvcnQgdHJpbVJlc3VsdFRyYW5zZm9ybWVyIGZyb20gJy4uL3RyaW1SZXN1bHRUcmFuc2Zvcm1lcic7XG5cbmNvbnN0IGNvbW1hTGlzdHMgPSBuZXcgVGVtcGxhdGVUYWcoXG4gIGlubGluZUFycmF5VHJhbnNmb3JtZXIoeyBzZXBhcmF0b3I6ICcsJyB9KSxcbiAgc3RyaXBJbmRlbnRUcmFuc2Zvcm1lcixcbiAgdHJpbVJlc3VsdFRyYW5zZm9ybWVyLFxuKTtcblxuZXhwb3J0IGRlZmF1bHQgY29tbWFMaXN0cztcbiJdfQ==
-
-/***/ }),
-
-/***/ "./node_modules/common-tags/es/commaLists/index.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/common-tags/es/commaLists/index.js ***!
-  \*********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _commaLists__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _commaLists__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./commaLists */ "./node_modules/common-tags/es/commaLists/commaLists.js");
-
-
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9jb21tYUxpc3RzL2luZGV4LmpzIl0sIm5hbWVzIjpbImRlZmF1bHQiXSwibWFwcGluZ3MiOiJxQkFBb0IsYztxQkFBYkEsTyIsImZpbGUiOiJpbmRleC5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0IGZyb20gJy4vY29tbWFMaXN0cyc7XG4iXX0=
 
 /***/ }),
 
@@ -2557,6 +15539,94 @@ var inlineLists = new _TemplateTag__WEBPACK_IMPORTED_MODULE_0__["default"](_inli
 
 /***/ }),
 
+/***/ "./node_modules/common-tags/es/oneLine/index.js":
+/*!******************************************************!*\
+  !*** ./node_modules/common-tags/es/oneLine/index.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _oneLine__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _oneLine__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./oneLine */ "./node_modules/common-tags/es/oneLine/oneLine.js");
+
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9vbmVMaW5lL2luZGV4LmpzIl0sIm5hbWVzIjpbImRlZmF1bHQiXSwibWFwcGluZ3MiOiJxQkFBb0IsVztxQkFBYkEsTyIsImZpbGUiOiJpbmRleC5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0IGZyb20gJy4vb25lTGluZSc7XG4iXX0=
+
+/***/ }),
+
+/***/ "./node_modules/common-tags/es/oneLine/oneLine.js":
+/*!********************************************************!*\
+  !*** ./node_modules/common-tags/es/oneLine/oneLine.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TemplateTag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../TemplateTag */ "./node_modules/common-tags/es/TemplateTag/index.js");
+/* harmony import */ var _trimResultTransformer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../trimResultTransformer */ "./node_modules/common-tags/es/trimResultTransformer/index.js");
+/* harmony import */ var _replaceResultTransformer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../replaceResultTransformer */ "./node_modules/common-tags/es/replaceResultTransformer/index.js");
+
+
+
+
+var oneLine = new _TemplateTag__WEBPACK_IMPORTED_MODULE_0__["default"]((0,_replaceResultTransformer__WEBPACK_IMPORTED_MODULE_2__["default"])(/(?:\n(?:\s*))+/g, ' '), _trimResultTransformer__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (oneLine);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9vbmVMaW5lL29uZUxpbmUuanMiXSwibmFtZXMiOlsiVGVtcGxhdGVUYWciLCJ0cmltUmVzdWx0VHJhbnNmb3JtZXIiLCJyZXBsYWNlUmVzdWx0VHJhbnNmb3JtZXIiLCJvbmVMaW5lIl0sIm1hcHBpbmdzIjoiQUFBQSxPQUFPQSxXQUFQLE1BQXdCLGdCQUF4QjtBQUNBLE9BQU9DLHFCQUFQLE1BQWtDLDBCQUFsQztBQUNBLE9BQU9DLHdCQUFQLE1BQXFDLDZCQUFyQzs7QUFFQSxJQUFNQyxVQUFVLElBQUlILFdBQUosQ0FDZEUseUJBQXlCLGlCQUF6QixFQUE0QyxHQUE1QyxDQURjLEVBRWRELHFCQUZjLENBQWhCOztBQUtBLGVBQWVFLE9BQWYiLCJmaWxlIjoib25lTGluZS5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBUZW1wbGF0ZVRhZyBmcm9tICcuLi9UZW1wbGF0ZVRhZyc7XG5pbXBvcnQgdHJpbVJlc3VsdFRyYW5zZm9ybWVyIGZyb20gJy4uL3RyaW1SZXN1bHRUcmFuc2Zvcm1lcic7XG5pbXBvcnQgcmVwbGFjZVJlc3VsdFRyYW5zZm9ybWVyIGZyb20gJy4uL3JlcGxhY2VSZXN1bHRUcmFuc2Zvcm1lcic7XG5cbmNvbnN0IG9uZUxpbmUgPSBuZXcgVGVtcGxhdGVUYWcoXG4gIHJlcGxhY2VSZXN1bHRUcmFuc2Zvcm1lcigvKD86XFxuKD86XFxzKikpKy9nLCAnICcpLFxuICB0cmltUmVzdWx0VHJhbnNmb3JtZXIsXG4pO1xuXG5leHBvcnQgZGVmYXVsdCBvbmVMaW5lO1xuIl19
+
+/***/ }),
+
+/***/ "./node_modules/common-tags/es/oneLineCommaLists/index.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/common-tags/es/oneLineCommaLists/index.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _oneLineCommaLists__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _oneLineCommaLists__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./oneLineCommaLists */ "./node_modules/common-tags/es/oneLineCommaLists/oneLineCommaLists.js");
+
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9vbmVMaW5lQ29tbWFMaXN0cy9pbmRleC5qcyJdLCJuYW1lcyI6WyJkZWZhdWx0Il0sIm1hcHBpbmdzIjoicUJBQW9CLHFCO3FCQUFiQSxPIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgZnJvbSAnLi9vbmVMaW5lQ29tbWFMaXN0cyc7XG4iXX0=
+
+/***/ }),
+
+/***/ "./node_modules/common-tags/es/oneLineCommaLists/oneLineCommaLists.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/common-tags/es/oneLineCommaLists/oneLineCommaLists.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TemplateTag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../TemplateTag */ "./node_modules/common-tags/es/TemplateTag/index.js");
+/* harmony import */ var _inlineArrayTransformer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../inlineArrayTransformer */ "./node_modules/common-tags/es/inlineArrayTransformer/index.js");
+/* harmony import */ var _trimResultTransformer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../trimResultTransformer */ "./node_modules/common-tags/es/trimResultTransformer/index.js");
+/* harmony import */ var _replaceResultTransformer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../replaceResultTransformer */ "./node_modules/common-tags/es/replaceResultTransformer/index.js");
+
+
+
+
+
+var oneLineCommaLists = new _TemplateTag__WEBPACK_IMPORTED_MODULE_0__["default"]((0,_inlineArrayTransformer__WEBPACK_IMPORTED_MODULE_1__["default"])({ separator: ',' }), (0,_replaceResultTransformer__WEBPACK_IMPORTED_MODULE_3__["default"])(/(?:\s+)/g, ' '), _trimResultTransformer__WEBPACK_IMPORTED_MODULE_2__["default"]);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (oneLineCommaLists);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9vbmVMaW5lQ29tbWFMaXN0cy9vbmVMaW5lQ29tbWFMaXN0cy5qcyJdLCJuYW1lcyI6WyJUZW1wbGF0ZVRhZyIsImlubGluZUFycmF5VHJhbnNmb3JtZXIiLCJ0cmltUmVzdWx0VHJhbnNmb3JtZXIiLCJyZXBsYWNlUmVzdWx0VHJhbnNmb3JtZXIiLCJvbmVMaW5lQ29tbWFMaXN0cyIsInNlcGFyYXRvciJdLCJtYXBwaW5ncyI6IkFBQUEsT0FBT0EsV0FBUCxNQUF3QixnQkFBeEI7QUFDQSxPQUFPQyxzQkFBUCxNQUFtQywyQkFBbkM7QUFDQSxPQUFPQyxxQkFBUCxNQUFrQywwQkFBbEM7QUFDQSxPQUFPQyx3QkFBUCxNQUFxQyw2QkFBckM7O0FBRUEsSUFBTUMsb0JBQW9CLElBQUlKLFdBQUosQ0FDeEJDLHVCQUF1QixFQUFFSSxXQUFXLEdBQWIsRUFBdkIsQ0FEd0IsRUFFeEJGLHlCQUF5QixVQUF6QixFQUFxQyxHQUFyQyxDQUZ3QixFQUd4QkQscUJBSHdCLENBQTFCOztBQU1BLGVBQWVFLGlCQUFmIiwiZmlsZSI6Im9uZUxpbmVDb21tYUxpc3RzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFRlbXBsYXRlVGFnIGZyb20gJy4uL1RlbXBsYXRlVGFnJztcbmltcG9ydCBpbmxpbmVBcnJheVRyYW5zZm9ybWVyIGZyb20gJy4uL2lubGluZUFycmF5VHJhbnNmb3JtZXInO1xuaW1wb3J0IHRyaW1SZXN1bHRUcmFuc2Zvcm1lciBmcm9tICcuLi90cmltUmVzdWx0VHJhbnNmb3JtZXInO1xuaW1wb3J0IHJlcGxhY2VSZXN1bHRUcmFuc2Zvcm1lciBmcm9tICcuLi9yZXBsYWNlUmVzdWx0VHJhbnNmb3JtZXInO1xuXG5jb25zdCBvbmVMaW5lQ29tbWFMaXN0cyA9IG5ldyBUZW1wbGF0ZVRhZyhcbiAgaW5saW5lQXJyYXlUcmFuc2Zvcm1lcih7IHNlcGFyYXRvcjogJywnIH0pLFxuICByZXBsYWNlUmVzdWx0VHJhbnNmb3JtZXIoLyg/OlxccyspL2csICcgJyksXG4gIHRyaW1SZXN1bHRUcmFuc2Zvcm1lcixcbik7XG5cbmV4cG9ydCBkZWZhdWx0IG9uZUxpbmVDb21tYUxpc3RzO1xuIl19
+
+/***/ }),
+
 /***/ "./node_modules/common-tags/es/oneLineCommaListsAnd/index.js":
 /*!*******************************************************************!*\
   !*** ./node_modules/common-tags/es/oneLineCommaListsAnd/index.js ***!
@@ -2647,51 +15717,6 @@ var oneLineCommaListsOr = new _TemplateTag__WEBPACK_IMPORTED_MODULE_0__["default
 
 /***/ }),
 
-/***/ "./node_modules/common-tags/es/oneLineCommaLists/index.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/common-tags/es/oneLineCommaLists/index.js ***!
-  \****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _oneLineCommaLists__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _oneLineCommaLists__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./oneLineCommaLists */ "./node_modules/common-tags/es/oneLineCommaLists/oneLineCommaLists.js");
-
-
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9vbmVMaW5lQ29tbWFMaXN0cy9pbmRleC5qcyJdLCJuYW1lcyI6WyJkZWZhdWx0Il0sIm1hcHBpbmdzIjoicUJBQW9CLHFCO3FCQUFiQSxPIiwiZmlsZSI6ImluZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgZnJvbSAnLi9vbmVMaW5lQ29tbWFMaXN0cyc7XG4iXX0=
-
-/***/ }),
-
-/***/ "./node_modules/common-tags/es/oneLineCommaLists/oneLineCommaLists.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/common-tags/es/oneLineCommaLists/oneLineCommaLists.js ***!
-  \****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _TemplateTag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../TemplateTag */ "./node_modules/common-tags/es/TemplateTag/index.js");
-/* harmony import */ var _inlineArrayTransformer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../inlineArrayTransformer */ "./node_modules/common-tags/es/inlineArrayTransformer/index.js");
-/* harmony import */ var _trimResultTransformer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../trimResultTransformer */ "./node_modules/common-tags/es/trimResultTransformer/index.js");
-/* harmony import */ var _replaceResultTransformer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../replaceResultTransformer */ "./node_modules/common-tags/es/replaceResultTransformer/index.js");
-
-
-
-
-
-var oneLineCommaLists = new _TemplateTag__WEBPACK_IMPORTED_MODULE_0__["default"]((0,_inlineArrayTransformer__WEBPACK_IMPORTED_MODULE_1__["default"])({ separator: ',' }), (0,_replaceResultTransformer__WEBPACK_IMPORTED_MODULE_3__["default"])(/(?:\s+)/g, ' '), _trimResultTransformer__WEBPACK_IMPORTED_MODULE_2__["default"]);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (oneLineCommaLists);
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9vbmVMaW5lQ29tbWFMaXN0cy9vbmVMaW5lQ29tbWFMaXN0cy5qcyJdLCJuYW1lcyI6WyJUZW1wbGF0ZVRhZyIsImlubGluZUFycmF5VHJhbnNmb3JtZXIiLCJ0cmltUmVzdWx0VHJhbnNmb3JtZXIiLCJyZXBsYWNlUmVzdWx0VHJhbnNmb3JtZXIiLCJvbmVMaW5lQ29tbWFMaXN0cyIsInNlcGFyYXRvciJdLCJtYXBwaW5ncyI6IkFBQUEsT0FBT0EsV0FBUCxNQUF3QixnQkFBeEI7QUFDQSxPQUFPQyxzQkFBUCxNQUFtQywyQkFBbkM7QUFDQSxPQUFPQyxxQkFBUCxNQUFrQywwQkFBbEM7QUFDQSxPQUFPQyx3QkFBUCxNQUFxQyw2QkFBckM7O0FBRUEsSUFBTUMsb0JBQW9CLElBQUlKLFdBQUosQ0FDeEJDLHVCQUF1QixFQUFFSSxXQUFXLEdBQWIsRUFBdkIsQ0FEd0IsRUFFeEJGLHlCQUF5QixVQUF6QixFQUFxQyxHQUFyQyxDQUZ3QixFQUd4QkQscUJBSHdCLENBQTFCOztBQU1BLGVBQWVFLGlCQUFmIiwiZmlsZSI6Im9uZUxpbmVDb21tYUxpc3RzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFRlbXBsYXRlVGFnIGZyb20gJy4uL1RlbXBsYXRlVGFnJztcbmltcG9ydCBpbmxpbmVBcnJheVRyYW5zZm9ybWVyIGZyb20gJy4uL2lubGluZUFycmF5VHJhbnNmb3JtZXInO1xuaW1wb3J0IHRyaW1SZXN1bHRUcmFuc2Zvcm1lciBmcm9tICcuLi90cmltUmVzdWx0VHJhbnNmb3JtZXInO1xuaW1wb3J0IHJlcGxhY2VSZXN1bHRUcmFuc2Zvcm1lciBmcm9tICcuLi9yZXBsYWNlUmVzdWx0VHJhbnNmb3JtZXInO1xuXG5jb25zdCBvbmVMaW5lQ29tbWFMaXN0cyA9IG5ldyBUZW1wbGF0ZVRhZyhcbiAgaW5saW5lQXJyYXlUcmFuc2Zvcm1lcih7IHNlcGFyYXRvcjogJywnIH0pLFxuICByZXBsYWNlUmVzdWx0VHJhbnNmb3JtZXIoLyg/OlxccyspL2csICcgJyksXG4gIHRyaW1SZXN1bHRUcmFuc2Zvcm1lcixcbik7XG5cbmV4cG9ydCBkZWZhdWx0IG9uZUxpbmVDb21tYUxpc3RzO1xuIl19
-
-/***/ }),
-
 /***/ "./node_modules/common-tags/es/oneLineInlineLists/index.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/common-tags/es/oneLineInlineLists/index.js ***!
@@ -2777,49 +15802,6 @@ var oneLineTrim = new _TemplateTag__WEBPACK_IMPORTED_MODULE_0__["default"]((0,_r
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (oneLineTrim);
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9vbmVMaW5lVHJpbS9vbmVMaW5lVHJpbS5qcyJdLCJuYW1lcyI6WyJUZW1wbGF0ZVRhZyIsInRyaW1SZXN1bHRUcmFuc2Zvcm1lciIsInJlcGxhY2VSZXN1bHRUcmFuc2Zvcm1lciIsIm9uZUxpbmVUcmltIl0sIm1hcHBpbmdzIjoiQUFBQSxPQUFPQSxXQUFQLE1BQXdCLGdCQUF4QjtBQUNBLE9BQU9DLHFCQUFQLE1BQWtDLDBCQUFsQztBQUNBLE9BQU9DLHdCQUFQLE1BQXFDLDZCQUFyQzs7QUFFQSxJQUFNQyxjQUFjLElBQUlILFdBQUosQ0FDbEJFLHlCQUF5QixZQUF6QixFQUF1QyxFQUF2QyxDQURrQixFQUVsQkQscUJBRmtCLENBQXBCOztBQUtBLGVBQWVFLFdBQWYiLCJmaWxlIjoib25lTGluZVRyaW0uanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgVGVtcGxhdGVUYWcgZnJvbSAnLi4vVGVtcGxhdGVUYWcnO1xuaW1wb3J0IHRyaW1SZXN1bHRUcmFuc2Zvcm1lciBmcm9tICcuLi90cmltUmVzdWx0VHJhbnNmb3JtZXInO1xuaW1wb3J0IHJlcGxhY2VSZXN1bHRUcmFuc2Zvcm1lciBmcm9tICcuLi9yZXBsYWNlUmVzdWx0VHJhbnNmb3JtZXInO1xuXG5jb25zdCBvbmVMaW5lVHJpbSA9IG5ldyBUZW1wbGF0ZVRhZyhcbiAgcmVwbGFjZVJlc3VsdFRyYW5zZm9ybWVyKC8oPzpcXG5cXHMqKS9nLCAnJyksXG4gIHRyaW1SZXN1bHRUcmFuc2Zvcm1lcixcbik7XG5cbmV4cG9ydCBkZWZhdWx0IG9uZUxpbmVUcmltO1xuIl19
-
-/***/ }),
-
-/***/ "./node_modules/common-tags/es/oneLine/index.js":
-/*!******************************************************!*\
-  !*** ./node_modules/common-tags/es/oneLine/index.js ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _oneLine__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _oneLine__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./oneLine */ "./node_modules/common-tags/es/oneLine/oneLine.js");
-
-
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9vbmVMaW5lL2luZGV4LmpzIl0sIm5hbWVzIjpbImRlZmF1bHQiXSwibWFwcGluZ3MiOiJxQkFBb0IsVztxQkFBYkEsTyIsImZpbGUiOiJpbmRleC5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0IGZyb20gJy4vb25lTGluZSc7XG4iXX0=
-
-/***/ }),
-
-/***/ "./node_modules/common-tags/es/oneLine/oneLine.js":
-/*!********************************************************!*\
-  !*** ./node_modules/common-tags/es/oneLine/oneLine.js ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _TemplateTag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../TemplateTag */ "./node_modules/common-tags/es/TemplateTag/index.js");
-/* harmony import */ var _trimResultTransformer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../trimResultTransformer */ "./node_modules/common-tags/es/trimResultTransformer/index.js");
-/* harmony import */ var _replaceResultTransformer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../replaceResultTransformer */ "./node_modules/common-tags/es/replaceResultTransformer/index.js");
-
-
-
-
-var oneLine = new _TemplateTag__WEBPACK_IMPORTED_MODULE_0__["default"]((0,_replaceResultTransformer__WEBPACK_IMPORTED_MODULE_2__["default"])(/(?:\n(?:\s*))+/g, ' '), _trimResultTransformer__WEBPACK_IMPORTED_MODULE_1__["default"]);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (oneLine);
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9vbmVMaW5lL29uZUxpbmUuanMiXSwibmFtZXMiOlsiVGVtcGxhdGVUYWciLCJ0cmltUmVzdWx0VHJhbnNmb3JtZXIiLCJyZXBsYWNlUmVzdWx0VHJhbnNmb3JtZXIiLCJvbmVMaW5lIl0sIm1hcHBpbmdzIjoiQUFBQSxPQUFPQSxXQUFQLE1BQXdCLGdCQUF4QjtBQUNBLE9BQU9DLHFCQUFQLE1BQWtDLDBCQUFsQztBQUNBLE9BQU9DLHdCQUFQLE1BQXFDLDZCQUFyQzs7QUFFQSxJQUFNQyxVQUFVLElBQUlILFdBQUosQ0FDZEUseUJBQXlCLGlCQUF6QixFQUE0QyxHQUE1QyxDQURjLEVBRWRELHFCQUZjLENBQWhCOztBQUtBLGVBQWVFLE9BQWYiLCJmaWxlIjoib25lTGluZS5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBUZW1wbGF0ZVRhZyBmcm9tICcuLi9UZW1wbGF0ZVRhZyc7XG5pbXBvcnQgdHJpbVJlc3VsdFRyYW5zZm9ybWVyIGZyb20gJy4uL3RyaW1SZXN1bHRUcmFuc2Zvcm1lcic7XG5pbXBvcnQgcmVwbGFjZVJlc3VsdFRyYW5zZm9ybWVyIGZyb20gJy4uL3JlcGxhY2VSZXN1bHRUcmFuc2Zvcm1lcic7XG5cbmNvbnN0IG9uZUxpbmUgPSBuZXcgVGVtcGxhdGVUYWcoXG4gIHJlcGxhY2VSZXN1bHRUcmFuc2Zvcm1lcigvKD86XFxuKD86XFxzKikpKy9nLCAnICcpLFxuICB0cmltUmVzdWx0VHJhbnNmb3JtZXIsXG4pO1xuXG5leHBvcnQgZGVmYXVsdCBvbmVMaW5lO1xuIl19
 
 /***/ }),
 
@@ -3139,6 +16121,49 @@ var splitStringTransformer = function splitStringTransformer(splitBy) {
 
 /***/ }),
 
+/***/ "./node_modules/common-tags/es/stripIndent/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/common-tags/es/stripIndent/index.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _stripIndent__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _stripIndent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stripIndent */ "./node_modules/common-tags/es/stripIndent/stripIndent.js");
+
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9zdHJpcEluZGVudC9pbmRleC5qcyJdLCJuYW1lcyI6WyJkZWZhdWx0Il0sIm1hcHBpbmdzIjoicUJBQW9CLGU7cUJBQWJBLE8iLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCBmcm9tICcuL3N0cmlwSW5kZW50JztcbiJdfQ==
+
+/***/ }),
+
+/***/ "./node_modules/common-tags/es/stripIndent/stripIndent.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/common-tags/es/stripIndent/stripIndent.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TemplateTag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../TemplateTag */ "./node_modules/common-tags/es/TemplateTag/index.js");
+/* harmony import */ var _stripIndentTransformer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stripIndentTransformer */ "./node_modules/common-tags/es/stripIndentTransformer/index.js");
+/* harmony import */ var _trimResultTransformer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../trimResultTransformer */ "./node_modules/common-tags/es/trimResultTransformer/index.js");
+
+
+
+
+var stripIndent = new _TemplateTag__WEBPACK_IMPORTED_MODULE_0__["default"](_stripIndentTransformer__WEBPACK_IMPORTED_MODULE_1__["default"], _trimResultTransformer__WEBPACK_IMPORTED_MODULE_2__["default"]);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (stripIndent);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9zdHJpcEluZGVudC9zdHJpcEluZGVudC5qcyJdLCJuYW1lcyI6WyJUZW1wbGF0ZVRhZyIsInN0cmlwSW5kZW50VHJhbnNmb3JtZXIiLCJ0cmltUmVzdWx0VHJhbnNmb3JtZXIiLCJzdHJpcEluZGVudCJdLCJtYXBwaW5ncyI6IkFBQUEsT0FBT0EsV0FBUCxNQUF3QixnQkFBeEI7QUFDQSxPQUFPQyxzQkFBUCxNQUFtQywyQkFBbkM7QUFDQSxPQUFPQyxxQkFBUCxNQUFrQywwQkFBbEM7O0FBRUEsSUFBTUMsY0FBYyxJQUFJSCxXQUFKLENBQ2xCQyxzQkFEa0IsRUFFbEJDLHFCQUZrQixDQUFwQjs7QUFLQSxlQUFlQyxXQUFmIiwiZmlsZSI6InN0cmlwSW5kZW50LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFRlbXBsYXRlVGFnIGZyb20gJy4uL1RlbXBsYXRlVGFnJztcbmltcG9ydCBzdHJpcEluZGVudFRyYW5zZm9ybWVyIGZyb20gJy4uL3N0cmlwSW5kZW50VHJhbnNmb3JtZXInO1xuaW1wb3J0IHRyaW1SZXN1bHRUcmFuc2Zvcm1lciBmcm9tICcuLi90cmltUmVzdWx0VHJhbnNmb3JtZXInO1xuXG5jb25zdCBzdHJpcEluZGVudCA9IG5ldyBUZW1wbGF0ZVRhZyhcbiAgc3RyaXBJbmRlbnRUcmFuc2Zvcm1lcixcbiAgdHJpbVJlc3VsdFRyYW5zZm9ybWVyLFxuKTtcblxuZXhwb3J0IGRlZmF1bHQgc3RyaXBJbmRlbnQ7XG4iXX0=
+
+/***/ }),
+
 /***/ "./node_modules/common-tags/es/stripIndentTransformer/index.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/common-tags/es/stripIndentTransformer/index.js ***!
@@ -3202,49 +16227,6 @@ var stripIndentTransformer = function stripIndentTransformer() {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (stripIndentTransformer);
 //# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9zdHJpcEluZGVudFRyYW5zZm9ybWVyL3N0cmlwSW5kZW50VHJhbnNmb3JtZXIuanMiXSwibmFtZXMiOlsic3RyaXBJbmRlbnRUcmFuc2Zvcm1lciIsInR5cGUiLCJvbkVuZFJlc3VsdCIsImVuZFJlc3VsdCIsIm1hdGNoIiwiaW5kZW50IiwiTWF0aCIsIm1pbiIsIm1hcCIsImVsIiwibGVuZ3RoIiwicmVnZXhwIiwiUmVnRXhwIiwicmVwbGFjZSIsIkVycm9yIl0sIm1hcHBpbmdzIjoiOztBQUFBOzs7OztBQUtBLElBQU1BLHlCQUF5QixTQUF6QkEsc0JBQXlCO0FBQUEsTUFBQ0MsSUFBRCx1RUFBUSxTQUFSO0FBQUEsU0FBdUI7QUFDcERDLGVBRG9ELHVCQUN4Q0MsU0FEd0MsRUFDN0I7QUFDckIsVUFBSUYsU0FBUyxTQUFiLEVBQXdCO0FBQ3RCO0FBQ0EsWUFBTUcsUUFBUUQsVUFBVUMsS0FBVixDQUFnQixtQkFBaEIsQ0FBZDtBQUNBLFlBQU1DLFNBQVNELFNBQVNFLEtBQUtDLEdBQUwsZ0NBQVlILE1BQU1JLEdBQU4sQ0FBVTtBQUFBLGlCQUFNQyxHQUFHQyxNQUFUO0FBQUEsU0FBVixDQUFaLEVBQXhCO0FBQ0EsWUFBSUwsTUFBSixFQUFZO0FBQ1YsY0FBTU0sU0FBUyxJQUFJQyxNQUFKLFNBQWlCUCxNQUFqQixRQUE0QixJQUE1QixDQUFmO0FBQ0EsaUJBQU9GLFVBQVVVLE9BQVYsQ0FBa0JGLE1BQWxCLEVBQTBCLEVBQTFCLENBQVA7QUFDRDtBQUNELGVBQU9SLFNBQVA7QUFDRDtBQUNELFVBQUlGLFNBQVMsS0FBYixFQUFvQjtBQUNsQjtBQUNBLGVBQU9FLFVBQVVVLE9BQVYsQ0FBa0IsYUFBbEIsRUFBaUMsRUFBakMsQ0FBUDtBQUNEO0FBQ0QsWUFBTSxJQUFJQyxLQUFKLG9CQUEyQmIsSUFBM0IsQ0FBTjtBQUNEO0FBakJtRCxHQUF2QjtBQUFBLENBQS9COztBQW9CQSxlQUFlRCxzQkFBZiIsImZpbGUiOiJzdHJpcEluZGVudFRyYW5zZm9ybWVyLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBzdHJpcHMgaW5kZW50YXRpb24gZnJvbSBhIHRlbXBsYXRlIGxpdGVyYWxcbiAqIEBwYXJhbSAge1N0cmluZ30gdHlwZSA9ICdpbml0aWFsJyAtIHdoZXRoZXIgdG8gcmVtb3ZlIGFsbCBpbmRlbnRhdGlvbiBvciBqdXN0IGxlYWRpbmcgaW5kZW50YXRpb24uIGNhbiBiZSAnYWxsJyBvciAnaW5pdGlhbCdcbiAqIEByZXR1cm4ge09iamVjdH0gICAgICAgICAgICAgICAgICAtIGEgVGVtcGxhdGVUYWcgdHJhbnNmb3JtZXJcbiAqL1xuY29uc3Qgc3RyaXBJbmRlbnRUcmFuc2Zvcm1lciA9ICh0eXBlID0gJ2luaXRpYWwnKSA9PiAoe1xuICBvbkVuZFJlc3VsdChlbmRSZXN1bHQpIHtcbiAgICBpZiAodHlwZSA9PT0gJ2luaXRpYWwnKSB7XG4gICAgICAvLyByZW1vdmUgdGhlIHNob3J0ZXN0IGxlYWRpbmcgaW5kZW50YXRpb24gZnJvbSBlYWNoIGxpbmVcbiAgICAgIGNvbnN0IG1hdGNoID0gZW5kUmVzdWx0Lm1hdGNoKC9eW15cXFNcXG5dKig/PVxcUykvZ20pO1xuICAgICAgY29uc3QgaW5kZW50ID0gbWF0Y2ggJiYgTWF0aC5taW4oLi4ubWF0Y2gubWFwKGVsID0+IGVsLmxlbmd0aCkpO1xuICAgICAgaWYgKGluZGVudCkge1xuICAgICAgICBjb25zdCByZWdleHAgPSBuZXcgUmVnRXhwKGBeLnske2luZGVudH19YCwgJ2dtJyk7XG4gICAgICAgIHJldHVybiBlbmRSZXN1bHQucmVwbGFjZShyZWdleHAsICcnKTtcbiAgICAgIH1cbiAgICAgIHJldHVybiBlbmRSZXN1bHQ7XG4gICAgfVxuICAgIGlmICh0eXBlID09PSAnYWxsJykge1xuICAgICAgLy8gcmVtb3ZlIGFsbCBpbmRlbnRhdGlvbiBmcm9tIGVhY2ggbGluZVxuICAgICAgcmV0dXJuIGVuZFJlc3VsdC5yZXBsYWNlKC9eW15cXFNcXG5dKy9nbSwgJycpO1xuICAgIH1cbiAgICB0aHJvdyBuZXcgRXJyb3IoYFVua25vd24gdHlwZTogJHt0eXBlfWApO1xuICB9LFxufSk7XG5cbmV4cG9ydCBkZWZhdWx0IHN0cmlwSW5kZW50VHJhbnNmb3JtZXI7XG4iXX0=
-
-/***/ }),
-
-/***/ "./node_modules/common-tags/es/stripIndent/index.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/common-tags/es/stripIndent/index.js ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _stripIndent__WEBPACK_IMPORTED_MODULE_0__["default"])
-/* harmony export */ });
-/* harmony import */ var _stripIndent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stripIndent */ "./node_modules/common-tags/es/stripIndent/stripIndent.js");
-
-
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9zdHJpcEluZGVudC9pbmRleC5qcyJdLCJuYW1lcyI6WyJkZWZhdWx0Il0sIm1hcHBpbmdzIjoicUJBQW9CLGU7cUJBQWJBLE8iLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCBmcm9tICcuL3N0cmlwSW5kZW50JztcbiJdfQ==
-
-/***/ }),
-
-/***/ "./node_modules/common-tags/es/stripIndent/stripIndent.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/common-tags/es/stripIndent/stripIndent.js ***!
-  \****************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _TemplateTag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../TemplateTag */ "./node_modules/common-tags/es/TemplateTag/index.js");
-/* harmony import */ var _stripIndentTransformer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stripIndentTransformer */ "./node_modules/common-tags/es/stripIndentTransformer/index.js");
-/* harmony import */ var _trimResultTransformer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../trimResultTransformer */ "./node_modules/common-tags/es/trimResultTransformer/index.js");
-
-
-
-
-var stripIndent = new _TemplateTag__WEBPACK_IMPORTED_MODULE_0__["default"](_stripIndentTransformer__WEBPACK_IMPORTED_MODULE_1__["default"], _trimResultTransformer__WEBPACK_IMPORTED_MODULE_2__["default"]);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (stripIndent);
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9zdHJpcEluZGVudC9zdHJpcEluZGVudC5qcyJdLCJuYW1lcyI6WyJUZW1wbGF0ZVRhZyIsInN0cmlwSW5kZW50VHJhbnNmb3JtZXIiLCJ0cmltUmVzdWx0VHJhbnNmb3JtZXIiLCJzdHJpcEluZGVudCJdLCJtYXBwaW5ncyI6IkFBQUEsT0FBT0EsV0FBUCxNQUF3QixnQkFBeEI7QUFDQSxPQUFPQyxzQkFBUCxNQUFtQywyQkFBbkM7QUFDQSxPQUFPQyxxQkFBUCxNQUFrQywwQkFBbEM7O0FBRUEsSUFBTUMsY0FBYyxJQUFJSCxXQUFKLENBQ2xCQyxzQkFEa0IsRUFFbEJDLHFCQUZrQixDQUFwQjs7QUFLQSxlQUFlQyxXQUFmIiwiZmlsZSI6InN0cmlwSW5kZW50LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFRlbXBsYXRlVGFnIGZyb20gJy4uL1RlbXBsYXRlVGFnJztcbmltcG9ydCBzdHJpcEluZGVudFRyYW5zZm9ybWVyIGZyb20gJy4uL3N0cmlwSW5kZW50VHJhbnNmb3JtZXInO1xuaW1wb3J0IHRyaW1SZXN1bHRUcmFuc2Zvcm1lciBmcm9tICcuLi90cmltUmVzdWx0VHJhbnNmb3JtZXInO1xuXG5jb25zdCBzdHJpcEluZGVudCA9IG5ldyBUZW1wbGF0ZVRhZyhcbiAgc3RyaXBJbmRlbnRUcmFuc2Zvcm1lcixcbiAgdHJpbVJlc3VsdFRyYW5zZm9ybWVyLFxuKTtcblxuZXhwb3J0IGRlZmF1bHQgc3RyaXBJbmRlbnQ7XG4iXX0=
 
 /***/ }),
 
@@ -4067,14 +17049,27 @@ var plugins = [{
     "remarkPlugins": [],
     "rehypePlugins": [],
     "mediaTypes": ["text/markdown", "text/x-markdown"],
-    "root": "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front"
+    "root": "/home/marte/dev/nayra/fiqus-web-front"
   }
 }, {
   name: 'gatsby-plugin-layout',
   plugin: __webpack_require__(/*! ./node_modules/gatsby-plugin-layout/gatsby-ssr */ "./node_modules/gatsby-plugin-layout/gatsby-ssr.js"),
   options: {
     "plugins": [],
-    "component": "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\src\\components\\layout\\PageWrapper.js"
+    "component": "/home/marte/dev/nayra/fiqus-web-front/src/components/layout/PageWrapper.js"
+  }
+}, {
+  name: 'gatsby-plugin-react-intl',
+  plugin: __webpack_require__(/*! ./node_modules/gatsby-plugin-react-intl/gatsby-ssr */ "./node_modules/gatsby-plugin-react-intl/gatsby-ssr.js"),
+  options: {
+    "plugins": [],
+    "path": "/home/marte/dev/nayra/fiqus-web-front/src/intl",
+    "languages": ["es", "en"],
+    "defaultLanguage": "es",
+    "redirect": true,
+    "redirectDefaultLanguageToRoot": false,
+    "ignoredPaths": [],
+    "fallbackLanguage": "es"
   }
 }];
 /* global plugins */
@@ -5616,7 +18611,7 @@ try {
   Layout = preferDefault(__webpack_require__(/*! ./src/components/layout/PageWrapper.js */ "./src/components/layout/PageWrapper.js"));
 } catch (e) {
   if (e.toString().indexOf("Error: Cannot find module") !== -1) {
-    throw new Error("Couldn't find layout component at \"" + "C:\\dev\\fiqus-web-front\\src\\components\\layout\\PageWrapper.js" + ".\n\n" + "Please create layout component in that location or specify path to layout component in gatsby-config.js");
+    throw new Error("Couldn't find layout component at \"" + "/home/marte/dev/nayra/fiqus-web-front/src/components/layout/PageWrapper.js" + ".\n\n" + "Please create layout component in that location or specify path to layout component in gatsby-config.js");
   } else {
     // Logging the error for debugging older browsers as there is no way
     // to wrap the thrown error in a try/catch.
@@ -5668,6 +18663,408 @@ var onRenderBody = function onRenderBody(_ref) {
 };
 
 exports.onRenderBody = onRenderBody;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-plugin-react-intl/gatsby-ssr.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/gatsby-plugin-react-intl/gatsby-ssr.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports.wrapPageElement = void 0;
+
+var _wrapPage = _interopRequireDefault(__webpack_require__(/*! ./wrap-page */ "./node_modules/gatsby-plugin-react-intl/wrap-page.js"));
+
+var wrapPageElement = _wrapPage.default;
+exports.wrapPageElement = wrapPageElement;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-plugin-react-intl/index.js":
+/*!********************************************************!*\
+  !*** ./node_modules/gatsby-plugin-react-intl/index.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+exports.__esModule = true;
+var _exportNames = {
+  Link: true,
+  withIntl: true,
+  navigate: true,
+  changeLocale: true,
+  IntlContextProvider: true,
+  IntlContextConsumer: true
+};
+exports.IntlContextConsumer = exports.IntlContextProvider = exports.changeLocale = exports.navigate = exports.withIntl = exports.Link = void 0;
+
+var _reactIntl = __webpack_require__(/*! react-intl */ "./node_modules/react-intl/lib/index.js");
+
+Object.keys(_reactIntl).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
+  if (key in exports && exports[key] === _reactIntl[key]) return;
+  exports[key] = _reactIntl[key];
+});
+
+var _link = _interopRequireWildcard(__webpack_require__(/*! ./link */ "./node_modules/gatsby-plugin-react-intl/link.js"));
+
+exports.Link = _link.default;
+exports.navigate = _link.navigate;
+exports.changeLocale = _link.changeLocale;
+
+var _withIntl = _interopRequireDefault(__webpack_require__(/*! ./with-intl */ "./node_modules/gatsby-plugin-react-intl/with-intl.js"));
+
+exports.withIntl = _withIntl.default;
+
+var _intlContext = __webpack_require__(/*! ./intl-context */ "./node_modules/gatsby-plugin-react-intl/intl-context.js");
+
+exports.IntlContextProvider = _intlContext.IntlContextProvider;
+exports.IntlContextConsumer = _intlContext.IntlContextConsumer;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-plugin-react-intl/intl-context.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/gatsby-plugin-react-intl/intl-context.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports.IntlContextConsumer = exports.IntlContextProvider = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+
+var IntlContext = /*#__PURE__*/_react.default.createContext();
+
+var IntlContextProvider = IntlContext.Provider;
+exports.IntlContextProvider = IntlContextProvider;
+var IntlContextConsumer = IntlContext.Consumer;
+exports.IntlContextConsumer = IntlContextConsumer;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-plugin-react-intl/link.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/gatsby-plugin-react-intl/link.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports.changeLocale = exports.navigate = exports["default"] = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
+
+var _gatsby = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
+
+var _intlContext = __webpack_require__(/*! ./intl-context */ "./node_modules/gatsby-plugin-react-intl/intl-context.js");
+
+var _util = __webpack_require__(/*! ./util */ "./node_modules/gatsby-plugin-react-intl/util.js");
+
+var Link = function Link(_ref) {
+  var to = _ref.to,
+      language = _ref.language,
+      children = _ref.children,
+      onClick = _ref.onClick,
+      rest = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["to", "language", "children", "onClick"]);
+  return /*#__PURE__*/_react.default.createElement(_intlContext.IntlContextConsumer, null, function (intl) {
+    var languageLink = language || intl.language;
+    var isMatchedIgnoredPaths = (0, _util.isMatch)(intl.ignoredPaths, to);
+    var link = (intl.routed || language) && !isMatchedIgnoredPaths ? "/" + languageLink + to : "" + to;
+
+    var handleClick = function handleClick(e) {
+      if (language) {
+        localStorage.setItem("gatsby-intl-language", language);
+      }
+
+      if (onClick) {
+        onClick(e);
+      }
+    };
+
+    return /*#__PURE__*/_react.default.createElement(_gatsby.Link, (0, _extends2.default)({}, rest, {
+      to: link,
+      onClick: handleClick
+    }), children);
+  });
+};
+
+Link.propTypes = {
+  children: _propTypes.default.node.isRequired,
+  to: _propTypes.default.string,
+  language: _propTypes.default.string
+};
+Link.defaultProps = {
+  to: ""
+};
+var _default = Link;
+exports["default"] = _default;
+
+var navigate = function navigate(to, options) {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  var _window$___gatsbyIntl = window.___gatsbyIntl,
+      language = _window$___gatsbyIntl.language,
+      routed = _window$___gatsbyIntl.routed,
+      ignoredPaths = _window$___gatsbyIntl.ignoredPaths;
+  var isMatchedIgnoredPaths = (0, _util.isMatch)(ignoredPaths, to);
+  var link = routed && !isMatchedIgnoredPaths ? "/" + language + to : "" + to;
+  (0, _gatsby.navigate)(link, options);
+};
+
+exports.navigate = navigate;
+
+var changeLocale = function changeLocale(language, to) {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  var _window$___gatsbyIntl2 = window.___gatsbyIntl,
+      routed = _window$___gatsbyIntl2.routed,
+      redirectDefaultLanguageToRoot = _window$___gatsbyIntl2.redirectDefaultLanguageToRoot,
+      defaultLanguage = _window$___gatsbyIntl2.defaultLanguage,
+      ignoredPaths = _window$___gatsbyIntl2.ignoredPaths;
+
+  var removePrefix = function removePrefix(pathname) {
+    var base =  true ? "" : 0;
+
+    if (base && pathname.indexOf(base) === 0) {
+      pathname = pathname.slice(base.length);
+    }
+
+    return pathname;
+  };
+
+  var removeLocalePart = function removeLocalePart(pathname) {
+    if (!routed) {
+      return pathname;
+    }
+
+    var i = pathname.indexOf("/", 1);
+    return pathname.substring(i);
+  };
+
+  var pathname = to || removeLocalePart(removePrefix(window.location.pathname)); // TODO: check slash
+
+  var isMatchedIgnoredPaths = (0, _util.isMatch)(ignoredPaths, pathname);
+  var languageLink = redirectDefaultLanguageToRoot && defaultLanguage === language || isMatchedIgnoredPaths ? "" : "/" + language;
+  var link = "" + languageLink + pathname + window.location.search;
+  localStorage.setItem("gatsby-intl-language", language);
+  (0, _gatsby.navigate)(link);
+};
+
+exports.changeLocale = changeLocale;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-plugin-react-intl/util.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/gatsby-plugin-react-intl/util.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var picomatch = __webpack_require__(/*! picomatch */ "./node_modules/picomatch/index.js");
+
+function isMatch(patterns, currentPath) {
+  var isMatched = picomatch.isMatch(currentPath, patterns);
+  return isMatched;
+}
+
+exports.isMatch = isMatch;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-plugin-react-intl/with-intl.js":
+/*!************************************************************!*\
+  !*** ./node_modules/gatsby-plugin-react-intl/with-intl.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports["default"] = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+
+var _reactIntl = __webpack_require__(/*! react-intl */ "./node_modules/react-intl/lib/index.js");
+
+var _default = function _default(Component) {
+  return function (props) {
+    console.warn("withIntl is deprecated. Please use injectIntl instead.");
+    return /*#__PURE__*/_react.default.createElement((0, _reactIntl.injectIntl)(Component), props);
+  };
+};
+
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "./node_modules/gatsby-plugin-react-intl/wrap-page.js":
+/*!************************************************************!*\
+  !*** ./node_modules/gatsby-plugin-react-intl/wrap-page.js ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+exports.__esModule = true;
+exports["default"] = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+
+var _browserLang = _interopRequireDefault(__webpack_require__(/*! browser-lang */ "./node_modules/browser-lang/dist/index.js"));
+
+var _gatsby = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
+
+var _reactIntl = __webpack_require__(/*! react-intl */ "./node_modules/react-intl/lib/index.js");
+
+var _intlContext = __webpack_require__(/*! ./intl-context */ "./node_modules/gatsby-plugin-react-intl/intl-context.js");
+
+var _util = __webpack_require__(/*! ./util */ "./node_modules/gatsby-plugin-react-intl/util.js");
+
+var preferDefault = function preferDefault(m) {
+  return m && m.default || m;
+};
+
+var polyfillIntl = function polyfillIntl(language) {
+  var locale = language.split("-")[0];
+
+  try {
+    if (!Intl.PluralRules) {
+      __webpack_require__(/*! @formatjs/intl-pluralrules/polyfill */ "./node_modules/@formatjs/intl-pluralrules/polyfill.js");
+
+      __webpack_require__("./node_modules/@formatjs/intl-pluralrules/locale-data sync recursive (es|en)$")("./" + locale);
+    }
+
+    if (!Intl.RelativeTimeFormat) {
+      __webpack_require__(/*! @formatjs/intl-relativetimeformat/polyfill */ "./node_modules/@formatjs/intl-relativetimeformat/polyfill.js");
+
+      __webpack_require__("./node_modules/@formatjs/intl-relativetimeformat/locale-data sync recursive (es|en)$")("./" + locale);
+    }
+  } catch (e) {
+    throw new Error("Cannot find react-intl/locale-data/" + language);
+  }
+};
+
+var withIntlProvider = function withIntlProvider(intl) {
+  return function (children) {
+    polyfillIntl(intl.language);
+    return /*#__PURE__*/_react.default.createElement(_reactIntl.IntlProvider, {
+      locale: intl.language,
+      defaultLocale: intl.defaultLanguage,
+      messages: intl.messages
+    }, /*#__PURE__*/_react.default.createElement(_intlContext.IntlContextProvider, {
+      value: intl
+    }, children));
+  };
+};
+
+var _default = function _default(_ref, pluginOptions) {
+  var element = _ref.element,
+      props = _ref.props;
+
+  if (!props) {
+    return;
+  }
+
+  var pageContext = props.pageContext,
+      location = props.location;
+  var defaultLanguage = pluginOptions.defaultLanguage;
+  var intl = pageContext.intl;
+  var language = intl.language,
+      languages = intl.languages,
+      redirect = intl.redirect,
+      routed = intl.routed,
+      originalPath = intl.originalPath,
+      redirectDefaultLanguageToRoot = intl.redirectDefaultLanguageToRoot,
+      ignoredPaths = intl.ignoredPaths,
+      fallbackLanguage = intl.fallbackLanguage;
+
+  if (typeof window !== "undefined") {
+    window.___gatsbyIntl = intl;
+  }
+  /* eslint-disable no-undef */
+
+
+  var isRedirect = redirect && !routed;
+
+  if (isRedirect) {
+    var search = location.search; // Skip build, Browsers only
+
+    if (typeof window !== "undefined") {
+      var detected = window.localStorage.getItem("gatsby-intl-language") || (0, _browserLang.default)({
+        languages: languages,
+        fallback: fallbackLanguage || language
+      });
+
+      if (!languages.includes(detected)) {
+        detected = language;
+      }
+
+      var isMatchedIgnoredPaths = (0, _util.isMatch)(ignoredPaths, window.location.pathname);
+      isRedirect = !(redirectDefaultLanguageToRoot && detected === defaultLanguage) && !isMatchedIgnoredPaths;
+
+      if (isRedirect) {
+        var queryParams = search || "";
+        var newUrl = "/" + detected + originalPath + queryParams;
+        window.localStorage.setItem("gatsby-intl-language", detected);
+        (0, _gatsby.navigate)(newUrl, {
+          replace: true
+        }); // browser should render redirect element
+
+        var _renderElement = null && /*#__PURE__*/0;
+
+        return withIntlProvider(intl)(_renderElement);
+      }
+    }
+  }
+
+  var renderElement = isRedirect && !redirectDefaultLanguageToRoot ? null && /*#__PURE__*/0 : element;
+  return withIntlProvider(intl)(renderElement);
+};
+
+exports["default"] = _default;
 
 /***/ }),
 
@@ -5927,228 +19324,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/components/common/Button.js":
-/*!*****************************************!*\
-  !*** ./src/components/common/Button.js ***!
-  \*****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
-
-
-
-const BtnContainer = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withConfig({
-  displayName: "Button__BtnContainer"
-})(["display:flex;justify-content:flex-start;flex-wrap:wrap;"]);
-const BtnImg = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].img.withConfig({
-  displayName: "Button__BtnImg"
-})(["display:", ";height:20px;margin-right:6px;"], props => props.imgDisplay);
-const Btn = (0,styled_components__WEBPACK_IMPORTED_MODULE_2__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_1__.Link).withConfig({
-  displayName: "Button__Btn"
-})(["margin:0 6px 8px 0px;padding:9px 20px;font-size:18px;font-size:", ";font-weight:", ";color:", ";background-color:", ";border-radius:12px;border-color:", ";border-width:2px!important;border-style:solid;box-shadow:0px 4px 0px ", ";transition:100ms ease-in-out all;margin-bottom:10px;text-decoration:none;display:flex;align-items:center;justify-content:center;&:hover{box-shadow:none;}"], props => props.type.fontSize, props => props.type.fontWeight, props => props.type.color, props => props.type.background, props => props.type.borderColor, props => props.type.boxShadow);
-
-const Button = props => {
-  const getBtnStyles = type => {
-    switch (type) {
-      case "btnPrimaryOrange":
-        return {
-          background: props.theme.colors.orangeMain,
-          borderColor: props.theme.colors.darkMainBg,
-          boxShadow: props.theme.colors.darkMainBg,
-          fontWeight: props.theme.fontWeight.bold,
-          color: props.theme.colors.white,
-          imgDisplay: 'none'
-        };
-        break;
-
-      case "btnPrimaryWhite":
-        return {
-          background: props.theme.colors.white,
-          borderColor: props.theme.colors.darkMainBg,
-          boxShadow: props.theme.colors.darkMainBg,
-          fontWeight: props.theme.fontWeight.bold,
-          color: props.theme.colors.darkMainBg,
-          imgDisplay: 'none'
-        };
-        break;
-
-      case "btnPrimaryOrangePurple":
-        return {
-          background: props.theme.colors.orangeMain,
-          borderColor: props.theme.colors.purplePrimary,
-          boxShadow: props.theme.colors.purplePrimary,
-          fontWeight: props.theme.fontWeight.bold,
-          color: props.theme.colors.white,
-          imgDisplay: 'none'
-        };
-        break;
-
-      case "btnPrimaryPurple":
-        return {
-          background: props.theme.colors.white,
-          borderColor: props.theme.colors.purplePrimary,
-          boxShadow: props.theme.colors.purplePrimary,
-          fontWeight: props.theme.fontWeight.bold,
-          color: props.theme.colors.purplePrimary,
-          imgDisplay: 'none'
-        };
-        break;
-
-      case "btnSecondary":
-        return {
-          background: props.theme.colors.white,
-          borderColor: props.theme.colors.lightGrey,
-          boxShadow: props.theme.colors.transparent,
-          fontSize: '14px',
-          fontWeight: props.theme.fontWeight.medium,
-          color: props.theme.colors.darkGrey,
-          imgDisplay: 'none'
-        };
-        break;
-
-      case "btnLabeled":
-        return {
-          background: props.theme.colors.white,
-          borderColor: props.theme.colors.darkMainBg,
-          boxShadow: props.theme.colors.darkMainBg,
-          fontWeight: props.theme.fontWeight.bold,
-          color: props.theme.colors.darkMainBg,
-          imgDisplay: 'static'
-        };
-        break;
-
-      default:
-        return {
-          background: props.theme.colors.white,
-          borderColor: props.theme.colors.darkMainBg,
-          boxShadow: props.theme.colors.darkMainBg,
-          fontWeight: props.theme.fontWeight.bold,
-          color: props.theme.colors.darkMainBg,
-          imgDisplay: 'none'
-        };
-    }
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(BtnContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Btn, {
-    type: getBtnStyles(props.type),
-    theme: props.theme,
-    to: props.href
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(BtnImg, {
-    imgDisplay: getBtnStyles(props.type).imgDisplay,
-    src: __webpack_require__(/*! ../../images/icon_website.svg */ "./src/images/icon_website.svg")["default"]
-  }), "ver sitio"));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Button);
-
-/***/ }),
-
-/***/ "./src/components/common/ContactForm.js":
-/*!**********************************************!*\
-  !*** ./src/components/common/ContactForm.js ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
-/* harmony import */ var _common_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/Button */ "./src/components/common/Button.js");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
-/* harmony import */ var _content_content_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../content/content.json */ "./src/content/content.json");
-
-
-
-
-
-const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_3__.styles;
-const ContactContainer = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div.withConfig({
-  displayName: "ContactForm__ContactContainer"
-})(["display:flex;flex-direction:column;padding:40px 20px;border:3px solid ", ";border-radius:13px;max-width:946px;"], styles.colors.darkMainBg);
-const ContactHeading = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].h3.withConfig({
-  displayName: "ContactForm__ContactHeading"
-})(["font-size:2.6875em;font-weight:", ";text-align:center;margin-bottom:40px;"], styles.fontWeight.bold);
-const ContactFormBlock = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div.withConfig({
-  displayName: "ContactForm__ContactFormBlock"
-})([""]);
-const Form = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].form.withConfig({
-  displayName: "ContactForm__Form"
-})(["display:flex;flex-direction:column;"]);
-const Label = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].label.withConfig({
-  displayName: "ContactForm__Label"
-})(["font-size:1.125em;font-weight:", ""], styles.fontWeight.bold);
-const Field = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].input.withConfig({
-  displayName: "ContactForm__Field"
-})(["border:2px solid ", ";border-radius:12px;padding:10px 16px;background:", ";font-size:1.125em;&::placeholder{color:", ";font-family:'Rubik',sans-serif;}"], styles.colors.black, styles.colors.white, styles.colors.ultraLightGrey);
-const TextArea = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].textarea.withConfig({
-  displayName: "ContactForm__TextArea"
-})(["border:2px solid ", ";border-radius:12px;padding:10px 16px;background:", ";font-size:1.125em;font-family:'Rubik',sans-serif;&::placeholder{color:", ";}"], styles.colors.black, styles.colors.white, styles.colors.ultraLightGrey);
-const ErrorMessage = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].p.withConfig({
-  displayName: "ContactForm__ErrorMessage"
-})(["color:", ";font-weight:", ";margin-left:auto;"], styles.colors.orangeMain, styles.fontWeight.medium);
-const BtnSubmit = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__["default"])(_common_Button__WEBPACK_IMPORTED_MODULE_2__["default"]).withConfig({
-  displayName: "ContactForm__BtnSubmit"
-})(["color:red;"]);
-const FeedbackMessage = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].p.withConfig({
-  displayName: "ContactForm__FeedbackMessage"
-})(["color:", ";font-weight:", ";margin-left:auto;font-weight:", ";span{font-weight:", ";}"], styles.colors.orangeMain, styles.fontWeight.medium, styles.fontWeight.regular, styles.fontWeight.bold);
-const ContactInfoBlock = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].div.withConfig({
-  displayName: "ContactForm__ContactInfoBlock"
-})(["margin-top:60px;"]);
-const Email = (0,styled_components__WEBPACK_IMPORTED_MODULE_4__["default"])(gatsby__WEBPACK_IMPORTED_MODULE_1__.Link).withConfig({
-  displayName: "ContactForm__Email"
-})(["font-weight:", ";margin-bottom:30px;display:block;"], styles.fontWeight.bold);
-const OfficeListTitle = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].h5.withConfig({
-  displayName: "ContactForm__OfficeListTitle"
-})(["font-size:1em;font-weight:", ";"], styles.fontWeight.bold);
-const OfficeList = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].ul.withConfig({
-  displayName: "ContactForm__OfficeList"
-})(["margin-left:0;"]);
-const OfficeListItem = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].li.withConfig({
-  displayName: "ContactForm__OfficeListItem"
-})(["list-style-type:none;margin-bottom:30px;&:last-of-type{margin-bottom:0;}"]);
-
-const ContactForm = () => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContactContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContactHeading, null, "Contacto"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContactFormBlock, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Form, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Label, {
-    htmlFor: "nameField"
-  }, "Nombre* "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Field, {
-    name: "nameField",
-    type: "text",
-    placeholder: "Nombre"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ErrorMessage, null, "Por favor, complete el campo requerido."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Label, {
-    htmlFor: "emailField"
-  }, "Email* "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Field, {
-    name: "emailField",
-    type: "email",
-    placeholder: "E-mail"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ErrorMessage, null, "Por favor, complete el campo requerido."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Label, {
-    htmlFor: "textAreaField"
-  }, "Mensaje* "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(TextArea, {
-    name: "textAreaField",
-    type: "textarea",
-    placeholder: "Mensaje"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ErrorMessage, null, "Por favor, complete el campo requerido."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(BtnSubmit, {
-    type: "submit",
-    value: "enviar"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FeedbackMessage, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Tu mensaje ha sido enviado."), " Gracias por comunicarte con nostr@s"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContactInfoBlock, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Email, null, "info@fiqus.com"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(OfficeListTitle, null, "Sedes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(OfficeList, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(OfficeListItem, null, "14 de Julio 1268 Ciudad de Buenos Aires, Argentina"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(OfficeListItem, null, "Av. Arrayanes 66, Local 7 Villa La Angostura, Neuqu\xE9n, Argentina"))));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContactForm);
-
-/***/ }),
-
 /***/ "./src/components/common/Footer.js":
 /*!*****************************************!*\
   !*** ./src/components/common/Footer.js ***!
@@ -6162,33 +19337,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
 /* harmony import */ var _content_content_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../content/content.json */ "./src/content/content.json");
+/* harmony import */ var gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gatsby-plugin-react-intl */ "./node_modules/gatsby-plugin-react-intl/index.js");
+/* harmony import */ var gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 
 const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_1__.styles;
-const FooterContainer = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].footer.withConfig({
+const FooterContainer = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].footer.withConfig({
   displayName: "Footer__FooterContainer"
 })(["background:", ";color:", ";font-size:.75em;display:flex;justify-content:center;flex-wrap:wrap;padding:12px 0px 20px 0px;@media (min-width:", "px){justify-content:space-between;margin:auto;align-items:center;}"], styles.colors.purplePrimary, styles.colors.white, styles.breakpoints.l);
-const FooterLicense = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withConfig({
+const FooterLicense = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
   displayName: "Footer__FooterLicense"
 })(["display:flex;justify-content:center;width:100%;span{font-weight:", ";}@media (min-width:", "px){width:auto;}"], styles.fontWeight.bold, styles.breakpoints.l);
-const FooterCopyright = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].div.withConfig({
+const FooterCopyright = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
   displayName: "Footer__FooterCopyright"
 })(["margin-top:18px;span{font-weight:", ";text-transform:uppercase;}@media (min-width:", "px){margin-top:0;}"], styles.fontWeight.bold, styles.breakpoints.l);
-const FooterLicenseContent = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].p.withConfig({
+const FooterLicenseContent = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].p.withConfig({
   displayName: "Footer__FooterLicenseContent"
 })(["max-width:342px;@media (min-width:", "px){max-width:322px;}"], styles.breakpoints.l);
-const FooterLicenseIcon = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].img.withConfig({
+const FooterLicenseIcon = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].img.withConfig({
   displayName: "Footer__FooterLicenseIcon"
 })(["width:38px;height:33px;margin-right:6px;"]);
 
 const Footer = () => {
+  const intl = (0,gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__.useIntl)();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterLicense, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterLicenseIcon, {
     src: __webpack_require__(/*! ../../images/icon_cc_heart.png */ "./src/images/icon_cc_heart.png")["default"],
     alt: "Creative Commons Attribution logo"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterLicenseContent, null, "Salvo que se indique lo contrario, el contenido de este sitio tiene una licencia de ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Creative Commons Attribution"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterCopyright, null, "Dise\xF1ado por ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "El Maizal")));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterLicenseContent, null, intl.formatMessage({
+    id: "footer.disclaimer"
+  }), "  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Creative Commons Attribution"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FooterCopyright, null, intl.formatMessage({
+    id: "footer.designby"
+  }), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "El Maizal")));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
@@ -6208,23 +19391,146 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
-/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var _content_content_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../content/content.json */ "./src/content/content.json");
+/* harmony import */ var gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gatsby-plugin-react-intl */ "./node_modules/gatsby-plugin-react-intl/index.js");
+/* harmony import */ var gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
-const NavWrapper = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].nav.withConfig({
+
+const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_1__.styles;
+const NavWrapper = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].nav.withConfig({
   displayName: "Header__NavWrapper"
-})(["position:fixed;width:100%;background:white;"]);
+})(["width:100%;position:fixed;background-color:", ";display:flex;padding:8px 20px;justify-content:space-between;align-items:center;z-index:10;@media (min-width:", "px){padding:15px 150px;}"], props => props.isHome ? styles.colors.white : styles.colors.purplePrimary, styles.breakpoints.xl);
+const Logo = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].img.withConfig({
+  displayName: "Header__Logo"
+})(["width:83px;height:32px;@media (min-width:", "px){width:117.1px;height:44.22px;order:1;}"], styles.breakpoints.xl);
+const LangSelector = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].nav.withConfig({
+  displayName: "Header__LangSelector"
+})(["border:2px solid ", ";margin-right:auto;margin-left:10px;padding:7px 10px;border-radius:47px;max-width:88px;max-height:46px;display:flex;justify-content:center;align-items:center;@media (min-width:", "px){order:3;margin-right:unset;margin-left:0;}"], props => props.isHome ? styles.colors.purplePrimary : styles.colors.white, styles.breakpoints.xl);
+const LangList = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].ul.withConfig({
+  displayName: "Header__LangList"
+})(["display:flex;"]);
+const LangItem = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].li.withConfig({
+  displayName: "Header__LangItem"
+})(["list-style-type:none;border-radius:100%;background-color:", ";&:first-of-type{margin-right:5px;}"], props => props.isSelected ? styles.colors.greenMain : styles.colors.transparent);
+const Lang = (0,styled_components__WEBPACK_IMPORTED_MODULE_3__["default"])(gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__.Link).withConfig({
+  displayName: "Header__Lang"
+})(["text-decoration:none;padding:5px 6px;display:block;"]);
+const LangContent = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].abbr.withConfig({
+  displayName: "Header__LangContent"
+})(["text-decoration:none;text-transform:uppercase;font-size:1em;font-weight:", ";color:", ""], styles.fontWeight.bold, props => {
+  if (props.isHome && !props.isSelected || !props.isHome && props.isSelected || props.isSelected) {
+    return styles.colors.purplePrimary;
+  } else {
+    if (!props.isHome && !props.isSelected) {
+      return styles.colors.white;
+    } else {
+      return styles.colors.purplePrimary;
+    }
+  }
+});
+const NavToggler = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].button.withConfig({
+  displayName: "Header__NavToggler"
+})(["width:32px;height:30px;margin-left:auto;background:none;border:0;box-shadow:0;cursor:pointer;@media (min-width:", "px){display:none;}"], styles.breakpoints.xl);
+const NavTogglerIcon = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].img.withConfig({
+  displayName: "Header__NavTogglerIcon"
+})(["width:32px;height:30px;"]);
+const NavTogglerClose = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].button.withConfig({
+  displayName: "Header__NavTogglerClose"
+})(["width:32px;height:30px;margin-left:auto;background:none;border:0;box-shadow:0;cursor:pointer;@media (min-width:", "px){display:none;}"], styles.breakpoints.xl);
+const NavTogglerCloseIcon = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].img.withConfig({
+  displayName: "Header__NavTogglerCloseIcon"
+})(["width:auto;height:30px;margin-left:auto;"]);
+const MainNavContainer = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].div.withConfig({
+  displayName: "Header__MainNavContainer"
+})(["width:100%;height:100vh;background:", ";position:absolute;top:0;left:0;flex-wrap:wrap;flex-direction:column;padding:16px 18px;display:", ";@media (min-width:", "px){width:unset;height:unset;background:", ";position:static;display:block;padding:0;order:2;margin-left:auto;}"], styles.colors.white, props => props.isNavOpen ? 'flex' : 'none', styles.breakpoints.xl, styles.colors.transparent);
+const MainNav = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].nav.withConfig({
+  displayName: "Header__MainNav"
+})(["margin:45px auto;width:100%;@media (min-width:", "px){margin:0;ul li a{color:", ";}}"], styles.breakpoints.xl, props => props.isHome ? styles.colors.darkMainBg : styles.colors.white);
+const NavLinks = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].ul.withConfig({
+  displayName: "Header__NavLinks"
+})(["text-align:center;@media (min-width:", "px){display:flex;flex-direction:row;}"], styles.breakpoints.xl);
+const NavItem = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].li.withConfig({
+  displayName: "Header__NavItem"
+})(["list-style-type:none;margin:0 0 13px 0;@media (min-width:", "px){margin:0 30px 0 0;&:last-of-type{margin-right:20px;}}"], styles.breakpoints.xl);
+const NavLink = (0,styled_components__WEBPACK_IMPORTED_MODULE_3__["default"])(gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__.Link).withConfig({
+  displayName: "Header__NavLink"
+})(["text-decoration:none;font-size:1.44em;font-weight:", ";display:block;color:", ";&:visited{", ";}&:hover,&:active{color:", "!important;}", " @media (min-width:", "px){color:", ";text-transform:uppercase;}"], styles.fontWeight.bold, styles.colors.purplePrimary, styles.colors.purplePrimary, styles.colors.greenMain, props => props.active ? `color: ${styles.colors.greenMain}!important;` : '', styles.breakpoints.xl, styles.colors.darkMainBg);
 
 const Header = props => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavWrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, props.menuLinks ? props.menuLinks.map(menuLink => {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
-      key: menuLink.name
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby__WEBPACK_IMPORTED_MODULE_1__.Link, {
-      to: menuLink.link
-    }, " ", menuLink.name, " "));
-  }) : " No hay links "));
+  const {
+    0: isNavOpen,
+    1: setIsNavOpen
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const intl = (0,gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__.useIntl)();
+  const languageNames = {
+    "en": "English",
+    "es": "Español"
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    console.log(props.location);
+    console.log(props.menuLinks);
+  }, [props.location]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavWrapper, {
+    isHome: props.isHome
+  }, props.isHome ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Logo, {
+    src: __webpack_require__(/*! ../../images/logo_dark.svg */ "./src/images/logo_dark.svg")["default"],
+    alt: "logo Fiqus"
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Logo, {
+    src: __webpack_require__(/*! ../../images/logo_light.svg */ "./src/images/logo_light.svg")["default"],
+    alt: "logo Fiqus"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LangSelector, {
+    isHome: props.isHome
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__.IntlContextConsumer, null, ({
+    languages,
+    language: currentLocale
+  }) => languages.map(language => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LangItem, {
+    key: language,
+    isSelected: currentLocale === language,
+    onClick: () => (0,gatsby_plugin_react_intl__WEBPACK_IMPORTED_MODULE_2__.changeLocale)(language)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Lang, {
+    href: "#"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(LangContent, {
+    isSelected: currentLocale === language,
+    isHome: props.isHome,
+    lang: language,
+    title: languageNames[language]
+  }, language)))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavToggler, {
+    onClick: () => {
+      setIsNavOpen(true);
+    }
+  }, props.isHome ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavTogglerIcon, {
+    src: __webpack_require__(/*! ../../images/icon_toggler.svg */ "./src/images/icon_toggler.svg")["default"],
+    alt: "icono para abrir men\xFA"
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavTogglerIcon, {
+    src: __webpack_require__(/*! ../../images/icon_toggler_dark.svg */ "./src/images/icon_toggler_dark.svg")["default"],
+    alt: "icono para abrir men\xFA"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(MainNavContainer, {
+    isNavOpen: isNavOpen
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavTogglerClose, {
+    onClick: () => {
+      setIsNavOpen(false);
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavTogglerCloseIcon, {
+    src: __webpack_require__(/*! ../../images/icon_toggler_close.svg */ "./src/images/icon_toggler_close.svg")["default"],
+    alt: "icono para cerrrar men\xFA"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(MainNav, {
+    isHome: props.isHome
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavLinks, null, props.menuLinks && props.menuLinks.map(menuLink => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavItem, {
+      key: menuLink.name,
+      onClick: () => {
+        setIsNavOpen(false);
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(NavLink, {
+      to: menuLink.link,
+      active: props.location.pathname === menuLink.link
+    }, intl.formatMessage({
+      id: `${menuLink.name}`
+    })));
+  })))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
@@ -6246,13 +19552,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
 /* harmony import */ var _common_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common/Header */ "./src/components/common/Header.js");
 /* harmony import */ var _common_Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../common/Footer */ "./src/components/common/Footer.js");
-/* harmony import */ var _common_Tag__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../common/Tag */ "./src/components/common/Tag.js");
-/* harmony import */ var _common_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../common/Button */ "./src/components/common/Button.js");
-/* harmony import */ var _content_content_json__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../content/content.json */ "./src/content/content.json");
-/* harmony import */ var _common_ContactForm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../common/ContactForm */ "./src/components/common/ContactForm.js");
+/* harmony import */ var _content_content_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../content/content.json */ "./src/content/content.json");
 
 
 
@@ -6260,50 +19563,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_7__.styles;
-const Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_9__["default"].div.withConfig({
+const Wrapper = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].div.withConfig({
   displayName: "PageWrapper__Wrapper"
-})(["position:relative;margin:0;padding:0;width:100%;min-height:100%;"]);
-const PageContainer = styled_components__WEBPACK_IMPORTED_MODULE_9__["default"].section.withConfig({
+})(["position:relative;margin:0;padding:0;width:100%;min-height:100%;background:", ";"], _content_content_json__WEBPACK_IMPORTED_MODULE_5__.styles.colors.purpleLight);
+const PageContainer = styled_components__WEBPACK_IMPORTED_MODULE_6__["default"].section.withConfig({
   displayName: "PageWrapper__PageContainer"
-})(["width:100%;max-width:", "px;padding:20px;margin:0 auto;min-height:100vh;@media (min-width:", "px){padding:150px 50px;}"], styles.breakpoints.xl, styles.breakpoints.l);
+})(["width:100%;max-width:", "px;padding:20px;margin:0 auto;min-height:100vh;@media (min-width:", "px){padding:150px 50px;}"], _content_content_json__WEBPACK_IMPORTED_MODULE_5__.styles.breakpoints.xl, _content_content_json__WEBPACK_IMPORTED_MODULE_5__.styles.breakpoints.l);
 
 const PageWrapper = props => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(gatsby__WEBPACK_IMPORTED_MODULE_2__.StaticQuery, {
     query: "805671509",
     render: data => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(Wrapper, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      menuLinks: data.site.siteMetadata.menuLinks
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(PageContainer, null, props.children, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Tag__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      type: "services",
-      theme: styles
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      type: "btnPrimaryOrange",
-      theme: styles,
-      href: ""
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      type: "btnPrimaryOrangePurple",
-      theme: styles,
-      href: ""
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      type: "btnPrimaryWhite",
-      theme: styles,
-      href: ""
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      type: "btnPrimaryPurple",
-      theme: styles,
-      href: ""
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      type: "btnSecondary",
-      theme: styles,
-      href: ""
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      type: "btnLabeled",
-      theme: styles,
-      href: ""
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_ContactForm__WEBPACK_IMPORTED_MODULE_8__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Footer__WEBPACK_IMPORTED_MODULE_4__["default"], null)),
+      menuLinks: data.site.siteMetadata.menuLinks,
+      isHome: props.location.pathname === '/',
+      location: props.location
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(PageContainer, null, props.children), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_common_Footer__WEBPACK_IMPORTED_MODULE_4__["default"], null)),
     data: _public_page_data_sq_d_805671509_json__WEBPACK_IMPORTED_MODULE_0__
   });
 };
@@ -7183,6 +20457,790 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 }
 
 module.exports = hoistNonReactStatics;
+
+
+/***/ }),
+
+/***/ "./node_modules/intl-messageformat/lib/src/core.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/intl-messageformat/lib/src/core.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IntlMessageFormat": () => (/* binding */ IntlMessageFormat)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ "./node_modules/intl-messageformat/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @formatjs/icu-messageformat-parser */ "./node_modules/@formatjs/icu-messageformat-parser/lib/index.js");
+/* harmony import */ var _formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @formatjs/fast-memoize */ "./node_modules/@formatjs/fast-memoize/lib/index.js");
+/* harmony import */ var _formatters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./formatters */ "./node_modules/intl-messageformat/lib/src/formatters.js");
+/*
+Copyright (c) 2014, Yahoo! Inc. All rights reserved.
+Copyrights licensed under the New BSD License.
+See the accompanying LICENSE file for terms.
+*/
+
+
+
+
+// -- MessageFormat --------------------------------------------------------
+function mergeConfig(c1, c2) {
+    if (!c2) {
+        return c1;
+    }
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({}, (c1 || {})), (c2 || {})), Object.keys(c1).reduce(function (all, k) {
+        all[k] = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({}, c1[k]), (c2[k] || {}));
+        return all;
+    }, {}));
+}
+function mergeConfigs(defaultConfig, configs) {
+    if (!configs) {
+        return defaultConfig;
+    }
+    return Object.keys(defaultConfig).reduce(function (all, k) {
+        all[k] = mergeConfig(defaultConfig[k], configs[k]);
+        return all;
+    }, (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({}, defaultConfig));
+}
+function createFastMemoizeCache(store) {
+    return {
+        create: function () {
+            return {
+                get: function (key) {
+                    return store[key];
+                },
+                set: function (key, value) {
+                    store[key] = value;
+                },
+            };
+        },
+    };
+}
+function createDefaultFormatters(cache) {
+    if (cache === void 0) { cache = {
+        number: {},
+        dateTime: {},
+        pluralRules: {},
+    }; }
+    return {
+        getNumberFormat: (0,_formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_1__["default"])(function () {
+            var _a;
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return new ((_a = Intl.NumberFormat).bind.apply(_a, (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__spreadArray)([void 0], args)))();
+        }, {
+            cache: createFastMemoizeCache(cache.number),
+            strategy: _formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_1__.strategies.variadic,
+        }),
+        getDateTimeFormat: (0,_formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_1__["default"])(function () {
+            var _a;
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return new ((_a = Intl.DateTimeFormat).bind.apply(_a, (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__spreadArray)([void 0], args)))();
+        }, {
+            cache: createFastMemoizeCache(cache.dateTime),
+            strategy: _formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_1__.strategies.variadic,
+        }),
+        getPluralRules: (0,_formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_1__["default"])(function () {
+            var _a;
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            return new ((_a = Intl.PluralRules).bind.apply(_a, (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__spreadArray)([void 0], args)))();
+        }, {
+            cache: createFastMemoizeCache(cache.pluralRules),
+            strategy: _formatjs_fast_memoize__WEBPACK_IMPORTED_MODULE_1__.strategies.variadic,
+        }),
+    };
+}
+var IntlMessageFormat = /** @class */ (function () {
+    function IntlMessageFormat(message, locales, overrideFormats, opts) {
+        var _this = this;
+        if (locales === void 0) { locales = IntlMessageFormat.defaultLocale; }
+        this.formatterCache = {
+            number: {},
+            dateTime: {},
+            pluralRules: {},
+        };
+        this.format = function (values) {
+            var parts = _this.formatToParts(values);
+            // Hot path for straight simple msg translations
+            if (parts.length === 1) {
+                return parts[0].value;
+            }
+            var result = parts.reduce(function (all, part) {
+                if (!all.length ||
+                    part.type !== _formatters__WEBPACK_IMPORTED_MODULE_3__.PART_TYPE.literal ||
+                    typeof all[all.length - 1] !== 'string') {
+                    all.push(part.value);
+                }
+                else {
+                    all[all.length - 1] += part.value;
+                }
+                return all;
+            }, []);
+            if (result.length <= 1) {
+                return result[0] || '';
+            }
+            return result;
+        };
+        this.formatToParts = function (values) {
+            return (0,_formatters__WEBPACK_IMPORTED_MODULE_3__.formatToParts)(_this.ast, _this.locales, _this.formatters, _this.formats, values, undefined, _this.message);
+        };
+        this.resolvedOptions = function () { return ({
+            locale: Intl.NumberFormat.supportedLocalesOf(_this.locales)[0],
+        }); };
+        this.getAst = function () { return _this.ast; };
+        if (typeof message === 'string') {
+            this.message = message;
+            if (!IntlMessageFormat.__parse) {
+                throw new TypeError('IntlMessageFormat.__parse must be set to process `message` of type `string`');
+            }
+            // Parse string messages into an AST.
+            this.ast = IntlMessageFormat.__parse(message, {
+                ignoreTag: opts === null || opts === void 0 ? void 0 : opts.ignoreTag,
+            });
+        }
+        else {
+            this.ast = message;
+        }
+        if (!Array.isArray(this.ast)) {
+            throw new TypeError('A message must be provided as a String or AST.');
+        }
+        // Creates a new object with the specified `formats` merged with the default
+        // formats.
+        this.formats = mergeConfigs(IntlMessageFormat.formats, overrideFormats);
+        // Defined first because it's used to build the format pattern.
+        this.locales = locales;
+        this.formatters =
+            (opts && opts.formatters) || createDefaultFormatters(this.formatterCache);
+    }
+    Object.defineProperty(IntlMessageFormat, "defaultLocale", {
+        get: function () {
+            if (!IntlMessageFormat.memoizedDefaultLocale) {
+                IntlMessageFormat.memoizedDefaultLocale =
+                    new Intl.NumberFormat().resolvedOptions().locale;
+            }
+            return IntlMessageFormat.memoizedDefaultLocale;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    IntlMessageFormat.memoizedDefaultLocale = null;
+    IntlMessageFormat.__parse = _formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__.parse;
+    // Default format options used as the prototype of the `formats` provided to the
+    // constructor. These are used when constructing the internal Intl.NumberFormat
+    // and Intl.DateTimeFormat instances.
+    IntlMessageFormat.formats = {
+        number: {
+            integer: {
+                maximumFractionDigits: 0,
+            },
+            currency: {
+                style: 'currency',
+            },
+            percent: {
+                style: 'percent',
+            },
+        },
+        date: {
+            short: {
+                month: 'numeric',
+                day: 'numeric',
+                year: '2-digit',
+            },
+            medium: {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+            },
+            long: {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+            },
+            full: {
+                weekday: 'long',
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+            },
+        },
+        time: {
+            short: {
+                hour: 'numeric',
+                minute: 'numeric',
+            },
+            medium: {
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+            },
+            long: {
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                timeZoneName: 'short',
+            },
+            full: {
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                timeZoneName: 'short',
+            },
+        },
+    };
+    return IntlMessageFormat;
+}());
+
+
+
+/***/ }),
+
+/***/ "./node_modules/intl-messageformat/lib/src/error.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/intl-messageformat/lib/src/error.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ErrorCode": () => (/* binding */ ErrorCode),
+/* harmony export */   "FormatError": () => (/* binding */ FormatError),
+/* harmony export */   "InvalidValueError": () => (/* binding */ InvalidValueError),
+/* harmony export */   "InvalidValueTypeError": () => (/* binding */ InvalidValueTypeError),
+/* harmony export */   "MissingValueError": () => (/* binding */ MissingValueError)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/intl-messageformat/node_modules/tslib/tslib.es6.js");
+
+var ErrorCode;
+(function (ErrorCode) {
+    // When we have a placeholder but no value to format
+    ErrorCode["MISSING_VALUE"] = "MISSING_VALUE";
+    // When value supplied is invalid
+    ErrorCode["INVALID_VALUE"] = "INVALID_VALUE";
+    // When we need specific Intl API but it's not available
+    ErrorCode["MISSING_INTL_API"] = "MISSING_INTL_API";
+})(ErrorCode || (ErrorCode = {}));
+var FormatError = /** @class */ (function (_super) {
+    (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(FormatError, _super);
+    function FormatError(msg, code, originalMessage) {
+        var _this = _super.call(this, msg) || this;
+        _this.code = code;
+        _this.originalMessage = originalMessage;
+        return _this;
+    }
+    FormatError.prototype.toString = function () {
+        return "[formatjs Error: " + this.code + "] " + this.message;
+    };
+    return FormatError;
+}(Error));
+
+var InvalidValueError = /** @class */ (function (_super) {
+    (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(InvalidValueError, _super);
+    function InvalidValueError(variableId, value, options, originalMessage) {
+        return _super.call(this, "Invalid values for \"" + variableId + "\": \"" + value + "\". Options are \"" + Object.keys(options).join('", "') + "\"", ErrorCode.INVALID_VALUE, originalMessage) || this;
+    }
+    return InvalidValueError;
+}(FormatError));
+
+var InvalidValueTypeError = /** @class */ (function (_super) {
+    (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(InvalidValueTypeError, _super);
+    function InvalidValueTypeError(value, type, originalMessage) {
+        return _super.call(this, "Value for \"" + value + "\" must be of type " + type, ErrorCode.INVALID_VALUE, originalMessage) || this;
+    }
+    return InvalidValueTypeError;
+}(FormatError));
+
+var MissingValueError = /** @class */ (function (_super) {
+    (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__extends)(MissingValueError, _super);
+    function MissingValueError(variableId, originalMessage) {
+        return _super.call(this, "The intl string context variable \"" + variableId + "\" was not provided to the string \"" + originalMessage + "\"", ErrorCode.MISSING_VALUE, originalMessage) || this;
+    }
+    return MissingValueError;
+}(FormatError));
+
+
+
+/***/ }),
+
+/***/ "./node_modules/intl-messageformat/lib/src/formatters.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/intl-messageformat/lib/src/formatters.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PART_TYPE": () => (/* binding */ PART_TYPE),
+/* harmony export */   "isFormatXMLElementFn": () => (/* binding */ isFormatXMLElementFn),
+/* harmony export */   "formatToParts": () => (/* binding */ formatToParts)
+/* harmony export */ });
+/* harmony import */ var _formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @formatjs/icu-messageformat-parser */ "./node_modules/@formatjs/icu-messageformat-parser/lib/index.js");
+/* harmony import */ var _error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./error */ "./node_modules/intl-messageformat/lib/src/error.js");
+
+
+var PART_TYPE;
+(function (PART_TYPE) {
+    PART_TYPE[PART_TYPE["literal"] = 0] = "literal";
+    PART_TYPE[PART_TYPE["object"] = 1] = "object";
+})(PART_TYPE || (PART_TYPE = {}));
+function mergeLiteral(parts) {
+    if (parts.length < 2) {
+        return parts;
+    }
+    return parts.reduce(function (all, part) {
+        var lastPart = all[all.length - 1];
+        if (!lastPart ||
+            lastPart.type !== PART_TYPE.literal ||
+            part.type !== PART_TYPE.literal) {
+            all.push(part);
+        }
+        else {
+            lastPart.value += part.value;
+        }
+        return all;
+    }, []);
+}
+function isFormatXMLElementFn(el) {
+    return typeof el === 'function';
+}
+// TODO(skeleton): add skeleton support
+function formatToParts(els, locales, formatters, formats, values, currentPluralValue, 
+// For debugging
+originalMessage) {
+    // Hot path for straight simple msg translations
+    if (els.length === 1 && (0,_formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__.isLiteralElement)(els[0])) {
+        return [
+            {
+                type: PART_TYPE.literal,
+                value: els[0].value,
+            },
+        ];
+    }
+    var result = [];
+    for (var _i = 0, els_1 = els; _i < els_1.length; _i++) {
+        var el = els_1[_i];
+        // Exit early for string parts.
+        if ((0,_formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__.isLiteralElement)(el)) {
+            result.push({
+                type: PART_TYPE.literal,
+                value: el.value,
+            });
+            continue;
+        }
+        // TODO: should this part be literal type?
+        // Replace `#` in plural rules with the actual numeric value.
+        if ((0,_formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__.isPoundElement)(el)) {
+            if (typeof currentPluralValue === 'number') {
+                result.push({
+                    type: PART_TYPE.literal,
+                    value: formatters.getNumberFormat(locales).format(currentPluralValue),
+                });
+            }
+            continue;
+        }
+        var varName = el.value;
+        // Enforce that all required values are provided by the caller.
+        if (!(values && varName in values)) {
+            throw new _error__WEBPACK_IMPORTED_MODULE_1__.MissingValueError(varName, originalMessage);
+        }
+        var value = values[varName];
+        if ((0,_formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__.isArgumentElement)(el)) {
+            if (!value || typeof value === 'string' || typeof value === 'number') {
+                value =
+                    typeof value === 'string' || typeof value === 'number'
+                        ? String(value)
+                        : '';
+            }
+            result.push({
+                type: typeof value === 'string' ? PART_TYPE.literal : PART_TYPE.object,
+                value: value,
+            });
+            continue;
+        }
+        // Recursively format plural and select parts' option — which can be a
+        // nested pattern structure. The choosing of the option to use is
+        // abstracted-by and delegated-to the part helper object.
+        if ((0,_formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__.isDateElement)(el)) {
+            var style = typeof el.style === 'string'
+                ? formats.date[el.style]
+                : (0,_formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__.isDateTimeSkeleton)(el.style)
+                    ? el.style.parsedOptions
+                    : undefined;
+            result.push({
+                type: PART_TYPE.literal,
+                value: formatters
+                    .getDateTimeFormat(locales, style)
+                    .format(value),
+            });
+            continue;
+        }
+        if ((0,_formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__.isTimeElement)(el)) {
+            var style = typeof el.style === 'string'
+                ? formats.time[el.style]
+                : (0,_formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__.isDateTimeSkeleton)(el.style)
+                    ? el.style.parsedOptions
+                    : undefined;
+            result.push({
+                type: PART_TYPE.literal,
+                value: formatters
+                    .getDateTimeFormat(locales, style)
+                    .format(value),
+            });
+            continue;
+        }
+        if ((0,_formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__.isNumberElement)(el)) {
+            var style = typeof el.style === 'string'
+                ? formats.number[el.style]
+                : (0,_formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__.isNumberSkeleton)(el.style)
+                    ? el.style.parsedOptions
+                    : undefined;
+            if (style && style.scale) {
+                value =
+                    value *
+                        (style.scale || 1);
+            }
+            result.push({
+                type: PART_TYPE.literal,
+                value: formatters
+                    .getNumberFormat(locales, style)
+                    .format(value),
+            });
+            continue;
+        }
+        if ((0,_formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__.isTagElement)(el)) {
+            var children = el.children, value_1 = el.value;
+            var formatFn = values[value_1];
+            if (!isFormatXMLElementFn(formatFn)) {
+                throw new _error__WEBPACK_IMPORTED_MODULE_1__.InvalidValueTypeError(value_1, 'function', originalMessage);
+            }
+            var parts = formatToParts(children, locales, formatters, formats, values, currentPluralValue);
+            var chunks = formatFn(parts.map(function (p) { return p.value; }));
+            if (!Array.isArray(chunks)) {
+                chunks = [chunks];
+            }
+            result.push.apply(result, chunks.map(function (c) {
+                return {
+                    type: typeof c === 'string' ? PART_TYPE.literal : PART_TYPE.object,
+                    value: c,
+                };
+            }));
+        }
+        if ((0,_formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__.isSelectElement)(el)) {
+            var opt = el.options[value] || el.options.other;
+            if (!opt) {
+                throw new _error__WEBPACK_IMPORTED_MODULE_1__.InvalidValueError(el.value, value, Object.keys(el.options), originalMessage);
+            }
+            result.push.apply(result, formatToParts(opt.value, locales, formatters, formats, values));
+            continue;
+        }
+        if ((0,_formatjs_icu_messageformat_parser__WEBPACK_IMPORTED_MODULE_0__.isPluralElement)(el)) {
+            var opt = el.options["=" + value];
+            if (!opt) {
+                if (!Intl.PluralRules) {
+                    throw new _error__WEBPACK_IMPORTED_MODULE_1__.FormatError("Intl.PluralRules is not available in this environment.\nTry polyfilling it using \"@formatjs/intl-pluralrules\"\n", _error__WEBPACK_IMPORTED_MODULE_1__.ErrorCode.MISSING_INTL_API, originalMessage);
+                }
+                var rule = formatters
+                    .getPluralRules(locales, { type: el.pluralType })
+                    .select(value - (el.offset || 0));
+                opt = el.options[rule] || el.options.other;
+            }
+            if (!opt) {
+                throw new _error__WEBPACK_IMPORTED_MODULE_1__.InvalidValueError(el.value, value, Object.keys(el.options), originalMessage);
+            }
+            result.push.apply(result, formatToParts(opt.value, locales, formatters, formats, values, value - (el.offset || 0)));
+            continue;
+        }
+    }
+    return mergeLiteral(result);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/intl-messageformat/node_modules/tslib/tslib.es6.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/intl-messageformat/node_modules/tslib/tslib.es6.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "__extends": () => (/* binding */ __extends),
+/* harmony export */   "__assign": () => (/* binding */ __assign),
+/* harmony export */   "__rest": () => (/* binding */ __rest),
+/* harmony export */   "__decorate": () => (/* binding */ __decorate),
+/* harmony export */   "__param": () => (/* binding */ __param),
+/* harmony export */   "__metadata": () => (/* binding */ __metadata),
+/* harmony export */   "__awaiter": () => (/* binding */ __awaiter),
+/* harmony export */   "__generator": () => (/* binding */ __generator),
+/* harmony export */   "__createBinding": () => (/* binding */ __createBinding),
+/* harmony export */   "__exportStar": () => (/* binding */ __exportStar),
+/* harmony export */   "__values": () => (/* binding */ __values),
+/* harmony export */   "__read": () => (/* binding */ __read),
+/* harmony export */   "__spread": () => (/* binding */ __spread),
+/* harmony export */   "__spreadArrays": () => (/* binding */ __spreadArrays),
+/* harmony export */   "__spreadArray": () => (/* binding */ __spreadArray),
+/* harmony export */   "__await": () => (/* binding */ __await),
+/* harmony export */   "__asyncGenerator": () => (/* binding */ __asyncGenerator),
+/* harmony export */   "__asyncDelegator": () => (/* binding */ __asyncDelegator),
+/* harmony export */   "__asyncValues": () => (/* binding */ __asyncValues),
+/* harmony export */   "__makeTemplateObject": () => (/* binding */ __makeTemplateObject),
+/* harmony export */   "__importStar": () => (/* binding */ __importStar),
+/* harmony export */   "__importDefault": () => (/* binding */ __importDefault),
+/* harmony export */   "__classPrivateFieldGet": () => (/* binding */ __classPrivateFieldGet),
+/* harmony export */   "__classPrivateFieldSet": () => (/* binding */ __classPrivateFieldSet)
+/* harmony export */ });
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+    return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+    if (typeof b !== "function" && b !== null)
+        throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    }
+    return __assign.apply(this, arguments);
+}
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+function __decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+function __param(paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+}
+
+function __metadata(metadataKey, metadataValue) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+var __createBinding = Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+});
+
+function __exportStar(m, o) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p)) __createBinding(o, m, p);
+}
+
+function __values(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+/** @deprecated */
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
+/** @deprecated */
+function __spreadArrays() {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+}
+
+function __spreadArray(to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+}
+
+function __await(v) {
+    return this instanceof __await ? (this.v = v, this) : new __await(v);
+}
+
+function __asyncGenerator(thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+}
+
+function __asyncDelegator(o) {
+    var i, p;
+    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+}
+
+function __asyncValues(o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+}
+
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+
+var __setModuleDefault = Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+};
+
+function __importStar(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+}
+
+function __importDefault(mod) {
+    return (mod && mod.__esModule) ? mod : { default: mod };
+}
+
+function __classPrivateFieldGet(receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+}
+
+function __classPrivateFieldSet(receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+}
 
 
 /***/ }),
@@ -10808,6 +24866,2135 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 /***/ }),
 
+/***/ "./node_modules/picomatch/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/picomatch/index.js ***!
+  \*****************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+module.exports = __webpack_require__(/*! ./lib/picomatch */ "./node_modules/picomatch/lib/picomatch.js");
+
+
+/***/ }),
+
+/***/ "./node_modules/picomatch/lib/constants.js":
+/*!*************************************************!*\
+  !*** ./node_modules/picomatch/lib/constants.js ***!
+  \*************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+const path = __webpack_require__(/*! path */ "path");
+const WIN_SLASH = '\\\\/';
+const WIN_NO_SLASH = `[^${WIN_SLASH}]`;
+
+/**
+ * Posix glob regex
+ */
+
+const DOT_LITERAL = '\\.';
+const PLUS_LITERAL = '\\+';
+const QMARK_LITERAL = '\\?';
+const SLASH_LITERAL = '\\/';
+const ONE_CHAR = '(?=.)';
+const QMARK = '[^/]';
+const END_ANCHOR = `(?:${SLASH_LITERAL}|$)`;
+const START_ANCHOR = `(?:^|${SLASH_LITERAL})`;
+const DOTS_SLASH = `${DOT_LITERAL}{1,2}${END_ANCHOR}`;
+const NO_DOT = `(?!${DOT_LITERAL})`;
+const NO_DOTS = `(?!${START_ANCHOR}${DOTS_SLASH})`;
+const NO_DOT_SLASH = `(?!${DOT_LITERAL}{0,1}${END_ANCHOR})`;
+const NO_DOTS_SLASH = `(?!${DOTS_SLASH})`;
+const QMARK_NO_DOT = `[^.${SLASH_LITERAL}]`;
+const STAR = `${QMARK}*?`;
+
+const POSIX_CHARS = {
+  DOT_LITERAL,
+  PLUS_LITERAL,
+  QMARK_LITERAL,
+  SLASH_LITERAL,
+  ONE_CHAR,
+  QMARK,
+  END_ANCHOR,
+  DOTS_SLASH,
+  NO_DOT,
+  NO_DOTS,
+  NO_DOT_SLASH,
+  NO_DOTS_SLASH,
+  QMARK_NO_DOT,
+  STAR,
+  START_ANCHOR
+};
+
+/**
+ * Windows glob regex
+ */
+
+const WINDOWS_CHARS = {
+  ...POSIX_CHARS,
+
+  SLASH_LITERAL: `[${WIN_SLASH}]`,
+  QMARK: WIN_NO_SLASH,
+  STAR: `${WIN_NO_SLASH}*?`,
+  DOTS_SLASH: `${DOT_LITERAL}{1,2}(?:[${WIN_SLASH}]|$)`,
+  NO_DOT: `(?!${DOT_LITERAL})`,
+  NO_DOTS: `(?!(?:^|[${WIN_SLASH}])${DOT_LITERAL}{1,2}(?:[${WIN_SLASH}]|$))`,
+  NO_DOT_SLASH: `(?!${DOT_LITERAL}{0,1}(?:[${WIN_SLASH}]|$))`,
+  NO_DOTS_SLASH: `(?!${DOT_LITERAL}{1,2}(?:[${WIN_SLASH}]|$))`,
+  QMARK_NO_DOT: `[^.${WIN_SLASH}]`,
+  START_ANCHOR: `(?:^|[${WIN_SLASH}])`,
+  END_ANCHOR: `(?:[${WIN_SLASH}]|$)`
+};
+
+/**
+ * POSIX Bracket Regex
+ */
+
+const POSIX_REGEX_SOURCE = {
+  alnum: 'a-zA-Z0-9',
+  alpha: 'a-zA-Z',
+  ascii: '\\x00-\\x7F',
+  blank: ' \\t',
+  cntrl: '\\x00-\\x1F\\x7F',
+  digit: '0-9',
+  graph: '\\x21-\\x7E',
+  lower: 'a-z',
+  print: '\\x20-\\x7E ',
+  punct: '\\-!"#$%&\'()\\*+,./:;<=>?@[\\]^_`{|}~',
+  space: ' \\t\\r\\n\\v\\f',
+  upper: 'A-Z',
+  word: 'A-Za-z0-9_',
+  xdigit: 'A-Fa-f0-9'
+};
+
+module.exports = {
+  MAX_LENGTH: 1024 * 64,
+  POSIX_REGEX_SOURCE,
+
+  // regular expressions
+  REGEX_BACKSLASH: /\\(?![*+?^${}(|)[\]])/g,
+  REGEX_NON_SPECIAL_CHARS: /^[^@![\].,$*+?^{}()|\\/]+/,
+  REGEX_SPECIAL_CHARS: /[-*+?.^${}(|)[\]]/,
+  REGEX_SPECIAL_CHARS_BACKREF: /(\\?)((\W)(\3*))/g,
+  REGEX_SPECIAL_CHARS_GLOBAL: /([-*+?.^${}(|)[\]])/g,
+  REGEX_REMOVE_BACKSLASH: /(?:\[.*?[^\\]\]|\\(?=.))/g,
+
+  // Replace globs with equivalent patterns to reduce parsing time.
+  REPLACEMENTS: {
+    '***': '*',
+    '**/**': '**',
+    '**/**/**': '**'
+  },
+
+  // Digits
+  CHAR_0: 48, /* 0 */
+  CHAR_9: 57, /* 9 */
+
+  // Alphabet chars.
+  CHAR_UPPERCASE_A: 65, /* A */
+  CHAR_LOWERCASE_A: 97, /* a */
+  CHAR_UPPERCASE_Z: 90, /* Z */
+  CHAR_LOWERCASE_Z: 122, /* z */
+
+  CHAR_LEFT_PARENTHESES: 40, /* ( */
+  CHAR_RIGHT_PARENTHESES: 41, /* ) */
+
+  CHAR_ASTERISK: 42, /* * */
+
+  // Non-alphabetic chars.
+  CHAR_AMPERSAND: 38, /* & */
+  CHAR_AT: 64, /* @ */
+  CHAR_BACKWARD_SLASH: 92, /* \ */
+  CHAR_CARRIAGE_RETURN: 13, /* \r */
+  CHAR_CIRCUMFLEX_ACCENT: 94, /* ^ */
+  CHAR_COLON: 58, /* : */
+  CHAR_COMMA: 44, /* , */
+  CHAR_DOT: 46, /* . */
+  CHAR_DOUBLE_QUOTE: 34, /* " */
+  CHAR_EQUAL: 61, /* = */
+  CHAR_EXCLAMATION_MARK: 33, /* ! */
+  CHAR_FORM_FEED: 12, /* \f */
+  CHAR_FORWARD_SLASH: 47, /* / */
+  CHAR_GRAVE_ACCENT: 96, /* ` */
+  CHAR_HASH: 35, /* # */
+  CHAR_HYPHEN_MINUS: 45, /* - */
+  CHAR_LEFT_ANGLE_BRACKET: 60, /* < */
+  CHAR_LEFT_CURLY_BRACE: 123, /* { */
+  CHAR_LEFT_SQUARE_BRACKET: 91, /* [ */
+  CHAR_LINE_FEED: 10, /* \n */
+  CHAR_NO_BREAK_SPACE: 160, /* \u00A0 */
+  CHAR_PERCENT: 37, /* % */
+  CHAR_PLUS: 43, /* + */
+  CHAR_QUESTION_MARK: 63, /* ? */
+  CHAR_RIGHT_ANGLE_BRACKET: 62, /* > */
+  CHAR_RIGHT_CURLY_BRACE: 125, /* } */
+  CHAR_RIGHT_SQUARE_BRACKET: 93, /* ] */
+  CHAR_SEMICOLON: 59, /* ; */
+  CHAR_SINGLE_QUOTE: 39, /* ' */
+  CHAR_SPACE: 32, /*   */
+  CHAR_TAB: 9, /* \t */
+  CHAR_UNDERSCORE: 95, /* _ */
+  CHAR_VERTICAL_LINE: 124, /* | */
+  CHAR_ZERO_WIDTH_NOBREAK_SPACE: 65279, /* \uFEFF */
+
+  SEP: path.sep,
+
+  /**
+   * Create EXTGLOB_CHARS
+   */
+
+  extglobChars(chars) {
+    return {
+      '!': { type: 'negate', open: '(?:(?!(?:', close: `))${chars.STAR})` },
+      '?': { type: 'qmark', open: '(?:', close: ')?' },
+      '+': { type: 'plus', open: '(?:', close: ')+' },
+      '*': { type: 'star', open: '(?:', close: ')*' },
+      '@': { type: 'at', open: '(?:', close: ')' }
+    };
+  },
+
+  /**
+   * Create GLOB_CHARS
+   */
+
+  globChars(win32) {
+    return win32 === true ? WINDOWS_CHARS : POSIX_CHARS;
+  }
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/picomatch/lib/parse.js":
+/*!*********************************************!*\
+  !*** ./node_modules/picomatch/lib/parse.js ***!
+  \*********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+const constants = __webpack_require__(/*! ./constants */ "./node_modules/picomatch/lib/constants.js");
+const utils = __webpack_require__(/*! ./utils */ "./node_modules/picomatch/lib/utils.js");
+
+/**
+ * Constants
+ */
+
+const {
+  MAX_LENGTH,
+  POSIX_REGEX_SOURCE,
+  REGEX_NON_SPECIAL_CHARS,
+  REGEX_SPECIAL_CHARS_BACKREF,
+  REPLACEMENTS
+} = constants;
+
+/**
+ * Helpers
+ */
+
+const expandRange = (args, options) => {
+  if (typeof options.expandRange === 'function') {
+    return options.expandRange(...args, options);
+  }
+
+  args.sort();
+  const value = `[${args.join('-')}]`;
+
+  try {
+    /* eslint-disable-next-line no-new */
+    new RegExp(value);
+  } catch (ex) {
+    return args.map(v => utils.escapeRegex(v)).join('..');
+  }
+
+  return value;
+};
+
+/**
+ * Create the message for a syntax error
+ */
+
+const syntaxError = (type, char) => {
+  return `Missing ${type}: "${char}" - use "\\\\${char}" to match literal characters`;
+};
+
+/**
+ * Parse the given input string.
+ * @param {String} input
+ * @param {Object} options
+ * @return {Object}
+ */
+
+const parse = (input, options) => {
+  if (typeof input !== 'string') {
+    throw new TypeError('Expected a string');
+  }
+
+  input = REPLACEMENTS[input] || input;
+
+  const opts = { ...options };
+  const max = typeof opts.maxLength === 'number' ? Math.min(MAX_LENGTH, opts.maxLength) : MAX_LENGTH;
+
+  let len = input.length;
+  if (len > max) {
+    throw new SyntaxError(`Input length: ${len}, exceeds maximum allowed length: ${max}`);
+  }
+
+  const bos = { type: 'bos', value: '', output: opts.prepend || '' };
+  const tokens = [bos];
+
+  const capture = opts.capture ? '' : '?:';
+  const win32 = utils.isWindows(options);
+
+  // create constants based on platform, for windows or posix
+  const PLATFORM_CHARS = constants.globChars(win32);
+  const EXTGLOB_CHARS = constants.extglobChars(PLATFORM_CHARS);
+
+  const {
+    DOT_LITERAL,
+    PLUS_LITERAL,
+    SLASH_LITERAL,
+    ONE_CHAR,
+    DOTS_SLASH,
+    NO_DOT,
+    NO_DOT_SLASH,
+    NO_DOTS_SLASH,
+    QMARK,
+    QMARK_NO_DOT,
+    STAR,
+    START_ANCHOR
+  } = PLATFORM_CHARS;
+
+  const globstar = opts => {
+    return `(${capture}(?:(?!${START_ANCHOR}${opts.dot ? DOTS_SLASH : DOT_LITERAL}).)*?)`;
+  };
+
+  const nodot = opts.dot ? '' : NO_DOT;
+  const qmarkNoDot = opts.dot ? QMARK : QMARK_NO_DOT;
+  let star = opts.bash === true ? globstar(opts) : STAR;
+
+  if (opts.capture) {
+    star = `(${star})`;
+  }
+
+  // minimatch options support
+  if (typeof opts.noext === 'boolean') {
+    opts.noextglob = opts.noext;
+  }
+
+  const state = {
+    input,
+    index: -1,
+    start: 0,
+    dot: opts.dot === true,
+    consumed: '',
+    output: '',
+    prefix: '',
+    backtrack: false,
+    negated: false,
+    brackets: 0,
+    braces: 0,
+    parens: 0,
+    quotes: 0,
+    globstar: false,
+    tokens
+  };
+
+  input = utils.removePrefix(input, state);
+  len = input.length;
+
+  const extglobs = [];
+  const braces = [];
+  const stack = [];
+  let prev = bos;
+  let value;
+
+  /**
+   * Tokenizing helpers
+   */
+
+  const eos = () => state.index === len - 1;
+  const peek = state.peek = (n = 1) => input[state.index + n];
+  const advance = state.advance = () => input[++state.index] || '';
+  const remaining = () => input.slice(state.index + 1);
+  const consume = (value = '', num = 0) => {
+    state.consumed += value;
+    state.index += num;
+  };
+
+  const append = token => {
+    state.output += token.output != null ? token.output : token.value;
+    consume(token.value);
+  };
+
+  const negate = () => {
+    let count = 1;
+
+    while (peek() === '!' && (peek(2) !== '(' || peek(3) === '?')) {
+      advance();
+      state.start++;
+      count++;
+    }
+
+    if (count % 2 === 0) {
+      return false;
+    }
+
+    state.negated = true;
+    state.start++;
+    return true;
+  };
+
+  const increment = type => {
+    state[type]++;
+    stack.push(type);
+  };
+
+  const decrement = type => {
+    state[type]--;
+    stack.pop();
+  };
+
+  /**
+   * Push tokens onto the tokens array. This helper speeds up
+   * tokenizing by 1) helping us avoid backtracking as much as possible,
+   * and 2) helping us avoid creating extra tokens when consecutive
+   * characters are plain text. This improves performance and simplifies
+   * lookbehinds.
+   */
+
+  const push = tok => {
+    if (prev.type === 'globstar') {
+      const isBrace = state.braces > 0 && (tok.type === 'comma' || tok.type === 'brace');
+      const isExtglob = tok.extglob === true || (extglobs.length && (tok.type === 'pipe' || tok.type === 'paren'));
+
+      if (tok.type !== 'slash' && tok.type !== 'paren' && !isBrace && !isExtglob) {
+        state.output = state.output.slice(0, -prev.output.length);
+        prev.type = 'star';
+        prev.value = '*';
+        prev.output = star;
+        state.output += prev.output;
+      }
+    }
+
+    if (extglobs.length && tok.type !== 'paren') {
+      extglobs[extglobs.length - 1].inner += tok.value;
+    }
+
+    if (tok.value || tok.output) append(tok);
+    if (prev && prev.type === 'text' && tok.type === 'text') {
+      prev.value += tok.value;
+      prev.output = (prev.output || '') + tok.value;
+      return;
+    }
+
+    tok.prev = prev;
+    tokens.push(tok);
+    prev = tok;
+  };
+
+  const extglobOpen = (type, value) => {
+    const token = { ...EXTGLOB_CHARS[value], conditions: 1, inner: '' };
+
+    token.prev = prev;
+    token.parens = state.parens;
+    token.output = state.output;
+    const output = (opts.capture ? '(' : '') + token.open;
+
+    increment('parens');
+    push({ type, value, output: state.output ? '' : ONE_CHAR });
+    push({ type: 'paren', extglob: true, value: advance(), output });
+    extglobs.push(token);
+  };
+
+  const extglobClose = token => {
+    let output = token.close + (opts.capture ? ')' : '');
+    let rest;
+
+    if (token.type === 'negate') {
+      let extglobStar = star;
+
+      if (token.inner && token.inner.length > 1 && token.inner.includes('/')) {
+        extglobStar = globstar(opts);
+      }
+
+      if (extglobStar !== star || eos() || /^\)+$/.test(remaining())) {
+        output = token.close = `)$))${extglobStar}`;
+      }
+
+      if (token.inner.includes('*') && (rest = remaining()) && /^\.[^\\/.]+$/.test(rest)) {
+        output = token.close = `)${rest})${extglobStar})`;
+      }
+
+      if (token.prev.type === 'bos') {
+        state.negatedExtglob = true;
+      }
+    }
+
+    push({ type: 'paren', extglob: true, value, output });
+    decrement('parens');
+  };
+
+  /**
+   * Fast paths
+   */
+
+  if (opts.fastpaths !== false && !/(^[*!]|[/()[\]{}"])/.test(input)) {
+    let backslashes = false;
+
+    let output = input.replace(REGEX_SPECIAL_CHARS_BACKREF, (m, esc, chars, first, rest, index) => {
+      if (first === '\\') {
+        backslashes = true;
+        return m;
+      }
+
+      if (first === '?') {
+        if (esc) {
+          return esc + first + (rest ? QMARK.repeat(rest.length) : '');
+        }
+        if (index === 0) {
+          return qmarkNoDot + (rest ? QMARK.repeat(rest.length) : '');
+        }
+        return QMARK.repeat(chars.length);
+      }
+
+      if (first === '.') {
+        return DOT_LITERAL.repeat(chars.length);
+      }
+
+      if (first === '*') {
+        if (esc) {
+          return esc + first + (rest ? star : '');
+        }
+        return star;
+      }
+      return esc ? m : `\\${m}`;
+    });
+
+    if (backslashes === true) {
+      if (opts.unescape === true) {
+        output = output.replace(/\\/g, '');
+      } else {
+        output = output.replace(/\\+/g, m => {
+          return m.length % 2 === 0 ? '\\\\' : (m ? '\\' : '');
+        });
+      }
+    }
+
+    if (output === input && opts.contains === true) {
+      state.output = input;
+      return state;
+    }
+
+    state.output = utils.wrapOutput(output, state, options);
+    return state;
+  }
+
+  /**
+   * Tokenize input until we reach end-of-string
+   */
+
+  while (!eos()) {
+    value = advance();
+
+    if (value === '\u0000') {
+      continue;
+    }
+
+    /**
+     * Escaped characters
+     */
+
+    if (value === '\\') {
+      const next = peek();
+
+      if (next === '/' && opts.bash !== true) {
+        continue;
+      }
+
+      if (next === '.' || next === ';') {
+        continue;
+      }
+
+      if (!next) {
+        value += '\\';
+        push({ type: 'text', value });
+        continue;
+      }
+
+      // collapse slashes to reduce potential for exploits
+      const match = /^\\+/.exec(remaining());
+      let slashes = 0;
+
+      if (match && match[0].length > 2) {
+        slashes = match[0].length;
+        state.index += slashes;
+        if (slashes % 2 !== 0) {
+          value += '\\';
+        }
+      }
+
+      if (opts.unescape === true) {
+        value = advance();
+      } else {
+        value += advance();
+      }
+
+      if (state.brackets === 0) {
+        push({ type: 'text', value });
+        continue;
+      }
+    }
+
+    /**
+     * If we're inside a regex character class, continue
+     * until we reach the closing bracket.
+     */
+
+    if (state.brackets > 0 && (value !== ']' || prev.value === '[' || prev.value === '[^')) {
+      if (opts.posix !== false && value === ':') {
+        const inner = prev.value.slice(1);
+        if (inner.includes('[')) {
+          prev.posix = true;
+
+          if (inner.includes(':')) {
+            const idx = prev.value.lastIndexOf('[');
+            const pre = prev.value.slice(0, idx);
+            const rest = prev.value.slice(idx + 2);
+            const posix = POSIX_REGEX_SOURCE[rest];
+            if (posix) {
+              prev.value = pre + posix;
+              state.backtrack = true;
+              advance();
+
+              if (!bos.output && tokens.indexOf(prev) === 1) {
+                bos.output = ONE_CHAR;
+              }
+              continue;
+            }
+          }
+        }
+      }
+
+      if ((value === '[' && peek() !== ':') || (value === '-' && peek() === ']')) {
+        value = `\\${value}`;
+      }
+
+      if (value === ']' && (prev.value === '[' || prev.value === '[^')) {
+        value = `\\${value}`;
+      }
+
+      if (opts.posix === true && value === '!' && prev.value === '[') {
+        value = '^';
+      }
+
+      prev.value += value;
+      append({ value });
+      continue;
+    }
+
+    /**
+     * If we're inside a quoted string, continue
+     * until we reach the closing double quote.
+     */
+
+    if (state.quotes === 1 && value !== '"') {
+      value = utils.escapeRegex(value);
+      prev.value += value;
+      append({ value });
+      continue;
+    }
+
+    /**
+     * Double quotes
+     */
+
+    if (value === '"') {
+      state.quotes = state.quotes === 1 ? 0 : 1;
+      if (opts.keepQuotes === true) {
+        push({ type: 'text', value });
+      }
+      continue;
+    }
+
+    /**
+     * Parentheses
+     */
+
+    if (value === '(') {
+      increment('parens');
+      push({ type: 'paren', value });
+      continue;
+    }
+
+    if (value === ')') {
+      if (state.parens === 0 && opts.strictBrackets === true) {
+        throw new SyntaxError(syntaxError('opening', '('));
+      }
+
+      const extglob = extglobs[extglobs.length - 1];
+      if (extglob && state.parens === extglob.parens + 1) {
+        extglobClose(extglobs.pop());
+        continue;
+      }
+
+      push({ type: 'paren', value, output: state.parens ? ')' : '\\)' });
+      decrement('parens');
+      continue;
+    }
+
+    /**
+     * Square brackets
+     */
+
+    if (value === '[') {
+      if (opts.nobracket === true || !remaining().includes(']')) {
+        if (opts.nobracket !== true && opts.strictBrackets === true) {
+          throw new SyntaxError(syntaxError('closing', ']'));
+        }
+
+        value = `\\${value}`;
+      } else {
+        increment('brackets');
+      }
+
+      push({ type: 'bracket', value });
+      continue;
+    }
+
+    if (value === ']') {
+      if (opts.nobracket === true || (prev && prev.type === 'bracket' && prev.value.length === 1)) {
+        push({ type: 'text', value, output: `\\${value}` });
+        continue;
+      }
+
+      if (state.brackets === 0) {
+        if (opts.strictBrackets === true) {
+          throw new SyntaxError(syntaxError('opening', '['));
+        }
+
+        push({ type: 'text', value, output: `\\${value}` });
+        continue;
+      }
+
+      decrement('brackets');
+
+      const prevValue = prev.value.slice(1);
+      if (prev.posix !== true && prevValue[0] === '^' && !prevValue.includes('/')) {
+        value = `/${value}`;
+      }
+
+      prev.value += value;
+      append({ value });
+
+      // when literal brackets are explicitly disabled
+      // assume we should match with a regex character class
+      if (opts.literalBrackets === false || utils.hasRegexChars(prevValue)) {
+        continue;
+      }
+
+      const escaped = utils.escapeRegex(prev.value);
+      state.output = state.output.slice(0, -prev.value.length);
+
+      // when literal brackets are explicitly enabled
+      // assume we should escape the brackets to match literal characters
+      if (opts.literalBrackets === true) {
+        state.output += escaped;
+        prev.value = escaped;
+        continue;
+      }
+
+      // when the user specifies nothing, try to match both
+      prev.value = `(${capture}${escaped}|${prev.value})`;
+      state.output += prev.value;
+      continue;
+    }
+
+    /**
+     * Braces
+     */
+
+    if (value === '{' && opts.nobrace !== true) {
+      increment('braces');
+
+      const open = {
+        type: 'brace',
+        value,
+        output: '(',
+        outputIndex: state.output.length,
+        tokensIndex: state.tokens.length
+      };
+
+      braces.push(open);
+      push(open);
+      continue;
+    }
+
+    if (value === '}') {
+      const brace = braces[braces.length - 1];
+
+      if (opts.nobrace === true || !brace) {
+        push({ type: 'text', value, output: value });
+        continue;
+      }
+
+      let output = ')';
+
+      if (brace.dots === true) {
+        const arr = tokens.slice();
+        const range = [];
+
+        for (let i = arr.length - 1; i >= 0; i--) {
+          tokens.pop();
+          if (arr[i].type === 'brace') {
+            break;
+          }
+          if (arr[i].type !== 'dots') {
+            range.unshift(arr[i].value);
+          }
+        }
+
+        output = expandRange(range, opts);
+        state.backtrack = true;
+      }
+
+      if (brace.comma !== true && brace.dots !== true) {
+        const out = state.output.slice(0, brace.outputIndex);
+        const toks = state.tokens.slice(brace.tokensIndex);
+        brace.value = brace.output = '\\{';
+        value = output = '\\}';
+        state.output = out;
+        for (const t of toks) {
+          state.output += (t.output || t.value);
+        }
+      }
+
+      push({ type: 'brace', value, output });
+      decrement('braces');
+      braces.pop();
+      continue;
+    }
+
+    /**
+     * Pipes
+     */
+
+    if (value === '|') {
+      if (extglobs.length > 0) {
+        extglobs[extglobs.length - 1].conditions++;
+      }
+      push({ type: 'text', value });
+      continue;
+    }
+
+    /**
+     * Commas
+     */
+
+    if (value === ',') {
+      let output = value;
+
+      const brace = braces[braces.length - 1];
+      if (brace && stack[stack.length - 1] === 'braces') {
+        brace.comma = true;
+        output = '|';
+      }
+
+      push({ type: 'comma', value, output });
+      continue;
+    }
+
+    /**
+     * Slashes
+     */
+
+    if (value === '/') {
+      // if the beginning of the glob is "./", advance the start
+      // to the current index, and don't add the "./" characters
+      // to the state. This greatly simplifies lookbehinds when
+      // checking for BOS characters like "!" and "." (not "./")
+      if (prev.type === 'dot' && state.index === state.start + 1) {
+        state.start = state.index + 1;
+        state.consumed = '';
+        state.output = '';
+        tokens.pop();
+        prev = bos; // reset "prev" to the first token
+        continue;
+      }
+
+      push({ type: 'slash', value, output: SLASH_LITERAL });
+      continue;
+    }
+
+    /**
+     * Dots
+     */
+
+    if (value === '.') {
+      if (state.braces > 0 && prev.type === 'dot') {
+        if (prev.value === '.') prev.output = DOT_LITERAL;
+        const brace = braces[braces.length - 1];
+        prev.type = 'dots';
+        prev.output += value;
+        prev.value += value;
+        brace.dots = true;
+        continue;
+      }
+
+      if ((state.braces + state.parens) === 0 && prev.type !== 'bos' && prev.type !== 'slash') {
+        push({ type: 'text', value, output: DOT_LITERAL });
+        continue;
+      }
+
+      push({ type: 'dot', value, output: DOT_LITERAL });
+      continue;
+    }
+
+    /**
+     * Question marks
+     */
+
+    if (value === '?') {
+      const isGroup = prev && prev.value === '(';
+      if (!isGroup && opts.noextglob !== true && peek() === '(' && peek(2) !== '?') {
+        extglobOpen('qmark', value);
+        continue;
+      }
+
+      if (prev && prev.type === 'paren') {
+        const next = peek();
+        let output = value;
+
+        if (next === '<' && !utils.supportsLookbehinds()) {
+          throw new Error('Node.js v10 or higher is required for regex lookbehinds');
+        }
+
+        if ((prev.value === '(' && !/[!=<:]/.test(next)) || (next === '<' && !/<([!=]|\w+>)/.test(remaining()))) {
+          output = `\\${value}`;
+        }
+
+        push({ type: 'text', value, output });
+        continue;
+      }
+
+      if (opts.dot !== true && (prev.type === 'slash' || prev.type === 'bos')) {
+        push({ type: 'qmark', value, output: QMARK_NO_DOT });
+        continue;
+      }
+
+      push({ type: 'qmark', value, output: QMARK });
+      continue;
+    }
+
+    /**
+     * Exclamation
+     */
+
+    if (value === '!') {
+      if (opts.noextglob !== true && peek() === '(') {
+        if (peek(2) !== '?' || !/[!=<:]/.test(peek(3))) {
+          extglobOpen('negate', value);
+          continue;
+        }
+      }
+
+      if (opts.nonegate !== true && state.index === 0) {
+        negate();
+        continue;
+      }
+    }
+
+    /**
+     * Plus
+     */
+
+    if (value === '+') {
+      if (opts.noextglob !== true && peek() === '(' && peek(2) !== '?') {
+        extglobOpen('plus', value);
+        continue;
+      }
+
+      if ((prev && prev.value === '(') || opts.regex === false) {
+        push({ type: 'plus', value, output: PLUS_LITERAL });
+        continue;
+      }
+
+      if ((prev && (prev.type === 'bracket' || prev.type === 'paren' || prev.type === 'brace')) || state.parens > 0) {
+        push({ type: 'plus', value });
+        continue;
+      }
+
+      push({ type: 'plus', value: PLUS_LITERAL });
+      continue;
+    }
+
+    /**
+     * Plain text
+     */
+
+    if (value === '@') {
+      if (opts.noextglob !== true && peek() === '(' && peek(2) !== '?') {
+        push({ type: 'at', extglob: true, value, output: '' });
+        continue;
+      }
+
+      push({ type: 'text', value });
+      continue;
+    }
+
+    /**
+     * Plain text
+     */
+
+    if (value !== '*') {
+      if (value === '$' || value === '^') {
+        value = `\\${value}`;
+      }
+
+      const match = REGEX_NON_SPECIAL_CHARS.exec(remaining());
+      if (match) {
+        value += match[0];
+        state.index += match[0].length;
+      }
+
+      push({ type: 'text', value });
+      continue;
+    }
+
+    /**
+     * Stars
+     */
+
+    if (prev && (prev.type === 'globstar' || prev.star === true)) {
+      prev.type = 'star';
+      prev.star = true;
+      prev.value += value;
+      prev.output = star;
+      state.backtrack = true;
+      state.globstar = true;
+      consume(value);
+      continue;
+    }
+
+    let rest = remaining();
+    if (opts.noextglob !== true && /^\([^?]/.test(rest)) {
+      extglobOpen('star', value);
+      continue;
+    }
+
+    if (prev.type === 'star') {
+      if (opts.noglobstar === true) {
+        consume(value);
+        continue;
+      }
+
+      const prior = prev.prev;
+      const before = prior.prev;
+      const isStart = prior.type === 'slash' || prior.type === 'bos';
+      const afterStar = before && (before.type === 'star' || before.type === 'globstar');
+
+      if (opts.bash === true && (!isStart || (rest[0] && rest[0] !== '/'))) {
+        push({ type: 'star', value, output: '' });
+        continue;
+      }
+
+      const isBrace = state.braces > 0 && (prior.type === 'comma' || prior.type === 'brace');
+      const isExtglob = extglobs.length && (prior.type === 'pipe' || prior.type === 'paren');
+      if (!isStart && prior.type !== 'paren' && !isBrace && !isExtglob) {
+        push({ type: 'star', value, output: '' });
+        continue;
+      }
+
+      // strip consecutive `/**/`
+      while (rest.slice(0, 3) === '/**') {
+        const after = input[state.index + 4];
+        if (after && after !== '/') {
+          break;
+        }
+        rest = rest.slice(3);
+        consume('/**', 3);
+      }
+
+      if (prior.type === 'bos' && eos()) {
+        prev.type = 'globstar';
+        prev.value += value;
+        prev.output = globstar(opts);
+        state.output = prev.output;
+        state.globstar = true;
+        consume(value);
+        continue;
+      }
+
+      if (prior.type === 'slash' && prior.prev.type !== 'bos' && !afterStar && eos()) {
+        state.output = state.output.slice(0, -(prior.output + prev.output).length);
+        prior.output = `(?:${prior.output}`;
+
+        prev.type = 'globstar';
+        prev.output = globstar(opts) + (opts.strictSlashes ? ')' : '|$)');
+        prev.value += value;
+        state.globstar = true;
+        state.output += prior.output + prev.output;
+        consume(value);
+        continue;
+      }
+
+      if (prior.type === 'slash' && prior.prev.type !== 'bos' && rest[0] === '/') {
+        const end = rest[1] !== void 0 ? '|$' : '';
+
+        state.output = state.output.slice(0, -(prior.output + prev.output).length);
+        prior.output = `(?:${prior.output}`;
+
+        prev.type = 'globstar';
+        prev.output = `${globstar(opts)}${SLASH_LITERAL}|${SLASH_LITERAL}${end})`;
+        prev.value += value;
+
+        state.output += prior.output + prev.output;
+        state.globstar = true;
+
+        consume(value + advance());
+
+        push({ type: 'slash', value: '/', output: '' });
+        continue;
+      }
+
+      if (prior.type === 'bos' && rest[0] === '/') {
+        prev.type = 'globstar';
+        prev.value += value;
+        prev.output = `(?:^|${SLASH_LITERAL}|${globstar(opts)}${SLASH_LITERAL})`;
+        state.output = prev.output;
+        state.globstar = true;
+        consume(value + advance());
+        push({ type: 'slash', value: '/', output: '' });
+        continue;
+      }
+
+      // remove single star from output
+      state.output = state.output.slice(0, -prev.output.length);
+
+      // reset previous token to globstar
+      prev.type = 'globstar';
+      prev.output = globstar(opts);
+      prev.value += value;
+
+      // reset output with globstar
+      state.output += prev.output;
+      state.globstar = true;
+      consume(value);
+      continue;
+    }
+
+    const token = { type: 'star', value, output: star };
+
+    if (opts.bash === true) {
+      token.output = '.*?';
+      if (prev.type === 'bos' || prev.type === 'slash') {
+        token.output = nodot + token.output;
+      }
+      push(token);
+      continue;
+    }
+
+    if (prev && (prev.type === 'bracket' || prev.type === 'paren') && opts.regex === true) {
+      token.output = value;
+      push(token);
+      continue;
+    }
+
+    if (state.index === state.start || prev.type === 'slash' || prev.type === 'dot') {
+      if (prev.type === 'dot') {
+        state.output += NO_DOT_SLASH;
+        prev.output += NO_DOT_SLASH;
+
+      } else if (opts.dot === true) {
+        state.output += NO_DOTS_SLASH;
+        prev.output += NO_DOTS_SLASH;
+
+      } else {
+        state.output += nodot;
+        prev.output += nodot;
+      }
+
+      if (peek() !== '*') {
+        state.output += ONE_CHAR;
+        prev.output += ONE_CHAR;
+      }
+    }
+
+    push(token);
+  }
+
+  while (state.brackets > 0) {
+    if (opts.strictBrackets === true) throw new SyntaxError(syntaxError('closing', ']'));
+    state.output = utils.escapeLast(state.output, '[');
+    decrement('brackets');
+  }
+
+  while (state.parens > 0) {
+    if (opts.strictBrackets === true) throw new SyntaxError(syntaxError('closing', ')'));
+    state.output = utils.escapeLast(state.output, '(');
+    decrement('parens');
+  }
+
+  while (state.braces > 0) {
+    if (opts.strictBrackets === true) throw new SyntaxError(syntaxError('closing', '}'));
+    state.output = utils.escapeLast(state.output, '{');
+    decrement('braces');
+  }
+
+  if (opts.strictSlashes !== true && (prev.type === 'star' || prev.type === 'bracket')) {
+    push({ type: 'maybe_slash', value: '', output: `${SLASH_LITERAL}?` });
+  }
+
+  // rebuild the output if we had to backtrack at any point
+  if (state.backtrack === true) {
+    state.output = '';
+
+    for (const token of state.tokens) {
+      state.output += token.output != null ? token.output : token.value;
+
+      if (token.suffix) {
+        state.output += token.suffix;
+      }
+    }
+  }
+
+  return state;
+};
+
+/**
+ * Fast paths for creating regular expressions for common glob patterns.
+ * This can significantly speed up processing and has very little downside
+ * impact when none of the fast paths match.
+ */
+
+parse.fastpaths = (input, options) => {
+  const opts = { ...options };
+  const max = typeof opts.maxLength === 'number' ? Math.min(MAX_LENGTH, opts.maxLength) : MAX_LENGTH;
+  const len = input.length;
+  if (len > max) {
+    throw new SyntaxError(`Input length: ${len}, exceeds maximum allowed length: ${max}`);
+  }
+
+  input = REPLACEMENTS[input] || input;
+  const win32 = utils.isWindows(options);
+
+  // create constants based on platform, for windows or posix
+  const {
+    DOT_LITERAL,
+    SLASH_LITERAL,
+    ONE_CHAR,
+    DOTS_SLASH,
+    NO_DOT,
+    NO_DOTS,
+    NO_DOTS_SLASH,
+    STAR,
+    START_ANCHOR
+  } = constants.globChars(win32);
+
+  const nodot = opts.dot ? NO_DOTS : NO_DOT;
+  const slashDot = opts.dot ? NO_DOTS_SLASH : NO_DOT;
+  const capture = opts.capture ? '' : '?:';
+  const state = { negated: false, prefix: '' };
+  let star = opts.bash === true ? '.*?' : STAR;
+
+  if (opts.capture) {
+    star = `(${star})`;
+  }
+
+  const globstar = opts => {
+    if (opts.noglobstar === true) return star;
+    return `(${capture}(?:(?!${START_ANCHOR}${opts.dot ? DOTS_SLASH : DOT_LITERAL}).)*?)`;
+  };
+
+  const create = str => {
+    switch (str) {
+      case '*':
+        return `${nodot}${ONE_CHAR}${star}`;
+
+      case '.*':
+        return `${DOT_LITERAL}${ONE_CHAR}${star}`;
+
+      case '*.*':
+        return `${nodot}${star}${DOT_LITERAL}${ONE_CHAR}${star}`;
+
+      case '*/*':
+        return `${nodot}${star}${SLASH_LITERAL}${ONE_CHAR}${slashDot}${star}`;
+
+      case '**':
+        return nodot + globstar(opts);
+
+      case '**/*':
+        return `(?:${nodot}${globstar(opts)}${SLASH_LITERAL})?${slashDot}${ONE_CHAR}${star}`;
+
+      case '**/*.*':
+        return `(?:${nodot}${globstar(opts)}${SLASH_LITERAL})?${slashDot}${star}${DOT_LITERAL}${ONE_CHAR}${star}`;
+
+      case '**/.*':
+        return `(?:${nodot}${globstar(opts)}${SLASH_LITERAL})?${DOT_LITERAL}${ONE_CHAR}${star}`;
+
+      default: {
+        const match = /^(.*?)\.(\w+)$/.exec(str);
+        if (!match) return;
+
+        const source = create(match[1]);
+        if (!source) return;
+
+        return source + DOT_LITERAL + match[2];
+      }
+    }
+  };
+
+  const output = utils.removePrefix(input, state);
+  let source = create(output);
+
+  if (source && opts.strictSlashes !== true) {
+    source += `${SLASH_LITERAL}?`;
+  }
+
+  return source;
+};
+
+module.exports = parse;
+
+
+/***/ }),
+
+/***/ "./node_modules/picomatch/lib/picomatch.js":
+/*!*************************************************!*\
+  !*** ./node_modules/picomatch/lib/picomatch.js ***!
+  \*************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+const path = __webpack_require__(/*! path */ "path");
+const scan = __webpack_require__(/*! ./scan */ "./node_modules/picomatch/lib/scan.js");
+const parse = __webpack_require__(/*! ./parse */ "./node_modules/picomatch/lib/parse.js");
+const utils = __webpack_require__(/*! ./utils */ "./node_modules/picomatch/lib/utils.js");
+const constants = __webpack_require__(/*! ./constants */ "./node_modules/picomatch/lib/constants.js");
+const isObject = val => val && typeof val === 'object' && !Array.isArray(val);
+
+/**
+ * Creates a matcher function from one or more glob patterns. The
+ * returned function takes a string to match as its first argument,
+ * and returns true if the string is a match. The returned matcher
+ * function also takes a boolean as the second argument that, when true,
+ * returns an object with additional information.
+ *
+ * ```js
+ * const picomatch = require('picomatch');
+ * // picomatch(glob[, options]);
+ *
+ * const isMatch = picomatch('*.!(*a)');
+ * console.log(isMatch('a.a')); //=> false
+ * console.log(isMatch('a.b')); //=> true
+ * ```
+ * @name picomatch
+ * @param {String|Array} `globs` One or more glob patterns.
+ * @param {Object=} `options`
+ * @return {Function=} Returns a matcher function.
+ * @api public
+ */
+
+const picomatch = (glob, options, returnState = false) => {
+  if (Array.isArray(glob)) {
+    const fns = glob.map(input => picomatch(input, options, returnState));
+    const arrayMatcher = str => {
+      for (const isMatch of fns) {
+        const state = isMatch(str);
+        if (state) return state;
+      }
+      return false;
+    };
+    return arrayMatcher;
+  }
+
+  const isState = isObject(glob) && glob.tokens && glob.input;
+
+  if (glob === '' || (typeof glob !== 'string' && !isState)) {
+    throw new TypeError('Expected pattern to be a non-empty string');
+  }
+
+  const opts = options || {};
+  const posix = utils.isWindows(options);
+  const regex = isState
+    ? picomatch.compileRe(glob, options)
+    : picomatch.makeRe(glob, options, false, true);
+
+  const state = regex.state;
+  delete regex.state;
+
+  let isIgnored = () => false;
+  if (opts.ignore) {
+    const ignoreOpts = { ...options, ignore: null, onMatch: null, onResult: null };
+    isIgnored = picomatch(opts.ignore, ignoreOpts, returnState);
+  }
+
+  const matcher = (input, returnObject = false) => {
+    const { isMatch, match, output } = picomatch.test(input, regex, options, { glob, posix });
+    const result = { glob, state, regex, posix, input, output, match, isMatch };
+
+    if (typeof opts.onResult === 'function') {
+      opts.onResult(result);
+    }
+
+    if (isMatch === false) {
+      result.isMatch = false;
+      return returnObject ? result : false;
+    }
+
+    if (isIgnored(input)) {
+      if (typeof opts.onIgnore === 'function') {
+        opts.onIgnore(result);
+      }
+      result.isMatch = false;
+      return returnObject ? result : false;
+    }
+
+    if (typeof opts.onMatch === 'function') {
+      opts.onMatch(result);
+    }
+    return returnObject ? result : true;
+  };
+
+  if (returnState) {
+    matcher.state = state;
+  }
+
+  return matcher;
+};
+
+/**
+ * Test `input` with the given `regex`. This is used by the main
+ * `picomatch()` function to test the input string.
+ *
+ * ```js
+ * const picomatch = require('picomatch');
+ * // picomatch.test(input, regex[, options]);
+ *
+ * console.log(picomatch.test('foo/bar', /^(?:([^/]*?)\/([^/]*?))$/));
+ * // { isMatch: true, match: [ 'foo/', 'foo', 'bar' ], output: 'foo/bar' }
+ * ```
+ * @param {String} `input` String to test.
+ * @param {RegExp} `regex`
+ * @return {Object} Returns an object with matching info.
+ * @api public
+ */
+
+picomatch.test = (input, regex, options, { glob, posix } = {}) => {
+  if (typeof input !== 'string') {
+    throw new TypeError('Expected input to be a string');
+  }
+
+  if (input === '') {
+    return { isMatch: false, output: '' };
+  }
+
+  const opts = options || {};
+  const format = opts.format || (posix ? utils.toPosixSlashes : null);
+  let match = input === glob;
+  let output = (match && format) ? format(input) : input;
+
+  if (match === false) {
+    output = format ? format(input) : input;
+    match = output === glob;
+  }
+
+  if (match === false || opts.capture === true) {
+    if (opts.matchBase === true || opts.basename === true) {
+      match = picomatch.matchBase(input, regex, options, posix);
+    } else {
+      match = regex.exec(output);
+    }
+  }
+
+  return { isMatch: Boolean(match), match, output };
+};
+
+/**
+ * Match the basename of a filepath.
+ *
+ * ```js
+ * const picomatch = require('picomatch');
+ * // picomatch.matchBase(input, glob[, options]);
+ * console.log(picomatch.matchBase('foo/bar.js', '*.js'); // true
+ * ```
+ * @param {String} `input` String to test.
+ * @param {RegExp|String} `glob` Glob pattern or regex created by [.makeRe](#makeRe).
+ * @return {Boolean}
+ * @api public
+ */
+
+picomatch.matchBase = (input, glob, options, posix = utils.isWindows(options)) => {
+  const regex = glob instanceof RegExp ? glob : picomatch.makeRe(glob, options);
+  return regex.test(path.basename(input));
+};
+
+/**
+ * Returns true if **any** of the given glob `patterns` match the specified `string`.
+ *
+ * ```js
+ * const picomatch = require('picomatch');
+ * // picomatch.isMatch(string, patterns[, options]);
+ *
+ * console.log(picomatch.isMatch('a.a', ['b.*', '*.a'])); //=> true
+ * console.log(picomatch.isMatch('a.a', 'b.*')); //=> false
+ * ```
+ * @param {String|Array} str The string to test.
+ * @param {String|Array} patterns One or more glob patterns to use for matching.
+ * @param {Object} [options] See available [options](#options).
+ * @return {Boolean} Returns true if any patterns match `str`
+ * @api public
+ */
+
+picomatch.isMatch = (str, patterns, options) => picomatch(patterns, options)(str);
+
+/**
+ * Parse a glob pattern to create the source string for a regular
+ * expression.
+ *
+ * ```js
+ * const picomatch = require('picomatch');
+ * const result = picomatch.parse(pattern[, options]);
+ * ```
+ * @param {String} `pattern`
+ * @param {Object} `options`
+ * @return {Object} Returns an object with useful properties and output to be used as a regex source string.
+ * @api public
+ */
+
+picomatch.parse = (pattern, options) => {
+  if (Array.isArray(pattern)) return pattern.map(p => picomatch.parse(p, options));
+  return parse(pattern, { ...options, fastpaths: false });
+};
+
+/**
+ * Scan a glob pattern to separate the pattern into segments.
+ *
+ * ```js
+ * const picomatch = require('picomatch');
+ * // picomatch.scan(input[, options]);
+ *
+ * const result = picomatch.scan('!./foo/*.js');
+ * console.log(result);
+ * { prefix: '!./',
+ *   input: '!./foo/*.js',
+ *   start: 3,
+ *   base: 'foo',
+ *   glob: '*.js',
+ *   isBrace: false,
+ *   isBracket: false,
+ *   isGlob: true,
+ *   isExtglob: false,
+ *   isGlobstar: false,
+ *   negated: true }
+ * ```
+ * @param {String} `input` Glob pattern to scan.
+ * @param {Object} `options`
+ * @return {Object} Returns an object with
+ * @api public
+ */
+
+picomatch.scan = (input, options) => scan(input, options);
+
+/**
+ * Compile a regular expression from the `state` object returned by the
+ * [parse()](#parse) method.
+ *
+ * @param {Object} `state`
+ * @param {Object} `options`
+ * @param {Boolean} `returnOutput` Intended for implementors, this argument allows you to return the raw output from the parser.
+ * @param {Boolean} `returnState` Adds the state to a `state` property on the returned regex. Useful for implementors and debugging.
+ * @return {RegExp}
+ * @api public
+ */
+
+picomatch.compileRe = (state, options, returnOutput = false, returnState = false) => {
+  if (returnOutput === true) {
+    return state.output;
+  }
+
+  const opts = options || {};
+  const prepend = opts.contains ? '' : '^';
+  const append = opts.contains ? '' : '$';
+
+  let source = `${prepend}(?:${state.output})${append}`;
+  if (state && state.negated === true) {
+    source = `^(?!${source}).*$`;
+  }
+
+  const regex = picomatch.toRegex(source, options);
+  if (returnState === true) {
+    regex.state = state;
+  }
+
+  return regex;
+};
+
+/**
+ * Create a regular expression from a parsed glob pattern.
+ *
+ * ```js
+ * const picomatch = require('picomatch');
+ * const state = picomatch.parse('*.js');
+ * // picomatch.compileRe(state[, options]);
+ *
+ * console.log(picomatch.compileRe(state));
+ * //=> /^(?:(?!\.)(?=.)[^/]*?\.js)$/
+ * ```
+ * @param {String} `state` The object returned from the `.parse` method.
+ * @param {Object} `options`
+ * @param {Boolean} `returnOutput` Implementors may use this argument to return the compiled output, instead of a regular expression. This is not exposed on the options to prevent end-users from mutating the result.
+ * @param {Boolean} `returnState` Implementors may use this argument to return the state from the parsed glob with the returned regular expression.
+ * @return {RegExp} Returns a regex created from the given pattern.
+ * @api public
+ */
+
+picomatch.makeRe = (input, options = {}, returnOutput = false, returnState = false) => {
+  if (!input || typeof input !== 'string') {
+    throw new TypeError('Expected a non-empty string');
+  }
+
+  let parsed = { negated: false, fastpaths: true };
+
+  if (options.fastpaths !== false && (input[0] === '.' || input[0] === '*')) {
+    parsed.output = parse.fastpaths(input, options);
+  }
+
+  if (!parsed.output) {
+    parsed = parse(input, options);
+  }
+
+  return picomatch.compileRe(parsed, options, returnOutput, returnState);
+};
+
+/**
+ * Create a regular expression from the given regex source string.
+ *
+ * ```js
+ * const picomatch = require('picomatch');
+ * // picomatch.toRegex(source[, options]);
+ *
+ * const { output } = picomatch.parse('*.js');
+ * console.log(picomatch.toRegex(output));
+ * //=> /^(?:(?!\.)(?=.)[^/]*?\.js)$/
+ * ```
+ * @param {String} `source` Regular expression source string.
+ * @param {Object} `options`
+ * @return {RegExp}
+ * @api public
+ */
+
+picomatch.toRegex = (source, options) => {
+  try {
+    const opts = options || {};
+    return new RegExp(source, opts.flags || (opts.nocase ? 'i' : ''));
+  } catch (err) {
+    if (options && options.debug === true) throw err;
+    return /$^/;
+  }
+};
+
+/**
+ * Picomatch constants.
+ * @return {Object}
+ */
+
+picomatch.constants = constants;
+
+/**
+ * Expose "picomatch"
+ */
+
+module.exports = picomatch;
+
+
+/***/ }),
+
+/***/ "./node_modules/picomatch/lib/scan.js":
+/*!********************************************!*\
+  !*** ./node_modules/picomatch/lib/scan.js ***!
+  \********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+const utils = __webpack_require__(/*! ./utils */ "./node_modules/picomatch/lib/utils.js");
+const {
+  CHAR_ASTERISK,             /* * */
+  CHAR_AT,                   /* @ */
+  CHAR_BACKWARD_SLASH,       /* \ */
+  CHAR_COMMA,                /* , */
+  CHAR_DOT,                  /* . */
+  CHAR_EXCLAMATION_MARK,     /* ! */
+  CHAR_FORWARD_SLASH,        /* / */
+  CHAR_LEFT_CURLY_BRACE,     /* { */
+  CHAR_LEFT_PARENTHESES,     /* ( */
+  CHAR_LEFT_SQUARE_BRACKET,  /* [ */
+  CHAR_PLUS,                 /* + */
+  CHAR_QUESTION_MARK,        /* ? */
+  CHAR_RIGHT_CURLY_BRACE,    /* } */
+  CHAR_RIGHT_PARENTHESES,    /* ) */
+  CHAR_RIGHT_SQUARE_BRACKET  /* ] */
+} = __webpack_require__(/*! ./constants */ "./node_modules/picomatch/lib/constants.js");
+
+const isPathSeparator = code => {
+  return code === CHAR_FORWARD_SLASH || code === CHAR_BACKWARD_SLASH;
+};
+
+const depth = token => {
+  if (token.isPrefix !== true) {
+    token.depth = token.isGlobstar ? Infinity : 1;
+  }
+};
+
+/**
+ * Quickly scans a glob pattern and returns an object with a handful of
+ * useful properties, like `isGlob`, `path` (the leading non-glob, if it exists),
+ * `glob` (the actual pattern), `negated` (true if the path starts with `!` but not
+ * with `!(`) and `negatedExtglob` (true if the path starts with `!(`).
+ *
+ * ```js
+ * const pm = require('picomatch');
+ * console.log(pm.scan('foo/bar/*.js'));
+ * { isGlob: true, input: 'foo/bar/*.js', base: 'foo/bar', glob: '*.js' }
+ * ```
+ * @param {String} `str`
+ * @param {Object} `options`
+ * @return {Object} Returns an object with tokens and regex source string.
+ * @api public
+ */
+
+const scan = (input, options) => {
+  const opts = options || {};
+
+  const length = input.length - 1;
+  const scanToEnd = opts.parts === true || opts.scanToEnd === true;
+  const slashes = [];
+  const tokens = [];
+  const parts = [];
+
+  let str = input;
+  let index = -1;
+  let start = 0;
+  let lastIndex = 0;
+  let isBrace = false;
+  let isBracket = false;
+  let isGlob = false;
+  let isExtglob = false;
+  let isGlobstar = false;
+  let braceEscaped = false;
+  let backslashes = false;
+  let negated = false;
+  let negatedExtglob = false;
+  let finished = false;
+  let braces = 0;
+  let prev;
+  let code;
+  let token = { value: '', depth: 0, isGlob: false };
+
+  const eos = () => index >= length;
+  const peek = () => str.charCodeAt(index + 1);
+  const advance = () => {
+    prev = code;
+    return str.charCodeAt(++index);
+  };
+
+  while (index < length) {
+    code = advance();
+    let next;
+
+    if (code === CHAR_BACKWARD_SLASH) {
+      backslashes = token.backslashes = true;
+      code = advance();
+
+      if (code === CHAR_LEFT_CURLY_BRACE) {
+        braceEscaped = true;
+      }
+      continue;
+    }
+
+    if (braceEscaped === true || code === CHAR_LEFT_CURLY_BRACE) {
+      braces++;
+
+      while (eos() !== true && (code = advance())) {
+        if (code === CHAR_BACKWARD_SLASH) {
+          backslashes = token.backslashes = true;
+          advance();
+          continue;
+        }
+
+        if (code === CHAR_LEFT_CURLY_BRACE) {
+          braces++;
+          continue;
+        }
+
+        if (braceEscaped !== true && code === CHAR_DOT && (code = advance()) === CHAR_DOT) {
+          isBrace = token.isBrace = true;
+          isGlob = token.isGlob = true;
+          finished = true;
+
+          if (scanToEnd === true) {
+            continue;
+          }
+
+          break;
+        }
+
+        if (braceEscaped !== true && code === CHAR_COMMA) {
+          isBrace = token.isBrace = true;
+          isGlob = token.isGlob = true;
+          finished = true;
+
+          if (scanToEnd === true) {
+            continue;
+          }
+
+          break;
+        }
+
+        if (code === CHAR_RIGHT_CURLY_BRACE) {
+          braces--;
+
+          if (braces === 0) {
+            braceEscaped = false;
+            isBrace = token.isBrace = true;
+            finished = true;
+            break;
+          }
+        }
+      }
+
+      if (scanToEnd === true) {
+        continue;
+      }
+
+      break;
+    }
+
+    if (code === CHAR_FORWARD_SLASH) {
+      slashes.push(index);
+      tokens.push(token);
+      token = { value: '', depth: 0, isGlob: false };
+
+      if (finished === true) continue;
+      if (prev === CHAR_DOT && index === (start + 1)) {
+        start += 2;
+        continue;
+      }
+
+      lastIndex = index + 1;
+      continue;
+    }
+
+    if (opts.noext !== true) {
+      const isExtglobChar = code === CHAR_PLUS
+        || code === CHAR_AT
+        || code === CHAR_ASTERISK
+        || code === CHAR_QUESTION_MARK
+        || code === CHAR_EXCLAMATION_MARK;
+
+      if (isExtglobChar === true && peek() === CHAR_LEFT_PARENTHESES) {
+        isGlob = token.isGlob = true;
+        isExtglob = token.isExtglob = true;
+        finished = true;
+        if (code === CHAR_EXCLAMATION_MARK && index === start) {
+          negatedExtglob = true;
+        }
+
+        if (scanToEnd === true) {
+          while (eos() !== true && (code = advance())) {
+            if (code === CHAR_BACKWARD_SLASH) {
+              backslashes = token.backslashes = true;
+              code = advance();
+              continue;
+            }
+
+            if (code === CHAR_RIGHT_PARENTHESES) {
+              isGlob = token.isGlob = true;
+              finished = true;
+              break;
+            }
+          }
+          continue;
+        }
+        break;
+      }
+    }
+
+    if (code === CHAR_ASTERISK) {
+      if (prev === CHAR_ASTERISK) isGlobstar = token.isGlobstar = true;
+      isGlob = token.isGlob = true;
+      finished = true;
+
+      if (scanToEnd === true) {
+        continue;
+      }
+      break;
+    }
+
+    if (code === CHAR_QUESTION_MARK) {
+      isGlob = token.isGlob = true;
+      finished = true;
+
+      if (scanToEnd === true) {
+        continue;
+      }
+      break;
+    }
+
+    if (code === CHAR_LEFT_SQUARE_BRACKET) {
+      while (eos() !== true && (next = advance())) {
+        if (next === CHAR_BACKWARD_SLASH) {
+          backslashes = token.backslashes = true;
+          advance();
+          continue;
+        }
+
+        if (next === CHAR_RIGHT_SQUARE_BRACKET) {
+          isBracket = token.isBracket = true;
+          isGlob = token.isGlob = true;
+          finished = true;
+          break;
+        }
+      }
+
+      if (scanToEnd === true) {
+        continue;
+      }
+
+      break;
+    }
+
+    if (opts.nonegate !== true && code === CHAR_EXCLAMATION_MARK && index === start) {
+      negated = token.negated = true;
+      start++;
+      continue;
+    }
+
+    if (opts.noparen !== true && code === CHAR_LEFT_PARENTHESES) {
+      isGlob = token.isGlob = true;
+
+      if (scanToEnd === true) {
+        while (eos() !== true && (code = advance())) {
+          if (code === CHAR_LEFT_PARENTHESES) {
+            backslashes = token.backslashes = true;
+            code = advance();
+            continue;
+          }
+
+          if (code === CHAR_RIGHT_PARENTHESES) {
+            finished = true;
+            break;
+          }
+        }
+        continue;
+      }
+      break;
+    }
+
+    if (isGlob === true) {
+      finished = true;
+
+      if (scanToEnd === true) {
+        continue;
+      }
+
+      break;
+    }
+  }
+
+  if (opts.noext === true) {
+    isExtglob = false;
+    isGlob = false;
+  }
+
+  let base = str;
+  let prefix = '';
+  let glob = '';
+
+  if (start > 0) {
+    prefix = str.slice(0, start);
+    str = str.slice(start);
+    lastIndex -= start;
+  }
+
+  if (base && isGlob === true && lastIndex > 0) {
+    base = str.slice(0, lastIndex);
+    glob = str.slice(lastIndex);
+  } else if (isGlob === true) {
+    base = '';
+    glob = str;
+  } else {
+    base = str;
+  }
+
+  if (base && base !== '' && base !== '/' && base !== str) {
+    if (isPathSeparator(base.charCodeAt(base.length - 1))) {
+      base = base.slice(0, -1);
+    }
+  }
+
+  if (opts.unescape === true) {
+    if (glob) glob = utils.removeBackslashes(glob);
+
+    if (base && backslashes === true) {
+      base = utils.removeBackslashes(base);
+    }
+  }
+
+  const state = {
+    prefix,
+    input,
+    start,
+    base,
+    glob,
+    isBrace,
+    isBracket,
+    isGlob,
+    isExtglob,
+    isGlobstar,
+    negated,
+    negatedExtglob
+  };
+
+  if (opts.tokens === true) {
+    state.maxDepth = 0;
+    if (!isPathSeparator(code)) {
+      tokens.push(token);
+    }
+    state.tokens = tokens;
+  }
+
+  if (opts.parts === true || opts.tokens === true) {
+    let prevIndex;
+
+    for (let idx = 0; idx < slashes.length; idx++) {
+      const n = prevIndex ? prevIndex + 1 : start;
+      const i = slashes[idx];
+      const value = input.slice(n, i);
+      if (opts.tokens) {
+        if (idx === 0 && start !== 0) {
+          tokens[idx].isPrefix = true;
+          tokens[idx].value = prefix;
+        } else {
+          tokens[idx].value = value;
+        }
+        depth(tokens[idx]);
+        state.maxDepth += tokens[idx].depth;
+      }
+      if (idx !== 0 || value !== '') {
+        parts.push(value);
+      }
+      prevIndex = i;
+    }
+
+    if (prevIndex && prevIndex + 1 < input.length) {
+      const value = input.slice(prevIndex + 1);
+      parts.push(value);
+
+      if (opts.tokens) {
+        tokens[tokens.length - 1].value = value;
+        depth(tokens[tokens.length - 1]);
+        state.maxDepth += tokens[tokens.length - 1].depth;
+      }
+    }
+
+    state.slashes = slashes;
+    state.parts = parts;
+  }
+
+  return state;
+};
+
+module.exports = scan;
+
+
+/***/ }),
+
+/***/ "./node_modules/picomatch/lib/utils.js":
+/*!*********************************************!*\
+  !*** ./node_modules/picomatch/lib/utils.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+const path = __webpack_require__(/*! path */ "path");
+const win32 = "linux" === 'win32';
+const {
+  REGEX_BACKSLASH,
+  REGEX_REMOVE_BACKSLASH,
+  REGEX_SPECIAL_CHARS,
+  REGEX_SPECIAL_CHARS_GLOBAL
+} = __webpack_require__(/*! ./constants */ "./node_modules/picomatch/lib/constants.js");
+
+exports.isObject = val => val !== null && typeof val === 'object' && !Array.isArray(val);
+exports.hasRegexChars = str => REGEX_SPECIAL_CHARS.test(str);
+exports.isRegexChar = str => str.length === 1 && exports.hasRegexChars(str);
+exports.escapeRegex = str => str.replace(REGEX_SPECIAL_CHARS_GLOBAL, '\\$1');
+exports.toPosixSlashes = str => str.replace(REGEX_BACKSLASH, '/');
+
+exports.removeBackslashes = str => {
+  return str.replace(REGEX_REMOVE_BACKSLASH, match => {
+    return match === '\\' ? '' : match;
+  });
+};
+
+exports.supportsLookbehinds = () => {
+  const segs = process.version.slice(1).split('.').map(Number);
+  if (segs.length === 3 && segs[0] >= 9 || (segs[0] === 8 && segs[1] >= 10)) {
+    return true;
+  }
+  return false;
+};
+
+exports.isWindows = options => {
+  if (options && typeof options.windows === 'boolean') {
+    return options.windows;
+  }
+  return win32 === true || path.sep === '\\';
+};
+
+exports.escapeLast = (input, char, lastIdx) => {
+  const idx = input.lastIndexOf(char, lastIdx);
+  if (idx === -1) return input;
+  if (input[idx - 1] === '\\') return exports.escapeLast(input, char, idx - 1);
+  return `${input.slice(0, idx)}\\${input.slice(idx)}`;
+};
+
+exports.removePrefix = (input, state = {}) => {
+  let output = input;
+  if (output.startsWith('./')) {
+    output = output.slice(2);
+    state.prefix = './';
+  }
+  return output;
+};
+
+exports.wrapOutput = (input, state = {}, options = {}) => {
+  const prepend = options.contains ? '' : '^';
+  const append = options.contains ? '' : '$';
+
+  let output = `${prepend}(?:${input})${append}`;
+  if (state.negated === true) {
+    output = `(?:^(?!${output}).*$)`;
+  }
+  return output;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/prop-types/checkPropTypes.js":
 /*!***************************************************!*\
   !*** ./node_modules/prop-types/checkPropTypes.js ***!
@@ -12656,6 +28843,1001 @@ HelmetExport.renderStatic = HelmetExport.rewind;
 
 /***/ }),
 
+/***/ "./node_modules/react-intl/lib/index.js":
+/*!**********************************************!*\
+  !*** ./node_modules/react-intl/lib/index.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createIntlCache": () => (/* reexport safe */ _formatjs_intl__WEBPACK_IMPORTED_MODULE_0__.createIntlCache),
+/* harmony export */   "UnsupportedFormatterError": () => (/* reexport safe */ _formatjs_intl__WEBPACK_IMPORTED_MODULE_1__.UnsupportedFormatterError),
+/* harmony export */   "InvalidConfigError": () => (/* reexport safe */ _formatjs_intl__WEBPACK_IMPORTED_MODULE_1__.InvalidConfigError),
+/* harmony export */   "MissingDataError": () => (/* reexport safe */ _formatjs_intl__WEBPACK_IMPORTED_MODULE_1__.MissingDataError),
+/* harmony export */   "MessageFormatError": () => (/* reexport safe */ _formatjs_intl__WEBPACK_IMPORTED_MODULE_1__.MessageFormatError),
+/* harmony export */   "MissingTranslationError": () => (/* reexport safe */ _formatjs_intl__WEBPACK_IMPORTED_MODULE_1__.MissingTranslationError),
+/* harmony export */   "ReactIntlErrorCode": () => (/* reexport safe */ _formatjs_intl__WEBPACK_IMPORTED_MODULE_1__.IntlErrorCode),
+/* harmony export */   "ReactIntlError": () => (/* reexport safe */ _formatjs_intl__WEBPACK_IMPORTED_MODULE_1__.IntlError),
+/* harmony export */   "defineMessages": () => (/* binding */ defineMessages),
+/* harmony export */   "defineMessage": () => (/* binding */ defineMessage),
+/* harmony export */   "injectIntl": () => (/* reexport safe */ _src_components_injectIntl__WEBPACK_IMPORTED_MODULE_2__["default"]),
+/* harmony export */   "RawIntlProvider": () => (/* reexport safe */ _src_components_injectIntl__WEBPACK_IMPORTED_MODULE_2__.Provider),
+/* harmony export */   "IntlContext": () => (/* reexport safe */ _src_components_injectIntl__WEBPACK_IMPORTED_MODULE_2__.Context),
+/* harmony export */   "useIntl": () => (/* reexport safe */ _src_components_useIntl__WEBPACK_IMPORTED_MODULE_3__["default"]),
+/* harmony export */   "IntlProvider": () => (/* reexport safe */ _src_components_provider__WEBPACK_IMPORTED_MODULE_4__["default"]),
+/* harmony export */   "createIntl": () => (/* reexport safe */ _src_components_provider__WEBPACK_IMPORTED_MODULE_4__.createIntl),
+/* harmony export */   "FormattedDate": () => (/* binding */ FormattedDate),
+/* harmony export */   "FormattedTime": () => (/* binding */ FormattedTime),
+/* harmony export */   "FormattedNumber": () => (/* binding */ FormattedNumber),
+/* harmony export */   "FormattedList": () => (/* binding */ FormattedList),
+/* harmony export */   "FormattedDisplayName": () => (/* binding */ FormattedDisplayName),
+/* harmony export */   "FormattedDateParts": () => (/* binding */ FormattedDateParts),
+/* harmony export */   "FormattedTimeParts": () => (/* binding */ FormattedTimeParts),
+/* harmony export */   "FormattedNumberParts": () => (/* reexport safe */ _src_components_createFormattedComponent__WEBPACK_IMPORTED_MODULE_5__.FormattedNumberParts),
+/* harmony export */   "FormattedListParts": () => (/* reexport safe */ _src_components_createFormattedComponent__WEBPACK_IMPORTED_MODULE_5__.FormattedListParts),
+/* harmony export */   "FormattedRelativeTime": () => (/* reexport safe */ _src_components_relative__WEBPACK_IMPORTED_MODULE_6__["default"]),
+/* harmony export */   "FormattedPlural": () => (/* reexport safe */ _src_components_plural__WEBPACK_IMPORTED_MODULE_7__["default"]),
+/* harmony export */   "FormattedMessage": () => (/* reexport safe */ _src_components_message__WEBPACK_IMPORTED_MODULE_8__["default"]),
+/* harmony export */   "FormattedDateTimeRange": () => (/* reexport safe */ _src_components_dateTimeRange__WEBPACK_IMPORTED_MODULE_9__["default"])
+/* harmony export */ });
+/* harmony import */ var _src_components_createFormattedComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./src/components/createFormattedComponent */ "./node_modules/react-intl/lib/src/components/createFormattedComponent.js");
+/* harmony import */ var _formatjs_intl__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @formatjs/intl */ "./node_modules/@formatjs/intl/lib/src/utils.js");
+/* harmony import */ var _formatjs_intl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @formatjs/intl */ "./node_modules/@formatjs/intl/lib/src/error.js");
+/* harmony import */ var _src_components_injectIntl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./src/components/injectIntl */ "./node_modules/react-intl/lib/src/components/injectIntl.js");
+/* harmony import */ var _src_components_useIntl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./src/components/useIntl */ "./node_modules/react-intl/lib/src/components/useIntl.js");
+/* harmony import */ var _src_components_provider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./src/components/provider */ "./node_modules/react-intl/lib/src/components/provider.js");
+/* harmony import */ var _src_components_relative__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./src/components/relative */ "./node_modules/react-intl/lib/src/components/relative.js");
+/* harmony import */ var _src_components_plural__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./src/components/plural */ "./node_modules/react-intl/lib/src/components/plural.js");
+/* harmony import */ var _src_components_message__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./src/components/message */ "./node_modules/react-intl/lib/src/components/message.js");
+/* harmony import */ var _src_components_dateTimeRange__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./src/components/dateTimeRange */ "./node_modules/react-intl/lib/src/components/dateTimeRange.js");
+
+
+function defineMessages(msgs) {
+    return msgs;
+}
+function defineMessage(msg) {
+    return msg;
+}
+
+
+
+// IMPORTANT: Explicit here to prevent api-extractor from outputing `import('./src/types').CustomFormatConfig`
+var FormattedDate = (0,_src_components_createFormattedComponent__WEBPACK_IMPORTED_MODULE_5__.createFormattedComponent)('formatDate');
+var FormattedTime = (0,_src_components_createFormattedComponent__WEBPACK_IMPORTED_MODULE_5__.createFormattedComponent)('formatTime');
+// @ts-ignore issue w/ TS Intl types
+var FormattedNumber = (0,_src_components_createFormattedComponent__WEBPACK_IMPORTED_MODULE_5__.createFormattedComponent)('formatNumber');
+var FormattedList = (0,_src_components_createFormattedComponent__WEBPACK_IMPORTED_MODULE_5__.createFormattedComponent)('formatList');
+var FormattedDisplayName = (0,_src_components_createFormattedComponent__WEBPACK_IMPORTED_MODULE_5__.createFormattedComponent)('formatDisplayName');
+var FormattedDateParts = (0,_src_components_createFormattedComponent__WEBPACK_IMPORTED_MODULE_5__.createFormattedDateTimePartsComponent)('formatDate');
+var FormattedTimeParts = (0,_src_components_createFormattedComponent__WEBPACK_IMPORTED_MODULE_5__.createFormattedDateTimePartsComponent)('formatTime');
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/react-intl/lib/src/components/createFormattedComponent.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/react-intl/lib/src/components/createFormattedComponent.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FormattedNumberParts": () => (/* binding */ FormattedNumberParts),
+/* harmony export */   "FormattedListParts": () => (/* binding */ FormattedListParts),
+/* harmony export */   "createFormattedDateTimePartsComponent": () => (/* binding */ createFormattedDateTimePartsComponent),
+/* harmony export */   "createFormattedComponent": () => (/* binding */ createFormattedComponent)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ "./node_modules/react-intl/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _useIntl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useIntl */ "./node_modules/react-intl/lib/src/components/useIntl.js");
+
+
+
+var DisplayName;
+(function (DisplayName) {
+    DisplayName["formatDate"] = "FormattedDate";
+    DisplayName["formatTime"] = "FormattedTime";
+    DisplayName["formatNumber"] = "FormattedNumber";
+    DisplayName["formatList"] = "FormattedList";
+    // Note that this DisplayName is the locale display name, not to be confused with
+    // the name of the enum, which is for React component display name in dev tools.
+    DisplayName["formatDisplayName"] = "FormattedDisplayName";
+})(DisplayName || (DisplayName = {}));
+var DisplayNameParts;
+(function (DisplayNameParts) {
+    DisplayNameParts["formatDate"] = "FormattedDateParts";
+    DisplayNameParts["formatTime"] = "FormattedTimeParts";
+    DisplayNameParts["formatNumber"] = "FormattedNumberParts";
+    DisplayNameParts["formatList"] = "FormattedListParts";
+})(DisplayNameParts || (DisplayNameParts = {}));
+var FormattedNumberParts = function (props) {
+    var intl = (0,_useIntl__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    var value = props.value, children = props.children, formatProps = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__rest)(props, ["value", "children"]);
+    return children(intl.formatNumberToParts(value, formatProps));
+};
+FormattedNumberParts.displayName = 'FormattedNumberParts';
+var FormattedListParts = function (props) {
+    var intl = (0,_useIntl__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    var value = props.value, children = props.children, formatProps = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__rest)(props, ["value", "children"]);
+    return children(intl.formatListToParts(value, formatProps));
+};
+FormattedNumberParts.displayName = 'FormattedNumberParts';
+function createFormattedDateTimePartsComponent(name) {
+    var ComponentParts = function (props) {
+        var intl = (0,_useIntl__WEBPACK_IMPORTED_MODULE_1__["default"])();
+        var value = props.value, children = props.children, formatProps = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__rest)(props, ["value", "children"]);
+        var date = typeof value === 'string' ? new Date(value || 0) : value;
+        var formattedParts = name === 'formatDate'
+            ? intl.formatDateToParts(date, formatProps)
+            : intl.formatTimeToParts(date, formatProps);
+        return children(formattedParts);
+    };
+    ComponentParts.displayName = DisplayNameParts[name];
+    return ComponentParts;
+}
+function createFormattedComponent(name) {
+    var Component = function (props) {
+        var intl = (0,_useIntl__WEBPACK_IMPORTED_MODULE_1__["default"])();
+        var value = props.value, children = props.children, formatProps = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__rest)(props
+        // TODO: fix TS type definition for localeMatcher upstream
+        , ["value", "children"]);
+        // TODO: fix TS type definition for localeMatcher upstream
+        var formattedValue = intl[name](value, formatProps);
+        if (typeof children === 'function') {
+            return children(formattedValue);
+        }
+        var Text = intl.textComponent || react__WEBPACK_IMPORTED_MODULE_0__.Fragment;
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(Text, null, formattedValue);
+    };
+    Component.displayName = DisplayName[name];
+    return Component;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/react-intl/lib/src/components/dateTimeRange.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/react-intl/lib/src/components/dateTimeRange.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ "./node_modules/react-intl/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _useIntl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useIntl */ "./node_modules/react-intl/lib/src/components/useIntl.js");
+
+
+
+var FormattedDateTimeRange = function (props) {
+    var intl = (0,_useIntl__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    var from = props.from, to = props.to, children = props.children, formatProps = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__rest)(props, ["from", "to", "children"]);
+    var formattedValue = intl.formatDateTimeRange(from, to, formatProps);
+    if (typeof children === 'function') {
+        return children(formattedValue);
+    }
+    var Text = intl.textComponent || react__WEBPACK_IMPORTED_MODULE_0__.Fragment;
+    return react__WEBPACK_IMPORTED_MODULE_0__.createElement(Text, null, formattedValue);
+};
+FormattedDateTimeRange.displayName = 'FormattedDateTimeRange';
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FormattedDateTimeRange);
+
+
+/***/ }),
+
+/***/ "./node_modules/react-intl/lib/src/components/injectIntl.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/react-intl/lib/src/components/injectIntl.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Provider": () => (/* binding */ Provider),
+/* harmony export */   "Context": () => (/* binding */ Context),
+/* harmony export */   "default": () => (/* binding */ injectIntl)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ "./node_modules/react-intl/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! hoist-non-react-statics */ "./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js");
+/* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils */ "./node_modules/react-intl/lib/src/utils.js");
+
+
+
+
+function getDisplayName(Component) {
+    return Component.displayName || Component.name || 'Component';
+}
+// TODO: We should provide initial value here
+var IntlContext = react__WEBPACK_IMPORTED_MODULE_0__.createContext(null);
+var IntlConsumer = IntlContext.Consumer, IntlProvider = IntlContext.Provider;
+var Provider = IntlProvider;
+var Context = IntlContext;
+function injectIntl(WrappedComponent, options) {
+    var _a = options || {}, _b = _a.intlPropName, intlPropName = _b === void 0 ? 'intl' : _b, _c = _a.forwardRef, forwardRef = _c === void 0 ? false : _c, _d = _a.enforceContext, enforceContext = _d === void 0 ? true : _d;
+    var WithIntl = function (props) { return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(IntlConsumer, null, function (intl) {
+        var _a;
+        if (enforceContext) {
+            (0,_utils__WEBPACK_IMPORTED_MODULE_2__.invariantIntlContext)(intl);
+        }
+        var intlProp = (_a = {}, _a[intlPropName] = intl, _a);
+        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(WrappedComponent, (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)({}, props, intlProp, { ref: forwardRef ? props.forwardedRef : null })));
+    })); };
+    WithIntl.displayName = "injectIntl(" + getDisplayName(WrappedComponent) + ")";
+    WithIntl.WrappedComponent = WrappedComponent;
+    if (forwardRef) {
+        return hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_1___default()(react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(function (props, ref) { return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(WithIntl, (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__assign)({}, props, { forwardedRef: ref }))); }), WrappedComponent);
+    }
+    return hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_1___default()(WithIntl, WrappedComponent);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/react-intl/lib/src/components/message.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/react-intl/lib/src/components/message.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ "./node_modules/react-intl/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _useIntl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./useIntl */ "./node_modules/react-intl/lib/src/components/useIntl.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils */ "./node_modules/react-intl/lib/src/utils.js");
+/*
+ * Copyright 2015, Yahoo Inc.
+ * Copyrights licensed under the New BSD License.
+ * See the accompanying LICENSE file for terms.
+ */
+
+
+
+
+function areEqual(prevProps, nextProps) {
+    var values = prevProps.values, otherProps = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__rest)(prevProps, ["values"]);
+    var nextValues = nextProps.values, nextOtherProps = (0,tslib__WEBPACK_IMPORTED_MODULE_1__.__rest)(nextProps, ["values"]);
+    return ((0,_utils__WEBPACK_IMPORTED_MODULE_2__.shallowEqual)(nextValues, values) &&
+        (0,_utils__WEBPACK_IMPORTED_MODULE_2__.shallowEqual)(otherProps, nextOtherProps));
+}
+function FormattedMessage(props) {
+    var intl = (0,_useIntl__WEBPACK_IMPORTED_MODULE_3__["default"])();
+    var formatMessage = intl.formatMessage, _a = intl.textComponent, Text = _a === void 0 ? react__WEBPACK_IMPORTED_MODULE_0__.Fragment : _a;
+    var id = props.id, description = props.description, defaultMessage = props.defaultMessage, values = props.values, children = props.children, _b = props.tagName, Component = _b === void 0 ? Text : _b, ignoreTag = props.ignoreTag;
+    var descriptor = { id: id, description: description, defaultMessage: defaultMessage };
+    var nodes = formatMessage(descriptor, values, {
+        ignoreTag: ignoreTag,
+    });
+    if (typeof children === 'function') {
+        return children(Array.isArray(nodes) ? nodes : [nodes]);
+    }
+    if (Component) {
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(Component, null, react__WEBPACK_IMPORTED_MODULE_0__.Children.toArray(nodes));
+    }
+    return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, nodes);
+}
+FormattedMessage.displayName = 'FormattedMessage';
+var MemoizedFormattedMessage = react__WEBPACK_IMPORTED_MODULE_0__.memo(FormattedMessage, areEqual);
+MemoizedFormattedMessage.displayName = 'MemoizedFormattedMessage';
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MemoizedFormattedMessage);
+
+
+/***/ }),
+
+/***/ "./node_modules/react-intl/lib/src/components/plural.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/react-intl/lib/src/components/plural.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _useIntl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useIntl */ "./node_modules/react-intl/lib/src/components/useIntl.js");
+/*
+ * Copyright 2015, Yahoo Inc.
+ * Copyrights licensed under the New BSD License.
+ * See the accompanying LICENSE file for terms.
+ */
+
+
+var FormattedPlural = function (props) {
+    var _a = (0,_useIntl__WEBPACK_IMPORTED_MODULE_1__["default"])(), formatPlural = _a.formatPlural, Text = _a.textComponent;
+    var value = props.value, other = props.other, children = props.children;
+    var pluralCategory = formatPlural(value, props);
+    var formattedPlural = props[pluralCategory] || other;
+    if (typeof children === 'function') {
+        return children(formattedPlural);
+    }
+    if (Text) {
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(Text, null, formattedPlural);
+    }
+    // Work around @types/react where React.FC cannot return string
+    return formattedPlural;
+};
+FormattedPlural.defaultProps = {
+    type: 'cardinal',
+};
+FormattedPlural.displayName = 'FormattedPlural';
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FormattedPlural);
+
+
+/***/ }),
+
+/***/ "./node_modules/react-intl/lib/src/components/provider.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/react-intl/lib/src/components/provider.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createIntl": () => (/* binding */ createIntl),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! tslib */ "./node_modules/react-intl/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _injectIntl__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./injectIntl */ "./node_modules/react-intl/lib/src/components/injectIntl.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils */ "./node_modules/react-intl/lib/src/utils.js");
+/* harmony import */ var _formatjs_intl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @formatjs/intl */ "./node_modules/@formatjs/intl/lib/src/message.js");
+/* harmony import */ var _formatjs_intl__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @formatjs/intl */ "./node_modules/@formatjs/intl/lib/src/create-intl.js");
+/* harmony import */ var _formatjs_intl__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @formatjs/intl */ "./node_modules/@formatjs/intl/lib/src/utils.js");
+/* harmony import */ var intl_messageformat__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! intl-messageformat */ "./node_modules/intl-messageformat/lib/src/formatters.js");
+/*
+ * Copyright 2015, Yahoo Inc.
+ * Copyrights licensed under the New BSD License.
+ * See the accompanying LICENSE file for terms.
+ */
+
+
+
+
+
+
+function processIntlConfig(config) {
+    return {
+        locale: config.locale,
+        timeZone: config.timeZone,
+        formats: config.formats,
+        textComponent: config.textComponent,
+        messages: config.messages,
+        defaultLocale: config.defaultLocale,
+        defaultFormats: config.defaultFormats,
+        onError: config.onError,
+        wrapRichTextChunksInFragment: config.wrapRichTextChunksInFragment,
+        defaultRichTextElements: config.defaultRichTextElements,
+    };
+}
+function assignUniqueKeysToFormatXMLElementFnArgument(values) {
+    if (!values) {
+        return values;
+    }
+    return Object.keys(values).reduce(function (acc, k) {
+        var v = values[k];
+        acc[k] = (0,intl_messageformat__WEBPACK_IMPORTED_MODULE_1__.isFormatXMLElementFn)(v)
+            ? (0,_utils__WEBPACK_IMPORTED_MODULE_2__.assignUniqueKeysToParts)(v)
+            : v;
+        return acc;
+    }, {});
+}
+var formatMessage = function (config, formatters, descriptor, rawValues) {
+    var rest = [];
+    for (var _i = 4; _i < arguments.length; _i++) {
+        rest[_i - 4] = arguments[_i];
+    }
+    var values = assignUniqueKeysToFormatXMLElementFnArgument(rawValues);
+    var chunks = _formatjs_intl__WEBPACK_IMPORTED_MODULE_3__.formatMessage.apply(void 0, (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__spreadArray)([config,
+        formatters,
+        descriptor,
+        values], rest));
+    if (Array.isArray(chunks)) {
+        return react__WEBPACK_IMPORTED_MODULE_0__.Children.toArray(chunks);
+    }
+    return chunks;
+};
+/**
+ * Create intl object
+ * @param config intl config
+ * @param cache cache for formatter instances to prevent memory leak
+ */
+var createIntl = function (_a, cache) {
+    var rawDefaultRichTextElements = _a.defaultRichTextElements, config = (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__rest)(_a, ["defaultRichTextElements"]);
+    var defaultRichTextElements = assignUniqueKeysToFormatXMLElementFnArgument(rawDefaultRichTextElements);
+    var coreIntl = (0,_formatjs_intl__WEBPACK_IMPORTED_MODULE_5__.createIntl)((0,tslib__WEBPACK_IMPORTED_MODULE_4__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_4__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_4__.__assign)({}, _utils__WEBPACK_IMPORTED_MODULE_2__.DEFAULT_INTL_CONFIG), config), { defaultRichTextElements: defaultRichTextElements }), cache);
+    return (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_4__.__assign)({}, coreIntl), { formatMessage: formatMessage.bind(null, {
+            locale: coreIntl.locale,
+            timeZone: coreIntl.timeZone,
+            formats: coreIntl.formats,
+            defaultLocale: coreIntl.defaultLocale,
+            defaultFormats: coreIntl.defaultFormats,
+            messages: coreIntl.messages,
+            onError: coreIntl.onError,
+            defaultRichTextElements: defaultRichTextElements,
+        }, coreIntl.formatters) });
+};
+var IntlProvider = /** @class */ (function (_super) {
+    (0,tslib__WEBPACK_IMPORTED_MODULE_4__.__extends)(IntlProvider, _super);
+    function IntlProvider() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.cache = (0,_formatjs_intl__WEBPACK_IMPORTED_MODULE_6__.createIntlCache)();
+        _this.state = {
+            cache: _this.cache,
+            intl: createIntl(processIntlConfig(_this.props), _this.cache),
+            prevConfig: processIntlConfig(_this.props),
+        };
+        return _this;
+    }
+    IntlProvider.getDerivedStateFromProps = function (props, _a) {
+        var prevConfig = _a.prevConfig, cache = _a.cache;
+        var config = processIntlConfig(props);
+        if (!(0,_utils__WEBPACK_IMPORTED_MODULE_2__.shallowEqual)(prevConfig, config)) {
+            return {
+                intl: createIntl(config, cache),
+                prevConfig: config,
+            };
+        }
+        return null;
+    };
+    IntlProvider.prototype.render = function () {
+        (0,_utils__WEBPACK_IMPORTED_MODULE_2__.invariantIntlContext)(this.state.intl);
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(_injectIntl__WEBPACK_IMPORTED_MODULE_7__.Provider, { value: this.state.intl }, this.props.children);
+    };
+    IntlProvider.displayName = 'IntlProvider';
+    IntlProvider.defaultProps = _utils__WEBPACK_IMPORTED_MODULE_2__.DEFAULT_INTL_CONFIG;
+    return IntlProvider;
+}(react__WEBPACK_IMPORTED_MODULE_0__.PureComponent));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (IntlProvider);
+
+
+/***/ }),
+
+/***/ "./node_modules/react-intl/lib/src/components/relative.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/react-intl/lib/src/components/relative.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ "./node_modules/react-intl/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _formatjs_ecma402_abstract__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @formatjs/ecma402-abstract */ "./node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _useIntl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useIntl */ "./node_modules/react-intl/lib/src/components/useIntl.js");
+
+/*
+ * Copyright 2015, Yahoo Inc.
+ * Copyrights licensed under the New BSD License.
+ * See the accompanying LICENSE file for terms.
+ */
+
+
+
+var MINUTE = 60;
+var HOUR = 60 * 60;
+var DAY = 60 * 60 * 24;
+function selectUnit(seconds) {
+    var absValue = Math.abs(seconds);
+    if (absValue < MINUTE) {
+        return 'second';
+    }
+    if (absValue < HOUR) {
+        return 'minute';
+    }
+    if (absValue < DAY) {
+        return 'hour';
+    }
+    return 'day';
+}
+function getDurationInSeconds(unit) {
+    switch (unit) {
+        case 'second':
+            return 1;
+        case 'minute':
+            return MINUTE;
+        case 'hour':
+            return HOUR;
+        default:
+            return DAY;
+    }
+}
+function valueToSeconds(value, unit) {
+    if (!value) {
+        return 0;
+    }
+    switch (unit) {
+        case 'second':
+            return value;
+        case 'minute':
+            return value * MINUTE;
+        default:
+            return value * HOUR;
+    }
+}
+var INCREMENTABLE_UNITS = [
+    'second',
+    'minute',
+    'hour',
+];
+function canIncrement(unit) {
+    if (unit === void 0) { unit = 'second'; }
+    return INCREMENTABLE_UNITS.indexOf(unit) > -1;
+}
+var SimpleFormattedRelativeTime = function (props) {
+    var _a = (0,_useIntl__WEBPACK_IMPORTED_MODULE_1__["default"])(), formatRelativeTime = _a.formatRelativeTime, Text = _a.textComponent;
+    var children = props.children, value = props.value, unit = props.unit, otherProps = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__rest)(props, ["children", "value", "unit"]);
+    var formattedRelativeTime = formatRelativeTime(value || 0, unit, otherProps);
+    if (typeof children === 'function') {
+        return children(formattedRelativeTime);
+    }
+    if (Text) {
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(Text, null, formattedRelativeTime);
+    }
+    return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, formattedRelativeTime);
+};
+var FormattedRelativeTime = function (_a) {
+    var value = _a.value, unit = _a.unit, updateIntervalInSeconds = _a.updateIntervalInSeconds, otherProps = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__rest)(_a, ["value", "unit", "updateIntervalInSeconds"]);
+    (0,_formatjs_ecma402_abstract__WEBPACK_IMPORTED_MODULE_3__.invariant)(!updateIntervalInSeconds ||
+        !!(updateIntervalInSeconds && canIncrement(unit)), 'Cannot schedule update with unit longer than hour');
+    var _b = react__WEBPACK_IMPORTED_MODULE_0__.useState(), prevUnit = _b[0], setPrevUnit = _b[1];
+    var _c = react__WEBPACK_IMPORTED_MODULE_0__.useState(0), prevValue = _c[0], setPrevValue = _c[1];
+    var _d = react__WEBPACK_IMPORTED_MODULE_0__.useState(0), currentValueInSeconds = _d[0], setCurrentValueInSeconds = _d[1];
+    var updateTimer;
+    if (unit !== prevUnit || value !== prevValue) {
+        setPrevValue(value || 0);
+        setPrevUnit(unit);
+        setCurrentValueInSeconds(canIncrement(unit) ? valueToSeconds(value, unit) : 0);
+    }
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(function () {
+        function clearUpdateTimer() {
+            clearTimeout(updateTimer);
+        }
+        clearUpdateTimer();
+        // If there's no interval and we cannot increment this unit, do nothing
+        if (!updateIntervalInSeconds || !canIncrement(unit)) {
+            return clearUpdateTimer;
+        }
+        // Figure out the next interesting time
+        var nextValueInSeconds = currentValueInSeconds - updateIntervalInSeconds;
+        var nextUnit = selectUnit(nextValueInSeconds);
+        // We've reached the max auto incrementable unit, don't schedule another update
+        if (nextUnit === 'day') {
+            return clearUpdateTimer;
+        }
+        var unitDuration = getDurationInSeconds(nextUnit);
+        var remainder = nextValueInSeconds % unitDuration;
+        var prevInterestingValueInSeconds = nextValueInSeconds - remainder;
+        var nextInterestingValueInSeconds = prevInterestingValueInSeconds >= currentValueInSeconds
+            ? prevInterestingValueInSeconds - unitDuration
+            : prevInterestingValueInSeconds;
+        var delayInSeconds = Math.abs(nextInterestingValueInSeconds - currentValueInSeconds);
+        if (currentValueInSeconds !== nextInterestingValueInSeconds) {
+            updateTimer = setTimeout(function () { return setCurrentValueInSeconds(nextInterestingValueInSeconds); }, delayInSeconds * 1e3);
+        }
+        return clearUpdateTimer;
+    }, [currentValueInSeconds, updateIntervalInSeconds, unit]);
+    var currentValue = value || 0;
+    var currentUnit = unit;
+    if (canIncrement(unit) &&
+        typeof currentValueInSeconds === 'number' &&
+        updateIntervalInSeconds) {
+        currentUnit = selectUnit(currentValueInSeconds);
+        var unitDuration = getDurationInSeconds(currentUnit);
+        currentValue = Math.round(currentValueInSeconds / unitDuration);
+    }
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(SimpleFormattedRelativeTime, (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({ value: currentValue, unit: currentUnit }, otherProps)));
+};
+FormattedRelativeTime.displayName = 'FormattedRelativeTime';
+FormattedRelativeTime.defaultProps = {
+    value: 0,
+    unit: 'second',
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FormattedRelativeTime);
+
+
+/***/ }),
+
+/***/ "./node_modules/react-intl/lib/src/components/useIntl.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/react-intl/lib/src/components/useIntl.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ useIntl)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _injectIntl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./injectIntl */ "./node_modules/react-intl/lib/src/components/injectIntl.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils */ "./node_modules/react-intl/lib/src/utils.js");
+
+
+
+function useIntl() {
+    var intl = react__WEBPACK_IMPORTED_MODULE_0__.useContext(_injectIntl__WEBPACK_IMPORTED_MODULE_1__.Context);
+    (0,_utils__WEBPACK_IMPORTED_MODULE_2__.invariantIntlContext)(intl);
+    return intl;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/react-intl/lib/src/utils.js":
+/*!**************************************************!*\
+  !*** ./node_modules/react-intl/lib/src/utils.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "invariantIntlContext": () => (/* binding */ invariantIntlContext),
+/* harmony export */   "DEFAULT_INTL_CONFIG": () => (/* binding */ DEFAULT_INTL_CONFIG),
+/* harmony export */   "assignUniqueKeysToParts": () => (/* binding */ assignUniqueKeysToParts),
+/* harmony export */   "shallowEqual": () => (/* binding */ shallowEqual)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ "./node_modules/react-intl/node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _formatjs_ecma402_abstract__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @formatjs/ecma402-abstract */ "./node_modules/@formatjs/ecma402-abstract/lib/utils.js");
+/* harmony import */ var _formatjs_intl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @formatjs/intl */ "./node_modules/@formatjs/intl/lib/src/utils.js");
+
+
+
+
+function invariantIntlContext(intl) {
+    (0,_formatjs_ecma402_abstract__WEBPACK_IMPORTED_MODULE_1__.invariant)(intl, '[React Intl] Could not find required `intl` object. ' +
+        '<IntlProvider> needs to exist in the component ancestry.');
+}
+var DEFAULT_INTL_CONFIG = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)((0,tslib__WEBPACK_IMPORTED_MODULE_2__.__assign)({}, _formatjs_intl__WEBPACK_IMPORTED_MODULE_3__.DEFAULT_INTL_CONFIG), { textComponent: react__WEBPACK_IMPORTED_MODULE_0__.Fragment });
+/**
+ * Takes a `formatXMLElementFn`, and composes it in function, which passes
+ * argument `parts` through, assigning unique key to each part, to prevent
+ * "Each child in a list should have a unique "key"" React error.
+ * @param formatXMLElementFn
+ */
+function assignUniqueKeysToParts(formatXMLElementFn) {
+    return function (parts) {
+        // eslint-disable-next-line prefer-rest-params
+        return formatXMLElementFn(react__WEBPACK_IMPORTED_MODULE_0__.Children.toArray(parts));
+    };
+}
+function shallowEqual(objA, objB) {
+    if (objA === objB) {
+        return true;
+    }
+    if (!objA || !objB) {
+        return false;
+    }
+    var aKeys = Object.keys(objA);
+    var bKeys = Object.keys(objB);
+    var len = aKeys.length;
+    if (bKeys.length !== len) {
+        return false;
+    }
+    for (var i = 0; i < len; i++) {
+        var key = aKeys[i];
+        if (objA[key] !== objB[key] ||
+            !Object.prototype.hasOwnProperty.call(objB, key)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/react-intl/node_modules/tslib/tslib.es6.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-intl/node_modules/tslib/tslib.es6.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "__extends": () => (/* binding */ __extends),
+/* harmony export */   "__assign": () => (/* binding */ __assign),
+/* harmony export */   "__rest": () => (/* binding */ __rest),
+/* harmony export */   "__decorate": () => (/* binding */ __decorate),
+/* harmony export */   "__param": () => (/* binding */ __param),
+/* harmony export */   "__metadata": () => (/* binding */ __metadata),
+/* harmony export */   "__awaiter": () => (/* binding */ __awaiter),
+/* harmony export */   "__generator": () => (/* binding */ __generator),
+/* harmony export */   "__createBinding": () => (/* binding */ __createBinding),
+/* harmony export */   "__exportStar": () => (/* binding */ __exportStar),
+/* harmony export */   "__values": () => (/* binding */ __values),
+/* harmony export */   "__read": () => (/* binding */ __read),
+/* harmony export */   "__spread": () => (/* binding */ __spread),
+/* harmony export */   "__spreadArrays": () => (/* binding */ __spreadArrays),
+/* harmony export */   "__spreadArray": () => (/* binding */ __spreadArray),
+/* harmony export */   "__await": () => (/* binding */ __await),
+/* harmony export */   "__asyncGenerator": () => (/* binding */ __asyncGenerator),
+/* harmony export */   "__asyncDelegator": () => (/* binding */ __asyncDelegator),
+/* harmony export */   "__asyncValues": () => (/* binding */ __asyncValues),
+/* harmony export */   "__makeTemplateObject": () => (/* binding */ __makeTemplateObject),
+/* harmony export */   "__importStar": () => (/* binding */ __importStar),
+/* harmony export */   "__importDefault": () => (/* binding */ __importDefault),
+/* harmony export */   "__classPrivateFieldGet": () => (/* binding */ __classPrivateFieldGet),
+/* harmony export */   "__classPrivateFieldSet": () => (/* binding */ __classPrivateFieldSet)
+/* harmony export */ });
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+    return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+    if (typeof b !== "function" && b !== null)
+        throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    }
+    return __assign.apply(this, arguments);
+}
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+function __decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+function __param(paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+}
+
+function __metadata(metadataKey, metadataValue) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+var __createBinding = Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+});
+
+function __exportStar(m, o) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p)) __createBinding(o, m, p);
+}
+
+function __values(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+/** @deprecated */
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
+/** @deprecated */
+function __spreadArrays() {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+}
+
+function __spreadArray(to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+}
+
+function __await(v) {
+    return this instanceof __await ? (this.v = v, this) : new __await(v);
+}
+
+function __asyncGenerator(thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+}
+
+function __asyncDelegator(o) {
+    var i, p;
+    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+}
+
+function __asyncValues(o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+}
+
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+
+var __setModuleDefault = Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+};
+
+function __importStar(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+}
+
+function __importDefault(mod) {
+    return (mod && mod.__esModule) ? mod : { default: mod };
+}
+
+function __classPrivateFieldGet(receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+}
+
+function __classPrivateFieldSet(receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/react-is/cjs/react-is.development.js":
 /*!***********************************************************!*\
   !*** ./node_modules/react-is/cjs/react-is.development.js ***!
@@ -13111,9 +30293,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/images/icon_website.svg":
+/***/ "./src/images/icon_toggler.svg":
 /*!*************************************!*\
-  !*** ./src/images/icon_website.svg ***!
+  !*** ./src/images/icon_toggler.svg ***!
   \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -13122,29 +30304,100 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0xMCAwQzguMDIyMTkgMCA2LjA4ODc5IDAuNTg2NDkgNC40NDQzIDEuNjg1M0MyLjc5OTgxIDIuNzg0MTIgMS41MTgwOSA0LjM0NTkgMC43NjEyMDkgNi4xNzMxNkMwLjAwNDMzMjk2IDguMDAwNDMgLTAuMTkzNzAxIDEwLjAxMTEgMC4xOTIxNTIgMTEuOTUwOUMwLjU3ODAwNCAxMy44OTA3IDEuNTMwNDEgMTUuNjcyNSAyLjkyODk0IDE3LjA3MTFDNC4zMjc0NiAxOC40Njk2IDYuMTA5MjkgMTkuNDIyIDguMDQ5MSAxOS44MDc4QzkuOTg4OTEgMjAuMTkzNyAxMS45OTk2IDE5Ljk5NTcgMTMuODI2OCAxOS4yMzg4QzE1LjY1NDEgMTguNDgxOSAxNy4yMTU5IDE3LjIwMDIgMTguMzE0NyAxNS41NTU3QzE5LjQxMzUgMTMuOTExMiAyMCAxMS45Nzc4IDIwIDEwQzIwIDcuMzQ3ODMgMTguOTQ2NCA0LjgwNDMgMTcuMDcxMSAyLjkyODkzQzE1LjE5NTcgMS4wNTM1NyAxMi42NTIyIDAgMTAgMFYwWk0xMCAxOC42NjY3QzkuMzMzMzQgMTguNjY2NyA4LjUyIDE3LjQ0NjcgNy45NiAxNS4zMzMzSDEyLjA0QzExLjQ4IDE3LjQ0NjcgMTAuNjY2NyAxOC42NjY3IDEwIDE4LjY2NjdaTTcuNjczMzQgMTRDNy40NzU0MyAxMi44OTkxIDcuMzYxNzcgMTEuNzg0OCA3LjMzMzM0IDEwLjY2NjdIMTIuNjY2N0MxMi42NDI2IDExLjc4NDUgMTIuNTMzNCAxMi44OTg4IDEyLjM0IDE0SDcuNjczMzRaTTEuMzY2NjcgMTAuNjY2N0g2LjAzMzM0QzYuMDU4NTMgMTEuNzgzOCA2LjE2MzI0IDEyLjg5NzcgNi4zNDY2NyAxNEgyLjM0NjY3QzEuNzk4MzUgMTIuOTY2NCAxLjQ2NDk5IDExLjgzMjUgMS4zNjY2NyAxMC42NjY3Wk0xMCAxLjMzMzMzQzEwLjY2NjcgMS4zMzMzMyAxMS40OCAyLjU1MzMzIDEyLjA0IDQuNjY2NjdINy45NkM4LjUyIDIuNTUzMzMgOS4zMzMzNCAxLjMzMzMzIDEwIDEuMzMzMzNaTTEyLjMyNjcgNkMxMi41MjQ2IDcuMTAwODUgMTIuNjM4MiA4LjIxNTE5IDEyLjY2NjcgOS4zMzMzM0g3LjMzMzM0QzcuMzU3MzcgOC4yMTU1MyA3LjQ2NjU3IDcuMTAxMiA3LjY2IDZIMTIuMzI2N1pNNiA5LjMzMzMzSDEuMzMzMzRDMS40MjMzNiA4LjE2OTM1IDEuNzQ3NjMgNy4wMzU1NiAyLjI4NjY3IDZINi4yODY2N0M2LjExMjE4IDcuMTAyOSA2LjAxNjM4IDguMjE2ODMgNiA5LjMzMzMzVjkuMzMzMzNaTTE0IDEwLjY2NjdIMTguNjY2N0MxOC41NzY2IDExLjgzMDYgMTguMjUyNCAxMi45NjQ0IDE3LjcxMzMgMTRIMTMuNzEzM0MxMy44ODc4IDEyLjg5NzEgMTMuOTgzNiAxMS43ODMyIDE0IDEwLjY2NjdaTTE0IDkuMzMzMzNDMTMuOTc0OCA4LjIxNjE5IDEzLjg3MDEgNy4xMDIyNiAxMy42ODY3IDZIMTcuNjg2N0MxOC4yMzUgNy4wMzM1NyAxOC41Njg0IDguMTY3NDYgMTguNjY2NyA5LjMzMzMzSDE0Wk0xNi44MzMzIDQuNjY2NjdIMTMuNDA2N0MxMy4xNzY0IDMuNjA2NTYgMTIuNzkgMi41ODY1NCAxMi4yNiAxLjY0QzE0LjA2NTIgMi4xMzM4MSAxNS42NjM5IDMuMTk0OSAxNi44MiA0LjY2NjY3SDE2LjgzMzNaTTcuNzQgMS42NEM3LjIxMDAxIDIuNTg2NTQgNi44MjM1NyAzLjYwNjU2IDYuNTkzMzQgNC42NjY2N0gzLjE4QzQuMzM2MTIgMy4xOTQ5IDUuOTM0NzcgMi4xMzM4MSA3Ljc0IDEuNjRWMS42NFpNMy4xOCAxNS4zMzMzSDYuNTkzMzRDNi44MjM1NyAxNi4zOTM0IDcuMjEwMDEgMTcuNDEzNSA3Ljc0IDE4LjM2QzUuOTM0NzcgMTcuODY2MiA0LjMzNjEyIDE2LjgwNTEgMy4xOCAxNS4zMzMzVjE1LjMzMzNaTTEyLjI2IDE4LjM2QzEyLjc5IDE3LjQxMzUgMTMuMTc2NCAxNi4zOTM0IDEzLjQwNjcgMTUuMzMzM0gxNi44MkMxNS42NjM5IDE2LjgwNTEgMTQuMDY1MiAxNy44NjYyIDEyLjI2IDE4LjM2VjE4LjM2WiIgZmlsbD0iYmxhY2siLz4NCjwvc3ZnPg0K");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjkiIGhlaWdodD0iMjMiIHZpZXdCb3g9IjAgMCAyOSAyMyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI5IiBoZWlnaHQ9IjMiIGZpbGw9IiMwRjEzMTkiLz4KPHJlY3QgeT0iMTAiIHdpZHRoPSIyOSIgaGVpZ2h0PSIzIiBmaWxsPSIjMEYxMzE5Ii8+CjxyZWN0IHk9IjIwIiB3aWR0aD0iMjkiIGhlaWdodD0iMyIgZmlsbD0iIzBGMTMxOSIvPgo8L3N2Zz4K");
+
+/***/ }),
+
+/***/ "./src/images/icon_toggler_close.svg":
+/*!*******************************************!*\
+  !*** ./src/images/icon_toggler_close.svg ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzEiIHZpZXdCb3g9IjAgMCAzMiAzMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iMy40NTkyOSIgeT0iMjQuOTciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzIiB0cmFuc2Zvcm09InJvdGF0ZSgtNDQuNjc4OSAzLjQ1OTI5IDI0Ljk3KSIgZmlsbD0iIzBGMTMxOSIvPgo8cmVjdCB4PSI1Ljg1NjY5IiB5PSIyLjQxMjg0IiB3aWR0aD0iMzIiIGhlaWdodD0iMyIgdHJhbnNmb3JtPSJyb3RhdGUoNDUgNS44NTY2OSAyLjQxMjg0KSIgZmlsbD0iIzBGMTMxOSIvPgo8L3N2Zz4K");
+
+/***/ }),
+
+/***/ "./src/images/icon_toggler_dark.svg":
+/*!******************************************!*\
+  !*** ./src/images/icon_toggler_dark.svg ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjkiIGhlaWdodD0iMjMiIHZpZXdCb3g9IjAgMCAyOSAyMyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI5IiBoZWlnaHQ9IjMiIGZpbGw9IndoaXRlIi8+CjxyZWN0IHk9IjEwIiB3aWR0aD0iMjkiIGhlaWdodD0iMyIgZmlsbD0id2hpdGUiLz4KPHJlY3QgeT0iMjAiIHdpZHRoPSIyOSIgaGVpZ2h0PSIzIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K");
+
+/***/ }),
+
+/***/ "./src/images/logo_dark.svg":
+/*!**********************************!*\
+  !*** ./src/images/logo_dark.svg ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODMiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCA4MyAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwKSI+CjxwYXRoIGQ9Ik03NS44MzcxIDE2Ljk0MzhDNzQuNjI4NCAxNi4zMTQ2IDc0LjI3MDIgMTUuNzMwMyA3NC4yNzAyIDE1LjA1NjFDNzQuMzE1IDE0LjM4MiA3NC44MDc1IDEzLjc1MjggNzYuMDE2MiAxMy43NTI4Qzc3LjQwNCAxMy43NTI4IDc4LjI5OTQgMTQuNjUxNiA3OC42NTc1IDE1LjE0NkM3OC43OTE4IDE1LjMyNTggNzkuMDE1NyAxNS4zNzA3IDc5LjE5NDcgMTUuMjM1OUw4Mi4wMTUxIDEzLjM0ODNDODIuMTk0MiAxMy4yMTM0IDgyLjIzOSAxMi45NDM4IDgyLjEwNDYgMTIuNzY0QzgxLjUyMjcgMTEuODY1MSA3OS42NDI0IDkuNjE3OTIgNzYuMTUwNSA5LjYxNzkyQzcxLjY3MzcgOS42MTc5MiA2OS43MDM5IDEyLjQ5NDMgNjkuNzAzOSAxNS41NTA1QzY5LjcwMzkgMTguODMxNCA3Mi42MTM4IDIwLjE3OTcgNzMuNDY0NCAyMC41ODQyQzc1LjY1ODEgMjEuNjYyOSA3OC4yNTQ2IDIyLjQ3MTkgNzguMjU0NiAyNC4zMTQ2Qzc4LjI1NDYgMjUuNjYyOSA3Ny4zMTQ1IDI2LjQ3MTkgNzUuNzAyOCAyNi40NzE5QzczLjg2NzMgMjYuNDcxOSA3My4wMTY3IDI1LjA3ODYgNzIuNzAzNCAyNC4zNTk1QzcyLjYxMzggMjQuMTM0OCA3Mi4zNDUyIDI0LjA0NDkgNzIuMTY2MSAyNC4xMzQ4TDY5LjEyMTkgMjUuNTczQzY4Ljk0MjggMjUuNjYyOSA2OC44MDg1IDI1Ljg4NzYgNjguODk4MSAyNi4xMTIzQzY5Ljg4MyAyOC40NDk0IDcxLjgwOCAzMC42OTY2IDc1Ljc5MjQgMzAuNjk2NkM4MC4yNjkyIDMwLjY5NjYgODIuOTU1MiAyNy40NjA2IDgyLjk1NTIgMjQuMDg5OEM4Mi45NTUyIDIxLjUyOCA4MS42NTcgMTkuOTk5OSA3OC44ODEzIDE4LjU2MTdMNzUuODM3MSAxNi45NDM4WiIgZmlsbD0iIzBGMTMxOSIvPgo8cGF0aCBkPSJNNjEuMjg3NSAyMi45MjEzQzYxLjI4NzUgMjQuNzE5IDYwLjI1NzggMjYuNDI2OSA1Ny45NzQ3IDI2LjQyNjlDNTUuNTEyNCAyNi40MjY5IDU0LjU3MjMgMjQuNzE5IDU0LjU3MjMgMjIuOTIxM1YxMC41NjE3QzU0LjU3MjMgMTAuMzM3IDU0LjM5MzIgMTAuMTU3MiA1NC4xNjk0IDEwLjE1NzJINTAuMzY0MUM1MC4xNDAzIDEwLjE1NzIgNDkuOTYxMiAxMC4zMzcgNDkuOTYxMiAxMC41NjE3VjIyLjY1MTZDNDkuOTYxMiAyNy4zNzA3IDUyLjczNjggMzAuNjUxNiA1Ny45NzQ3IDMwLjY1MTZDNjMuMjU3MyAzMC42NTE2IDY1Ljk0MzQgMjcuMzcwNyA2NS45NDM0IDIyLjY1MTZWMTAuNTYxN0M2NS45NDM0IDEwLjMzNyA2NS43NjQzIDEwLjE1NzIgNjUuNTQwNSAxMC4xNTcySDYxLjczNTJDNjEuNTExMyAxMC4xNTcyIDYxLjMzMjMgMTAuMzM3IDYxLjMzMjMgMTAuNTYxN1YyMi45MjEzSDYxLjI4NzVaIiBmaWxsPSIjMEYxMzE5Ii8+CjxwYXRoIGQ9Ik00Ni4zMzUgMjguMzU5NUw0NC40NTQ3IDI2LjQyNjlDNDUuNjE4NyAyNC43MTkxIDQ2LjI0NTQgMjIuNTYxOCA0Ni4yNDU0IDIwLjA4OTlDNDYuMjQ1NCAxMy41MjgxIDQyLjA4MiA5LjU3MyAzNS4yMzI1IDkuNTczQzMxLjU2MTUgOS41NzMgMjguNTYyIDEwLjI5MjEgMjcuMTI5NCAxMC41NjE4QzI2Ljk1MDQgMTAuNjA2NyAyNi44NjA4IDEwLjY5NjYgMjYuODE2MSAxMC44NzY0QzI2LjU0NzUgMTEuODY1MSAyNS43NDE2IDE1LjU1MDUgMjUuNzQxNiAxOS40NjA2QzI1Ljc0MTYgMjYuNjk2NiAyOS43NzA4IDMwLjY5NjYgMzUuODU5MiAzMC42OTY2QzM3LjY0OTkgMzAuNjk2NiAzOS4zMDY0IDMwLjMzNyA0MC42OTQyIDI5LjY2MjlDNDEuNTQ0OCAzMC42MDY3IDQyLjI2MTEgMzEuNDE1NyA0Mi42MTkyIDMxLjg2NTFDNDIuNzUzNSAzMi4wNDQ5IDQzLjAyMjEgMzIuMDQ0OSA0My4yMDEyIDMxLjkxMDFDNDMuNjA0MSAzMS41NTA1IDQ2LjA2NjMgMjkuMjU4NCA0Ni4zMzUgMjguOTg4N0M0Ni40NjkzIDI4LjgwOSA0Ni40NjkzIDI4LjUzOTMgNDYuMzM1IDI4LjM1OTVaTTM1LjgxNDUgMjYuMTU3M0MzMi4wMDkyIDI2LjE1NzMgMzAuNDQyMyAyMy4yMzU5IDMwLjQ0MjMgMTkuMzI1OEMzMC40NDIzIDE3LjM0ODMgMzAuNjY2MSAxNS43MzAzIDMwLjgwMDQgMTQuODc2NEMzMC44NDUyIDE0LjY5NjYgMzAuOTM0NyAxNC41NjE4IDMxLjExMzggMTQuNTE2OEMzMi4wMDkyIDE0LjMzNyAzMy42NjU2IDE0LjAyMjQgMzUuNTQ1OCAxNC4wMjI0QzM5LjI2MTYgMTQuMDIyNCA0MS41NDQ4IDE2LjIyNDcgNDEuNTQ0OCAyMC4zMTQ2QzQxLjU0NDggMjEuMzAzMyA0MS4zNjU3IDIyLjIwMjIgNDEuMDA3NiAyMi45NjYzTDM5LjIxNjggMjEuMTY4NUMzOS4wODI1IDIwLjk4ODcgMzguODEzOSAyMC45ODg3IDM4LjYzNDggMjEuMTY4NUMzOC4wMDgxIDIxLjc1MjggMzYuNTMwNyAyMy4xNDYgMzUuOTA0IDIzLjczMDNDMzUuNzI0OSAyMy44NjUxIDM1LjcyNDkgMjQuMTM0OCAzNS44NTkyIDI0LjMxNDZDMzYuMTcyNiAyNC42NzQxIDM2LjcwOTggMjUuMjU4NCAzNy4zMzY2IDI1Ljk3NzVDMzYuODg4OSAyNi4xMTIzIDM2LjM1MTcgMjYuMTU3MyAzNS44MTQ1IDI2LjE1NzNaIiBmaWxsPSIjNDREQzAwIi8+CjxwYXRoIGQ9Ik0xNy41MDQzIDMwLjA2NzNIMjEuMzA5NkMyMS41MzM0IDMwLjA2NzMgMjEuNzEyNSAyOS44ODc2IDIxLjcxMjUgMjkuNjYyOFYxMC41NjE3QzIxLjcxMjUgMTAuMzM3IDIxLjUzMzQgMTAuMTU3MiAyMS4zMDk2IDEwLjE1NzJIMTcuNTA0M0MxNy4yODA1IDEwLjE1NzIgMTcuMTAxNCAxMC4zMzcgMTcuMTAxNCAxMC41NjE3VjI5LjYxNzlDMTcuMTAxNCAyOS44ODc2IDE3LjI4MDUgMzAuMDY3MyAxNy41MDQzIDMwLjA2NzNaIiBmaWxsPSIjMEYxMzE5Ii8+CjxwYXRoIGQ9Ik0xMS4xMDI1IDQuMzU5NTVDMTIuMTMyMSA0LjM1OTU1IDEzLjQ3NTIgNC42NzQxNiAxNC41NDk2IDUuMjEzNDhDMTQuNzczNSA1LjMwMzM3IDE0Ljk5NzMgNS4yMTM0OCAxNS4wODY4IDUuMDMzNzFMMTYuNDI5OSAyLjAyMjQ3QzE2LjUxOTQgMS44NDI3IDE2LjQyOTkgMS41NzMwMyAxNi4yNTA4IDEuNDgzMTVDMTQuODE4MiAwLjcxOTEwMSAxMi44OTMyIDAgMTAuODMzOSAwQzUuMTkzMSAwIDIuODIwMzkgMy40NjA2NyAyLjgyMDM5IDguNTg0MjdWMTAuMTU3M0gwLjQwMjkxM0MwLjE3OTA3MiAxMC4xNTczIDAgMTAuMzM3MSAwIDEwLjU2MThWMTQuMDY3NEMwIDE0LjI5MjEgMC4xNzkwNzIgMTQuNDcxOSAwLjQwMjkxMyAxNC40NzE5SDIuODIwMzlWMjkuNjE4QzIuODIwMzkgMjkuODQyNyAyLjk5OTQ2IDMwLjAyMjUgMy4yMjMzIDMwLjAyMjVINy4wMjg1OUM3LjI1MjQzIDMwLjAyMjUgNy40MzE1IDI5Ljg0MjcgNy40MzE1IDI5LjYxOFYxNC41MTY5SDEzLjA3MjNDMTMuMjk2MSAxNC41MTY5IDEzLjQ3NTIgMTQuMzM3MSAxMy40NzUyIDE0LjExMjRWMTAuNjA2N0MxMy40NzUyIDEwLjM4MiAxMy4yOTYxIDEwLjIwMjIgMTMuMDcyMyAxMC4yMDIySDcuNDc2MjdWOC44NTM5M0M3LjQ3NjI3IDYuMjkyMTQgNy44NzkxOCA0LjM1OTU1IDExLjEwMjUgNC4zNTk1NVoiIGZpbGw9IiMwRjEzMTkiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMCI+CjxyZWN0IHdpZHRoPSI4MyIgaGVpZ2h0PSIzMiIgZmlsbD0id2hpdGUiLz4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8L3N2Zz4K");
+
+/***/ }),
+
+/***/ "./src/images/logo_light.svg":
+/*!***********************************!*\
+  !*** ./src/images/logo_light.svg ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODMiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCA4MyAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwKSI+CjxwYXRoIGQ9Ik03NS44MzcxIDE2Ljk0MzhDNzQuNjI4NCAxNi4zMTQ2IDc0LjI3MDIgMTUuNzMwMyA3NC4yNzAyIDE1LjA1NjFDNzQuMzE1IDE0LjM4MiA3NC44MDc1IDEzLjc1MjggNzYuMDE2MiAxMy43NTI4Qzc3LjQwNCAxMy43NTI4IDc4LjI5OTQgMTQuNjUxNiA3OC42NTc1IDE1LjE0NkM3OC43OTE4IDE1LjMyNTggNzkuMDE1NyAxNS4zNzA3IDc5LjE5NDcgMTUuMjM1OUw4Mi4wMTUxIDEzLjM0ODNDODIuMTk0MiAxMy4yMTM0IDgyLjIzOSAxMi45NDM4IDgyLjEwNDcgMTIuNzY0QzgxLjUyMjcgMTEuODY1MSA3OS42NDI0IDkuNjE3OTIgNzYuMTUwNSA5LjYxNzkyQzcxLjY3MzcgOS42MTc5MiA2OS43MDM5IDEyLjQ5NDMgNjkuNzAzOSAxNS41NTA1QzY5LjcwMzkgMTguODMxNCA3Mi42MTM4IDIwLjE3OTcgNzMuNDY0NCAyMC41ODQyQzc1LjY1ODEgMjEuNjYyOSA3OC4yNTQ2IDIyLjQ3MTkgNzguMjU0NiAyNC4zMTQ2Qzc4LjI1NDYgMjUuNjYyOSA3Ny4zMTQ1IDI2LjQ3MTkgNzUuNzAyOCAyNi40NzE5QzczLjg2NzMgMjYuNDcxOSA3My4wMTY3IDI1LjA3ODYgNzIuNzAzNCAyNC4zNTk1QzcyLjYxMzggMjQuMTM0OCA3Mi4zNDUyIDI0LjA0NDkgNzIuMTY2MSAyNC4xMzQ4TDY5LjEyMTkgMjUuNTczQzY4Ljk0MjggMjUuNjYyOSA2OC44MDg1IDI1Ljg4NzYgNjguODk4MSAyNi4xMTIzQzY5Ljg4MyAyOC40NDk0IDcxLjgwOCAzMC42OTY2IDc1Ljc5MjQgMzAuNjk2NkM4MC4yNjkyIDMwLjY5NjYgODIuOTU1MyAyNy40NjA2IDgyLjk1NTMgMjQuMDg5OEM4Mi45NTUzIDIxLjUyOCA4MS42NTcgMTkuOTk5OSA3OC44ODE0IDE4LjU2MTdMNzUuODM3MSAxNi45NDM4WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTYxLjI4NzUgMjIuOTIxM0M2MS4yODc1IDI0LjcxOSA2MC4yNTc4IDI2LjQyNjkgNTcuOTc0NyAyNi40MjY5QzU1LjUxMjQgMjYuNDI2OSA1NC41NzIzIDI0LjcxOSA1NC41NzIzIDIyLjkyMTNWMTAuNTYxN0M1NC41NzIzIDEwLjMzNyA1NC4zOTMyIDEwLjE1NzIgNTQuMTY5NCAxMC4xNTcySDUwLjM2NDFDNTAuMTQwMyAxMC4xNTcyIDQ5Ljk2MTIgMTAuMzM3IDQ5Ljk2MTIgMTAuNTYxN1YyMi42NTE2QzQ5Ljk2MTIgMjcuMzcwNyA1Mi43MzY4IDMwLjY1MTYgNTcuOTc0NyAzMC42NTE2QzYzLjI1NzMgMzAuNjUxNiA2NS45NDM0IDI3LjM3MDcgNjUuOTQzNCAyMi42NTE2VjEwLjU2MTdDNjUuOTQzNCAxMC4zMzcgNjUuNzY0MyAxMC4xNTcyIDY1LjU0MDUgMTAuMTU3Mkg2MS43MzUyQzYxLjUxMTMgMTAuMTU3MiA2MS4zMzIzIDEwLjMzNyA2MS4zMzIzIDEwLjU2MTdWMjIuOTIxM0g2MS4yODc1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTQ2LjMzNSAyOC4zNTk1TDQ0LjQ1NDcgMjYuNDI2OUM0NS42MTg3IDI0LjcxOTEgNDYuMjQ1NCAyMi41NjE4IDQ2LjI0NTQgMjAuMDg5OUM0Ni4yNDU0IDEzLjUyODEgNDIuMDgyIDkuNTczIDM1LjIzMjUgOS41NzNDMzEuNTYxNSA5LjU3MyAyOC41NjIgMTAuMjkyMSAyNy4xMjk1IDEwLjU2MThDMjYuOTUwNCAxMC42MDY3IDI2Ljg2MDkgMTAuNjk2NiAyNi44MTYxIDEwLjg3NjRDMjYuNTQ3NSAxMS44NjUxIDI1Ljc0MTcgMTUuNTUwNSAyNS43NDE3IDE5LjQ2MDZDMjUuNzQxNyAyNi42OTY2IDI5Ljc3MDggMzAuNjk2NiAzNS44NTkyIDMwLjY5NjZDMzcuNjUgMzAuNjk2NiAzOS4zMDY0IDMwLjMzNyA0MC42OTQyIDI5LjY2MjlDNDEuNTQ0OCAzMC42MDY3IDQyLjI2MTEgMzEuNDE1NyA0Mi42MTkyIDMxLjg2NTFDNDIuNzUzNSAzMi4wNDQ5IDQzLjAyMjEgMzIuMDQ0OSA0My4yMDEyIDMxLjkxMDFDNDMuNjA0MSAzMS41NTA1IDQ2LjA2NjQgMjkuMjU4NCA0Ni4zMzUgMjguOTg4N0M0Ni40NjkzIDI4LjgwOSA0Ni40NjkzIDI4LjUzOTMgNDYuMzM1IDI4LjM1OTVaTTM1LjgxNDUgMjYuMTU3M0MzMi4wMDkyIDI2LjE1NzMgMzAuNDQyMyAyMy4yMzU5IDMwLjQ0MjMgMTkuMzI1OEMzMC40NDIzIDE3LjM0ODMgMzAuNjY2MSAxNS43MzAzIDMwLjgwMDQgMTQuODc2NEMzMC44NDUyIDE0LjY5NjYgMzAuOTM0OCAxNC41NjE4IDMxLjExMzggMTQuNTE2OEMzMi4wMDkyIDE0LjMzNyAzMy42NjU2IDE0LjAyMjQgMzUuNTQ1OSAxNC4wMjI0QzM5LjI2MTYgMTQuMDIyNCA0MS41NDQ4IDE2LjIyNDcgNDEuNTQ0OCAyMC4zMTQ2QzQxLjU0NDggMjEuMzAzMyA0MS4zNjU3IDIyLjIwMjIgNDEuMDA3NiAyMi45NjYzTDM5LjIxNjggMjEuMTY4NUMzOS4wODI1IDIwLjk4ODcgMzguODEzOSAyMC45ODg3IDM4LjYzNDkgMjEuMTY4NUMzOC4wMDgxIDIxLjc1MjggMzYuNTMwOCAyMy4xNDYgMzUuOTA0IDIzLjczMDNDMzUuNzI0OSAyMy44NjUxIDM1LjcyNDkgMjQuMTM0OCAzNS44NTkyIDI0LjMxNDZDMzYuMTcyNiAyNC42NzQxIDM2LjcwOTggMjUuMjU4NCAzNy4zMzY2IDI1Ljk3NzVDMzYuODg4OSAyNi4xMTIzIDM2LjM1MTcgMjYuMTU3MyAzNS44MTQ1IDI2LjE1NzNaIiBmaWxsPSIjNDREQzAwIi8+CjxwYXRoIGQ9Ik0xNy41MDQzIDMwLjA2NzNIMjEuMzA5NkMyMS41MzM0IDMwLjA2NzMgMjEuNzEyNSAyOS44ODc2IDIxLjcxMjUgMjkuNjYyOFYxMC41NjE3QzIxLjcxMjUgMTAuMzM3IDIxLjUzMzQgMTAuMTU3MiAyMS4zMDk2IDEwLjE1NzJIMTcuNTA0M0MxNy4yODA1IDEwLjE1NzIgMTcuMTAxNCAxMC4zMzcgMTcuMTAxNCAxMC41NjE3VjI5LjYxNzlDMTcuMTAxNCAyOS44ODc2IDE3LjI4MDUgMzAuMDY3MyAxNy41MDQzIDMwLjA2NzNaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTEuMTAyNSA0LjM1OTU1QzEyLjEzMjEgNC4zNTk1NSAxMy40NzUyIDQuNjc0MTYgMTQuNTQ5NiA1LjIxMzQ4QzE0Ljc3MzUgNS4zMDMzNyAxNC45OTczIDUuMjEzNDggMTUuMDg2OCA1LjAzMzcxTDE2LjQyOTkgMi4wMjI0N0MxNi41MTk0IDEuODQyNyAxNi40Mjk5IDEuNTczMDMgMTYuMjUwOCAxLjQ4MzE1QzE0LjgxODIgMC43MTkxMDEgMTIuODkzMiAwIDEwLjgzMzkgMEM1LjE5MzEgMCAyLjgyMDM5IDMuNDYwNjcgMi44MjAzOSA4LjU4NDI3VjEwLjE1NzNIMC40MDI5MTNDMC4xNzkwNzIgMTAuMTU3MyAwIDEwLjMzNzEgMCAxMC41NjE4VjE0LjA2NzRDMCAxNC4yOTIxIDAuMTc5MDcyIDE0LjQ3MTkgMC40MDI5MTMgMTQuNDcxOUgyLjgyMDM5VjI5LjYxOEMyLjgyMDM5IDI5Ljg0MjcgMi45OTk0NiAzMC4wMjI1IDMuMjIzMyAzMC4wMjI1SDcuMDI4NTlDNy4yNTI0MyAzMC4wMjI1IDcuNDMxNSAyOS44NDI3IDcuNDMxNSAyOS42MThWMTQuNTE2OUgxMy4wNzIzQzEzLjI5NjEgMTQuNTE2OSAxMy40NzUyIDE0LjMzNzEgMTMuNDc1MiAxNC4xMTI0VjEwLjYwNjdDMTMuNDc1MiAxMC4zODIgMTMuMjk2MSAxMC4yMDIyIDEzLjA3MjMgMTAuMjAyMkg3LjQ3NjI3VjguODUzOTNDNy40NzYyNyA2LjI5MjE0IDcuODc5MTggNC4zNTk1NSAxMS4xMDI1IDQuMzU5NTVaIiBmaWxsPSJ3aGl0ZSIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwIj4KPHJlY3Qgd2lkdGg9IjgzIiBoZWlnaHQ9IjMyIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=");
 
 /***/ }),
 
 /***/ "react-dom/server":
-/*!********************************************************************************************************************!*\
-  !*** external "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\node_modules\\react-dom\\server.js" ***!
-  \********************************************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** external "/home/marte/dev/nayra/fiqus-web-front/node_modules/react-dom/server.js" ***!
+  \*****************************************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\node_modules\\react-dom\\server.js");
+module.exports = require("/home/marte/dev/nayra/fiqus-web-front/node_modules/react-dom/server.js");
 
 /***/ }),
 
 /***/ "react":
-/*!***************************************************************************************************************!*\
-  !*** external "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\node_modules\\react\\index.js" ***!
-  \***************************************************************************************************************/
+/*!************************************************************************************!*\
+  !*** external "/home/marte/dev/nayra/fiqus-web-front/node_modules/react/index.js" ***!
+  \************************************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front\\node_modules\\react\\index.js");
+module.exports = require("/home/marte/dev/nayra/fiqus-web-front/node_modules/react/index.js");
+
+/***/ }),
+
+/***/ "path":
+/*!***********************!*\
+  !*** external "path" ***!
+  \***********************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("path");
 
 /***/ }),
 
@@ -13198,6 +30451,17 @@ module.exports = [];
 
 /***/ }),
 
+/***/ "./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/digit-mapping.json":
+/*!************************************************************************************************************************************!*\
+  !*** ./node_modules/@formatjs/intl-relativetimeformat/node_modules/@formatjs/ecma402-abstract/lib/NumberFormat/digit-mapping.json ***!
+  \************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"adlm":["𞥐","𞥑","𞥒","𞥓","𞥔","𞥕","𞥖","𞥗","𞥘","𞥙"],"ahom":["𑜰","𑜱","𑜲","𑜳","𑜴","𑜵","𑜶","𑜷","𑜸","𑜹"],"arab":["٠","١","٢","٣","٤","٥","٦","٧","٨","٩"],"arabext":["۰","۱","۲","۳","۴","۵","۶","۷","۸","۹"],"bali":["᭐","᭑","᭒","᭓","᭔","᭕","᭖","᭗","᭘","᭙"],"beng":["০","১","২","৩","৪","৫","৬","৭","৮","৯"],"bhks":["𑱐","𑱑","𑱒","𑱓","𑱔","𑱕","𑱖","𑱗","𑱘","𑱙"],"brah":["𑁦","𑁧","𑁨","𑁩","𑁪","𑁫","𑁬","𑁭","𑁮","𑁯"],"cakm":["𑄶","𑄷","𑄸","𑄹","𑄺","𑄻","𑄼","𑄽","𑄾","𑄿"],"cham":["꩐","꩑","꩒","꩓","꩔","꩕","꩖","꩗","꩘","꩙"],"deva":["०","१","२","३","४","५","६","७","८","९"],"diak":["𑥐","𑥑","𑥒","𑥓","𑥔","𑥕","𑥖","𑥗","𑥘","𑥙"],"fullwide":["０","１","２","３","４","５","６","７","８","９"],"gong":["𑶠","𑶡","𑶢","𑶣","𑶤","𑶥","𑶦","𑶧","𑶨","𑶩"],"gonm":["𑵐","𑵑","𑵒","𑵓","𑵔","𑵕","𑵖","𑵗","𑵘","𑵙"],"gujr":["૦","૧","૨","૩","૪","૫","૬","૭","૮","૯"],"guru":["੦","੧","੨","੩","੪","੫","੬","੭","੮","੯"],"hanidec":["〇","一","二","三","四","五","六","七","八","九"],"hmng":["𖭐","𖭑","𖭒","𖭓","𖭔","𖭕","𖭖","𖭗","𖭘","𖭙"],"hmnp":["𞅀","𞅁","𞅂","𞅃","𞅄","𞅅","𞅆","𞅇","𞅈","𞅉"],"java":["꧐","꧑","꧒","꧓","꧔","꧕","꧖","꧗","꧘","꧙"],"kali":["꤀","꤁","꤂","꤃","꤄","꤅","꤆","꤇","꤈","꤉"],"khmr":["០","១","២","៣","៤","៥","៦","៧","៨","៩"],"knda":["೦","೧","೨","೩","೪","೫","೬","೭","೮","೯"],"lana":["᪀","᪁","᪂","᪃","᪄","᪅","᪆","᪇","᪈","᪉"],"lanatham":["᪐","᪑","᪒","᪓","᪔","᪕","᪖","᪗","᪘","᪙"],"laoo":["໐","໑","໒","໓","໔","໕","໖","໗","໘","໙"],"lepc":["᪐","᪑","᪒","᪓","᪔","᪕","᪖","᪗","᪘","᪙"],"limb":["᥆","᥇","᥈","᥉","᥊","᥋","᥌","᥍","᥎","᥏"],"mathbold":["𝟎","𝟏","𝟐","𝟑","𝟒","𝟓","𝟔","𝟕","𝟖","𝟗"],"mathdbl":["𝟘","𝟙","𝟚","𝟛","𝟜","𝟝","𝟞","𝟟","𝟠","𝟡"],"mathmono":["𝟶","𝟷","𝟸","𝟹","𝟺","𝟻","𝟼","𝟽","𝟾","𝟿"],"mathsanb":["𝟬","𝟭","𝟮","𝟯","𝟰","𝟱","𝟲","𝟳","𝟴","𝟵"],"mathsans":["𝟢","𝟣","𝟤","𝟥","𝟦","𝟧","𝟨","𝟩","𝟪","𝟫"],"mlym":["൦","൧","൨","൩","൪","൫","൬","൭","൮","൯"],"modi":["𑙐","𑙑","𑙒","𑙓","𑙔","𑙕","𑙖","𑙗","𑙘","𑙙"],"mong":["᠐","᠑","᠒","᠓","᠔","᠕","᠖","᠗","᠘","᠙"],"mroo":["𖩠","𖩡","𖩢","𖩣","𖩤","𖩥","𖩦","𖩧","𖩨","𖩩"],"mtei":["꯰","꯱","꯲","꯳","꯴","꯵","꯶","꯷","꯸","꯹"],"mymr":["၀","၁","၂","၃","၄","၅","၆","၇","၈","၉"],"mymrshan":["႐","႑","႒","႓","႔","႕","႖","႗","႘","႙"],"mymrtlng":["꧰","꧱","꧲","꧳","꧴","꧵","꧶","꧷","꧸","꧹"],"newa":["𑑐","𑑑","𑑒","𑑓","𑑔","𑑕","𑑖","𑑗","𑑘","𑑙"],"nkoo":["߀","߁","߂","߃","߄","߅","߆","߇","߈","߉"],"olck":["᱐","᱑","᱒","᱓","᱔","᱕","᱖","᱗","᱘","᱙"],"orya":["୦","୧","୨","୩","୪","୫","୬","୭","୮","୯"],"osma":["𐒠","𐒡","𐒢","𐒣","𐒤","𐒥","𐒦","𐒧","𐒨","𐒩"],"rohg":["𐴰","𐴱","𐴲","𐴳","𐴴","𐴵","𐴶","𐴷","𐴸","𐴹"],"saur":["꣐","꣑","꣒","꣓","꣔","꣕","꣖","꣗","꣘","꣙"],"segment":["🯰","🯱","🯲","🯳","🯴","🯵","🯶","🯷","🯸","🯹"],"shrd":["𑇐","𑇑","𑇒","𑇓","𑇔","𑇕","𑇖","𑇗","𑇘","𑇙"],"sind":["𑋰","𑋱","𑋲","𑋳","𑋴","𑋵","𑋶","𑋷","𑋸","𑋹"],"sinh":["෦","෧","෨","෩","෪","෫","෬","෭","෮","෯"],"sora":["𑃰","𑃱","𑃲","𑃳","𑃴","𑃵","𑃶","𑃷","𑃸","𑃹"],"sund":["᮰","᮱","᮲","᮳","᮴","᮵","᮶","᮷","᮸","᮹"],"takr":["𑛀","𑛁","𑛂","𑛃","𑛄","𑛅","𑛆","𑛇","𑛈","𑛉"],"talu":["᧐","᧑","᧒","᧓","᧔","᧕","᧖","᧗","᧘","᧙"],"tamldec":["௦","௧","௨","௩","௪","௫","௬","௭","௮","௯"],"telu":["౦","౧","౨","౩","౪","౫","౬","౭","౮","౯"],"thai":["๐","๑","๒","๓","๔","๕","๖","๗","๘","๙"],"tibt":["༠","༡","༢","༣","༤","༥","༦","༧","༨","༩"],"tirh":["𑓐","𑓑","𑓒","𑓓","𑓔","𑓕","𑓖","𑓗","𑓘","𑓙"],"vaii":["ᘠ","ᘡ","ᘢ","ᘣ","ᘤ","ᘥ","ᘦ","ᘧ","ᘨ","ᘩ"],"wara":["𑣠","𑣡","𑣢","𑣣","𑣤","𑣥","𑣦","𑣧","𑣨","𑣩"],"wcho":["𞋰","𞋱","𞋲","𞋳","𞋴","𞋵","𞋶","𞋷","𞋸","𞋹"]}');
+
+/***/ }),
+
 /***/ "./public/page-data/sq/d/805671509.json":
 /*!**********************************************!*\
   !*** ./public/page-data/sq/d/805671509.json ***!
@@ -13216,7 +30480,7 @@ module.exports = JSON.parse('{"data":{"site":{"siteMetadata":{"title":"fiqus-web
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"styles":{"breakpoints":{"xs":"320","s":"481","m":"769","l":"1024","xl":"1280"},"colors":{"purplePrimary":"#510066","purpleGradient":"#7A0185","greenMain":"#44DC00","orangeMain":"#FF602C","greenLight":"#E8F7E1","purpleLight":"#E9E1EB","black":"#000000","white":"#FFFFFF","darkMainBg":"#0F1319","darkGrey":"#60646B","ultraDarkGrey":"#333333","lightGrey":"#A7ACB4","ultraLightGrey":"#C4C4C4","transparent":"transparent"},"fontWeight":{"bold":"700","medium":"500","light":"300","regular":"400"},"icon":{"website":"website.svg","github":"github.svg"}},"homepage":{"title":"Homepage"},"services":{"title":"Servicios","services":[{"service":"Ciencia de Datos","description":"Este área se dedica a la limpieza, extracción y análisis de datos con el fin de poder servir de alimento para procesos de Inteligencia Artificial o Aprendizaje Automático. Es de esencial importancia procesar los datos para lograr que sean de fácil entendimiento, así como su uso para llegar a los objetivos planteados.","tags":["Python","Pandas","Numpy","Seaborn"],"image":"datos"},{"service":"Inteligencia Artificial","description":"El Aprendizaje Automático es un subcampo de la Inteligencia Artificial en el que se tiene como objetivo que las \\"computadoras aprendan\\". A partir de datos recolectados y procesados, diseñamos, construimos y entrenamos modelos que nos permitan predecir eventos futuros, clasificar imágenes, reconocer entidades en textos y muchas otras cosas más.","tags":["Python","Pandas","Numpy","Seaborn"],"image":"inteligenciaArtificial"},{"service":"Alta Concurrencia","description":"Utilizamos lenguajes de programación funcional en tiempo real y muy adoptados en el mercado, que soportan niveles de altísima concurrencia y distribución, teniendo como resultado sistemas que responden a gran velocidad ante altas demandas.","tags":["Earlang","Elixir","Phoenix Framework","LiveView"],"image":"altaConcurrencia"},{"service":"Blockchain | Fintech","description":"Estamos desarrollando fintech, que son las nuevas aplicaciones, procesos, productos o modelos de negocios en la industria de los servicios financieros compuestos de uno o más servicios financieros complementarios y puestos a disposición del público vía Internet.","tags":["Python","Ethereum"],"image":"blockchain"},{"service":"Fullstack","description":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.","tags":["Django","Phoenix","Phoenix LiveView","ReactJS","VueJS","React Native"],"image":"fullstack"}],"subsection":{"title":"capacitación","content":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.","image":"capacitacion"}},"culture":{"title":"Cultura","subtiitle":"Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos!","description":"Fiqus no es un trabajo más, es un proyecto de vida, en el que construimos un equipo consolidado de profesionales que se encuentra en continua capacitación para poder brindar soluciones técnicas de alta calidad. ","sections":[{"title":"Historia","content":"Fiqus es como una gran familia, que comenzó cuando varios estudiantes de ingeniería en sistemas de la Universidad Tecnológica Nacional se cansaron de los trabajos tradicionales y comenzaron a pensar en una construcción propia, con lógicas de producción diferentes a las de las empresas en las que habían trabajado previamente. /n Luego de varios meses de gestación, la idea de construir algo autogestivo, horizontal, democrático y de propiedad colectiva se hizo cada vez más fuerte. Así es como nació la idea de construir una empresa social, así es como nació Fiqus./n Con el transcurso de los años fuimos construyendo una estructura organizacional que se adapta a las personas y no al revés. Así es como, sobre el andar y basándonos en la experiencia adquirida, construimos una serie de acuerdos que hoy en día forman parte de nuestro reglamento interno. Nuestro reglamento no es algo estático, es algo vivo que evoluciona acorde evolucionan las personas que forman parte de nuestra organización. Ahí es donde reflejamos nuestras propuestas concretas para lograr que las personas que participan dentro del colectivo se ubiquen en el centro de los procesos productivos. /n Nos gusta pensar que Fiqus es una propuesta que invita a quienes no conocen al cooperativismo tecnológico a ver que un cambio de paradigma es posible.","subtitle":"¡Nos organizamos horizontal y democráticamente!","subtitleContent":"Las decisiones de la cooperativa se plasman en la Asamblea General Ordinaria una vez al año. Además como forma de organización colectiva realizamos dos veces al año un encuentro donde pensamos, a partir de los deseos personales, nuestros objetivos como cooperativa y semanalmente nos encontramos (de manera virtual) a planificar las tareas diarias. "},{"title":"¡Somos federales!","content":"Nuestra distribución actual es el resultado de haber creado una estructura lo suficientemente maleable como para que logre adaptarse a las necesidades de las personas. De esta manera, a medida que fuimos creciendo como personas y transitando los diferentes escenarios que la vida nos fue planteando, priorizamos acompañar desde el colectivo brindando el apoyo necesario para que todxs puedan decidir por ejemplo en dónde y cómo vivir./n En la actualidad tenemos sedes en CABA y Villa La Angostura. Pero además, contamos con personas asociadas trabajando desde Mar del Plata, San Fernando (BsAs), Puerto Madryn y San Luis.","subtitle":"Territorial","subtitleContent":"Como cooperativa de trabajo, nos entendemos como actores sociales territoriales. Apoyándonos en el séptimo principio cooperativo de “Compromiso con la Comunidad”, asumimos la responsabilidad de extender la construcción colectiva que realizamos día a día dentro de la cooperativa en el territorio perteneciente a una de nuestras sedes. Es por esto que trabajamos activamente en la Mesa de Asociativismo de Villa La Angostura, Neuquén. Allí nos reunimos en forma periódica junto con otros actores y actrices de la economía social así como con personas individuales comprometidas con la comunidad local para desarrollar proyectos que potencien iniciativas locales, siempre con una mirada colaborativa y horizontal. "},{"parts":[{"title":"¡Estamos federados en FACTTIC! ","subtitle":"La federación es una organización nacional que está conformada por cooperativas tecnológicas de toda Argentina.","content":"Todo comenzó cuando las primeras cooperativas del sector comenzamos a ponernos en contacto entre nosotras porque entendimos que en la unión está la fuerza para poder construir un modelo que escale con el objetivo de convertirse poco a poco en una alternativa real al modelo de producción tradicional. Producto de esas primeras interacciones nació la idea de firmar una carta de compromiso para fundar la Federación Argentina de Cooperativas de Tecnología Innovación y Conocimiento (FACTTIC), un espacio de construcción colectiva que fomenta la solidaridad y la colaboración como motores que impulsan la creación de tecnología con valores cooperativos./nEl contacto continuo con otras cooperativas de nuestro sector y el trabajar en conjunto para desarrollar estrategias comunes y compartir conocimiento genera un círculo virtuoso en constante evolución que nos impulsa a crecer y seguir potenciando nuestro trabajo./n La federación nos permite estar en contacto con otras realidades, nos permite romper con la endogamia de nuestra organización y nos invita a pensarnos como algo más grande, que abarca una escala mayor. Es un espacio de creación colectiva donde la imaginación aplicada a la construcción colaborativa no encuentra límites."},{"title":"Internacional","content":"Varios años después de haber participado de la creación de la federación, comenzamos a contactarnos con cooperativas tecnológicas de otras partes del mundo con el objetivo de compartir el modelo de colaboración e intercooperación construido con cooperativas locales a una escala más global./n Luego de varias interacciones, realizamos el primer viaje intercooperativo internacional de nuestra red. Viajamos a Reino Unido para conocer a cooperativas tecnológicas de una red local. Compartimos experiencias y comenzamos a construir las bases de lo que hoy constituye la Red Global de Cooperativas de Tecnología./n La red nuclea a más de 45 cooperativas tecnológicas de todo el mundo, con presencia en 3 continentes. Compartimos reuniones semanales en las que aprendemos de nuestras culturas, debatimos acerca de nuestros objetivos comunes y delineamos una hoja de ruta para hacer crecer a la comunidad que la compone. De a poco, comenzamos a intercooperar con el objetivo de fortalecer nuestras construcciones locales con una mirada de escala global. De esta manera, organizadas, las cooperativas de tecnología podremos ayudarnos mediante la cooperación a vender y desarrollar proyectos en conjunto."}]}]},"labs":{"title":"Labs","subtitle":"FiqusLabs es un espacio donde investigamos sobre nuevas tecnologías y nos capacitamos.","content":"De yapa, muchas veces el aprendizaje de una nueva tecnología viene acompañado con poder plasmar un proyecto que beneficie a la comunidad o al ambiente cooperativo.","sections":{"title":"Casos de Éxito","tagsTitle":"Tecnologías Investigadas","cases":[{"title":"CooBS","description":"Es una aplicación web donde las cooperativas pueden cargar y seguir sus acciones que se alinean a los principios cooperativos [link a wikipedia], como así también confeccionar el Balance Social.","tags":["Python","Django","Postgress"],"image":"","links":[{"text":"ver sitio","link":""}]},{"title":"CoopHub","description":"Es un sitio web donde se muestran los repositorios open source de diferentes cooperativas a lo largo del mundo. A su vez, se puede ver cuales son los lenguajes de programación más utilizados y buscar por tags.","tags":["Elixir","Phoenix","Utilización de ETS","Cache de datos","ReactJS","API y acciones de GitHub"],"image":"","links":[{"text":"ver sitio","link":""}]}]}}}');
+module.exports = JSON.parse('{"styles":{"breakpoints":{"xs":"320","s":"481","m":"769","l":"1024","xl":"1280"},"colors":{"purplePrimary":"#510066","purpleGradient":"#7A0185","greenMain":"#44DC00","orangeMain":"#FF602C","greenLight":"#E8F7E1","purpleLight":"#E9E1EB","purpleSecondary":"#854D94","black":"#000000","white":"#FFFFFF","darkMainBg":"#0F1319","darkGrey":"#60646B","ultraDarkGrey":"#333333","lightGrey":"#A7ACB4","ultraLightGrey":"#C4C4C4","transparent":"transparent"},"fontWeight":{"bold":"700","medium":"500","light":"300","regular":"400"},"icon":{"website":"website.svg","github":"github.svg"}},"homepage":{"title":"Homepage"},"services":{"title":"Servicios","tagsTitle":"Tecnologías","services":[{"service":"Ciencia de Datos","id":"service_datos","tags":["Python","Pandas","Numpy","Seaborn"],"image":"datos"},{"service":"Inteligencia Artificial","id":"service_inteligenciaArtificial","description":"El Aprendizaje Automático es un subcampo de la Inteligencia Artificial en el que se tiene como objetivo que las \\"computadoras aprendan\\". A partir de datos recolectados y procesados, diseñamos, construimos y entrenamos modelos que nos permitan predecir eventos futuros, clasificar imágenes, reconocer entidades en textos y muchas otras cosas más.","tags":["TensorFlow","Spacy","Scikit-Learn"],"image":"inteligenciaArtificial"},{"service":"Alta Concurrencia","id":"service_altaConcurrencia","description":"Utilizamos lenguajes de programación funcional en tiempo real y muy adoptados en el mercado, que soportan niveles de altísima concurrencia y distribución, teniendo como resultado sistemas que responden a gran velocidad ante altas demandas.","tags":["Erlang","Elixir","Phoenix Framework","LiveView"],"image":"altaConcurrencia"},{"service":"Blockchain | Fintech","id":"service_blockchain","description":"Estamos desarrollando fintech, que son las nuevas aplicaciones, procesos, productos o modelos de negocios en la industria de los servicios financieros compuestos de uno o más servicios financieros complementarios y puestos a disposición del público vía Internet.","tags":["Python","Ethereum"],"image":"blockchain"},{"service":"Fullstack","id":"service_fullstack","tags":["Django","Phoenix","Phoenix LiveView","ReactJS","VueJS","React Native"],"image":"fullstack"}],"subsection":{"title":"capacitación","content":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.","image":"capacitacion"}},"culture":{"title":"Cultura","subtitle":"Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos!","description":"Fiqus no es un trabajo más, es un proyecto de vida, en el que construimos un equipo consolidado de profesionales que se encuentra en continua capacitación para poder brindar soluciones técnicas de alta calidad. ","sections":[{"key":"culture_historia","title":"Historia","content":"Fiqus es como una gran familia, que comenzó cuando varios estudiantes de ingeniería en sistemas de la Universidad Tecnológica Nacional se cansaron de los trabajos tradicionales y comenzaron a pensar en una construcción propia, con lógicas de producción diferentes a las de las empresas en las que habían trabajado previamente. /n Luego de varios meses de gestación, la idea de construir algo autogestivo, horizontal, democrático y de propiedad colectiva se hizo cada vez más fuerte. Así es como nació la idea de construir una empresa social, así es como nació Fiqus./n Con el transcurso de los años fuimos construyendo una estructura organizacional que se adapta a las personas y no al revés. Así es como, sobre el andar y basándonos en la experiencia adquirida, construimos una serie de acuerdos que hoy en día forman parte de nuestro reglamento interno. Nuestro reglamento no es algo estático, es algo vivo que evoluciona acorde evolucionan las personas que forman parte de nuestra organización. Ahí es donde reflejamos nuestras propuestas concretas para lograr que las personas que participan dentro del colectivo se ubiquen en el centro de los procesos productivos. /n Nos gusta pensar que Fiqus es una propuesta que invita a quienes no conocen al cooperativismo tecnológico a ver que un cambio de paradigma es posible.","subtitle":"¡Nos organizamos horizontal y democráticamente!","subtitleContent":"Las decisiones de la cooperativa se plasman en la Asamblea General Ordinaria una vez al año. Además como forma de organización colectiva realizamos dos veces al año un encuentro donde pensamos, a partir de los deseos personales, nuestros objetivos como cooperativa y semanalmente nos encontramos (de manera virtual) a planificar las tareas diarias. "},{"key":"culture_federales","title":"¡Somos federales!","content":"Nuestra distribución actual es el resultado de haber creado una estructura lo suficientemente maleable como para que logre adaptarse a las necesidades de las personas. De esta manera, a medida que fuimos creciendo como personas y transitando los diferentes escenarios que la vida nos fue planteando, priorizamos acompañar desde el colectivo brindando el apoyo necesario para que todxs puedan decidir por ejemplo en dónde y cómo vivir./n En la actualidad tenemos sedes en CABA y Villa La Angostura. Pero además, contamos con personas asociadas trabajando desde Mar del Plata, San Fernando (BsAs), Puerto Madryn y San Luis.","subtitle":"Territorial","subtitleContent":"Como cooperativa de trabajo, nos entendemos como actores sociales territoriales. Apoyándonos en el séptimo principio cooperativo de “Compromiso con la Comunidad”, asumimos la responsabilidad de extender la construcción colectiva que realizamos día a día dentro de la cooperativa en el territorio perteneciente a una de nuestras sedes. Es por esto que trabajamos activamente en la Mesa de Asociativismo de Villa La Angostura, Neuquén. Allí nos reunimos en forma periódica junto con otros actores y actrices de la economía social así como con personas individuales comprometidas con la comunidad local para desarrollar proyectos que potencien iniciativas locales, siempre con una mirada colaborativa y horizontal. "},{"parts":[{"key":"culture_facttic","title":"¡Estamos federados en FACTTIC! ","subtitle":"La federación es una organización nacional que está conformada por cooperativas tecnológicas de toda Argentina.","content":"Todo comenzó cuando las primeras cooperativas del sector comenzamos a ponernos en contacto entre nosotras porque entendimos que en la unión está la fuerza para poder construir un modelo que escale con el objetivo de convertirse poco a poco en una alternativa real al modelo de producción tradicional. Producto de esas primeras interacciones nació la idea de firmar una carta de compromiso para fundar la Federación Argentina de Cooperativas de Tecnología Innovación y Conocimiento (FACTTIC), un espacio de construcción colectiva que fomenta la solidaridad y la colaboración como motores que impulsan la creación de tecnología con valores cooperativos./nEl contacto continuo con otras cooperativas de nuestro sector y el trabajar en conjunto para desarrollar estrategias comunes y compartir conocimiento genera un círculo virtuoso en constante evolución que nos impulsa a crecer y seguir potenciando nuestro trabajo./n La federación nos permite estar en contacto con otras realidades, nos permite romper con la endogamia de nuestra organización y nos invita a pensarnos como algo más grande, que abarca una escala mayor. Es un espacio de creación colectiva donde la imaginación aplicada a la construcción colaborativa no encuentra límites."},{"key":"culture_internacional","title":"Internacional","content":"Varios años después de haber participado de la creación de la federación, comenzamos a contactarnos con cooperativas tecnológicas de otras partes del mundo con el objetivo de compartir el modelo de colaboración e intercooperación construido con cooperativas locales a una escala más global./n Luego de varias interacciones, realizamos el primer viaje intercooperativo internacional de nuestra red. Viajamos a Reino Unido para conocer a cooperativas tecnológicas de una red local. Compartimos experiencias y comenzamos a construir las bases de lo que hoy constituye la Red Global de Cooperativas de Tecnología./n La red nuclea a más de 45 cooperativas tecnológicas de todo el mundo, con presencia en 3 continentes. Compartimos reuniones semanales en las que aprendemos de nuestras culturas, debatimos acerca de nuestros objetivos comunes y delineamos una hoja de ruta para hacer crecer a la comunidad que la compone. De a poco, comenzamos a intercooperar con el objetivo de fortalecer nuestras construcciones locales con una mirada de escala global. De esta manera, organizadas, las cooperativas de tecnología podremos ayudarnos mediante la cooperación a vender y desarrollar proyectos en conjunto."}]}]},"labs":{"title":"Labs","subtitle":"FiqusLabs es un espacio donde investigamos sobre nuevas tecnologías y nos capacitamos.","content":"De yapa, muchas veces el aprendizaje de una nueva tecnología viene acompañado con poder plasmar un proyecto que beneficie a la comunidad o al ambiente cooperativo.","sections":{"key":"casos_de_exito","title":"Casos de Éxito","tagsTitle":"Tecnologías Investigadas","cases":[{"key":"cases_coobs","title":"CooBS","description":"Es una aplicación web donde las cooperativas pueden cargar y seguir sus acciones que se alinean a los principios cooperativos [link a wikipedia], como así también confeccionar el Balance Social.","tags":["Python","Django","Postgress"],"image":"","links":[{"text":"ver sitio","link":""}]},{"key":"cases_coophub","title":"CoopHub","description":"Es un sitio web donde se muestran los repositorios open source de diferentes cooperativas a lo largo del mundo. A su vez, se puede ver cuales son los lenguajes de programación más utilizados y buscar por tags.","tags":["Elixir","Phoenix","Utilización de ETS","Cache de datos","ReactJS","API y acciones de GitHub"],"image":"","links":[{"text":"ver sitio","link":""}]}]}}}');
 
 /***/ })
 
@@ -13259,6 +30523,36 @@ module.exports = JSON.parse('{"styles":{"breakpoints":{"xs":"320","s":"481","m":
 /******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
 /******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/create fake namespace object */
+/******/ 	(() => {
+/******/ 		var getProto = Object.getPrototypeOf ? (obj) => (Object.getPrototypeOf(obj)) : (obj) => (obj.__proto__);
+/******/ 		var leafPrototypes;
+/******/ 		// create a fake namespace object
+/******/ 		// mode & 1: value is a module id, require it
+/******/ 		// mode & 2: merge all properties of value into the ns
+/******/ 		// mode & 4: return value when already ns object
+/******/ 		// mode & 16: return value when it's Promise-like
+/******/ 		// mode & 8|1: behave like require
+/******/ 		__webpack_require__.t = function(value, mode) {
+/******/ 			if(mode & 1) value = this(value);
+/******/ 			if(mode & 8) return value;
+/******/ 			if(typeof value === 'object' && value) {
+/******/ 				if((mode & 4) && value.__esModule) return value;
+/******/ 				if((mode & 16) && typeof value.then === 'function') return value;
+/******/ 			}
+/******/ 			var ns = Object.create(null);
+/******/ 			__webpack_require__.r(ns);
+/******/ 			var def = {};
+/******/ 			leafPrototypes = leafPrototypes || [null, getProto({}), getProto([]), getProto(getProto)];
+/******/ 			for(var current = mode & 2 && value; typeof current == 'object' && !~leafPrototypes.indexOf(current); current = getProto(current)) {
+/******/ 				Object.getOwnPropertyNames(current).forEach((key) => (def[key] = () => (value[key])));
+/******/ 			}
+/******/ 			def['default'] = () => (value);
+/******/ 			__webpack_require__.d(ns, def);
+/******/ 			return ns;
 /******/ 		};
 /******/ 	})();
 /******/ 	

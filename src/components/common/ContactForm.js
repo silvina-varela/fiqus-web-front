@@ -1,8 +1,9 @@
 import React from 'react';
-import {Link} from 'gatsby'
 import Button from '../common/Button'
 import styled from 'styled-components'
 import data from '../../content/content.json'
+import { useIntl, Link } from "gatsby-plugin-react-intl"
+
 
 const styles = data.styles
 
@@ -177,6 +178,8 @@ const OfficeListItem = styled.li`
 `
 
 const ContactForm = () => {
+    const intl = useIntl();
+
     return (
         <ContactContainer>
             <ContactHeading>Contacto</ContactHeading>

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import data from '../../content/content.json'
 import Tags from '../common/Tags'
 import Button from '../common/Button'
+import { useIntl } from "gatsby-plugin-react-intl"
 
 const styles = data.styles
 
@@ -282,7 +283,9 @@ const Btn = styled(Button)`
 const isHome = true;
 
 const Service = (props) => {
-    const service = props.service
+    const service = props.service;
+    const intl = useIntl();
+
     return (
         <ServiceWrapper> 
             <ImageContainerMobile>
@@ -303,14 +306,14 @@ const Service = (props) => {
                     <Tag tagsType="services" tags={service.tags} styles={props.styles}></Tag>
                 </TagsContainer>
                 
-                <BtnMobile type='btnPrimaryPurple' theme={styles} to={props.href} btnText='ver más'></BtnMobile>
+                <BtnMobile type='btnPrimaryPurple' theme={styles} to={props.href} btnText={intl.formatMessage({id: 'verMas'})}></BtnMobile>
             </LeftBlock>
             <RightBlock>
                 <TextContainer>
-                    <ServiceTitle>{service.service}</ServiceTitle>
-                    <ServiceDescription>{service.description}</ServiceDescription>
+                    <ServiceTitle>{intl.formatMessage({id:`${props.id}.service`})}</ServiceTitle>
+                    <ServiceDescription>{intl.formatMessage({id: `${props.id}.description`})}</ServiceDescription>
                 </TextContainer>
-                <Btn type='btnPrimaryPurple' theme={styles} to={props.href} btnText='ver más'></Btn>
+                <Btn type='btnPrimaryPurple' theme={styles} to={props.href} btnText={intl.formatMessage({id: 'verMas'})}></Btn>
             </RightBlock>
         </ServiceWrapper>
     );

@@ -1,9 +1,11 @@
 import React, {Fragment} from "react"
 import styled from 'styled-components'
 import { styles, homepage } from '../content/content.json'
+import { useIntl, Link } from "gatsby-plugin-react-intl"
 require('../styles/styles.css')
 
 const Index = (props) => {
+  const intl = useIntl();
 
   return (
     <Fragment>

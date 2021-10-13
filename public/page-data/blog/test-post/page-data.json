@@ -1,0 +1,5 @@
+{
+    "componentChunkName": "component---src-pages-markdown-remark-frontmatter-slug-js",
+    "path": "/blog/test-post/",
+    "result": {"data":{"markdownRemark":{"html":"<h2>This is a test post</h2>\n<p>There are also occasions when you may want to source images from a different directory than where your Markdown posts or pages are located, such as in an external /images folder. You can set this up by specifying two distinct sources, one for the pages and the other for images:</p>","frontmatter":{"date":"August 01, 2021","title":"Learning about Gatsby"}}},"pageContext":{"id":"7dd0cfb6-c527-569b-867f-f5912c32ef7a","frontmatter__slug":"/blog/testPost","__params":{"frontmatter__slug":"blog"}}},
+    "staticQueryHashes": ["805671509"]}

@@ -1,6 +1,7 @@
 import React, {Fragment} from "react"
 import styled from 'styled-components'
 import { styles, services } from '../content/content.json'
+import { useIntl } from "gatsby-plugin-react-intl"
 
 import FeaturedService from '../components/modules/FeaturedService'
 import Button from '../components/common/Button'
@@ -75,17 +76,20 @@ const Btn = styled(Button)`
         }
     }}
 `
-const isHome = true;
 const Services = (props) => {
+    const intl = useIntl();
+
       return (
         <MainWrapper>
           <ServicesWrapper>
-            <ServicesTitle>{services.title}</ServicesTitle>
+            <ServicesTitle>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
             <Fragment>
               {services.services.map( (service) =>{
                 return(
                   <Service 
-                    key = { service.image } 
+                    key = {service.id}
+                    image = { service.image } 
+                    id = {service.id}
                     service = { service }
                     styles = { styles }>
                   </Service>
