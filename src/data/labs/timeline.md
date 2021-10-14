@@ -3,6 +3,8 @@ type: "lab"
 title: "Timeline"
 tags: ["Python", "Django Rest Framework", "Postgres", "Google maps API"]
 image: timeline.png
+website: "link pag proyecto (si no hay, dejar en blanco)"
+github: "link github (si no hay, dejar en blanco)"
 
 ---
 

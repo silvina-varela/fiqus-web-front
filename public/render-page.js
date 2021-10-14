@@ -19539,11 +19539,27 @@ const Label = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].label.wi
 })(["font-size:1em;font-weight:", ";margin-bottom:8px;"], styles.fontWeight.bold);
 const FieldContainer = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
   displayName: "ContactForm__FieldContainer"
-})(["position:relative;&::after{content:url(", ");position:absolute;height:20px;width:20px;right:15px;top:10px;@media (min-width:", "px){right:20px;}}"], __webpack_require__(/*! ../../images/icon_form_error.svg */ "./src/images/icon_form_error.svg")["default"], styles.breakpoints.l);
+})(["position:relative;", ""], props => {
+  if (props.error) {
+    return `
+            &::after {
+                content: url(${__webpack_require__(/*! ../../images/icon_form_error.svg */ "./src/images/icon_form_error.svg")["default"]});
+                position: absolute; 
+                height: 20px;
+                width: 20px;
+                right: 15px;
+                top: 10px;
+                @media (min-width: ${styles.breakpoints.l}px) {
+                    right: 20px;
+                }
+            }
+            `;
+  }
+});
 const Field = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].input.withConfig({
   displayName: "ContactForm__Field"
 })(["border:2px solid ", ";border-radius:12px;padding:10px 45px 10px 16px;width:100%;background:", ";font-size:1em;font-family:'Rubik',sans-serif;&::placeholder{color:", ";}@media (min-width:", "px){max-width:20.38em;}"], styles.colors.black, styles.colors.white, styles.colors.ultraLightGrey, styles.breakpoints.l);
-const TextArea = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].textarea.withConfig({
+const TextArea = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].input.withConfig({
   displayName: "ContactForm__TextArea"
 })(["border:2px solid ", ";border-radius:12px;padding:10px 45px 10px 16px;width:100%;background:", ";font-size:1.125em;font-family:'Rubik',sans-serif;height:130px;resize:none;&::placeholder{color:", ";}@media (min-width:", "px){max-width:20.38em;}"], styles.colors.black, styles.colors.white, styles.colors.ultraLightGrey, styles.breakpoints.l);
 const ErrorMessage = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].p.withConfig({
@@ -19573,13 +19589,33 @@ const ContactForm = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: {
       errors
     }
   } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_4__.useForm)();
+  const {
+    0: emailSent,
+    1: setEmailSent
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
 
-  const onSubmit = event => {// add funcionality
+  const onSubmit = data => {
+    setEmailSent(false);
+    console.log(data); // send email
+    // if success
+
+    setEmailSent(true); // if not success 
+    // do something
+    // then() clear form
+
+    reset({
+      nameField: '',
+      emailField: '',
+      textAreaField: ''
+    }, {
+      keepSubmitCount: true,
+      keepIsSubmitted: true
+    });
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContactContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(ContactHeading, null, intl.formatMessage({
@@ -19590,7 +19626,9 @@ const ContactForm = () => {
     htmlFor: "nameField"
   }, intl.formatMessage({
     id: 'contactForm.nameField'
-  }), "* "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FieldContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Field, Object.assign({
+  }), "* "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FieldContainer, {
+    error: errors.nameField
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Field, Object.assign({
     name: "nameField",
     type: "text",
     placeholder: intl.formatMessage({
@@ -19604,7 +19642,9 @@ const ContactForm = () => {
     htmlFor: "emailField"
   }, intl.formatMessage({
     id: 'contactForm.emailField'
-  }), "* "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FieldContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Field, Object.assign({
+  }), "* "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FieldContainer, {
+    error: errors.emailField
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Field, Object.assign({
     name: "emailField",
     type: "email",
     placeholder: intl.formatMessage({
@@ -19618,7 +19658,9 @@ const ContactForm = () => {
     htmlFor: "textAreaField"
   }, intl.formatMessage({
     id: 'contactForm.textAreaField'
-  }), "* "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FieldContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(TextArea, Object.assign({
+  }), "* "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FieldContainer, {
+    error: errors.textAreaField
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(TextArea, Object.assign({
     name: "textAreaField",
     type: "textarea",
     placeholder: intl.formatMessage({
@@ -19634,7 +19676,7 @@ const ContactForm = () => {
       id: 'button.send'
     }),
     onButtonClick: handleSubmit(onSubmit)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FeedbackMessage, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, intl.formatMessage({
+  }), emailSent && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(FeedbackMessage, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, intl.formatMessage({
     id: 'contactForm.messageSent'
   })), " ", intl.formatMessage({
     id: 'contactForm.thankYou'

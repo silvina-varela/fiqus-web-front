@@ -3,6 +3,8 @@ type: "lab"
 title: "CooBS"
 tags: ["Python", "Django", "Postgres"]
 image: coobs.png
+website: ""
+github: "link github (si no hay, dejar en blanco)"
 
 ---
 

@@ -72,6 +72,8 @@ const SuccessCase = (props) => {
     const lab = props.labData
     const intl = useIntl();
 
+    console.log(props)
+
     return (
         <CaseWrapper>
             <LabImage fluid={props.fluidImg}></LabImage>
@@ -82,8 +84,12 @@ const SuccessCase = (props) => {
                 <Tags styles={props.styles} type="labs" tags={lab.frontmatter.tags}></Tags>
             </TagsContainer>
             <BtnContainer>
-                <BtnSite type='btnLabeled' theme={styles} to={props.href} btnText='ver sitio'></BtnSite>
-                <BtnGithub type='btnLabeled' theme={styles} to={props.href} btnText='ir a GitHub' src={require('../../images/icon_github.svg').default}></BtnGithub>
+                { props.labData.frontmatter.website && 
+                    <BtnSite type='btnLabeled' theme={styles} to={props.href} btnText='ver sitio'></BtnSite>
+                }
+                { props.labData.frontmatter.github && 
+                    <BtnGithub type='btnLabeled' theme={styles} to={props.href} btnText='ir a GitHub' src={require('../../images/icon_github.svg').default}></BtnGithub>
+                }
             </BtnContainer>
         </CaseWrapper>
     );

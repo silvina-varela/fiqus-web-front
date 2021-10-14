@@ -3,6 +3,8 @@ type: "lab"
 title: "Surgex"
 tags: ["Elixir", "Phoenix", "Postgres", "VueJS"]
 image: surgex.png
+website: "link pag proyecto (si no hay, dejar en blanco)"
+github: "link github (si no hay, dejar en blanco)"
 
 ---
 
