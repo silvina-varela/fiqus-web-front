@@ -32,8 +32,9 @@ const Labs = ({data: {allMarkdownRemark: { edges }}}) => {
       <SectionHeader 
         section="labs"
         title={intl.formatMessage({id: 'labs.title'})}
-        subttitle={intl.formatMessage({id: 'labs.subttitle'})}
+        subtitle={intl.formatMessage({id: 'labs.subtitle'})}
         description={intl.formatMessage({id: 'labs.content'})}
+        type='labs'
       />
       <PostsContainer>{Labs}</PostsContainer>
     
