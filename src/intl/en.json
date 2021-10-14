@@ -27,11 +27,11 @@
         "sedes": "Sedes"
     },
     "services": {
-        "title": "Services"
+        "title": "Services",
+        "tagsTitle": "Tecnologías"
     }, 
     "service_datos":  {
         "service":"Ciencia de Datos",
-        "pipino":"Inteligencia Artificial",
         "description":"Este área se dedica a la limpieza, extracción y análisis de datos con el fin de poder servir de alimento para procesos de Inteligencia Artificial o Aprendizaje Automático. Es de esencial importancia procesar los datos para lograr que sean de fácil entendimiento, así como su uso para llegar a los objetivos planteados.",
         "tags" : [
             "Python",
@@ -44,7 +44,6 @@
     "service_inteligenciaArtificial" :
     {
         "service":"Inteligencia Artificial",
-        "pipino":"Inteligencia Artificial",
         "description":"El Aprendizaje Automático es un subcampo de la Inteligencia Artificial en el que se tiene como objetivo que las \"computadoras aprendan\". A partir de datos recolectados y procesados, diseñamos, construimos y entrenamos modelos que nos permitan predecir eventos futuros, clasificar imágenes, reconocer entidades en textos y muchas otras cosas más.",
         "tags" : [
             "Python",
@@ -56,7 +55,6 @@
     },
     "service_altaConcurrencia": {
         "service":"Alta Concurrencia",
-        "pipino":"Inteligencia Artificial",
         "description":"Utilizamos lenguajes de programación funcional en tiempo real y muy adoptados en el mercado, que soportan niveles de altísima concurrencia y distribución, teniendo como resultado sistemas que responden a gran velocidad ante altas demandas.",
         "tags" : [
             "Earlang",
@@ -68,7 +66,6 @@
     },
     "service_blockchain" : {
         "service":"Blockchain | Fintech",
-        "pipino":"Inteligencia Artificial",
         "description":"Estamos desarrollando fintech, que son las nuevas aplicaciones, procesos, productos o modelos de negocios en la industria de los servicios financieros compuestos de uno o más servicios financieros complementarios y puestos a disposición del público vía Internet.",
         "tags" : [
             "Python",
@@ -78,7 +75,6 @@
     },
     "service_fullstack": {
         "service":"Fullstack",
-        "pipino":"Inteligencia Artificial",
         "description":"Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.",
         "tags" : [
             "Django",

@@ -287,7 +287,7 @@ const Service = (props) => {
                     </ServiceImage>
                 </ImageContainer>
                 <TagsContainer isHome={props.isHome}>
-                    <TagsTitle>{intl.formatMessage({id:`${props.id}.service`})}</TagsTitle>
+                    <TagsTitle>{intl.formatMessage({id: "services.tagsTitle"})}</TagsTitle>
                     <Tag tagsType="services" tags={service.tags} styles={props.styles}></Tag>
                 </TagsContainer>
                 
