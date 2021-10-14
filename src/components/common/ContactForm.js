@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from '../common/Button'
 import styled from 'styled-components'
 import data from '../../content/content.json'
 import { useIntl, Link } from "gatsby-plugin-react-intl"
+import { useForm } from "react-hook-form";
 
 
 const styles = data.styles
@@ -78,17 +79,24 @@ const Label = styled.label`
 
 const FieldContainer = styled.div`
     position: relative;
-    &::after {
-        content: url(${require('../../images/icon_form_error.svg').default});
-        position: absolute; 
-        height: 20px;
-        width: 20px;
-        right: 15px;
-        top: 10px;
-        @media (min-width: ${styles.breakpoints.l}px) {
-            right: 20px;
+    ${props => {
+        if (props.error) {
+            return `
+            &::after {
+                content: url(${require('../../images/icon_form_error.svg').default});
+                position: absolute; 
+                height: 20px;
+                width: 20px;
+                right: 15px;
+                top: 10px;
+                @media (min-width: ${styles.breakpoints.l}px) {
+                    right: 20px;
+                }
+            }
+            `
         }
-    }
+    }}
+    
 `
 
 const Field= styled.input`
@@ -106,7 +114,7 @@ const Field= styled.input`
         max-width: 20.38em;
     }
 `
-const TextArea= styled.textarea`
+const TextArea= styled.input`
     border: 2px solid ${styles.colors.black};
     border-radius: 12px;
     padding: 10px 45px 10px 16px;
@@ -178,40 +186,79 @@ const OfficeListItem = styled.li`
 
 const ContactForm = () => {
     const intl = useIntl();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const [emailSent, setEmailSent] = useState(false);
 
-    const sendForm = (event) => {
-        // add funcionality
+    const onSubmit = (data) => {
+        setEmailSent(false);
+
+        console.log(data);
+        // send email
+        // if success
+            setEmailSent(true);
+        // if not success 
+            // do something
+
+        // then() clear form
+        reset({
+            nameField: '',
+            emailField: '',
+            textAreaField: ''
+        }, {
+            keepSubmitCount: true,
+            keepIsSubmitted: true
+        });
+
     }
 
     return (
         <ContactContainer>
             <ContactHeading>{intl.formatMessage({id: 'contactForm.title'})}</ContactHeading>
             <ContactFormBlock>
-                <Form>
+                <Form onSubmit={handleSubmit(onSubmit)}  >
                     <FormGroup>
                         <Label htmlFor="nameField">{intl.formatMessage({id: 'contactForm.nameField'})}* </Label>
-                        <FieldContainer>
-                            <Field name="nameField" type="text" placeholder={intl.formatMessage({id: 'contactForm.nameField'})} />
+                        <FieldContainer error={errors.nameField}>
+                            <Field 
+                                name="nameField" 
+                                type="text" 
+                                placeholder={intl.formatMessage({id: 'contactForm.nameField'})} 
+                                {...register("nameField", { required: true })} />
                         </FieldContainer>
-                        <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
+                        {errors.nameField && 
+                            <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
+                        }
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor="emailField">{intl.formatMessage({id: 'contactForm.emailField'})}* </Label>
-                        <FieldContainer>
-                            <Field name="emailField" type="email" placeholder={intl.formatMessage({id: 'contactForm.emailField'})} />
+                        <FieldContainer error={errors.emailField}>
+                            <Field 
+                                name="emailField" 
+                                type="email" 
+                                placeholder={intl.formatMessage({id: 'contactForm.emailField'})} 
+                                {...register("emailField", { required: true })}/>
                         </FieldContainer>
-                        <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
+                        {errors.emailField && 
+                            <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
+                        }
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor="textAreaField">{intl.formatMessage({id: 'contactForm.textAreaField'})}* </Label>
-                        <FieldContainer>
-                            <TextArea name="textAreaField" type="textarea" placeholder={intl.formatMessage({id: 'contactForm.textAreaField'})}  />
+                        <FieldContainer error={errors.textAreaField}>
+                            <TextArea 
+                                name="textAreaField" 
+                                type="textarea" 
+                                placeholder={intl.formatMessage({id: 'contactForm.textAreaField'})}  
+                                {...register("textAreaField", { required: true })}/>
                         </FieldContainer>
-                        <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
-                    </FormGroup>
+                        {errors.textAreaField && 
+                            <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
+                        }                    </FormGroup>
                     <FormGroup>
-                        <Button theme={styles} btnText={intl.formatMessage({id: 'button.send'})} onButtonClick={(e) => {sendForm(e)}}></Button>
-                        <FeedbackMessage><span>{intl.formatMessage({id: 'contactForm.messageSent'})}</span> {intl.formatMessage({id: 'contactForm.thankYou'})}</FeedbackMessage>
+                        <Button theme={styles} btnText={intl.formatMessage({id: 'button.send'})} onButtonClick={handleSubmit(onSubmit)}></Button>
+                        {emailSent &&
+                            <FeedbackMessage><span>{intl.formatMessage({id: 'contactForm.messageSent'})}</span> {intl.formatMessage({id: 'contactForm.thankYou'})}</FeedbackMessage>
+                        }
                     </FormGroup>
                 </Form>
             </ContactFormBlock>
