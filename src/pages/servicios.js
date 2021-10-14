@@ -54,40 +54,21 @@ const ServicesTitle = styled.h1`
   }
 
 `
-// estos estilos deberían estar adentro de button como una opcion posible de estilos
-// acá, si hay estilos, deberian ser solo cosas excepcionales
+
 const Btn = styled(Button)`
-    margin: 0 6px 8px 0px;
-    padding: 9px 20px;
-    font-size: 18px;
-    border-radius: 12px;
-    border-color: ${styles.colors.purplePrimary};
-    border-width: 2px!important;
-    border-style: solid;
-    box-shadow:  0px 4px 0px ${styles.colors.transparent};
-    transition: 100ms ease-in-out all;
-    margin-bottom: 10px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1em;
-    font-weight: ${styles.fontWeight.bold};
-    color: ${styles.colors.white};
-    background-color: ${styles.colors.orangeMain};
-    border-color: ${styles.colors.darkMainBg};
-    box-shadow:  0px 4px 0px ${styles.colors.darkMainBg};
-    max-width: max-content;
-    &:hover {
-        box-shadow: none;
-    }
-    margin-top: auto;
     display: none;
     margin: 34px auto 71px auto;
+    width: max-content;
     @media (min-width: ${styles.breakpoints.m}px) {
-        margin-top: 46px;
-        margin: 0 auto;
+      margin: 50px auto 18px auto;
     }
+    ${props => {
+        if (props.isHome) {
+            return ` 
+            display: flex;
+            `
+        }
+    }}
 `
 
 const Services = (props) => {
