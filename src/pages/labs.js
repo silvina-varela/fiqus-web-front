@@ -9,10 +9,10 @@ import {styles, labs} from '../content/content.json'
 const PostsContainer = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
-  gap: 36px;
   justify-content: center;
   @media (min-width: ${styles.breakpoints.m}px) {
-    justify-content: flex-start
+    justify-content: flex-start;
+    gap: 36px;
   };
 `
 

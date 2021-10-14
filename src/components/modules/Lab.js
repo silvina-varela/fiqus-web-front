@@ -54,18 +54,34 @@ const TagsContainer =  styled.div`
     margin-bottom: 20px;
     border-bottom: 2px solid ${styles.colors.greenLight};
     @media (min-width: ${styles.breakpoints.l}px) {
-        padding-bottom: 14px;
+        padding-bottom: 13px;
     }
 `
 const BtnContainer =  styled.div`
     display: flex;
-    a {
-        font-size: .88em;
-    }
 `
 const BtnGithub =  styled(Button)`
+    button {
+        font-size: .88em;
+        margin: 0;
+    }
+    @media (min-width: ${styles.breakpoints.m}px) {
+        button {
+            font-size: 1em;
+        }
+    }
 `
 const BtnSite =  styled(Button)`
+    margin-right: 10px;
+    button {
+        font-size: .88em;
+        margin: 0;
+    }
+    @media (min-width: ${styles.breakpoints.m}px) {
+        button {
+            font-size: 1em;
+        }
+    }
 `
 
 const SuccessCase = (props) => {
@@ -85,10 +101,10 @@ const SuccessCase = (props) => {
             </TagsContainer>
             <BtnContainer>
                 { props.labData.frontmatter.website && 
-                    <BtnSite type='btnLabeled' theme={styles} to={props.href} btnText='ver sitio'></BtnSite>
+                    <BtnSite type='btnLabeled' theme={styles} to={props.labData.frontmatter.website} btnText='ver sitio'></BtnSite>
                 }
                 { props.labData.frontmatter.github && 
-                    <BtnGithub type='btnLabeled' theme={styles} to={props.href} btnText='ir a GitHub' src={require('../../images/icon_github.svg').default}></BtnGithub>
+                    <BtnGithub type='btnLabeled' theme={styles} to={props.labData.frontmatter.github} btnText='ir a GitHub' src={require('../../images/icon_github.svg').default}></BtnGithub>
                 }
             </BtnContainer>
         </CaseWrapper>

@@ -27,7 +27,8 @@
         "sedes": "Sedes"
     },
     "services": {
-        "title": "Services"
+        "title": "Services",
+        "tagsTitle": "Tecnologías"
     }, 
     "service_datos":  {
         "service":"Ciencia de Datos",
