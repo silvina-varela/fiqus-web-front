@@ -12,21 +12,30 @@ const ServiceWrapper = styled.div`
     border-radius: 14px;
     display: flex;
     flex-direction: column;
-    max-width: 946px;
-    padding: 30px 25px 27px 25px;
+    //flex-wrap: wrap;
+    max-width: 320px;
+    padding: 38px 20px;
     margin-top: 0px;
     margin-bottom: 30px;
     margin-left: auto;
     margin-right: auto;
+    min-width: unset;
+    //max-width: unset;   
+    flex-basis: 100%;
     &:last-of-type {
         margin-bottom: 61px;
+        ${props => {
+            if (props.isHome) {
+                return ` 
+                margin-bottom: 30px;
+                `
+            }
+        }}
     }
-    min-width: unset;
-    max-width: unset;   
-    flex-basis: 100%;
     @media (min-width: ${styles.breakpoints.m}px) {
         flex-direction: row;
         padding: 30px 45px 30px 67px;
+        max-width: 946px;
         &:last-of-type {
             margin-bottom: 87px;
         }
@@ -37,17 +46,21 @@ const ServiceWrapper = styled.div`
             return `
             display: flex!important;   
             flex-direction: column!important;
-            max-width: 330px;
+            padding: 30px 20px;
             @media (min-width: ${styles.breakpoints.m}px) {
-                min-width: 330px;
-                margin-bottom: 30px;   
-                
+                min-width: 330px;                
                 margin-bottom: 50px;
+                padding: 30px 20px;
                 &:last-of-type {
-                    margin-bottom: 50px;
+                    margin-bottom: 0px;
                 }
                 min-width: unset;
-                max-width: 330px;
+                max-width: 330px; 
+                flex-basis: 50%;
+                margin: 0;
+                @media (min-width: ${styles.breakpoints.l}px) {
+                    flex-basis: 33.33%;
+                }
             }
             `
         }
@@ -183,6 +196,8 @@ const ImageContainerMobile = styled.div`
     margin: auto;
     order: 1;
     display: flex;
+    margin-bottom: 0px;
+    margin-top: 0;
     @media (min-width: ${styles.breakpoints.m}px) {
         display: none;
         order: unset;
@@ -195,6 +210,10 @@ const ImageContainerMobile = styled.div`
 `
 const ServiceImage = styled.object`
     width: 100%;
+    max-height: 130px;
+    @media (min-width: ${styles.breakpoints.m}px) {
+        max-height: 150px;
+    }
     ${props => {
         if (props.isHome) {
             return `
@@ -209,9 +228,18 @@ const BtnMobile = styled(Button)`
         display: none;
         display: flex;
         margin-left: 0;
+        // Este componente no se muestra porque todavía no está lista la landing page decada servicio
+        display: none;
     @media (min-width: ${styles.breakpoints.m}px) {
         display: none;
     }
+    ${props => {
+        if (props.isHome) {
+            return ` 
+            display: none;
+            `
+        }
+    }}
 `
 const Btn = styled(Button)`
     display: none;
@@ -219,6 +247,8 @@ const Btn = styled(Button)`
         margin-top: auto!important;
         margin-bottom: 35px;
         display: flex;
+        // Este componente no se muestra porque todavía no está lista la landing page decada servicio
+        display: none;
         ${props => {
             if (props.isHome) {
                 return ` 
@@ -257,11 +287,11 @@ const Service = (props) => {
                     </ServiceImage>
                 </ImageContainer>
                 <TagsContainer isHome={props.isHome}>
-                    <TagsTitle>{service.tagsTitle}</TagsTitle>
+                    <TagsTitle>{intl.formatMessage({id:`${props.id}.service`})}</TagsTitle>
                     <Tag tagsType="services" tags={service.tags} styles={props.styles}></Tag>
                 </TagsContainer>
                 
-                <BtnMobile type='btnPrimaryPurple' theme={styles} to={props.href} btnText={intl.formatMessage({id: 'verMas'})}></BtnMobile>
+                <BtnMobile type='btnPrimaryPurple' theme={styles} to={props.href} btnText={intl.formatMessage({id: 'verMas'})} isHome={props.isHome}></BtnMobile>
             </LeftBlock>
             <RightBlock isHome={props.isHome}>
                 <TextContainer>

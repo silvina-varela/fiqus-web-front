@@ -15,6 +15,23 @@ const ServicesWrapper = styled.div`
     justify-content: space-between;
     max-width: 946px;
     margin: auto;
+    ${props => {
+        if (props.isHome) {
+            return ` 
+            display: inline-flex;
+            max-width: unset;
+            flex-wrap: wrap;
+            justify-content: center;
+            @media (min-width: ${styles.breakpoints.m}px) {
+                justify-content: center;
+                gap: 36px;
+            }
+            @media (min-width: ${styles.breakpoints.xl}px) {
+                justify-content: flex-start;
+            }
+            `
+        }
+    }}
     }
 `
 const ServicesTitle = styled.h1`
@@ -27,8 +44,15 @@ const ServicesTitle = styled.h1`
     text-align: left;
     font-size: 3.55em;    
     margin-bottom: 39px;
-
+    ${props => {
+        if (props.isHome) {
+            return ` 
+            text-align: center;
+            `
+        }
+    }}
   }
+
 `
 // estos estilos deberían estar adentro de button como una opcion posible de estilos
 // acá, si hay estilos, deberian ser solo cosas excepcionales
@@ -71,8 +95,8 @@ const Services = (props) => {
 
       return (
         <MainWrapper>
-          <ServicesWrapper>
-            <ServicesTitle>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
+          <ServicesWrapper isHome={props.isHome}>
+            <ServicesTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
             <Fragment>
               {services.services.map( (service) =>{
                 return(
