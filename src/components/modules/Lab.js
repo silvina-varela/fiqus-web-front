@@ -59,13 +59,29 @@ const TagsContainer =  styled.div`
 `
 const BtnContainer =  styled.div`
     display: flex;
-    a {
-        font-size: .88em;
-    }
 `
 const BtnGithub =  styled(Button)`
+    button {
+        font-size: .88em;
+        margin: 0;
+    }
+    @media (min-width: ${styles.breakpoints.m}px) {
+        button {
+            font-size: 1em;
+        }
+    }
 `
 const BtnSite =  styled(Button)`
+    margin-right: 10px;
+    button {
+        font-size: .88em;
+        margin: 0;
+    }
+    @media (min-width: ${styles.breakpoints.m}px) {
+        button {
+            font-size: 1em;
+        }
+    }
 `
 
 const SuccessCase = (props) => {
@@ -83,7 +99,7 @@ const SuccessCase = (props) => {
             </TagsContainer>
             <BtnContainer>
                 <BtnSite type='btnLabeled' theme={styles} to={props.href} btnText='ver sitio'></BtnSite>
-                <BtnGithub type='btnLabeled' theme={styles} to={props.href} btnText='ir a GitHub' src={require('../../images/icon_github.svg').default}></BtnGithub>
+                <BtnGithub type='btnLabeled' github={true} theme={styles} to={props.href} btnText='ir a GitHub' src={require('../../images/icon_github.svg').default}></BtnGithub>
             </BtnContainer>
         </CaseWrapper>
     );
