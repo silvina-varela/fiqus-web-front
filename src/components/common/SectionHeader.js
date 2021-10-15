@@ -69,7 +69,13 @@ const ImageContainer = styled.div`
         display: block;
         flex-basis: 50%;
         max-width: 463px;
+        ${props => {
+            if (props.section === 'cultura') {
+                return  `max-width: 429px;`
+            }
+        }}
     }
+    
 `
 const SectionHeaderSubtitle = styled.p`
     font-size: 1.44em;
@@ -110,7 +116,8 @@ const SectionHeaderImg = styled.img`
     
     ${props => {
         if (props.section === 'cultura') {
-            return  `margin-top: 0;`
+            return  `margin-top: 0;
+            max-width: 429px;`
         }
     }}
 `
@@ -160,7 +167,7 @@ const SectionHeader = (props) => {
                     <SectionHeaderSubtitle section={props.section} type={getHeadStyles(props.section)}>{props.subtitle}</SectionHeaderSubtitle>
                     <SectionHeaderDescription type={getHeadStyles(props.section)}> {props.description} </SectionHeaderDescription>
                 </InfoContainer>
-                <ImageContainer>
+                <ImageContainer section={props.section}>
                     <SectionHeaderImg section={props.section} src={getHeadStyles(props.section).image.default}></SectionHeaderImg>
                 </ImageContainer>
             </HeaderWrapper>

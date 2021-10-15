@@ -118,7 +118,7 @@ const SectionHeaderSpan = styled.span`
 `
 const SectionHeaderImg = styled.img`
     max-width: 463px;
-    margin-top: 83px;
+    //margin-top: 83px;
             
     // Home styles
     width: 100%;

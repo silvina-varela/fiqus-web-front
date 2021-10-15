@@ -4,6 +4,9 @@ import data from '../../content/content.json'
 
 const styles = data.styles
 
+const FeaturedServiceContainer = styled.div`
+    background: white;
+`
 const FeaturedServiceWrapper = styled.div`
     position: relative;
     display: flex;
@@ -193,17 +196,19 @@ const ServiceDescription = styled.p`
 const FeaturedService = (props) => {
     const service = props.service
     return (
-        <FeaturedServiceWrapper isHome={props.isHome}> 
-            <ImageContainer isHome={props.isHome}>
-                <ServiceImage isHome={props.isHome}
-                    src={require(`../../images/illustrations/capacitacion.svg`).default}> 
-                </ServiceImage>
-            </ImageContainer>
-            <InfoContainer isHome={props.isHome}>
-                    <ServiceTitle isHome={props.isHome}>Capacitación</ServiceTitle>
-                    <ServiceDescription isHome={props.isHome}>Realizamos capacitaciones técnicas y/o de cooperativismo para organizaciones, cooperativas y empresas donde buscamos transmitir de forma amena y sistematizada los conocimientos adquiridos en el ámbito tecnológico y cooperativo.</ServiceDescription>
-            </InfoContainer>
-        </FeaturedServiceWrapper>
+        <FeaturedServiceContainer isHome={props.isHome}> 
+            <FeaturedServiceWrapper isHome={props.isHome}> 
+                <ImageContainer isHome={props.isHome}>
+                    <ServiceImage isHome={props.isHome}
+                        src={require(`../../images/illustrations/capacitacion.svg`).default}> 
+                    </ServiceImage>
+                </ImageContainer>
+                <InfoContainer isHome={props.isHome}>
+                        <ServiceTitle isHome={props.isHome}>Capacitación</ServiceTitle>
+                        <ServiceDescription isHome={props.isHome}>Realizamos capacitaciones técnicas y/o de cooperativismo para organizaciones, cooperativas y empresas donde buscamos transmitir de forma amena y sistematizada los conocimientos adquiridos en el ámbito tecnológico y cooperativo.</ServiceDescription>
+                </InfoContainer>
+            </FeaturedServiceWrapper>
+        </FeaturedServiceContainer>
     );
 };
 

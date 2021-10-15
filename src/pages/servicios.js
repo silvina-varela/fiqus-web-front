@@ -9,11 +9,14 @@ import Service from '../components/modules/Service'
 
 const MainWrapper = styled.div`
 `
+const ServicesContainer = styled.div`
+  background-color: ${styles.colors.purpleLight};
+`
 const ServicesWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     max-width: 946px;
+    justify-content: space-between;
     margin: auto;
     ${props => {
         if (props.isHome) {
@@ -76,26 +79,28 @@ const Services = (props) => {
 
       return (
         <MainWrapper>
-          <ServicesWrapper isHome={props.isHome}>
-            <ServicesTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
-            <Fragment>
-              {services.services.map( (service) =>{
-                return(
-                  <Service 
-                    isHome={props.isHome}
-                    key = {service.id}
-                    image = { service.image } 
-                    id = {service.id}
-                    service = { service }
-                    styles = { styles }>
-                  </Service>
-                )
-              }) }
-            </Fragment>
-            {props.isHome && 
-              <Btn type='btnPrimaryOrange' theme={styles} to={props.href} btnText='ir a servicios'></Btn>
-            }
-          </ServicesWrapper>
+          <ServicesContainer isHome={props.isHome}>
+            <ServicesWrapper isHome={props.isHome}>
+              <ServicesTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
+              <Fragment>
+                {services.services.map( (service) =>{
+                  return(
+                    <Service 
+                      isHome={props.isHome}
+                      key = {service.id}
+                      image = { service.image } 
+                      id = {service.id}
+                      service = { service }
+                      styles = { styles }>
+                    </Service>
+                  )
+                }) }
+              </Fragment>
+              {props.isHome && 
+                <Btn type='btnPrimaryOrange' theme={styles} to={props.href} btnText='ir a servicios'></Btn>
+              }
+            </ServicesWrapper>
+          </ServicesContainer>
           <FeaturedService />
         </MainWrapper>
       );
