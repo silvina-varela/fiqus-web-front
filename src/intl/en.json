@@ -16,6 +16,7 @@
         "send": "send"
     },
     "verMas": "view more",
+    "verMasArticulos": "ver todos los artículos",
     "contactForm": {
         "title": "Contacto",
         "nameField": "Nombre",
