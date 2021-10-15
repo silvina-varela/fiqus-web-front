@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Lab from "../components/modules/Lab"
 import { useIntl, Link } from "gatsby-plugin-react-intl"
 import SectionHeader from "../components/common/SectionHeader"
-import {styles, labs} from '../content/content.json'
+import {styles} from '../content/content.json'
 
 const PostsContainer = styled.div`
   display: inline-flex;
