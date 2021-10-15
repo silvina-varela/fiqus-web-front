@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Lab from "../components/modules/Lab"
 import { useIntl, Link } from "gatsby-plugin-react-intl"
 import SectionHeader from "../components/common/SectionHeader"
-import {styles, labs} from '../content/content.json'
+import {styles} from '../content/content.json'
 
 const PostsMainContainer = styled.div`
   display: flex;
@@ -42,10 +42,15 @@ const Labs = ({data: {allMarkdownRemark: { edges }}}) => {
   const Labs = edges.map( 
     edge => {
       const fluidImg = edge.node.frontmatter.image.childImageSharp.fluid 
-      //console.log(fluidImg)
-      return(
-        <Lab fluidImg={fluidImg} styles={styles} labData={edge.node}></Lab>
-  )})
+      const english = edge.node.frontmatter.english;
+
+      if ( (english && intl.locale == 'en') || (!english && intl.locale == 'es')) {
+        return(
+          <Lab fluidImg={fluidImg} styles={styles} labData={edge.node}></Lab>
+        )
+      }      
+    }
+  )
   
   return ( 
     <Fragment>
@@ -81,6 +86,7 @@ export const pageQuery = graphql`
           frontmatter {
             type
             date(formatString: "MMMM DD, YYYY")
+            id
             title
             tags
             image{
@@ -91,7 +97,8 @@ export const pageQuery = graphql`
               }
             }
             website
-            github  
+            github
+            english
           }
         }
       }
