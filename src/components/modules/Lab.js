@@ -13,8 +13,14 @@ const CaseWrapper = styled.div`
     margin-bottom: 60px;
     max-width: 351px;
     flex-basis: 100%;
+    &:last-of-type {
+        margin-bottom: 96px;
+    }
     @media (min-width: ${styles.breakpoints.l}px) {
         flex-basis: 33%;
+        &:last-of-type {
+            margin-bottom: 75px;
+        }
     }
 ` 
 
@@ -28,6 +34,7 @@ const LabImage = styled(Img)`
 `
 const LabTitle = styled.h3`
     font-size: 2.11em;
+    line-height: 42px;
     color: ${styles.colors.greenMain};
     margin-bottom: 15px;    
 `
@@ -36,18 +43,17 @@ const LabDescription =styled.p`
     line-height: 1.22em;
     padding-bottom: 22px;
     margin-bottom: 20px;
+    color: ${styles.colors.darkMainBg};
     border-bottom: 2px solid ${styles.colors.greenLight};
     @media (min-width: ${styles.breakpoints.l}px) {
         line-height: 1.44em;
     }
 `
 const TagsTitle = styled.h4`
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-size: .88em;
     font-weight: ${styles.fontWeight.medium};
-    @media (min-width: ${styles.breakpoints.l}px) {
-        margin-bottom: 21px;
-    }
+    color: ${styles.colors.ultraDarkGrey};
 `
 const TagsContainer =  styled.div`
     padding-bottom: 16px;

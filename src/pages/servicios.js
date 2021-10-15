@@ -11,6 +11,26 @@ const MainWrapper = styled.div`
 `
 const ServicesContainer = styled.div`
   background-color: ${styles.colors.purpleLight};
+  padding: 48px 20px 200px 20px;
+  ${props => {
+    if (props.isHome) {
+        return `
+        padding-bottom: 105px;
+        `
+    }
+  }}
+  @media (min-width: ${styles.breakpoints.m}px) {
+    padding-top: 55px;
+    padding-bottom: 155px;
+    ${props => {
+      if (props.isHome) {
+          return `
+          padding-top: 70px;
+          padding-bottom: 220px;
+          `
+      }
+    }}
+  }
 `
 const ServicesWrapper = styled.div`
     display: flex;
@@ -41,12 +61,12 @@ const ServicesTitle = styled.h1`
   flex-basis: 100%;
   font-size: 2.38em;
   color: ${styles.colors.purplePrimary};
-  margin: 0 auto 38px auto;
+  margin: 0 auto 30px auto;
   text-align: center;
   @media (min-width: ${styles.breakpoints.m}px) {
     text-align: left;
     font-size: 3.55em;    
-    margin-bottom: 39px;
+    margin-bottom: 50px;
     ${props => {
         if (props.isHome) {
             return ` 
@@ -60,18 +80,26 @@ const ServicesTitle = styled.h1`
 
 const Btn = styled(Button)`
     display: none;
-    margin: 34px auto 71px auto;
     width: max-content;
-    @media (min-width: ${styles.breakpoints.m}px) {
-      margin: 50px auto 18px auto;
-    }
     ${props => {
+      if (props.isHome) {
+          return `
+          display: flex;
+          margin: 35px auto 67px auto;
+          `
+      }
+    }}
+    @media (min-width: ${styles.breakpoints.m}px) {
+      display: none;
+      ${props => {
         if (props.isHome) {
-            return ` 
+            return `
             display: flex;
+            margin: 50px auto 15px auto;
             `
         }
-    }}
+      }}
+    }
 `
 
 const Services = (props) => {
@@ -79,7 +107,7 @@ const Services = (props) => {
 
       return (
         <MainWrapper>
-          <ServicesContainer isHome={props.isHome}>
+          <ServicesContainer isHome={true}>
             <ServicesWrapper isHome={props.isHome}>
               <ServicesTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
               <Fragment>

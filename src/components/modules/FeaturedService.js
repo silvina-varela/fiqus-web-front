@@ -5,16 +5,25 @@ import data from '../../content/content.json'
 const styles = data.styles
 
 const FeaturedServiceContainer = styled.div`
-    background: white;
+    background: ${styles.colors.white};
+    position: relative;
+    min-height: 450px;
+    @media (min-width: ${styles.breakpoints.m}px) {
+        padding: 0 20px
+    }
 `
 const FeaturedServiceWrapper = styled.div`
     position: relative;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto; 
+    margin-top: -200px;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     max-width: 320px;
-    margin: auto;
     padding: 46px 22px 33px 22px;
     background: ${styles.colors.white};
     border: 2px solid ${styles.colors.purplePrimary};
@@ -22,10 +31,12 @@ const FeaturedServiceWrapper = styled.div`
     box-shadow: 0px 6px 0px ${styles.colors.purplePrimary};
     @media (min-width: ${styles.breakpoints.m}px) {
         max-width: 946px;
+        width: calc(100% - 40px);
         flex-direction: row;
-        align-items: flex-start;
+        align-items: flex-start;;
         margin: 87px auto 80px auto;
-        padding: 30px 20px;
+        margin-top: -155px;
+        padding: 0;
         background: ${styles.colors.transparent};
         border: 0;
         box-shadow: none;
@@ -108,10 +119,10 @@ const ServiceImage = styled.img`
 `
 const InfoContainer = styled.div`
     width: unset;
+    right: 0;
     @media (min-width: ${styles.breakpoints.m}px) {
         position: absolute;
         top: 65px;
-        right: 0;
         z-index: 2;
         width: 65%;
         max-width: 600px;
@@ -123,6 +134,7 @@ const InfoContainer = styled.div`
     @media (min-width: ${styles.breakpoints.l}px) {
         width: unset;
         padding: 49px 47px 44px 86px;
+        box-shadow: 12px 12px 0px ${styles.colors.purplePrimary};
     }
     ${props => {
         if (props.isHome) {

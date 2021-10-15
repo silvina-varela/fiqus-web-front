@@ -16,37 +16,27 @@ const setSharedStyles = (type) => {
         box-shadow:  0px 4px 0px ${type.boxShadow};
     `
 } 
-
-
-
 const HeaderContainer = styled.div`
     background: ${styles.colors.greenLight};
-    padding-bottom: 80px;
     display: flex; 
     justify-content: center;
-    padding-top: 100px;
-    margin-bottom: 30px;
-    @media (min-width: ${styles.breakpoints.m}px) {
-        margin-bottom: 52px;
-    }
-    
-    // Home styles
+    padding: 48px 20px 55px 20px;
     background: ${styles.colors.purplePrimary};
-    padding-bottom: 50px;
+    @media (min-width: ${styles.breakpoints.m}px) {
+        padding-top: 75px;
+        padding-bottom: 80px;
+    }
 `
 const HeaderWrapper = styled.div`
-    max-width: 946px;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 1083px;
     @media (min-width: ${styles.breakpoints.m}px) {
         flex-direction: row;        
         align-items: center;
-        justify-content: space-between;
-        
-    }
-    
-    width: 100%;
-    max-width: 1083px;
+        justify-content: space-between;        
+    }    
 `
 const InfoContainer = styled.div`
     display: flex;
@@ -58,9 +48,8 @@ const InfoContainer = styled.div`
     @media (min-width: ${styles.breakpoints.m}px) {
         flex-basis: 50%;
         align-items: flex-start;
-        margin: 0;
-
         max-width: 560px;
+        margin: 0;
         margin-right: auto;
     }
 `
@@ -69,27 +58,25 @@ const ImageContainer = styled.div`
     @media (min-width: ${styles.breakpoints.m}px) {
         display: block;
         flex-basis: 50%;
-        
-        max-width: 411px;
+        max-width: 380px;
         margin-left: auto;
     }
+    @media (min-width: ${styles.breakpoints.l}px) {
+        max-width: 411px;
+    }
 `
-
 const SectionHeaderDescription = styled.p`
-    font-size: 1em;
-    line-height: 26px;
-    font-weight: ${styles.fontWeight.regular};
-    color: ${styles.colors.darkMainBg};
-    
-    // Culture styles
-    color: ${styles.colors.purplePrimary};
-    
-    // Home styles
-    color: ${styles.colors.white};
     font-size: 1.44em;
+    font-weight: ${styles.fontWeight.regular};    
     line-height: 34px;
     text-align: center;
+    color: ${styles.colors.white};
     @media (min-width: ${styles.breakpoints.m}px) {
+        font-size: 2em;
+        line-height: 42px;
+        text-align: left;
+    }
+    @media (min-width: ${styles.breakpoints.l}px) {
         font-size: 2.38em;
         line-height: 49px;
         text-align: left;
@@ -105,39 +92,44 @@ const SectionHeaderUnderlineSpan = styled.span`
         bottom: -8px;
     }
     @media (min-width: ${styles.breakpoints.m}px) {
-        // Home styles
+        font-size: 2rem;
+        &::before {
+            content: url("${require('../../images/orange_underline_desktop.svg').default}");
+            left: unset;
+            right: -5px;
+            bottom: -12px;
+        }
+    }
+    @media (min-width: ${styles.breakpoints.l}px) {
         font-size: 2.38rem;
+        &::before {
+            left: unset;
+            right: -10px;
+            bottom: -12px;
+        }
     }
 `
 const SectionHeaderSpan = styled.span`
     font-weight: ${styles.fontWeight.bold};
     @media (min-width: ${styles.breakpoints.m}px) {
-        // Home styles
+        font-size: 2rem;
+    }
+    @media (min-width: ${styles.breakpoints.l}px) {
         font-size: 2.38rem;
     }
 `
 const SectionHeaderImg = styled.img`
-    max-width: 463px;
-    //margin-top: 83px;
-            
-    // Home styles
     width: 100%;
     max-width: 411px;
 `
 const SectionHeaderImgMobile = styled.img`
     width: 100%;
-    max-width: 320px;
-    margin-bottom: 30px;
+    max-width: 249px;
+    margin-bottom: 25px;
     @media (min-width: ${styles.breakpoints.m}px) {
         display: none;
     }
-    
-    // Home styles
-    max-width: 249px;
-    margin-bottom: 25px;
-
 `
-
 
 const HomepageHeader = (props) => {
 
@@ -147,7 +139,7 @@ const HomepageHeader = (props) => {
                 <InfoContainer>
                     <SectionHeaderImgMobile src={iluHomepage.default}></SectionHeaderImgMobile>
                     <SectionHeaderDescription>
-                        Somos <SectionHeaderUnderlineSpan>una cooperativa</SectionHeaderUnderlineSpan> de software. Somos <SectionHeaderSpan>construcción colectiva,</SectionHeaderSpan> cultura y mentes en constante movimiento.
+                        Somos <SectionHeaderUnderlineSpan>una cooperativa</SectionHeaderUnderlineSpan> de software. Somos <SectionHeaderSpan>construcción colectiva</SectionHeaderSpan>, cultura y mentes en constante movimiento.
                     </SectionHeaderDescription>
 
                 </InfoContainer>

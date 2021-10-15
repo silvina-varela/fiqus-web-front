@@ -14,11 +14,14 @@ const PostsContainer = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 30px 20px 115px 20px;
   @media (min-width: ${styles.breakpoints.m}px) {
     justify-content: center;
     gap: 36px;
     max-width: 1140px;
     margin: auto;
+    padding-top: 52px;
+    padding-bottom: 163px;
   };
 `
 const PostsTitle = styled.h2`

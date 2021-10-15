@@ -24,19 +24,14 @@ const HeaderContainer = styled.div`
     padding-bottom: 80px;
     display: flex; 
     justify-content: center;
-    padding-top: 100px;
-    margin-bottom: 30px;
+    padding: 48px 20px 55px 20px;
+    margin-bottom: 0px;
     background: ${props => props.type.background};
-
-
     @media (min-width: ${styles.breakpoints.m}px) {
-        margin-bottom: 52px;
+        margin-bottom: 0px;
+        padding-top: 55px;
+        padding-bottom: 55px;
     }
-
-
-    // Culture styles
-    padding-bottom: 50px;
-
 `
 const HeaderWrapper = styled.div`
     max-width: 946px;
