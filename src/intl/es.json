@@ -9,7 +9,8 @@
         "disclaimer": "Salvo que se indique lo contrario, el contenido de este sitio tiene una licencia de "
     },
     "homepage" : {
-        "title":"Homepage"
+        "title":"Homepage",
+        "lead": "Somos una cooperativa de software. Somos construcción colectiva, cultura y mentes en constante movimiento."
     },
     "button": {
         "verMas": "view more",

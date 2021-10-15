@@ -13,7 +13,7 @@ const Culture = () => {
                 section="cultura"
                 title={intl.formatMessage({id: 'culture.title'})}
                 subttitle={intl.formatMessage({id: 'culture.subttitle'})}
-                description={intl.formatMessage({id: 'culture.description'})}
+                description={intl.formatMessage({id: 'homepage.lead'})}
             />
         </Fragment>
     );

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 const iluLabs = require('../../images/illustrations/labs.svg');
 const iluCultura = require('../../images/illustrations/cultura.svg');
+const iluHomepage = require('../../images/illustrations/homepage.svg');
 
 
 
@@ -26,9 +27,18 @@ const HeaderContainer = styled.div`
     padding-bottom: 80px;
     display: flex; 
     justify-content: center;
+    padding-top: 100px;
+    margin-bottom: 30px;
+    @media (min-width: ${styles.breakpoints.m}px) {
+        margin-bottom: 52px;
+    }
 
     // Culture styles
     background: ${styles.colors.purpleLight};
+    padding-bottom: 50px;
+    
+    // Home styles
+    background: ${styles.colors.purplePrimary};
     padding-bottom: 50px;
 `
 const HeaderWrapper = styled.div`
@@ -38,7 +48,16 @@ const HeaderWrapper = styled.div`
     @media (min-width: ${styles.breakpoints.m}px) {
         flex-direction: row;
         justify-content: center;
+        
+        // Home styles
+        align-items: center;
+        justify-content: space-between;
+        
     }
+    
+    // Home styles
+    width: 100%;
+    max-width: 1083px;
 `
 const InfoContainer = styled.div`
     display: flex;
@@ -53,6 +72,10 @@ const InfoContainer = styled.div`
         align-items: flex-start;
         margin: 0;
         margin-right: 20px;
+
+        // Homepage styles
+        max-width: 560px;
+        margin-right: auto;
     }
 `
 const ImageContainer = styled.div`
@@ -61,6 +84,10 @@ const ImageContainer = styled.div`
         display: block;
         flex-basis: 50%;
         max-width: 463px;
+        
+        // Homepage styles
+        max-width: 411px;
+        margin-left: auto;
     }
 `
 const SectionHeaderSubtitle = styled.p`
@@ -73,6 +100,9 @@ const SectionHeaderSubtitle = styled.p`
     // Culture styles
     color: ${styles.colors.purplePrimary};
     font-weight: ${styles.fontWeight.regular};
+
+    // Homepage styles
+    display: none;
 `
 const SectionHeaderTitle = styled.h1`
     font-size: 2.38em;
@@ -88,6 +118,9 @@ const SectionHeaderTitle = styled.h1`
 
     // Culture styles
     color: ${styles.colors.purplePrimary};
+    
+    // Home styles
+    display: none;
 `
 const SectionHeaderDescription = styled.p`
     font-size: 1em;
@@ -97,6 +130,38 @@ const SectionHeaderDescription = styled.p`
     
     // Culture styles
     color: ${styles.colors.purplePrimary};
+    
+    // Home styles
+    color: ${styles.colors.white};
+    font-size: 1.44em;
+    line-height: 34px;
+    text-align: center;
+    @media (min-width: ${styles.breakpoints.m}px) {
+        font-size: 2.38em;
+        line-height: 49px;
+        text-align: left;
+    }
+`
+const SectionHeaderUnderlineSpan = styled.span`
+    font-size: 1.44rem;
+    position: relative;
+    &::before {
+        content: url("${require('../../images/orange_underline.svg').default}");
+        position: absolute; 
+        left: 35px;
+        bottom: -8px;
+    }
+    @media (min-width: ${styles.breakpoints.m}px) {
+        // Home styles
+        font-size: 2.38rem;
+    }
+`
+const SectionHeaderSpan = styled.span`
+    font-weight: ${styles.fontWeight.bold};
+    @media (min-width: ${styles.breakpoints.m}px) {
+        // Home styles
+        font-size: 2.38rem;
+    }
 `
 const SectionHeaderImg = styled.img`
     max-width: 463px;
@@ -104,6 +169,10 @@ const SectionHeaderImg = styled.img`
     
     // Culture styles
     margin-top: 0;
+        
+    // Home styles
+    width: 100%;
+    max-width: 411px;
 `
 const SectionHeaderImgMobile = styled.img`
     width: 100%;
@@ -112,6 +181,11 @@ const SectionHeaderImgMobile = styled.img`
     @media (min-width: ${styles.breakpoints.m}px) {
         display: none;
     }
+    
+    // Home styles
+    max-width: 249px;
+    margin-bottom: 25px;
+
 `
 
 
@@ -122,7 +196,7 @@ const SectionHeader = (props) => {
                 return {
                     background : styles.colors.orangeMain,
                     color : styles.colors.white,
-                    image: iluCultura
+                    image: iluHomepage
                  }
             break
             case "labs" : 
@@ -148,7 +222,10 @@ const SectionHeader = (props) => {
                     <SectionHeaderTitle>{props.title}</SectionHeaderTitle>
                     <SectionHeaderImgMobile src={getHeadStyles(props.section).image.default}></SectionHeaderImgMobile>
                     <SectionHeaderSubtitle>{props.subtitle}</SectionHeaderSubtitle>
-                    <SectionHeaderDescription>{props.description}</SectionHeaderDescription>
+                    <SectionHeaderDescription>
+                        Somos <SectionHeaderUnderlineSpan>una cooperativa</SectionHeaderUnderlineSpan> de software. Somos <SectionHeaderSpan>construcción colectiva,</SectionHeaderSpan> cultura y mentes en constante movimiento.
+                    </SectionHeaderDescription>
+
                 </InfoContainer>
                 <ImageContainer>
                     <SectionHeaderImg src={getHeadStyles(props.section).image.default}></SectionHeaderImg>

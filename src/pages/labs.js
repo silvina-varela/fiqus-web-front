@@ -6,14 +6,34 @@ import { useIntl, Link } from "gatsby-plugin-react-intl"
 import SectionHeader from "../components/common/SectionHeader"
 import {styles, labs} from '../content/content.json'
 
+const PostsMainContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
 const PostsContainer = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: center;
   @media (min-width: ${styles.breakpoints.m}px) {
-    justify-content: flex-start;
+    justify-content: center;
     gap: 36px;
+    max-width: 1140px;
+    margin: auto;
   };
+`
+const PostsTitle = styled.h2`
+  flex-basis: 100%;
+  font-size: 1.72em;
+  font-weight: ${styles.fontWeight.medium};
+  line-height: 37px;
+  text-align: center;
+  color: ${styles.colors.darkMainBg};
+  margin-bottom: 30px;
+  @media (min-width: ${styles.breakpoints.m}px) {
+    font-size: 2.83em;
+    line-height: 59px;
+    margin-bottom: 24px;
+  }
 `
 
 const Labs = ({data: {allMarkdownRemark: { edges }}}) => {
@@ -36,7 +56,13 @@ const Labs = ({data: {allMarkdownRemark: { edges }}}) => {
         description={intl.formatMessage({id: 'labs.content'})}
         type='labs'
       />
-      <PostsContainer>{Labs}</PostsContainer>
+      
+      <PostsMainContainer>
+        <PostsContainer>
+          <PostsTitle>{intl.formatMessage({id: 'casos_de_exito.title'})}</PostsTitle>
+          {Labs}
+        </PostsContainer>
+      </PostsMainContainer>
     
     </Fragment>
   )
