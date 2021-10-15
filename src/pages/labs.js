@@ -22,17 +22,22 @@ const Labs = ({data: {allMarkdownRemark: { edges }}}) => {
   const Labs = edges.map( 
     edge => {
       const fluidImg = edge.node.frontmatter.image.childImageSharp.fluid 
-      //console.log(fluidImg)
-      return(
-        <Lab fluidImg={fluidImg} styles={styles} labData={edge.node}></Lab>
-  )})
+      const english = edge.node.frontmatter.english;
+
+      if ( (english && intl.locale == 'en') || (!english && intl.locale == 'es')) {
+        return(
+          <Lab fluidImg={fluidImg} styles={styles} labData={edge.node}></Lab>
+        )
+      }      
+    }
+  )
   
   return ( 
     <Fragment>
       <SectionHeader 
         section="labs"
         title={intl.formatMessage({id: 'labs.title'})}
-        subttitle={intl.formatMessage({id: 'labs.subttitle'})}
+        subttitle={intl.formatMessage({id: 'labs.subtitle'})}
         description={intl.formatMessage({id: 'labs.content'})}
       />
       <PostsContainer>{Labs}</PostsContainer>
@@ -54,6 +59,7 @@ export const pageQuery = graphql`
           frontmatter {
             type
             date(formatString: "MMMM DD, YYYY")
+            id
             title
             tags
             image{
@@ -64,7 +70,8 @@ export const pageQuery = graphql`
               }
             }
             website
-            github  
+            github
+            english
           }
         }
       }

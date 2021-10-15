@@ -88,8 +88,6 @@ const SuccessCase = (props) => {
     const lab = props.labData
     const intl = useIntl();
 
-    console.log(props)
-
     return (
         <CaseWrapper>
             <LabImage fluid={props.fluidImg}></LabImage>
