@@ -59,7 +59,6 @@ const Labs = ({data: {allMarkdownRemark: { edges }}}) => {
         title={intl.formatMessage({id: 'labs.title'})}
         subtitle={intl.formatMessage({id: 'labs.subtitle'})}
         description={intl.formatMessage({id: 'labs.content'})}
-        type='labs'
       />
       
       <PostsMainContainer>

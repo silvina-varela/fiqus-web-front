@@ -12,7 +12,7 @@ const Culture = () => {
             <SectionHeader 
                 section="cultura"
                 title={intl.formatMessage({id: 'culture.title'})}
-                subttitle={intl.formatMessage({id: 'culture.subttitle'})}
+                subtitle={intl.formatMessage({id: 'culture.subtitle'})}
                 description={intl.formatMessage({id: 'homepage.lead'})}
             />
         </Fragment>
