@@ -23,8 +23,10 @@ const HeaderContainer = styled.div`
     padding: 48px 20px 55px 20px;
     background: ${styles.colors.purplePrimary};
     @media (min-width: ${styles.breakpoints.m}px) {
-        padding-top: 75px;
-        padding-bottom: 80px;
+        padding: 75px 20px 80px 20px;
+    }
+    @media (min-width: ${styles.breakpoints.l}px) {
+        padding: 75px 0 80px 0px;
     }
 `
 const HeaderWrapper = styled.div`
@@ -58,8 +60,9 @@ const ImageContainer = styled.div`
     @media (min-width: ${styles.breakpoints.m}px) {
         display: block;
         flex-basis: 50%;
-        max-width: 380px;
+        max-width: 350px;
         margin-left: auto;
+        text-align: right;
     }
     @media (min-width: ${styles.breakpoints.l}px) {
         max-width: 411px;

@@ -16,6 +16,7 @@ const ServicesContainer = styled.div`
     if (props.isHome) {
         return `
         padding-bottom: 105px;
+        text-align: center;
         `
     }
   }}
@@ -31,6 +32,10 @@ const ServicesContainer = styled.div`
       }
     }}
   }
+  @media (min-width: ${styles.breakpoints.lpx}) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 `
 const ServicesWrapper = styled.div`
     display: flex;
@@ -45,6 +50,8 @@ const ServicesWrapper = styled.div`
             max-width: unset;
             flex-wrap: wrap;
             justify-content: center;
+            max-width: 1102px;
+              gap: 10px;
             @media (min-width: ${styles.breakpoints.m}px) {
                 justify-content: center;
                 gap: 36px;
@@ -108,13 +115,13 @@ const Services = (props) => {
       return (
         <MainWrapper>
           <ServicesContainer isHome={true}>
-            <ServicesWrapper isHome={props.isHome}>
-              <ServicesTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
+            <ServicesWrapper isHome={true}>
+              <ServicesTitle isHome={true}>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
               <Fragment>
                 {services.services.map( (service) =>{
                   return(
                     <Service 
-                      isHome={props.isHome}
+                      isHome={true}
                       key = {service.id}
                       image = { service.image } 
                       id = {service.id}

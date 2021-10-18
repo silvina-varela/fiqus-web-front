@@ -23,6 +23,9 @@ const PostsContainer = styled.div`
     padding-top: 52px;
     padding-bottom: 163px;
   };
+  @media (min-width: ${styles.breakpoints.l}px) {
+    padding: 52px 0px 163px 0px;
+  }
 `
 const PostsTitle = styled.h2`
   flex-basis: 100%;
