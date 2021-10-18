@@ -7,6 +7,7 @@ import { useIntl } from "gatsby-plugin-react-intl"
 
 const styles = data.styles
 
+
 const ServiceWrapper = styled.div`
     background: ${styles.colors.white};    
     border-radius: 14px;
@@ -271,38 +272,38 @@ const Service = (props) => {
     const intl = useIntl();
 
     return (
-        <ServiceWrapper isHome={props.isHome}> 
+        <ServiceWrapper ishome={true}> 
             <ImageContainerMobile>
                 <ServiceImage 
-                    isHome={props.isHome}
+                    ishome={true}
                     data={require(`../../images/illustrations/${service.image}.svg`).default} 
                     type="image/svg+xml">
                 </ServiceImage>
             </ImageContainerMobile>
             <LeftBlock>
-                <ImageContainer isHome={props.isHome}>
+                <ImageContainer ishome={true}>
                     <ServiceImage 
                         data={require(`../../images/illustrations/${service.image}.svg`).default} 
                         type="image/svg+xml">
                     </ServiceImage>
                 </ImageContainer>
-                <TagsContainer isHome={props.isHome}>
+                <TagsContainer ishome={true}>
                     <TagsTitle>{intl.formatMessage({id: "services.tagsTitle"})}</TagsTitle>
                     <Tag tagsType="services" tags={service.tags} styles={props.styles}></Tag>
                 </TagsContainer>
                 
-                <BtnMobile type='btnPrimaryPurple' theme={styles} to={props.href} btnText={intl.formatMessage({id: 'verMas'})} isHome={props.isHome}></BtnMobile>
+                <BtnMobile type='btnPrimaryPurple' theme={styles} to={props.href} btnText={intl.formatMessage({id: 'verMas'})} ishome={true}></BtnMobile>
             </LeftBlock>
-            <RightBlock isHome={props.isHome}>
+            <RightBlock ishome={true}>
                 <TextContainer>
-                    <ServiceTitle isHome={props.isHome}>{intl.formatMessage({id:`${props.id}.service`})}</ServiceTitle>
-                    <ServiceDescription isHome={props.isHome}>{intl.formatMessage({id: `${props.id}.description`})}</ServiceDescription>
+                    <ServiceTitle ishome={true}>{intl.formatMessage({id:`${props.id}.service`})}</ServiceTitle>
+                    <ServiceDescription ishome={true}>{intl.formatMessage({id: `${props.id}.description`})}</ServiceDescription>
                 </TextContainer>
                 <Btn type='btnPrimaryPurple' 
                     theme={styles} 
                     to={props.href} 
                     btnText={intl.formatMessage({id: 'verMas'})}
-                    isHome={props.isHome}>    
+                    ishome={true}>    
                 </Btn>
             </RightBlock>
         </ServiceWrapper>

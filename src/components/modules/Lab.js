@@ -65,29 +65,11 @@ const TagsContainer =  styled.div`
 `
 const BtnContainer =  styled.div`
     display: flex;
+    flex-wrap: wrap;
 `
 const BtnGithub =  styled(Button)`
-    button {
-        font-size: .88em;
-        margin: 0;
-    }
-    @media (min-width: ${styles.breakpoints.m}px) {
-        button {
-            font-size: 1em;
-        }
-    }
 `
 const BtnSite =  styled(Button)`
-    margin-right: 10px;
-    button {
-        font-size: .88em;
-        margin: 0;
-    }
-    @media (min-width: ${styles.breakpoints.m}px) {
-        button {
-            font-size: 1em;
-        }
-    }
 `
 
 const SuccessCase = (props) => {

@@ -15,15 +15,15 @@ const PostsContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   padding: 30px 20px 115px 20px;
+  gap: 10px;
   @media (min-width: ${styles.breakpoints.m}px) {
-    justify-content: center;
-    gap: 36px;
     max-width: 1140px;
+    justify-content: flex-start;
     margin: auto;
-    padding-top: 52px;
-    padding-bottom: 163px;
+    padding: 52px 20px 163px 20px;
+    gap: 36px;
   };
-  @media (min-width: ${styles.breakpoints.l}px) {
+  @media (min-width: ${styles.breakpoints.xl}px) {
     padding: 52px 0px 163px 0px;
   }
 `
