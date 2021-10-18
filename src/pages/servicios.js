@@ -114,14 +114,14 @@ const Services = (props) => {
 
       return (
         <MainWrapper>
-          <ServicesContainer isHome={true}>
-            <ServicesWrapper isHome={true}>
-              <ServicesTitle isHome={true}>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
+          <ServicesContainer ishome={props.isHome}>
+            <ServicesWrapper ishome={props.isHome}>
+              <ServicesTitle ishome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
               <Fragment>
                 {services.services.map( (service) =>{
                   return(
                     <Service 
-                      isHome={true}
+                      ishome={props.isHome}
                       key = {service.id}
                       image = { service.image } 
                       id = {service.id}
