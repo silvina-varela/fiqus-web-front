@@ -16,9 +16,6 @@ const setSharedStyles = (type) => {
         box-shadow:  0px 4px 0px ${type.boxShadow};
     `
 } 
-
-
-
 const HeaderContainer = styled.div`
     background: ${styles.colors.greenLight};
     padding-bottom: 80px;
@@ -35,6 +32,7 @@ const HeaderContainer = styled.div`
 `
 const HeaderWrapper = styled.div`
     max-width: 946px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     @media (min-width: ${styles.breakpoints.m}px) {
@@ -55,7 +53,7 @@ const InfoContainer = styled.div`
         max-width: 463px;
         align-items: flex-start;
         margin: 0;
-        margin-right: 20px;
+        margin-right: auto;
     }
 `
 const ImageContainer = styled.div`
@@ -64,6 +62,7 @@ const ImageContainer = styled.div`
         display: block;
         flex-basis: 50%;
         max-width: 463px;
+        text-align: right;
         ${props => {
             if (props.section === 'cultura') {
                 return  `max-width: 429px;`
@@ -106,13 +105,24 @@ const SectionHeaderDescription = styled.p`
 `
 
 const SectionHeaderImg = styled.img`
-    max-width: 463px;
     margin-top: 83px;
+    @media (min-width: ${styles.breakpoints.m}px) {
+        max-width: 350px;
+    }
+    @media (min-width: ${styles.breakpoints.l}px) {
+        max-width: 463px;
+    }
     
     ${props => {
         if (props.section === 'cultura') {
             return  `margin-top: 0;
-            max-width: 429px;`
+            @media (min-width: ${styles.breakpoints.m}px) {
+                max-width: 350px;
+            }
+            @media (min-width: ${styles.breakpoints.l}px) {
+                max-width: 429px;
+            }
+            `
         }
     }}
 `
@@ -125,7 +135,6 @@ const SectionHeaderImgMobile = styled.img`
     }
     
 `
-
 
 const SectionHeader = (props) => {
     const getHeadStyles = (type) =>{
