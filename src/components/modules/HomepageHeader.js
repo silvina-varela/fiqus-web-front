@@ -25,7 +25,7 @@ const HeaderContainer = styled.div`
     @media (min-width: ${styles.breakpoints.m}px) {
         padding: 75px 20px 80px 20px;
     }
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${styles.breakpoints.xl}px) {
         padding: 75px 0 80px 0px;
     }
 `
@@ -123,7 +123,12 @@ const SectionHeaderSpan = styled.span`
 `
 const SectionHeaderImg = styled.img`
     width: 100%;
-    max-width: 411px;
+    @media (min-width: ${styles.breakpoints.m}px) {
+        max-width: 320px;
+    }
+    @media (min-width: ${styles.breakpoints.l}px) {
+        max-width: 411px;
+    }
 `
 const SectionHeaderImgMobile = styled.img`
     width: 100%;
