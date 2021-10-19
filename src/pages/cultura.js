@@ -12,7 +12,7 @@ const Culture = () => {
         padding: 30px 20px 40px 20px;
         @media (min-width: ${styles.breakpoints.m}px) {
             padding-top: 50px;
-            padding-bottom: 80px;
+            padding-bottom: 53px;
         }
     `
     const HistoryTitle = styled.h2`
@@ -123,7 +123,7 @@ const Culture = () => {
         padding: 30px 20px 10px 20px;
         @media (min-width: ${styles.breakpoints.m}px) {
             padding-top: 53px;
-            padding-bottom: 37px;
+            padding-bottom: 34px;
         }
     `
     const TopBlock = styled.div`
@@ -158,7 +158,7 @@ const Culture = () => {
             max-width: 367px;
             margin-left: auto;
             margin-right: 0;
-            padding-top: 24px;
+            padding-top: 22px;
         }
         `
     const FederalSubtitle = styled.h3`
@@ -198,7 +198,7 @@ const Culture = () => {
         background-color: ${styles.colors.white};
         padding: 30px 20px 40px 20px;
         @media (min-width: ${styles.breakpoints.m}px) {
-            padding-top: 50px;
+            padding-top: 55px;
             padding-bottom: 80px;
         }
     `
@@ -211,7 +211,7 @@ const Culture = () => {
         @media (min-width: ${styles.breakpoints.m}px) {
             font-size: 1.72em;
             font-weight: ${styles.fontWeight.bold};
-            margin-bottom: 17px;
+            margin-bottom: 20px;
         }
     `
     const FactticLead = styled.h3`
@@ -224,7 +224,7 @@ const Culture = () => {
             font-size: 1.44em;
             line-height: 34px;
             font-weight: ${styles.fontWeight.regular};  
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
     `
     const FactticContentContainer = styled.div`
@@ -232,7 +232,7 @@ const Culture = () => {
         @media (min-width: ${styles.breakpoints.m}px) {
             max-width: 754px;
             margin: auto;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;

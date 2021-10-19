@@ -21,13 +21,21 @@ const HeaderContainer = styled.div`
     padding-bottom: 80px;
     display: flex; 
     justify-content: center;
-    padding: 48px 20px 55px 20px;
+    padding: 40px 20px 50px 20px;
     margin-bottom: 0px;
     background: ${props => props.type.background};
     @media (min-width: ${styles.breakpoints.m}px) {
         margin-bottom: 0px;
         padding-top: 55px;
-        padding-bottom: 55px;
+        padding-bottom: 79px;
+        padding-top: 45px;
+        ${props => {
+            if (props.section === 'cultura') {
+                return  `max-width: 429px;
+                margin-right: 17px;
+                padding-bottom: 45px;`
+            }
+        }}
     }
 `
 const HeaderWrapper = styled.div`
@@ -65,7 +73,8 @@ const ImageContainer = styled.div`
         text-align: right;
         ${props => {
             if (props.section === 'cultura') {
-                return  `max-width: 429px;`
+                return  `max-width: 429px;
+                margin-right: 17px;`
             }
         }}
     }
@@ -76,24 +85,37 @@ const SectionHeaderSubtitle = styled.p`
     font-weight: ${styles.fontWeight.medium};
     line-height: 34px;
     color: ${props => props.type.color};
-    margin-bottom: 30px;
-
+    margin-bottom: 25px;
     ${props => {
         if (props.section === 'cultura') {
             return  `font-weight: ${styles.fontWeight.regular};`
         }
     }}
+    @media (min-width: ${styles.breakpoints.m}px) {
+        margin-bottom: 35px;
+        ${props => {
+            if (props.section === 'cultura') {
+                return  `margin-bottom: 25px;`
+            }
+        }}
+    }
 `
 const SectionHeaderTitle = styled.h1`
     font-size: 2.38em;
     font-weight: ${styles.fontWeight.bold};
     text-align: center;
     color: ${props => props.type.color};
-    margin-bottom: 30px;
+    margin-bottom: 27px;
     @media (min-width: ${styles.breakpoints.m}px) {
         font-size: 3em;
         text-align: left;
-        margin-bottom: 25px;
+        margin-bottom: 30px;
+        
+    ${props => {
+        if (props.section === 'cultura') {
+            return  `margin-bottom: 8px;`
+        }
+    }}
     }
 `
 const SectionHeaderDescription = styled.p`
@@ -112,12 +134,12 @@ const SectionHeaderImg = styled.img`
     @media (min-width: ${styles.breakpoints.l}px) {
         max-width: 463px;
     }
-    
     ${props => {
         if (props.section === 'cultura') {
             return  `margin-top: 0;
             @media (min-width: ${styles.breakpoints.m}px) {
                 max-width: 350px;
+                //margin-top: 83px;
             }
             @media (min-width: ${styles.breakpoints.l}px) {
                 max-width: 429px;
@@ -128,8 +150,13 @@ const SectionHeaderImg = styled.img`
 `
 const SectionHeaderImgMobile = styled.img`
     width: 100%;
-    max-width: 320px;
-    margin-bottom: 30px;
+    max-width: 307px;
+    margin-bottom: 27px;
+    ${props => {
+        if (props.section === 'cultura') {
+            return  `max-width: 320px;`
+        }
+    }}
     @media (min-width: ${styles.breakpoints.m}px) {
         display: none;
     }

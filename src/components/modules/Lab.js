@@ -10,7 +10,7 @@ import Button from '../common/Button'
 const styles = data.styles
 
 const CaseWrapper = styled.div`
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     max-width: 351px;
     flex-basis: 100%;
     &:last-of-type {
@@ -28,6 +28,9 @@ const LabImage = styled(Img)`
     border-radius: 6px;
     margin-bottom: 15px;
     height: 182px;
+    @media (min-width: ${styles.breakpoints.m}px) {
+        margin-bottom: 20px;
+    }
     @media (min-width: ${styles.breakpoints.l}px) {
         height: 208px;
     }
@@ -51,12 +54,13 @@ const LabDescription =styled.p`
 `
 const TagsTitle = styled.h4`
     margin-bottom: 20px;
+    margin-bottom: 22px;
     font-size: .88em;
     font-weight: ${styles.fontWeight.medium};
     color: ${styles.colors.ultraDarkGrey};
 `
 const TagsContainer =  styled.div`
-    padding-bottom: 16px;
+    padding-bottom: 13px;
     margin-bottom: 20px;
     border-bottom: 2px solid ${styles.colors.greenLight};
     @media (min-width: ${styles.breakpoints.l}px) {
@@ -68,8 +72,20 @@ const BtnContainer =  styled.div`
     flex-wrap: wrap;
 `
 const BtnGithub =  styled(Button)`
+    font-size: .88em;
+    padding-left: 10px;
+    padding-right: 10px;
+    @media (min-width: ${styles.breakpoints.l}px) {
+        font-size: 1em;
+    }
 `
 const BtnSite =  styled(Button)`
+    font-size: .88em;
+    padding-left: 10px;
+    padding-right: 10px;
+    @media (min-width: ${styles.breakpoints.l}px) {
+        font-size: 1em;
+    }
 `
 
 const SuccessCase = (props) => {
@@ -90,7 +106,7 @@ const SuccessCase = (props) => {
                     <BtnSite type='btnLabeled' theme={styles} to={props.labData.frontmatter.website} btnText='ver sitio'></BtnSite>
                 }
                 { props.labData.frontmatter.github && 
-                    <BtnGithub type='btnLabeled' theme={styles} to={props.labData.frontmatter.github} btnText='ir a GitHub' src={require('../../images/icon_github.svg').default}></BtnGithub>
+                    <BtnGithub type='btnLabeled' theme={styles} github={true} to={props.labData.frontmatter.github} btnText='ir a GitHub' src={require('../../images/icon_github.svg').default}></BtnGithub>
                 }
             </BtnContainer>
         </CaseWrapper>

@@ -34,7 +34,7 @@ const PostsTitle = styled.h2`
   line-height: 37px;
   text-align: center;
   color: ${styles.colors.darkMainBg};
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   @media (min-width: ${styles.breakpoints.m}px) {
     font-size: 2.83em;
     line-height: 59px;
