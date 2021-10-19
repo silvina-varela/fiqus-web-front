@@ -95,20 +95,21 @@
         "image" : "capacitacion"
     },
     "culture" : {
-            "title": "Cultura",
-            "subtitle" : "Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos!",
-            "description":"Fiqus no es un trabajo más, es un proyecto de vida, en el que construimos un equipo consolidado de profesionales que se encuentra en continua capacitación para poder brindar soluciones técnicas de alta calidad. "
-        }, 
+        "title": "Cultura",
+        "subtitle" : "Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos!",
+        "description":"Fiqus no es un trabajo más, es un proyecto de vida, en el que construimos un equipo consolidado de profesionales que se encuentra en continua capacitación para poder brindar soluciones técnicas de alta calidad. "
+    }, 
     "culture_historia": {
-            "title":"Historia",
-            "content_line1": "Fiqus es como una gran familia, que comenzó cuando varios estudiantes de ingeniería en sistemas de la Universidad Tecnológica Nacional se cansaron de los trabajos tradicionales y comenzaron a pensar en una construcción propia, con lógicas de producción diferentes a las de las empresas en las que habían trabajado previamente",
-            "content_line2": " Luego de varios meses de gestación, la idea de construir algo autogestivo, horizontal, democrático y de propiedad colectiva se hizo cada vez más fuerte. Así es como nació la idea de construir una empresa social, así es como nació Fiqus.",
-            "content_line3": "Con el transcurso de los años fuimos construyendo una estructura organizacional que se adapta a las personas y no al revés.",
-            "content_line4": "Así es como, sobre el andar y basándonos en la experiencia adquirida, construimos una serie de acuerdos que hoy en día forman parte de nuestro reglamento interno. Nuestro reglamento no es algo estático, es algo vivo que evoluciona acorde evolucionan las personas que forman parte de nuestra organización. Ahí es donde reflejamos nuestras propuestas concretas para lograr que las personas que participan dentro del colectivo se ubiquen en el centro de los procesos productivos.",
-            "content_line5": "Nos gusta pensar que Fiqus es una propuesta que invita a quienes no conocen al cooperativismo tecnológico a ver que un cambio de paradigma es posible.",
-            "subtitle":"¡Nos organizamos horizontal y democráticamente!",
-            "subtitleContent": "Las decisiones de la cooperativa se plasman en la Asamblea General Ordinaria una vez al año. Además como forma de organización colectiva realizamos dos veces al año un encuentro donde pensamos, a partir de los deseos personales, nuestros objetivos como cooperativa y semanalmente nos encontramos (de manera virtual) a planificar las tareas diarias. "    
-        },
+        "title":"Historia",
+        "imageMobile" : "equipo_mobile",
+        "imageDesktop" : "equipo_desktop",
+        "content_line1": "Fiqus es como una gran familia, que comenzó cuando varios estudiantes de ingeniería en sistemas de la Universidad Tecnológica Nacional se cansaron de los trabajos tradicionales y comenzaron a pensar en una construcción propia, con lógicas de producción diferentes a las de las empresas en las que habían trabajado previamente",
+        "content_line2": " Luego de varios meses de gestación, la idea de construir algo autogestivo, horizontal, democrático y de propiedad colectiva se hizo cada vez más fuerte. Así es como nació la idea de construir una empresa social, así es como nació Fiqus.",
+        "content_line3": "Con el transcurso de los años fuimos construyendo una estructura organizacional que se adapta a las personas y no al revés. Así es como, sobre el andar y basándonos en la experiencia adquirida, construimos una serie de acuerdos que hoy en día forman parte de nuestro reglamento interno. Nuestro reglamento no es algo estático, es algo vivo que evoluciona acorde evolucionan las personas que forman parte de nuestra organización. Ahí es donde reflejamos nuestras propuestas concretas para lograr que las personas que participan dentro del colectivo se ubiquen en el centro de los procesos productivos.",
+        "content_line4": "Nos gusta pensar que Fiqus es una propuesta que invita a quienes no conocen al cooperativismo tecnológico a ver que un cambio de paradigma es posible.",
+        "subtitle":"¡Nos organizamos horizontal y democráticamente!",
+        "content_line5": "Las decisiones de la cooperativa se plasman en la Asamblea General Ordinaria una vez al año. Además como forma de organización colectiva realizamos dos veces al año un encuentro donde pensamos, a partir de los deseos personales, nuestros objetivos como cooperativa y semanalmente nos encontramos (de manera virtual) a planificar las tareas diarias. "    
+    },
     "culture_federales": {
         "title1":"¡Somos federales!", 
         "content1": "Resultado de un proceso de creación de una estructura maleable, que se adapte a las personas y no al revés.",
