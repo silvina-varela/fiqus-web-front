@@ -103,10 +103,10 @@ const SuccessCase = (props) => {
             </TagsContainer>
             <BtnContainer>
                 { props.labData.frontmatter.website && 
-                    <BtnSite type='btnLabeled' theme={styles} to={props.labData.frontmatter.website} btnText='ver sitio'></BtnSite>
+                    <BtnSite type='btnLabeled' theme={styles} isLink href={props.labData.frontmatter.website} btnText='ver sitio'></BtnSite>
                 }
                 { props.labData.frontmatter.github && 
-                    <BtnGithub type='btnLabeled' theme={styles} github={true} to={props.labData.frontmatter.github} btnText='ir a GitHub' src={require('../../images/icon_github.svg').default}></BtnGithub>
+                    <BtnGithub type='btnLabeled' theme={styles} isLink github={true} href={props.labData.frontmatter.github} btnText='ir a GitHub' src={require('../../images/icon_github.svg').default}></BtnGithub>
                 }
             </BtnContainer>
         </CaseWrapper>
