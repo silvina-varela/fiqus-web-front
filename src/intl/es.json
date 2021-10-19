@@ -112,11 +112,12 @@
     },
     "culture_federales": {
         "title1":"¡Somos federales!", 
-        "content1": "Resultado de un proceso de creación de una estructura maleable, que se adapte a las personas y no al revés.",
-        "tenemosSedes": "Tenemos sedes en ",
-        "personasAsociadas": "También personas asociadas en ", 
+        "image" : "mapa_argentina",
+        "content1": "Nuestra distribución actual es el resultado de haber creado una estructura lo suficientemente maleable como para que logre adaptarse a las necesidades de las personas. De esta manera, a medida que fuimos creciendo como personas y transitando los diferentes escenarios que la vida nos fue planteando, priorizamos acompañar desde el colectivo brindando el apoyo necesario para que todxs puedan decidir por ejemplo en dónde y cómo vivir.",
+        "tenemosSedes": "En la actualidad tenemos sedes en ",
+        "personasAsociadas": "Pero además, contamos con personas asociadas trabajando desde ", 
         "title2": "Territorial", 
-        "content2": "Como cooperativa de trabajo asumimos la responsabilidad de construir en nuestro territorio, es por eso que trabajamos activamente en la Mesa de Asociativismo de Villa La Angostura, Neuquén."
+        "content2": "Como cooperativa de trabajo, nos entendemos como actores sociales territoriales. Apoyándonos en el séptimo principio cooperativo de “Compromiso con la Comunidad”, asumimos la responsabilidad de extender la construcción colectiva que realizamos día a día dentro de la cooperativa en el territorio perteneciente a una de nuestras sedes. Es por esto que trabajamos activamente en la Mesa de Asociativismo de Villa La Angostura, Neuquén. Allí nos reunimos en forma periódica junto con otros actores y actrices de la economía social así como con personas individuales comprometidas con la comunidad local para desarrollar proyectos que potencien iniciativas locales, siempre con una mirada colaborativa y horizontal."
     },
     "culture_facttic": {
         "title":"Estamos federados", 

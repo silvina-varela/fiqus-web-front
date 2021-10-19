@@ -116,6 +116,85 @@ const Culture = () => {
         }
     `
 
+    const FederalMainContainer = styled.div`
+        background-color: ${styles.colors.purplePrimary};
+        display: flex;
+        flex-direction: column;
+        padding: 30px 20px 12px 20px;
+        @media (min-width: ${styles.breakpoints.m}px) {
+            padding-top: 53px;
+            padding-bottom: 37px;
+        }
+    `
+    const TopBlock = styled.div`
+        display: flex;
+        flex-direction: column-reverse;
+        @media (min-width: ${styles.breakpoints.m}px) {
+            width: 100%;
+            max-width: 754px;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: auto;
+        }
+    `
+    const TopBlockImgContainer = styled.div`
+        max-width: 320px;
+        margin: auto;
+        margin-bottom: 26px;
+        @media (min-width: ${styles.breakpoints.m}px) {
+            max-width: 346px;
+            flex-basis: 50%;
+            margin-right: auto;
+            margin-left: 0;
+            margin-bottom: 22px;
+        }
+    `
+    const TopBlockImg = styled.img`
+        width: 100%;
+    `
+    const TopBlockInfoContainer = styled.div`
+        @media (min-width: ${styles.breakpoints.m}px) {
+            flex-basis: 50%;
+            max-width: 367px;
+            margin-left: auto;
+            margin-right: 0;
+            padding-top: 24px;
+        }
+        `
+    const FederalSubtitle = styled.h3`
+        font-size: 1.44em;
+        line-height: 34px;
+        font-weight: ${styles.fontWeight.bold};
+        color: ${styles.colors.white};
+        text-align: left;
+        margin-bottom: 18px;
+        @media (min-width: ${styles.breakpoints.m}px) {
+            font-size: 1.66em;
+            line-height: 37px;
+            margin-bottom: 12px;
+        }
+    `
+    const FederalContent = styled.p`
+        font-size: .88em;
+        line-height: 22px;
+        color: ${styles.colors.white};
+        margin-bottom: 22px;
+        @media (min-width: ${styles.breakpoints.m}px) {
+            font-size: 1em;
+            line-height: 26px;
+            margin-bottom: 25px;
+        }
+    `
+    const FederalContentBoldText = styled.b`
+        font-weight: ${styles.fontWeight.regular};
+    `
+    const BottomBlock = styled.div`
+    @media (min-width: ${styles.breakpoints.m}px) {
+        max-width: 754px;
+        margin: auto;
+    }
+    `
+
     const history = intl.formatMessage({id: "culture_historia.content_col1"});
     return (
         <Fragment>
@@ -149,6 +228,7 @@ const Culture = () => {
                     </HistoryContent>
                 </HistoryContentFullBlock>
             </HistoryMainContainer>
+
             {/* Cultura | Historia   */}
             {/*
             <div>
@@ -167,7 +247,36 @@ const Culture = () => {
             </div>
             */}
         
+            <FederalMainContainer>
+                <TopBlock>
+                    <TopBlockImgContainer>
+                        <TopBlockImg src={require('../images/illustrations/'+intl.formatMessage({id: "culture_federales.image"})+'.svg').default} alt="mapa argentina" />
+                    </TopBlockImgContainer>
+                    <TopBlockInfoContainer>
+                        <FederalSubtitle>{intl.formatMessage({id: "culture_federales.title1"})}</FederalSubtitle>
+                        <FederalContent>{intl.formatMessage({id: "culture_federales.content1"})}</FederalContent>
+                        <FederalContent>
+                            {intl.formatMessage({id: "culture_federales.tenemosSedes"})}
+                            <FederalContentBoldText>CABA</FederalContentBoldText>
+                            {intl.formatMessage({id: "y"})}
+                            <FederalContentBoldText>Villa La Angostura. </FederalContentBoldText>
+                            {intl.formatMessage({id: "culture_federales.personasAsociadas"})}
+                            <FederalContentBoldText>Mar del Plata</FederalContentBoldText>, 
+                            <FederalContentBoldText> San Fernando (Bs.As.)</FederalContentBoldText>, 
+                            <FederalContentBoldText> Puerto Madryn</FederalContentBoldText>
+                            {intl.formatMessage({id: "y"})}
+                            <FederalContentBoldText>San Luis</FederalContentBoldText>.
+                        </FederalContent>
+                    </TopBlockInfoContainer>
+                </TopBlock>
+                <BottomBlock>
+                        <FederalSubtitle>{intl.formatMessage({id: "culture_federales.title2"})}</FederalSubtitle>
+                        <FederalContent>{intl.formatMessage({id: "culture_federales.content2"})}</FederalContent>
+                </BottomBlock>
+            </FederalMainContainer>
+            
             {/* Cultura | Somos Federales */}
+            {/*
             <div>
                 <h2>{intl.formatMessage({id: "culture_federales.title1"})}</h2>
                 <p>{intl.formatMessage({id: "culture_federales.content1"})}</p>
@@ -181,6 +290,7 @@ const Culture = () => {
                 <h2>{intl.formatMessage({id: "culture_federales.title2"})}</h2>
                 <p>{intl.formatMessage({id: "culture_federales.content2"})}</p>
             </div>
+            */}
 
 
             {/* Cultura | Estamos Federados */}
