@@ -6,7 +6,9 @@
     "Blog": "Blog",
     "footer": {
         "designby": "Designed by",
-        "disclaimer": "Unless otherwise stated, the content of this site is licensed under"
+        "coopName": "el maizal",
+        "disclaimer": "Unless otherwise stated, the content of this site is licensed under",
+        "licenseName": "Creative Commons Attribution"
     },
     "homepage" : {
         "title":"Homepage",
