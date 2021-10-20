@@ -22,7 +22,7 @@
     "contactForm": {
         "title": "Contacto",
         "nameField": "Nombre",
-        "emailField": "Email",
+        "emailField": "E-mail",
         "requiredFieldError": "Por favor, complete el campo requerido.",
         "textAreaField": "Mensaje",
         "messageSent": "Tu mensaje ha sido enviado.",

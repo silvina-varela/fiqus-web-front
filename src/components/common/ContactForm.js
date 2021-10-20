@@ -8,37 +8,58 @@ import { useForm } from "react-hook-form";
 
 const styles = data.styles
 
-const ContactContainer = styled.div`
+const ContactMainContainer = styled.div`
+    position: relative;
+    background: ${styles.colors.purplePrimary};
+    min-height: 725px;
+    padding-left: 20px;
+    padding-right: 20px;
+    @media (min-width: ${styles.breakpoints.m}px) {
+        min-height: 465px;
+    }
+`
+const ContactWrapper = styled.div`
+    position: absolute;
+    top: -115px;
+    left: 0;
+    right: 0;
     display: flex;
     flex-direction: column;
-    padding: 40px 20px;
+    padding: 35px 17px;
+    margin: auto;
     margin-bottom: 12px;
+    max-width: 320px;
     border: 3px solid ${styles.colors.darkMainBg};
     box-shadow:  0px 4px 0px ${styles.colors.darkMainBg};
     border-radius: 13px;
-    max-width: 52.55em;
     background: ${styles.colors.white};
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${styles.breakpoints.m}px) {
+        top: -163px;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
-        padding: 30px 96px;
-        max-width: 52.55em;
+        padding: 36px 96px;
         margin: auto;
+        max-width: calc(100% - 40px);
+    }
+    @media (min-width: ${styles.breakpoints.l}px) {
+        max-width: 946px;
     }
 `
 const ContactHeading = styled.h3`
-    font-size: 3.33em;
+    font-size: 2.38em;
     font-weight:${styles.fontWeight.bold};
     text-align: center;
-    margin-bottom: 40px;
-    @media (min-width: ${styles.breakpoints.l}px) {
-        margin-bottom: 26px;
+    margin-bottom: 38px;
+    @media (min-width: ${styles.breakpoints.m}px) {
+        font-size: 3.33em;
+        line-height: 64px;
+        margin-bottom: 30px;
         flex-basis: 100%;
     }
 `
 const ContactFormBlock = styled.div`
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${styles.breakpoints.m}px) {
         max-width: 23em;
         flex-basis: 50%;
     }
@@ -50,14 +71,14 @@ const Form = styled.form`
 const FormGroup = styled.div`
     display: flex;
     flex-direction: column;
-    margin-bottom: 29px;
+    margin-bottom: 27px;
     position: relative;
     &:nth-last-of-type(2) {
-        margin-bottom: 30px;
+        margin-bottom: 22px;
     }
     &:last-child {
         margin-bottom: 0;
-        @media (min-width: ${styles.breakpoints.l}px) {
+        @media (min-width: ${styles.breakpoints.m}px) {
             display: flex;
             justify-content: space-between;
             flex-direction: row;
@@ -89,7 +110,7 @@ const FieldContainer = styled.div`
                 width: 20px;
                 right: 15px;
                 top: 10px;
-                @media (min-width: ${styles.breakpoints.l}px) {
+                @media (min-width: ${styles.breakpoints.m}px) {
                     right: 20px;
                 }
             }
@@ -110,11 +131,11 @@ const Field= styled.input`
     &::placeholder {
         color: ${styles.colors.ultraLightGrey};
     }
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${styles.breakpoints.m}px) {
         max-width: 20.38em;
     }
 `
-const TextArea= styled.input`
+const TextArea= styled.textarea`
     border: 2px solid ${styles.colors.black};
     border-radius: 12px;
     padding: 10px 45px 10px 16px;
@@ -127,9 +148,13 @@ const TextArea= styled.input`
     &::placeholder {
         color: ${styles.colors.ultraLightGrey};
     }
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${styles.breakpoints.m}px) {
         max-width: 20.38em;
     }
+`
+const BtnSubmit = styled(Button)`
+    max-width: max-content;
+    margin-bottom: 0;
 `
 const ErrorMessage= styled.p`
     color: ${styles.colors.orangeMain};
@@ -149,7 +174,7 @@ const FeedbackMessage= styled.p`
     font-size: .88em;
     margin-left: 0;
     margin-top: 15px;
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${styles.breakpoints.m}px) {
         margin-left: auto;
     }
     span {
@@ -159,28 +184,45 @@ const FeedbackMessage= styled.p`
 `
 const ContactInfoBlock = styled.div`
     margin-top: 65px;
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${styles.breakpoints.m}px) {
         max-width: 15em;
-        margin-top: 30px;
+        margin-top: 28px;
     }
 `
 const Email = styled(Link)`
+    font-size: .88em;
     font-weight:${styles.fontWeight.bold};
-    margin-bottom: 30px;
+    margin-bottom: 28px;
     display: block;
+    text-decoration: none;
+    color: ${styles.colors.darkMainBg};
+    @media (min-width: ${styles.breakpoints.m}px) {
+        font-size: 1em;
+        margin-bottom: 30px;
+    }
 `
 const OfficeListTitle = styled.h5`
-    font-size: 1em;
+    font-size: .88em;
     font-weight:${styles.fontWeight.bold};
+    @media (min-width: ${styles.breakpoints.m}px) {
+        font-size: 1em;
+        margin-bottom: 4px;
+    }
 `
 const OfficeList = styled.ul`
     margin-left: 0;
 `
 const OfficeListItem = styled.li`
+    font-size: .88em;
     list-style-type: none;
-    margin-bottom: 30px;
+    margin-bottom: 23px;
+    line-height: 22px;
     &:last-of-type {
         margin-bottom: 0;
+    }
+    @media (min-width: ${styles.breakpoints.m}px) {
+        font-size: 1em;
+        line-height: 26px;
     }
 `
 
@@ -212,65 +254,67 @@ const ContactForm = () => {
     }
 
     return (
-        <ContactContainer>
-            <ContactHeading>{intl.formatMessage({id: 'contactForm.title'})}</ContactHeading>
-            <ContactFormBlock>
-                <Form onSubmit={handleSubmit(onSubmit)}  >
-                    <FormGroup>
-                        <Label htmlFor="nameField">{intl.formatMessage({id: 'contactForm.nameField'})}* </Label>
-                        <FieldContainer error={errors.nameField}>
-                            <Field 
-                                name="nameField" 
-                                type="text" 
-                                placeholder={intl.formatMessage({id: 'contactForm.nameField'})} 
-                                {...register("nameField", { required: true })} />
-                        </FieldContainer>
-                        {errors.nameField && 
-                            <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
-                        }
-                    </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor="emailField">{intl.formatMessage({id: 'contactForm.emailField'})}* </Label>
-                        <FieldContainer error={errors.emailField}>
-                            <Field 
-                                name="emailField" 
-                                type="email" 
-                                placeholder={intl.formatMessage({id: 'contactForm.emailField'})} 
-                                {...register("emailField", { required: true })}/>
-                        </FieldContainer>
-                        {errors.emailField && 
-                            <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
-                        }
-                    </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor="textAreaField">{intl.formatMessage({id: 'contactForm.textAreaField'})}* </Label>
-                        <FieldContainer error={errors.textAreaField}>
-                            <TextArea 
-                                name="textAreaField" 
-                                type="textarea" 
-                                placeholder={intl.formatMessage({id: 'contactForm.textAreaField'})}  
-                                {...register("textAreaField", { required: true })}/>
-                        </FieldContainer>
-                        {errors.textAreaField && 
-                            <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
-                        }                    </FormGroup>
-                    <FormGroup>
-                        <Button theme={styles} btnText={intl.formatMessage({id: 'button.send'})} onButtonClick={handleSubmit(onSubmit)}></Button>
-                        {emailSent &&
-                            <FeedbackMessage><span>{intl.formatMessage({id: 'contactForm.messageSent'})}</span> {intl.formatMessage({id: 'contactForm.thankYou'})}</FeedbackMessage>
-                        }
-                    </FormGroup>
-                </Form>
-            </ContactFormBlock>
-            <ContactInfoBlock>
-                <Email>info@fiqus.com</Email>
-                <OfficeListTitle>{intl.formatMessage({id: 'contactForm.sedes'})}</OfficeListTitle>
-                <OfficeList>
-                    <OfficeListItem>14 de Julio 1268 Ciudad de Buenos Aires, Argentina</OfficeListItem>
-                    <OfficeListItem>Av. Arrayanes 66, Local 7 Villa La Angostura, Neuquén, Argentina</OfficeListItem>
-                </OfficeList>
-            </ContactInfoBlock>
-        </ContactContainer>
+        <ContactMainContainer>
+            <ContactWrapper>
+                <ContactHeading>{intl.formatMessage({id: 'contactForm.title'})}</ContactHeading>
+                <ContactFormBlock>
+                    <Form onSubmit={handleSubmit(onSubmit)}  >
+                        <FormGroup>
+                            <Label htmlFor="nameField">{intl.formatMessage({id: 'contactForm.nameField'})}* </Label>
+                            <FieldContainer error={errors.nameField}>
+                                <Field 
+                                    name="nameField" 
+                                    type="text" 
+                                    placeholder={intl.formatMessage({id: 'contactForm.nameField'})} 
+                                    {...register("nameField", { required: true })} />
+                            </FieldContainer>
+                            {errors.nameField && 
+                                <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
+                            }
+                        </FormGroup>
+                        <FormGroup>
+                            <Label htmlFor="emailField">{intl.formatMessage({id: 'contactForm.emailField'})}* </Label>
+                            <FieldContainer error={errors.emailField}>
+                                <Field 
+                                    name="emailField" 
+                                    type="email" 
+                                    placeholder={intl.formatMessage({id: 'contactForm.emailField'})} 
+                                    {...register("emailField", { required: true })}/>
+                            </FieldContainer>
+                            {errors.emailField && 
+                                <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
+                            }
+                        </FormGroup>
+                        <FormGroup>
+                            <Label htmlFor="textAreaField">{intl.formatMessage({id: 'contactForm.textAreaField'})}* </Label>
+                            <FieldContainer error={errors.textAreaField}>
+                                <TextArea 
+                                    name="textAreaField" 
+                                    type="textarea" 
+                                    placeholder={intl.formatMessage({id: 'contactForm.textAreaField'})}  
+                                    {...register("textAreaField", { required: true })}/>
+                            </FieldContainer>
+                            {errors.textAreaField && 
+                                <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
+                            }                    </FormGroup>
+                        <FormGroup>
+                            <BtnSubmit theme={styles} btnText={intl.formatMessage({id: 'button.send'})} onButtonClick={handleSubmit(onSubmit)}></BtnSubmit>
+                            {emailSent &&
+                                <FeedbackMessage><span>{intl.formatMessage({id: 'contactForm.messageSent'})}</span> {intl.formatMessage({id: 'contactForm.thankYou'})}</FeedbackMessage>
+                            }
+                        </FormGroup>
+                    </Form>
+                </ContactFormBlock>
+                <ContactInfoBlock>
+                    <Email>info@fiqus.com</Email>
+                    <OfficeListTitle>{intl.formatMessage({id: 'contactForm.sedes'})}</OfficeListTitle>
+                    <OfficeList>
+                        <OfficeListItem>14 de Julio 1268 Ciudad de Buenos Aires, Argentina</OfficeListItem>
+                        <OfficeListItem>Av. Arrayanes 66, Local 7 Villa La Angostura, Neuquén, Argentina</OfficeListItem>
+                    </OfficeList>
+                </ContactInfoBlock>
+            </ContactWrapper>
+        </ContactMainContainer>
     );
 };
 

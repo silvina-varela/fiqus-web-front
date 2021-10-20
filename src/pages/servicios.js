@@ -8,6 +8,10 @@ import Button from '../components/common/Button'
 import Service from '../components/modules/Service'
 
 const MainWrapper = styled.div`
+  padding-bottom: 187px;
+  @media (min-width: ${styles.breakpoints.m}px) {
+    padding-bottom: 243px;
+  }
 `
 const ServicesContainer = styled.div`
   background-color: ${styles.colors.purpleLight};

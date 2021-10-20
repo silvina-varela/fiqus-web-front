@@ -6,7 +6,12 @@ import SectionHeader from "../components/common/SectionHeader"
 
 const Culture = () => {
     const intl = useIntl();
-    
+    const CultureMainContainer = styled.div`
+        padding-bottom: 151px;
+        @media (min-width: ${styles.breakpoints.m}px) {
+            padding-bottom: 247px;
+        }
+    `
     const HistoryMainContainer = styled.div`
         background-color: ${styles.colors.white};
         padding: 30px 20px 40px 20px;
@@ -196,10 +201,9 @@ const Culture = () => {
     `    
     const FactticMainContainer = styled.div`
         background-color: ${styles.colors.white};
-        padding: 30px 20px 40px 20px;
+        padding: 30px 20px 0px 20px;
         @media (min-width: ${styles.breakpoints.m}px) {
             padding-top: 55px;
-            padding-bottom: 80px;
         }
     `
     const FactticTitle = styled.h2`
@@ -299,33 +303,84 @@ const Culture = () => {
                 subtitle={intl.formatMessage({id: 'culture.subtitle'})}
                 description={intl.formatMessage({id: 'culture.description'})}
             />
-
-            <HistoryMainContainer>
-                <HistoryTitle>{intl.formatMessage({id: "culture_historia.title"})}</HistoryTitle>
-                <TeamImgContainer>
-                    <TeamImgMobile src={require('../images/'+ intl.formatMessage({id: "culture_historia.imageMobile"}) + '.png').default} alt="equipo Fiqus" />
-                    <TeamImgDesktop src={require('../images/'+ intl.formatMessage({id: "culture_historia.imageDesktop"}) + '.png').default} alt="equipo Fiqus" />
-                </TeamImgContainer>
-                <HistoryContentContainer>
-                    <HistoryContentLeftBlock>
-                        <HistoryContent>{intl.formatMessage({id: "culture_historia.content_line1"})}</HistoryContent>
-                        <HistoryContent>{intl.formatMessage({id: "culture_historia.content_line2"})}</HistoryContent>
-                    </HistoryContentLeftBlock>
-                    <HistoryContentRightBlock>
-                        <HistoryContent>{intl.formatMessage({id: "culture_historia.content_line3"})}</HistoryContent>
-                        <HistoryContent>{intl.formatMessage({id: "culture_historia.content_line4"})}</HistoryContent>
-                    </HistoryContentRightBlock>
-                </HistoryContentContainer>
-                <HistoryContentFullBlock>
-                    <HistorySubtitle>{intl.formatMessage({id: "culture_historia.subtitle"})}</HistorySubtitle>
-                    <HistoryContent>
-                        {intl.formatMessage({id: "culture_historia.content_line5"})}
-                    </HistoryContent>
-                </HistoryContentFullBlock>
-            </HistoryMainContainer>
-
-            {/* Cultura | Historia   */}
-            {/*
+            <CultureMainContainer>
+                <HistoryMainContainer>
+                    <HistoryTitle>{intl.formatMessage({id: "culture_historia.title"})}</HistoryTitle>
+                    <TeamImgContainer>
+                        <TeamImgMobile src={require('../images/'+ intl.formatMessage({id: "culture_historia.imageMobile"}) + '.png').default} alt="equipo Fiqus" />
+                        <TeamImgDesktop src={require('../images/'+ intl.formatMessage({id: "culture_historia.imageDesktop"}) + '.png').default} alt="equipo Fiqus" />
+                    </TeamImgContainer>
+                    <HistoryContentContainer>
+                        <HistoryContentLeftBlock>
+                            <HistoryContent>{intl.formatMessage({id: "culture_historia.content_line1"})}</HistoryContent>
+                            <HistoryContent>{intl.formatMessage({id: "culture_historia.content_line2"})}</HistoryContent>
+                        </HistoryContentLeftBlock>
+                        <HistoryContentRightBlock>
+                            <HistoryContent>{intl.formatMessage({id: "culture_historia.content_line3"})}</HistoryContent>
+                            <HistoryContent>{intl.formatMessage({id: "culture_historia.content_line4"})}</HistoryContent>
+                        </HistoryContentRightBlock>
+                    </HistoryContentContainer>
+                    <HistoryContentFullBlock>
+                        <HistorySubtitle>{intl.formatMessage({id: "culture_historia.subtitle"})}</HistorySubtitle>
+                        <HistoryContent>
+                            {intl.formatMessage({id: "culture_historia.content_line5"})}
+                        </HistoryContent>
+                    </HistoryContentFullBlock>
+                </HistoryMainContainer>                
+                <FederalMainContainer>
+                    <TopBlock>
+                        <TopBlockImgContainer>
+                            <TopBlockImg src={require('../images/illustrations/'+ intl.formatMessage({id: "culture_federales.image"}) + '.svg').default} alt="mapa argentina" />
+                        </TopBlockImgContainer>
+                        <TopBlockInfoContainer>
+                            <FederalSubtitle>{intl.formatMessage({id: "culture_federales.title1"})}</FederalSubtitle>
+                            <FederalContent>{intl.formatMessage({id: "culture_federales.content1"})}</FederalContent>
+                            <FederalContent>
+                                {intl.formatMessage({id: "culture_federales.tenemosSedes"})}
+                                <FederalContentBoldText>CABA</FederalContentBoldText>
+                                {intl.formatMessage({id: "y"})}
+                                <FederalContentBoldText>Villa La Angostura. </FederalContentBoldText>
+                                {intl.formatMessage({id: "culture_federales.personasAsociadas"})}
+                                <FederalContentBoldText>Mar del Plata</FederalContentBoldText>, 
+                                <FederalContentBoldText> San Fernando (Bs.As.)</FederalContentBoldText>, 
+                                <FederalContentBoldText> Puerto Madryn</FederalContentBoldText>
+                                {intl.formatMessage({id: "y"})}
+                                <FederalContentBoldText>San Luis</FederalContentBoldText>.
+                            </FederalContent>
+                        </TopBlockInfoContainer>
+                    </TopBlock>
+                    <BottomBlock>
+                            <FederalSubtitle>{intl.formatMessage({id: "culture_federales.title2"})}</FederalSubtitle>
+                            <FederalContent>{intl.formatMessage({id: "culture_federales.content2"})}</FederalContent>
+                    </BottomBlock>
+                </FederalMainContainer>                
+                <FactticMainContainer>
+                    <FactticContentContainer>
+                        <FactticTitle>{intl.formatMessage({id: "culture_facttic.title"})}</FactticTitle>
+                        <FactticLead>{intl.formatMessage({id: "culture_facttic.subtitle"})}</FactticLead>
+                        <FactticContentLeftBlock>
+                            <FactticContent>
+                                {intl.formatMessage({id: "culture_facttic.content_line1_part1"})}
+                                <FactticContentBoldText>{intl.formatMessage({id: "culture_facttic.content_line1_facttic"})}</FactticContentBoldText>
+                                {intl.formatMessage({id: "culture_facttic.content_line1_part2"})}
+                            </FactticContent>
+                        </FactticContentLeftBlock>
+                        <FactticContentRightBlock>
+                            <FactticContent>{intl.formatMessage({id: "culture_facttic.content_line2"})}</FactticContent>
+                            <FactticContent>{intl.formatMessage({id: "culture_facttic.content_line3"})}</FactticContent>
+                        </FactticContentRightBlock>
+                    </FactticContentContainer>
+                    <FactticContentFullBlock>
+                        <FactticSubtitle>{intl.formatMessage({id: "culture_internacional.title"})}</FactticSubtitle>
+                        <FactticContent>{intl.formatMessage({id: "culture_internacional.content_line1"})}</FactticContent>
+                        <FactticContent>{intl.formatMessage({id: "culture_internacional.content_line2"})}</FactticContent>
+                        <FactticContent>{intl.formatMessage({id: "culture_internacional.content_line3"})}</FactticContent>
+                    </FactticContentFullBlock>
+                </FactticMainContainer>
+            </CultureMainContainer>
+        </Fragment>
+            /*
+            Cultura | Historia  
             <div>
                 <h1>{intl.formatMessage({id: "culture_historia.title"})}</h1>
                 <div>
@@ -340,38 +395,7 @@ const Culture = () => {
                 <h3>{intl.formatMessage({id: "culture_historia.subtitle"})}</h3>
                 <p>{intl.formatMessage({id: "culture_historia.subtitleContent"})}</p>
             </div>
-            */}
-        
-            <FederalMainContainer>
-                <TopBlock>
-                    <TopBlockImgContainer>
-                        <TopBlockImg src={require('../images/illustrations/'+ intl.formatMessage({id: "culture_federales.image"}) + '.svg').default} alt="mapa argentina" />
-                    </TopBlockImgContainer>
-                    <TopBlockInfoContainer>
-                        <FederalSubtitle>{intl.formatMessage({id: "culture_federales.title1"})}</FederalSubtitle>
-                        <FederalContent>{intl.formatMessage({id: "culture_federales.content1"})}</FederalContent>
-                        <FederalContent>
-                            {intl.formatMessage({id: "culture_federales.tenemosSedes"})}
-                            <FederalContentBoldText>CABA</FederalContentBoldText>
-                            {intl.formatMessage({id: "y"})}
-                            <FederalContentBoldText>Villa La Angostura. </FederalContentBoldText>
-                            {intl.formatMessage({id: "culture_federales.personasAsociadas"})}
-                            <FederalContentBoldText>Mar del Plata</FederalContentBoldText>, 
-                            <FederalContentBoldText> San Fernando (Bs.As.)</FederalContentBoldText>, 
-                            <FederalContentBoldText> Puerto Madryn</FederalContentBoldText>
-                            {intl.formatMessage({id: "y"})}
-                            <FederalContentBoldText>San Luis</FederalContentBoldText>.
-                        </FederalContent>
-                    </TopBlockInfoContainer>
-                </TopBlock>
-                <BottomBlock>
-                        <FederalSubtitle>{intl.formatMessage({id: "culture_federales.title2"})}</FederalSubtitle>
-                        <FederalContent>{intl.formatMessage({id: "culture_federales.content2"})}</FederalContent>
-                </BottomBlock>
-            </FederalMainContainer>
-            
-            {/* Cultura | Somos Federales */}
-            {/*
+            Cultura | Somos Federales 
             <div>
                 <h2>{intl.formatMessage({id: "culture_federales.title1"})}</h2>
                 <p>{intl.formatMessage({id: "culture_federales.content1"})}</p>
@@ -385,36 +409,7 @@ const Culture = () => {
                 <h2>{intl.formatMessage({id: "culture_federales.title2"})}</h2>
                 <p>{intl.formatMessage({id: "culture_federales.content2"})}</p>
             </div>
-            */}
-
-
-            {/* Cultura | Estamos Federados */}
-            
-            <FactticMainContainer>
-                <FactticContentContainer>
-                    <FactticTitle>{intl.formatMessage({id: "culture_facttic.title"})}</FactticTitle>
-                    <FactticLead>{intl.formatMessage({id: "culture_facttic.subtitle"})}</FactticLead>
-                    <FactticContentLeftBlock>
-                        <FactticContent>
-                            {intl.formatMessage({id: "culture_facttic.content_line1_part1"})}
-                            <FactticContentBoldText>{intl.formatMessage({id: "culture_facttic.content_line1_facttic"})}</FactticContentBoldText>
-                            {intl.formatMessage({id: "culture_facttic.content_line1_part2"})}
-                        </FactticContent>
-                    </FactticContentLeftBlock>
-                    <FactticContentRightBlock>
-                        <FactticContent>{intl.formatMessage({id: "culture_facttic.content_line2"})}</FactticContent>
-                        <FactticContent>{intl.formatMessage({id: "culture_facttic.content_line3"})}</FactticContent>
-                    </FactticContentRightBlock>
-                </FactticContentContainer>
-                <FactticContentFullBlock>
-                    <FactticSubtitle>{intl.formatMessage({id: "culture_internacional.title"})}</FactticSubtitle>
-                    <FactticContent>{intl.formatMessage({id: "culture_internacional.content_line1"})}</FactticContent>
-                    <FactticContent>{intl.formatMessage({id: "culture_internacional.content_line2"})}</FactticContent>
-                    <FactticContent>{intl.formatMessage({id: "culture_internacional.content_line3"})}</FactticContent>
-                </FactticContentFullBlock>
-            </FactticMainContainer>
-            
-            {/*
+            Cultura | Estamos Federados
             <div>
                 <h2>{intl.formatMessage({id: "culture_facttic.title"})}</h2>
                 <h2>{intl.formatMessage({id: "culture_facttic.subtitle"})}</h2>
@@ -434,8 +429,7 @@ const Culture = () => {
                 <p>{intl.formatMessage({id: "culture_internacional.content_line1"})}</p>
                 <p>{intl.formatMessage({id: "culture_internacional.content_line2"})}</p>
             </div>
-            */}
-        </Fragment>
+            */  
     );
 };
 

@@ -9,23 +9,27 @@ import {styles} from '../content/content.json'
 const PostsMainContainer = styled.div`
   display: flex;
   justify-content: center;
+  padding: 30px 20px 109px 20px;
+  @media (min-width: ${styles.breakpoints.m}px) {
+    padding: 52px 20px 163px 20px;
+  }
+  @media (min-width: ${styles.breakpoints.xl}px) {
+    padding: 52px 0px 168px 0px;
+  }
 `
 const PostsContainer = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 30px 20px 115px 20px;
   gap: 10px;
+  padding: 0;
   @media (min-width: ${styles.breakpoints.m}px) {
     max-width: 1140px;
     justify-content: flex-start;
     margin: auto;
-    padding: 52px 20px 163px 20px;
     gap: 36px;
+    padding: 0;
   };
-  @media (min-width: ${styles.breakpoints.xl}px) {
-    padding: 52px 0px 163px 0px;
-  }
 `
 const PostsTitle = styled.h2`
   flex-basis: 100%;

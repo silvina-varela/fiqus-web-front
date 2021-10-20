@@ -7,8 +7,9 @@ const styles = data.styles
 const FeaturedServiceContainer = styled.div`
     background: ${styles.colors.white};
     position: relative;
-    min-height: 450px;
+    min-height: 253px;
     @media (min-width: ${styles.breakpoints.m}px) {
+        min-height: 215px;
         padding: 0 20px
     }
 `
