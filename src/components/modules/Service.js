@@ -244,12 +244,13 @@ const BtnMobile = styled(Button)`
 `
 const Btn = styled(Button)`
     display: none;
+    max-width: max-content;
     @media (min-width: ${styles.breakpoints.m}px) {
         margin-top: auto!important;
         margin-bottom: 35px;
         display: flex;
         // Este componente no se muestra porque todavía no está lista la landing page decada servicio
-        display: none;
+        //display: none;
         ${props => {
             if (props.isHome) {
                 return ` 
@@ -272,38 +273,40 @@ const Service = (props) => {
     const intl = useIntl();
 
     return (
-        <ServiceWrapper ishome={true}> 
+        <ServiceWrapper isHome={props.isHome}> 
             <ImageContainerMobile>
                 <ServiceImage 
-                    ishome={true}
+                    isHome={props.isHome}
                     data={require(`../../images/illustrations/${service.image}.svg`).default} 
                     type="image/svg+xml">
                 </ServiceImage>
             </ImageContainerMobile>
             <LeftBlock>
-                <ImageContainer ishome={true}>
+                <ImageContainer isHome={props.isHome}>
                     <ServiceImage 
                         data={require(`../../images/illustrations/${service.image}.svg`).default} 
                         type="image/svg+xml">
                     </ServiceImage>
                 </ImageContainer>
-                <TagsContainer ishome={true}>
+                <TagsContainer isHome={props.isHome}>
                     <TagsTitle>{intl.formatMessage({id: "services.tagsTitle"})}</TagsTitle>
                     <Tag tagsType="services" tags={service.tags} styles={props.styles}></Tag>
                 </TagsContainer>
                 
-                <BtnMobile type='btnPrimaryPurple' theme={styles} to={props.href} btnText={intl.formatMessage({id: 'verMas'})} ishome={true}></BtnMobile>
+                <BtnMobile type='btnPrimaryPurple' theme={styles} to={props.href} btnText={intl.formatMessage({id: 'verMas'})} isHome={props.isHome}></BtnMobile>
             </LeftBlock>
-            <RightBlock ishome={true}>
+            <RightBlock isHome={props.isHome}>
                 <TextContainer>
-                    <ServiceTitle ishome={true}>{intl.formatMessage({id:`${props.id}.service`})}</ServiceTitle>
-                    <ServiceDescription ishome={true}>{intl.formatMessage({id: `${props.id}.description`})}</ServiceDescription>
+                    <ServiceTitle isHome={props.isHome}>{intl.formatMessage({id:`${props.id}.service`})}</ServiceTitle>
+                    <ServiceDescription isHome={props.isHome}>{intl.formatMessage({id: `${props.id}.description`})}</ServiceDescription>
                 </TextContainer>
                 <Btn type='btnPrimaryPurple' 
                     theme={styles} 
                     to={props.href} 
-                    btnText={intl.formatMessage({id: 'verMas'})}
-                    ishome={true}>    
+                    btnText={intl.formatMessage({id: "button.verMas"})}
+                    isHome={props.isHome}
+                    isLink
+                    >    
                 </Btn>
             </RightBlock>
         </ServiceWrapper>

@@ -8,10 +8,42 @@ const FeaturedServiceContainer = styled.div`
     background: ${styles.colors.white};
     position: relative;
     min-height: 253px;
+    margin-bottom: 0px;
     @media (min-width: ${styles.breakpoints.m}px) {
         min-height: 215px;
         padding: 0 20px
     }
+    
+    ${props => {
+        if (props.isHome) {
+            return ` 
+            flex-basis: 100%;
+            max-width: 320px;
+            border-radius: 14px;
+            padding: 30px 20px;
+            min-height: unset;
+            background: ${styles.colors.white};
+            margin-bottom: 30px;
+            @media (min-width: ${styles.breakpoints.s}px) {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            @media (min-width: ${styles.breakpoints.m}px) {
+                position: static;
+                flex-basis: 50%;
+                max-width: 330px;
+                min-height: unset;
+                margin: 0;
+                padding: 30px 20px;
+                border: none;
+                box-shadow: none;
+            }
+            @media (min-width: ${styles.breakpoints.l}px) {
+                flex-basis: 33.33%;
+            }
+            `
+        }
+    }}
 `
 const FeaturedServiceWrapper = styled.div`
     position: relative;
@@ -45,24 +77,25 @@ const FeaturedServiceWrapper = styled.div`
     ${props => {
         if (props.isHome) {
             return ` 
+            position: static;
             max-width: 320px;
             margin: auto;
             box-shadow: none;
             border: none;
-            background: ${styles.colors.white};
-            margin-top: 40px;
+            background: ${styles.colors.unset};
+            margin-top: 0px;
+            padding: 0px;
+            
             @media (min-width: ${styles.breakpoints.m}px) {
-                max-width: 320px;
+                max-width: unset;
+                width: 100%;
+                height: 100%;
                 box-shadow: none;
-                margin-top: 40px;
+                margin: 0;
                 border: none;
-                background: ${styles.colors.white};
+                background: ${styles.colors.unset};
                 flex-direction: column;
                 align-items: center;
-                width: 50%;
-            }
-            @media (min-width: ${styles.breakpoints.l}px) {
-                width: 33%;
             }
             `
         }
@@ -108,11 +141,11 @@ const ServiceImage = styled.img`
     ${props => {
         if (props.isHome) {
             return ` 
-            max-height: 112px;
+            max-height: 120px;
             max-width: 100%;
             @media (min-width: ${styles.breakpoints.m}px) {
-                max-height: 112px;
-                max-width: 100%;
+                max-height: 125px;
+                margin-top: 20px;
             }
             `
         }
@@ -151,6 +184,7 @@ const InfoContainer = styled.div`
                 background: unset;
                 border: none;
                 border-radius: unset;
+                box-shadow: none;
             }
             `
         }

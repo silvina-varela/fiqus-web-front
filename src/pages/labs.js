@@ -70,7 +70,6 @@ const Labs = ({data: {allMarkdownRemark: { edges }}}) => {
         subtitle={intl.formatMessage({id: 'labs.subtitle'})}
         description={intl.formatMessage({id: 'labs.content'})}
       />
-      
       <PostsMainContainer>
         <PostsContainer>
           <PostsTitle>{intl.formatMessage({id: 'casos_de_exito.title'})}</PostsTitle>
