@@ -11,18 +11,15 @@ const Wrapper = styled.div`
     padding:0;
     width:100%;
     min-height:100%;
-    background: ${styles.colors.purpleLight};  
-    
+    background: ${styles.colors.white};      
 `
 const PageContainer = styled.section `
     width:100%;
-    max-width:${styles.breakpoints.xl}px;
-    //min-width:${styles.breakpoints.xs}px;
-    padding: 102px 20px;
-    margin: 0 auto;
     min-height:100vh;
-    @media (min-width: ${styles.breakpoints.m}px) {
-    padding: 123px 50px;
+    margin: 0 auto;
+    padding-top: 62px;
+    @media (min-width: ${styles.breakpoints.xl}px) {
+        padding-top: 76px;
     }
 `
 const PageWrapper = (props) => {

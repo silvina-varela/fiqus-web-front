@@ -2,11 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {Link, useStaticQuery} from 'gatsby'
 import styled from 'styled-components'
 
-const BtnContainer = styled.div`
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-`
 const BtnImg = styled.img`
     display: ${props => props.imgDisplay};
     height: 20px;
@@ -14,8 +9,10 @@ const BtnImg = styled.img`
 `
 const setSharedStyles = (type) => {
     return `
-        margin: 0 6px 8px 0px;
+        margin: 0px;
         padding: 9px 20px;
+        margin-bottom: 5px;    
+        margin-right: 10px;
         font-size: 18px;
         font-size: ${type.fontSize};
         font-weight: ${type.fontWeight};
@@ -128,25 +125,21 @@ const Button = (props) => {
     }
     
     return (
-        <BtnContainer className={props.className}>   
-            {
-                props.isLink ? 
-                    <BtnLink $btnStyles={getBtnStyles(props.type)} theme={props.theme} to={props.href}>
-                        <BtnImg 
-                            imgDisplay={getBtnStyles(props.type).imgDisplay} 
-                            src={props.github ? require('../../images/icon_github.svg').default : require('../../images/icon_website.svg').default} />
-                        {props.btnText}
-                    </BtnLink>                     
-                : 
-                    <BtnCta $btnStyles={getBtnStyles(props.type)} theme={props.theme} onClick={handleClick}>
-                        <BtnImg 
-                            imgDisplay={getBtnStyles(props.type).imgDisplay} 
-                            src={props.github ? require('../../images/icon_github.svg').default : require('../../images/icon_website.svg').default} />
-                        {props.btnText}
-                    </BtnCta>
-            }
-        </BtnContainer>
+        props.isLink ? 
+            <BtnLink className={props.className} $btnStyles={getBtnStyles(props.type)} theme={props.theme} href={props.href}>
+                <BtnImg 
+                    imgDisplay={getBtnStyles(props.type).imgDisplay} 
+                    src={props.github ? require('../../images/icon_github.svg').default : require('../../images/icon_website.svg').default} />
+                {props.btnText}
+            </BtnLink>                     
+        : 
+            <BtnCta className={props.className} $btnStyles={getBtnStyles(props.type)} theme={props.theme} onClick={handleClick}>
+                <BtnImg 
+                    imgDisplay={getBtnStyles(props.type).imgDisplay} 
+                    src={props.github ? require('../../images/icon_github.svg').default : require('../../images/icon_website.svg').default} />
+                {props.btnText}
+            </BtnCta>
+        
     );
-};
-
+}
 export default Button;

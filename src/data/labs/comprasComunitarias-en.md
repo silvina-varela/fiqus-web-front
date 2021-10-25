@@ -6,8 +6,8 @@ tags: ["Python", "Django Rest framework", "Docker", "Postgres", "vueJS"]
 image: comprasComunitarias.png
 website: "link pag proyecto (si no hay, dejar en blanco)"
 github: "link github (si no hay, dejar en blanco)"
-english: false
+english: true
 
 ---
 
-Aplicación web para gestionar las compras comunitarias que se realizan junto a la Mesa de Asociativismo, es un aporte territorial en nuestra sede Villa La Angostura.
+(EN) Aplicación web para gestionar las compras comunitarias que se realizan junto a la Mesa de Asociativismo, es un aporte territorial en nuestra sede Villa La Angostura.

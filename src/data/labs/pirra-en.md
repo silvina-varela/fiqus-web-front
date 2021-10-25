@@ -6,8 +6,8 @@ tags: ["Python", "Django", "Docker", "Postgres"]
 image: pirra.png
 website: "link pag proyecto (si no hay, dejar en blanco)"
 github: "link github (si no hay, dejar en blanco)"
-
+english: true
 
 ---
 
-Sistema de facturación electrónica donde se pueden autorizar todo tipo de facturas con AFIP, también visualizarlas en un dashboard, descargarlas y compartirlas.
+(EN) Sistema de facturación electrónica donde se pueden autorizar todo tipo de facturas con AFIP, también visualizarlas en un dashboard, descargarlas y compartirlas.

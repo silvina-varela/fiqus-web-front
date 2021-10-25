@@ -1,5 +1,6 @@
 ---
 type: "lab"
+id: "coobs"
 title: "CooBS"
 tags: ["Python", "Django", "Postgres"]
 image: coobs.png
