@@ -1,7 +1,6 @@
 import React, { Fragment }  from 'react'
 import { graphql } from 'gatsby';
 import styled from 'styled-components'
-import Post from'../components/modules/BlogPost'
 
 const PostsContainer = styled.div`
 
@@ -9,8 +8,9 @@ const PostsContainer = styled.div`
 
 const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
 
-    const Posts = edges.map( 
-        edge => <Post postData={edge.node}></Post>)
+    const Posts = edges.map(  edge => {
+      console.log(edge)
+    } )
 
     return <PostsContainer>{Posts}</PostsContainer>
 

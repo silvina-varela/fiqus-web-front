@@ -16,7 +16,7 @@ export default function BlogPostTemplate({ data: { markdownRemark } }) {
   } 
 
   return (
-    <Wrapper children={PageContent} background={"red"}> </Wrapper>
+    <Wrapper children={PageContent} > </Wrapper>
   );
 }
 
@@ -27,6 +27,7 @@ export const pageQuery = graphql`
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         title
+        slug
       }
     }
   }
