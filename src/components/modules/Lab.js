@@ -97,7 +97,7 @@ const SuccessCase = (props) => {
             <LabImage fluid={props.fluidImg}></LabImage>
             <LabTitle>{lab.frontmatter.title}</LabTitle>
             <LabDescription>{lab.excerpt}</LabDescription>
-            <TagsTitle>Tecnologías investigadas</TagsTitle>
+            <TagsTitle>{intl.formatMessage({id: "casos_de_exito.tagsTitle"})}</TagsTitle>
             <TagsContainer>
                 <Tags styles={props.styles} type="labs" tags={lab.frontmatter.tags}></Tags>
             </TagsContainer>
