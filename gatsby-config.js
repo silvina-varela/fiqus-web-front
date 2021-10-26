@@ -71,7 +71,7 @@ module.exports = {
     },
     // It's really important that `gatsby-plugin-react-intl` is listed AFTER `gatsby-plugin-layout`
     {
-      resolve: `gatsby-plugin-react-intl`,
+      resolve: `gatsby-plugin-intl`,
       options: {
         // language JSON resource path
         path: `${__dirname}/src/intl`,

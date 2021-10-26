@@ -1,5 +1,0 @@
-{
-    "componentChunkName": "component---src-pages-markdown-remark-frontmatter-slug-js",
-    "path": "/null/",
-    "result": {"data":{"markdownRemark":{"html":"<p>Aplicación web para gestionar las compras comunitarias que se realizan junto a la Mesa de Asociativismo, es un aporte territorial en nuestra sede Villa La Angostura.</p>","frontmatter":{"date":null,"title":"Compras Comunitarias"}}},"pageContext":{"id":"a409edb1-6630-5b5c-8d66-26bc414c9f73","frontmatter__slug":null,"__params":{"frontmatter__slug":"null"}}},
-    "staticQueryHashes": ["805671509"]}
