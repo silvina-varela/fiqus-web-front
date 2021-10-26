@@ -28,7 +28,6 @@ const HeaderContainer = styled.div`
         margin-bottom: 0px;
         padding-top: 55px;
         padding-bottom: 79px;
-        padding-top: 45px;
         ${props => {
             if (props.section === 'cultura') {
                 return  `max-width: 429px;
@@ -105,7 +104,7 @@ const SectionHeaderTitle = styled.h1`
     font-weight: ${styles.fontWeight.bold};
     text-align: center;
     color: ${props => props.type.color};
-    margin-bottom: 27px;
+    margin-bottom: 25px;
     @media (min-width: ${styles.breakpoints.m}px) {
         font-size: 3em;
         text-align: left;
