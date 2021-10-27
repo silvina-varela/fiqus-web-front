@@ -1,10 +1,11 @@
 import React from 'react';
 import {styles} from '../../content/content.json'
 import styled from 'styled-components'
+import { useIntl } from "gatsby-plugin-react-intl"
 
 import Button from '../../components/common/Button'
 
-const HeaderContainer = styled.div`
+const HomepageLabsContainer = styled.div`
     background: ${styles.colors.greenLight};
     display: flex; 
     justify-content: center;
@@ -18,7 +19,7 @@ const HeaderContainer = styled.div`
         padding-bottom: 250px;
     }
 `
-const HeaderWrapper = styled.div`
+const HomepageLabsWrapper = styled.div`
     max-width: 946px;
     width: 100%;
     display: flex;
@@ -57,7 +58,7 @@ const ImageContainer = styled.div`
     }
     
 `
-const SectionHeaderSubtitle = styled.p`
+const HomepageLabsSubtitle = styled.p`
     font-size: 1.72em;
     line-height: 37px;
     font-weight: ${styles.fontWeight.bold};
@@ -68,7 +69,7 @@ const SectionHeaderSubtitle = styled.p`
         line-height: 49px;
     }
 `
-const SectionHeaderTitle = styled.h1`
+const HomepageLabsTitle = styled.h2`
     font-size: 2.38em;
     line-height: 49px;
     font-weight: ${styles.fontWeight.bold};
@@ -82,7 +83,7 @@ const SectionHeaderTitle = styled.h1`
         margin-bottom: 33px;
     }
 `
-const SectionHeaderDescription = styled.p`
+const HomepageLabsDescription = styled.p`
     font-size: 1em;
     line-height: 26px;
     font-weight: ${styles.fontWeight.regular};
@@ -98,7 +99,7 @@ const DescriptionBold = styled.span`
     font-weight: ${styles.fontWeight.bold};
 `
 
-const SectionHeaderImg = styled.img`
+const HomepageLabsImg = styled.img`
     margin-top: 98px;
     @media (min-width: ${styles.breakpoints.m}px) {
         max-width: 400px;
@@ -108,7 +109,7 @@ const SectionHeaderImg = styled.img`
         max-width: 532px;
     }
 `
-const SectionHeaderImgMobile = styled.img`
+const HomepageLabsImgMobile = styled.img`
     width: 100%;
     max-width: 270px;
     margin-bottom: 40px;
@@ -125,21 +126,32 @@ const Btn = styled(Button)`
 `
 
 const HomepageLabs = (props) => {
+    const intl = useIntl();
     return (
-        <HeaderContainer>
-            <HeaderWrapper>
+        <HomepageLabsContainer>
+            <HomepageLabsWrapper>
                 <InfoContainer>
-                    <SectionHeaderTitle>Labs</SectionHeaderTitle>
-                    <SectionHeaderImgMobile src={require(`../../images/illustrations/homepageLabs.svg`).default} />
-                    <SectionHeaderSubtitle>¡Nos capacitamos permanentemente!</SectionHeaderSubtitle>
-                    <SectionHeaderDescription>Uno de los objetivos de Fiqus es capacitarnos constantemente para especializarnos en tecnologías de vanguardia, por eso todas las semanas tenemos <DescriptionBold>FiqusLabs</DescriptionBold>, un espacio de aprendizaje práctico donde investigamos tecnologías de vanguardia como <DescriptionBold>Elixir</DescriptionBold>, <DescriptionBold>Erlang</DescriptionBold> y <DescriptionBold>MachineLearning</DescriptionBold>.</SectionHeaderDescription>
-                    <Btn type='btnPrimaryWhite' theme={styles} to="#" btnText='ver más'></Btn>
+                    <HomepageLabsTitle>{intl.formatMessage({id: "homepageLabs.title"})}</HomepageLabsTitle>
+                    <HomepageLabsImgMobile src={require('../../images/illustrations/' + intl.formatMessage({id: "homepageLabs.image"})).default} /><HomepageLabsSubtitle>{intl.formatMessage({id: "homepageLabs.subtitle"})}</HomepageLabsSubtitle>
+                    <HomepageLabsDescription>
+                        {intl.formatMessage({id: "homepageLabs.descriptionLine1"})}
+                        <DescriptionBold>{intl.formatMessage({id: "homepageLabs.descriptionBold1"})}</DescriptionBold>
+                        {intl.formatMessage({id: "homepageLabs.descriptionComma"})}
+                        {intl.formatMessage({id: "homepageLabs.descriptionLine2"})}
+                        <DescriptionBold>{intl.formatMessage({id: "homepageLabs.descriptionBold2"})}</DescriptionBold>
+                        {intl.formatMessage({id: "homepageLabs.descriptionComma"})}
+                        <DescriptionBold>{intl.formatMessage({id: "homepageLabs.descriptionBold3"})}</DescriptionBold>
+                        {intl.formatMessage({id: "homepageLabs.descriptionLine4"})}
+                        <DescriptionBold>{intl.formatMessage({id: "homepageLabs.descriptionBold4"})}</DescriptionBold>
+                        {intl.formatMessage({id: "homepageLabs.descriptionDot"})}
+                    </HomepageLabsDescription>
+                    <Btn type='btnPrimaryWhite' theme={styles} to="#" btnText={intl.formatMessage({id: "homepageLabs.btnText"})}></Btn>
                 </InfoContainer>
                 <ImageContainer section={props.section}>
-                    <SectionHeaderImg section={props.section} src={require(`../../images/illustrations/homepageLabs.svg`).default} />
+                    <HomepageLabsImg section={props.section} src={require('../../images/illustrations/' + intl.formatMessage({id: "homepageLabs.image"})).default} />
                 </ImageContainer>
-            </HeaderWrapper>
-        </HeaderContainer>
+            </HomepageLabsWrapper>
+        </HomepageLabsContainer>
     );
 };
 

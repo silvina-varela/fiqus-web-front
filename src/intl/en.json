@@ -15,6 +15,21 @@
         "title":"Homepage",
         "lead": "Somos una cooperativa de software. Somos construcción colectiva, cultura y mentes en constante movimiento."
     },
+    "homepageLabs" : {
+        "title": "Labs",
+        "subtitle": "¡Nos capacitamos permanentemente!",
+        "image": "homepageLabs.svg",
+        "descriptionLine1": "Uno de los objetivos de Fiqus es capacitarnos constantemente para especializarnos en tecnologías de vanguardia, por eso todas las semanas tenemos",
+        "descriptionBold1": " FiqusLabs",
+        "descriptionLine2": " un espacio de aprendizaje práctico donde investigamos tecnologías de vanguardia como",
+        "descriptionBold2": " Elixir",
+        "descriptionComma": ",",
+        "descriptionBold3": " Erlang",
+        "descriptionLine4": " y",
+        "descriptionBold4": " MachineLearning",
+        "descriptionDot": ".",
+        "btnText": "ver más"
+    },
     "button": {
         "verMas": "view more",
         "send": "send"

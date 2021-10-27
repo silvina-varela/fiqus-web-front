@@ -58,6 +58,7 @@ const BtnSite =  styled(Button)`
     margin: 0;
     padding: 6px 12px;
     box-shadow: none;
+    border-radius: 10px;
     &:hover {
         box-shadow: 0px 3px 0px ${styles.colors.lightGrey};
     }
