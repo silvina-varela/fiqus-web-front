@@ -11,7 +11,7 @@ const HomepageLabsContainer = styled.div`
     justify-content: center;
     padding: 32px 20px 180px 20px;
     margin-bottom: 0px;
-    margin-top: 200px;
+    //margin-top: 200px;
     background: ${styles.colors.white};
     @media (min-width: ${styles.breakpoints.m}px) {
         margin-bottom: 0px;
@@ -132,7 +132,10 @@ const HomepageLabs = (props) => {
             <HomepageLabsWrapper>
                 <InfoContainer>
                     <HomepageLabsTitle>{intl.formatMessage({id: "homepageLabs.title"})}</HomepageLabsTitle>
-                    <HomepageLabsImgMobile src={require('../../images/illustrations/' + intl.formatMessage({id: "homepageLabs.image"})).default} />
+                    <HomepageLabsImgMobile
+                        src={require('../../images/illustrations/' + intl.formatMessage({id: "homepageLabs.image"})).default}
+                        alt={intl.formatMessage({id: "homepageLabs.image"})}
+                    />
                     <HomepageLabsSubtitle>{intl.formatMessage({id: "homepageLabs.subtitle"})}</HomepageLabsSubtitle>
                     <HomepageLabsDescription>
                         {intl.formatMessage({id: "homepageLabs.descriptionLine1"})}

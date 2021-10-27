@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { styles, homepage } from '../content/content.json'
 import { useIntl, Link } from "gatsby-plugin-react-intl"
 import HomepageHeader from "../components/modules/HomepageHeader"
+import HomepageCulture from "../components/modules/HomepageCulture"
 import HomepageLabs from "../components/modules/HomepageLabs"
 require('../styles/styles.css')
 
@@ -12,7 +13,7 @@ const Index = (props) => {
   return (
     <Fragment>
         <HomepageHeader/>
-        <h1>{homepage.title}</h1>
+        <HomepageCulture/>
         <HomepageLabs/>
     </Fragment>
   );
