@@ -53,14 +53,14 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `blog`,
-        path: `${__dirname}/src/data/blog`,
+        path: `${__dirname}/src/content/posts`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `labs`,
-        path: `${__dirname}/src/data/labs`,
+        path: `${__dirname}/src/content/labs`,
       },
     },
     {
@@ -74,7 +74,7 @@ module.exports = {
       resolve: `gatsby-plugin-react-intl`,
       options: {
         // language JSON resource path
-        path: `${__dirname}/src/intl`,
+        path: `${__dirname}/src/content/intl`,
         // supported language
         languages: [`es`,`en`],
         // language file path

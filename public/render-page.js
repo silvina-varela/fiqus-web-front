@@ -17063,7 +17063,7 @@ var plugins = [{
   plugin: __webpack_require__(/*! ./node_modules/gatsby-plugin-react-intl/gatsby-ssr */ "./node_modules/gatsby-plugin-react-intl/gatsby-ssr.js"),
   options: {
     "plugins": [],
-    "path": "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front/src/intl",
+    "path": "D:\\03_CODIGOS\\Nayra\\Nayra-clientes\\FIQUS\\fiqus-web-front/src/content/intl",
     "languages": ["es", "en"],
     "defaultLanguage": "es",
     "redirect": true,

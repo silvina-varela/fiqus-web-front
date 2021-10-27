@@ -192,9 +192,11 @@ const Header = (props) => {
         let active;
 
         props.menuLinks.forEach(menuLink => {
-            if (menuLink.link !== '/' && props.location.pathname.includes(menuLink.link.toLowerCase())) {
+
+
+/*             if (menuLink.link !== '/' && props.location.pathname.includes(menuLink.link.toLowerCase())) {
                 active = menuLink.link;
-            }
+            } */
         });
         if (!active) active = '/';
 
