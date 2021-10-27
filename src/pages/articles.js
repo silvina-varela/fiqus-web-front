@@ -73,19 +73,60 @@ const blogMain = (props) => {
           <PostsContainer>
             <PostsWrapper>
                 <BlogTitle>Blog</BlogTitle>
-                <PostThumbnail postTitle='Experiencia de Intercooperación' postDescription='En Fiqus comenzamos este 2020 con una gran experiencia de trabajo e intercooperació […]' postImg='blogThumbnail.png' />
-                <PostThumbnail postTitle='Socios de Fiqus ganan el SpawnFest' postDescription='Los últimos días del 2018 no pasaron como cualquier otro en nuestra cooperativa, un socio […]' postImg='blogThumbnail(1).png' />
-                <PostThumbnail postTitle='Violencia de género' postDescription='Hace poco menos de un año nos llegó un email del IMFC (Instituto Movilizador de […]' postImg='blogThumbnail(2).png' />
-                <PostThumbnail postTitle='La Comunicación en la Cooperativa' postDescription='En Fiqus comenzamos este 2020 con una gran experiencia de trabajo e intercooperació […]' postImg='blogThumbnail(3).png' />
-                <PostThumbnail postTitle='Instalando Erlang y Elixir con asdf' postDescription='Los últimos días del 2018 no pasaron como cualquier otro en nuestra cooperativa, un socio […]' postImg='blogThumbnail(4).png' />
-                <PostThumbnail postTitle='Una economía con rostro humano' postDescription='Hace poco menos de un año nos llegó un email del IMFC (Instituto Movilizador de […]' postImg='blogThumbnail(5).png' />
-                <PostThumbnail postTitle='Coop & travel: se acaba el sudeste asiático' postDescription='En Fiqus comenzamos este 2020 con una gran experiencia de trabajo e intercooperació […]' postImg='blogThumbnail(6).png' />
-                <PostThumbnail postTitle='Django Channels: Hagamos un «snake» multijugador en la PyConAr 2016' postDescription='Los últimos días del 2018 no pasaron como cualquier otro en nuestra […]' postImg='blogThumbnail(7).png' />
-                <PostThumbnail postTitle='Visita a la Fundación IPNA' postDescription='Hace poco menos de un año nos llegó un email del IMFC (Instituto Movilizador de […]' postImg='blogThumbnail(8).png' />
+                <PostThumbnail 
+                  postTitle='Experiencia de Intercooperación' 
+                  postDescription='En Fiqus comenzamos este 2020 con una gran experiencia de trabajo e intercooperació 
+                  …]'
+                  postImg='blogThumbnail.png'
+                />
+                <PostThumbnail 
+                  postTitle='Socios de Fiqus ganan el SpawnFest' 
+                  postDescription='Los últimos días del 2018 no pasaron como cualquier otro en nuestra cooperativa, un socio […]'
+                  postImg='blogThumbnail(1).png'
+                />
+                <PostThumbnail 
+                  postTitle='Violencia de género' 
+                  postDescription='Hace poco menos de un año nos llegó un email del IMFC (Instituto Movilizador de […]'
+                  postImg='blogThumbnail(2).png'
+                />
+                <PostThumbnail 
+                  postTitle='La Comunicación en la Cooperativa' 
+                  postDescription='En Fiqus comenzamos este 2020 con una gran experiencia de trabajo e intercooperació […]'
+                  postImg='blogThumbnail(3).png'
+                />
+                <PostThumbnail 
+                  postTitle='Instalando Erlang y Elixir con asdf' 
+                  postDescription='Los últimos días del 2018 no pasaron como cualquier otro en nuestra cooperativa, un socio […]'
+                  postImg='blogThumbnail(4).png'
+                />
+                <PostThumbnail 
+                  postTitle='Una economía con rostro humano' 
+                  postDescription='Hace poco menos de un año nos llegó un email del IMFC (Instituto Movilizador de […]'
+                  postImg='blogThumbnail(5).png'
+                />
+                <PostThumbnail 
+                  postTitle='Coop & travel: se acaba el sudeste asiático' 
+                  postDescription='En Fiqus comenzamos este 2020 con una gran experiencia de trabajo e intercooperació […]'
+                  postImg='blogThumbnail(6).png'
+                />
+                <PostThumbnail 
+                  postTitle='Django Channels: Hagamos un «snake» multijugador en la PyConAr 2016' 
+                  postDescription='Los últimos días del 2018 no pasaron como cualquier otro en nuestra […]'
+                  postImg='blogThumbnail(7).png'
+                />
+                <PostThumbnail
+                  postTitle='Visita a la Fundación IPNA' 
+                  postDescription='Hace poco menos de un año nos llegó un email del IMFC (Instituto Movilizador de […]'
+                  postImg='blogThumbnail(8).png'
+                />
               </PostsWrapper>
-              <Btn type='btnPrimaryPurple' theme={styles} to="#" btnText='cargar más artículos'></Btn>
+              <Btn
+                type='btnPrimaryPurple'
+                theme={styles}
+                to="#"
+                btnText='cargar más artículos'
+              />
             </PostsContainer>
-
         </MainWrapper>
       );
 };

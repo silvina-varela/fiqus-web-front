@@ -132,7 +132,8 @@ const HomepageLabs = (props) => {
             <HomepageLabsWrapper>
                 <InfoContainer>
                     <HomepageLabsTitle>{intl.formatMessage({id: "homepageLabs.title"})}</HomepageLabsTitle>
-                    <HomepageLabsImgMobile src={require('../../images/illustrations/' + intl.formatMessage({id: "homepageLabs.image"})).default} /><HomepageLabsSubtitle>{intl.formatMessage({id: "homepageLabs.subtitle"})}</HomepageLabsSubtitle>
+                    <HomepageLabsImgMobile src={require('../../images/illustrations/' + intl.formatMessage({id: "homepageLabs.image"})).default} />
+                    <HomepageLabsSubtitle>{intl.formatMessage({id: "homepageLabs.subtitle"})}</HomepageLabsSubtitle>
                     <HomepageLabsDescription>
                         {intl.formatMessage({id: "homepageLabs.descriptionLine1"})}
                         <DescriptionBold>{intl.formatMessage({id: "homepageLabs.descriptionBold1"})}</DescriptionBold>
@@ -145,10 +146,15 @@ const HomepageLabs = (props) => {
                         <DescriptionBold>{intl.formatMessage({id: "homepageLabs.descriptionBold4"})}</DescriptionBold>
                         {intl.formatMessage({id: "homepageLabs.descriptionDot"})}
                     </HomepageLabsDescription>
-                    <Btn type='btnPrimaryWhite' theme={styles} to="#" btnText={intl.formatMessage({id: "homepageLabs.btnText"})}></Btn>
+                    <Btn 
+                      type='btnPrimaryWhite' 
+                      theme={styles} 
+                      to="#" 
+                      btnText={intl.formatMessage({id: "homepageLabs.btnText"})}
+                    />
                 </InfoContainer>
-                <ImageContainer section={props.section}>
-                    <HomepageLabsImg section={props.section} src={require('../../images/illustrations/' + intl.formatMessage({id: "homepageLabs.image"})).default} />
+                <ImageContainer>
+                    <HomepageLabsImg src={require('../../images/illustrations/' + intl.formatMessage({id: "homepageLabs.image"})).default} />
                 </ImageContainer>
             </HomepageLabsWrapper>
         </HomepageLabsContainer>

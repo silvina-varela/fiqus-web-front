@@ -7,7 +7,7 @@ import Button from '../common/Button'
 
 const styles = data.styles
 
-const CaseWrapper = styled.div`
+const PostThumbnailWrapper = styled.div`
     margin-bottom: 50px;
     max-width: 320px;
     flex-basis: 100%;
@@ -21,7 +21,7 @@ const CaseWrapper = styled.div`
     }
 ` 
 
-const LabImage = styled.img`
+const PostThumbnailImage = styled.img`
     border-radius: 6px;
     margin-bottom: 10px;
     height: 230px;
@@ -30,7 +30,7 @@ const LabImage = styled.img`
         height: 215px;
     }
 `
-const LabTitle = styled.h3`
+const PostThumbnailTitle = styled.h3`
     font-size: 1.16em;
     line-height: 27px;
     color: ${styles.colors.darkMainBg};
@@ -40,7 +40,7 @@ const LabTitle = styled.h3`
         margin-bottom: 8px;
     }
 `
-const LabDescription =styled.p`
+const PostThumbnailDescription =styled.p`
     font-size: .88em;
     line-height: 20px;
     margin-bottom: 20px;
@@ -53,7 +53,7 @@ const BtnContainer =  styled.div`
     display: flex;
     flex-wrap: wrap;
 `
-const BtnSite =  styled(Button)`
+const Btn =  styled(Button)`
     font-size: .88em;
     margin: 0;
     padding: 6px 12px;
@@ -72,14 +72,20 @@ const PostThumbnail = (props) => {
     const intl = useIntl();
 
     return (
-        <CaseWrapper>
-            <LabImage src={require(`../../images/`+ props.postImg).default}></LabImage>
-            <LabTitle>{props.postTitle}</LabTitle>
-            <LabDescription>{props.postDescription}</LabDescription>
+        <PostThumbnailWrapper>
+            <PostThumbnailImage src={require(`../../images/`+ props.postImg).default} />
+            <PostThumbnailTitle>{props.postTitle}</PostThumbnailTitle>
+            <PostThumbnailDescription>{props.postDescription}</PostThumbnailDescription>
             <BtnContainer>
-                <BtnSite type='btnSecondary' theme={styles} isLink href="#" btnText='leer'></BtnSite>
+                <Btn
+                  type='btnSecondary'
+                  theme={styles}
+                  isLink
+                  href="#"
+                  btnText='leer'
+                />
             </BtnContainer>
-        </CaseWrapper>
+        </PostThumbnailWrapper>
     );
 };
 
