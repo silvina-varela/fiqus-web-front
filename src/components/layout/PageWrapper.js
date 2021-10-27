@@ -26,9 +26,9 @@ const PageWrapper = (props) => {
     const [isHome, setIsHome] = useState(true);
 
     useEffect(() => {
-        //const homePaths = ['/', '/en', '/en/', '/es', '/es/']
+        const homePaths = ['/', '/en', '/en/', '/es', '/es/']
 
-        //setIsHome(homePaths.includes(props.location.pathname));
+        setIsHome(homePaths.includes(props.location.pathname));
             
     }, [props.location])
 

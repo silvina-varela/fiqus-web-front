@@ -8,15 +8,16 @@ export default function Post({ data }) {
   const { html, frontmatter: post } = data.markdownRemark;
 
   useEffect(() => {
-    if (post.lang !== "pt") {
+    if (post.lang !== "es") {
       changeLocale(post.lang);
     }
   }, [post.lang]);
-
+  console.log(post)
   return (
     <div title={post.title}>
       <article className="post-content">
         <h1>{post.title}</h1>
+
         <div className="post-text" dangerouslySetInnerHTML={{ __html: html }} />
       </article>
     </div>
