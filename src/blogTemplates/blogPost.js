@@ -164,7 +164,7 @@ export default function Post({ data, props }) {
   <PostContainer>
     <HeaderImageContainer>
       <HeaderImageWrapper>
-          <HeaderImage fluid={post.image} alt="" />
+          <HeaderImage fluid={post.image.childImageSharp.fluid} alt="" />
       </HeaderImageWrapper>
     </HeaderImageContainer>
     <BreadcrumbContainer>
