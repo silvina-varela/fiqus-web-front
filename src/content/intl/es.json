@@ -145,39 +145,13 @@
         "title":"Casos de Éxito",
         "tagsTitle":"Tecnologías Investigadas"
     },
-    "cases_coobs" : {
-        "title":"CooBS", 
-        "description":"Es una aplicación web donde las cooperativas pueden cargar y seguir sus acciones que se alinean a los principios cooperativos [link a wikipedia], como así también confeccionar el Balance Social.",
-        "tags":[
-            "Python",
-            "Django",
-            "Postgress"
-        ],
-        "image":"",
-        "links":[
-            {
-                "text":"ver sitio",
-                "link":""
-            }
-        ]
-    },
-    "cases_coophub": {
-        "title":"CoopHub", 
-        "description":"Es un sitio web donde se muestran los repositorios open source de diferentes cooperativas a lo largo del mundo. A su vez, se puede ver cuales son los lenguajes de programación más utilizados y buscar por tags.",
-        "tags":[
-            "Elixir",
-            "Phoenix",
-            "Utilización de ETS",
-            "Cache de datos",
-            "ReactJS",
-            "API y acciones de GitHub"
-        ],
-        "image":"",
-        "links":[
-            {
-                "text":"ver sitio",
-                "link":""
-            }
-        ]
+    "blog":{
+        "title": "Blog"
+    }, 
+    "blogPost": {
+        "tagsTitle": "Etiquetas relacionadas", 
+        "relatesPost": "Artículos relacionados", 
+        "verTodosBtn": "Ver todos los artículos"
     }
+    
 }

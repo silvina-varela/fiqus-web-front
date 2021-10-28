@@ -20,7 +20,7 @@ const PostMainWrapper = styled.div`
         margin: auto;
     }
 `
-const HeaderImage = styled.img`
+const HeaderImage = styled(Img)`
     width:100%;
 `
 
@@ -164,7 +164,7 @@ export default function Post({ data, props }) {
   <PostContainer>
     <HeaderImageContainer>
       <HeaderImageWrapper>
-          <HeaderImage src={require('../images/blog.png').default} alt="" />
+          <HeaderImage fluid={post.image} alt="" />
       </HeaderImageWrapper>
     </HeaderImageContainer>
     <BreadcrumbContainer>
@@ -185,13 +185,13 @@ export default function Post({ data, props }) {
                 <PostContent dangerouslySetInnerHTML={{ __html: html }}></PostContent>
 
                 <TagsContainer>
-                  <TagsTitle>Etiquetas relacionadas</TagsTitle>
+                  <TagsTitle>{intl.formatMessage({id: 'blogPost.tagsTitle'})}</TagsTitle>
                   <Tags tags={post.tags} styles={styles} tagsType="services"></Tags>
                 </TagsContainer>
                 
                 <Btn type='btnPrimaryPurple' 
                     theme={styles} 
-                    btnText={intl.formatMessage({id: 'verMasArticulos'})}>    
+                    btnText={intl.formatMessage({id: 'blogPost.verTodosBtn'})}>    
                 </Btn>
       </PostMainWrapper>
     </PostContainer>
