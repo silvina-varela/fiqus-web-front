@@ -19520,7 +19520,7 @@ __webpack_require__.r(__webpack_exports__);
 const styles = _content_content_json__WEBPACK_IMPORTED_MODULE_2__.styles;
 const ContactMainContainer = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
   displayName: "ContactForm__ContactMainContainer"
-})(["position:relative;background:", ";min-height:725px;padding-left:20px;padding-right:20px;@media (min-width:", "px){min-height:465px;}"], styles.colors.purplePrimary, styles.breakpoints.m);
+})(["position:relative;background:", ";min-height:725px;padding-left:20px;padding-right:20px;margin-top:250px;@media (min-width:", "px){min-height:465px;}"], styles.colors.purplePrimary, styles.breakpoints.m);
 const ContactWrapper = styled_components__WEBPACK_IMPORTED_MODULE_5__["default"].div.withConfig({
   displayName: "ContactForm__ContactWrapper"
 })(["position:absolute;top:-115px;left:0;right:0;display:flex;flex-direction:column;padding:35px 17px;margin:auto;margin-bottom:12px;max-width:320px;border:3px solid ", ";box-shadow:0px 4px 0px ", ";border-radius:13px;background:", ";@media (min-width:", "px){top:-163px;flex-direction:row;flex-wrap:wrap;justify-content:space-between;padding:36px 96px;margin:auto;max-width:calc(100% - 40px);}@media (min-width:", "px){max-width:946px;}"], styles.colors.darkMainBg, styles.colors.darkMainBg, styles.colors.white, styles.breakpoints.m, styles.breakpoints.l);

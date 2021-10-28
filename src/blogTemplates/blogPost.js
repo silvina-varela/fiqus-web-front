@@ -88,45 +88,44 @@ const PostTitle = styled.h3`
         line-height: 50px;
     }
 `
-const PostContent = styled.p`
+const PostContent = styled.div`
 font-size: .88em;
 line-height: 23px;
 color: ${styles.colors.darkGreyAlt};
 margin-bottom: 30px;
+    p{
+      margin-bottom:30px;
+    }
 
-    h5{
+    h2{
       font-size: .88em;
       line-height: 23px;
       color: ${styles.colors.purplePrimary};
       font-weight: ${styles.fontWeight.bold};
-      margin-top: 20px;
       margin-bottom: 20px;
+    }
+
+    figure{
+      margin-bottom: 30px;
+      max-width: 320px;
+      @media (min-width: ${styles.breakpoints.m}px) {
+          max-width: 560px;
+      }
+      
+      figcaption{
+        font-size: .66em;
+        color: ${styles.colors.darkGrey};
+        background: ${styles.colors.greenLight};
+        padding: 5px 10px;
+        margin-top: 0;
+      }
     }
 `
 
-const PostImageContainer = styled.div`
-    margin-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    max-width: 320px;
-    @media (min-width: ${styles.breakpoints.m}px) {
-        max-width: 560px;
-    }
+const TagsContainer= styled(Tags)`
+    margin-bottom:50px;
 `
-const PostImageWrapper = styled.div`
-    max-height: 122px;
-    overflow: hidden;
-`
-const PostImage = styled(Img)`
-    width: 100%;
-`
-const PostImageCredit = styled.div`
-    font-size: .66em;
-    color: ${styles.colors.darkGrey};
-    background: ${styles.colors.greenLight};
-    padding: 10px;
-    margin-top: 0;
-`
+
 const Btn = styled(Button)`
         margin-bottom: 80px ;
         display: flex;
@@ -146,17 +145,18 @@ export default function Post({ data, props }) {
   console.log(post)
 
   return (
-    <PostContainer>
-      <HeaderImageContainer>
-        <HeaderImageWrapper>
-            <HeaderImage src={require('../images/blog.png').default} alt="" />
-        </HeaderImageWrapper>
-      </HeaderImageContainer>
-      <BreadcrumbContainer>
-        <BreadcrumbWrapper>
-            <Breadcrumb>Blog - Artículo</Breadcrumb>
-        </BreadcrumbWrapper>
-        <PostMainWrapper>
+  <PostContainer>
+    <HeaderImageContainer>
+      <HeaderImageWrapper>
+          <HeaderImage src={require('../images/blog.png').default} alt="" />
+      </HeaderImageWrapper>
+    </HeaderImageContainer>
+    <BreadcrumbContainer>
+      <BreadcrumbWrapper>
+          <Breadcrumb>Blog - Artículo</Breadcrumb>
+      </BreadcrumbWrapper>
+    </BreadcrumbContainer>
+      <PostMainWrapper>
                 <PostInfo>
                     <PostAuthor>
                         <AuthorAvatar src={require('../images/icon_user.svg').default} alt="author avatar" />
@@ -166,24 +166,24 @@ export default function Post({ data, props }) {
                 </PostInfo>
                 <PostTitle>{post.title}</PostTitle>
 
-                <PostContent>
+                <PostContent dangerouslySetInnerHTML={{ __html: html }}>
 
                 </PostContent>
-                <PostImageContainer>
+
+                    {/*<PostImageContainer>
                     <PostImageWrapper>
                         <PostImage fluid={post.image.childImageSharp.fluid } alt="" />
                     </PostImageWrapper>
                     <PostImageCredit></PostImageCredit>
-                </PostImageContainer>
+                       </PostImageContainer> */}
 
+                <TagsContainer tags={post.tags} styles={styles}></TagsContainer>
                 
                 <Btn type='btnPrimaryPurple' 
                     theme={styles} 
                     btnText={intl.formatMessage({id: 'verMasArticulos'})}>    
                 </Btn>
-            </PostMainWrapper>
-      
-      </BreadcrumbContainer>
+      </PostMainWrapper>
     </PostContainer>
   );
 }

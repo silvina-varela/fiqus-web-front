@@ -187,8 +187,11 @@ const BlogPost = (props) => {
                 <PostContent>
                 En Fiqus tenemos programadores a los que aparte de programar imperativamente, nos gusta y nos motiva programar funcionalmente.
                 </PostContent>
+
                 <PostSubtitle>¿Qué es la programación funcional?</PostSubtitle>
+
                 <PostExcerpt>{post.excerpt}</PostExcerpt>
+                
                 <PostImageContainer>
                     <PostImageWrapper>
                         <PostImage src={require('../../images/blogPost.png').default} alt="" />
