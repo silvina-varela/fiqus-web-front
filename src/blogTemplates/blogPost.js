@@ -122,8 +122,24 @@ margin-bottom: 30px;
     }
 `
 
-const TagsContainer= styled(Tags)`
-    margin-bottom:50px;
+const TagsContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid ${styles.colors.darkGrey};
+    border-bottom: 1px solid ${styles.colors.darkGrey};
+    @media (min-width: ${styles.breakpoints.m}px) {
+        margin-bottom: 30px;
+    }
+`
+const TagsTitle = styled.h4`
+    font-size: .72em;
+    color: ${styles.colors.purplePrimary}!important;
+    font-weight: ${styles.fontWeight.medium};
+    flex-basis: 100%;
+    margin-bottom: 10px;
 `
 
 const Btn = styled(Button)`
@@ -166,18 +182,12 @@ export default function Post({ data, props }) {
                 </PostInfo>
                 <PostTitle>{post.title}</PostTitle>
 
-                <PostContent dangerouslySetInnerHTML={{ __html: html }}>
+                <PostContent dangerouslySetInnerHTML={{ __html: html }}></PostContent>
 
-                </PostContent>
-
-                    {/*<PostImageContainer>
-                    <PostImageWrapper>
-                        <PostImage fluid={post.image.childImageSharp.fluid } alt="" />
-                    </PostImageWrapper>
-                    <PostImageCredit></PostImageCredit>
-                       </PostImageContainer> */}
-
-                <TagsContainer tags={post.tags} styles={styles}></TagsContainer>
+                <TagsContainer>
+                  <TagsTitle>Etiquetas relacionadas</TagsTitle>
+                  <Tags tags={post.tags} styles={styles} tagsType="services"></Tags>
+                </TagsContainer>
                 
                 <Btn type='btnPrimaryPurple' 
                     theme={styles} 

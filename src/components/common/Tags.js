@@ -5,7 +5,6 @@ const TagsContainer = styled.div`
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin-bottom:30px;
 `
 const TagItem = styled.div`
     margin: 0 6px 8px 0px;
