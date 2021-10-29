@@ -19431,9 +19431,9 @@ const Button = props => {
 
       case "btnSecondary":
         return {
-          background: props.theme.colors.white,
+          background: props.theme.colors.transparent,
           borderColor: props.theme.colors.lightGrey,
-          boxShadow: props.theme.colors.transparent,
+          boxShadow: props.theme.colors.lightGrey,
           fontSize: '14px',
           fontWeight: props.theme.fontWeight.medium,
           color: props.theme.colors.darkGrey,
@@ -32748,7 +32748,7 @@ module.exports = JSON.parse('{"adlm":["𞥐","𞥑","𞥒","𞥓","𞥔","𞥕",
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"data":{"site":{"siteMetadata":{"title":"fiqus-web","menuLinks":[{"name":"Home","link":"/"},{"name":"Servicios","link":"/servicios"},{"name":"Cultura","link":"/cultura"},{"name":"Labs","link":"/labs"},{"name":"Blog","link":"/blog"}]}}}}');
+module.exports = JSON.parse('{"data":{"site":{"siteMetadata":{"title":"fiqus-web","menuLinks":[{"name":"Home","link":"/"},{"name":"Servicios","link":"/servicios"},{"name":"Cultura","link":"/cultura"},{"name":"Labs","link":"/labs"},{"name":"Blog","link":"/blog"},{"name":"Articles","link":"/articles"}]}}}}');
 
 /***/ }),
 
