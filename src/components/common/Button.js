@@ -88,9 +88,9 @@ const Button = (props) => {
             break
             case "btnSecondary" : 
                 return {
-                    background : props.theme.colors.white,
+                    background : props.theme.colors.transparent,
                     borderColor : props.theme.colors.lightGrey,
-                    boxShadow : props.theme.colors.transparent, 
+                    boxShadow : props.theme.colors.lightGrey, 
                     fontSize: '14px',
                     fontWeight : props.theme.fontWeight.medium, 
                     color : props.theme.colors.darkGrey,

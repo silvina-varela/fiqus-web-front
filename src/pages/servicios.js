@@ -15,7 +15,7 @@ const MainWrapper = styled.div`
 `
 const ServicesContainer = styled.div`
   background-color: ${styles.colors.purpleLight};
-  padding: 48px 20px 200px 20px;
+  padding: 40px 20px 200px 20px;
   ${props => {
     if (props.isHome) {
         return `
@@ -25,7 +25,6 @@ const ServicesContainer = styled.div`
     }
   }}
   @media (min-width: ${styles.breakpoints.m}px) {
-    padding-top: 55px;
     padding-bottom: 155px;
     ${props => {
       if (props.isHome) {
@@ -37,6 +36,7 @@ const ServicesContainer = styled.div`
     }}
   }
   @media (min-width: ${styles.breakpoints.lpx}) {
+    padding-top: 55px;
     padding-left: 0;
     padding-right: 0;
   }
@@ -70,13 +70,15 @@ const ServicesWrapper = styled.div`
 const ServicesTitle = styled.h1`
   flex-basis: 100%;
   font-size: 2.38em;
+  line-height: 49px;
   color: ${styles.colors.purplePrimary};
-  margin: 0 auto 30px auto;
+  margin: 0 auto 25px auto;
   text-align: center;
   @media (min-width: ${styles.breakpoints.m}px) {
     text-align: left;
-    font-size: 3.55em;    
-    margin-bottom: 50px;
+    font-size: 3em;    
+    line-height: 62px;
+    margin-bottom: 40px;
     ${props => {
         if (props.isHome) {
             return ` 
