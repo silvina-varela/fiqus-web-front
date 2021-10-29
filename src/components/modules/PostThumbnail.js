@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import data from '../../content/content.json'
 import { useIntl, Link } from "gatsby-plugin-react-intl"
 import Button from '../common/Button'
+import Img from "gatsby-image"
 
 
 const styles = data.styles
@@ -21,14 +22,8 @@ const PostThumbnailWrapper = styled.div`
     }
 ` 
 
-const PostThumbnailImage = styled.img`
-    border-radius: 6px;
-    margin-bottom: 10px;
-    height: 230px;
-    max-width: 320px;
-    @media (min-width: ${styles.breakpoints.l}px) {
-        height: 215px;
-    }
+const PostThumbnailImage = styled(Img)`
+
 `
 const PostThumbnailTitle = styled.h3`
     font-size: 1.16em;
@@ -73,7 +68,7 @@ const PostThumbnail = (props) => {
 
     return (
         <PostThumbnailWrapper>
-            <PostThumbnailImage src={require(`../../images/`+ props.postImg).default} />
+            <PostThumbnailImage fluid={props.fluid} />
             <PostThumbnailTitle>{props.postTitle}</PostThumbnailTitle>
             <PostThumbnailDescription>{props.postDescription}</PostThumbnailDescription>
             <BtnContainer>
