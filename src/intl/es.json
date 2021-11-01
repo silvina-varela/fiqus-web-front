@@ -207,5 +207,13 @@
                 "link": ""
             }
         ]
-    }
+    },
+    "page404" : {
+        "title": "Error 404",
+        "descriptionLine1": "No pudimos encontrar lo que estabas buscando. Si necesitás ayuda contactate con nosotr@s.",
+        "descriptionLine2": "Te invitamos a seguir navegando nuestro sitio tocando el siguiente botón",
+        "btnText": "volver al home",
+        "btnHref": "/",
+        "imageAlt": "ilustración árbol fiqus"
+    }   
 }
