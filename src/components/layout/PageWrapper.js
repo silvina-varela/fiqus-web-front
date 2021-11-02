@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 `
 const PageContainer = styled.section `
     width:100%;
-    min-height:100vh;
+    //min-height:100vh;
     margin: 0 auto;
     padding-top: 62px;
     @media (min-width: ${styles.breakpoints.xl}px) {
