@@ -138,7 +138,6 @@ const SectionHeaderImg = styled.img`
             return  `margin-top: 0;
             @media (min-width: ${styles.breakpoints.m}px) {
                 max-width: 350px;
-                //margin-top: 83px;
             }
             @media (min-width: ${styles.breakpoints.l}px) {
                 max-width: 429px;

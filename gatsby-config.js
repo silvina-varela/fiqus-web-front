@@ -3,10 +3,10 @@ module.exports = {
     siteUrl: "https://www.yourdomain.tld",
     title: "fiqus-web",
     menuLinks: [
-      {
+      /*{
         name:"Home",
         link:"/"
-      },
+      },*/
       {
         name:"Servicios",
         link:"/servicios"
@@ -22,11 +22,11 @@ module.exports = {
       {
         name:"Blog",
         link:"/blog"
-      },
+      }/*,
       {
         name:"Articles",
         link:"/articles"
-      }
+      }*/
     ]
   },
   plugins: [

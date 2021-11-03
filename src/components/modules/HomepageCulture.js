@@ -12,7 +12,6 @@ const HomepageCultureContainer = styled.div`
     justify-content: center;
     padding: 0px 20px 35px 20px;
     margin-bottom: 0px;
-    //margin-top: 200px;
     background: ${styles.colors.purplePrimary};
     @media (min-width: ${styles.breakpoints.m}px) {
         margin-bottom: 0px;

@@ -5,6 +5,7 @@ import { useIntl } from 'gatsby-plugin-react-intl'
 import ContactForm from './ContactForm'
 
 const styles = data.styles
+const licenseLogo = require('../../images/icon_cc_heart.png')
 
 const FooterContainer = styled.footer`
     background:${styles.colors.purplePrimary};
@@ -75,7 +76,7 @@ const Footer = () => {
             <FooterContainer>
                 <FooterWrapper>
                     <FooterLicense>
-                        <FooterLicenseIcon src={require('../../images/icon_cc_heart.png').default} alt="Creative Commons Attribution logo"/>
+                        <FooterLicenseIcon src={licenseLogo.default} alt={intl.formatMessage({id: "footer.licenseIconAlt" })} />
                         <FooterLicenseContent>
                             {intl.formatMessage({id: "footer.disclaimer" })}  <FooterLicenseName>{intl.formatMessage({id: "footer.licenseName" })}</FooterLicenseName>
                         </FooterLicenseContent>
