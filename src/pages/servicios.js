@@ -188,7 +188,7 @@ const Services = (props) => {
                     theme={styles}
                     btnText='ir a servicios'
                     isLink
-                    href="cultura"
+                    href="servicios"
                   />
             }
           </ServicesContainer>
