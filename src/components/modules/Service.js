@@ -13,7 +13,6 @@ const ServiceWrapper = styled.div`
     border-radius: 14px;
     display: flex;
     flex-direction: column;
-    //flex-wrap: wrap;
     max-width: 320px;
     padding: 38px 20px;
     margin-top: 0px;
@@ -21,7 +20,6 @@ const ServiceWrapper = styled.div`
     margin-left: auto;
     margin-right: auto;
     min-width: unset;
-    //max-width: unset;   
     flex-basis: 100%;
     &:last-of-type {
         margin-bottom: 61px;

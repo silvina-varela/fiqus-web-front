@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components'
+import { useIntl } from "gatsby-plugin-react-intl"
 import data from '../../content/content.json'
 
 const styles = data.styles
+const FeaturedServiceImageconst = require('../../images/illustrations/capacitacion.svg')
 
 const FeaturedServiceContainer = styled.div`
     background: ${styles.colors.white};
@@ -131,7 +133,7 @@ const ImageContainer = styled.div`
         }
     }}
 `
-const ServiceImage = styled.img`
+const FeaturedServiceImage = styled.img`
     max-width: 210px;
     margin-bottom: 27px;
     @media (min-width: ${styles.breakpoints.m}px) {
@@ -157,18 +159,20 @@ const InfoContainer = styled.div`
     @media (min-width: ${styles.breakpoints.m}px) {
         position: absolute;
         top: 65px;
+        right: 20px;
         z-index: 2;
-        width: 65%;
+        width: 100%;
         max-width: 600px;
         padding: 49px 47px 44px 47px;
         background: ${styles.colors.white};
         border: 3px solid ${styles.colors.purplePrimary};
         border-radius: 14px;
+        box-shadow: 12px 12px 0px ${styles.colors.purplePrimary};
     }
     @media (min-width: ${styles.breakpoints.l}px) {
         width: unset;
         padding: 49px 47px 44px 86px;
-        box-shadow: 12px 12px 0px ${styles.colors.purplePrimary};
+        right: 0;
     }
     ${props => {
         if (props.isHome) {
@@ -190,7 +194,7 @@ const InfoContainer = styled.div`
         }
     }}
 `
-const ServiceTitle = styled.h3`
+const FeaturedServiceTitle = styled.h3`
     font-size: 1.44em;
     margin-bottom: 11px;
     color: ${styles.colors.orangeMain};
@@ -215,7 +219,7 @@ const ServiceTitle = styled.h3`
         }
     }}
 `
-const ServiceDescription = styled.p`
+const FeaturedServiceDescription = styled.p`
     max-width: 463px;
     font-size: .88em;
     line-height: 22px;
@@ -241,18 +245,22 @@ const ServiceDescription = styled.p`
 `
 
 const FeaturedService = (props) => {
-    const service = props.service
+    const intl = useIntl();
+    const FeaturedService = props.service
     return (
         <FeaturedServiceContainer isHome={props.isHome}> 
             <FeaturedServiceWrapper isHome={props.isHome}> 
                 <ImageContainer isHome={props.isHome}>
-                    <ServiceImage isHome={props.isHome}
-                        src={require(`../../images/illustrations/capacitacion.svg`).default}> 
-                    </ServiceImage>
+                    <FeaturedServiceImage
+                        src={FeaturedServiceImageconst.default} 
+                        alt={intl.formatMessage({id: "service_subsection.featuredServiceImageAlt"})}
+                        isHome={props.isHome}
+                    >
+                    </FeaturedServiceImage>
                 </ImageContainer>
                 <InfoContainer isHome={props.isHome}>
-                        <ServiceTitle isHome={props.isHome}>Capacitación</ServiceTitle>
-                        <ServiceDescription isHome={props.isHome}>Realizamos capacitaciones técnicas y/o de cooperativismo para organizaciones, cooperativas y empresas donde buscamos transmitir de forma amena y sistematizada los conocimientos adquiridos en el ámbito tecnológico y cooperativo.</ServiceDescription>
+                        <FeaturedServiceTitle isHome={props.isHome}>{intl.formatMessage({id: "service_subsection.title"})}</FeaturedServiceTitle>
+                        <FeaturedServiceDescription isHome={props.isHome}>{intl.formatMessage({id: "service_subsection.description"})}</FeaturedServiceDescription>
                 </InfoContainer>
             </FeaturedServiceWrapper>
         </FeaturedServiceContainer>

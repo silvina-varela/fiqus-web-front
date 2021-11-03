@@ -6,6 +6,9 @@ import { useIntl, Link, IntlContextConsumer, changeLocale } from "gatsby-plugin-
 const styles = data.styles
 const darkLogo = require('../../images/logo_dark.svg')
 const lightLogo = require('../../images/logo_light.svg')
+const lightIconToggler = require('../../images/icon_toggler.svg')
+const darkIconToggler = require('../../images/icon_toggler_dark.svg')
+const iconTogglerClose = require('../../images/icon_toggler_close.svg')
 
 const NavWrapper = styled.nav`
     width: 100%;
@@ -246,13 +249,13 @@ const Header = (props) => {
             <NavToggler onClick={() => {setIsNavOpen(true)}}>
                 {
                     props.isHome ? 
-                    <NavTogglerIcon src={require('../../images/icon_toggler.svg').default} alt="icono para abrir menú" />
-                    : <NavTogglerIcon src={require('../../images/icon_toggler_dark.svg').default} alt="icono para abrir menú" />
+                    <NavTogglerIcon src={lightIconToggler.default} alt={intl.formatMessage({id: "header.iconTogglerAlt" })} />
+                    : <NavTogglerIcon src={darkIconToggler.default} alt={intl.formatMessage({id: "header.iconTogglerAlt" })} />
                 }
             </NavToggler>
             <MainNavContainer isNavOpen={isNavOpen} >
                 <NavTogglerClose onClick={() => {setIsNavOpen(false)}}>
-                    <NavTogglerCloseIcon src={require('../../images/icon_toggler_close.svg').default} alt="icono para cerrrar menú" />
+                    <NavTogglerCloseIcon src={iconTogglerClose.default} alt={intl.formatMessage({id: "header.iconTogglerCloseAlt"})} />
                 </NavTogglerClose>
                 <MainNav isHome={props.isHome}>
                     <NavLinks>
