@@ -215,9 +215,6 @@ export const pageQuery = graphql`
             fluid(maxWidth: 800) {
               ...GatsbyImageSharpFluid
             }
-            fixed(width: 300, height: 300) {
-              ...GatsbyImageSharpFixed
-          }
           }
         }
         imageCredits
