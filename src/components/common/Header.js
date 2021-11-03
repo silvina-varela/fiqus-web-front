@@ -4,6 +4,8 @@ import data from '../../content/content.json'
 import { useIntl, Link, IntlContextConsumer, changeLocale } from "gatsby-plugin-react-intl"
 
 const styles = data.styles
+const darkLogo = require('../../images/logo_dark.svg')
+const lightLogo = require('../../images/logo_light.svg')
 
 const NavWrapper = styled.nav`
     width: 100%;
@@ -15,7 +17,16 @@ const NavWrapper = styled.nav`
     align-items: center;
     z-index: 10;
     @media (min-width: ${styles.breakpoints.xl}px) {
-        padding: 15px 150px;
+        padding: 16px 150px;
+    }
+`
+const LinkLogo = styled(Link)`
+    width: 83px;
+    height: 32px;
+    @media (min-width: ${styles.breakpoints.xl}px) {
+        width: 117.1px;
+        height: 44.22px;
+        order: 1;
     }
 `
 const Logo = styled.img`
@@ -24,7 +35,6 @@ const Logo = styled.img`
     @media (min-width: ${styles.breakpoints.xl}px) {
         width: 117.1px;
         height: 44.22px;
-        order: 1;
     }
 `
 const LangSelector = styled.nav`
@@ -155,7 +165,7 @@ const NavItem = styled.li`
     @media (min-width: ${styles.breakpoints.xl}px) {
         margin: 0 30px 0 0;
         &:last-of-type {
-            margin-right: 20px;
+            margin-right: 21px;
         }
     }
 `
@@ -206,8 +216,10 @@ const Header = (props) => {
         <NavWrapper isHome={props.isHome}>
             {
                 props.isHome ? 
-                <Logo src={require('../../images/logo_dark.svg').default} alt="logo Fiqus" />
-                : <Logo src={require('../../images/logo_light.svg').default} alt="logo Fiqus" />
+                <Logo src={darkLogo.default} alt={intl.formatMessage({id: "header.logoAlt"})} />
+                : <LinkLogo to="/">
+                    <Logo src={lightLogo.default} alt={intl.formatMessage({id: "header.logoAlt"})} />
+                  </LinkLogo>
             }
             <LangSelector isHome={props.isHome}>
                 <IntlContextConsumer>

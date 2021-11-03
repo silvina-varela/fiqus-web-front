@@ -11,6 +11,9 @@
         "disclaimer": "Salvo que se indique lo contrario, el contenido de este sitio tiene una licencia de ",
         "licenseName": "Creative Commons Attribution"
     },
+    "header": {
+      "logoAlt": "logo Fiqus"  
+    },
     "homepage" : {
         "title": "Homepage",
         "lead": "Somos una cooperativa de software. Somos construcción colectiva, cultura y mentes en constante movimiento."
