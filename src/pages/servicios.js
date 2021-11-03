@@ -157,8 +157,8 @@ const Services = (props) => {
             <ServicesWrapper isHome={props.isHome}>
               {
                   props.isHome ? 
-                  <ServicesTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
-                  : <ServicesHomeTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesHomeTitle>
+                  <ServicesHomeTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesHomeTitle>
+                  : <ServicesTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
               }
               <Fragment>
                 {services.services.map( (service) =>{
