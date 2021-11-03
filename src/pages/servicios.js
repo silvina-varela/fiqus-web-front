@@ -9,8 +9,22 @@ import Service from '../components/modules/Service'
 
 const MainWrapper = styled.div`
   padding-bottom: 187px;
+  ${props => {
+    if (props.isHome) {
+        return `
+        padding-bottom: 0;
+        `
+    }
+  }}
   @media (min-width: ${styles.breakpoints.m}px) {
     padding-bottom: 243px;
+    ${props => {
+      if (props.isHome) {
+          return `
+          padding-bottom: 0;
+          `
+      }
+    }}
   }
 `
 const ServicesContainer = styled.div`
@@ -19,7 +33,7 @@ const ServicesContainer = styled.div`
   ${props => {
     if (props.isHome) {
         return `
-        padding-bottom: 67px;
+        padding-bottom: 177px;
         text-align: center;
         `
     }
@@ -58,6 +72,7 @@ const ServicesWrapper = styled.div`
               gap: 10px;
             @media (min-width: ${styles.breakpoints.m}px) {
               gap: 36px;
+              margin-bottom: 50px;
             }
             @media (min-width: ${styles.breakpoints.xl}px) {
                 justify-content: flex-start;
@@ -66,6 +81,27 @@ const ServicesWrapper = styled.div`
         }
     }}
     }
+`
+const ServicesHomeTitle = styled.h2`
+  flex-basis: 100%;
+  font-size: 2.38em;
+  line-height: 49px;
+  color: ${styles.colors.purplePrimary};
+  margin: 0 auto 25px auto;
+  text-align: center;
+  @media (min-width: ${styles.breakpoints.m}px) {
+    text-align: left;
+    font-size: 3em;    
+    line-height: 62px;
+    margin-bottom: 40px;
+    ${props => {
+        if (props.isHome) {
+            return ` 
+            text-align: center!important;
+            `
+        }
+    }}
+  }
 `
 const ServicesTitle = styled.h1`
   flex-basis: 100%;
@@ -105,7 +141,7 @@ const Btn = styled(Button)`
         if (props.isHome) {
             return `
             display: flex;
-            margin: 50px auto 15px auto;
+            margin: 0 auto 15px auto;
             `
         }
       }}
@@ -116,10 +152,14 @@ const Services = (props) => {
     const intl = useIntl();
 
       return (
-        <MainWrapper>
+        <MainWrapper isHome={props.isHome}>
           <ServicesContainer isHome={props.isHome}>
             <ServicesWrapper isHome={props.isHome}>
-              <ServicesTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
+              {
+                  props.isHome ? 
+                  <ServicesTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
+                  : <ServicesHomeTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesHomeTitle>
+              }
               <Fragment>
                 {services.services.map( (service) =>{
                   return(
@@ -134,15 +174,29 @@ const Services = (props) => {
                   )
                 })}
               </Fragment>
-            {/* SI ES HOME, EL COMPONENTE FeaturedService TIENE QUE APARECER ACÁ */}
+              {
+                  props.isHome ? 
+                  <FeaturedService isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</FeaturedService>
+                  : ""
+              }
             </ServicesWrapper>
-            {props.isHome && 
-                <Btn type='btnPrimaryOrange' theme={styles} to={props.href} btnText='ir a servicios'></Btn>
+            {
+              props.isHome && 
+                  <Btn
+                    isHome={props.isHome}
+                    type='btnPrimaryOrange'
+                    theme={styles}
+                    btnText='ir a servicios'
+                    isLink
+                    href="cultura"
+                  />
             }
           </ServicesContainer>
-          {/* SI NO ES HOME, EL COMPONENTE FeaturedService TIENE QUE APARECER ACÁ */}
-          <FeaturedService /> 
-          
+          {
+            props.isHome ? 
+            ""
+            : <FeaturedService /> 
+          }
         </MainWrapper>
       );
 };
