@@ -80,6 +80,7 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
                 postTitle={post.node.frontmatter.title}
                 postDescription={post.node.excerpt}
                 fluid={post.node.frontmatter.image.childImageSharp.fluid}
+                slug={`/${post.node.frontmatter.lang}/post${post.node.frontmatter.slug}`}
               />
               )
             }
@@ -105,7 +106,7 @@ export const pageQuery = graphql`
       edges {
         node {
           id
-          excerpt(pruneLength: 250)
+          excerpt(pruneLength: 150)
           frontmatter {
             lang
             type

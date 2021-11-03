@@ -5,7 +5,7 @@ title: "Introducción a la Programación Funcional"
 author: "Nicolás Dimarco"
 slug: "/introduccion-a-la-programacion-funcional"
 date: "2021-08-01"
-image:  articleImg.png
+image:  test-header.png
 imageCredits: "Créditos de imagen unsplash"
 tags: ["Erlang", "Elixir", "Programación funcional", "Miranda"]
 ---
