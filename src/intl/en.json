@@ -57,7 +57,10 @@
         "textAreaField": "Mensaje",
         "messageSent": "Tu mensaje ha sido enviado.",
         "thankYou": "Gracias por comunicarte con nostr@s",
-        "sedes": "Sedes"
+        "email": "info@fiqus.com",
+        "sedes": "Sedes",
+        "office1": "14 de Julio 1268 Ciudad de Buenos Aires, Argentina",
+        "office2": "Av. Arrayanes 66, Local 7 Villa La Angostura, Neuquén, Argentina"
     },
     "services": {
         "title": "Services",

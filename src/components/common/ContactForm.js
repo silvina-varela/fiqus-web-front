@@ -14,7 +14,6 @@ const ContactMainContainer = styled.div`
     min-height: 725px;
     padding-left: 20px;
     padding-right: 20px;
-    //margin-top:250px;
     @media (min-width: ${styles.breakpoints.m}px) {
         min-height: 465px;
     }
@@ -39,7 +38,7 @@ const ContactWrapper = styled.div`
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
-        padding: 36px 96px;
+        padding: 37px 92px 39px 94px;
         margin: auto;
         max-width: calc(100% - 40px);
     }
@@ -47,7 +46,7 @@ const ContactWrapper = styled.div`
         max-width: 946px;
     }
 `
-const ContactHeading = styled.h3`
+const ContactHeading = styled.h2`
     font-size: 2.38em;
     font-weight:${styles.fontWeight.bold};
     text-align: center;
@@ -61,7 +60,7 @@ const ContactHeading = styled.h3`
 `
 const ContactFormBlock = styled.div`
     @media (min-width: ${styles.breakpoints.m}px) {
-        max-width: 23em;
+        max-width: 367px;
         flex-basis: 50%;
     }
 `
@@ -133,7 +132,7 @@ const Field= styled.input`
         color: ${styles.colors.ultraLightGrey};
     }
     @media (min-width: ${styles.breakpoints.m}px) {
-        max-width: 20.38em;
+        max-width: 367px;
     }
 `
 const TextArea= styled.textarea`
@@ -150,7 +149,7 @@ const TextArea= styled.textarea`
         color: ${styles.colors.ultraLightGrey};
     }
     @media (min-width: ${styles.breakpoints.m}px) {
-        max-width: 20.38em;
+        max-width: 367px;
     }
 `
 const BtnSubmit = styled(Button)`
@@ -170,7 +169,7 @@ const ErrorMessage= styled.p`
 `
 
 const FeedbackMessage= styled.p`
-    color: ${styles.colors.orangeMain};
+    color: ${styles.colors.darkMainBg};
     font-weight:${styles.fontWeight.regular};
     font-size: .88em;
     margin-left: 0;
@@ -178,11 +177,13 @@ const FeedbackMessage= styled.p`
     @media (min-width: ${styles.breakpoints.m}px) {
         margin-left: auto;
     }
-    span {
-        font-weight:${styles.fontWeight.bold};
-        display: block;
-    }
 `
+const FeedbackMessageTitle= styled.span`
+    color: ${styles.colors.greenMain};
+    font-weight:${styles.fontWeight.bold};
+    display: block;
+`
+
 const ContactInfoBlock = styled.div`
     margin-top: 65px;
     @media (min-width: ${styles.breakpoints.m}px) {
@@ -202,7 +203,7 @@ const Email = styled(Link)`
         margin-bottom: 30px;
     }
 `
-const OfficeListTitle = styled.h5`
+const OfficeListTitle = styled.h4`
     font-size: .88em;
     font-weight:${styles.fontWeight.bold};
     @media (min-width: ${styles.breakpoints.m}px) {
@@ -301,17 +302,17 @@ const ContactForm = () => {
                         <FormGroup>
                             <BtnSubmit theme={styles} btnText={intl.formatMessage({id: 'button.send'})} onButtonClick={handleSubmit(onSubmit)}></BtnSubmit>
                             {emailSent &&
-                                <FeedbackMessage><span>{intl.formatMessage({id: 'contactForm.messageSent'})}</span> {intl.formatMessage({id: 'contactForm.thankYou'})}</FeedbackMessage>
+                                <FeedbackMessage><FeedbackMessageTitle>{intl.formatMessage({id: 'contactForm.messageSent'})}</FeedbackMessageTitle> {intl.formatMessage({id: 'contactForm.thankYou'})}</FeedbackMessage>
                             }
                         </FormGroup>
                     </Form>
                 </ContactFormBlock>
                 <ContactInfoBlock>
-                    <Email>info@fiqus.com</Email>
+                    <Email>{intl.formatMessage({id: 'contactForm.email'})}</Email>
                     <OfficeListTitle>{intl.formatMessage({id: 'contactForm.sedes'})}</OfficeListTitle>
                     <OfficeList>
-                        <OfficeListItem>14 de Julio 1268 Ciudad de Buenos Aires, Argentina</OfficeListItem>
-                        <OfficeListItem>Av. Arrayanes 66, Local 7 Villa La Angostura, Neuquén, Argentina</OfficeListItem>
+                        <OfficeListItem>{intl.formatMessage({id: 'contactForm.office1'})}</OfficeListItem>
+                        <OfficeListItem>{intl.formatMessage({id: 'contactForm.office2'})}</OfficeListItem>
                     </OfficeList>
                 </ContactInfoBlock>
             </ContactWrapper>
