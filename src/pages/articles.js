@@ -123,7 +123,7 @@ const blogMain = (props) => {
               <Btn
                 type='btnPrimaryPurple'
                 theme={styles}
-                to="#"
+                href="#"
                 btnText='cargar más artículos'
               />
             </PostsContainer>

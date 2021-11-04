@@ -165,7 +165,7 @@ const ErrorMessage= styled.p`
     margin-top: 5px;
     position: absolute;
     right: 6px;
-    bottom: -22px;
+    bottom: -18px;
 `
 
 const FeedbackMessage= styled.p`
@@ -203,7 +203,7 @@ const Email = styled(Link)`
         margin-bottom: 30px;
     }
 `
-const OfficeListTitle = styled.h4`
+const OfficeListTitle = styled.h3`
     font-size: .88em;
     font-weight:${styles.fontWeight.bold};
     @media (min-width: ${styles.breakpoints.m}px) {

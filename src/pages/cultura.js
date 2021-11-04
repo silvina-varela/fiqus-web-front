@@ -206,7 +206,7 @@ const Culture = () => {
             padding-top: 55px;
         }
     `
-    const FactticTitle = styled.h2`
+    const FactticTitle = styled.h3`
         font-size: 1.44em;
         line-height: 34px;
         font-weight: ${styles.fontWeight.bold};
@@ -218,7 +218,7 @@ const Culture = () => {
             margin-bottom: 20px;
         }
     `
-    const FactticLead = styled.h3`
+    const FactticLead = styled.h4`
         font-size: 1em;
         line-height: 26px;
         font-weight: ${styles.fontWeight.regular};

@@ -71,7 +71,7 @@ const PostDate = styled.span`
     font-size: ${styles.fontWeight.medium};
     color: ${styles.colors.darkGrey};
 `
-const PostTitle = styled.h3`
+const PostTitle = styled.h1`
     font-size: 1.72em;
     line-height: 37px;
     color: ${styles.colors.purplePrimary};
@@ -137,7 +137,7 @@ const TagsContainer = styled.div`
         margin-bottom: 30px;
     }
 `
-const TagsTitle = styled.h4`
+const TagsTitle = styled.h2`
     font-size: .72em;
     color: ${styles.colors.purplePrimary}!important;
     font-weight: ${styles.fontWeight.medium};
@@ -171,8 +171,8 @@ const BlogPost = (props) => {
                 </HeaderImageWrapper>
             </HeaderImageContainer>
             <BreadcrumbContainer>
-                <BreadcrumbWrapper>
-                    <Breadcrumb>Blog - Artículo</Breadcrumb>
+                <BreadcrumbWrapper> 
+                    <Breadcrumb>Blog > Artículo</Breadcrumb>
                 </BreadcrumbWrapper>
             </BreadcrumbContainer>
             <PostMainWrapper>

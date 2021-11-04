@@ -241,7 +241,7 @@ const BtnMobile = styled(Button)`
     }}
 `
 const Btn = styled(Button)`
-    display: none;
+    //display: none;
     max-width: max-content;
     @media (min-width: ${styles.breakpoints.m}px) {
         margin-top: auto!important;
@@ -290,8 +290,13 @@ const Service = (props) => {
                     <TagsTitle>{intl.formatMessage({id: "services.tagsTitle"})}</TagsTitle>
                     <Tag tagsType="services" tags={service.tags} styles={props.styles}></Tag>
                 </TagsContainer>
-                
-                <BtnMobile type='btnPrimaryPurple' theme={styles} to={props.href} btnText={intl.formatMessage({id: 'verMas'})} isHome={props.isHome}></BtnMobile>
+                <BtnMobile
+                    type='btnPrimaryPurple'
+                    theme={styles}
+                    to={props.href}
+                    btnText={intl.formatMessage({id: 'verMas'})}
+                    isHome={props.isHome}
+                />
             </LeftBlock>
             <RightBlock isHome={props.isHome}>
                 <TextContainer>
@@ -300,12 +305,11 @@ const Service = (props) => {
                 </TextContainer>
                 <Btn type='btnPrimaryPurple' 
                     theme={styles} 
-                    to={props.href} 
+                    href={props.href} 
+                    isLink
                     btnText={intl.formatMessage({id: "button.verMas"})}
                     isHome={props.isHome}
-                    isLink
-                    >    
-                </Btn>
+                />
             </RightBlock>
         </ServiceWrapper>
     );

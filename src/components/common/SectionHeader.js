@@ -79,7 +79,7 @@ const ImageContainer = styled.div`
     }
     
 `
-const SectionHeaderSubtitle = styled.p`
+const SectionHeaderSubtitle = styled.h2`
     font-size: 1.44em;
     font-weight: ${styles.fontWeight.medium};
     line-height: 34px;

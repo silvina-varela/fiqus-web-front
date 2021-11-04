@@ -146,7 +146,8 @@ const HomepageCulture = (props) => {
                     <Btn 
                       type='btnPrimaryWhite' 
                       theme={styles} 
-                      to="#" 
+                      href="cultura"
+                      isLink
                       btnText={intl.formatMessage({id: "homepageCulture.btnText"})}
                     />
                 </InfoContainer>

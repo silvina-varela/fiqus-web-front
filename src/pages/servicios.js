@@ -166,10 +166,11 @@ const Services = (props) => {
                     <Service 
                       isHome={props.isHome}
                       key = {service.id}
-                      image = { service.image } 
+                      image = {service.image} 
                       id = {service.id}
-                      service = { service }
-                      styles = { styles }>
+                      service = {service}
+                      styles = {styles}
+                      href = {props.href}>
                     </Service>
                   )
                 })}

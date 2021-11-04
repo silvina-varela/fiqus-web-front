@@ -58,7 +58,7 @@ const ImageContainer = styled.div`
     }
     
 `
-const HomepageLabsSubtitle = styled.p`
+const HomepageLabsSubtitle = styled.h3`
     font-size: 1.72em;
     line-height: 37px;
     font-weight: ${styles.fontWeight.bold};
@@ -152,7 +152,8 @@ const HomepageLabs = (props) => {
                     <Btn 
                       type='btnPrimaryWhite' 
                       theme={styles} 
-                      to="#" 
+                      href="labs" 
+                      isLink
                       btnText={intl.formatMessage({id: "homepageLabs.btnText"})}
                     />
                 </InfoContainer>
