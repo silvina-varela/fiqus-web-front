@@ -19,7 +19,12 @@
     },
     "homepage" : {
         "title": "Homepage",
-        "lead": "Somos una cooperativa de software. Somos construcción colectiva, cultura y mentes en constante movimiento."
+        "imageAlt": "",
+        "leadLine1": "Somos una ",
+        "leadUnderlined": "cooperativa ",
+        "leadLine2": "de software. Somos ",
+        "leadBold": "construcción colectiva",
+        "leadLine3": ", cultura y mentes en constante movimiento."
     },
     "homepageCulture" : {
         "title": "Cultura",

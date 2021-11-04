@@ -1,6 +1,7 @@
 import React from 'react';
 import {styles} from '../../content/content.json'
 import styled from 'styled-components'
+import { useIntl } from "gatsby-plugin-react-intl"
 
 const iluHomepage = require('../../images/illustrations/homepage.svg');
 
@@ -78,6 +79,7 @@ const SectionHeaderDescription = styled.p`
         font-size: 2em;
         line-height: 42px;
         text-align: left;
+        min-width: 402px;
     }
     @media (min-width: ${styles.breakpoints.l}px) {
         font-size: 2.38em;
@@ -91,24 +93,34 @@ const SectionHeaderUnderlineSpan = styled.span`
     &::before {
         content: url("${require('../../images/orange_underline.svg').default}");
         position: absolute; 
-        left: 35px;
-        bottom: -8px;
+        left: 3px;
+        bottom: -9px;
+    }
+    @media (max-width: ${styles.breakpoints.xs}px) {
+        border-bottom: 2px solid ${styles.colors.orangeMain};
+        &::before {
+            content: none;
+        }
     }
     @media (min-width: ${styles.breakpoints.m}px) {
         font-size: 2rem;
         &::before {
             content: url("${require('../../images/orange_underline_desktop.svg').default}");
             left: unset;
-            right: -5px;
-            bottom: -12px;
+            right: 0px;
+            bottom: -11px;
+            max-width: 100%;
+            overflow: hidden;
         }
     }
     @media (min-width: ${styles.breakpoints.l}px) {
         font-size: 2.38rem;
         &::before {
             left: unset;
-            right: -10px;
-            bottom: -12px;
+            right: -1px;
+            bottom: -11px;
+            max-width: unset;
+            overflow: visible;
         }
     }
 `
@@ -140,14 +152,19 @@ const SectionHeaderImgMobile = styled.img`
 `
 
 const HomepageHeader = (props) => {
+    const intl = useIntl();
 
     return (
         <HeaderContainer>
             <HeaderWrapper>
                 <InfoContainer>
-                    <SectionHeaderImgMobile src={iluHomepage.default}></SectionHeaderImgMobile>
+                    <SectionHeaderImgMobile src={iluHomepage.default} alt={intl.formatMessage({id: "homepage.imageAlt"})}></SectionHeaderImgMobile>
                     <SectionHeaderDescription>
-                        Somos <SectionHeaderUnderlineSpan>una cooperativa</SectionHeaderUnderlineSpan> de software. Somos <SectionHeaderSpan>construcción colectiva</SectionHeaderSpan>, cultura y mentes en constante movimiento.
+                        {intl.formatMessage({id: "homepage.leadLine1"})}
+                        <SectionHeaderUnderlineSpan>{intl.formatMessage({id: "homepage.leadUnderlined"})}</SectionHeaderUnderlineSpan>
+                        {intl.formatMessage({id: "homepage.leadLine2"})}
+                        <SectionHeaderSpan>{intl.formatMessage({id: "homepage.leadBold"})}</SectionHeaderSpan>
+                        {intl.formatMessage({id: "homepage.leadLine3"})}
                     </SectionHeaderDescription>
 
                 </InfoContainer>
