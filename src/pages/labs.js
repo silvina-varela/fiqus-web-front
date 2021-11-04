@@ -56,7 +56,7 @@ const Labs = ({data: {allMarkdownRemark: { edges }}}) => {
 
       if ( (english && intl.locale == 'en') || (!english && intl.locale == 'es')) {
         return(
-          <Lab fluidImg={fluidImg} styles={styles} labData={edge.node}></Lab>
+          <Lab key={edge.node.frontmatter.id} fluidImg={fluidImg} styles={styles} labData={edge.node}></Lab>
         )
       }      
     }

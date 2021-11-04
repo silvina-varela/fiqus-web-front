@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import data from '../../content/content.json'
 import { useIntl, Link } from "gatsby-plugin-react-intl"
 import Button from '../common/Button'
-
+import Img from "gatsby-image"
 
 const styles = data.styles
 
@@ -21,7 +21,7 @@ const PostThumbnailWrapper = styled.div`
     }
 ` 
 
-const PostThumbnailImage = styled.img`
+const PostThumbnailImage = styled.div`
     border-radius: 6px;
     margin-bottom: 10px;
     height: 230px;
@@ -73,10 +73,12 @@ const PostThumbnail = (props) => {
 
     return (
         <PostThumbnailWrapper>
-            <PostThumbnailImage
-                src={require(`../../images/`+ props.postImg).default}
-                alt=""
-            />
+            <PostThumbnailImage> 
+                <Img
+                    fluid = {props.fluid}
+                    alt=""
+                />
+            </PostThumbnailImage>
             <PostThumbnailTitle>{props.postTitle}</PostThumbnailTitle>
             <PostThumbnailDescription>{props.postDescription}</PostThumbnailDescription>
             <BtnContainer>
@@ -84,7 +86,7 @@ const PostThumbnail = (props) => {
                   type='btnSecondary'
                   theme={styles}
                   isLink
-                  href="#"
+                  href={props.slug}
                   btnText='leer'
                 />
             </BtnContainer>
