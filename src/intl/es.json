@@ -19,8 +19,8 @@
     },
     "homepage" : {
         "title": "Homepage",
-        "imageAlt": "",
-        "imageAltMobile": "",
+        "imageAlt": " ",
+        "imageAltMobile": " ",
         "leadLine1": "Somos una ",
         "leadUnderlined": "cooperativa ",
         "leadLine2": "de software. Somos ",
@@ -43,6 +43,7 @@
         "subtitle": "¡Nos capacitamos permanentemente!",
         "image": "homepageLabs.svg",
         "imageAlt": "ilustración que representa la sección cultura",
+        "imageAltMobile": "ilustración que representa la sección cultura",
         "descriptionLine1": "Uno de los objetivos de Fiqus es capacitarnos constantemente para especializarnos en tecnologías de vanguardia, por eso todas las semanas tenemos",
         "descriptionBold1": " FiqusLabs",
         "descriptionLine2": " un espacio de aprendizaje práctico donde investigamos tecnologías de vanguardia como",
@@ -75,7 +76,8 @@
     },
     "services": {
         "title": "Servicios",
-        "tagsTitle": "Tecnologías"
+        "tagsTitle": "Tecnologías",
+        "btnText": "ir a servicios"
     }, 
     "service_datos":  {
         "service": "Ciencia de Datos",
@@ -146,8 +148,10 @@
     }, 
     "culture_historia": {
         "title": "Historia",
-        "imageMobile" : "equipoMobilee",
-        "imageDesktop" : "equipoDesktopp",
+        "imageMobile" : "equipoMobile",
+        "imageAltMobile" : "equipo Fiqus",
+        "imageDesktop" : "equipoDesktop",
+        "imageAlt" : "equipo Fiqus",
         "content_line1": "Fiqus es como una gran familia, que comenzó cuando varios estudiantes de ingeniería en sistemas de la Universidad Tecnológica Nacional se cansaron de los trabajos tradicionales y comenzaron a pensar en una construcción propia, con lógicas de producción diferentes a las de las empresas en las que habían trabajado previamente",
         "content_line2": "Luego de varios meses de gestación, la idea de construir algo autogestivo, horizontal, democrático y de propiedad colectiva se hizo cada vez más fuerte. Así es como nació la idea de construir una empresa social, así es como nació Fiqus.",
         "content_line3": "Con el transcurso de los años fuimos construyendo una estructura organizacional que se adapta a las personas y no al revés. Así es como, sobre el andar y basándonos en la experiencia adquirida, construimos una serie de acuerdos que hoy en día forman parte de nuestro reglamento interno. Nuestro reglamento no es algo estático, es algo vivo que evoluciona acorde evolucionan las personas que forman parte de nuestra organización. Ahí es donde reflejamos nuestras propuestas concretas para lograr que las personas que participan dentro del colectivo se ubiquen en el centro de los procesos productivos.",
@@ -158,6 +162,7 @@
     "culture_federales": {
         "title1": "¡Somos federales!", 
         "image" : "mapa_argentina",
+        "imageAlt" : " ",
         "content1": "Nuestra distribución actual es el resultado de haber creado una estructura lo suficientemente maleable como para que logre adaptarse a las necesidades de las personas. De esta manera, a medida que fuimos creciendo como personas y transitando los diferentes escenarios que la vida nos fue planteando, priorizamos acompañar desde el colectivo brindando el apoyo necesario para que todxs puedan decidir por ejemplo en dónde y cómo vivir.",
         "tenemosSedes": "En la actualidad tenemos sedes en ",
         "y": "y",
@@ -187,7 +192,10 @@
     },
     "casos_de_exito": {
         "title": "Casos de Éxito",
-        "tagsTitle": "Tecnologías Investigadas"
+        "tagsTitle": "Tecnologías Investigadas",
+        "imageAltLine1": "imagen del proyecto ",
+        "btnTextVerMas": "ver más",
+        "btnTextGithub": "ir a Github"
     },
     "cases_coobs" : {
         "title": "CooBS", 
@@ -230,6 +238,7 @@
         "descriptionLine2": "Te invitamos a seguir navegando nuestro sitio tocando el siguiente botón",
         "btnText": "volver al home",
         "btnHref": "/",
-        "imageAlt": "ilustración árbol fiqus"
+        "imageAlt": "ilustración árbol fiqus",
+        "imageAltMobile": "ilustración árbol fiqus"
     }   
 }

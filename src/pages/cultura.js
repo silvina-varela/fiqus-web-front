@@ -306,8 +306,14 @@ const Culture = () => {
                 <HistoryMainContainer>
                     <HistoryTitle>{intl.formatMessage({id: "culture_historia.title"})}</HistoryTitle>
                     <TeamImgContainer>
-                        <TeamImgMobile src={require('../images/'+ intl.formatMessage({id: "culture_historia.imageMobile"}) + '.png').default} alt="equipo Fiqus" />
-                        <TeamImgDesktop src={require('../images/'+ intl.formatMessage({id: "culture_historia.imageDesktop"}) + '.png').default} alt="equipo Fiqus" />
+                        <TeamImgMobile 
+                            src={require('../images/'+ intl.formatMessage({id: "culture_historia.imageMobile"}) + '.png').default}
+                            alt={intl.formatMessage({id: "culture_historia.imageAltMobile"})}
+                        />
+                        <TeamImgDesktop 
+                            src={require('../images/'+ intl.formatMessage({id: "culture_historia.imageDesktop"}) + '.png').default}
+                            alt={intl.formatMessage({id: "culture_historia.imageAlt"})}
+                        />
                     </TeamImgContainer>
                     <HistoryContentContainer>
                         <HistoryContentLeftBlock>
@@ -329,7 +335,10 @@ const Culture = () => {
                 <FederalMainContainer>
                     <TopBlock>
                         <TopBlockImgContainer>
-                            <TopBlockImg src={require('../images/illustrations/'+ intl.formatMessage({id: "culture_federales.image"}) + '.svg').default} alt="mapa argentina" />
+                            <TopBlockImg
+                                src={require('../images/illustrations/'+ intl.formatMessage({id: "culture_federales.image"}) + '.svg').default}
+                                alt={intl.formatMessage({id: "culture_federales.imageAlt"})}
+                            />
                         </TopBlockImgContainer>
                         <TopBlockInfoContainer>
                             <FederalSubtitle>{intl.formatMessage({id: "culture_federales.title1"})}</FederalSubtitle>

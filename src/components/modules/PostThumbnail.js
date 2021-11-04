@@ -73,7 +73,10 @@ const PostThumbnail = (props) => {
 
     return (
         <PostThumbnailWrapper>
-            <PostThumbnailImage src={require(`../../images/`+ props.postImg).default} />
+            <PostThumbnailImage
+                src={require(`../../images/`+ props.postImg).default}
+                alt=""
+            />
             <PostThumbnailTitle>{props.postTitle}</PostThumbnailTitle>
             <PostThumbnailDescription>{props.postDescription}</PostThumbnailDescription>
             <BtnContainer>

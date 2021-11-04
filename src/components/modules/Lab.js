@@ -6,7 +6,7 @@ import Tags from '../common/Tags'
 import { useIntl, Link } from "gatsby-plugin-react-intl"
 import Button from '../common/Button'
 
-
+const githubIcon = require('../../images/icon_github.svg');
 const styles = data.styles
 
 const CaseWrapper = styled.div`
@@ -94,7 +94,10 @@ const SuccessCase = (props) => {
 
     return (
         <CaseWrapper>
-            <LabImage fluid={props.fluidImg}></LabImage>
+            <LabImage
+                fluid={props.fluidImg}
+                alt={intl.formatMessage({id: "casos_de_exito.imageAltLine1"}) + lab.frontmatter.title }
+            />
             <LabTitle>{lab.frontmatter.title}</LabTitle>
             <LabDescription>{lab.excerpt}</LabDescription>
             <TagsTitle>{intl.formatMessage({id: "casos_de_exito.tagsTitle"})}</TagsTitle>
@@ -103,10 +106,24 @@ const SuccessCase = (props) => {
             </TagsContainer>
             <BtnContainer>
                 { props.labData.frontmatter.website && 
-                    <BtnSite type='btnLabeled' theme={styles} isLink href={props.labData.frontmatter.website} btnText='ver sitio'></BtnSite>
+                    <BtnSite
+                        type='btnLabeled'
+                        theme={styles}
+                        isLink
+                        href={props.labData.frontmatter.website}
+                        btnText={intl.formatMessage({id: "casos_de_exito.btnTextVerMas"})}
+                    />
                 }
                 { props.labData.frontmatter.github && 
-                    <BtnGithub type='btnLabeled' theme={styles} isLink github={true} href={props.labData.frontmatter.github} btnText='ir a GitHub' src={require('../../images/icon_github.svg').default}></BtnGithub>
+                    <BtnGithub
+                        type='btnLabeled'
+                        theme={styles}
+                        isLink
+                        src={githubIcon.default}
+                        github={true}
+                        href={props.labData.frontmatter.github}
+                        btnText={intl.formatMessage({id: "casos_de_exito.btnTextGithub"})}
+                    />
                 }
             </BtnContainer>
         </CaseWrapper>

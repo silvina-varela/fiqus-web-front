@@ -134,7 +134,7 @@ const HomepageLabs = (props) => {
                     <HomepageLabsTitle>{intl.formatMessage({id: "homepageLabs.title"})}</HomepageLabsTitle>
                     <HomepageLabsImgMobile
                         src={require('../../images/illustrations/' + intl.formatMessage({id: "homepageLabs.image"})).default}
-                        alt={intl.formatMessage({id: "homepageLabs.image"})}
+                        alt={intl.formatMessage({id: "homepageLabs.imageAltMobile"})}
                     />
                     <HomepageLabsSubtitle>{intl.formatMessage({id: "homepageLabs.subtitle"})}</HomepageLabsSubtitle>
                     <HomepageLabsDescription>
@@ -158,7 +158,10 @@ const HomepageLabs = (props) => {
                     />
                 </InfoContainer>
                 <ImageContainer>
-                    <HomepageLabsImg src={require('../../images/illustrations/' + intl.formatMessage({id: "homepageLabs.image"})).default} />
+                    <HomepageLabsImg
+                        src={require('../../images/illustrations/' + intl.formatMessage({id: "homepageLabs.image"})).default} 
+                        alt={intl.formatMessage({id: "homepageLabs.imageAlt"})}
+                    />
                 </ImageContainer>
             </HomepageLabsWrapper>
         </HomepageLabsContainer>

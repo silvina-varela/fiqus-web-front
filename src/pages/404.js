@@ -123,7 +123,10 @@ const Page404 = () => {
     <Page404Container>
         <Page404Wrapper>
             <InfoContainer>
-                <Page404ImgMobile src={iluPage404.default} alt={intl.formatMessage({id: "page404.imageAlt"})}></Page404ImgMobile>
+                <Page404ImgMobile
+                    src={iluPage404.default}
+                    alt={intl.formatMessage({id: "page404.imageAltMobile"})}
+                />
                 <Page404Title>{intl.formatMessage({id: "page404.title"})}</Page404Title>
                 <Page404DescriptionContainer>
                     <Page404Description>{intl.formatMessage({id: "page404.descriptionLine1"})}</Page404Description>
@@ -138,7 +141,10 @@ const Page404 = () => {
                 />
             </InfoContainer>
             <ImageContainer>
-                <Page404Img src={iluPage404.default} alt={intl.formatMessage({id: "page404.imageAlt"})}></Page404Img>
+                <Page404Img
+                    src={iluPage404.default}
+                    alt={intl.formatMessage({id: "page404.imageAlt"})} 
+                />
             </ImageContainer>
         </Page404Wrapper>
     </Page404Container>

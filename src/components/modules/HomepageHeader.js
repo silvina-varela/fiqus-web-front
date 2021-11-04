@@ -158,7 +158,10 @@ const HomepageHeader = (props) => {
         <HeaderContainer>
             <HeaderWrapper>
                 <InfoContainer>
-                    <SectionHeaderImgMobile src={iluHomepage.default} alt={intl.formatMessage({id: "homepage.imageAltMobile"})} />
+                    <SectionHeaderImgMobile
+                        src={iluHomepage.default}
+                        alt={intl.formatMessage({id: "homepage.imageAltMobile"})}
+                    />
                     <SectionHeaderDescription>
                         {intl.formatMessage({id: "homepage.leadLine1"})}
                         <SectionHeaderUnderlineSpan>{intl.formatMessage({id: "homepage.leadUnderlined"})}</SectionHeaderUnderlineSpan>
@@ -169,7 +172,10 @@ const HomepageHeader = (props) => {
 
                 </InfoContainer>
                 <ImageContainer>
-                    <SectionHeaderImg src={iluHomepage.default} alt={intl.formatMessage({id: "homepage.imageAlt"})} />
+                    <SectionHeaderImg
+                        src={iluHomepage.default}
+                        alt={intl.formatMessage({id: "homepage.imageAlt"})}
+                    />
                 </ImageContainer>
             </HeaderWrapper>
         </HeaderContainer>

@@ -123,7 +123,10 @@ const RelatedPosts = (props) => {
             <TagsContainer>
                 <RelatedPostThumbnailWrapper>
                     <RelatedPostThumbnailImageWrapper>
-                        <RelatedPostThumbnailImage src={require(`../../images/blogThumbnail.png`).default} />
+                        <RelatedPostThumbnailImage
+                            src={require(`../../images/blogThumbnail.png`).default}
+                            alt=""
+                        />
                     </RelatedPostThumbnailImageWrapper>
                     <RelatedPostThumbnailTitle>Experiencia de Intercooperación</RelatedPostThumbnailTitle>
                     <RelatedPostThumbnailDescription>En Fiqus comenzamos este 2020 con una gran experiencia de trabajo e intercooperación y comenzamos este 2020 con una gran experiencia de trabajo e intercooperación.</RelatedPostThumbnailDescription>
@@ -139,17 +142,20 @@ const RelatedPosts = (props) => {
                 </RelatedPostThumbnailWrapper>
                 <RelatedPostThumbnailWrapper>
                     <RelatedPostThumbnailImageWrapper>
-                        <RelatedPostThumbnailImage src="https://www.nationalgeographic.com.es/medio/2021/10/12/road-to-ruin_d47d9693_1280x853.jpg" />
+                        <RelatedPostThumbnailImage
+                            src={require(`../../images/blogThumbnail.png`).default}
+                            alt="" 
+                        />
                     </RelatedPostThumbnailImageWrapper>
                     <RelatedPostThumbnailTitle>Experiencia de Intercooperación</RelatedPostThumbnailTitle>
                     <RelatedPostThumbnailDescription>En Fiqus comenzamos este 2020 con una gran experiencia de trabajo e intercooperación y comenzamos este 2020 con una gran experiencia de trabajo e intercooperación.</RelatedPostThumbnailDescription>
                     <BtnContainer>
                         <Btn
-                        type='btnSecondary'
-                        theme={styles}
-                        isLink
-                        href="#"
-                        btnText='leer'
+                            type='btnSecondary'
+                            theme={styles}
+                            isLink
+                            href="#"
+                            btnText='leer'
                         />
                     </BtnContainer>
                 </RelatedPostThumbnailWrapper>

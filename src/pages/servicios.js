@@ -187,7 +187,7 @@ const Services = (props) => {
                     isHome={props.isHome}
                     type='btnPrimaryOrange'
                     theme={styles}
-                    btnText='ir a servicios'
+                    btnText={intl.formatMessage({id: "services.btnText"})}
                     isLink
                     href="servicios"
                   />
