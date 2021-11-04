@@ -2,8 +2,11 @@ import React from 'react';
 import {styles} from '../../content/content.json'
 import styled from 'styled-components'
 import { useIntl } from "gatsby-plugin-react-intl"
+import Lottie from 'react-lottie'
+import homepageAnimation from '../../images/animations/homepage.json'
 
 const iluHomepage = require('../../images/illustrations/homepage.svg');
+
 
 
 
@@ -133,7 +136,8 @@ const SectionHeaderSpan = styled.span`
         font-size: 2.38rem;
     }
 `
-const SectionHeaderImg = styled.img`
+const SectionHeaderImg = styled.div`
+
     width: 100%;
     @media (min-width: ${styles.breakpoints.m}px) {
         max-width: 320px;
@@ -154,6 +158,15 @@ const SectionHeaderImgMobile = styled.img`
 const HomepageHeader = (props) => {
     const intl = useIntl();
 
+    const animationOptions= {
+        loop: false,
+        autoplay: true,
+        animationData: homepageAnimation,
+        rendererSettings: {
+          preserveAspectRatio: "xMidYMid slice"
+        }
+    }
+
     return (
         <HeaderContainer>
             <HeaderWrapper>
@@ -172,10 +185,12 @@ const HomepageHeader = (props) => {
 
                 </InfoContainer>
                 <ImageContainer>
-                    <SectionHeaderImg
-                        src={iluHomepage.default}
-                        alt={intl.formatMessage({id: "homepage.imageAlt"})}
-                    />
+                    <SectionHeaderImg> 
+                        <Lottie
+                            options = {animationOptions}
+                            width = "100%"
+                        />
+                    </SectionHeaderImg>
                 </ImageContainer>
             </HeaderWrapper>
         </HeaderContainer>

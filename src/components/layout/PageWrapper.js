@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Header from '../common/Header'
 import Footer from '../common/Footer'
 import { styles } from '../../content/content.json'
+require('../../styles/styles.css')
 
 const Wrapper = styled.div`
     position: relative;
