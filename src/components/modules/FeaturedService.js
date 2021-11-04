@@ -13,7 +13,7 @@ const FeaturedServiceContainer = styled.div`
     margin-bottom: 0px;
     @media (min-width: ${styles.breakpoints.m}px) {
         min-height: 215px;
-        padding: 0 20px
+        padding: 0 20px;
     }
     
     ${props => {
@@ -39,6 +39,9 @@ const FeaturedServiceContainer = styled.div`
                 padding: 30px 20px;
                 border: none;
                 box-shadow: none;
+                &:hover {
+                    outline: solid 3px ${styles.colors.purplePrimary};
+                }
             }
             @media (min-width: ${styles.breakpoints.l}px) {
                 flex-basis: 33.33%;

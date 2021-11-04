@@ -57,6 +57,9 @@ const ServiceWrapper = styled.div`
                 max-width: 330px; 
                 flex-basis: 50%;
                 margin: 0;
+                &:hover {
+                    outline: solid 3px ${styles.colors.purplePrimary};
+                }
                 @media (min-width: ${styles.breakpoints.l}px) {
                     flex-basis: 33.33%;
                 }
@@ -288,7 +291,11 @@ const Service = (props) => {
                 </ImageContainer>
                 <TagsContainer isHome={props.isHome}>
                     <TagsTitle>{intl.formatMessage({id: "services.tagsTitle"})}</TagsTitle>
-                    <Tag tagsType="services" tags={service.tags} styles={props.styles}></Tag>
+                    <Tag
+                        tagsType="services"
+                        tags={service.tags}
+                        styles={props.styles} 
+                    />
                 </TagsContainer>
                 <BtnMobile
                     type='btnPrimaryPurple'
