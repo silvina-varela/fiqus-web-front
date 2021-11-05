@@ -14,7 +14,6 @@ const ContactMainContainer = styled.div`
     min-height: 725px;
     padding-left: 20px;
     padding-right: 20px;
-    margin-top:250px;
     @media (min-width: ${styles.breakpoints.m}px) {
         min-height: 465px;
     }

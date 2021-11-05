@@ -146,7 +146,7 @@ const MainNavContainer = styled.div`
     }
 `
 const MainNav = styled.nav`
-    margin: 45px auto;
+    margin: 50px auto;
     width: 100%;
     @media (min-width: ${styles.breakpoints.xl}px) {
         margin: 0;
@@ -164,7 +164,7 @@ const NavLinks = styled.ul`
 `
 const NavItem = styled.li`
     list-style-type: none;
-    margin: 0 0 13px 0;
+    margin: 0 0 17px 0;
     @media (min-width: ${styles.breakpoints.xl}px) {
         margin: 0 30px 0 0;
         &:last-of-type {
