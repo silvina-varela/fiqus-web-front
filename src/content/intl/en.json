@@ -88,7 +88,8 @@
             "Numpy",
             "Seaborn"
         ],
-        "image": "datos"
+        "image": "datos",
+        "link": " "
     },
     "service_inteligenciaArtificial" :
     {
@@ -100,7 +101,8 @@
             "Numpy",
             "Seaborn"
         ],
-        "image": "inteligenciaArtificial"
+        "image": "inteligenciaArtificial",
+        "link": " "
     },
     "service_altaConcurrencia": {
         "service": "Alta Concurrencia",
@@ -111,7 +113,8 @@
             "Phoenix Framework", 
             "LiveView"
         ],
-        "image": "altaConcurrencia"
+        "image": "altaConcurrencia",
+        "link": " "
     },
     "service_blockchain" : {
         "service": "Blockchain | Fintech",
@@ -120,7 +123,8 @@
             "Python",
             "Ethereum"
         ],
-        "image": "blockchain"
+        "image": "blockchain",
+        "link": " "
     },
     "service_fullstack": {
         "service": "Fullstack",
@@ -133,7 +137,8 @@
             "VueJS", 
             "React Native"
         ],
-        "image": "fullstack"
+        "image": "fullstack",
+        "link": " "
     },
     "service_subsection": {
         "title": "Capacitación",

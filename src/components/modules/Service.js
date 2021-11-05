@@ -3,10 +3,9 @@ import styled from 'styled-components'
 import data from '../../content/content.json'
 import Tags from '../common/Tags'
 import Button from '../common/Button'
-import { useIntl } from "gatsby-plugin-react-intl"
+import { useIntl, Link } from "gatsby-plugin-react-intl"
 
 const styles = data.styles
-
 
 const ServiceWrapper = styled.div`
     background: ${styles.colors.white};    
@@ -45,11 +44,11 @@ const ServiceWrapper = styled.div`
             return `
             display: flex!important;   
             flex-direction: column!important;
-            padding: 30px 20px;
+            padding: 0;
             @media (min-width: ${styles.breakpoints.m}px) {
                 min-width: 330px;                
                 margin-bottom: 50px;
-                padding: 30px 20px;
+                padding: 0;
                 &:last-of-type {
                     margin-bottom: 0px;
                 }
@@ -68,6 +67,11 @@ const ServiceWrapper = styled.div`
         }
     }}
 
+`
+const ServiceLink = styled(Link)`
+    padding: 30px 20px;
+    width: 100%;
+    text-decoration: none; 
 `
 const LeftBlock = styled.div`
     order: 3;
@@ -211,15 +215,19 @@ const ImageContainerMobile = styled.div`
     }
 `
 const ServiceImage = styled.object`
+    pointer-events: none;
     width: 100%;
     max-height: 130px;
     @media (min-width: ${styles.breakpoints.m}px) {
-        max-height: 150px;
+        max-height: 210px;
     }
     ${props => {
         if (props.isHome) {
             return `
             max-height: 134px;
+            @media (min-width: ${styles.breakpoints.m}px) {
+                max-height: 134px;
+            }
             `
         }
     }}
@@ -230,8 +238,13 @@ const BtnMobile = styled(Button)`
         display: none;
         display: flex;
         margin-left: 0;
-        // Este componente no se muestra porque todavía no está lista la landing page decada servicio
+        max-width: max-content;
+        /*
+        Este componente no se muestra porque todavía no está lista la landing page de cada servicio. 
+        Cuando estén listas hay que comentar o eliminar únicamente el display none que está debajo de este comentario.
         display: none;
+        */
+        
     @media (min-width: ${styles.breakpoints.m}px) {
         display: none;
     }
@@ -244,14 +257,18 @@ const BtnMobile = styled(Button)`
     }}
 `
 const Btn = styled(Button)`
-    //display: none;
+    display: none;
     max-width: max-content;
     @media (min-width: ${styles.breakpoints.m}px) {
         margin-top: auto!important;
         margin-bottom: 35px;
         display: flex;
-        // Este componente no se muestra porque todavía no está lista la landing page decada servicio
-        //display: none;
+        display: flex;
+        /*
+        Este componente no se muestra porque todavía no está lista la landing page de cada servicio.
+        Cuando estén listas hay que comentar o eliminar únicamente el display none que está debajo de este comentario.
+        display: none;
+        */
         ${props => {
             if (props.isHome) {
                 return ` 
@@ -272,9 +289,71 @@ const Btn = styled(Button)`
 const Service = (props) => {
     const service = props.service;
     const intl = useIntl();
-
     return (
-        <ServiceWrapper isHome={props.isHome}> 
+        props.isHome ? 
+        <ServiceWrapper isHome={props.isHome}>
+            <ServiceLink
+                isHome={props.isHome}
+                theme={styles}
+                /*
+                Cuando estén listas las landings individuales de cada servicio hay que descomentar este atributo, comentar el que está debajo (to='servicios') y
+                reemplazar service.link en los archivos de idiomas con el link que corresponda.
+                
+                to={'/' + intl.formatMessage({id: `${props.id}.link`})}
+                */                
+                to='/servicios'
+            >
+                <ImageContainerMobile>
+                    <ServiceImage 
+                        isHome={props.isHome}
+                        data={require(`../../images/illustrations/${service.image}.svg`).default} 
+                        type="image/svg+xml">
+                    </ServiceImage>
+                </ImageContainerMobile>
+                <LeftBlock>
+                    <ImageContainer isHome={props.isHome}>
+                        <ServiceImage 
+                            isHome={props.isHome}
+                            data={require(`../../images/illustrations/${service.image}.svg`).default} 
+                            type="image/svg+xml">
+                        </ServiceImage>
+                    </ImageContainer>
+                    <TagsContainer isHome={props.isHome}>
+                        <TagsTitle>{intl.formatMessage({id: "services.tagsTitle"})}</TagsTitle>
+                        <Tag
+                            tagsType="services"
+                            tags={service.tags}
+                            styles={props.styles} 
+                        />
+                    </TagsContainer>
+                    <BtnMobile
+                        isHome={props.isHome}
+                        type='btnPrimaryPurple'
+                        theme={styles}
+                        //href={intl.formatMessage({id: `${props.id}.link`})}
+                        href='servicios'
+                        isLink
+                        btnText={intl.formatMessage({id: "button.verMas"})}
+                    />
+                </LeftBlock>
+                <RightBlock isHome={props.isHome}>
+                    <TextContainer>
+                        <ServiceTitle isHome={props.isHome}>{intl.formatMessage({id:`${props.id}.service`})}</ServiceTitle>
+                        <ServiceDescription isHome={props.isHome}>{intl.formatMessage({id: `${props.id}.description`})}</ServiceDescription>
+                    </TextContainer>
+                    <Btn
+                        isHome={props.isHome}
+                        type='btnPrimaryPurple'
+                        theme={styles}
+                        href={intl.formatMessage({id: `${props.id}.link`})}
+                        isLink
+                        btnText={intl.formatMessage({id: "button.verMas"})}
+                    />
+                </RightBlock>
+            </ServiceLink>
+        </ServiceWrapper>
+        :
+        <ServiceWrapper isHome={props.isHome}>
             <ImageContainerMobile>
                 <ServiceImage 
                     isHome={props.isHome}
@@ -285,6 +364,7 @@ const Service = (props) => {
             <LeftBlock>
                 <ImageContainer isHome={props.isHome}>
                     <ServiceImage 
+                        isHome={props.isHome}
                         data={require(`../../images/illustrations/${service.image}.svg`).default} 
                         type="image/svg+xml">
                     </ServiceImage>
@@ -300,9 +380,10 @@ const Service = (props) => {
                 <BtnMobile
                     type='btnPrimaryPurple'
                     theme={styles}
-                    to={props.href}
-                    btnText={intl.formatMessage({id: 'verMas'})}
+                    href={intl.formatMessage({id: `${props.id}.link`})}
+                    btnText={intl.formatMessage({id: "button.verMas"})}
                     isHome={props.isHome}
+                    isLink
                 />
             </LeftBlock>
             <RightBlock isHome={props.isHome}>
@@ -312,14 +393,14 @@ const Service = (props) => {
                 </TextContainer>
                 <Btn type='btnPrimaryPurple' 
                     theme={styles} 
-                    href={props.href} 
+                    href={intl.formatMessage({id: `${props.id}.link`})}
                     isLink
                     btnText={intl.formatMessage({id: "button.verMas"})}
                     isHome={props.isHome}
                 />
             </RightBlock>
         </ServiceWrapper>
-    );
-};
+    )
+}
 
 export default Service;
