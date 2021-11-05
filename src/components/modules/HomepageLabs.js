@@ -2,6 +2,8 @@ import React from 'react';
 import {styles} from '../../content/content.json'
 import styled from 'styled-components'
 import { useIntl } from "gatsby-plugin-react-intl"
+import Lottie from 'react-lottie'
+import labsAnimation from '../../images/animations/labs.json'
 
 import Button from '../../components/common/Button'
 
@@ -99,7 +101,7 @@ const DescriptionBold = styled.span`
     font-weight: ${styles.fontWeight.bold};
 `
 
-const HomepageLabsImg = styled.img`
+const HomepageLabsImg = styled.div`
     margin-top: 98px;
     @media (min-width: ${styles.breakpoints.m}px) {
         max-width: 400px;
@@ -127,6 +129,16 @@ const Btn = styled(Button)`
 
 const HomepageLabs = (props) => {
     const intl = useIntl();
+
+    const animationOptions= {
+        loop: false,
+        autoplay: true,
+        animationData: labsAnimation,
+        rendererSettings: {
+          preserveAspectRatio: "xMidYMid slice"
+        }
+    }
+
     return (
         <HomepageLabsContainer>
             <HomepageLabsWrapper>
@@ -158,10 +170,12 @@ const HomepageLabs = (props) => {
                     />
                 </InfoContainer>
                 <ImageContainer>
-                    <HomepageLabsImg
-                        src={require('../../images/illustrations/' + intl.formatMessage({id: "homepageLabs.image"})).default} 
-                        alt={intl.formatMessage({id: "homepageLabs.imageAlt"})}
-                    />
+                    <HomepageLabsImg> 
+                        <Lottie
+                            options = {animationOptions}
+                            width = "100%"
+                        />
+                    </HomepageLabsImg>
                 </ImageContainer>
             </HomepageLabsWrapper>
         </HomepageLabsContainer>

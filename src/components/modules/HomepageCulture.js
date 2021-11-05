@@ -2,6 +2,8 @@ import React from 'react';
 import {styles} from '../../content/content.json'
 import styled from 'styled-components'
 import { useIntl } from "gatsby-plugin-react-intl"
+import Lottie from 'react-lottie'
+import cultureAnimation from '../../images/animations/cultura.json'
 
 import Button from '../../components/common/Button'
 
@@ -111,7 +113,7 @@ const HomepageCultureBird = styled.img`
         width: 47.45px;
     }
 `
-const HomepageCultureImg = styled.img`
+const HomepageCultureImg = styled.div`
     width: 100%;
 `
 const Btn = styled(Button)`
@@ -123,18 +125,31 @@ const Btn = styled(Button)`
 
 const HomepageCulture = (props) => {
     const intl = useIntl();
+
+    const animationOptions= {
+        loop: false,
+        autoplay: true,
+        animationData: cultureAnimation,
+        rendererSettings: {
+          preserveAspectRatio: "xMidYMid slice"
+        }
+    }
+
+
     return (
         <HomepageCultureContainer>
             <HomepageCultureBird
-                src={require('../../images/illustrations/' + intl.formatMessage({id: "homepageCulture.birdImage"})).default}
+                src={require('../../images/illustrations/bird.svg').default}
                 alt={intl.formatMessage({id: "homepageCulture.birdImageAlt"})}
             />
             <HomepageCultureWrapper>
                 <ImageContainer>
-                    <HomepageCultureImg
-                        src={require('../../images/illustrations/' + intl.formatMessage({id: "homepageCulture.image"})).default}
-                        alt={intl.formatMessage({id: "homepageCulture.imageAlt"})}
-                    />
+                    <HomepageCultureImg>
+                    <Lottie
+                            options = {animationOptions}
+                            width = "100%"
+                        />
+                    </HomepageCultureImg>
                 </ImageContainer>
                 <InfoContainer>
                     <HomepageCultureTitle>{intl.formatMessage({id: "homepageCulture.title"})}</HomepageCultureTitle>
