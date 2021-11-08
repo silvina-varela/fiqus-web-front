@@ -74,14 +74,18 @@ const FormGroup = styled.div`
     margin-bottom: 27px;
     position: relative;
     &:nth-last-of-type(2) {
-        margin-bottom: 22px;
+        margin-bottom: 30px;
     }
     &:last-child {
         margin-bottom: 0;
+        align-items: center;
+        flex-direction: column-reverse;
+        text-align: center;
         @media (min-width: ${styles.breakpoints.m}px) {
             display: flex;
             justify-content: space-between;
             flex-direction: row;
+            text-align: left;
             &:nth-last-of-type(2) {
                 margin-bottom: 22px;
             }
@@ -155,6 +159,7 @@ const TextArea= styled.textarea`
 const BtnSubmit = styled(Button)`
     max-width: max-content;
     margin-bottom: 0;
+    max-height: 50px;
 `
 const ErrorMessage= styled.p`
     color: ${styles.colors.orangeMain};
@@ -173,8 +178,10 @@ const FeedbackMessage= styled.p`
     font-weight:${styles.fontWeight.regular};
     font-size: .88em;
     margin-left: 0;
-    margin-top: 15px;
+    margin-top: 0px;
+    margin-bottom: 20px;
     @media (min-width: ${styles.breakpoints.m}px) {
+        margin-top: 15px;
         margin-left: auto;
     }
 `
