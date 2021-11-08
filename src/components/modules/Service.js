@@ -45,6 +45,8 @@ const ServiceWrapper = styled.div`
             display: flex!important;   
             flex-direction: column!important;
             padding: 0;
+            margin-bottom: 0;
+            margin: 0;
             @media (min-width: ${styles.breakpoints.m}px) {
                 min-width: 330px;                
                 margin-bottom: 50px;
@@ -69,7 +71,10 @@ const ServiceWrapper = styled.div`
 
 `
 const ServiceLink = styled(Link)`
-    padding: 30px 20px;
+    padding: 40px 20px 25px 20px;
+    @media (min-width: ${styles.breakpoints.m}px) {
+        padding: 30px 20px;
+    }
     width: 100%;
     text-decoration: none; 
 `
@@ -119,10 +124,13 @@ const ServiceTitle = styled.h3`
         if (props.isHome) {
             return ` 
             margin-bottom: 0;
-            margin-top: 30px!important;
+            margin-top: 20px!important;
             padding-top: 0!important;
             font-size: 1.44em!important;
             text-align: center!important;
+            @media (min-width: ${styles.breakpoints.m}px) {
+                margin-top: 30px!important;
+            }
             `
         }
     }}
@@ -224,7 +232,7 @@ const ServiceImage = styled.object`
     ${props => {
         if (props.isHome) {
             return `
-            max-height: 134px;
+            max-height: 129px;
             @media (min-width: ${styles.breakpoints.m}px) {
                 max-height: 134px;
             }

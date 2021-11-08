@@ -25,11 +25,7 @@ const FeaturedServiceContainer = styled.div`
             padding: 0px;
             min-height: unset;
             background: ${styles.colors.white};
-            margin-bottom: 30px;
-            @media (min-width: ${styles.breakpoints.s}px) {
-                margin-left: auto;
-                margin-right: auto;
-            }
+            margin: 0px;
             @media (min-width: ${styles.breakpoints.m}px) {
                 position: static;
                 flex-basis: 50%;

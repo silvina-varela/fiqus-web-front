@@ -24,7 +24,7 @@ const HeaderContainer = styled.div`
     background: ${styles.colors.greenLight};
     display: flex; 
     justify-content: center;
-    padding: 48px 20px 55px 20px;
+    padding: 48px 20px 50px 20px;
     background: ${styles.colors.purplePrimary};
     @media (min-width: ${styles.breakpoints.m}px) {
         padding: 75px 20px 80px 20px;
