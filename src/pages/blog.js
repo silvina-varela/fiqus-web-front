@@ -39,7 +39,10 @@ const PostsWrapper = styled.div`
       margin: auto;
       gap: 23px;
       padding: 0;
-    };
+    }
+    @media (min-width: ${styles.breakpoints.l}px) {
+     width: 946px;
+    }
   }
 `
 const BlogTitle = styled.h1`
@@ -81,6 +84,7 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
                 postDescription={post.node.excerpt}
                 fluid={post.node.frontmatter.image.childImageSharp.fluid}
                 slug={`/${post.node.frontmatter.lang}/post${post.node.frontmatter.slug}`}
+                shortSlug={`/post${post.node.frontmatter.slug}`}
               />
               )
             }
@@ -106,7 +110,7 @@ export const pageQuery = graphql`
       edges {
         node {
           id
-          excerpt(pruneLength: 150)
+          excerpt(pruneLength: 95)
           frontmatter {
             lang
             type

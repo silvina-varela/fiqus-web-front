@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import styled from 'styled-components'
 import Img from "gatsby-image"
 import data from '../content/content.json'
-import { useIntl } from "gatsby-plugin-react-intl"
+import { useIntl, Link } from "gatsby-plugin-react-intl"
 
 import Button from '../components/common/Button'
 import Tags from '../components/common/Tags'
@@ -58,6 +58,10 @@ const BreadcrumbWrapper = styled.div`
 const Breadcrumb = styled.p`
   font-size: .72em;
   color: ${styles.colors.darkGrey};
+`
+const BlogLink = styled(Link)`
+//font-weight: ${styles.fontWeight.medium};
+color: ${styles.colors.darkGrey};
 `
 const PostInfo = styled.div`
   display: flex;
@@ -184,7 +188,9 @@ export default function Post({ data, props }) {
     </HeaderImageContainer>
     <BreadcrumbContainer>
       <BreadcrumbWrapper>
-          <Breadcrumb>Blog > Artículo</Breadcrumb>
+          <Breadcrumb>
+            <BlogLink to='/blog'>Blog</BlogLink> > {post.title}
+          </Breadcrumb>
       </BreadcrumbWrapper>
     </BreadcrumbContainer>
       <PostMainWrapper>
