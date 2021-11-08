@@ -4,6 +4,7 @@ import data from '../../content/content.json'
 import Tags from '../common/Tags'
 import Button from '../common/Button'
 import { useIntl, Link } from "gatsby-plugin-react-intl"
+import Lottie from 'react-lottie';
 
 const styles = data.styles
 
@@ -222,7 +223,7 @@ const ImageContainerMobile = styled.div`
         max-width: 350px;
     }
 `
-const ServiceImage = styled.object`
+const ServiceImage = styled.div`
     pointer-events: none;
     width: 100%;
     max-height: 130px;
@@ -320,11 +321,14 @@ const Service = (props) => {
                 </ImageContainerMobile>
                 <LeftBlock>
                     <ImageContainer isHome={props.isHome}>
-                        <ServiceImage 
-                            isHome={props.isHome}
-                            data={require(`../../images/illustrations/${service.image}.svg`).default} 
-                            type="image/svg+xml">
-                        </ServiceImage>
+                    <ServiceImage isHome={props.isHome}>
+                        {console.log("animationOptions: ")}
+                        {console.log(props.animationOptions)}
+                        <Lottie
+                            options = {props.animationOptions}
+                            width = "70%"
+                        />
+                    </ServiceImage>
                     </ImageContainer>
                     <TagsContainer isHome={props.isHome}>
                         <TagsTitle>{intl.formatMessage({id: "services.tagsTitle"})}</TagsTitle>
@@ -371,10 +375,13 @@ const Service = (props) => {
             </ImageContainerMobile>
             <LeftBlock>
                 <ImageContainer isHome={props.isHome}>
-                    <ServiceImage 
-                        isHome={props.isHome}
-                        data={require(`../../images/illustrations/${service.image}.svg`).default} 
-                        type="image/svg+xml">
+                    <ServiceImage isHome={props.isHome}>
+                        {console.log("animationOptions: ")}
+                        {console.log(props.animationOptions)}
+                        <Lottie
+                            options = {props.animationOptions}
+                            width = "100%"
+                        />
                     </ServiceImage>
                 </ImageContainer>
                 <TagsContainer isHome={props.isHome}>

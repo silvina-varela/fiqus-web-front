@@ -7,6 +7,13 @@ import FeaturedService from '../components/modules/FeaturedService'
 import Button from '../components/common/Button'
 import Service from '../components/modules/Service'
 
+import datosAnimation from '../images/animations/datos.json'
+import blockchainAnimation from '../images/animations/blockchain.json'
+import capacitacionAnimation from '../images/animations/capacitacion.json'
+import fullstackAnimation from '../images/animations/fullstack.json'
+import iaAnimation from '../images/animations/inteligenciaArtificial.json'
+import acAnimation   from '../images/animations/altaConcurrencia.json'
+
 const MainWrapper = styled.div`
   padding-bottom: 187px;
   ${props => {
@@ -163,6 +170,38 @@ const Btn = styled(Button)`
 `
 
 const Services = (props) => {
+
+  const getServiceAnimation = (service) => {
+      switch (service) {
+        case "datos":
+          return datosAnimation
+          break
+        case "blockchain":
+          return blockchainAnimation
+          break
+        case "fullstack":
+          return fullstackAnimation
+          break
+        case "inteligenciaArtificial":
+          return iaAnimation
+          break
+        case "altaConcurrencia":
+          return acAnimation
+          break
+      }
+    } 
+  
+  const getAnimationOptions = (service) => {
+    return {
+      loop: true,
+      autoplay: true,
+      animationData: getServiceAnimation(service),
+      rendererSettings: {
+        preserveAspectRatio: "xMidYMid slice"
+      }
+    }
+  }
+
     const intl = useIntl();
     return (
       <MainWrapper isHome={props.isHome}>
@@ -180,6 +219,7 @@ const Services = (props) => {
                     isHome={props.isHome}
                     key = {service.id}
                     image = {service.image} 
+                    animationOptions = {getAnimationOptions(service.image) }
                     id = {service.id}
                     service = {service}
                     styles = {styles}
