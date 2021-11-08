@@ -1,7 +1,7 @@
 ---
 lang: es
 type: "post"
-title: "experiencia de intercooperación"
+title: "Experiencia de intercooperación"
 author: "Lucas Ferraro"
 slug: "/experiencia-de-intercooperacion"
 date: "2020-04-16"

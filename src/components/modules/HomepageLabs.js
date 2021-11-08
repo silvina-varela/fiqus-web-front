@@ -17,8 +17,8 @@ const HomepageLabsContainer = styled.div`
     background: ${styles.colors.white};
     @media (min-width: ${styles.breakpoints.m}px) {
         margin-bottom: 0px;
-        padding-top: 55px;
-        padding-bottom: 250px;
+        padding-top: 81px;
+        padding-bottom: 255px;
     }
 `
 const HomepageLabsWrapper = styled.div`

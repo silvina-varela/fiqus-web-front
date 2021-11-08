@@ -16,25 +16,34 @@ const PostThumbnailWrapper = styled.div`
     }
     @media (min-width: ${styles.breakpoints.l}px) {
         flex-basis: 33%;
+        min-width: 300px;
         max-width: 300px;
         margin-bottom: 55px;
     }
 ` 
 
-const PostThumbnailImage = styled.div`
+const PostThumbnailImage = styled(Link)`
+    display: block;
     border-radius: 6px;
     margin-bottom: 10px;
     height: 230px;
     max-width: 320px;
+    overflow: hidden;
     @media (min-width: ${styles.breakpoints.l}px) {
         height: 215px;
+        margin-bottom: 15px;
     }
 `
-const PostThumbnailTitle = styled.h3`
+const Image = styled(Img) `
+    height: 100%;
+`
+const PostThumbnailTitle = styled(Link)`
+    display: block;
     font-size: 1.16em;
     line-height: 27px;
     color: ${styles.colors.darkMainBg};
-    margin-bottom: 10px;    
+    text-decoration: none;
+    margin-bottom: 10px;  
     @media (min-width: ${styles.breakpoints.l}px) {
         font-weight: ${styles.fontWeight.bold};
         margin-bottom: 8px;
@@ -46,7 +55,7 @@ const PostThumbnailDescription =styled.p`
     margin-bottom: 20px;
     color: ${styles.colors.darkGrey};
     @media (min-width: ${styles.breakpoints.l}px) {
-        margin-bottom: 12px;
+        margin-bottom: 15px;
     }
 `
 const BtnContainer =  styled.div`
@@ -73,13 +82,13 @@ const PostThumbnail = (props) => {
 
     return (
         <PostThumbnailWrapper>
-            <PostThumbnailImage> 
-                <Img
+            <PostThumbnailImage to={props.shortSlug}> 
+                <Image
                     fluid = {props.fluid}
                     alt=""
                 />
             </PostThumbnailImage>
-            <PostThumbnailTitle>{props.postTitle}</PostThumbnailTitle>
+            <PostThumbnailTitle to={props.shortSlug}>{props.postTitle}</PostThumbnailTitle>
             <PostThumbnailDescription>{props.postDescription}</PostThumbnailDescription>
             <BtnContainer>
                 <Btn

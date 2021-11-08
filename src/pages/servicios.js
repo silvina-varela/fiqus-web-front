@@ -43,7 +43,7 @@ const ServicesContainer = styled.div`
     ${props => {
       if (props.isHome) {
           return `
-          padding-top: 70px;
+          padding-top: 60px;
           padding-bottom: 220px;
           `
       }
@@ -69,9 +69,10 @@ const ServicesWrapper = styled.div`
             flex-wrap: wrap;
             justify-content: center;
             max-width: 1102px;
-              gap: 10px;
+              gap: 24px;
+              margin-bottom: 34px;
             @media (min-width: ${styles.breakpoints.m}px) {
-              gap: 36px;
+              gap: 56px;
               margin-bottom: 50px;
             }
             @media (min-width: ${styles.breakpoints.xl}px) {
@@ -89,6 +90,13 @@ const ServicesHomeTitle = styled.h2`
   color: ${styles.colors.purplePrimary};
   margin: 0 auto 25px auto;
   text-align: center;
+  ${props => {
+      if (props.isHome) {
+          return ` 
+          margin-bottom: 14px;
+          `
+      }
+  }}
   @media (min-width: ${styles.breakpoints.m}px) {
     text-align: left;
     font-size: 3em;    
@@ -98,6 +106,9 @@ const ServicesHomeTitle = styled.h2`
         if (props.isHome) {
             return ` 
             text-align: center!important;
+            font-size: 3.33em;    
+            line-height: 62px;
+            margin-bottom: -16px;
             `
         }
     }}
@@ -131,7 +142,10 @@ const Btn = styled(Button)`
       if (props.isHome) {
           return `
           display: flex;
-          margin: 35px auto 0 auto;
+          margin: 0 auto;
+          @media (min-width: ${styles.breakpoints.m}px) {
+            margin: 35px auto 0 auto;
+          }
           `
       }
     }}
@@ -150,56 +164,55 @@ const Btn = styled(Button)`
 
 const Services = (props) => {
     const intl = useIntl();
-
-      return (
-        <MainWrapper isHome={props.isHome}>
-          <ServicesContainer isHome={props.isHome}>
-            <ServicesWrapper isHome={props.isHome}>
-              {
-                  props.isHome ? 
-                  <ServicesHomeTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesHomeTitle>
-                  : <ServicesTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
-              }
-              <Fragment>
-                {services.services.map( (service) =>{
-                  return(
-                    <Service 
-                      isHome={props.isHome}
-                      key = {service.id}
-                      image = {service.image} 
-                      id = {service.id}
-                      service = {service}
-                      styles = {styles}
-                      href = {props.href}>
-                    </Service>
-                  )
-                })}
-              </Fragment>
-              {
-                  props.isHome ? 
-                  <FeaturedService isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</FeaturedService>
-                  : ""
-              }
-            </ServicesWrapper>
+    return (
+      <MainWrapper isHome={props.isHome}>
+        <ServicesContainer isHome={props.isHome}>
+          <ServicesWrapper isHome={props.isHome}>
             {
-              props.isHome && 
-                  <Btn
-                    isHome={props.isHome}
-                    type='btnPrimaryOrange'
-                    theme={styles}
-                    btnText={intl.formatMessage({id: "services.btnText"})}
-                    isLink
-                    href="servicios"
-                  />
+                props.isHome ? 
+                <ServicesHomeTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesHomeTitle>
+                : <ServicesTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
             }
-          </ServicesContainer>
+            <Fragment>
+              {services.services.map( (service) =>{
+                return(
+                  <Service 
+                    isHome={props.isHome}
+                    key = {service.id}
+                    image = {service.image} 
+                    id = {service.id}
+                    service = {service}
+                    styles = {styles}
+                  >
+                  </Service>
+                )
+              })}
+            </Fragment>
+            {
+                props.isHome ? 
+                <FeaturedService isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</FeaturedService>
+                : ""
+            }
+          </ServicesWrapper>
           {
-            props.isHome ? 
-            ""
-            : <FeaturedService /> 
+            props.isHome && 
+                <Btn
+                  isHome={props.isHome}
+                  type='btnPrimaryOrange'
+                  theme={styles}
+                  btnText={intl.formatMessage({id: "services.btnText"})}
+                  isLink
+                  href="servicios"
+                />
           }
-        </MainWrapper>
-      );
+        </ServicesContainer>
+        {
+          props.isHome ? 
+          ""
+          : <FeaturedService /> 
+        }
+      </MainWrapper>
+  );
 };
 
 export default Services;
