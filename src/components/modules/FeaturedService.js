@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import { useIntl } from "gatsby-plugin-react-intl"
+import { useIntl, Link } from "gatsby-plugin-react-intl"
 import data from '../../content/content.json'
 
 const styles = data.styles
@@ -22,7 +22,7 @@ const FeaturedServiceContainer = styled.div`
             flex-basis: 100%;
             max-width: 320px;
             border-radius: 14px;
-            padding: 30px 20px;
+            padding: 0px;
             min-height: unset;
             background: ${styles.colors.white};
             margin-bottom: 30px;
@@ -36,7 +36,7 @@ const FeaturedServiceContainer = styled.div`
                 max-width: 330px;
                 min-height: unset;
                 margin: 0;
-                padding: 30px 20px;
+                padding: 0;
                 border: none;
                 box-shadow: none;
                 &:hover {
@@ -49,6 +49,16 @@ const FeaturedServiceContainer = styled.div`
             `
         }
     }}
+`
+const FeaturedServiceLink = styled(Link)`
+    width: 100%;
+    height: 100%;
+    padding: 30px 20px;
+    text-decoration: none;
+    @media (min-width: ${styles.breakpoints.m}px) {
+        padding: 30px 20px;
+    }
+
 `
 const FeaturedServiceWrapper = styled.div`
     position: relative;
@@ -150,7 +160,6 @@ const FeaturedServiceImage = styled.img`
             max-width: 100%;
             @media (min-width: ${styles.breakpoints.m}px) {
                 max-height: 125px;
-                margin-top: 20px;
             }
             `
         }
@@ -165,13 +174,21 @@ const InfoContainer = styled.div`
         right: 20px;
         z-index: 2;
         width: 100%;
-        max-width: 600px;
         padding: 49px 47px 44px 47px;
         background: ${styles.colors.white};
         border: 3px solid ${styles.colors.purplePrimary};
         border-radius: 14px;
         box-shadow: 12px 12px 0px ${styles.colors.purplePrimary};
     }
+    @media (min-width: ${styles.breakpoints.m}px) and (max-width: 875px) {
+        max-width: 450px;
+    }
+    @media (min-width: 876px) and (max-width: 925px) {
+        max-width: 500px;
+    }
+    @media (min-width: 926px) {
+        max-width: 600px;
+    }   
     @media (min-width: ${styles.breakpoints.l}px) {
         width: unset;
         padding: 49px 47px 44px 86px;
@@ -251,6 +268,29 @@ const FeaturedService = (props) => {
     const intl = useIntl();
     const FeaturedService = props.service
     return (
+        props.isHome ? 
+        <FeaturedServiceContainer isHome={props.isHome}> 
+            <FeaturedServiceWrapper isHome={props.isHome}> 
+                <FeaturedServiceLink
+                    isHome={props.isHome}
+                    to='/servicios'
+                >
+                    <ImageContainer isHome={props.isHome}>
+                        <FeaturedServiceImage
+                            src={FeaturedServiceImageconst.default} 
+                            alt={intl.formatMessage({id: "service_subsection.featuredServiceImageAlt"})}
+                            isHome={props.isHome}
+                        >
+                        </FeaturedServiceImage>
+                    </ImageContainer>
+                    <InfoContainer isHome={props.isHome}>
+                            <FeaturedServiceTitle isHome={props.isHome}>{intl.formatMessage({id: "service_subsection.title"})}</FeaturedServiceTitle>
+                            <FeaturedServiceDescription isHome={props.isHome}>{intl.formatMessage({id: "service_subsection.description"})}</FeaturedServiceDescription>
+                    </InfoContainer>
+                </FeaturedServiceLink>
+            </FeaturedServiceWrapper>
+        </FeaturedServiceContainer>
+        :
         <FeaturedServiceContainer isHome={props.isHome}> 
             <FeaturedServiceWrapper isHome={props.isHome}> 
                 <ImageContainer isHome={props.isHome}>
