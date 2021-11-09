@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components'
 import { useIntl, Link } from "gatsby-plugin-react-intl"
 import data from '../../content/content.json'
+import Lottie from 'react-lottie'
+import capacitacionAnimation from '../../images/animations/capacitacion.json'
 
 const styles = data.styles
 const FeaturedServiceImageconst = require('../../images/illustrations/capacitacion.svg')
@@ -142,7 +144,7 @@ const ImageContainer = styled.div`
         }
     }}
 `
-const FeaturedServiceImage = styled.img`
+const FeaturedServiceImage = styled.div`
     max-width: 210px;
     margin-bottom: 27px;
     @media (min-width: ${styles.breakpoints.m}px) {
@@ -262,7 +264,16 @@ const FeaturedServiceDescription = styled.p`
 
 const FeaturedService = (props) => {
     const intl = useIntl();
-    const FeaturedService = props.service
+
+    const animationOptions= {
+        loop: true,
+        autoplay: true,
+        animationData: capacitacionAnimation,
+        rendererSettings: {
+          preserveAspectRatio: "xMidYMid slice"
+        }
+    }
+
     return (
         props.isHome ? 
         <FeaturedServiceContainer isHome={props.isHome}> 
@@ -273,10 +284,13 @@ const FeaturedService = (props) => {
                 >
                     <ImageContainer isHome={props.isHome}>
                         <FeaturedServiceImage
-                            src={FeaturedServiceImageconst.default} 
                             alt={intl.formatMessage({id: "service_subsection.featuredServiceImageAlt"})}
                             isHome={props.isHome}
                         >
+                            <Lottie
+                                options = {animationOptions}
+                                width = "100%"
+                            />
                         </FeaturedServiceImage>
                     </ImageContainer>
                     <InfoContainer isHome={props.isHome}>
@@ -291,10 +305,12 @@ const FeaturedService = (props) => {
             <FeaturedServiceWrapper isHome={props.isHome}> 
                 <ImageContainer isHome={props.isHome}>
                     <FeaturedServiceImage
-                        src={FeaturedServiceImageconst.default} 
                         alt={intl.formatMessage({id: "service_subsection.featuredServiceImageAlt"})}
-                        isHome={props.isHome}
-                    >
+                        isHome={props.isHome}>
+                        <Lottie
+                            options = {animationOptions}
+                            width = "100%"
+                        />
                     </FeaturedServiceImage>
                 </ImageContainer>
                 <InfoContainer isHome={props.isHome}>
