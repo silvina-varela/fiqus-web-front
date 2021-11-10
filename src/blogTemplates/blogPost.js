@@ -177,8 +177,6 @@ export default function Post({ data, props }) {
     }
   }, [post.lang]);
 
-  console.log(post)
-
   return (
   <PostContainer>
     <HeaderImageContainer>

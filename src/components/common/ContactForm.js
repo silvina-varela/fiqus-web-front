@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import data from '../../content/content.json'
 import { useIntl, Link } from "gatsby-plugin-react-intl"
 import { useForm } from "react-hook-form";
+import axios from 'axios'
 
 
 const styles = data.styles
@@ -239,27 +240,16 @@ const ContactForm = () => {
     const intl = useIntl();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [emailSent, setEmailSent] = useState(false);
+    const [text, setText] = useState("")
 
-    const onSubmit = (data) => {
-        setEmailSent(false);
+    const onSubmit = async() => {
+        setEmailSent(true);
 
-        console.log(data);
-        // send email
-        // if success
-            setEmailSent(true);
-        // if not success 
-            // do something
-
-        // then() clear form
-        reset({
-            nameField: '',
-            emailField: '',
-            textAreaField: ''
-        }, {
-            keepSubmitCount: true,
-            keepIsSubmitted: true
-        });
-
+        try {
+            await axios.post("http://localhost:4000/send_mail", text) 
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
@@ -281,6 +271,7 @@ const ContactForm = () => {
                                 <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
                             }
                         </FormGroup>
+
                         <FormGroup>
                             <Label htmlFor="emailField">{intl.formatMessage({id: 'contactForm.emailField'})}* </Label>
                             <FieldContainer error={errors.emailField}>
@@ -294,6 +285,7 @@ const ContactForm = () => {
                                 <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
                             }
                         </FormGroup>
+
                         <FormGroup>
                             <Label htmlFor="textAreaField">{intl.formatMessage({id: 'contactForm.textAreaField'})}* </Label>
                             <FieldContainer error={errors.textAreaField}>
@@ -301,12 +293,14 @@ const ContactForm = () => {
                                     name="textAreaField" 
                                     type="textarea" 
                                     placeholder={intl.formatMessage({id: 'contactForm.textAreaField'})}  
-                                    {...register("textAreaField", { required: true })}/>
+                                    {...register("textAreaField", { required: true })}
+                                    value={text} onChange={(e) => setText(e.target.value)}/>
                             </FieldContainer>
                             {errors.textAreaField && 
                                 <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
                             }                    </FormGroup>
                         <FormGroup>
+
                             <BtnSubmit theme={styles} btnText={intl.formatMessage({id: 'button.send'})} onButtonClick={handleSubmit(onSubmit)}></BtnSubmit>
                             {emailSent &&
                                 <FeedbackMessage><FeedbackMessageTitle>{intl.formatMessage({id: 'contactForm.messageSent'})}</FeedbackMessageTitle> {intl.formatMessage({id: 'contactForm.thankYou'})}</FeedbackMessage>
@@ -314,6 +308,7 @@ const ContactForm = () => {
                         </FormGroup>
                     </Form>
                 </ContactFormBlock>
+
                 <ContactInfoBlock>
                     <Email>{intl.formatMessage({id: 'contactForm.email'})}</Email>
                     <OfficeListTitle>{intl.formatMessage({id: 'contactForm.sedes'})}</OfficeListTitle>

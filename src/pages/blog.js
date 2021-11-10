@@ -66,7 +66,6 @@ const Btn = styled(Button)`
 
 const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
   const intl = useIntl();
-  console.log(intl.locale)
 
     return (
 
@@ -76,7 +75,6 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
             <BlogTitle>Blog</BlogTitle>
 
           {edges.map( post => {
-            console.log(post.node.frontmatter.image.childImageSharp.fluid)
             if(post.node.frontmatter.lang === intl.locale){
               return(
                 <PostThumbnail 

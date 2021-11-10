@@ -322,8 +322,6 @@ const Service = (props) => {
                 <LeftBlock>
                     <ImageContainer isHome={props.isHome}>
                     <ServiceImage isHome={props.isHome}>
-                        {console.log("animationOptions: ")}
-                        {console.log(props.animationOptions)}
                         <Lottie
                             options = {props.animationOptions}
                             width = "70%"
@@ -376,8 +374,6 @@ const Service = (props) => {
             <LeftBlock>
                 <ImageContainer isHome={props.isHome}>
                     <ServiceImage isHome={props.isHome}>
-                        {console.log("animationOptions: ")}
-                        {console.log(props.animationOptions)}
                         <Lottie
                             options = {props.animationOptions}
                             width = "100%"
