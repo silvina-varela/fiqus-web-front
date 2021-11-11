@@ -314,19 +314,21 @@ const Service = (props) => {
             >
                 <ImageContainerMobile>
                     <ServiceImage 
-                        isHome={props.isHome}
-                        data={require(`../../images/illustrations/${service.image}.svg`).default} 
-                        type="image/svg+xml">
-                    </ServiceImage>
-                </ImageContainerMobile>
-                <LeftBlock>
-                    <ImageContainer isHome={props.isHome}>
-                    <ServiceImage isHome={props.isHome}>
+                        isHome={props.isHome}>
                         <Lottie
                             options = {props.animationOptions}
                             width = "70%"
                         />
                     </ServiceImage>
+                </ImageContainerMobile>
+                <LeftBlock>
+                    <ImageContainer isHome={props.isHome}>
+                        <ServiceImage isHome={props.isHome}>
+                            <Lottie
+                                options = {props.animationOptions}
+                                width = "100%"
+                            />
+                        </ServiceImage>
                     </ImageContainer>
                     <TagsContainer isHome={props.isHome}>
                         <TagsTitle>{intl.formatMessage({id: "services.tagsTitle"})}</TagsTitle>
@@ -366,9 +368,11 @@ const Service = (props) => {
         <ServiceWrapper isHome={props.isHome}>
             <ImageContainerMobile>
                 <ServiceImage 
-                    isHome={props.isHome}
-                    data={require(`../../images/illustrations/${service.image}.svg`).default} 
-                    type="image/svg+xml">
+                    isHome={props.isHome}>
+                        <Lottie
+                            options = {props.animationOptions}
+                            width = "100%"
+                        />    
                 </ServiceImage>
             </ImageContainerMobile>
             <LeftBlock>

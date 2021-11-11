@@ -3,7 +3,7 @@ type: "lab"
 id: "comprasComunitarias"
 title: "Compras Comunitarias"
 tags: ["Python", "Django Rest framework", "Docker", "Postgres", "vueJS"]
-image: comprasComunitarias.png
+image: images/comprasComunitarias.png
 website: "link pag proyecto (si no hay, dejar en blanco)"
 github: "link github (si no hay, dejar en blanco)"
 english: false

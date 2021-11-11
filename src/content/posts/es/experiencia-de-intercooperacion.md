@@ -5,7 +5,7 @@ title: "Experiencia de intercooperación"
 author: "Lucas Ferraro"
 slug: "/experiencia-de-intercooperacion"
 date: "2020-04-16"
-image:  experiencia-de-intercooperacion-header.jpg
+image:  ../images/experiencia-de-intercooperacion-header.jpg
 imageCredits: "Créditos de imagen unsplash"
 tags: ["Intercooperacion"]
 ---

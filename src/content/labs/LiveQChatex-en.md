@@ -3,7 +3,7 @@ type: "lab"
 id: "liveQChatex"
 title: "LiveQChatex"
 tags: ["Elixir", "Phoenix", "LiveView", "Presence", "Gigalixir", "GitHub Actions"]
-image: liveQchatex.png
+image: images/liveQchatex.png
 website: "link pag proyecto (si no hay, dejar en blanco)"
 github: "link github (si no hay, dejar en blanco)"
 english: true

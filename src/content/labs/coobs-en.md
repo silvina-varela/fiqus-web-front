@@ -3,7 +3,7 @@ type: "lab"
 id: "coobs"
 title: "CooBS"
 tags: ["Python", "Django", "Postgres"]
-image: coobs.png
+image: images/coobs.png
 website: ""
 github: "link github"
 english: true

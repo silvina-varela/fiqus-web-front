@@ -5,7 +5,7 @@ title: "Socios de Fiqus ganan el spawn fest"
 author: "Diego Calero"
 slug: "/socios-de-fiqus-ganan-el-spawn-fest"
 date: "2019-07-15"
-image:  experiencia-de-intercooperacion-header.jpg
+image:  ../images/experiencia-de-intercooperacion-header.jpg
 imageCredits: "Créditos de imagen unsplash"
 tags: ["Elixir", "Phoenix"]
 ---

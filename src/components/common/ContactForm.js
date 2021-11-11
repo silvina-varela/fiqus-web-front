@@ -240,14 +240,21 @@ const ContactForm = () => {
     const intl = useIntl();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [emailSent, setEmailSent] = useState(false);
-    const [text, setText] = useState("")
+    const [name,setName] = useState("")
+    const [mail, setMail] = useState("")
+    const [message, setText] = useState("")
 
     const onSubmit = async() => {
-        setEmailSent(true);
-
         try {
-            await axios.post("http://localhost:4000/send_mail", text) 
+            setEmailSent(true);
+            await axios.post("http://localhost:4000/send_mail", {
+                name,
+                mail,
+                message
+            })
+            
         } catch (error) {
+            setEmailSent(false)
             console.log(error)
         }
     }
@@ -265,7 +272,8 @@ const ContactForm = () => {
                                     name="nameField" 
                                     type="text" 
                                     placeholder={intl.formatMessage({id: 'contactForm.nameField'})} 
-                                    {...register("nameField", { required: true })} />
+                                    {...register("nameField", { required: true })} 
+                                    onChange = {(e) => setName(e.target.value)}/>
                             </FieldContainer>
                             {errors.nameField && 
                                 <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
@@ -279,7 +287,8 @@ const ContactForm = () => {
                                     name="emailField" 
                                     type="email" 
                                     placeholder={intl.formatMessage({id: 'contactForm.emailField'})} 
-                                    {...register("emailField", { required: true })}/>
+                                    {...register("emailField", { required: true })}
+                                    onChange = {(e) => setMail(e.target.value)}/>
                             </FieldContainer>
                             {errors.emailField && 
                                 <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
@@ -294,7 +303,7 @@ const ContactForm = () => {
                                     type="textarea" 
                                     placeholder={intl.formatMessage({id: 'contactForm.textAreaField'})}  
                                     {...register("textAreaField", { required: true })}
-                                    value={text} onChange={(e) => setText(e.target.value)}/>
+                                    onChange={(e) => setText(e.target.value)}/>
                             </FieldContainer>
                             {errors.textAreaField && 
                                 <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>

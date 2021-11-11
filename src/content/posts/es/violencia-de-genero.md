@@ -5,7 +5,7 @@ title: "Violencia de género"
 author: "Diego Calero"
 slug: "/violencia-de-genero"
 date: "2019-07-15"
-image:  experiencia-de-intercooperacion-header.jpg
+image:  ../images/experiencia-de-intercooperacion-header.jpg
 imageCredits: "Créditos de imagen unsplash"
 tags: ["Elixir", "Phoenix"]
 ---

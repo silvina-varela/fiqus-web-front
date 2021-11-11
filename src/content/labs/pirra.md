@@ -3,7 +3,7 @@ type: "lab"
 id: "pirra"
 title: "Pirra"
 tags: ["Python", "Django", "Docker", "Postgres"]
-image: pirra.png
+image: images/pirra.png
 website: "link pag proyecto (si no hay, dejar en blanco)"
 github: "link github (si no hay, dejar en blanco)"
 

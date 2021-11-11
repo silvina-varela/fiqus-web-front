@@ -3,7 +3,7 @@ type: "lab"
 id: "rompebolas"
 title: "Rompebolas"
 tags: ["Go"]
-image: rompebolas.png
+image: images/rompebolas.png
 website: "link pag proyecto (si no hay, dejar en blanco)"
 github: ""
 english: true

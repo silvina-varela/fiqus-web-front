@@ -3,7 +3,7 @@ type: "lab"
 id: "coopHub"
 title: "CoopHub"
 tags: ["Elixir", "Phoenix", "Utilización de ETS", "Cache de datos", "ReactJS", "Api y acciones de GitHub"]
-image: coophub.png
+image: images/coophub.png
 website: "link pag proyecto (si no hay, dejar en blanco)"
 github: "link github (si no hay, dejar en blanco)"
 english: true
