@@ -266,7 +266,7 @@ const Header = (props) => {
                                 return (
                                     <NavItem key={menuLink.name} onClick={() => {setIsNavOpen(false)}}>
                                         <NavLink to={menuLink.link} active={activeLink === menuLink.link ? 1 : 0}>
-                                            {intl.formatMessage({id:`${menuLink.name}`})}
+                                            {intl.formatMessage({id:menuLink.name})}
                                         </NavLink>
                                     </NavItem>)
                                 })
@@ -279,3 +279,20 @@ const Header = (props) => {
 };
 
 export default Header;
+
+const SEO = ({ description, title, slug }) => {
+    const { site } = useStaticQuery(
+        graphql`
+            query {
+                site {
+                    siteMetadata {
+                        title
+                        description
+                        author
+                        siteUrl
+                    }
+                }
+            }
+        `,
+    );
+}

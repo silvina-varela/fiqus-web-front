@@ -3,6 +3,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components'
 import Header from '../common/Header'
 import Footer from '../common/Footer'
+import Helmet from 'react-helmet'
 import { styles } from '../../content/content.json'
 require('../../styles/styles.css')
 
@@ -41,6 +42,9 @@ const PageWrapper = (props) => {
                 site {
                     siteMetadata {
                         title
+                        description
+                        author
+                        siteURL
                         menuLinks{
                             name
                             link
