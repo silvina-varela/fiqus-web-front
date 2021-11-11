@@ -279,20 +279,3 @@ const Header = (props) => {
 };
 
 export default Header;
-
-const SEO = ({ description, title, slug }) => {
-    const { site } = useStaticQuery(
-        graphql`
-            query {
-                site {
-                    siteMetadata {
-                        title
-                        description
-                        author
-                        siteUrl
-                    }
-                }
-            }
-        `,
-    );
-}
