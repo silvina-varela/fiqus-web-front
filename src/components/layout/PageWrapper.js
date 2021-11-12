@@ -3,8 +3,8 @@ import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components'
 import Header from '../common/Header'
 import Footer from '../common/Footer'
-import Helmet from 'react-helmet'
 import { styles } from '../../content/content.json'
+import Seo from '../common/Seo'
 require('../../styles/styles.css')
 
 const Wrapper = styled.div`
@@ -41,10 +41,6 @@ const PageWrapper = (props) => {
             query MyQuery {
                 site {
                     siteMetadata {
-                        title
-                        description
-                        author
-                        siteURL
                         menuLinks{
                             name
                             link
@@ -56,6 +52,7 @@ const PageWrapper = (props) => {
         }
         render = { data => (
             <Wrapper>
+                <Seo></Seo>
                 <Header menuLinks = {data.site.siteMetadata.menuLinks} isHome={isHome} location={props.location}></Header>
                 <PageContainer isHome={isHome}>{props.children}</PageContainer>
                 <Footer></Footer>
