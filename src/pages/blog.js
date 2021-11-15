@@ -1,4 +1,4 @@
-import React, { Fragment }  from 'react'
+import React, { useState, useEffect, Fragment }  from 'react'
 import { graphql } from 'gatsby';
 import styled from 'styled-components'
 import data from '../content/content.json'
@@ -66,33 +66,63 @@ const Btn = styled(Button)`
 
 const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
   const intl = useIntl();
+  const [currentPostsList, setCurrentPostsList] = useState([])
+  const [visiblePosts, setVisiblePosts] = useState([])
+  const [postsLimit, setPostsLimit] = useState(3)
+  const postsAdd = 3
+
+  useEffect( ()=>{
+    let tempPostsList = []
+
+    edges.forEach(edge => {
+      if(edge.node.frontmatter.lang === intl.locale){
+        tempPostsList.push(edge)
+      }
+    setCurrentPostsList([...tempPostsList])
+    });
+    setPostsLimit(2)
+    setVisiblePosts(currentPostsList.slice(0,3))
+  }, [])
+
+  useEffect (()=>{
+    setVisiblePosts(currentPostsList.slice(0,postsLimit))
+  }, [postsLimit])
+  
+  const showMorePosts = () => {
+    console.log("showMore")
+    if(postsLimit<=currentPostsList.length){
+      setPostsLimit(postsLimit+postsAdd)
+      console.log(postsLimit)
+    }
+  }
+
 
     return (
-
       <MainWrapper>
       <PostsContainer>
         <PostsWrapper>
             <BlogTitle>Blog</BlogTitle>
 
-          {edges.map( post => {
-            if(post.node.frontmatter.lang === intl.locale){
-              return(
-                <PostThumbnail 
-                postTitle={post.node.frontmatter.title}
-                postDescription={post.node.excerpt}
-                fluid={post.node.frontmatter.image.childImageSharp.fluid}
-                slug={`/${post.node.frontmatter.lang}/post${post.node.frontmatter.slug}`}
-                shortSlug={`/post${post.node.frontmatter.slug}`}
-              />
-              )
-            }
-          })}
+            {visiblePosts.map( post => {
+                return(
+                  <PostThumbnail 
+                    postTitle={post.node.frontmatter.title}
+                    postDescription={post.node.excerpt}
+                    fluid={post.node.frontmatter.image.childImageSharp.fluid}
+                    slug={`/${post.node.frontmatter.lang}/post${post.node.frontmatter.slug}`}
+                    shortSlug={`/post${post.node.frontmatter.slug}`}
+                  />
+                )
+            })}
+
           </PostsWrapper>
           <Btn
+            isLink={false}
             type='btnPrimaryPurple'
             theme={styles}
             to="#"
             btnText='cargar más artículos'
+            onButtonClick = {showMorePosts}
           />
         </PostsContainer>
     </MainWrapper>
