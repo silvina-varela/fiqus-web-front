@@ -1,7 +1,7 @@
 module.exports = {
-  pathPrefix: "/fiqus-web",
+  pathPrefix: "/fiqus-web-front",
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
+    siteUrl: "https://www.fiqus.coop",
     title: "fiqus-web",
     menuLinks: [
       /*{
