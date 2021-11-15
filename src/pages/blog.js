@@ -68,8 +68,8 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
   const intl = useIntl();
   const [currentPostsList, setCurrentPostsList] = useState([])
   const [visiblePosts, setVisiblePosts] = useState([])
-  const [postsLimit, setPostsLimit] = useState(3)
-  const postsAdd = 3
+  const [postsLimit, setPostsLimit] = useState(6)
+  const postsAdd = 6
 
   useEffect( ()=>{
     let tempPostsList = []
