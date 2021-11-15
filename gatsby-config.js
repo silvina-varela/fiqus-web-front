@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/fiqus-web",
   siteMetadata: {
     siteUrl: "https://www.yourdomain.tld",
     title: "fiqus-web",
