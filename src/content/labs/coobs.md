@@ -1,6 +1,7 @@
 ---
 type: "lab"
 id: "coobs"
+slug: /coobs
 title: "CooBS"
 tags: ["Python", "Django", "Postgres"]
 image: images/coobs.png

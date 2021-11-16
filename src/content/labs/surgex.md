@@ -1,6 +1,7 @@
 ---
 type: "lab"
 id: "surgex"
+slug: /surgex
 title: "Surgex"
 tags: ["Elixir", "Phoenix", "Postgres", "VueJS"]
 image: images/surgex.png

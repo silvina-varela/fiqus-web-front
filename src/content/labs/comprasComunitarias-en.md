@@ -1,6 +1,7 @@
 ---
 type: "lab"
 id: "comprasComunitarias"
+slug: /comprasComunitarias
 title: "Compras Comunitarias"
 tags: ["Python", "Django Rest framework", "Docker", "Postgres", "vueJS"]
 image: images/comprasComunitarias.png

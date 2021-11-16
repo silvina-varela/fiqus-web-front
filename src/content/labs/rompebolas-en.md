@@ -1,6 +1,7 @@
 ---
 type: "lab"
 id: "rompebolas"
+slug: /rompebolas
 title: "Rompebolas"
 tags: ["Go"]
 image: images/rompebolas.png

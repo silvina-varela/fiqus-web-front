@@ -2,6 +2,7 @@
 type: "lab"
 id: "rompebolas"
 title: "Rompebolas"
+slug: /rompebolas
 tags: ["Go"]
 image: images/rompebolas.png
 website: "link pag proyecto (si no hay, dejar en blanco)"

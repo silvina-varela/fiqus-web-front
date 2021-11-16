@@ -1,6 +1,7 @@
 ---
 type: "lab"
 id: "liveQChatex"
+slug: /liveQChatex
 title: "LiveQChatex"
 tags: ["Elixir", "Phoenix", "LiveView", "Presence", "Gigalixir", "GitHub Actions"]
 image: images/liveQchatex.png

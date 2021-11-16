@@ -1,6 +1,7 @@
 ---
 type: "lab"
 id: "timeline"
+slug: /timeline
 title: "Timeline"
 tags: ["Python", "Django Rest Framework", "Postgres", "Google maps API"]
 image: images/timeline.png

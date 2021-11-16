@@ -1,6 +1,7 @@
 ---
 type: "lab"
 id: "pirra"
+slug: /pirra
 title: "Pirra"
 tags: ["Python", "Django", "Docker", "Postgres"]
 image: images/pirra.png
