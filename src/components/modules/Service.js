@@ -14,7 +14,7 @@ const ServiceWrapper = styled.div`
     display: flex;
     flex-direction: column;
     max-width: 320px;
-    padding: 38px 20px;
+    padding: 20px 20px 30px 20px;
     margin-top: 0px;
     margin-bottom: 30px;
     margin-left: auto;
@@ -120,7 +120,7 @@ const TextContainer = styled.div`
 const ServiceTitle = styled.h3`
     font-size: 1.44em;
     color: ${styles.colors.purplePrimary};
-    margin: 18px 0;
+    margin: 0px 0px 18px 0;
     text-align: center;
     @media (min-width: ${styles.breakpoints.m}px) {
         font-size: 2.11em;
@@ -181,7 +181,7 @@ const TagsContainer = styled.div`
 const TagsTitle = styled.h4`
     font-size: 0.88em;
     color: ${styles.colors.purplePrimary};
-    margin-bottom: 18px;
+    margin-bottom: 23px;
     @media (min-width: ${styles.breakpoints.m}px) {
         font-size: 1em;
         line-height: 24px;
@@ -199,6 +199,7 @@ const ImageContainer = styled.div`
         margin-left: 0;
         margin-right: auto;
         margin-bottom: auto;
+        margin-bottom: 0;
         margin-top: 0;
         max-width: 330px;
         display: flex;
@@ -235,9 +236,18 @@ const ImageContainerMobile = styled.div`
 const ServiceImage = styled.div`
     pointer-events: none;
     width: 100%;
-    max-height: 130px;
+    max-height: 170px;
+    text-align: center;
+    div svg {
+        width: auto!important;
+    }
     @media (min-width: ${styles.breakpoints.m}px) {
-        max-height: 210px;
+        max-height: 300px;
+        div svg {
+            height: auto;
+            width: 100%!important;
+            max-height: 300px!important;
+        }
     }
     ${props => {
         if (props.isHome) {
@@ -268,8 +278,8 @@ const BtnMobile = styled(Button)`
         /*
         Este componente no se muestra porque todavía no está lista la landing page de cada servicio. 
         Cuando estén listas hay que comentar o eliminar únicamente el display none que está debajo de este comentario.
-        display: none;
         */
+        display: none;
         
     @media (min-width: ${styles.breakpoints.m}px) {
         display: none;
@@ -293,8 +303,8 @@ const Btn = styled(Button)`
         /*
         Este componente no se muestra porque todavía no está lista la landing page de cada servicio.
         Cuando estén listas hay que comentar o eliminar únicamente el display none que está debajo de este comentario.
-        display: none;
         */
+        display: none;
         ${props => {
             if (props.isHome) {
                 return ` 
