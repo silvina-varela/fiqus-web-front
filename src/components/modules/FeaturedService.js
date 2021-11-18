@@ -51,10 +51,10 @@ const FeaturedServiceContainer = styled.div`
 const FeaturedServiceLink = styled(Link)`
     width: 100%;
     height: 100%;
-    padding: 30px 20px;
+    padding: 18px 20px 22px 20px;
     text-decoration: none;
     @media (min-width: ${styles.breakpoints.m}px) {
-        padding: 30px 20px;
+        padding: 15px 20px 25px 20px;
     }
 
 `
@@ -156,8 +156,10 @@ const FeaturedServiceImage = styled.div`
             return ` 
             max-height: 120px;
             max-width: 100%;
+            max-height: 160px;
+            margin-bottom: 0;
             @media (min-width: ${styles.breakpoints.m}px) {
-                max-height: 125px;
+                max-height: 175px;
             }
             `
         }
@@ -227,11 +229,12 @@ const FeaturedServiceTitle = styled.h3`
             return ` 
             color: ${styles.colors.purplePrimary};
             margin-bottom: 0;
+            margin: 10px 0 0 0;
             @media (min-width: ${styles.breakpoints.m}px) {
                 color: ${styles.colors.purplePrimary};
                 font-size: 1.44em;
                 text-align: center;
-                margin: 30px 0 0 0;
+                margin: 10px 0 0 0;
             }
             `
         }

@@ -72,9 +72,9 @@ const ServiceWrapper = styled.div`
 
 `
 const ServiceLink = styled(Link)`
-    padding: 40px 20px 25px 20px;
+    padding: 18px 20px 22px 20px;
     @media (min-width: ${styles.breakpoints.m}px) {
-        padding: 30px 20px;
+        padding: 15px 20px 25px 20px;
     }
     width: 100%;
     text-decoration: none; 
@@ -89,6 +89,13 @@ const LeftBlock = styled.div`
         align-items: flex-start;        
         margin-right: 3px;
     }
+    ${props => {
+        if (props.isHome) {
+            return `       
+            margin-right: 0px!important;
+            `
+        }
+    }}
 `
 const RightBlock = styled.div`
     order: 2;
@@ -125,12 +132,13 @@ const ServiceTitle = styled.h3`
         if (props.isHome) {
             return ` 
             margin-bottom: 0;
-            margin-top: 20px!important;
             padding-top: 0!important;
             font-size: 1.44em!important;
             text-align: center!important;
+            margin-top: 0;
             @media (min-width: ${styles.breakpoints.m}px) {
                 margin-top: 30px!important;
+                margin-top: 10px!important;
             }
             `
         }
@@ -213,6 +221,7 @@ const ImageContainerMobile = styled.div`
     display: flex;
     margin-bottom: 0px;
     margin-top: 0;
+    max-width: unset!important;
     @media (min-width: ${styles.breakpoints.m}px) {
         display: none;
         order: unset;
@@ -233,9 +242,17 @@ const ServiceImage = styled.div`
     ${props => {
         if (props.isHome) {
             return `
-            max-height: 129px;
+            max-height: 160px;
+            div {
+             height: 100%;
+             width: 100%!important;   
+            }
             @media (min-width: ${styles.breakpoints.m}px) {
                 max-height: 134px;
+                max-height: 175px;
+            }
+            div svg {
+             width: auto!important;   
             }
             `
         }
@@ -321,7 +338,7 @@ const Service = (props) => {
                         />
                     </ServiceImage>
                 </ImageContainerMobile>
-                <LeftBlock>
+                <LeftBlock isHome={props.isHome}>
                     <ImageContainer isHome={props.isHome}>
                         <ServiceImage isHome={props.isHome}>
                             <Lottie
