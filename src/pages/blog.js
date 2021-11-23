@@ -80,8 +80,8 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
       }
     setCurrentPostsList([...tempPostsList])
     });
-    setPostsLimit(2)
-    setVisiblePosts(currentPostsList.slice(0,3))
+    setPostsLimit(6)
+    setVisiblePosts(currentPostsList.slice(0,6))
   }, [])
 
   useEffect (()=>{
