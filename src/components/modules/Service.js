@@ -202,6 +202,7 @@ const ImageContainer = styled.div`
         margin-bottom: 0;
         margin-top: 0;
         max-width: 330px;
+        width: 100%;
         display: flex;
     }
     ${props => {

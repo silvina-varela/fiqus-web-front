@@ -33,6 +33,7 @@ const FeaturedServiceContainer = styled.div`
                 flex-basis: 50%;
                 max-width: 330px;
                 min-height: unset;
+                width: 100%;
                 margin: 0;
                 padding: 0;
                 border: none;
@@ -150,6 +151,7 @@ const FeaturedServiceImage = styled.div`
     @media (min-width: ${styles.breakpoints.m}px) {
         max-width: 258px;
         margin-bottom: 0;
+        margin: 0 auto;
     }
     ${props => {
         if (props.isHome) {
