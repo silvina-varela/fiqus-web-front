@@ -9,7 +9,6 @@ import Service from '../components/modules/Service'
 
 import datosAnimation from '../images/animations/datos.json'
 import blockchainAnimation from '../images/animations/blockchain.json'
-import capacitacionAnimation from '../images/animations/capacitacion.json'
 import fullstackAnimation from '../images/animations/fullstack.json'
 import iaAnimation from '../images/animations/inteligenciaArtificial.json'
 import acAnimation   from '../images/animations/altaConcurrencia.json'
@@ -88,7 +87,6 @@ const ServicesWrapper = styled.div`
             `
         }
     }}
-    }
 `
 const ServicesHomeTitle = styled.h2`
   flex-basis: 100%;
