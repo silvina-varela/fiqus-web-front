@@ -43,8 +43,8 @@ const PostsWrapper = styled.div`
     @media (min-width: ${styles.breakpoints.l}px) {
      width: 946px;
     }
-  }
 `
+
 const BlogTitle = styled.h1`
   flex-basis: 100%;
   font-size: 2.38em;
@@ -71,28 +71,29 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
   const [postsLimit, setPostsLimit] = useState(6)
   const postsAdd = 6
 
-  useEffect( ()=>{
+  useEffect(()=>{
     let tempPostsList = []
-
     edges.forEach(edge => {
       if(edge.node.frontmatter.lang === intl.locale){
         tempPostsList.push(edge)
       }
-    setCurrentPostsList([...tempPostsList])
+      setCurrentPostsList([...tempPostsList])
     });
-    setPostsLimit(2)
-    setVisiblePosts(currentPostsList.slice(0,3))
   }, [])
+
+  useEffect(()=>{
+    if(currentPostsList.length !== 0){
+      setVisiblePosts(currentPostsList.slice(0,postsLimit))
+    }
+  }, [currentPostsList])
 
   useEffect (()=>{
     setVisiblePosts(currentPostsList.slice(0,postsLimit))
   }, [postsLimit])
   
   const showMorePosts = () => {
-    console.log("showMore")
     if(postsLimit<=currentPostsList.length){
       setPostsLimit(postsLimit+postsAdd)
-      console.log(postsLimit)
     }
   }
 
