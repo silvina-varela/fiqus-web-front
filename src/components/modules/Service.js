@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components'
 import data from '../../content/content.json'
 import Tags from '../common/Tags'
@@ -25,12 +25,12 @@ const ServiceWrapper = styled.div`
     &:last-of-type {
         margin-bottom: 61px;
         ${props => {
-            if (props.isHome) {
-                return ` 
+        if (props.isHome) {
+            return ` 
                 margin-bottom: 30px;
                 `
-            }
-        }}
+        }
+    }}
     }
     @media (min-width: ${styles.breakpoints.m}px) {
         flex-direction: row;
@@ -213,7 +213,7 @@ const ImageContainer = styled.div`
             `
         }
     }}
-` 
+`
 const Tag = styled(Tags)`
 `
 
@@ -306,12 +306,12 @@ const Btn = styled(Button)`
         */
         display: none;
         ${props => {
-            if (props.isHome) {
-                return ` 
+        if (props.isHome) {
+            return ` 
                 display: none;
                 `
-            }
-        }}
+        }
+    }}
     }
     ${props => {
         if (props.isHome) {
@@ -327,124 +327,127 @@ const Service = (props) => {
     const service = props.service;
     const intl = useIntl();
     return (
-        props.isHome ? 
-        <ServiceWrapper isHome={props.isHome}>
-            <ServiceLink
-                isHome={props.isHome}
-                theme={styles}
-                /*
-                Cuando estén listas las landings individuales de cada servicio hay que descomentar este atributo, comentar el que está debajo (to='servicios') y
-                reemplazar service.link en los archivos de idiomas con el link que corresponda.
-                
-                to={'/' + intl.formatMessage({id: `${props.id}.link`})}
-                */                
-                to='/servicios'
-            >
-                <Waypoint onEnter={()=>setRenderLottie(true)} />
+        props.isHome ?
+            <ServiceWrapper isHome={props.isHome}>
+                <ServiceLink
+                    isHome={props.isHome}
+                    theme={styles}
+                    /*
+                    Cuando estén listas las landings individuales de cada servicio hay que descomentar este atributo, comentar el que está debajo (to='servicios') y
+                    reemplazar service.link en los archivos de idiomas con el link que corresponda.
+                    
+                    to={'/' + intl.formatMessage({id: `${props.id}.link`})}
+                    */
+                    to='/servicios'
+                >
+                    <ImageContainerMobile>
+                        <Waypoint onEnter={() => setRenderLottie(true)} />
+                        <ServiceImage
+                            isHome={props.isHome}>
+                            {renderLottie && <Lottie
+                                options={props.animationOptions}
+                                width="70%"
+                            />}
+                        </ServiceImage>
+                    </ImageContainerMobile>
+                    <LeftBlock isHome={props.isHome}>
+                        <ImageContainer isHome={props.isHome}>
+                            <Waypoint onEnter={() => setRenderLottie(true)} />
+                            <ServiceImage isHome={props.isHome}>
+                                {renderLottie && <Lottie
+                                    options={props.animationOptions}
+                                    width="100%"
+                                />}
+                            </ServiceImage>
+                        </ImageContainer>
+                        <TagsContainer isHome={props.isHome}>
+                            <TagsTitle>{intl.formatMessage({ id: "services.tagsTitle" })}</TagsTitle>
+                            <Tag
+                                tagsType="services"
+                                tags={service.tags}
+                                styles={props.styles}
+                            />
+                        </TagsContainer>
+                        <BtnMobile
+                            isHome={props.isHome}
+                            type='btnPrimaryPurple'
+                            theme={styles}
+                            //href={intl.formatMessage({id: `${props.id}.link`})}
+                            href='servicios'
+                            isLink
+                            btnText={intl.formatMessage({ id: "button.verMas" })}
+                        />
+                    </LeftBlock>
+                    <RightBlock isHome={props.isHome}>
+                        <TextContainer>
+                            <ServiceTitle isHome={props.isHome}>{intl.formatMessage({ id: `${props.id}.service` })}</ServiceTitle>
+                            <ServiceDescription isHome={props.isHome}>{intl.formatMessage({ id: `${props.id}.description` })}</ServiceDescription>
+                        </TextContainer>
+                        <Btn
+                            isHome={props.isHome}
+                            type='btnPrimaryPurple'
+                            theme={styles}
+                            href={intl.formatMessage({ id: `${props.id}.link` })}
+                            isLink
+                            btnText={intl.formatMessage({ id: "button.verMas" })}
+                        />
+                    </RightBlock>
+                </ServiceLink>
+            </ServiceWrapper>
+            :
+            <ServiceWrapper isHome={props.isHome}>
+                <Waypoint onEnter={() => setRenderLottie(true)} />
                 <ImageContainerMobile>
-                    <ServiceImage 
+                    <ServiceImage
                         isHome={props.isHome}>
                         {renderLottie && <Lottie
-                            options = {props.animationOptions}
-                            width = "70%"
+                            options={props.animationOptions}
+                            width="70%"
                         />}
                     </ServiceImage>
                 </ImageContainerMobile>
-                <LeftBlock isHome={props.isHome}>
+                <LeftBlock>
                     <ImageContainer isHome={props.isHome}>
-                        <ServiceImage isHome={props.isHome}>
-                            <Lottie
-                                options = {props.animationOptions}
-                                width = "100%"
-                            />
+                        <Waypoint onEnter={() => setRenderLottie(true)} />
+                        <ServiceImage
+                            isHome={props.isHome}>
+                            {renderLottie && <Lottie
+                                options={props.animationOptions}
+                                width="70%"
+                            />}
                         </ServiceImage>
                     </ImageContainer>
                     <TagsContainer isHome={props.isHome}>
-                        <TagsTitle>{intl.formatMessage({id: "services.tagsTitle"})}</TagsTitle>
+                        <TagsTitle>{intl.formatMessage({ id: "services.tagsTitle" })}</TagsTitle>
                         <Tag
                             tagsType="services"
                             tags={service.tags}
-                            styles={props.styles} 
+                            styles={props.styles}
                         />
                     </TagsContainer>
                     <BtnMobile
-                        isHome={props.isHome}
                         type='btnPrimaryPurple'
                         theme={styles}
-                        //href={intl.formatMessage({id: `${props.id}.link`})}
-                        href='servicios'
+                        href={intl.formatMessage({ id: `${props.id}.link` })}
+                        btnText={intl.formatMessage({ id: "button.verMas" })}
+                        isHome={props.isHome}
                         isLink
-                        btnText={intl.formatMessage({id: "button.verMas"})}
                     />
                 </LeftBlock>
                 <RightBlock isHome={props.isHome}>
                     <TextContainer>
-                        <ServiceTitle isHome={props.isHome}>{intl.formatMessage({id:`${props.id}.service`})}</ServiceTitle>
-                        <ServiceDescription isHome={props.isHome}>{intl.formatMessage({id: `${props.id}.description`})}</ServiceDescription>
+                        <ServiceTitle isHome={props.isHome}>{intl.formatMessage({ id: `${props.id}.service` })}</ServiceTitle>
+                        <ServiceDescription isHome={props.isHome}>{intl.formatMessage({ id: `${props.id}.description` })}</ServiceDescription>
                     </TextContainer>
-                    <Btn
-                        isHome={props.isHome}
-                        type='btnPrimaryPurple'
+                    <Btn type='btnPrimaryPurple'
                         theme={styles}
-                        href={intl.formatMessage({id: `${props.id}.link`})}
+                        href={intl.formatMessage({ id: `${props.id}.link` })}
                         isLink
-                        btnText={intl.formatMessage({id: "button.verMas"})}
+                        btnText={intl.formatMessage({ id: "button.verMas" })}
+                        isHome={props.isHome}
                     />
                 </RightBlock>
-            </ServiceLink>
-        </ServiceWrapper>
-        :
-        <ServiceWrapper isHome={props.isHome}>
-            <Waypoint onEnter={()=>setRenderLottie(true)} />
-            <ImageContainerMobile>
-                    <ServiceImage 
-                        isHome={props.isHome}>
-                        {renderLottie && <Lottie
-                            options = {props.animationOptions}
-                            width = "70%"
-                        />}
-                    </ServiceImage>
-            </ImageContainerMobile>
-            <LeftBlock>
-                <ImageContainer isHome={props.isHome}>
-                    <ServiceImage isHome={props.isHome}>
-                        <Lottie
-                            options = {props.animationOptions}
-                            width = "100%"
-                        />
-                    </ServiceImage>
-                </ImageContainer>
-                <TagsContainer isHome={props.isHome}>
-                    <TagsTitle>{intl.formatMessage({id: "services.tagsTitle"})}</TagsTitle>
-                    <Tag
-                        tagsType="services"
-                        tags={service.tags}
-                        styles={props.styles} 
-                    />
-                </TagsContainer>
-                <BtnMobile
-                    type='btnPrimaryPurple'
-                    theme={styles}
-                    href={intl.formatMessage({id: `${props.id}.link`})}
-                    btnText={intl.formatMessage({id: "button.verMas"})}
-                    isHome={props.isHome}
-                    isLink
-                />
-            </LeftBlock>
-            <RightBlock isHome={props.isHome}>
-                <TextContainer>
-                    <ServiceTitle isHome={props.isHome}>{intl.formatMessage({id:`${props.id}.service`})}</ServiceTitle>
-                    <ServiceDescription isHome={props.isHome}>{intl.formatMessage({id: `${props.id}.description`})}</ServiceDescription>
-                </TextContainer>
-                <Btn type='btnPrimaryPurple' 
-                    theme={styles} 
-                    href={intl.formatMessage({id: `${props.id}.link`})}
-                    isLink
-                    btnText={intl.formatMessage({id: "button.verMas"})}
-                    isHome={props.isHome}
-                />
-            </RightBlock>
-        </ServiceWrapper>
+            </ServiceWrapper>
     )
 }
 

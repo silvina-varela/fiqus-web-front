@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components'
 import { useIntl, Link } from "gatsby-plugin-react-intl"
 import data from '../../content/content.json'
+import Waypoint from 'react-waypoint'
 import Lottie from 'react-lottie'
 import capacitacionAnimation from '../../images/animations/capacitacion.json'
 
 const styles = data.styles
-const FeaturedServiceImageconst = require('../../images/illustrations/capacitacion.svg')
 
 const FeaturedServiceContainer = styled.div`
     background: ${styles.colors.white};
@@ -268,10 +268,11 @@ const FeaturedServiceDescription = styled.p`
 `
 
 const FeaturedService = (props) => {
+    const [renderLottie, setRenderLottie] = useState(false)
     const intl = useIntl();
 
     const animationOptions= {
-        loop: true,
+        loop: false,
         autoplay: true,
         animationData: capacitacionAnimation,
         rendererSettings: {
