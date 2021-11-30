@@ -191,7 +191,7 @@ const Services = (props) => {
   
   const getAnimationOptions = (service) => {
     return {
-      loop: true,
+      loop: false,
       autoplay: true,
       animationData: getServiceAnimation(service),
       rendererSettings: {
@@ -217,7 +217,7 @@ const Services = (props) => {
                     isHome={props.isHome}
                     key = {service.id}
                     image = {service.image} 
-                    animationOptions = {getAnimationOptions(service.image) }
+                    animationOptions = {getAnimationOptions(service.image)}
                     id = {service.id}
                     service = {service}
                     styles = {styles}

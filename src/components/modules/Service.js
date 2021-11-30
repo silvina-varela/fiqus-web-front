@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components'
 import data from '../../content/content.json'
 import Tags from '../common/Tags'
 import Button from '../common/Button'
 import { useIntl, Link } from "gatsby-plugin-react-intl"
 import Lottie from 'react-lottie';
+import { Waypoint } from 'react-waypoint';
 
 const styles = data.styles
 
@@ -217,13 +218,14 @@ const Tag = styled(Tags)`
 `
 
 const ImageContainerMobile = styled.div`
-    max-width: 200px;
+    display: flex;
+    max-width:290px;
     margin: auto;
     order: 1;
     display: flex;
     margin-bottom: 0px;
     margin-top: 0;
-    max-width: unset!important;
+    //max-width: unset!important;
     @media (min-width: ${styles.breakpoints.m}px) {
         display: none;
         order: unset;
@@ -231,7 +233,6 @@ const ImageContainerMobile = styled.div`
         margin-right: auto;
         margin-bottom: auto;
         margin-top: 0;
-        max-width: 350px;
     }
 `
 const ServiceImage = styled.div`
@@ -239,9 +240,7 @@ const ServiceImage = styled.div`
     width: 100%;
     max-height: 170px;
     text-align: center;
-    div svg {
-        width: auto!important;
-    }
+
     @media (min-width: ${styles.breakpoints.m}px) {
         max-height: 300px;
         div svg {
@@ -324,6 +323,7 @@ const Btn = styled(Button)`
 `
 
 const Service = (props) => {
+    const [renderLottie, setRenderLottie] = useState(false)
     const service = props.service;
     const intl = useIntl();
     return (
@@ -340,13 +340,14 @@ const Service = (props) => {
                 */                
                 to='/servicios'
             >
+                <Waypoint onEnter={()=>setRenderLottie(true)} />
                 <ImageContainerMobile>
                     <ServiceImage 
                         isHome={props.isHome}>
-                        <Lottie
+                        {renderLottie && <Lottie
                             options = {props.animationOptions}
                             width = "70%"
-                        />
+                        />}
                     </ServiceImage>
                 </ImageContainerMobile>
                 <LeftBlock isHome={props.isHome}>
@@ -394,14 +395,15 @@ const Service = (props) => {
         </ServiceWrapper>
         :
         <ServiceWrapper isHome={props.isHome}>
+            <Waypoint onEnter={()=>setRenderLottie(true)} />
             <ImageContainerMobile>
-                <ServiceImage 
-                    isHome={props.isHome}>
-                        <Lottie
+                    <ServiceImage 
+                        isHome={props.isHome}>
+                        {renderLottie && <Lottie
                             options = {props.animationOptions}
-                            width = "100%"
-                        />    
-                </ServiceImage>
+                            width = "70%"
+                        />}
+                    </ServiceImage>
             </ImageContainerMobile>
             <LeftBlock>
                 <ImageContainer isHome={props.isHome}>
