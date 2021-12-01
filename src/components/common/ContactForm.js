@@ -244,27 +244,13 @@ const ContactForm = () => {
     const [mail, setMail] = useState("")
     const [message, setText] = useState("")
 
-    const onSubmit = async() => {
-        try {
-            setEmailSent(true);
-            await axios.post("http://localhost:4000/send_mail", {
-                name,
-                mail,
-                message
-            })
-            
-        } catch (error) {
-            setEmailSent(false)
-            console.log(error)
-        }
-    }
 
     return (
         <ContactMainContainer>
             <ContactWrapper>
                 <ContactHeading>{intl.formatMessage({id: 'contactForm.title'})}</ContactHeading>
                 <ContactFormBlock>
-                    <Form onSubmit={handleSubmit(onSubmit)}  >
+                    <Form action="https://app.99inbound.com/api/e/o4wc7abw" method="POST" target="_blank" >
                         <FormGroup>
                             <Label htmlFor="nameField">{intl.formatMessage({id: 'contactForm.nameField'})}* </Label>
                             <FieldContainer error={errors.nameField}>
@@ -310,7 +296,7 @@ const ContactForm = () => {
                             }                    </FormGroup>
                         <FormGroup>
 
-                            <BtnSubmit theme={styles} btnText={intl.formatMessage({id: 'button.send'})} onButtonClick={handleSubmit(onSubmit)}></BtnSubmit>
+                            <BtnSubmit theme={styles} btnText={intl.formatMessage({id: 'button.send'})} ></BtnSubmit>
                             {emailSent &&
                                 <FeedbackMessage><FeedbackMessageTitle>{intl.formatMessage({id: 'contactForm.messageSent'})}</FeedbackMessageTitle> {intl.formatMessage({id: 'contactForm.thankYou'})}</FeedbackMessage>
                             }

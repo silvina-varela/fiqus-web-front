@@ -25,7 +25,7 @@ const PageContainer = styled.section `
     }
 `
 const PageWrapper = (props) => {
-    const [isHome, setIsHome] = useState(true);
+    const [isHome, setIsHome] = useState(false);
 
     useEffect(() => {
         const homePaths = ['/', '/en', '/en/', '/es', '/es/']

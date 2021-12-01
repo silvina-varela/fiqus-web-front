@@ -1,9 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {styles} from '../../content/content.json'
 import styled from 'styled-components'
 
+import {Waypoint} from 'react-waypoint'
+import Lottie from 'react-lottie'
+
+import cultureAnimation from '../../images/animations/cultura.json'
+import labsAnimation from '../../images/animations/labs.json'
+
 const iluLabs = require('../../images/illustrations/labs.svg');
 const iluCultura = require('../../images/illustrations/cultura.svg');
+
+
 
 
 const setSharedStyles = (type) => {
@@ -162,6 +170,30 @@ const SectionHeaderImgMobile = styled.img`
 `
 
 const SectionHeader = (props) => {
+    const [renderLottie, setRenderLottie] = useState(false)
+
+    const getSectionAnimation = (section) => {
+        switch (section) {
+          case "labs":
+            return labsAnimation
+            break
+          case "cultura":
+            return cultureAnimation
+            break
+        }
+      } 
+    
+    const getAnimationOptions = (section) => {
+      return {
+        loop: false,
+        autoplay: true,
+        animationData: getSectionAnimation(section),
+        rendererSettings: {
+          preserveAspectRatio: "xMidYMid slice"
+        }
+      }
+    }
+  
     const getHeadStyles = (type) =>{
         switch (type) {
             case "cultura" : 
@@ -197,7 +229,11 @@ const SectionHeader = (props) => {
                     <SectionHeaderDescription type={getHeadStyles(props.section)}> {props.description} </SectionHeaderDescription>
                 </InfoContainer>
                 <ImageContainer section={props.section}>
-                    <SectionHeaderImg section={props.section} src={getHeadStyles(props.section).image.default}></SectionHeaderImg>
+                    <Waypoint onEnter={()=>setRenderLottie(true)}/>
+                    { renderLottie && <Lottie
+                        options = {getAnimationOptions(props.section)}
+                        width = "100%"/> 
+                    }
                 </ImageContainer>
             </HeaderWrapper>
         </HeaderContainer>

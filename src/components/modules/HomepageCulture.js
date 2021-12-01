@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {styles} from '../../content/content.json'
 import styled from 'styled-components'
 import { useIntl } from "gatsby-plugin-react-intl"
 import Lottie from 'react-lottie'
+import {Waypoint} from 'react-waypoint'
 import cultureAnimation from '../../images/animations/cultura.json'
 
 import Button from '../../components/common/Button'
@@ -124,6 +125,7 @@ const Btn = styled(Button)`
 `
 
 const HomepageCulture = (props) => {
+    const [renderLottie, setRenderLottie] = useState(false)
     const intl = useIntl();
 
     const animationOptions= {
@@ -145,10 +147,11 @@ const HomepageCulture = (props) => {
             <HomepageCultureWrapper>
                 <ImageContainer>
                     <HomepageCultureImg>
-                    <Lottie
+                        <Waypoint onEnter={()=>setRenderLottie(true)}/>
+                        { renderLottie && <Lottie
                             options = {animationOptions}
-                            width = "100%"
-                        />
+                            width = "100%"/> 
+                        }
                     </HomepageCultureImg>
                 </ImageContainer>
                 <InfoContainer>

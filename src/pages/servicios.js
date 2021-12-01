@@ -9,7 +9,6 @@ import Service from '../components/modules/Service'
 
 import datosAnimation from '../images/animations/datos.json'
 import blockchainAnimation from '../images/animations/blockchain.json'
-import capacitacionAnimation from '../images/animations/capacitacion.json'
 import fullstackAnimation from '../images/animations/fullstack.json'
 import iaAnimation from '../images/animations/inteligenciaArtificial.json'
 import acAnimation   from '../images/animations/altaConcurrencia.json'
@@ -88,7 +87,6 @@ const ServicesWrapper = styled.div`
             `
         }
     }}
-    }
 `
 const ServicesHomeTitle = styled.h2`
   flex-basis: 100%;
@@ -193,7 +191,7 @@ const Services = (props) => {
   
   const getAnimationOptions = (service) => {
     return {
-      loop: true,
+      loop: false,
       autoplay: true,
       animationData: getServiceAnimation(service),
       rendererSettings: {
@@ -219,7 +217,7 @@ const Services = (props) => {
                     isHome={props.isHome}
                     key = {service.id}
                     image = {service.image} 
-                    animationOptions = {getAnimationOptions(service.image) }
+                    animationOptions = {getAnimationOptions(service.image)}
                     id = {service.id}
                     service = {service}
                     styles = {styles}
