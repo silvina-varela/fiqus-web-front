@@ -8,7 +8,7 @@ import Services from "./servicios"
 
 const Index = (props) => {
   const intl = useIntl();
-  const [ishomepage, setIshomepage] = useState("true");
+  const [ishomepage, setIshomepage] = useState("false");
 
   useEffect(() => {
       const homePaths = ['/', '/en', '/en/', '/es', '/es/']

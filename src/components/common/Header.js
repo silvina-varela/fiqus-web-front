@@ -13,7 +13,7 @@ const iconTogglerClose = require('../../images/icon_toggler_close.svg')
 const NavWrapper = styled.nav`
     width: 100%;
     position: fixed;
-    background-color: ${props => props.ishomepage ? styles.colors.white : styles.colors.purplePrimary};
+    background-color: ${props => props.ishomepage === "true" ? styles.colors.white : styles.colors.purplePrimary};
     display: flex;
     padding: 8px 20px;
     justify-content: space-between;
@@ -41,7 +41,7 @@ const Logo = styled.img`
     }
 `
 const LangSelector = styled.nav`
-    border: 2px solid ${props => props.ishomepage ? styles.colors.purplePrimary : styles.colors.white};
+    border: 2px solid ${props => props.ishomepage === "true" ? styles.colors.purplePrimary : styles.colors.white};
     margin-right: auto;
     margin-left: 10px;
     padding: 7px 10px;
@@ -73,23 +73,7 @@ const Lang = styled(Link)`
     padding: 5px 6px;
     display: block;
 `
-const LangContent = styled.abbr`
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 1em;
-    font-weight:${styles.fontWeight.bold};
-    color: ${props => {
-        if ((props.ishomepage && !props.isSelected) || (!props.ishomepage && props.isSelected) || props.isSelected) {
-            return styles.colors.purplePrimary
-        } else {
-            if ((!props.ishomepage && !props.isSelected)) {
-                return styles.colors.white
-            } else {
-                return styles.colors.purplePrimary
-            }
-        }
-    }}
-    `
+
 const NavToggler = styled.button`
     width: 32px;
     height: 30px;
@@ -151,7 +135,7 @@ const MainNav = styled.nav`
     @media (min-width: ${styles.breakpoints.xl}px) {
         margin: 0;
         ul li a {
-        color: ${props => props.ishomepage ? styles.colors.darkMainBg : styles.colors.white};
+        color: ${props => props.ishomepage === "true"? styles.colors.darkMainBg : styles.colors.white};
         }
     }
 `
@@ -192,6 +176,25 @@ const NavLink = styled(Link)`
     }
 `
 
+const LangContent = styled.abbr`
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight:${styles.fontWeight.bold};
+    color: ${props => {
+        if ((props.ishomepage && !props.isSelected) || (!props.ishomepage && props.isSelected) || props.isSelected) {
+            return styles.colors.purplePrimary
+        } else {
+            if ((!props.ishomepage && !props.isSelected)) {
+                return styles.colors.white
+            } else {
+                return styles.colors.purplePrimary
+            }
+        }
+    }
+    };
+    `
+
 const Header = (props) => {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const [activeLink, setActiveLink] = useState('/');
@@ -219,13 +222,13 @@ const Header = (props) => {
 
     return (
         <NavWrapper ishomepage={props.ishomepage}>
-            {
-                props.ishomepage ? 
-                <Logo src={darkLogo.default} alt={intl.formatMessage({id: "header.logoAlt"})} />
-                : <LinkLogo to="/">
+            <LinkLogo to="/">
+                {
+                    props.ishomepage === "true"? 
+                    <Logo src={darkLogo.default} alt={intl.formatMessage({id: "header.logoAlt"})} /> : 
                     <Logo src={lightLogo.default} alt={intl.formatMessage({id: "header.logoAlt"})} />
-                  </LinkLogo>
-            }
+                }
+            </LinkLogo>
             <LangSelector ishomepage={props.ishomepage}>
                 <IntlContextConsumer>
                 {({ languages, language: currentLocale }) =>
@@ -250,7 +253,7 @@ const Header = (props) => {
             </LangSelector>
             <NavToggler onClick={() => {setIsNavOpen(true)}}>
                 {
-                    props.ishomepage ? 
+                    props.ishomepage === "true" ? 
                     <NavTogglerIcon src={lightIconToggler.default} alt={intl.formatMessage({id: "header.iconTogglerAlt" })} />
                     : <NavTogglerIcon src={darkIconToggler.default} alt={intl.formatMessage({id: "header.iconTogglerAlt" })} />
                 }
