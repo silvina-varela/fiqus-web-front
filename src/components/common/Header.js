@@ -182,10 +182,10 @@ const LangContent = styled.abbr`
     font-size: 1em;
     font-weight:${styles.fontWeight.bold};
     color: ${props => {
-        if ((props.ishomepage && !props.isSelected) || (!props.ishomepage && props.isSelected) || props.isSelected) {
+        if ((props.ishomepage === "true" && !props.isSelected) || (props.ishomepage === "false" && props.isSelected) || props.isSelected) {
             return styles.colors.purplePrimary
         } else {
-            if ((!props.ishomepage && !props.isSelected)) {
+            if ((props.ishomepage === "false" && !props.isSelected)) {
                 return styles.colors.white
             } else {
                 return styles.colors.purplePrimary
