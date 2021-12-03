@@ -368,7 +368,7 @@ const Service = (props) => {
                                 styles={props.styles}
                             />
                         </TagsContainer>
-                        <BtnMobile
+{/*                         <BtnMobile
                             isHome={props.isHome}
                             type='btnPrimaryPurple'
                             theme={styles}
@@ -376,21 +376,21 @@ const Service = (props) => {
                             href='servicios'
                             isLink
                             btnText={intl.formatMessage({ id: "button.verMas" })}
-                        />
+                        /> */}
                     </LeftBlock>
                     <RightBlock isHome={props.isHome}>
                         <TextContainer>
                             <ServiceTitle isHome={props.isHome}>{intl.formatMessage({ id: `${props.id}.service` })}</ServiceTitle>
                             <ServiceDescription isHome={props.isHome}>{intl.formatMessage({ id: `${props.id}.description` })}</ServiceDescription>
                         </TextContainer>
-                        <Btn
+{/*                         <Btn
                             isHome={props.isHome}
                             type='btnPrimaryPurple'
                             theme={styles}
                             href={intl.formatMessage({ id: `${props.id}.link` })}
                             isLink
                             btnText={intl.formatMessage({ id: "button.verMas" })}
-                        />
+                        /> */}
                     </RightBlock>
                 </ServiceLink>
             </ServiceWrapper>
