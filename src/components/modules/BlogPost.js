@@ -172,7 +172,7 @@ const BlogPost = (props) => {
             </HeaderImageContainer>
             <BreadcrumbContainer>
                 <BreadcrumbWrapper> 
-                    <Breadcrumb>Blog > Artículo</Breadcrumb>
+                    <Breadcrumb>Blog {'>'} Artículo</Breadcrumb>
                 </BreadcrumbWrapper>
             </BreadcrumbContainer>
             <PostMainWrapper>
