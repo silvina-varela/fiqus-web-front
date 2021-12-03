@@ -8,19 +8,19 @@ import Services from "./servicios"
 
 const Index = (props) => {
   const intl = useIntl();
-  const [isHome, setIsHome] = useState(true);
+  const [ishomepage, setIshomepage] = useState("true");
 
   useEffect(() => {
       const homePaths = ['/', '/en', '/en/', '/es', '/es/']
 
-      setIsHome(homePaths.includes(props.location.pathname));
+      setIshomepage(homePaths.includes(props.location.pathname).toString());
           
   }, [props.location])
 
   return (
     <Fragment>
         <HomepageHeader/>
-        <Services isHome={isHome} />
+        <Services ishomepage={ishomepage} />
         <HomepageCulture />
         <HomepageLabs/>
     </Fragment>

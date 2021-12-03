@@ -13,7 +13,7 @@ const iconTogglerClose = require('../../images/icon_toggler_close.svg')
 const NavWrapper = styled.nav`
     width: 100%;
     position: fixed;
-    background-color: ${props => props.isHome ? styles.colors.white : styles.colors.purplePrimary};
+    background-color: ${props => props.ishomepage ? styles.colors.white : styles.colors.purplePrimary};
     display: flex;
     padding: 8px 20px;
     justify-content: space-between;
@@ -41,7 +41,7 @@ const Logo = styled.img`
     }
 `
 const LangSelector = styled.nav`
-    border: 2px solid ${props => props.isHome ? styles.colors.purplePrimary : styles.colors.white};
+    border: 2px solid ${props => props.ishomepage ? styles.colors.purplePrimary : styles.colors.white};
     margin-right: auto;
     margin-left: 10px;
     padding: 7px 10px;
@@ -79,10 +79,10 @@ const LangContent = styled.abbr`
     font-size: 1em;
     font-weight:${styles.fontWeight.bold};
     color: ${props => {
-        if ((props.isHome && !props.isSelected) || (!props.isHome && props.isSelected) || props.isSelected) {
+        if ((props.ishomepage && !props.isSelected) || (!props.ishomepage && props.isSelected) || props.isSelected) {
             return styles.colors.purplePrimary
         } else {
-            if ((!props.isHome && !props.isSelected)) {
+            if ((!props.ishomepage && !props.isSelected)) {
                 return styles.colors.white
             } else {
                 return styles.colors.purplePrimary
@@ -151,7 +151,7 @@ const MainNav = styled.nav`
     @media (min-width: ${styles.breakpoints.xl}px) {
         margin: 0;
         ul li a {
-        color: ${props => props.isHome ? styles.colors.darkMainBg : styles.colors.white};
+        color: ${props => props.ishomepage ? styles.colors.darkMainBg : styles.colors.white};
         }
     }
 `
@@ -218,15 +218,15 @@ const Header = (props) => {
     }, [props.location])
 
     return (
-        <NavWrapper isHome={props.isHome}>
+        <NavWrapper ishomepage={props.ishomepage}>
             {
-                props.isHome ? 
+                props.ishomepage ? 
                 <Logo src={darkLogo.default} alt={intl.formatMessage({id: "header.logoAlt"})} />
                 : <LinkLogo to="/">
                     <Logo src={lightLogo.default} alt={intl.formatMessage({id: "header.logoAlt"})} />
                   </LinkLogo>
             }
-            <LangSelector isHome={props.isHome}>
+            <LangSelector ishomepage={props.ishomepage}>
                 <IntlContextConsumer>
                 {({ languages, language: currentLocale }) =>
                     languages.map(language => (
@@ -237,7 +237,7 @@ const Header = (props) => {
                             <Lang href="#">
                                 <LangContent 
                                     isSelected={currentLocale === language} 
-                                    isHome={props.isHome} 
+                                    ishomepage={props.ishomepage} 
                                     lang={language} 
                                     title={languageNames[language]}>
                                     {language}
@@ -250,7 +250,7 @@ const Header = (props) => {
             </LangSelector>
             <NavToggler onClick={() => {setIsNavOpen(true)}}>
                 {
-                    props.isHome ? 
+                    props.ishomepage ? 
                     <NavTogglerIcon src={lightIconToggler.default} alt={intl.formatMessage({id: "header.iconTogglerAlt" })} />
                     : <NavTogglerIcon src={darkIconToggler.default} alt={intl.formatMessage({id: "header.iconTogglerAlt" })} />
                 }
@@ -259,7 +259,7 @@ const Header = (props) => {
                 <NavTogglerClose onClick={() => {setIsNavOpen(false)}}>
                     <NavTogglerCloseIcon src={iconTogglerClose.default} alt={intl.formatMessage({id: "header.iconTogglerCloseAlt"})} />
                 </NavTogglerClose>
-                <MainNav isHome={props.isHome}>
+                <MainNav ishomepage={props.ishomepage}>
                     <NavLinks>
                         {
                             props.menuLinks && props.menuLinks.map((menuLink)=> {

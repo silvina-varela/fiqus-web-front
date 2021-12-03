@@ -16,7 +16,7 @@ import acAnimation   from '../images/animations/altaConcurrencia.json'
 const MainWrapper = styled.div`
   padding-bottom: 187px;
   ${props => {
-    if (props.isHome) {
+    if (props.ishomepage) {
         return `
         padding-bottom: 0;
         `
@@ -25,7 +25,7 @@ const MainWrapper = styled.div`
   @media (min-width: ${styles.breakpoints.m}px) {
     padding-bottom: 243px;
     ${props => {
-      if (props.isHome) {
+      if (props.ishomepage) {
           return `
           padding-bottom: 0;
           `
@@ -37,7 +37,7 @@ const ServicesContainer = styled.div`
   background-color: ${styles.colors.purpleLight};
   padding: 40px 20px 200px 20px;
   ${props => {
-    if (props.isHome) {
+    if (props.ishomepage) {
         return `
         padding-bottom: 177px;
         text-align: center;
@@ -47,7 +47,7 @@ const ServicesContainer = styled.div`
   @media (min-width: ${styles.breakpoints.m}px) {
     padding-bottom: 155px;
     ${props => {
-      if (props.isHome) {
+      if (props.ishomepage) {
           return `
           padding-top: 60px;
           padding-bottom: 220px;
@@ -68,7 +68,7 @@ const ServicesWrapper = styled.div`
     justify-content: space-between;
     margin: auto;
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
             display: inline-flex;
             max-width: unset;
@@ -96,7 +96,7 @@ const ServicesHomeTitle = styled.h2`
   margin: 0 auto 25px auto;
   text-align: center;
   ${props => {
-      if (props.isHome) {
+      if (props.ishomepage) {
           return ` 
           margin-bottom: 14px;
           `
@@ -108,7 +108,7 @@ const ServicesHomeTitle = styled.h2`
     line-height: 62px;
     margin-bottom: 40px;
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
             text-align: center!important;
             font-size: 3.33em;    
@@ -132,7 +132,7 @@ const ServicesTitle = styled.h1`
     line-height: 62px;
     margin-bottom: 40px;
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
             text-align: center!important;
             `
@@ -144,7 +144,7 @@ const Btn = styled(Button)`
     //display: none;
     width: max-content;
     ${props => {
-      if (props.isHome) {
+      if (props.ishomepage) {
           return `
           display: flex;
           margin: 0 auto;
@@ -157,7 +157,7 @@ const Btn = styled(Button)`
     @media (min-width: ${styles.breakpoints.m}px) {
       //display: none;
       ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return `
             display: flex;
             margin: 0 auto 15px auto;
@@ -202,19 +202,19 @@ const Services = (props) => {
 
     const intl = useIntl();
     return (
-      <MainWrapper isHome={props.isHome}>
-        <ServicesContainer isHome={props.isHome}>
-          <ServicesWrapper isHome={props.isHome}>
+      <MainWrapper ishomepage={props.ishomepage}>
+        <ServicesContainer ishomepage={props.ishomepage}>
+          <ServicesWrapper ishomepage={props.ishomepage}>
             {
-                props.isHome ? 
-                <ServicesHomeTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesHomeTitle>
-                : <ServicesTitle isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
+                props.ishomepage ? 
+                <ServicesHomeTitle ishomepage={props.ishomepage}>{intl.formatMessage({id: "services.title"})}</ServicesHomeTitle>
+                : <ServicesTitle ishomepage={props.ishomepage}>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
             }
             <Fragment>
               {services.services.map( (service) =>{
                 return(
                   <Service 
-                    isHome={props.isHome}
+                    ishomepage={props.ishomepage}
                     key = {service.id}
                     image = {service.image} 
                     animationOptions = {getAnimationOptions(service.image)}
@@ -227,15 +227,15 @@ const Services = (props) => {
               })}
             </Fragment>
             {
-                props.isHome ? 
-                <FeaturedService isHome={props.isHome}>{intl.formatMessage({id: "services.title"})}</FeaturedService>
+                props.ishomepage ? 
+                <FeaturedService ishomepage={props.ishomepage}>{intl.formatMessage({id: "services.title"})}</FeaturedService>
                 : ""
             }
           </ServicesWrapper>
           {
-            props.isHome && 
+            props.ishomepage && 
                 <Btn
-                  isHome={props.isHome}
+                  ishomepage={props.ishomepage}
                   type='btnPrimaryOrange'
                   theme={styles}
                   btnText={intl.formatMessage({id: "services.btnText"})}
@@ -245,7 +245,7 @@ const Services = (props) => {
           }
         </ServicesContainer>
         {
-          props.isHome ? 
+          props.ishomepage ? 
           ""
           : <FeaturedService /> 
         }

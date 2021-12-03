@@ -19,7 +19,7 @@ const FeaturedServiceContainer = styled.div`
     }
     
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
             flex-basis: 100%;
             max-width: 320px;
@@ -89,7 +89,7 @@ const FeaturedServiceWrapper = styled.div`
         box-shadow: none;
     }
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
             position: static;
             max-width: 320px;
@@ -128,7 +128,7 @@ const ImageContainer = styled.div`
         box-shadow: 12px 12px 0px ${styles.colors.purplePrimary};
     }
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
             @media (min-width: ${styles.breakpoints.m}px) {
                 position: static;
@@ -154,7 +154,7 @@ const FeaturedServiceImage = styled.div`
         margin: 0 auto;
     }
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
             max-height: 120px;
             max-width: 100%;
@@ -197,7 +197,7 @@ const InfoContainer = styled.div`
         right: 0;
     }
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
             @media (min-width: ${styles.breakpoints.m}px) {
                 position: static;
@@ -227,7 +227,7 @@ const FeaturedServiceTitle = styled.h3`
         text-align: left;
     }
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
             color: ${styles.colors.purplePrimary};
             margin-bottom: 0;
@@ -254,7 +254,7 @@ const FeaturedServiceDescription = styled.p`
         line-height: 1.44em;
     }
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
             display: none;
             margin-left: 0!important;
@@ -281,17 +281,17 @@ const FeaturedService = (props) => {
     }
 
     return (
-        props.isHome ? 
-        <FeaturedServiceContainer isHome={props.isHome}> 
-            <FeaturedServiceWrapper isHome={props.isHome}> 
+        props.ishomepage ? 
+        <FeaturedServiceContainer ishomepage={props.ishomepage}> 
+            <FeaturedServiceWrapper ishomepage={props.ishomepage}> 
                 <FeaturedServiceLink
-                    isHome={props.isHome}
+                    ishomepage={props.ishomepage}
                     to='/servicios'
                 >
-                    <ImageContainer isHome={props.isHome}>
+                    <ImageContainer ishomepage={props.ishomepage}>
                         <FeaturedServiceImage
                             alt={intl.formatMessage({id: "service_subsection.featuredServiceImageAlt"})}
-                            isHome={props.isHome}
+                            ishomepage={props.ishomepage}
                         >
                             <Lottie
                                 options = {animationOptions}
@@ -299,29 +299,29 @@ const FeaturedService = (props) => {
                             />
                         </FeaturedServiceImage>
                     </ImageContainer>
-                    <InfoContainer isHome={props.isHome}>
-                            <FeaturedServiceTitle isHome={props.isHome}>{intl.formatMessage({id: "service_subsection.title"})}</FeaturedServiceTitle>
-                            <FeaturedServiceDescription isHome={props.isHome}>{intl.formatMessage({id: "service_subsection.description"})}</FeaturedServiceDescription>
+                    <InfoContainer ishomepage={props.ishomepage}>
+                            <FeaturedServiceTitle ishomepage={props.ishomepage}>{intl.formatMessage({id: "service_subsection.title"})}</FeaturedServiceTitle>
+                            <FeaturedServiceDescription ishomepage={props.ishomepage}>{intl.formatMessage({id: "service_subsection.description"})}</FeaturedServiceDescription>
                     </InfoContainer>
                 </FeaturedServiceLink>
             </FeaturedServiceWrapper>
         </FeaturedServiceContainer>
         :
-        <FeaturedServiceContainer isHome={props.isHome}> 
-            <FeaturedServiceWrapper isHome={props.isHome}> 
-                <ImageContainer isHome={props.isHome}>
+        <FeaturedServiceContainer ishomepage={props.ishomepage}> 
+            <FeaturedServiceWrapper ishomepage={props.ishomepage}> 
+                <ImageContainer ishomepage={props.ishomepage}>
                     <FeaturedServiceImage
                         alt={intl.formatMessage({id: "service_subsection.featuredServiceImageAlt"})}
-                        isHome={props.isHome}>
+                        ishomepage={props.ishomepage}>
                         <Lottie
                             options = {animationOptions}
                             width = "100%"
                         />
                     </FeaturedServiceImage>
                 </ImageContainer>
-                <InfoContainer isHome={props.isHome}>
-                        <FeaturedServiceTitle isHome={props.isHome}>{intl.formatMessage({id: "service_subsection.title"})}</FeaturedServiceTitle>
-                        <FeaturedServiceDescription isHome={props.isHome}>{intl.formatMessage({id: "service_subsection.description"})}</FeaturedServiceDescription>
+                <InfoContainer ishomepage={props.ishomepage}>
+                        <FeaturedServiceTitle ishomepage={props.ishomepage}>{intl.formatMessage({id: "service_subsection.title"})}</FeaturedServiceTitle>
+                        <FeaturedServiceDescription ishomepage={props.ishomepage}>{intl.formatMessage({id: "service_subsection.description"})}</FeaturedServiceDescription>
                 </InfoContainer>
             </FeaturedServiceWrapper>
         </FeaturedServiceContainer>

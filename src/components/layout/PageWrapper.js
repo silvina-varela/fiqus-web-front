@@ -25,12 +25,13 @@ const PageContainer = styled.section `
     }
 `
 const PageWrapper = (props) => {
-    const [isHome, setIsHome] = useState(false);
+    const [ishomepage, setIshomepage] = useState("false");
 
     useEffect(() => {
         const homePaths = ['/', '/en', '/en/', '/es', '/es/']
 
-        setIsHome(homePaths.includes(props.location.pathname));
+        setIshomepage(homePaths.includes(props.location.pathname).toString());
+
             
     }, [props.location])
 
@@ -53,8 +54,8 @@ const PageWrapper = (props) => {
         render = { data => (
             <Wrapper>
                 <Seo></Seo>
-                <Header menuLinks = {data.site.siteMetadata.menuLinks} isHome={isHome} location={props.location}></Header>
-                <PageContainer isHome={isHome}>{props.children}</PageContainer>
+                <Header menuLinks = {data.site.siteMetadata.menuLinks} ishomepage={ishomepage} location={props.location}></Header>
+                <PageContainer ishomepage={ishomepage}>{props.children}</PageContainer>
                 <Footer></Footer>
             </Wrapper>
         )}>

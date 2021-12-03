@@ -25,7 +25,7 @@ const ServiceWrapper = styled.div`
     &:last-of-type {
         margin-bottom: 61px;
         ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
                 margin-bottom: 30px;
                 `
@@ -42,7 +42,7 @@ const ServiceWrapper = styled.div`
     }
     
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return `
             display: flex!important;   
             flex-direction: column!important;
@@ -91,7 +91,7 @@ const LeftBlock = styled.div`
         margin-right: 3px;
     }
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return `       
             margin-right: 0px!important;
             `
@@ -108,7 +108,7 @@ const RightBlock = styled.div`
         margin-left: 40px;
     }
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
             margin-left: 0!important;
             `
@@ -130,7 +130,7 @@ const ServiceTitle = styled.h3`
         margin-top: 0;
     }
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
             margin-bottom: 0;
             padding-top: 0!important;
@@ -157,7 +157,7 @@ const ServiceDescription = styled.p`
         padding-bottom: 35px;
     }
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
             display: none;
             `
@@ -172,7 +172,7 @@ const TagsContainer = styled.div`
     margin-bottom: 15px;
     margin-bottom: 0;
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
             display: none!important;
             `
@@ -207,7 +207,7 @@ const ImageContainer = styled.div`
         display: flex;
     }
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
             margin-left: auto!important;
             `
@@ -250,7 +250,7 @@ const ServiceImage = styled.div`
         }
     }
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return `
             max-height: 160px;
             div {
@@ -285,7 +285,7 @@ const BtnMobile = styled(Button)`
         display: none;
     }
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
             display: none;
             `
@@ -306,7 +306,7 @@ const Btn = styled(Button)`
         */
         display: none;
         ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
                 display: none;
                 `
@@ -314,7 +314,7 @@ const Btn = styled(Button)`
     }}
     }
     ${props => {
-        if (props.isHome) {
+        if (props.ishomepage) {
             return ` 
             display: none;
             `
@@ -327,10 +327,10 @@ const Service = (props) => {
     const service = props.service;
     const intl = useIntl();
     return (
-        props.isHome ?
-            <ServiceWrapper isHome={props.isHome}>
+        props.ishomepage ?
+            <ServiceWrapper ishomepage={props.ishomepage}>
                 <ServiceLink
-                    isHome={props.isHome}
+                    ishomepage={props.ishomepage}
                     theme={styles}
                     /*
                     Cuando estén listas las landings individuales de cada servicio hay que descomentar este atributo, comentar el que está debajo (to='servicios') y
@@ -343,24 +343,24 @@ const Service = (props) => {
                     <ImageContainerMobile>
                         <Waypoint onEnter={() => setRenderLottie(true)} />
                         <ServiceImage
-                            isHome={props.isHome}>
+                            ishomepage={props.ishomepage}>
                             {renderLottie && <Lottie
                                 options={props.animationOptions}
                                 width="70%"
                             />}
                         </ServiceImage>
                     </ImageContainerMobile>
-                    <LeftBlock isHome={props.isHome}>
-                        <ImageContainer isHome={props.isHome}>
+                    <LeftBlock ishomepage={props.ishomepage}>
+                        <ImageContainer ishomepage={props.ishomepage}>
                             <Waypoint onEnter={() => setRenderLottie(true)} />
-                            <ServiceImage isHome={props.isHome}>
+                            <ServiceImage ishomepage={props.ishomepage}>
                                 {renderLottie && <Lottie
                                     options={props.animationOptions}
                                     width="100%"
                                 />}
                             </ServiceImage>
                         </ImageContainer>
-                        <TagsContainer isHome={props.isHome}>
+                        <TagsContainer ishomepage={props.ishomepage}>
                             <TagsTitle>{intl.formatMessage({ id: "services.tagsTitle" })}</TagsTitle>
                             <Tag
                                 tagsType="services"
@@ -369,7 +369,7 @@ const Service = (props) => {
                             />
                         </TagsContainer>
 {/*                         <BtnMobile
-                            isHome={props.isHome}
+                            ishomepage={props.ishomepage}
                             type='btnPrimaryPurple'
                             theme={styles}
                             //href={intl.formatMessage({id: `${props.id}.link`})}
@@ -378,13 +378,13 @@ const Service = (props) => {
                             btnText={intl.formatMessage({ id: "button.verMas" })}
                         /> */}
                     </LeftBlock>
-                    <RightBlock isHome={props.isHome}>
+                    <RightBlock ishomepage={props.ishomepage}>
                         <TextContainer>
-                            <ServiceTitle isHome={props.isHome}>{intl.formatMessage({ id: `${props.id}.service` })}</ServiceTitle>
-                            <ServiceDescription isHome={props.isHome}>{intl.formatMessage({ id: `${props.id}.description` })}</ServiceDescription>
+                            <ServiceTitle ishomepage={props.ishomepage}>{intl.formatMessage({ id: `${props.id}.service` })}</ServiceTitle>
+                            <ServiceDescription ishomepage={props.ishomepage}>{intl.formatMessage({ id: `${props.id}.description` })}</ServiceDescription>
                         </TextContainer>
 {/*                         <Btn
-                            isHome={props.isHome}
+                            ishomepage={props.ishomepage}
                             type='btnPrimaryPurple'
                             theme={styles}
                             href={intl.formatMessage({ id: `${props.id}.link` })}
@@ -395,11 +395,11 @@ const Service = (props) => {
                 </ServiceLink>
             </ServiceWrapper>
             :
-            <ServiceWrapper isHome={props.isHome}>
+            <ServiceWrapper ishomepage={props.ishomepage}>
                 <Waypoint onEnter={() => setRenderLottie(true)} />
                 <ImageContainerMobile>
                     <ServiceImage
-                        isHome={props.isHome}>
+                        ishomepage={props.ishomepage}>
                         {renderLottie && <Lottie
                             options={props.animationOptions}
                             width="70%"
@@ -407,17 +407,17 @@ const Service = (props) => {
                     </ServiceImage>
                 </ImageContainerMobile>
                 <LeftBlock>
-                    <ImageContainer isHome={props.isHome}>
+                    <ImageContainer ishomepage={props.ishomepage}>
                         <Waypoint onEnter={() => setRenderLottie(true)} />
                         <ServiceImage
-                            isHome={props.isHome}>
+                            ishomepage={props.ishomepage}>
                             {renderLottie && <Lottie
                                 options={props.animationOptions}
                                 width="70%"
                             />}
                         </ServiceImage>
                     </ImageContainer>
-                    <TagsContainer isHome={props.isHome}>
+                    <TagsContainer ishomepage={props.ishomepage}>
                         <TagsTitle>{intl.formatMessage({ id: "services.tagsTitle" })}</TagsTitle>
                         <Tag
                             tagsType="services"
@@ -430,21 +430,21 @@ const Service = (props) => {
                         theme={styles}
                         href={intl.formatMessage({ id: `${props.id}.link` })}
                         btnText={intl.formatMessage({ id: "button.verMas" })}
-                        isHome={props.isHome}
+                        ishomepage={props.ishomepage}
                         isLink
                     />
                 </LeftBlock>
-                <RightBlock isHome={props.isHome}>
+                <RightBlock ishomepage={props.ishomepage}>
                     <TextContainer>
-                        <ServiceTitle isHome={props.isHome}>{intl.formatMessage({ id: `${props.id}.service` })}</ServiceTitle>
-                        <ServiceDescription isHome={props.isHome}>{intl.formatMessage({ id: `${props.id}.description` })}</ServiceDescription>
+                        <ServiceTitle ishomepage={props.ishomepage}>{intl.formatMessage({ id: `${props.id}.service` })}</ServiceTitle>
+                        <ServiceDescription ishomepage={props.ishomepage}>{intl.formatMessage({ id: `${props.id}.description` })}</ServiceDescription>
                     </TextContainer>
                     <Btn type='btnPrimaryPurple'
                         theme={styles}
                         href={intl.formatMessage({ id: `${props.id}.link` })}
                         isLink
                         btnText={intl.formatMessage({ id: "button.verMas" })}
-                        isHome={props.isHome}
+                        ishomepage={props.ishomepage}
                     />
                 </RightBlock>
             </ServiceWrapper>

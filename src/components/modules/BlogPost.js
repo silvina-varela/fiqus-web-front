@@ -206,8 +206,7 @@ const BlogPost = (props) => {
                 <Btn type='btnPrimaryPurple' 
                     theme={styles} 
                     to={props.href} 
-                    btnText={intl.formatMessage({id: 'verMasArticulos'})}
-                    isHome={props.isHome}>    
+                    btnText={intl.formatMessage({id: 'verMasArticulos'})}>    
                 </Btn>
             </PostMainWrapper>
         </PostContainer>
