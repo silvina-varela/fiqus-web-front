@@ -5,6 +5,8 @@ import Header from '../common/Header'
 import Footer from '../common/Footer'
 import { styles } from '../../content/content.json'
 import Seo from '../common/Seo'
+
+
 require('../../styles/styles.css')
 
 const Wrapper = styled.div`
@@ -17,7 +19,6 @@ const Wrapper = styled.div`
 `
 const PageContainer = styled.section `
     width:100%;
-    //min-height:100vh;
     margin: 0 auto;
     padding-top: 62px;
     @media (min-width: ${styles.breakpoints.xl}px) {
@@ -25,16 +26,22 @@ const PageContainer = styled.section `
     }
 `
 const PageWrapper = (props) => {
-    const [ishomepage, setIshomepage] = useState("false");
+    const [ishomepage, setIsHomepage] = useState("true")
 
-    useEffect(() => {
-        const homePaths = ['/', '/en', '/en/', '/es', '/es/']
+    // hay que cambiar los homepaths cuando se deploye al server final
+    const homePathsGHpages = ["/fiqus-web-front/", "/fiqus-web-front/es", "/fiqus-web-front/es/", "/fiqus-web-front/en", "/fiqus-web-front/en/"]
 
-        setIshomepage(homePaths.includes(props.location.pathname).toString());
+    const homePaths = ["/", "/es", "/es/", "/en", "/en/"]
 
-            
+    useEffect(()=>{
+
+        if(homePathsGHpages.includes(props.location.pathname) === true){
+            setIsHomepage("true")
+        } else {
+            setIsHomepage("false")
+        }
+
     }, [props.location])
-
 
     return (
         <StaticQuery 
@@ -52,12 +59,12 @@ const PageWrapper = (props) => {
         `
         }
         render = { data => (
-            <Wrapper>
-                <Seo></Seo>
-                <Header menuLinks = {data.site.siteMetadata.menuLinks} ishomepage={ishomepage} location={props.location}></Header>
-                <PageContainer ishomepage={ishomepage}>{props.children}</PageContainer>
-                <Footer></Footer>
-            </Wrapper>
+                <Wrapper>
+                    <Seo></Seo>
+                    <Header menuLinks = {data.site.siteMetadata.menuLinks} location={props.location} ishomepage={ishomepage}></Header>
+                    <PageContainer> {props.children}</PageContainer>
+                    <Footer></Footer>
+                </Wrapper>
         )}>
             
         </StaticQuery>
