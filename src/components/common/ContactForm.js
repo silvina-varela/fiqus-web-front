@@ -250,7 +250,7 @@ const ContactForm = () => {
             <ContactWrapper>
                 <ContactHeading>{intl.formatMessage({id: 'contactForm.title'})}</ContactHeading>
                 <ContactFormBlock>
-                    <Form action="https://app.99inbound.com/api/e/o4wc7abw" method="POST" target="_blank" >
+                    <Form action="https://getform.io/f/a021d0d9-180f-4d03-8df0-462bc7ab9429" method="POST" target="_blank" >
                         <FormGroup>
                             <Label htmlFor="nameField">{intl.formatMessage({id: 'contactForm.nameField'})}* </Label>
                             <FieldContainer error={errors.nameField}>
