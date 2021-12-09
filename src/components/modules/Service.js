@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components'
 import data from '../../content/content.json'
 import Tags from '../common/Tags'
@@ -6,6 +6,12 @@ import Button from '../common/Button'
 import { useIntl, Link } from "gatsby-plugin-react-intl"
 import Lottie from 'react-lottie';
 import { Waypoint } from 'react-waypoint';
+
+import datosAnimation from '../../images/animations/datos.json'
+import blockchainAnimation from '../../images/animations/blockchain.json'
+import fullstackAnimation from '../../images/animations/fullstack.json'
+import iaAnimation from '../../images/animations/inteligenciaArtificial.json'
+import acAnimation from '../../images/animations/altaConcurrencia.json'
 
 const styles = data.styles
 
@@ -323,12 +329,55 @@ const Btn = styled(Button)`
 `
 
 const Service = (props) => {
+    const [pauseAnimation, setPauseAnimation] = useState(true)
     const [renderLottie, setRenderLottie] = useState(false)
     const service = props.service;
     const intl = useIntl();
+
+    const getServiceAnimation = (service) => {
+        switch (service) {
+            case "datos":
+                return datosAnimation
+            case "blockchain":
+                return blockchainAnimation
+            case "fullstack":
+                return fullstackAnimation
+            case "inteligenciaArtificial":
+                return iaAnimation
+            case "altaConcurrencia":
+                return acAnimation
+            default:
+                return ""
+        }
+    }
+
+    useEffect(() => {
+        setPauseAnimation(renderLottie)
+    }, [renderLottie])
+
+
+    const getAnimationOptions = (service) => {
+        return {
+            loop: false,
+            autoplay: false,
+            animationData: getServiceAnimation(service),
+            rendererSettings: {
+                preserveAspectRatio: "xMidYMid slice"
+            }
+        }
+    }
+
+    const startLottie = () => {
+        setPauseAnimation(false)
+    }
+
+    const pauseLottie = () => {
+        setPauseAnimation(true)
+    }
+
     return (
         props.ishomepage ?
-            <ServiceWrapper ishomepage={props.ishomepage}>
+            <ServiceWrapper ishomepage={props.ishomepage} onMouseEnter={startLottie} onMouseLeave={pauseLottie}>
                 <ServiceLink
                     ishomepage={props.ishomepage}
                     theme={styles}
@@ -341,23 +390,24 @@ const Service = (props) => {
                     to='/servicios'
                 >
                     <ImageContainerMobile>
-                        <Waypoint onEnter={() => setRenderLottie(true)} />
+                    <Waypoint onEnter={() => { setRenderLottie(true) }} onLeave={()=>{setRenderLottie(false)}} />
                         <ServiceImage
                             ishomepage={props.ishomepage}>
-                            {renderLottie && <Lottie
-                                options={props.animationOptions}
+                            <Lottie
+                                options={getAnimationOptions(props.service.image)}
                                 width="70%"
-                            />}
+                            />
                         </ServiceImage>
                     </ImageContainerMobile>
                     <LeftBlock ishomepage={props.ishomepage}>
                         <ImageContainer ishomepage={props.ishomepage}>
-                            <Waypoint onEnter={() => setRenderLottie(true)} />
                             <ServiceImage ishomepage={props.ishomepage}>
-                                {renderLottie && <Lottie
-                                    options={props.animationOptions}
+                                <Lottie
+                                    options={getAnimationOptions(props.service.image)}
+                                    isPaused={pauseAnimation}
+
                                     width="100%"
-                                />}
+                                />
                             </ServiceImage>
                         </ImageContainer>
                         <TagsContainer ishomepage={props.ishomepage}>
@@ -368,7 +418,7 @@ const Service = (props) => {
                                 styles={props.styles}
                             />
                         </TagsContainer>
-{/*                         <BtnMobile
+                        {/*                         <BtnMobile
                             ishomepage={props.ishomepage}
                             type='btnPrimaryPurple'
                             theme={styles}
@@ -383,7 +433,7 @@ const Service = (props) => {
                             <ServiceTitle ishomepage={props.ishomepage}>{intl.formatMessage({ id: `${props.id}.service` })}</ServiceTitle>
                             <ServiceDescription ishomepage={props.ishomepage}>{intl.formatMessage({ id: `${props.id}.description` })}</ServiceDescription>
                         </TextContainer>
-{/*                         <Btn
+                        {/*                         <Btn
                             ishomepage={props.ishomepage}
                             type='btnPrimaryPurple'
                             theme={styles}
@@ -396,25 +446,24 @@ const Service = (props) => {
             </ServiceWrapper>
             :
             <ServiceWrapper ishomepage={props.ishomepage}>
-                <Waypoint onEnter={() => setRenderLottie(true)} />
+                <Waypoint onEnter={() => { setRenderLottie(true) }} onLeave={()=>{setRenderLottie(false)}} />
                 <ImageContainerMobile>
                     <ServiceImage
                         ishomepage={props.ishomepage}>
-                        {renderLottie && <Lottie
-                            options={props.animationOptions}
+                        <Lottie
+                            options={getAnimationOptions(props.service.image)}
                             width="70%"
-                        />}
+                        />
                     </ServiceImage>
                 </ImageContainerMobile>
                 <LeftBlock>
                     <ImageContainer ishomepage={props.ishomepage}>
-                        <Waypoint onEnter={() => setRenderLottie(true)} />
                         <ServiceImage
                             ishomepage={props.ishomepage}>
-                            {renderLottie && <Lottie
-                                options={props.animationOptions}
+                            <Lottie
+                                options={getAnimationOptions(props.service.image)}
                                 width="70%"
-                            />}
+                            />
                         </ServiceImage>
                     </ImageContainer>
                     <TagsContainer ishomepage={props.ishomepage}>
