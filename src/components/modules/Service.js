@@ -358,7 +358,7 @@ const Service = (props) => {
 
     const getAnimationOptions = (service) => {
         return {
-            loop: false,
+            loop: true,
             autoplay: false,
             animationData: getServiceAnimation(service),
             rendererSettings: {
