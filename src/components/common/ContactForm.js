@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../common/Button'
 import styled from 'styled-components'
 import data from '../../content/content.json'
@@ -125,7 +125,7 @@ const FieldContainer = styled.div`
     
 `
 
-const Field= styled.input`
+const Field = styled.input`
     border: 2px solid ${styles.colors.black};
     border-radius: 12px;
     padding: 10px 45px 10px 16px;
@@ -140,7 +140,7 @@ const Field= styled.input`
         max-width: 367px;
     }
 `
-const TextArea= styled.textarea`
+const TextArea = styled.textarea`
     border: 2px solid ${styles.colors.black};
     border-radius: 12px;
     padding: 10px 45px 10px 16px;
@@ -162,7 +162,7 @@ const BtnSubmit = styled(Button)`
     margin-bottom: 0;
     max-height: 50px;
 `
-const ErrorMessage= styled.p`
+const ErrorMessage = styled.p`
     color: ${styles.colors.orangeMain};
     font-weight:${styles.fontWeight.medium};
     font-size: .88em;
@@ -174,7 +174,7 @@ const ErrorMessage= styled.p`
     bottom: -18px;
 `
 
-const FeedbackMessage= styled.p`
+const FeedbackMessage = styled.p`
     color: ${styles.colors.darkMainBg};
     font-weight:${styles.fontWeight.regular};
     font-size: .88em;
@@ -186,7 +186,7 @@ const FeedbackMessage= styled.p`
         margin-left: auto;
     }
 `
-const FeedbackMessageTitle= styled.span`
+const FeedbackMessageTitle = styled.span`
     color: ${styles.colors.greenMain};
     font-weight:${styles.fontWeight.bold};
     display: block;
@@ -240,76 +240,99 @@ const ContactForm = () => {
     const intl = useIntl();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [emailSent, setEmailSent] = useState(false);
-    const [name,setName] = useState("")
+    const [name, setName] = useState("")
     const [mail, setMail] = useState("")
     const [message, setText] = useState("")
+
+    const onSubmit = async () => {
+        try {
+            setEmailSent(true);
+
+            // aca deberían copiar el endpoint de la app que elijan para recibir los mails
+            await axios.post("https://getform.io/f/a021d0d9-180f-4d03-8df0-462bc7ab9429", {
+                name,
+                mail,
+                message
+            })
+
+        } catch (error) {
+            setEmailSent(false)
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        reset()
+        setTimeout(()=>{setEmailSent(false)},5000)
+      }, [emailSent])
+
 
 
     return (
         <ContactMainContainer>
             <ContactWrapper>
-                <ContactHeading>{intl.formatMessage({id: 'contactForm.title'})}</ContactHeading>
+                <ContactHeading>{intl.formatMessage({ id: 'contactForm.title' })}</ContactHeading>
                 <ContactFormBlock>
-                    <Form action="https://getform.io/f/a021d0d9-180f-4d03-8df0-462bc7ab9429" method="POST" target="_blank" >
+                    <Form onSubmit={handleSubmit(onSubmit)}  >
                         <FormGroup>
-                            <Label htmlFor="nameField">{intl.formatMessage({id: 'contactForm.nameField'})}* </Label>
+                            <Label htmlFor="nameField">{intl.formatMessage({ id: 'contactForm.nameField' })}* </Label>
                             <FieldContainer error={errors.nameField}>
-                                <Field 
-                                    name="nameField" 
-                                    type="text" 
-                                    placeholder={intl.formatMessage({id: 'contactForm.nameField'})} 
-                                    {...register("nameField", { required: true })} 
-                                    onChange = {(e) => setName(e.target.value)}/>
+                                <Field
+                                    name="nameField"
+                                    type="text"
+                                    placeholder={intl.formatMessage({ id: 'contactForm.nameField' })}
+                                    {...register("nameField", { required: true })}
+                                    onChange={(e) => setName(e.target.value)} />
                             </FieldContainer>
-                            {errors.nameField && 
-                                <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
+                            {errors.nameField &&
+                                <ErrorMessage>{intl.formatMessage({ id: 'contactForm.requiredFieldError' })}</ErrorMessage>
                             }
                         </FormGroup>
 
                         <FormGroup>
-                            <Label htmlFor="emailField">{intl.formatMessage({id: 'contactForm.emailField'})}* </Label>
+                            <Label htmlFor="emailField">{intl.formatMessage({ id: 'contactForm.emailField' })}* </Label>
                             <FieldContainer error={errors.emailField}>
-                                <Field 
-                                    name="emailField" 
-                                    type="email" 
-                                    placeholder={intl.formatMessage({id: 'contactForm.emailField'})} 
+                                <Field
+                                    name="emailField"
+                                    type="email"
+                                    placeholder={intl.formatMessage({ id: 'contactForm.emailField' })}
                                     {...register("emailField", { required: true })}
-                                    onChange = {(e) => setMail(e.target.value)}/>
+                                    onChange={(e) => setMail(e.target.value)} />
                             </FieldContainer>
-                            {errors.emailField && 
-                                <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
+                            {errors.emailField &&
+                                <ErrorMessage>{intl.formatMessage({ id: 'contactForm.requiredFieldError' })}</ErrorMessage>
                             }
                         </FormGroup>
 
                         <FormGroup>
-                            <Label htmlFor="textAreaField">{intl.formatMessage({id: 'contactForm.textAreaField'})}* </Label>
+                            <Label htmlFor="textAreaField">{intl.formatMessage({ id: 'contactForm.textAreaField' })}* </Label>
                             <FieldContainer error={errors.textAreaField}>
-                                <TextArea 
-                                    name="textAreaField" 
-                                    type="textarea" 
-                                    placeholder={intl.formatMessage({id: 'contactForm.textAreaField'})}  
+                                <TextArea
+                                    name="textAreaField"
+                                    type="textarea"
+                                    placeholder={intl.formatMessage({ id: 'contactForm.textAreaField' })}
                                     {...register("textAreaField", { required: true })}
-                                    onChange={(e) => setText(e.target.value)}/>
+                                    onChange={(e) => setText(e.target.value)} />
                             </FieldContainer>
-                            {errors.textAreaField && 
-                                <ErrorMessage>{intl.formatMessage({id: 'contactForm.requiredFieldError'})}</ErrorMessage>
+                            {errors.textAreaField &&
+                                <ErrorMessage>{intl.formatMessage({ id: 'contactForm.requiredFieldError' })}</ErrorMessage>
                             }                    </FormGroup>
                         <FormGroup>
 
-                            <BtnSubmit theme={styles} btnText={intl.formatMessage({id: 'button.send'})} ></BtnSubmit>
+                            <BtnSubmit theme={styles} btnText={intl.formatMessage({ id: 'button.send' })} onButtonClick={handleSubmit(onSubmit)}></BtnSubmit>
                             {emailSent &&
-                                <FeedbackMessage><FeedbackMessageTitle>{intl.formatMessage({id: 'contactForm.messageSent'})}</FeedbackMessageTitle> {intl.formatMessage({id: 'contactForm.thankYou'})}</FeedbackMessage>
+                                <FeedbackMessage><FeedbackMessageTitle>{intl.formatMessage({ id: 'contactForm.messageSent' })}</FeedbackMessageTitle> {intl.formatMessage({ id: 'contactForm.thankYou' })}</FeedbackMessage>
                             }
                         </FormGroup>
                     </Form>
                 </ContactFormBlock>
 
                 <ContactInfoBlock>
-                    <Email>{intl.formatMessage({id: 'contactForm.email'})}</Email>
-                    <OfficeListTitle>{intl.formatMessage({id: 'contactForm.sedes'})}</OfficeListTitle>
+                    <Email>{intl.formatMessage({ id: 'contactForm.email' })}</Email>
+                    <OfficeListTitle>{intl.formatMessage({ id: 'contactForm.sedes' })}</OfficeListTitle>
                     <OfficeList>
-                        <OfficeListItem>{intl.formatMessage({id: 'contactForm.office1'})}</OfficeListItem>
-                        <OfficeListItem>{intl.formatMessage({id: 'contactForm.office2'})}</OfficeListItem>
+                        <OfficeListItem>{intl.formatMessage({ id: 'contactForm.office1' })}</OfficeListItem>
+                        <OfficeListItem>{intl.formatMessage({ id: 'contactForm.office2' })}</OfficeListItem>
                     </OfficeList>
                 </ContactInfoBlock>
             </ContactWrapper>
