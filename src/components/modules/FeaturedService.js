@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
 import { useIntl, Link } from "gatsby-plugin-react-intl"
 import data from '../../content/content.json'
-import Waypoint from 'react-waypoint'
+import {Waypoint} from 'react-waypoint'
 import Lottie from 'react-lottie'
 import capacitacionAnimation from '../../images/animations/capacitacion.json'
 
@@ -269,11 +269,24 @@ const FeaturedServiceDescription = styled.p`
 
 const FeaturedService = (props) => {
     const [renderLottie, setRenderLottie] = useState(false)
+    const [pauseAnimation, setPauseAnimation] = useState(true)
     const intl = useIntl();
 
+    useEffect(() => {
+        setPauseAnimation(renderLottie)
+    }, [renderLottie])
+
+    const startLottie = () => {
+        setPauseAnimation(false)
+    }
+
+    const pauseLottie = () => {
+        setPauseAnimation(true)
+    }
+
     const animationOptions= {
-        loop: false,
-        autoplay: true,
+        loop: true,
+        autoplay: false,
         animationData: capacitacionAnimation,
         rendererSettings: {
           preserveAspectRatio: "xMidYMid slice"
@@ -282,7 +295,7 @@ const FeaturedService = (props) => {
 
     return (
         props.ishomepage ? 
-        <FeaturedServiceContainer ishomepage={props.ishomepage}> 
+        <FeaturedServiceContainer ishomepage={props.ishomepage} onMouseEnter={startLottie} onMouseLeave={pauseLottie}> 
             <FeaturedServiceWrapper ishomepage={props.ishomepage}> 
                 <FeaturedServiceLink
                     ishomepage={props.ishomepage}
@@ -293,9 +306,11 @@ const FeaturedService = (props) => {
                             alt={intl.formatMessage({id: "service_subsection.featuredServiceImageAlt"})}
                             ishomepage={props.ishomepage}
                         >
+
                             <Lottie
                                 options = {animationOptions}
                                 width = "100%"
+                                isPaused={pauseAnimation}
                             />
                         </FeaturedServiceImage>
                     </ImageContainer>
@@ -308,7 +323,8 @@ const FeaturedService = (props) => {
         </FeaturedServiceContainer>
         :
         <FeaturedServiceContainer ishomepage={props.ishomepage}> 
-            <FeaturedServiceWrapper ishomepage={props.ishomepage}> 
+            <FeaturedServiceWrapper ishomepage={props.ishomepage}>
+                    <Waypoint onEnter={() => { setRenderLottie(true) }} onLeave={()=>{setRenderLottie(false)}} />
                 <ImageContainer ishomepage={props.ishomepage}>
                     <FeaturedServiceImage
                         alt={intl.formatMessage({id: "service_subsection.featuredServiceImageAlt"})}
@@ -316,6 +332,7 @@ const FeaturedService = (props) => {
                         <Lottie
                             options = {animationOptions}
                             width = "100%"
+                            isPaused={pauseAnimation}
                         />
                     </FeaturedServiceImage>
                 </ImageContainer>
