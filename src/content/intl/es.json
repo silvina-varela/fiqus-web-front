@@ -57,7 +57,8 @@
     },
     "button": {
         "verMas": "ver más",
-        "send": "enviar"
+        "send": "enviar", 
+        "read":"leer"
     },
     "verMasArticulos": "ver todos los artículos",
     "y": " y ",

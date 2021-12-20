@@ -96,7 +96,7 @@ const PostThumbnail = (props) => {
                   theme={styles}
                   isLink
                   href={props.slug}
-                  btnText='leer'
+                  btnText={intl.formatMessage({id: 'button.read'})}
                 />
             </BtnContainer>
         </PostThumbnailWrapper>

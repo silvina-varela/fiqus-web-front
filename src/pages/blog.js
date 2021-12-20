@@ -122,7 +122,7 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
             type='btnPrimaryPurple'
             theme={styles}
             to="#"
-            btnText='cargar más artículos'
+            btnText={intl.formatMessage({id: 'verMasArticulos'})}
             onButtonClick = {showMorePosts}
           />
         </PostsContainer>

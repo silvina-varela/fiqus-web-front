@@ -57,7 +57,8 @@
     },
     "button": {
         "verMas": "view more",
-        "send": "send"
+        "send": "send", 
+        "read": "read"
     },
     "verMasArticulos": "view all articles",
     "y": " and ",

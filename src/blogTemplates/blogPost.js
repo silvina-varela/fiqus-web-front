@@ -209,6 +209,8 @@ export default function Post({ data, props }) {
                 </TagsContainer>
                 
                 <Btn type='btnPrimaryPurple' 
+                    isLink={true}
+                    href="/blog"
                     theme={styles} 
                     btnText={intl.formatMessage({id: 'blogPost.verTodosBtn'})}>    
                 </Btn>
