@@ -6,8 +6,8 @@
     "Blog": "Blog",
     "Articles": "Articles",
     "footer": {
-        "designby": "Designed by",
-        "coopName": "el maizal",
+        "designby": "Intercooperative work made by",
+        "coopName": "el maizal and nayra",
         "disclaimer": "Unless stated otherwise, content on this site is licensed under ",
         "licenseName": "Creative Commons Attribution",
         "licenseIconAlt": "Creative Commons Attribution logo"
@@ -72,7 +72,7 @@
         "email": "info@fiqus.com",
         "sedes": "Locations",
         "office1": "14 de Julio 1268 Ciudad de Buenos Aires, Argentina",
-        "office2": "Av. Arrayanes 66, Local 7 Villa La Angostura, Neuquén, Argentina"
+        "office2": "Las Frutillas 109, Casa 2 Villa La Angostura, Neuquén, Argentina"
     },
     "services": {
         "title": "Services",
@@ -80,7 +80,7 @@
         "btnText": "go to services"
     }, 
     "service_datos":  {
-        "service": "DataScience",
+        "service": "Data Science",
         "description": "This area is dedicated to the cleaning, extraction and analysis of data in order to feed Artificial Intelligence or Machine Learning processes. It is essential to process the data in order to make it easy to understand, as well as its use to reach the proposed goals.",
         "tags" : [
             "Python",
@@ -93,7 +93,7 @@
     },
     "service_inteligenciaArtificial" :
     {
-        "service": "ArtificialIntelligence",
+        "service": "Artificial Intelligence",
         "description": "Machine Learning is a subfield of Artificial Intelligence in which the goal is for computers to learn. From collected and processed data, we design, build and train models that allow us to predict future events, classify images, recognize entities in text and much more.",
         "tags" : [
             "Python",

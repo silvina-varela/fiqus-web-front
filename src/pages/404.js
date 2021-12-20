@@ -136,7 +136,8 @@ const Page404 = () => {
                 <Btn 
                     type='btnPrimaryPurple' 
                     theme={styles} 
-                    to={intl.formatMessage({id: "page404.btnHref"})} 
+                    isLink={true}
+                    href="/"
                     btnText={intl.formatMessage({id: "page404.btnText"})}
                 />
             </InfoContainer>

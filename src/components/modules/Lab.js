@@ -122,6 +122,7 @@ const SuccessCase = (props) => {
                         src={githubIcon.default}
                         github={true}
                         href={props.labData.frontmatter.github}
+                        target="_blank"
                         btnText={intl.formatMessage({id: "casos_de_exito.btnTextGithub"})}
                     />
                 }
