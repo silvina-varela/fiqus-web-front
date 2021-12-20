@@ -14,7 +14,7 @@ tags: ["Intercooperacion"]
 
 Todo comenzó conociendo a los amigxs de SofiCoop, una Cooperativa de Software con base en Israel. Parte de lxs SofiCoop estaban en contacto y haciendo voluntariado en CrystalVision, otra cooperativa israelí que a sí mismo está ubicada dentro la Comunidad Cooperativa de Kibbutz Samar en el bello desierto de Arava al sur de Israel.
 
-![Créditos de imagen unsplash](./experiencia-de-intercooperacion-01.jpg)
+![Créditos de imagen unsplash](../images/experiencia-de-intercooperacion-01.jpg)
 
 Como parte de dicho voluntariado SofiCoop está a cargo de construir una aplicación web para uno de los productos de CrystalVision que consiste en un sistema de automatización de alimentación para la crianza de peces (piscicultura).
 
@@ -36,7 +36,7 @@ La conexión por WebSocket también nos sirvió para establecer un protocolo que
 
 A continuación les dejamos un diagrama que trata de resumir y aclarar un poco toda esta idea e implementación:
 
-![Créditos de imagen unsplash](./experiencia-de-intercooperacion-02.png)
+![Créditos de imagen unsplash](../images/experiencia-de-intercooperacion-02.png)
 
 Por último, pero no menos importante, queremos contarles sobre la experiencia de intercooperación que fue muy enriquecedora.
 Desde Fiqus siempre tratamos que la relación con los clientes vaya más allá de una relación cliente-proveedor. Nuestra forma natural de trabajar nos lleva a acercarnos al cliente, a sus problemas y necesidades, a sus costumbres y amalgamar eso con nuestras experiencias y costumbres para dar lugar a una relación más armoniosa y sincera.
