@@ -6,6 +6,7 @@ import Button from '../common/Button'
 import { useIntl, Link } from "gatsby-plugin-react-intl"
 import Lottie from 'react-lottie';
 import { Waypoint } from 'react-waypoint';
+import { AnchorLink } from 'gatsby-plugin-anchor-links'
 
 import datosAnimation from '../../images/animations/datos.json'
 import blockchainAnimation from '../../images/animations/blockchain.json'
@@ -78,7 +79,7 @@ const ServiceWrapper = styled.div`
     }}
 
 `
-const ServiceLink = styled(Link)`
+const ServiceLink = styled(AnchorLink)`
     padding: 18px 20px 22px 20px;
     @media (min-width: ${styles.breakpoints.m}px) {
         padding: 15px 20px 25px 20px;
@@ -355,6 +356,10 @@ const Service = (props) => {
         setPauseAnimation(renderLottie)
     }, [renderLottie])
 
+    useEffect(()=>{
+        console.log(document.getElementById(service.image))
+        console.log(service.image)
+    }, [props.ishomepage])
 
     const getAnimationOptions = (service) => {
         return {
@@ -387,7 +392,7 @@ const Service = (props) => {
                     
                     to={'/' + intl.formatMessage({id: `${props.id}.link`})}
                     */
-                    to='/servicios'
+                    to={`servicios/#${service.image}`}
                 >
                     <ImageContainerMobile>
                     <Waypoint onEnter={() => { setRenderLottie(true) }} onLeave={()=>{setRenderLottie(false)}} />
@@ -445,7 +450,7 @@ const Service = (props) => {
                 </ServiceLink>
             </ServiceWrapper>
             :
-            <ServiceWrapper ishomepage={props.ishomepage}>
+            <ServiceWrapper id={service.image} ishomepage={props.ishomepage}>
                 <Waypoint onEnter={() => { setRenderLottie(true) }} onLeave={()=>{setRenderLottie(false)}} />
                 <ImageContainerMobile>
                     <ServiceImage
