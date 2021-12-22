@@ -357,8 +357,7 @@ const Service = (props) => {
     }, [renderLottie])
 
     useEffect(()=>{
-        console.log(document.getElementById(service.image))
-        console.log(service.image)
+
     }, [props.ishomepage])
 
     const getAnimationOptions = (service) => {
