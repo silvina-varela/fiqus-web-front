@@ -1,65 +1,51 @@
 import React , {Fragment} from 'react';
-import Helmet from 'react-helmet'
+import { Helmet }from 'react-helmet'
 
-const Seo = ({
-    meta,
-    image,
-    title,
-    description,
-    pathSlug,
-    keywords,
-    date,
-    isBlogPost,
-    dateModified,
-
-}) => {
-    const url= `https://fiqus.coop/${pathSlug}`
+const Seo = () => {
+    const title ="Fiqus - Cooperativa de Software"
+    const url= `https://fiqus.coop`
+    const favicon = require('../../images/favicon.png').default
+    const og = require('../../images/og.jpg').default
+    const description = "Somos una cooperativa de desarrollo de software especializada en brindar servicios profesionales relacionados a tecnologías tales como Data Science, Machine Learning, Sistemas de alta concurrencia y Full-Stack"
 
     return (
         <Fragment>
-            <Helmet titleTemplate={`${title}`}>
+            <Helmet>
                 <html lang="en" />
                 <title>{title}</title>
         
-{/*                 <link rel="icon" sizes="16x16" type="image/png" href={icon16} />
-                <link rel="icon" sizes="32x32" type="image/png" href={icon32} />
+                <link rel="icon" sizes="16x16" type="image/png" href={favicon} />
+                <link rel="icon" sizes="32x32" type="image/png" href={favicon} />
                 <link
                     rel="apple-touch-icon"
                     sizes="192x192"
                     type="image/png"
-                    href={icon192}
+                    href={favicon}
                 />
                 <link
                     rel="apple-touch-startup-image"
                     sizes="512x512"
                     type="image/png"
-                    href={icon512}
-                /> */}
+                    href={favicon}
+                /> 
         
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta charSet="utf-8" />
                 <link rel="canonical" key={url} href={url} />
         
                 <meta name="description" content={description} />
-
-                <meta
-                    name="google-site-verification"
-                    content="rdHghgE19nXaz19_OXvkv_MuEOSHl8lQPesWUmp21oU"
-                />
         
-{/*             <meta property="og:url" content={url} />
-                <meta property="og:title" content={title || useSiteMetadata().title} />
-                <meta name="og:description" content={metaDescription} />
-                {isBlogPost && <meta property="og:type" content="article" />}
-                {metaImage && <meta property="og:image" content={metaImage} />}
+                <meta property="og:url" content={url} />
+                <meta property="og:title" content={title }/>
+                <meta name="og:description" content={description} />
+                <meta property="og:image" content={og} />
         
-                <meta name="twitter:description" content={metaDescription} />
-                <meta name="twitter:title" content={title || useSiteMetadata().title} />
-                <meta name="twitter:creator" content={useSiteMetadata().twitter} />
-                <meta name="twitter:card" content="summary" />
-                {metaImage && <meta name="twitter:image" content={metaImage} />} */}
+                <meta name="twitter:description" content={description} />
+                <meta name="twitter:title" content={title} />
+                <meta name="twitter:image" content={og} />
             </Helmet>
         </Fragment>
+
     );
 };
 
