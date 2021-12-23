@@ -126,7 +126,7 @@ const Button = (props) => {
     
     return (
         props.isLink ? 
-            <BtnLink to={props.href} className={props.className} $btnStyles={getBtnStyles(props.type)} theme={props.theme} href={props.href}>
+            <BtnLink to={props.href} className={props.className} $btnStyles={getBtnStyles(props.type)} theme={props.theme} href={props.href} target={props.target}>
                 <BtnImg 
                     imgDisplay={getBtnStyles(props.type).imgDisplay} 
                     src={props.github ? require('../../images/icon_github.svg').default : require('../../images/icon_website.svg').default} />

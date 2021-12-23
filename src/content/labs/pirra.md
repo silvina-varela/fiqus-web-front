@@ -5,8 +5,8 @@ slug: /pirra
 title: "Pirra"
 tags: ["Python", "Django", "Docker", "Postgres"]
 image: images/pirra.png
-website: "link pag proyecto (si no hay, dejar en blanco)"
-github: "link github (si no hay, dejar en blanco)"
+website: "https://www.aquiles.com.ar/"
+github: "https://github.com/fiqus/pirra"
 
 
 ---

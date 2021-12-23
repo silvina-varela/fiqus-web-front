@@ -13,7 +13,7 @@ const Seo = ({
     dateModified,
 
 }) => {
-    const url= `https://romigomez.com.ar/${pathSlug}`
+    const url= `https://fiqus.coop/${pathSlug}`
 
     return (
         <Fragment>
@@ -47,7 +47,7 @@ const Seo = ({
                     content="rdHghgE19nXaz19_OXvkv_MuEOSHl8lQPesWUmp21oU"
                 />
         
-{/*                 <meta property="og:url" content={url} />
+{/*             <meta property="og:url" content={url} />
                 <meta property="og:title" content={title || useSiteMetadata().title} />
                 <meta name="og:description" content={metaDescription} />
                 {isBlogPost && <meta property="og:type" content="article" />}
@@ -59,20 +59,6 @@ const Seo = ({
                 <meta name="twitter:card" content="summary" />
                 {metaImage && <meta name="twitter:image" content={metaImage} />} */}
             </Helmet>
-
-{/*             <SchemaOrg
-                url={url}
-                title={title}
-                image={metaImage}
-                description={metaDescription}
-                datePublished={date ? date : false}
-                canonicalUrl={url}
-                author={author}
-                baseUrl={useSiteMetadata().siteUrl}
-                dateModified={dateModified}
-                defaultTitle={defaultTitle}
-                isBlogPost={isBlogPost ? isBlogPost : false}
-            /> */}
         </Fragment>
     );
 };

@@ -5,8 +5,8 @@ slug: /liveQChatex
 title: "LiveQChatex"
 tags: ["Elixir", "Phoenix", "LiveView", "Presence", "Gigalixir", "GitHub Actions"]
 image: images/liveQchatex.png
-website: "link pag proyecto (si no hay, dejar en blanco)"
-github: "link github (si no hay, dejar en blanco)"
+website: ""
+github: "https://github.com/fiqus/lqchatex"
 
 ---
 

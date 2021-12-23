@@ -5,8 +5,8 @@ title: "Rompebolas"
 slug: /rompebolas
 tags: ["Go"]
 image: images/rompebolas.png
-website: "link pag proyecto (si no hay, dejar en blanco)"
-github: ""
+website: ""
+github: "https://github.com/fiqus/rompebolas"
 
 
 ---

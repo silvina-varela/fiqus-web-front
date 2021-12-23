@@ -110,6 +110,7 @@ const SuccessCase = (props) => {
                         type='btnLabeled'
                         theme={styles}
                         isLink
+                        target="_blank"
                         href={props.labData.frontmatter.website}
                         btnText={intl.formatMessage({id: "casos_de_exito.btnTextVerMas"})}
                     />

@@ -5,8 +5,8 @@ slug: /coophub
 title: "CoopHub"
 tags: ["Elixir", "Phoenix", "Utilización de ETS", "Cache de datos", "ReactJS", "Api y acciones de GitHub"]
 image: images/coophub.png
-website: "link pag proyecto (si no hay, dejar en blanco)"
-github: "link github (si no hay, dejar en blanco)"
+website: "https://coophub.io/"
+github: "https://github.com/fiqus/coophub"
 english: true
 
 

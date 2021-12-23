@@ -5,8 +5,8 @@ slug: /coobs
 title: "CooBS"
 tags: ["Python", "Django", "Postgres"]
 image: images/coobs.png
-website: ""
-github: "link github"
+website: "https://coobs.io/"
+github: "https://github.com/fiqus/coobs"
 english: true
 
 ---

@@ -5,8 +5,8 @@ slug: /timeline
 title: "Timeline"
 tags: ["Python", "Django Rest Framework", "Postgres", "Google maps API"]
 image: images/timeline.png
-website: "link pag proyecto (si no hay, dejar en blanco)"
-github: "link github (si no hay, dejar en blanco)"
+website: ""
+github: "https://github.com/fiqus/timeline"
 
 ---
 

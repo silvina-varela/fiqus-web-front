@@ -4,6 +4,7 @@ import { useIntl, Link } from "gatsby-plugin-react-intl"
 import data from '../../content/content.json'
 import {Waypoint} from 'react-waypoint'
 import Lottie from 'react-lottie'
+import { AnchorLink } from 'gatsby-plugin-anchor-links'
 import capacitacionAnimation from '../../images/animations/capacitacion.json'
 
 const styles = data.styles
@@ -49,7 +50,7 @@ const FeaturedServiceContainer = styled.div`
         }
     }}
 `
-const FeaturedServiceLink = styled(Link)`
+const FeaturedServiceLink = styled(AnchorLink)`
     width: 100%;
     height: 100%;
     padding: 18px 20px 22px 20px;
@@ -299,7 +300,7 @@ const FeaturedService = (props) => {
             <FeaturedServiceWrapper ishomepage={props.ishomepage}> 
                 <FeaturedServiceLink
                     ishomepage={props.ishomepage}
-                    to='/servicios'
+                    to='/servicios/#capacitacion'
                 >
                     <ImageContainer ishomepage={props.ishomepage}>
                         <FeaturedServiceImage
@@ -323,7 +324,7 @@ const FeaturedService = (props) => {
         </FeaturedServiceContainer>
         :
         <FeaturedServiceContainer ishomepage={props.ishomepage}> 
-            <FeaturedServiceWrapper ishomepage={props.ishomepage}>
+            <FeaturedServiceWrapper id="capacitacion" ishomepage={props.ishomepage}>
                     <Waypoint onEnter={() => { setRenderLottie(true) }} onLeave={()=>{setRenderLottie(false)}} />
                 <ImageContainer ishomepage={props.ishomepage}>
                     <FeaturedServiceImage
