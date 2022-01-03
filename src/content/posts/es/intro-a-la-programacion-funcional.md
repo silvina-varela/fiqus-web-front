@@ -5,7 +5,7 @@ title: "Introducción a la Programación Funcional"
 author: "Pablo Brudnick"
 slug: "/introduccion-a-la-programacion-funcional"
 date: "2017-03-22"
-image:  ../images/test-header.png
+image:  ../images/notebook-focus.png
 imageCredits: "unsplash"
 tags: ["Erlang", "Elixir", "Programación funcional"]
 ---
