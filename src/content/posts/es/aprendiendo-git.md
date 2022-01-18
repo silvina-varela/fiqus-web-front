@@ -24,6 +24,4 @@ Linus Torvalds, el creador de la herramienta y del sistema operativo Linux, ha b
 
 Sin más que decir, a disfrutarlo!
 
-[GIT- Manual de Usuario]()
-
-Además de descargar el archivo .pdf pueden colaborar realizando cambios en el manual utilizando este [repositorio](https://github.com/fiqus/git_manual).
+Pueden colaborar realizando cambios en el manual utilizando este [repositorio](https://github.com/fiqus/git_manual).
