@@ -5,7 +5,7 @@ title: "Cuánto vale lo que hacemos?"
 author: "Martín Vallone"
 slug: "/cuanto-vale"
 date: "2013-08-22"
-image:  ../images/cuanto-vale-header.jpg
+image:  ../images/cuanto-vale-header.jpeg
 imageCredits: "unsplash"
 tags: ["coop", "cooperativa"]
 ---
