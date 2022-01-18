@@ -35,11 +35,6 @@ La importancia de éste resultado es saber que ganancia dio el mes, y al medirl
 
 Si uno quisiera abordar el análisis económico, se puede llegar a una conclusión comparando el nivel de gastos del mes contra lo facturado. Un claro indicador es ver si lo que se produce llega a cubrir los gastos/egresos (*).
 
-Abajo les dejamos los archivos listos para comenzar a utilizar:
-
-[Finanzas (formato .ods)](http://blog.fiqus.webfactional.com/wp-content/uploads/2013/10/Finanzas.ods)
-[Finanzas (formato .xlsx)](http://blog.fiqus.webfactional.com/wp-content/uploads/2013/10/Finanzas.xlsx)
-
 (*) Es importante llevar en una planilla separada la cuenta de los gastos fijos habituales para tener un control sobre los mismos o como una posibilidad de proyección de estos, poder hacer un análisis a futuro y así, tener información adecuada para tomar las decisiones que sean necesarias.
 
 Los despedimos, esperamos que les sirva y nos re-encontramos en la Parte 3!

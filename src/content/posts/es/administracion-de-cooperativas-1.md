@@ -28,12 +28,6 @@ Es vital organizar nuestras cuentas para saber qué entra y qué sale, de qué m
 
 Nosotros utilizamos un documento básico, instanciado mensualmente, que divide nuestra Caja y nuestro Banco con sus respectivas entradas y salidas. Totalizando debajo y teniendo en cuenta el inicial del mes de cada uno.
 
-Les dejamos un documento básico para que puedan comenzar:
-
-[caja y banco (formato ods)]("http://blog.fiqus.webfactional.com/wp-content/uploads/2013/07/caja_y_banco.ods")
-
-[caja y banco (formato xlsx)]("http://blog.fiqus.webfactional.com/wp-content/uploads/2013/07/caja_y_banco.xlsx")
-
 # 2. Cuenta Corriente de Clientes
 
 La cuenta corriente de cliente es muy importante para llevar al día la facturación y los pagos de nuestros clientes.
@@ -44,10 +38,4 @@ Algo interesante de este documento es que permite, a simple vista, tener un deta
 
 En un comienzo, cuando no contamos con muchos clientes, quizás no sea necesario tener una cuenta corriente por cada uno, pero al tener dos o más clientes, recomendamos separar y tener una cuenta corriente por cada uno.
 
-Aquí les dejamos un documento de Cuenta Corriente de ejemplo:
-
-[cc_cliente (formato ods)](http://blog.fiqus.webfactional.com/wp-content/uploads/2013/07/cc_cliente.ods)
-
-[cc_cliente (formato xlsx)](http://blog.fiqus.webfactional.com/wp-content/uploads/2013/07/cc_cliente.xlsx)
-
-Por el momento, los dejamos con estos conceptos y documentos, pero quedamos a la espera de dudas y comentarios constructivos!
+Por el momento, los dejamos con estos conceptos, pero quedamos a la espera de dudas y comentarios constructivos!

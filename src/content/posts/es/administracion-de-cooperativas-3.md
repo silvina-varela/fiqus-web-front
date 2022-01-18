@@ -93,13 +93,5 @@ Por otro lado, una matriz con el historial de percepción de cada socio en cada 
     - Para controlar la brecha entre las percepciones económicas de los socios.
     - Estar abiertos a distintos niveles de experiencia.
     - Fomentar el aprendizaje, especialización y el ambiente equitativo.
-- Queremos dejar en claro que las matrices fueron desarrolladas por Fiqus, sin haber recibido antes cualquier ejemplo.
-- En los archivos que adjuntamos, ver que las matrices se encuentran en distintas hojas (sheets).
-
-Sin más detalles, les dejamos los archivos para los interesados en poner en práctica estas herramientas:
-
-[matriz (formato ods)](http://blog.fiqus.webfactional.com/wp-content/uploads/2014/01/matriz.ods)
-
-[matriz (formato xlsx)](http://blog.fiqus.webfactional.com/wp-content/uploads/2014/01/matriz.xlsx)
 
 Esperamos que les sea útil y quedamos abiertos a todo tipo de comentarios y críticas.
