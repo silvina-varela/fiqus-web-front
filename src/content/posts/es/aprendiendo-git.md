@@ -19,7 +19,8 @@ Para la confección de este manual se utilizaron otros manuales ya existentes en
 
 Por último, les dejamos un dato de color: ¿Saben qué significa la palabra Git?
 Linus Torvalds, el creador de la herramienta y del sistema operativo Linux, ha bromeado sobre el significado del nombre "git", que en inglés británico significa algo así como "persona desagradable".
-Él mismo dijo: "Soy un bastardo egoísta, y por eso nombro todos mis proyectos haciendo referencia a mí mismo, primero 'Linux', ahora 'git'" ...
+Él mismo dijo: 
+>"Soy un bastardo egoísta, y por eso nombro todos mis proyectos haciendo referencia a mí mismo, primero 'Linux', ahora 'git'" ...
 (fuente [Why the 'Git' name?](https://git.wiki.kernel.org/index.php/GitFaq#Why_the_.27Git.27_name.3F) )
 
 Sin más que decir, a disfrutarlo!
