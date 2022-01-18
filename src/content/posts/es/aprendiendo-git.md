@@ -5,7 +5,7 @@ title: "Aprendiendo a usar Git"
 author: "Nicolas Dimarco"
 slug: "/aprendiendo-a-usar-git"
 date: "2014-05-16"
-image:  ../images/pexels-photo-1.jpg
+image:  ../images/git.png
 imageCredits: "Créditos de imagen unsplash"
 tags: ["Git", "Manual"]
 ---
