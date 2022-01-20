@@ -5,7 +5,7 @@ title: "Add git commit info to your Elixir Phoenix app"
 author: "Diego Calero"
 slug: "/add-git-commit-info-to-your-elixir-phoenix-app"
 date: "2019-07-15"
-image:  ../images/alquimia.jpg
+image:  ../images/alchimia.jpg
 imageCredits: "Créditos de imagen unsplash"
 tags: ["Elixir", "Phoenix", "programming"]
 ---
