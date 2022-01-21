@@ -10,6 +10,8 @@ import { useIntl, Link } from "gatsby-plugin-react-intl"
 import Button from '../components/common/Button'
 import Tags from '../components/common/Tags'
 
+import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
+
 const styles = data.styles
 
 const PostContainer = styled.div`
@@ -197,6 +199,7 @@ const Btn = styled(Button)`
 `
 
 export default function Post({ data, props }) {
+  deckDeckGoHighlightElement();
   const { html, frontmatter: post } = data.markdownRemark;
   const intl = useIntl();
 
