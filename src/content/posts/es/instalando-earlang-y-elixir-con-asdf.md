@@ -5,7 +5,7 @@ title: "Instalando Erlang y Elixir con asdf"
 author: "Diego Calero"
 slug: "/instalando-earlang-y-elixir-con-asdf"
 date: "2019-07-15"
-image:  ../images/experiencia-de-intercooperacion-header.jpg
+image:  ../images/instalar-elixir-con-asdf.jpg
 imageCredits: "Créditos de imagen unsplash"
 tags: ["Elixir", "Phoenix"]
 ---
