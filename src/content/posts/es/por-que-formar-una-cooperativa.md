@@ -39,7 +39,7 @@ Ahondando en el tema **económico**, aunque parezca mentira, no hay tantas difer
 * Como dijimos antes, los socios de cooperativa somos monotributistas, por ende, estimando un ingreso aproximado parecido sea cual fuere el camino elegido, no cambiaría el monto que la persona debe pagar de monotributo.
 * Las cooperativas de CABA estan exentas de IIBB (ingresos brutos), en otras jurisdicciones no. Los monotributistas deben pagar IIBB salvo exentos por título profesional o casos especiales.
 * Entendemos que tanto una cooperativa como un monotributista necesitan servicios de contador, más en el hipotético caso del grupo de monotributistas, donde su facturación ascendería considerablemente. Por ende, no vemos como un gasto extra dicho servicio.
-* Las cooperativas deben destinar un porcentaje de sus excedentes de cada ejercicio a diferentes Fondos. [Pueden encontrar más información en nuestro antiguo post](http://blog.fiqus.com/2014/01/administracion-de-cooperativas-parte-3/)
+* Las cooperativas deben destinar un porcentaje de sus excedentes de cada ejercicio a diferentes Fondos. [Pueden encontrar más información en nuestro antiguo post](https://fiqus.github.io/fiqus-web-front/es/post/administracion-cooperativa-parte-3/)
 
 Concluyendo, formar una cooperativa es darle un marco a la forma de trabajo, asumir compromisos y responsabilidades bajo una estructura legal. No obstante, los [principios cooperativos](http://es.wikipedia.org/wiki/Principios_cooperativos) resultan de gran importancia para la formación y desarrollo de los socios; creemos que es una forma de no perder el norte y recordar ciertas cuestiones que muchas veces dejamos de lado (por ejemplo la capacitación o la ayuda a la comunidad).
 
