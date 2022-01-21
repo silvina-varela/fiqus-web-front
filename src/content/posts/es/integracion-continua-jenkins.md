@@ -2,7 +2,7 @@
 lang: es
 type: "post"
 title: "Integración continua con Jenkins: Introducción"
-author: "Pablo Brudnick"
+author: "Fiqus"
 slug: "/integracion-continua-con-jenkins"
 date: "2013-05-21"
 image:  ../images/integracion-continua-con-jenkins.png
