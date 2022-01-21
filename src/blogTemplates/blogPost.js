@@ -137,6 +137,35 @@ const PostContent = styled.div`
           margin-top: 0;
         }
       }
+      blockquote{
+        display:block;
+        background: #fff;
+        padding: 1rem 1rem 0.1rem 2.5rem;
+        margin: 0 0 20px;
+        position: relative;
+        
+        font-size: 16px;
+        line-height: 1.2;
+        color: #666;
+        text-align: justify;
+        
+        border-left: 15px solid #510066;
+        border-right: 2px solid #510066;
+        
+        -moz-box-shadow: 2px 2px 15px #ccc;
+        -webkit-box-shadow: 2px 2px 15px #ccc;
+        box-shadow: 2px 2px 15px #ccc;
+      }
+      blockquote a{
+        text-decoration: none;
+        background: #eee;
+        cursor: pointer;
+        padding: 0 3px;
+        color: #510066;
+      }
+      blockquote a:hover{
+       color: #666;
+      }
 `
 
 const TagsContainer = styled.div`
