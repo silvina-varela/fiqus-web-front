@@ -60,7 +60,7 @@ pip freeze
 
 Luego con esto se pueden volcar todos los requerimientos del ambiente en un archivo de texto con:
 ```bash
-pip freeze &gt; requirements.txt
+pip freeze > requirements.txt
 ```
 
 Lo mismo para cada paquete que instalemos.
