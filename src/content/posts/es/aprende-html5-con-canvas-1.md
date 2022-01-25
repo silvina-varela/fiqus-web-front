@@ -3,7 +3,7 @@ lang: es
 type: "post"
 title: "Aprende html5 con canvas haciendo protectores de pantallas (Parte 1)"
 author: "Mariano Lambir"
-slug: "/aprende-html-5-con-canvas"
+slug: "/aprende-html-5-con-canvas-1"
 date: "2013-05-27"
 image:  ../images/aprende-html-1.png
 imageCredits: "unsplash"
