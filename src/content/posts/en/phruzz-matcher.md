@@ -3,7 +3,7 @@ lang: en
 type: "post"
 title: "PhruzzMatcher"
 author: "Martín Vallone"
-slug: "/phruzz-matcher-en"
+slug: "/phruzz-matcher"
 date: "2021-10-05"
 image:  ../images/matrix-header.jpg
 imageCredits: "unsplash"
@@ -56,20 +56,20 @@ The prototype code made for CIECTI can be found on the project's GitHub [16].
 
 
 ## Sources and references
-0: [IA²](https://www.ia2.coop/)
-1: [CIECTI | Centro Interdisciplinario de Estudios en Ciencia, Tecnología e Innovación](http://www.ciecti.org.ar/)
-2: [Listado de enfermedades poco frecuentes en Argentina](https://www.argentina.gob.ar/salud/pocofrecuentes/listado)
-3: [Web scraping](https://es.wikipedia.org/wiki/Web_scraping)
-4: [Language Processing Pipelines · spaCy Usage Documentation](https://spacy.io/usage/processing-pipelines)
-5: [PhraseMatcher · spaCy API Documentation](https://spacy.io/api/phrasematcher)
-6: [Doc · spaCy API Documentation](https://spacy.io/api/doc)
-7: [Fuzzy (partial) matching with PhraseMatcher (NER task) - usage](https://support.prodi.gy/t/fuzzy-partial-matching-with-phrasematcher-ner-task/1084/8)
-8: https://github.com/maxbachmann/RapidFuzz
-9: [Distancia de Levenshtein](https://es.wikipedia.org/wiki/Distancia_de_Levenshtein)
-10: https://github.com/seatgeek/fuzzywuzzy
-11: [maxbachmann/RapidFuzz: Rapid fuzzy string matching in Python using various string metrics](https://github.com/maxbachmann/RapidFuzz#benchmark)
-12: A token is an instance of a sequence of characters in some particular document that is grouped together as a semantic unit useful for processing. So by "token" we mean a word, punctuation mark, space, etc.
-13: https://github.com/mjvallone/phruzz-matcher
-14: https://pypi.org/project/phruzz-matcher/
-15: https://spacy.io/universe/project/phruzz_matcher
-16: https://github.com/instituciones-abiertas/anonimizacion-texto-libre
+0: [IA²](https://www.ia2.coop/)<br/>
+1: [CIECTI | Centro Interdisciplinario de Estudios en Ciencia, Tecnología e Innovación](http://www.ciecti.org.ar/)<br/>
+2: [Listado de enfermedades poco frecuentes en Argentina](https://www.argentina.gob.ar/salud/pocofrecuentes/listado)<br/>
+3: [Web scraping](https://es.wikipedia.org/wiki/Web_scraping)<br/>
+4: [Language Processing Pipelines · spaCy Usage Documentation](https://spacy.io/usage/processing-pipelines)<br/>
+5: [PhraseMatcher · spaCy API Documentation](https://spacy.io/api/phrasematcher)<br/>
+6: [Doc · spaCy API Documentation](https://spacy.io/api/doc)<br/>
+7: [Fuzzy (partial) matching with PhraseMatcher (NER task) - usage](https://support.prodi.gy/t/fuzzy-partial-matching-with-phrasematcher-ner-task/1084/8)<br/>
+8: https://github.com/maxbachmann/RapidFuzz<br/>
+9: [Distancia de Levenshtein](https://es.wikipedia.org/wiki/Distancia_de_Levenshtein)<br/>
+10: https://github.com/seatgeek/fuzzywuzzy<br/>
+11: [maxbachmann/RapidFuzz: Rapid fuzzy string matching in Python using various string metrics](https://github.com/maxbachmann/RapidFuzz#benchmark)<br/>
+12: A token is an instance of a sequence of characters in some particular document that is grouped together as a semantic unit useful for processing. So by "token" we mean a word, punctuation mark, space, etc.<br/>
+13: https://github.com/mjvallone/phruzz-matcher<br/>
+14: https://pypi.org/project/phruzz-matcher/<br/>
+15: https://spacy.io/universe/project/phruzz_matcher<br/>
+16: https://github.com/instituciones-abiertas/anonimizacion-texto-libre<br/>
