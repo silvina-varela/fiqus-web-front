@@ -1,7 +1,7 @@
 ---
 lang: es
 type: "post"
-title: "Coop & Travel"
+title: "Coop & Travel: se acaba el sudeste asiático"
 author: "Martín Vallone"
 slug: "/coop-travel-se-acaba-el-sudeste-asiatico"
 date: "2016-12-27"
