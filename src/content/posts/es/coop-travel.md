@@ -7,7 +7,7 @@ slug: "/coop-travel"
 date: "2015-03-02"
 image:  ../images/coop-travel-header.jpg
 imageCredits: "Créditos de imagen unsplash"
-tags: ["cooperatives", "travel"]
+tags: ["cooperativismo", "viajes"]
 ---
 
 
