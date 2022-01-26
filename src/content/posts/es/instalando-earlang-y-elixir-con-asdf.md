@@ -41,7 +41,7 @@ asdf plugin-add erlang
 ```
 asdf plugin-add elixir
 ```
-
+<br />
 
 3. Instalamos las versiones deseadas de cada lenguaje:
 
