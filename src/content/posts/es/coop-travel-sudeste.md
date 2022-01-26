@@ -7,7 +7,7 @@ slug: "/coop-travel-se-acaba-el-sudeste-asiatico"
 date: "2016-12-27"
 image:  ../images/coop-travel-sudeste-header.jpg
 imageCredits: "Créditos de imagen a Martín Vallone"
-tags: ["cooperatives", "travel", "asia"]
+tags: ["cooperativismo", "viaje", "asia"]
 ---
 
 
@@ -19,7 +19,7 @@ Como bien leyeron en el título, se acaban mis días en el sudeste asiático (de
 
 <img src="../images/coop-travel-sudeste-1.JPG" alt="Taxi con WiFi en Da Lat, Vietnam." width="600"/>
 
-Me asombró increíblemente la disponibilidad de conexión que hay acá, tanto en buses de corta y larga distancia, como en taxis, ya sea en restaurantes, terminales de buses, hostels o supermercados, en todos lados se puede encontrar un cartel de "Free WiFi". El SA es un polo turístico que en los últimos años ha crecido enormemente, por sus bajos precios, su variedad gastronómica, increíbles destinos y lugares reconocidos mundialmente por su belleza (por ejemplo los templos de Angkor Wat en Siem Reap, Camboya).
+Me asombró increíblemente la disponibilidad de conexión que hay acá, tanto en buses de corta y larga distancia, como en taxis, ya sea en restaurantes, terminales de buses, hostels o supermercados, en todos lados se puede encontrar un cartel de "Free WiFi". El SA es un polo turístico que en los últimos años ha crecido enormemente, por sus bajos precios, su variedad gastronómica, increíbles destinos y lugares reconocidos mundialmente por su belleza (por ejemplo los templos de Angkor Wat en Siem Reap, Camboya).
 
 Tal vez por tales motivos es que la oferta de conexión es tan grande, aunque también vale la pena mencionar la enorme cantidad de dispositivos móviles que se pueden ver aquí. Por curiosidad fui a un par de locales de tecnología donde pude ver la predominancia de celulares y tablets, ofreciendo poca cantidad y variedad de notebooks. En la calle se puede ver como todos (o casi) tienen celulares, con un alto porcentaje de smartphones (hasta he visto monjes con sus vestimentas naranjas sacando fotos con sus celulares). Quienes viajan se comunican, buscan alojamiento y hasta compran vuelos por medio de sus celulares.
 
