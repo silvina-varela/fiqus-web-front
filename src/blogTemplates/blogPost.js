@@ -168,6 +168,12 @@ const PostContent = styled.div`
       blockquote a:hover{
        color: #666;
       }
+      p {
+        code {
+          background: #eee;
+          color: #510066;
+        }
+      }
 `
 
 const TagsContainer = styled.div`
