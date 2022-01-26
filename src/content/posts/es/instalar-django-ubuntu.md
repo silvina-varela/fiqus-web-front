@@ -10,7 +10,7 @@ imageCredits: "Créditos de imagen unsplash"
 tags: ["Ubuntu", "Django", "Python"]
 ---
 
-[Django](https://www.djangoproject.com/") es un framework de desarrollo web de código abierto, escrito en Python, que cumple en cierta medida el paradigma del Modelo Vista Controlador ([Wiki](http://es.wikipedia.org/wiki/Django_(framework)))
+[Django](https://www.djangoproject.com/) es un framework de desarrollo web de código abierto, escrito en Python, que cumple en cierta medida el paradigma del Modelo Vista Controlador ([Wiki](http://es.wikipedia.org/wiki/Django_(framework)))
 
 1. Verificar que pyhton esté instalado con:
 
