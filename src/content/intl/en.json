@@ -145,7 +145,8 @@
         "title": "Training",
         "description": "We provide technical and/or cooperative training for organizations, cooperatives and companies in which we seek to share in a friendly and systematized way the knowledge obtained in the technological and cooperative fields.",
         "image" : "capacitacion",
-        "featuredServiceImageAlt" : "Training animated image"
+        "featuredServiceImageAlt" : "Training animated image",
+        "link": "servicios/#capacitacion"
     },
     "culture" : {
         "title": "Culture",
