@@ -203,6 +203,9 @@ const TagsTitle = styled.h4`
 const Btn = styled(Button)`
   display: flex;
   justify-content: center;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 `
 
 export default function Post({ data, props }) {
