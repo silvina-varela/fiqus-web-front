@@ -114,7 +114,6 @@ const PostContent = styled.div`
       p{
         margin-bottom:30px;
       }
-
       h2{
         font-size: .88rem;
         line-height: 23px;
@@ -122,7 +121,9 @@ const PostContent = styled.div`
         font-weight: ${styles.fontWeight.bold};
         margin-bottom: 20px;
       }
-
+      h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 15px;
+      }
       figure{
         margin-bottom: 30px;
         max-width: 320px;
