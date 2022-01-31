@@ -29,9 +29,7 @@ const PageWrapper = (props) => {
     const [ishomepage, setIsHomepage] = useState("true")
 
     // hay que cambiar los homepaths cuando se deploye al server final
-    const homePathsGHpages = ["/fiqus-web-front/", "/fiqus-web-front/es", "/fiqus-web-front/es/", "/fiqus-web-front/en", "/fiqus-web-front/en/"]
-
-    const homePaths = ["/", "/es", "/es/", "/en", "/en/"]
+    const homePathsGHpages = ["/", "/es", "/en"]
 
     useEffect(()=>{
 

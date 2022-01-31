@@ -1,13 +1,8 @@
 module.exports = {
-  pathPrefix: "/fiqus-web-front",
   siteMetadata: {
     siteUrl: "https://fiqus.coop",
     title: "fiqus-web",
     menuLinks: [
-      /*{
-        name:"Home",
-        link:"/"
-      },*/
       {
         name:"Servicios",
         link:"/servicios"
@@ -23,11 +18,7 @@ module.exports = {
       {
         name:"Blog",
         link:"/blog"
-      }/*,
-      {
-        name:"Articles",
-        link:"/articles"
-      }*/
+      }
     ]
   },
   plugins: [
