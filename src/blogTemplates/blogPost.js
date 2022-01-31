@@ -225,7 +225,7 @@ export default function Post({ data, props }) {
     <BreadcrumbContainer>
       <BreadcrumbWrapper>
           <Breadcrumb>
-            <BlogLink to='/blog'>Blog</BlogLink> {post.title}
+            <BlogLink to='/blog'>Blog</BlogLink> / {post.title}
           </Breadcrumb>
       </BreadcrumbWrapper>
     </BreadcrumbContainer>
