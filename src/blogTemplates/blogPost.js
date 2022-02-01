@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { changeLocale } from "gatsby-plugin-react-intl";
-import { useEffect } from "react";
 import styled from 'styled-components'
 import Img from "gatsby-image"
 import data from '../content/content.json'
@@ -208,16 +207,18 @@ const Btn = styled(Button)`
   margin-right: auto;
 `
 
-export default function Post({ data, props }) {
+export default function Post({ data: {allMarkdownRemark: { edges }} }) {
   deckDeckGoHighlightElement();
-  const { html, frontmatter: post } = data.markdownRemark;
   const intl = useIntl();
-
-  useEffect(() => {
-    if (post.lang !== "es") {
-      changeLocale(post.lang);
-    }
-  }, [post.lang]);
+  let post = edges[0].node.frontmatter;
+  let html = "";
+  const postFiqus = edges.forEach((e) => {
+    const { frontmatter: p } = e.node;
+    if (p.lang === intl.locale) {
+      post = p;
+      html = e.node.html;
+    }      
+  })
 
   return (
   <PostContainer>
@@ -261,28 +262,34 @@ export default function Post({ data, props }) {
   );
 }
 
+
 export const pageQuery = graphql`
-  query PostQuery($slug: String!) {
-    markdownRemark(frontmatter: { slug: { eq: $slug } }) {
-      html
-      frontmatter {
-        lang
-        type
-        title
-        author
-        slug
-        date
-        tags
-        image{
-          childImageSharp {
-            fluid(maxWidth: 800) {
-              ...GatsbyImageSharpFluid
+  query ($slug: String!) {
+    allMarkdownRemark(filter: {frontmatter: { type: {eq: "post"}, slug: { eq: $slug } }}){
+      edges {
+        node {
+          id
+          html
+          frontmatter {
+            lang
+            type
+            title
+            author
+            slug
+            date
+            tags
+            image{
+              childImageSharp {
+                fluid(maxWidth: 800) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
             }
+            imageCredits
           }
+          timeToRead
         }
-        imageCredits
       }
-      timeToRead
     }
   }
 `;
