@@ -210,8 +210,16 @@ const Btn = styled(Button)`
 export default function Post({ data: {allMarkdownRemark: { edges }} }) {
   deckDeckGoHighlightElement();
   const intl = useIntl();
-  let post = edges[0].node.frontmatter;
+  let post = {};
   let html = "";
+  if (edges[0]) {
+    post = edges[0].node.frontmatter
+  } else {
+    return (
+      <PostContainer>
+      </PostContainer>
+    )
+  }
   const postFiqus = edges.forEach((e) => {
     const { frontmatter: p } = e.node;
     if (p.lang === intl.locale) {
