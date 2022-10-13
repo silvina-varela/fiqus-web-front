@@ -13,9 +13,9 @@ tags: ["Managed Services", "Staff Augmentation"]
 # **Managed services & Staff Augmentation**   
 ####  Let's get to know the different methodologies 
 
-What do we mean when we say "Staff Augmentation" and when we say Managed services? What are the differences and which is the best option when it comes to hiring devs? 
+What do we mean when we say "Staff Augmentation" and when we say "Managed Services"? What are the differences and which is the best option when it comes to hiring devs? 
 
-![](https://pandao.github.io/editor.md/examples/images/4.jpg)
+![](../images/msysa.png)
 
 In this post we will show you all the differences between both hiring models. 
 
